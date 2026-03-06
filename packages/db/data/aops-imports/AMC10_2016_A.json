@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2016,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "What is the value of $\\dfrac{11!-10!}{9!}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "For what value of $x$ does $10^{x}\\cdot 100^{2x}=1000^{5}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "For every dollar Ben spent on bagels, David spent $25$ cents less. Ben paid $\\$12.50$ more than David. How much did they spend in the bagel store together?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "The remainder can be defined for all real numbers $x$ and $y$ with $y \\neq 0$ by \\[\\text{rem} (x ,y)=x-y\\left \\lfloor \\frac{x}{y} \\right \\rfloor\\] where $\\left \\lfloor \\tfrac{x}{y} \\right \\rfloor$ denotes the greatest integer less than or equal to $\\tfrac{x}{y}$ . What is the value of $\\text{rem} (\\tfrac{3}{8}, -\\tfrac{2}{5} )$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "A rectangular box has integer side lengths in the ratio $1: 3: 4$ . Which of the following could be the volume of the box?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Ximena lists the whole numbers $1$ through $30$ once. Emilio copies Ximena's numbers, replacing each occurrence of the digit $2$ by the digit $1$ . Ximena adds her numbers and Emilio adds his numbers. How much larger is Ximena's sum than Emilio's?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "The mean, median, and mode of the $7$ data values $60, 100, x, 40, 50, 200, 90$ are all equal to $x$ . What is the value of $x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Trickster Rabbit agrees with Foolish Fox to double Fox's money every time Fox crosses the bridge by Rabbit's house, as long as Fox pays $40$ coins in toll to Rabbit after each crossing. The payment is made after the doubling, Fox is excited about his good fortune until he discovers that all his money is gone after crossing the bridge three times. How many coins did Fox have at the beginning?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "A triangular array of $2016$ coins has $1$ coin in the first row, $2$ coins in the second row, $3$ coins in the third row, and so on up to $N$ coins in the $N$ th row. What is the sum of the digits of $N$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "A rug is made with three different colors as shown. The areas of the three differently colored regions form an arithmetic progression. The inner rectangle is one foot wide, and each of the two shaded regions is $1$ foot wide on all four sides. What is the length in feet of the inner rectangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Find the area of the shaded region.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Three distinct integers are selected at random between $1$ and $2016$ , inclusive. Which of the following is a correct statement about the probability $p$ that the product of the three integers is odd?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Five friends sat in a movie theater in a row containing $5$ seats, numbered $1$ to $5$ from left to right. (The directions \"left\" and \"right\" are from the point of view of the people as they sit in the seats.) During the movie Ada went to the lobby to get some popcorn. When she returned, she found that Bea had moved two seats to the right, Ceci had moved one seat to the left, and Dee and Edie had switched seats, leaving an end seat for Ada. In which seat had Ada been sitting before she got up?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "How many ways are there to write $2016$ as the sum of twos and threes, ignoring order? (For example, $1008\\cdot 2 + 0\\cdot 3$ and $402\\cdot 2 + 404\\cdot 3$ are two such ways.)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Seven cookies of radius $1$ inch are cut from a circle of cookie dough, as shown. Neighboring cookies are tangent, and all except the center cookie are tangent to the edge of the dough. The leftover scrap is reshaped to form another cookie of the same thickness. What is the radius in inches of the scrap cookie?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "A triangle with vertices $A(0, 2)$ , $B(-3, 2)$ , and $C(-3, 0)$ is reflected about the $x$ -axis, then the image $\\triangle A'B'C'$ is rotated counterclockwise about the origin by $90^{\\circ}$ to produce $\\triangle A''B''C''$ . Which of the following transformations will return $\\triangle A''B''C''$ to $\\triangle ABC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Let $N$ be a positive multiple of $5$ . One red ball and $N$ green balls are arranged in a line in random order. Let $P(N)$ be the probability that at least $\\tfrac{3}{5}$ of the green balls are on the same side of the red ball. Observe that $P(5)=1$ and that $P(N)$ approaches $\\tfrac{4}{5}$ as $N$ grows large. What is the sum of the digits of the least value of $N$ such that $P(N) < \\tfrac{321}{400}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Each vertex of a cube is to be labeled with an integer $1$ through $8$ , with each integer being used once, in such a way that the sum of the four numbers on the vertices of a face is the same for each face. Arrangements that can be obtained from each other through rotations of the cube are considered to be the same. How many different arrangements are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "In rectangle $ABCD,$ $AB=6$ and $BC=3$ . Point $E$ between $B$ and $C$ , and point $F$ between $E$ and $C$ are such that $BE=EF=FC$ . Segments $\\overline{AE}$ and $\\overline{AF}$ intersect $\\overline{BD}$ at $P$ and $Q$ , respectively. The ratio $BP:PQ:QD$ can be written as $r:s:t$ where the greatest common factor of $r,s,$ and $t$ is $1.$ What is $r+s+t$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "For some particular value of $N$ , when $(a+b+c+d+1)^N$ is expanded and like terms are combined, the resulting expression contains exactly $1001$ terms that include all four variables $a, b,c,$ and $d$ , each to some positive power. What is $N$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Circles with centers $P, Q$ and $R$ , having radii $1, 2$ and $3$ , respectively, lie on the same side of line $l$ and are tangent to $l$ at $P', Q'$ and $R'$ , respectively, with $Q'$ between $P'$ and $R'$ . The circle with center $Q$ is externally tangent to each of the other two circles. What is the area of triangle $PQR$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "For some positive integer $n$ , the number $110n^3$ has $110$ positive integer divisors, including $1$ and the number $110n^3$ . How many positive integer divisors does the number $81n^4$ have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "A binary operation $\\diamondsuit$ has the properties that $a\\,\\diamondsuit\\, (b\\,\\diamondsuit \\,c) = (a\\,\\diamondsuit \\,b)\\cdot c$ and that $a\\,\\diamondsuit \\,a=1$ for all nonzero real numbers $a, b,$ and $c$ . (Here $\\cdot$ represents multiplication). The solution to the equation $2016 \\,\\diamondsuit\\, (6\\,\\diamondsuit\\, x)=100$ can be written as $\\tfrac{p}{q}$ , where $p$ and $q$ are relatively prime positive integers. What is $p+q?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "A quadrilateral is inscribed in a circle of radius $200\\sqrt{2}$ . Three of the sides of this quadrilateral have length $200$ . What is the length of the fourth side?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "How many ordered triples $(x,y,z)$ of positive integers satisfy $\\text{lcm}(x,y) = 72, \\text{lcm}(x,z) = 600,$ and $\\text{lcm}(y,z)=900$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_10A_Problems/Problem_25"
+    }
+  ]
+}

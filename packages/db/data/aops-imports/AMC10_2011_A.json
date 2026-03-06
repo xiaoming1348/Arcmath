@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2011,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "A cell phone plan costs $20$ dollars each month, plus $5$ cents per text message sent, plus $10$ cents for each minute used over $30$ hours. In January Michelle sent $100$ text messages and talked for $30.5$ hours. How much did she have to pay?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "A small bottle of shampoo can hold $35$ milliliters of shampoo, whereas a large bottle can hold $500$ milliliters of shampoo. Jasmine wants to buy the minimum number of small bottles necessary to completely fill a large bottle. How many bottles must she buy?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Suppose [ $a$ $b$ ] denotes the average of $a$ and $b$ , and { $a$ $b$ $c$ } denotes the average of $a$ , $b$ , and $c$ . What is $\\{\\{\\text{1 1 0}\\} \\text{ [0 1] } 0\\}?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Let X and Y be the following sums of arithmetic sequences:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "At an elementary school, the students in third grade, fourth grade, and fifth grade run an average of $12$ , $15$ , and $10$ minutes per day, respectively. There are twice as many third graders as fourth graders, and twice as many fourth graders as fifth graders. What is the average number of minutes run per day by these students?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Set $A$ has $20$ elements, and set $B$ has $15$ elements. What is the smallest possible number of elements in $A \\cup B$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Which of the following equations does NOT have a solution?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Last summer 30% of the birds living on Town Lake were geese, 25% were swans, 10% were herons, and 35% were ducks. What percent of the birds that were not swans were geese?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "A rectangular region is bounded by the graphs of the equations $y=a, y=-b, x=-c,$ and $x=d$ , where $a,b,c,$ and $d$ are all positive numbers. Which of the following represents the area of this region?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "A majority of the $30$ students in Ms. Demeanor's class bought pencils at the school bookstore. Each of these students bought the same number of pencils, and this number was greater than $1$ . The cost of a pencil in cents was greater than the number of pencils each student bought, and the total cost of all the pencils was $\\$17.71$ . What was the cost of a pencil in cents?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Square $EFGH$ has one vertex on each side of square $ABCD$ . Point $E$ is on $AB$ with $AE=7\\cdot EB$ . What is the ratio of the area of $EFGH$ to the area of $ABCD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "The players on a basketball team made some three-point shots, some two-point shots, and some one-point free throws. They scored as many points with two-point shots as with three-point shots. Their number of successful free throws was one more than their number of successful two-point shots. The team's total score was $61$ points. How many free throws did they make?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "How many even integers are there between $200$ and $700$ whose digits are all different and come from the set $\\left\\{1,2,5,7,8,9\\right\\}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "A pair of standard $6$ -sided dice is rolled once. The sum of the numbers rolled determines the diameter of a circle. What is the probability that the numerical value of the area of the circle is less than the numerical value of the circle's circumference?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Roy bought a new battery-gasoline hybrid car. On a trip the car ran exclusively on its battery for the first $40$ miles, then ran exclusively on gasoline for the rest of the trip, using gasoline at a rate of $0.02$ gallons per mile. On the whole trip he averaged $55$ miles per gallon. How long was the trip in miles?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Which of the following is equal to $\\sqrt{9-6\\sqrt{2}}+\\sqrt{9+6\\sqrt{2}}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "In the eight term sequence $A$ , $B$ , $C$ , $D$ , $E$ , $F$ , $G$ , $H$ , the value of $C$ is $5$ and the sum of any three consecutive terms is $30$ . What is $A+H$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Circles $A, B,$ and $C$ each has radius $1$ . Circles $A$ and $B$ share one point of tangency. Circle $C$ has a point of tangency with the midpoint of $\\overline{AB}.$ What is the area inside circle $C$ but outside circle $A$ and circle $B?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "In 1991 the population of a town was a perfect square. Ten years later, after an increase of 150 people, the population was 9 more than a perfect square. Now, in 2011, with an increase of another 150 people, the population is once again a perfect square. Which of the following is closest to the percent growth of the town's population during this twenty-year period?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Two points on the circumference of a circle of radius $r$ are selected independently and at random. From each point a chord of length $r$ is drawn in a clockwise direction. What is the probability that the two chords intersect?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Two counterfeit coins of equal weight are mixed with $8$ identical genuine coins. The weight of each of the counterfeit coins is different from the weight of each of the genuine coins. A pair of coins is selected at random without replacement from the $10$ coins. A second pair is selected at random without replacement from the remaining $8$ coins. The combined weight of the first pair is equal to the combined weight of the second pair. What is the probability that all $4$ selected coins are genuine?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Each vertex of convex pentagon $ABCDE$ is to be assigned a color. There are $6$ colors to choose from, and the ends of each diagonal must have different colors. How many different colorings are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Seven students count from 1 to 1000 as follows:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Two distinct regular tetrahedra have all their vertices among the vertices of the same unit cube. What is the volume of the region formed by the intersection of the tetrahedra?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Let $R$ be a unit square region and $n \\geq 4$ an integer. A point $X$ in the interior of $R$ is called n-ray partitional if there are $n$ rays emanating from $X$ that divide $R$ into $n$ triangles of equal area. How many points are $100$ -ray partitional but not $60$ -ray partitional?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10A_Problems/Problem_25"
+    }
+  ]
+}

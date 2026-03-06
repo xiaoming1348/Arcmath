@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2005,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "A scout troop buys $1000$ candy bars at a price of five for $2$ dollars. They sell all the candy bars at the price of two for $1$ dollar. What was their profit, in dollars?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "A positive number $x$ has the property that $x\\%$ of $x$ is $4$ . What is $x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "A gallon of paint is used to paint a room. One third of the paint is used on the first day. On the second day, one third of the remaining paint is used. What fraction of the original amount of paint is available to use on the third day?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "For real numbers $a$ and $b$ , define $a \\diamond b = \\sqrt{a^2 + b^2}$ . What is the value of",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Brianna is using part of the money she earned on her weekend job to buy several equally-priced CDs. She used one fifth of her money to buy one third of the CDs. What fraction of her money will she have left after she buys all the CDs?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "At the beginning of the school year, Lisa's goal was to earn an $A$ on at least $80\\%$ of her $50$ quizzes for the year. She earned an $A$ on $22$ of the first $30$ quizzes. If she is to achieve her goal, on at most how many of the remaining quizzes can she earn a grade lower than an $A$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "A circle is inscribed in a square, then a square is inscribed in this circle, and finally, a circle is inscribed in this square. What is the ratio of the area of the smallest circle to the area of the largest square?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "An $8$ -foot by $10$ -foot bathroom floor is tiled with square tiles of size $1$ foot by $1$ foot. Each tile has a pattern consisting of four white quarter circles of radius $1/2$ foot centered at each corner of the tile. The remaining portion of the tile is shaded. How many square feet of the floor are shaded?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "One fair die has faces $1, 1, 2, 2, 3, 3$ and another has faces $4, 4, 5, 5, 6, 6.$ The dice are rolled and the numbers on the top faces are added. What is the probability that the sum will be odd?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "In $\\triangle ABC$ , we have $AC=BC=7$ and $AB=2$ . Suppose that $D$ is a point on line $AB$ such that $B$ lies between $A$ and $D$ and $CD=8$ . What is $BD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "The first term of a sequence is $2005$ . Each succeeding term is the sum of the cubes of the digits of the previous term. What is the ${2005}^{\\text{th}}$ term of the sequence?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Twelve fair dice are rolled. What is the probability that the product of the numbers on the top faces is prime?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "How many numbers between $1$ and $2005$ are integer multiples of $3$ or $4$ but not $12$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Equilateral $\\triangle ABC$ has side length $2$ , $M$ is the midpoint of $\\overline{AC}$ , and $C$ is the midpoint of $\\overline{BD}$ . What is the area of $\\triangle CDM$ ? [asy]defaultpen(linewidth(.8pt)+fontsize(8pt)); pair B = (0,0); pair A = 2*dir(60); pair C = (2,0); pair D = (4,0); pair M = midpoint(A--C); label(\"$A$\",A,NW);label(\"$B$\",B,SW);label(\"$C$\",C, SE);label(\"$M$\",M,NE);label(\"$D$\",D,SE); draw(A--B--C--cycle); draw(C--D--M--cycle);[/asy]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "An envelope contains eight bills: $2$ ones, $2$ fives, $2$ tens, and $2$ twenties. Two bills are drawn at random without replacement. What is the probability that their sum is $ $20$ or more?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "The quadratic equation $x^2+mx+n$ has roots twice those of $x^2+px+m$ , and none of $m,n,$ and $p$ is zero. What is the value of $n/p$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Suppose that $4^a = 5$ , $5^b = 6$ , $6^c = 7$ , and $7^d = 8$ . What is $a \\cdot b\\cdot c \\cdot d$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "All of David's telephone numbers have the form $555-abc-defg$ , where $a$ , $b$ , $c$ , $d$ , $e$ , $f$ , and $g$ are distinct digits and in increasing order, and none is either $0$ or $1$ . How many different telephone numbers can David have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "On a certain math exam, $10\\%$ of the students got $70$ points, $25\\%$ got $80$ points, $20\\%$ got $85$ points, $15\\%$ got $90$ points, and the rest got $95$ points. What is the difference between the mean and the median score on this exam?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "What is the average (mean) of all 5-digit numbers that can be formed by using each of the digits 1, 3, 5, 7, and 8 exactly once?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Forty slips are placed into a hat, each bearing a number $1$ , $2$ , $3$ , $4$ , $5$ , $6$ , $7$ , $8$ , $9$ , or $10$ , with each number entered on four slips. Four slips are drawn from the hat at random and without replacement. Let $p$ be the probability that all four slips bear the same number. Let $q$ be the probability that two of the slips bear a number $a$ and the other two bear a number $b \\neq a$ . What is the value of $q/p$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "For how many positive integers $n$ less than or equal to $24$ is $n!$ evenly divisible by $1 + 2 + \\cdots + n?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "In trapezoid $ABCD$ we have $\\overline{AB}$ parallel to $\\overline{DC}$ , $E$ as the midpoint of $\\overline{BC}$ , and $F$ as the midpoint of $\\overline{DA}$ . The area of $ABEF$ is twice the area of $FECD$ . What is $AB/DC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Let $x$ and $y$ be two-digit integers such that $y$ is obtained by reversing the digits of $x$ . The integers $x$ and $y$ satisfy $x^2 - y^2 = m^2$ for some positive integer $m$ . What is $x + y + m$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "A subset $B$ of the set of integers from $1$ to $100$ , inclusive, has the property that no two elements of $B$ sum to $125$ . What is the maximum possible number of elements in $B$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10B_Problems/Problem_25"
+    }
+  ]
+}

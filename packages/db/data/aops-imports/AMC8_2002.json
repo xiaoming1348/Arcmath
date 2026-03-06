@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC8",
+    "year": 2002,
+    "exam": null,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "A circle and two distinct lines are drawn on a sheet of paper. What is the largest possible number of points of intersection of these figures?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "How many different combinations of \\$5 bills and \\$2 bills can be used to make a total of \\$17? Order does not matter in this problem.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "What is the smallest possible average of four distinct positive even integers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "The year 2002 is a palindrome (a number that reads the same from left to right as it does from right to left). What is the product of the digits of the next year after 2002 that is a palindrome?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Carlos Montado was born on Saturday, November 9, 2002. On what day of the week will Carlos be 706 days old?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "A birdbath is designed to overflow so that it will be self-cleaning. Water flows in at the rate of 20 milliliters per minute and drains at the rate of 18 milliliters per minute. Which one of these graphs shows the volume of water in the birdbath during the filling time and continuing into the overflow time? [asy] size(450); defaultpen(linewidth(0.8)); path[] p={origin--(8,8)--(14,8), (0,10)--(4,10)--(14,0), origin--(14,14), (0,14)--(14,14), origin--(7,7)--(14,0)}; int i; for(i=0; i<5; i=i+1) { draw(shift(21i,0)*((0,16)--origin--(14,0))); draw(shift(21i,0)*(p[i])); label(\"Time\", (7+21i,0), S); label(rotate(90)*\"Volume\", (21i,8), W); } label(\"$A$\", (0*21 + 7,-5), S); label(\"$B$\", (1*21 + 7,-5), S); label(\"$C$\", (2*21 + 7,-5), S); label(\"$D$\", (3*21 + 7,-5), S); label(\"$E$\", (4*21 + 7,-5), S); [/asy]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "The students in Mrs. Sawyer's class were asked to do a taste test of five kinds of candy. Each student chose one kind of candy. A bar graph of their preferences is shown. What percent of her class chose candy E?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Problems 8,9 and 10 use the data found in the accompanying paragraph and table:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Problems 8,9 and 10 use the data found in the accompanying paragraph and table:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Problems 8,9 and 10 use the data found in the accompanying paragraph and table:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A sequence of squares is made of identical square tiles. The edge of each square is one tile length longer than the edge of the previous square. The first three squares are shown. How many more tiles does the seventh square require than the sixth?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "A board game spinner is divided into three regions labeled $A$ , $B$ and $C$ . The probability of the arrow stopping on region $A$ is $\\frac{1}{3}$ and on region $B$ is $\\frac{1}{2}$ . The probability of the arrow stopping on region $C$ is:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "For his birthday, Bert gets a box that holds 125 jellybeans when filled to capacity. A few weeks later, Carrie gets a larger box full of jellybeans. Her box is twice as high, twice as wide and twice as long as Bert's. Approximately, how many jellybeans did Carrie get?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "A merchant offers a large group of items at $30\\%$ off. Later, the merchant takes $20\\%$ off these sale prices. The total discount is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Which of the following polygons has the largest area?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Right isosceles triangles are constructed on the sides of a 3-4-5 right triangle, as shown. A capital letter represents the area of each triangle. Which one of the following is true?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "In a mathematics contest with ten problems, a student gains 5 points for a correct answer and loses 2 points for an incorrect answer. If Olivia answered every problem and her score was 29, how many correct answers did she have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Gage skated $1$ hr $15$ min each day for $5$ days and $1$ hr $30$ min each day for $3$ days. How long would he have to skate the ninth day in order to average $85$ minutes of skating each day for the entire time?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "How many whole numbers between 99 and 999 contain exactly one 0?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "The area of triangle $XYZ$ is 8 square inches. Points $A$ and $B$ are midpoints of congruent segments $\\overline{XY}$ and $\\overline{XZ}$ . Altitude $\\overline{XC}$ bisects $\\overline{YZ}$ . The area (in square inches) of the shaded region is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Harold tosses a coin four times. The probability that he gets at least as many heads as tails is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Six cubes, each an inch on an edge, are fastened together, as shown. Find the total surface area in square inches. Include the top, bottom, and sides.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "A corner of a tiled floor is shown. If the entire floor is tiled in this way and each of the four corners looks like this one, then what fraction of the tiled floor is made of darker tiles?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Miki has a dozen oranges of the same size and a dozen pears of the same size. Miki uses her juicer to extract 8 ounces of pear juice from 3 pears and 8 ounces of orange juice from 2 oranges. She makes a pear-orange juice blend from an equal number of pears and oranges. What percent of the blend is pear juice?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Loki, Moe, Nick and Ott are good friends. Ott had no money, but the others did. Moe gave Ott one-fifth of his money, Loki gave Ott one-fourth of his money and Nick gave Ott one-third of his money. Each gave Ott the same amount of money. What fractional part of the group's money does Ott now have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_8_Problems/Problem_25"
+    }
+  ]
+}

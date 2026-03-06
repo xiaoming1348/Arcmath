@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 1989,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1989_AIME"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Compute $\\sqrt{(31)(30)(29)(28)+1}$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "869",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1989_AIME_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Ten points are marked on a circle . How many distinct convex polygons of three or more sides can be drawn using some (or all) of the ten points as vertices ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "968",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1989_AIME_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Suppose $n$ is a positive integer and $d$ is a single digit in base 10 . Find $n$ if",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "750",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1989_AIME_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "If $a<b<c<d<e$ are consecutive positive integers such that $b+c+d$ is a perfect square and $a+b+c+d+e$ is a perfect cube , what is the smallest possible value of $c$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "675",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1989_AIME_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "When a certain biased coin is flipped five times, the probability of getting heads exactly once is not equal to $0$ and is the same as that of getting heads exactly twice. Let $\\frac ij$ , in lowest terms, be the probability that the coin comes up heads in exactly $3$ out of $5$ flips. Find $i+j$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "283",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1989_AIME_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Two skaters, Allie and Billie, are at points $A$ and $B$ , respectively, on a flat, frozen lake. The distance between $A$ and $B$ is $100$ meters. Allie leaves $A$ and skates at a speed of $8$ meters per second on a straight line that makes a $60^\\circ$ angle with $AB$ . At the same time Allie leaves $A$ , Billie leaves $B$ at a speed of $7$ meters per second and follows the straight path that produces the earliest possible meeting of the two skaters, given their speeds. How many meters does Allie skate before meeting Billie?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "160",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1989_AIME_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "If the integer $k$ is added to each of the numbers $36$ , $300$ , and $596$ , one obtains the squares of three consecutive terms of an arithmetic series. Find $k$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "925",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1989_AIME_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Assume that $x_1,x_2,\\ldots,x_7$ are real numbers such that \\begin{align*} x_1 + 4x_2 + 9x_3 + 16x_4 + 25x_5 + 36x_6 + 49x_7 &= 1, \\\\ 4x_1 + 9x_2 + 16x_3 + 25x_4 + 36x_5 + 49x_6 + 64x_7 &= 12, \\\\ 9x_1 + 16x_2 + 25x_3 + 36x_4 + 49x_5 + 64x_6 + 81x_7 &= 123. \\end{align*} Find the value of $16x_1+25x_2+36x_3+49x_4+64x_5+81x_6+100x_7$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "334",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1989_AIME_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "One of Euler's conjectures was disproved in the 1960s by three American mathematicians when they showed there was a positive integer such that \\[133^5+110^5+84^5+27^5=n^{5}.\\] Find the value of $n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "144",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1989_AIME_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Let $a$ , $b$ , $c$ be the three sides of a triangle , and let $\\alpha$ , $\\beta$ , $\\gamma$ , be the angles opposite them. If $a^2+b^2=1989c^2$ , find",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "994",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1989_AIME_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A sample of 121 integers is given, each between 1 and 1000 inclusive, with repetitions allowed. The sample has a unique mode (most frequent value). Let $D$ be the difference between the mode and the arithmetic mean of the sample. What is the largest possible value of $\\lfloor D\\rfloor$ ? (For real $x$ , $\\lfloor x\\rfloor$ is the greatest integer less than or equal to $x$ .)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "947",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1989_AIME_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Let $ABCD$ be a tetrahedron with $AB=41$ , $AC=7$ , $AD=18$ , $BC=36$ , $BD=27$ , and $CD=13$ , as shown in the figure. Let $d$ be the distance between the midpoints of edges $AB$ and $CD$ . Find $d^{2}$ . [asy] defaultpen(fontsize(10)+0.8); size(175); pair A,B,C,D,M,P,Q; C=origin; B=(8,0); D=IP(CR(C,6.5),CR(B,8)); A=(4,-3); P=midpoint(A--B); Q=midpoint(C--D); draw(B--C--D--B--A--C^^A--D); draw(D--P--C^^P--Q, gray+dashed+0.5); pen p=fontsize(12)+linewidth(3); dot(\"$A$\",A,down,p); dot(\"$B$\",B,right,p); dot(\"$C$\",C,left,p); dot(\"$D$\",D,up,p); dot(\"$M$\",P,dir(-45),p); dot(\"$N$\",Q,0.2*(Q-P),p); label(\"$27$\",B--D,2*dir(30),fontsize(10)); label(\"$7$\",A--C,2*dir(210),fontsize(10)); label(\"$18$\",A--D,1.5*dir(30),fontsize(10)); label(\"$36$\",(3,0),up,fontsize(10)); [/asy]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "137",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1989_AIME_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Let $S$ be a subset of $\\{1,2,3,\\ldots,1989\\}$ such that no two members of $S$ differ by $4$ or $7$ . What is the largest number of elements $S$ can have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "905",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1989_AIME_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Given a positive integer $n$ , it can be shown that every complex number of the form $r+si$ , where $r$ and $s$ are integers, can be uniquely expressed in the base $-n+i$ using the integers $0,1,2,\\ldots,n^2$ as digits. That is, the equation",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "490",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1989_AIME_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Point $P$ is inside $\\triangle ABC$ . Line segments $APD$ , $BPE$ , and $CPF$ are drawn with $D$ on $BC$ , $E$ on $AC$ , and $F$ on $AB$ (see the figure below). Given that $AP=6$ , $BP=9$ , $PD=6$ , $PE=3$ , and $CF=20$ , find the area of $\\triangle ABC$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "108",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1989_AIME_Problems/Problem_15"
+    }
+  ]
+}

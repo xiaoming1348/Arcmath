@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2002,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "The ratio $\\frac{2^{2001}\\cdot3^{2003}}{6^{2002}}$ is:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "For the nonzero numbers a, b, and c, define",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "The arithmetic mean of the nine numbers in the set $\\{9, 99, 999, 9999, \\ldots, 999999999\\}$ is a $9$ -digit number $M$ , all of whose digits are distinct. The number $M$ doesn't contain the digit",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "What is the value of $(3x - 2)(4x + 1) - (3x - 2)4x + 1$ when $x=4$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Circles of radius $2$ and $3$ are externally tangent and are circumscribed by a third circle, as shown in the figure. Find the area of the shaded region.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "For how many positive integers $n$ is $n^2 - 3n + 2$ a prime number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Let $n$ be a positive integer such that $\\frac 12 + \\frac 13 + \\frac 17 + \\frac 1n$ is an integer. Which of the following statements is not true:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Suppose July of year $N$ has five Mondays. Which of the following must occur five times in the August of year $N$ ? (Note: Both months have $31$ days.)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Using the letters $A$ , $M$ , $O$ , $S$ , and $U$ , we can form five-letter \"words\". If these \"words\" are arranged in alphabetical order, then the \"word\" $USAMO$ occupies position",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Suppose that $a$ and $b$ are nonzero real numbers, and that the equation $x^2 + ax + b = 0$ has solutions $a$ and $b$ . Then the pair $(a,b)$ is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "The product of three consecutive positive integers is $8$ times their sum. What is the sum of their squares ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "For which of the following values of $k$ does the equation $\\frac{x-1}{x-2} = \\frac{x-k}{x-6}$ have no solution for $x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Find the value(s) of $x$ such that $8xy - 12y + 2x - 3 = 0$ is true for all values of $y$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "The number $25^{64}\\cdot 64^{25}$ is the square of a positive integer $N$ . In decimal representation, the sum of the digits of $N$ is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "The positive integers $A, B, A-B,$ and $A+B$ are all prime numbers. The sum of these four primes is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "For how many integers $n$ is $\\dfrac n{20-n}$ the square of an integer?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "A regular octagon $ABCDEFGH$ has sides of length two. Find the area of $\\triangle ADG$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Four distinct circles are drawn in a plane . What is the maximum number of points where at least two of the circles intersect?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Suppose that $\\{a_n\\}$ is an arithmetic sequence with \\[a_1+a_2+\\cdots+a_{100}=100 \\text{ and } a_{101}+a_{102}+\\cdots+a_{200}=200.\\] What is the value of $a_2 - a_1 ?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Let $a$ , $b$ , and $c$ be real numbers such that $a-7b+8c=4$ and $8a+4b-c=7$ . Then $a^2-b^2+c^2$ is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Andy's lawn has twice as much area as Beth's lawn and three times as much area as Carlos' lawn. Carlos' lawn mower cuts half as fast as Beth's mower and one third as fast as Andy's mower. If they all start to mow their lawns at the same time, who will finish first?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Let $\\triangle XOY$ be a right-angled triangle with $m\\angle XOY = 90^{\\circ}$ . Let $M$ and $N$ be the midpoints of legs $OX$ and $OY$ , respectively. Given that $XN = 19$ and $YM = 22$ , find $XY$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Let $\\{a_k\\}$ be a sequence of integers such that $a_1=1$ and $a_{m+n}=a_m+a_n+mn,$ for all positive integers $m$ and $n.$ Then $a_{12}$ is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Riders on a Ferris wheel travel in a circle in a vertical plane. A particular wheel has radius $20$ feet and revolves at the constant rate of one revolution per minute. How many seconds does it take a rider to travel from the bottom of the wheel to a point $10$ vertical feet above the bottom?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "When $15$ is appended to a list of integers, the mean is increased by $2$ . When $1$ is appended to the enlarged list, the mean of the enlarged list is decreased by $1$ . How many integers were in the original list?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10B_Problems/Problem_25"
+    }
+  ]
+}

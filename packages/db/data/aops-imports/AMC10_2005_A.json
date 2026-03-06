@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2005,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "While eating out, Mike and Joe each tipped their server $\\$2$ . Mike tipped $10\\%$ of his bill and Joe tipped $20\\%$ of his bill. What was the difference, in dollars, between their bills?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "For each pair of real numbers $a \\neq b$ , define the operation $\\star$ as",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "The equations $2x + 7 = 3$ and $bx - 10 = -2$ have the same solution $x$ . What is the value of $b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "A rectangle with a diagonal of length $x$ is twice as long as it is wide. What is the area of the rectangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "A store normally sells windows at $\\$100$ each. This week the store is offering one free window for each purchase of four. Dave needs seven windows and Doug needs eight windows. How many dollars will they save if they purchase the windows together rather than separately?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "The average (mean) of $20$ numbers is $30$ , and the average of $30$ other numbers is $20$ . What is the average of all $50$ numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Josh and Mike live $13$ miles apart. Yesterday Josh started to ride his bicycle toward Mike's house. A little later Mike started to ride his bicycle toward Josh's house. When they met, Josh had ridden for twice the length of time as Mike and at four-fifths of Mike's rate. How many miles had Mike ridden when they met?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "In the figure, the length of side $AB$ of square $ABCD$ is $\\sqrt{50}$ , $E$ is between $B$ and $H$ , and $BE = 1$ . What is the area of the inner square $EFGH$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Three tiles are marked $X$ and two other tiles are marked $O$ . The five tiles are randomly arranged in a row. What is the probability that the arrangement reads $XOXOX$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "There are two values of $a$ for which the equation $4x^2 + ax + 8x + 9 = 0$ has only one solution for $x$ . What is the sum of those values of $a$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A wooden cube $n$ units on a side is painted red on all six faces and then cut into $n^3$ unit cubes. Exactly one-fourth of the total number of faces of the unit cubes are red. What is $n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "The figure shown is called a trefoil and is constructed by drawing circular sectors about sides of the congruent equilateral triangles. What is the area of a trefoil whose horizontal base has length $2$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "How many positive integers $n$ satisfy the following condition:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "How many three-digit numbers satisfy the property that the middle digit is the average of the first and the last digits?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "How many positive cubes divide $3! \\cdot 5! \\cdot 7!$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "The sum of the digits of a two-digit number is subtracted from the number. The units digit of the result is $6$ . How many two-digit numbers have this property?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "In the five-sided star shown, the letters $A$ , $B$ , $C$ , $D$ , and $E$ are replaced by the numbers $3$ , $5$ , $6$ , $7$ , and $9$ , although not necessarily in this order. The sums of the numbers at the ends of the line segments $\\overline{AB}$ , $\\overline{BC}$ , $\\overline{CD}$ , $\\overline{DE}$ , and $\\overline{EA}$ form an arithmetic sequence, although not necessarily in this order. What is the middle term of the arithmetic sequence?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Team $A$ and team $B$ play a series. The first team to win three games wins the series. Each team is equally likely to win each game, there are no ties, and the outcomes of the individual games are independent. If team $B$ wins the second game and team $A$ wins the series, what is the probability that team $B$ wins the first game?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Three one-inch squares are placed with their bases on a line. The center square is lifted out and rotated $45^{\\circ}$ , as shown. Then it is centered and lowered into its original location until it touches both of the adjoining squares. How many inches is the point $B$ from the line on which the bases of the original squares were placed?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "An equiangular octagon has four sides of length $1$ and four sides of length $\\sqrt{2}/2$ , arranged so that no two consecutive sides have the same length. What is the area of the octagon?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "For how many positive integers $n$ does $1+2+\\dotsb+n$ evenly divide $6n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Let $S$ be the set of the $2005$ smallest positive multiples of $4$ , and let $T$ be the set of the $2005$ smallest positive multiples of $6$ . How many elements are common to $S$ and $T$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Let $\\overline{AB}$ be a diameter of a circle and $C$ be a point on $\\overline{AB}$ with $2 \\cdot AC = BC$ . Let $D$ and $E$ be points on the circle such that $\\overline{DC} \\perp \\overline{AB}$ and $\\overline{DE}$ is a second diameter. What is the ratio of the area of $\\triangle DCE$ to the area of $\\triangle ABD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "For each positive integer $m > 1$ , let $P(m)$ denote the greatest prime factor of $m$ . For how many positive integers $n$ is it true that both $P(n) = \\sqrt{n}$ and $P(n+48) = \\sqrt{n+48}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "In $\\triangle ABC$ we have $AB = 25$ , $BC = 39$ , and $AC = 42$ . Points $D$ and $E$ are on $\\overline{AB}$ and $\\overline{AC}$ respectively, with $AD = 19$ and $AE = 14$ . What is the ratio of the area of triangle $ADE$ to the area of the quadrilateral $BCED$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_10A_Problems/Problem_25"
+    }
+  ]
+}

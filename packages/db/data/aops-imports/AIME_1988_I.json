@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 1988,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1988_AIME"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "One commercially available ten-button lock may be opened by pressing -- in any order -- the correct five buttons. The sample shown below has $\\{1,2,3,6,9\\}$ as its combination . Suppose that these locks are redesigned so that sets of as many as nine buttons or as few as one button could serve as combinations. How many additional combinations would this allow?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "770",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1988_AIME_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "For any positive integer $k$ , let $f_1(k)$ denote the square of the sum of the digits of $k$ . For $n \\ge 2$ , let $f_n(k) = f_1(f_{n - 1}(k))$ . Find $f_{1988}(11)$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "169",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1988_AIME_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Find $(\\log_2 x)^2$ if $\\log_2 (\\log_8 x) = \\log_8 (\\log_2 x)$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "027",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1988_AIME_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Suppose that $|x_i| < 1$ for $i = 1, 2, \\dots, n$ . Suppose further that $|x_1| + |x_2| + \\dots + |x_n| = 19 + |x_1 + x_2 + \\dots + x_n|.$ What is the smallest possible value of $n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "020",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1988_AIME_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Let $m/n$ , in lowest terms, be the probability that a randomly chosen positive divisor of $10^{99}$ is an integer multiple of $10^{88}$ . Find $m + n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "634",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1988_AIME_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "It is possible to place positive integers into the vacant twenty-one squares of the $5 \\times 5$ square shown below so that the numbers in each row and column form arithmetic sequences. Find the number that must occupy the vacant square marked by the asterisk (*).",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "142",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1988_AIME_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "In triangle $ABC$ , $\\tan \\angle CAB = 22/7$ , and the altitude from $A$ divides $BC$ into segments of length 3 and 17. What is the area of triangle $ABC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "110",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1988_AIME_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "The function $f$ , defined on the set of ordered pairs of positive integers, satisfies the following properties: \\[f(x, x) = x,\\; f(x, y) = f(y, x), {\\rm \\ and\\ } (x+y)f(x, y) = yf(x, x+y).\\] Calculate $f(14,52)$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "364",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1988_AIME_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Find the smallest positive integer whose cube ends in $888$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "192",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1988_AIME_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "A convex polyhedron has for its faces 12 squares , 8 regular hexagons , and 6 regular octagons . At each vertex of the polyhedron one square, one hexagon, and one octagon meet. How many segments joining vertices of the polyhedron lie in the interior of the polyhedron rather than along an edge or a face ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "840",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1988_AIME_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Let $w_1, w_2, \\dots, w_n$ be complex numbers . A line $L$ in the complex plane is called a mean line for the points $w_1, w_2, \\dots, w_n$ if $L$ contains points (complex numbers) $z_1, z_2, \\dots, z_n$ such that \\[\\sum_{k = 1}^n (z_k - w_k) = 0.\\] For the numbers $w_1 = 32 + 170i$ , $w_2 = - 7 + 64i$ , $w_3 = - 9 + 200i$ , $w_4 = 1 + 27i$ , and $w_5 = - 14 + 43i$ , there is a unique mean line with $y$ -intercept 3. Find the slope of this mean line.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "163",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1988_AIME_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Let $P$ be an interior point of triangle $ABC$ and extend lines from the vertices through $P$ to the opposite sides. Let $a$ , $b$ , $c$ , and $d$ denote the lengths of the segments indicated in the figure. Find the product $abc$ if $a + b + c = 43$ and $d = 3$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "441",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1988_AIME_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Find $a$ if $a$ and $b$ are integers such that $x^2 - x - 1$ is a factor of $ax^{17} + bx^{16} + 1$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "987",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1988_AIME_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Let $C$ be the graph of $xy = 1$ , and denote by $C^*$ the reflection of $C$ in the line $y = 2x$ . Let the equation of $C^*$ be written in the form",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "084",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1988_AIME_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "In an office at various times during the day, the boss gives the secretary a letter to type, each time putting the letter on top of the pile in the secretary's inbox. When there is time, the secretary takes the top letter off the pile and types it. There are nine letters to be typed during the day, and the boss delivers them in the order $1, 2, 3, 4, 5, 6, 7, 8, 9$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "704",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1988_AIME_Problems/Problem_15"
+    }
+  ]
+}

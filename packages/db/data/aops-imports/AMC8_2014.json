@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC8",
+    "year": 2014,
+    "exam": null,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Harry and Terry are each told to calculate $8-(2+5)$ . Harry gets the correct answer. Terry ignores the parentheses and calculates $8-2+5$ . If Harry's answer is $H$ and Terry's answer is $T$ , what is $H-T$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Paul owes Paula $35$ cents and has a pocket full of $5$ -cent coins, $10$ -cent coins, and $25$ -cent coins that he can use to pay her. What is the difference between the largest and the smallest number of coins he can use to pay her?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Isabella had a week to read a book for a school assignment. She read an average of $36$ pages per day for the first three days and an average of $44$ pages per day for the next three days. She then finished the book by reading $10$ pages on the last day. How many pages were in the book?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "The sum of two prime numbers is $85$ . What is the product of these two prime numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Margie's car can go $32$ miles on a gallon of gas, and gas currently costs \\$ $4$ per gallon. How many miles can Margie drive on $\\textdollar 20$ worth of gas?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Six rectangles each with a common base width of $2$ have lengths of $1, 4, 9, 16, 25$ , and $36$ . What is the sum of the areas of the six rectangles?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "There are four more girls than boys in Ms. Raub's class of $28$ students. What is the ratio of number of girls to the number of boys in her class?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Eleven members of the Middle School Math Club each paid the same amount for a guest speaker to talk about problem solving at their math club meeting. They paid their guest speaker $\\textdollar\\underline{1} \\underline{A} \\underline{2}$ . What is the missing digit $A$ of this $3$ -digit number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "In $\\bigtriangleup ABC$ , $D$ is a point on side $\\overline{AC}$ such that $BD=DC$ and $\\angle BCD$ measures $70^\\circ$ . What is the degree measure of $\\angle ADB$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "The first AMC $8$ was given in $1985$ and it has been given annually since that time. Samantha turned $12$ years old the year that she took the seventh AMC $8$ . In what year was Samantha born?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Jack wants to bike from his house to Jill's house, which is located three blocks east and two blocks north of Jack's house. After biking each block, Jack can continue either east or north, but he needs to avoid a dangerous intersection one block east and one block north of his house. In how many ways can he reach Jill's house by biking a total of five blocks?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "A magazine printed photos of three celebrities along with three photos of the celebrities as babies. The baby pictures did not identify the celebrities. Readers were asked to match each celebrity with the correct baby pictures. What is the probability that a reader guessing at random will match all three correctly?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "If $n$ and $m$ are integers and $n^2+m^2$ is even, which of the following is impossible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Rectangle $ABCD$ and right triangle $DCE$ have the same area. They are joined to form a trapezoid, as shown. What is $DE$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "The circumference of the circle with center $O$ is divided into $12$ equal arcs, marked the letters $A$ through $L$ as seen below. What is the number of degrees in the sum of the angles $x$ and $y$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "The \"Middle School Eight\" basketball conference has $8$ teams. Every season, each team plays every other conference team twice (home and away), and each team also plays $4$ games against non-conference opponents. What is the total number of games in a season involving the \"Middle School Eight\" teams?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "George walks $1$ mile to school. He leaves home at the same time each day, walks at a steady speed of $3$ miles per hour, and arrives just as school begins. Today he was distracted by the pleasant weather and walked the first $\\frac{1}{2}$ mile at a speed of only $2$ miles per hour. At how many miles per hour must George run the last $\\frac{1}{2}$ mile in order to arrive just as school begins today?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Four children were born at City Hospital yesterday. Assume each child is equally likely to be a boy or a girl. Which of the following outcomes is most likely?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "A cube with $3$ -inch edges is to be constructed from $27$ smaller cubes with $1$ -inch edges. Twenty-one of the cubes are colored red and $6$ are colored white. If the $3$ -inch cube is constructed to have the smallest possible white surface area showing, what fraction of the surface area is white?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Rectangle $ABCD$ has sides $CD=3$ and $DA=5$ . A circle of radius $1$ is centered at $A$ , a circle of radius $2$ is centered at $B$ , and a circle of radius $3$ is centered at $C$ . Which of the following is closest to the area of the region inside the rectangle but outside all three circles?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "The $7$ -digit numbers $\\underline{7} \\underline{4} \\underline{A} \\underline{5} \\underline{2} \\underline{B} \\underline{1}$ and $\\underline{3} \\underline{2} \\underline{6} \\underline{A} \\underline{B} \\underline{4} \\underline{C}$ are each multiples of $3$ . Which of the following could be the value of $C$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "A $2$ -digit number is such that the product of the digits plus the sum of the digits is equal to the number. What is the units digit of the number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Three members of the Euclid Middle School girls' softball team had the following conversation.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "One day the Beverage Barn sold $252$ cans of soda to $100$ customers, and every customer bought at least one can of soda. What is the maximum possible median number of cans of soda bought per customer on that day?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "A straight one-mile stretch of highway, 40 feet wide, is closed. Robert rides his bike on a path composed of semicircles as shown. If he rides at 5 miles per hour, how many hours will it take to cover the one-mile stretch? [asy]size(10cm); pathpen=black; pointpen=black; D(arc((-2,0),1,300,360)); D(arc((0,0),1,0,180)); D(arc((2,0),1,180,360)); D(arc((4,0),1,0,180)); D(arc((6,0),1,180,240)); D((-1.5,-1)--(5.5,-1));[/asy] Note: 1 mile = 5280 feet",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_8_Problems/Problem_25"
+    }
+  ]
+}

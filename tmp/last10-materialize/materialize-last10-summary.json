@@ -1,0 +1,52 @@
+{
+  "startedAt": "2026-03-06T03:08:09.892Z",
+  "finishedAt": "2026-03-06T03:08:59.455Z",
+  "yearWindow": {
+    "yearFrom": 2016,
+    "yearTo": 2025
+  },
+  "steps": {
+    "fetch_import": {
+      "name": "fetch_import",
+      "status": "failed",
+      "message": "failed"
+    },
+    "backfill_problems": {
+      "name": "backfill_problems",
+      "status": "success",
+      "message": "generated=0, skipped=69"
+    },
+    "backfill_answers": {
+      "name": "backfill_answers",
+      "status": "success",
+      "message": "generated=0, skipped=69"
+    },
+    "verify": {
+      "name": "verify",
+      "status": "success",
+      "message": "checked_variants=138, failures=0"
+    }
+  },
+  "totalSetsTargeted": 69,
+  "perContestTotals": {
+    "AMC8": 9,
+    "AMC10": 20,
+    "AMC12": 20,
+    "AIME": 20
+  },
+  "generated": {
+    "problems": 0,
+    "answers": 0
+  },
+  "failures": [
+    {
+      "step": "fetch_import",
+      "reason": "Failed to fetch https://artofproblemsolving.com/wiki/index.php/AMC_8_Problems_and_Solutions: 521 <none>"
+    }
+  ],
+  "validation": {
+    "passed": true,
+    "checkedVariants": 138,
+    "reportPath": "/Users/yimingsun/Desktop/Arcmath/tmp/last10-materialize/validation/searchable-downloads-validation.json"
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2011,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "What is $\\frac{2+4+6}{1+3+5} - \\frac{1+3+5}{2+4+6}?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Josanna's test scores to date are $90, 80, 70, 60,$ and $85.$ Her goal is to raise her test average at least $3$ points with her next test. What is the minimum test score she would need to accomplish this goal?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "LeRoy and Bernardo went on a week-long trip together and agreed to share the costs equally. Over the week, each of them paid for various joint expenses such as gasoline and car rental. At the end of the trip it turned out that LeRoy had paid A dollars and Bernardo had paid B dollars, where $A < B.$ How many dollars must LeRoy give to Bernardo so that they share the costs equally?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "In multiplying two positive integers $a$ and $b$ , Ron reversed the digits of the two-digit number $a$ . His erroneous product was $161.$ What is the correct value of the product of $a$ and $b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Let $N$ be the second smallest positive integer that is divisible by every positive integer less than $7$ . What is the sum of the digits of $N$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Two tangents to a circle are drawn from a point $A$ . The points of contact $B$ and $C$ divide the circle into arcs with lengths in the ratio $2 : 3$ . What is the degree measure of $\\angle{BAC}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Let $x$ and $y$ be two-digit positive integers with mean $60$ . What is the maximum value of the ratio $\\frac{x}{y}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Keiko walks once around a track at the same constant speed every day. The sides of the track are straight, and the ends are semicircles. The track has a width of $6$ meters, and it takes her $36$ seconds longer to walk around the outside edge of the track than around the inside edge. What is Keiko's speed in meters per second?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Two real numbers are selected independently and at random from the interval $[-20,10]$ . What is the probability that the product of those numbers is greater than zero?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Rectangle $ABCD$ has $AB=6$ and $BC=3$ . Point $M$ is chosen on side $AB$ so that $\\angle AMD=\\angle CMD$ . What is the degree measure of $\\angle AMD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A frog located at $(x,y)$ , with both $x$ and $y$ integers, makes successive jumps of length $5$ and always lands on points with integer coordinates. Suppose that the frog starts at $(0,0)$ and ends at $(1,0)$ . What is the smallest possible number of jumps the frog makes?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "A dart board is a regular octagon divided into regions as shown below. Suppose that a dart thrown at the board is equally likely to land anywhere on the board. What is the probability that the dart lands within the center square?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Brian writes down four integers $w > x > y > z$ whose sum is $44$ . The pairwise positive differences of these numbers are $1, 3, 4, 5, 6$ and $9$ . What is the sum of the possible values of $w$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "A segment through the focus $F$ of a parabola with vertex $V$ is perpendicular to $\\overline{FV}$ and intersects the parabola in points $A$ and $B$ . What is $\\cos\\left(\\angle AVB\\right)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "How many positive two-digit integers are factors of $2^{24}-1$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Rhombus $ABCD$ has side length $2$ and $\\angle B = 120$ °. Region $R$ consists of all points inside the rhombus that are closer to vertex $B$ than any of the other three vertices. What is the area of $R$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Let $f(x) = 10^{10x}, g(x) = \\log_{10}\\left(\\frac{x}{10}\\right), h_1(x) = g(f(x))$ , and $h_n(x) = h_1(h_{n-1}(x))$ for integers $n \\geq 2$ . What is the sum of the digits of $h_{2011}(1)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "A pyramid has a square base with side of length 1 and has lateral faces that are equilateral triangles. A cube is placed within the pyramid so that one face is on the base of the pyramid and its opposite face has all its edges on the lateral faces of the pyramid. What is the volume of this cube?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "A lattice point in an $xy$ -coordinate system is any point $(x, y)$ where both $x$ and $y$ are integers. The graph of $y = mx + 2$ passes through no lattice point with $0 < x \\leq 100$ for all $m$ such that $\\frac{1}{2} < m < a$ . What is the maximum possible value of $a$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Triangle $ABC$ has $AB = 13, BC = 14$ , and $AC = 15$ . The points $D, E$ , and $F$ are the midpoints of $\\overline{AB}, \\overline{BC}$ , and $\\overline{AC}$ respectively. Let $X \\neq E$ be the intersection of the circumcircles of $\\triangle BDE$ and $\\triangle CEF$ . What is $XA + XB + XC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "The arithmetic mean of two distinct positive integers $x$ and $y$ is a two-digit integer. The geometric mean of $x$ and $y$ is obtained by reversing the digits of the arithmetic mean. What is $|x - y|$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Let $T_1$ be a triangle with side lengths $2011$ , $2012$ , and $2013$ . For $n \\geq 1$ , if $T_n = \\triangle ABC$ and $D, E$ , and $F$ are the points of tangency of the incircle of $\\triangle ABC$ to the sides $AB$ , $BC$ , and $AC$ , respectively, then $T_{n+1}$ is a triangle with side lengths $AD, BE$ , and $CF$ , if it exists. What is the perimeter of the last triangle in the sequence $\\left(T_n\\right)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "A bug travels in the coordinate plane, moving only along the lines that are parallel to the $x$ -axis or $y$ -axis. Let $A = (-3, 2)$ and $B = (3, -2)$ . Consider all possible paths of the bug from $A$ to $B$ of length at most $20$ . How many points with integer coordinates lie on at least one of these paths?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Let $P(z) = z^8 + \\left(4\\sqrt{3} + 6\\right)z^4 - \\left(4\\sqrt{3} + 7\\right)$ . What is the minimum perimeter among all the $8$ -sided polygons in the complex plane whose vertices are precisely the zeros of $P(z)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "For every $m$ and $k$ integers with $k$ odd, denote by $\\left[\\frac{m}{k}\\right]$ the integer closest to $\\frac{m}{k}$ . For every odd integer $k$ , let $P(k)$ be the probability that",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12B_Problems/Problem_25"
+    }
+  ]
+}

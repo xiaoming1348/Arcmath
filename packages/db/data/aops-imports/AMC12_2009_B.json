@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2009,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Each morning of her five-day workweek, Jane bought either a $50$ -cent muffin or a $75$ -cent bagel. Her total cost for the week was a whole number of dollars. How many bagels did she buy?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Paula the painter had just enough paint for 30 identically sized rooms. Unfortunately, on the way to work, three cans of paint fell off her truck, so she had only enough paint for 25 rooms. How many cans of paint did she use for the 25 rooms?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Twenty percent less than 60 is one-third more than what number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "A rectangular yard contains two flower beds in the shape of congruent isosceles right triangles. The remainder of the yard has a trapezoidal shape, as shown. The parallel sides of the trapezoid have lengths $15$ and $25$ meters. What fraction of the yard is occupied by the flower beds?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Kiana has two older twin brothers. The product of their three ages is 128. What is the sum of their three ages?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "By inserting parentheses, it is possible to give the expression \\[2\\times3 + 4\\times5\\] several values. How many different values can be obtained?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "In a certain year the price of gasoline rose by $20\\%$ during January, fell by $20\\%$ during February, rose by $25\\%$ during March, and fell by $x\\%$ during April. The price of gasoline at the end of April was the same as it had been at the beginning of January. To the nearest integer, what is $x$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "When a bucket is two-thirds full of water, the bucket and water weigh $a$ kilograms. When the bucket is one-half full of water the total weight is $b$ kilograms. In terms of $a$ and $b$ , what is the total weight in kilograms when the bucket is full of water?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Triangle $ABC$ has vertices $A = (3,0)$ , $B = (0,3)$ , and $C$ , where $C$ is on the line $x + y = 7$ . What is the area of $\\triangle ABC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "A particular $12$ -hour digital clock displays the hour and minute of a day. Unfortunately, whenever it is supposed to display a $1$ , it mistakenly displays a $9$ . For example, when it is 1:16 PM the clock incorrectly shows 9:96 PM. What fraction of the day will the clock show the correct time?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "On Monday, Millie puts a quart of seeds, $25\\%$ of which are millet, into a bird feeder. On each successive day she adds another quart of the same mix of seeds without removing any seeds that are left. Each day the birds eat only $25\\%$ of the millet in the feeder, but they eat all of the other seeds. On which day, just after Millie has placed the seeds, will the birds find that more than half the seeds in the feeder are millet?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "The fifth and eighth terms of a geometric sequence of real numbers are $7!$ and $8!$ respectively. What is the first term?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Triangle $ABC$ has $AB = 13$ and $AC = 15$ , and the altitude to $\\overline{BC}$ has length $12$ . What is the sum of the two possible values of $BC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Five unit squares are arranged in the coordinate plane as shown, with the lower left corner at the origin. The slanted line, extending from $(c,0)$ to $(3,3)$ , divides the entire region into two regions of equal area. What is $c$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Assume $0 < r < 3$ . Below are five equations for $x$ . Which equation has the largest solution $x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Trapezoid $ABCD$ has $AD||BC$ , $BD = 1$ , $\\angle DBA = 23^{\\circ}$ , and $\\angle BDC = 46^{\\circ}$ . The ratio $BC: AD$ is $9: 5$ . What is $CD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Each face of a cube is given a single narrow stripe painted from the center of one edge to the center of the opposite edge. The choice of the edge pairing is made at random and independently for each face. What is the probability that there is a continuous stripe encircling the cube?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Rachel and Robert run on a circular track. Rachel runs counterclockwise and completes a lap every 90 seconds, and Robert runs clockwise and completes a lap every 80 seconds. Both start from the same line at the same time. At some random time between 10 minutes and 11 minutes after they begin to run, a photographer standing inside the track takes a picture that shows one-fourth of the track, centered on the starting line. What is the probability that both Rachel and Robert are in the picture?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "For each positive integer $n$ , let $f(n) = n^4 - 360n^2 + 400$ . What is the sum of all values of $f(n)$ that are prime numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "A convex polyhedron $Q$ has vertices $V_1,V_2,\\ldots,V_n$ , and $100$ edges. The polyhedron is cut by planes $P_1,P_2,\\ldots,P_n$ in such a way that plane $P_k$ cuts only those edges that meet at vertex $V_k$ . In addition, no two planes intersect inside or on $Q$ . The cuts produce $n$ pyramids and a new polyhedron $R$ . How many edges does $R$ have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Ten women sit in $10$ seats in a line. All of the $10$ get up and then reseat themselves using all $10$ seats, each sitting in the seat she was in before or a seat next to the one she occupied before. In how many ways can the women be reseated?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Parallelogram $ABCD$ has area $1,\\!000,\\!000$ . Vertex $A$ is at $(0,0)$ and all other vertices are in the first quadrant. Vertices $B$ and $D$ are lattice points on the lines $y = x$ and $y = kx$ for some integer $k > 1$ , respectively. How many such parallelograms are there? (A lattice point is any point whose coordinates are both integers.)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "A region $S$ in the complex plane is defined by \\[S = \\{x + iy: - 1\\le x\\le1, - 1\\le y\\le1\\}.\\] A complex number $z = x + iy$ is chosen uniformly at random from $S$ . What is the probability that $\\left(\\frac34 + \\frac34i\\right)z$ is also in $S$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "For how many values of $x$ in $[0,\\pi]$ is $\\sin^{ - 1}(\\sin 6x) = \\cos^{ - 1}(\\cos x)$ ? Note: The functions $\\sin^{ - 1} = \\arcsin$ and $\\cos^{ - 1} = \\arccos$ denote inverse trigonometric functions.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "The set $G$ is defined by the points $(x,y)$ with integer coordinates, $3\\le|x|\\le7$ , $3\\le|y|\\le7$ . How many squares of side at least $6$ have their four vertices in $G$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12B_Problems/Problem_25"
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2010,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Mary's top book shelf holds five books with the following widths, in centimeters: $6$ , $\\dfrac{1}{2}$ , $1$ , $2.5$ , and $10$ . What is the average book width, in centimeters?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Four identical squares and one rectangle are placed together to form one large square as shown. The length of the rectangle is how many times as large as its width?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Tyrone had $97$ marbles and Eric had $11$ marbles. Tyrone then gave some of his marbles to Eric so that Tyrone ended with twice as many marbles as Eric. How many marbles did Tyrone give to Eric?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "A book that is to be recorded onto compact discs takes $412$ minutes to read aloud. Each disc can hold up to $56$ minutes of reading. Assume that the smallest possible number of discs is used and that each disc contains the same length of reading. How many minutes of reading will each disc contain?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "The area of a circle whose circumference is $24\\pi$ is $k\\pi$ . What is the value of $k$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "For positive numbers $x$ and $y$ the operation $\\spadesuit (x,y)$ is defined as",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Crystal has a running course marked out for her daily run. She starts this run by heading due north for one mile. She then runs northeast for one mile, then southeast for one mile. The last portion of her run takes her on a straight line back to where she started. How far, in miles is this last portion of her run?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Tony works $2$ hours a day and is paid $ $0.50$ per hour for each full year of his age. During a six month period Tony worked $50$ days and earned $ $630$ . How old was Tony at the end of the six month period?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "A $\\text{palindrome}$ , such as $83438$ , is a number that remains the same when its digits are reversed. The numbers $x$ and $x+32$ are three-digit and four-digit palindromes, respectively. What is the sum of the digits of $x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Marvin had a birthday on Tuesday, May 27 in the leap year $2008$ . In what year will his birthday next fall on a Saturday?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "The length of the interval of solutions of the inequality $a \\le 2x + 3 \\le b$ is $10$ . What is $b - a$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Logan is constructing a scaled model of his town. The city's water tower stands 40 meters high, and the top portion is a sphere that holds 100,000 liters of water. Logan's miniature water tower holds 0.1 liters. How tall, in meters, should Logan make his tower?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Angelina drove at an average rate of $80$ kmh and then stopped $20$ minutes for gas. After the stop, she drove at an average rate of $100$ kmh. Altogether she drove $250$ km in a total trip time of $3$ hours including the stop. Which equation could be used to solve for the time $t$ in hours that she drove before her stop?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Triangle $ABC$ has $AB=2 \\cdot AC$ . Let $D$ and $E$ be on $\\overline{AB}$ and $\\overline{BC}$ , respectively, such that $\\angle BAE = \\angle ACD$ . Let $F$ be the intersection of segments $AE$ and $CD$ , and suppose that $\\triangle CFE$ is equilateral. What is $\\angle ACB$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "In a magical swamp there are two species of talking amphibians: toads, whose statements are always true, and frogs, whose statements are always false. Four amphibians, Brian, Chris, LeRoy, and Mike live together in this swamp, and they make the following statements.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Nondegenerate $\\triangle ABC$ has integer side lengths, $\\overline{BD}$ is an angle bisector, $AD = 3$ , and $DC=8$ . What is the smallest possible value of the perimeter?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "A solid cube has side length 3 inches. A 2-inch by 2-inch square hole is cut into the center of each face. The edges of each cut are parallel to the edges of the cube, and each hole goes all the way through the cube. What is the volume, in cubic inches, of the remaining solid?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Bernardo randomly picks 3 distinct numbers from the set $\\{1,2,3,...,7,8,9\\}$ and arranges them in descending order to form a 3-digit number. Silvia randomly picks 3 distinct numbers from the set $\\{1,2,3,...,6,7,8\\}$ and also arranges them in descending order to form a 3-digit number. What is the probability that Bernardo's number is larger than Silvia's number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Equiangular hexagon $ABCDEF$ has side lengths $AB=CD=EF=1$ and $BC=DE=FA=r$ . The area of $\\triangle ACE$ is $70\\%$ of the area of the hexagon. What is the sum of all possible values of $r$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "A fly trapped inside a cubical box with side length $1$ meter decides to relieve its boredom by visiting each corner of the box. It will begin and end in the same corner and visit each of the other corners exactly once. To get from a corner to any other corner, it will either fly or crawl in a straight line. What is the maximum possible length, in meters, of its path?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "The polynomial $x^3-ax^2+bx-2010$ has three positive integer roots. What is the smallest possible value of $a$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Eight points are chosen on a circle, and chords are drawn connecting every pair of points. No three chords intersect in a single point inside the circle. How many triangles with all three vertices in the interior of the circle are created?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Each of $2010$ boxes in a line contains a single red marble, and for $1 \\le k \\le 2010$ , the box in the $k\\text{th}$ position also contains $k$ white marbles. Isabella begins at the first box and successively draws a single marble at random from each box, in order. She stops when she first draws a red marble. Let $P(n)$ be the probability that Isabella stops after drawing exactly $n$ marbles. What is the smallest value of $n$ for which $P(n) < \\frac{1}{2010}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "The number obtained from the last two nonzero digits of $90!$ is equal to $n$ . What is $n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Jim starts with a positive integer $n$ and creates a sequence of numbers. Each successive number is obtained by subtracting the largest possible integer square less than or equal to the current number until zero is reached. For example, if Jim starts with $n = 55$ , then his sequence contains $5$ numbers:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_10A_Problems/Problem_25"
+    }
+  ]
+}

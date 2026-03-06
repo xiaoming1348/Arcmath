@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 2003,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_I"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Given that",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "839",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_I_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "One hundred concentric circles with radii $1, 2, 3, \\dots, 100$ are drawn in a plane. The interior of the circle of radius $1$ is colored red, and each region bounded by consecutive circles is colored either red or green, with no two adjacent regions the same color. The ratio of the total area of the green regions to the area of the circle of radius $100$ can be expressed as $m/n,$ where $m$ and $n$ are relatively prime positive integers . Find $m + n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "301",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_I_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Let the set $\\mathcal{S} = \\{8, 5, 1, 13, 34, 3, 21, 2\\}.$ Susan makes a list as follows: for each two-element subset of $\\mathcal{S},$ she writes on her list the greater of the set's two elements. Find the sum of the numbers on the list.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "484",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_I_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Given that $\\log_{10} \\sin x + \\log_{10} \\cos x = -1$ and that $\\log_{10} (\\sin x + \\cos x) = \\frac{1}{2} (\\log_{10} n - 1),$ find $n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "012",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_I_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Consider the set of points that are inside or within one unit of a rectangular parallelepiped (box) that measures $3$ by $4$ by $5$ units. Given that the volume of this set is $\\frac{m + n\\pi}{p},$ where $m, n,$ and $p$ are positive integers , and $n$ and $p$ are relatively prime , find $m + n + p.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "505",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_I_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "The sum of the areas of all triangles whose vertices are also vertices of a $1$ by $1$ by $1$ cube is $m + \\sqrt{n} + \\sqrt{p},$ where $m, n,$ and $p$ are integers . Find $m + n + p.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "348",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_I_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Point $B$ is on $\\overline{AC}$ with $AB = 9$ and $BC = 21.$ Point $D$ is not on $\\overline{AC}$ so that $AD = CD,$ and $AD$ and $BD$ are integers . Let $s$ be the sum of all possible perimeters of $\\triangle ACD$ . Find $s.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "380",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_I_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "In an increasing sequence of four positive integers, the first three terms form an arithmetic progression , the last three terms form a geometric progression , and the first and fourth terms differ by $30$ . Find the sum of the four terms.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "129",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_I_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "An integer between $1000$ and $9999$ , inclusive, is called balanced if the sum of its two leftmost digits equals the sum of its two rightmost digits. How many balanced integers are there?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "615",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_I_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Triangle $ABC$ is isosceles with $AC = BC$ and $\\angle ACB = 106^\\circ.$ Point $M$ is in the interior of the triangle so that $\\angle MAC = 7^\\circ$ and $\\angle MCA = 23^\\circ.$ Find the number of degrees in $\\angle CMB.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "083",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_I_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "An angle $x$ is chosen at random from the interval $0^\\circ < x < 90^\\circ.$ Let $p$ be the probability that the numbers $\\sin^2 x, \\cos^2 x,$ and $\\sin x \\cos x$ are not the lengths of the sides of a triangle. Given that $p = d/n,$ where $d$ is the number of degrees in $\\text{arctan}$ $m$ and $m$ and $n$ are positive integers with $m + n < 1000,$ find $m + n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "092",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_I_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "In convex quadrilateral $ABCD, \\angle A \\cong \\angle C, AB = CD = 180,$ and $AD \\neq BC.$ The perimeter of $ABCD$ is $640$ . Find $\\lfloor 1000 \\cos A \\rfloor.$ (The notation $\\lfloor x \\rfloor$ means the greatest integer that is less than or equal to $x.$ )",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "777",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_I_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Let $N$ be the number of positive integers that are less than or equal to $2003$ and whose base- $2$ representation has more $1$ 's than $0$ 's. Find the remainder when $N$ is divided by $1000$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "155",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_I_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "The decimal representation of $m/n,$ where $m$ and $n$ are relatively prime positive integers and $m < n,$ contains the digits $2, 5$ , and $1$ consecutively and in that order. Find the smallest value of $n$ for which this is possible.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "127",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_I_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "In $\\triangle ABC, AB = 360, BC = 507,$ and $CA = 780.$ Let $M$ be the midpoint of $\\overline{CA},$ and let $D$ be the point on $\\overline{CA}$ such that $\\overline{BD}$ bisects angle $ABC.$ Let $F$ be the point on $\\overline{BC}$ such that $\\overline{DF} \\perp \\overline{BD}.$ Suppose that $\\overline{DF}$ meets $\\overline{BM}$ at $E.$ The ratio $DE: EF$ can be written in the form $m/n,$ where $m$ and $n$ are relatively prime positive integers. Find $m + n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "289",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_I_Problems/Problem_15"
+    }
+  ]
+}

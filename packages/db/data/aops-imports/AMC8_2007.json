@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC8",
+    "year": 2007,
+    "exam": null,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Theresa's parents have agreed to buy her tickets to see her favorite band if she spends an average of $10$ hours per week helping around the house for $6$ weeks. For the first $5$ weeks she helps around the house for $8$ , $11$ , $7$ , $12$ and $10$ hours. How many hours must she work for the final week to earn the tickets?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "$650$ students were surveyed about their pasta preferences. The choices were lasagna, manicotti, ravioli and spaghetti. The results of the survey are displayed in the bar graph. What is the ratio of the number of students who preferred spaghetti to the number of students who preferred manicotti?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "What is the sum of the two smallest prime factors of $250$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "A haunted house has six windows. In how many ways can Georgie the Ghost enter the house by one window and leave by a different window?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Chandler wants to buy a $500$ dollar mountain bike. For his birthday, his grandparents send him $50$ dollars, his aunt sends him $35$ dollars and his cousin gives him $15$ dollars. He earns $16$ dollars per week for his paper route. He will use all of his birthday money and all of the money he earns from his paper route. In how many weeks will he be able to buy the mountain bike?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "The average cost of a long-distance call in the USA in $1985$ was $41$ cents per minute, and the average cost of a long-distance call in the USA in $2005$ was $7$ cents per minute. Find the approximate percent decrease in the cost per minute of a long- distance call.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "The average age of $5$ people in a room is $30$ years. An $18$ -year-old person leaves the room. What is the average age of the four remaining people?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "In trapezoid $ABCD$ , $\\overline{AD}$ is perpendicular to $\\overline{DC}$ , $AD = AB = 3$ , and $DC = 6$ . In addition, $E$ is on $\\overline{DC}$ , and $\\overline{BE}$ is parallel to $\\overline{AD}$ . Find the area of $\\triangle BEC$ . [asy] defaultpen(linewidth(0.7)); pair A=(0,3), B=(3,3), C=(6,0), D=origin, E=(3,0); draw(E--B--C--D--A--B); draw(rightanglemark(A, D, C)); label(\"$A$\", A, NW); label(\"$B$\", B, NW); label(\"$C$\", C, SE); label(\"$D$\", D, SW); label(\"$E$\", E, NW); label(\"$3$\", A--D, W); label(\"$3$\", A--B, N); label(\"$6$\", E, S); [/asy]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "To complete the grid below, each of the digits 1 through 4 must occur once in each row and once in each column. What number will occupy the lower right-hand square?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "For any positive integer $n$ , define $\\boxed{n}$ to be the sum of the positive factors of $n$ . For example, $\\boxed{6} = 1 + 2 + 3 + 6 = 12$ . Find $\\boxed{\\boxed{11}}$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Tiles $I, II, III$ and $IV$ are translated so one tile coincides with each of the rectangles $A, B, C$ and $D$ . In the final arrangement, the two numbers on any side common to two adjacent tiles must be the same. Which of the tiles is translated to Rectangle $C$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "A unit hexagram is composed of a regular hexagon of side length $1$ and its $6$ equilateral triangular extensions, as shown in the diagram. What is the ratio of the area of the extensions to the area of the original hexagon?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Sets $A$ and $B$ , shown in the Venn diagram, have the same number of elements. Their union has $2007$ elements and their intersection has $1001$ elements. Find the number of elements in $A$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "The base of isosceles $\\triangle ABC$ is $24$ and its area is $60$ . What is the length of one of the congruent sides?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Let $a, b$ and $c$ be numbers with $0 < a < b < c$ . Which of the following is impossible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Amanda Reckonwith draws five circles with radii $1, 2, 3, 4$ and $5$ . Then for each circle she plots the point $(C,A)$ , where $C$ is its circumference and $A$ is its area. Which of the following could be her graph?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "A mixture of $30$ liters of paint is $25\\%$ red tint, $30\\%$ yellow tint and $45\\%$ water. Five liters of yellow tint are added to the original mixture. What is the percent of yellow tint in the new mixture?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "The product of the two $99$ -digit numbers",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Pick two consecutive positive integers whose sum is less than $100$ . Square both of those integers and then find the difference of the squares. Which of the following could be the difference?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Before the district play, the Unicorns had won $45\\%$ of their basketball games. During district play, they won six more games and lost two, to finish the season having won half their games. How many games did the Unicorns play in all?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Two cards are dealt from a deck of four red cards labeled $A$ , $B$ , $C$ , $D$ and four green cards labeled $A$ , $B$ , $C$ , $D$ . A winning pair is two of the same color or two of the same letter. What is the probability of drawing a winning pair?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "A lemming sits at a corner of a square with side length $10$ meters. The lemming runs $6.2$ meters along a diagonal toward the opposite corner. It stops, makes a $90^{\\circ}$ right turn and runs $2$ more meters. A scientist measures the shortest distance between the lemming and each side of the square. What is the average of these four distances in meters?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "What is the area of the shaded pinwheel shown in the $5 \\times 5$ grid?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "A bag contains four pieces of paper, each labeled with one of the digits $1$ , $2$ , $3$ or $4$ , with no repeats. Three of these pieces are drawn, one at a time without replacement, to construct a three-digit number. What is the probability that the three-digit number is a multiple of $3$ ? $\\textbf{(A)}\\ \\frac{1}{4}\\qquad\\textbf{(B)}\\ \\frac{1}{3}\\qquad\\textbf{(C)}\\ \\frac{1}{2}\\qquad\\textbf{(D)}\\ \\frac{2}{3}\\qquad\\textbf{(E)}\\ \\frac{3}{4}$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "On the dart board shown in the figure below, the outer circle has radius $6$ and the inner circle has radius $3$ . Three radii divide each circle into three congruent regions, with point values shown. The probability that a dart will hit a given region is proportional to the area of the region. When two darts hit this board, the score is the sum of the point values of the regions hit. What is the probability that the score is odd?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_8_Problems/Problem_25"
+    }
+  ]
+}

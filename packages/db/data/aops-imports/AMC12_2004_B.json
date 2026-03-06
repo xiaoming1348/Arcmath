@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2004,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "At each basketball practice last week, Jenny made twice as many free throws as she made at the previous practice. At her fifth practice she made 48 free throws. How many free throws did she make at the first practice?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "In the expression $c\\cdot a^b-d$ , the values of $a$ , $b$ , $c$ , and $d$ are $0$ , $1$ , $2$ , and $3$ , although not necessarily in that order. What is the maximum possible value of the result?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "If $x$ and $y$ are positive integers for which $2^x3^y=1296$ , what is the value of $x+y$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "An integer $x$ , with $10\\leq x\\leq 99$ , is to be chosen. If all choices are equally likely, what is the probability that at least one digit of $x$ is a 7?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "On a trip from the United States to Canada, Isabella took $d$ U.S. dollars. At the border she exchanged them all, receiving $10$ Canadian dollars for every $7$ U.S. dollars. After spending $60$ Canadian dollars, she had $d$ Canadian dollars left. What is the sum of the digits of $d$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Minneapolis-St. Paul International Airport is $8$ miles southwest of downtown St. Paul and $10$ miles southeast of downtown Minneapolis. Which of the following is closest to the number of miles between downtown St. Paul and downtown Minneapolis?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "A square has sides of length $10$ , and a circle centered at one of its vertices has radius $10$ . What is the area of the union of the regions enclosed by the square and the circle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "A grocer makes a display of cans in which the top row has one can and each lower row has two more cans than the row above it. If the display contains $100$ cans, how many rows does it contain?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "The point $(-3,2)$ is rotated $90^\\circ$ clockwise around the origin to point $B$ . Point $B$ is then reflected over the line $x=y$ to point $C$ . What are the coordinates of $C$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "An annulus is the region between two concentric circles. The concentric circles in the figure have radii $b$ and $c$ , with $b>c$ . Let $OX$ be a radius of the larger circle, let $XZ$ be tangent to the smaller circle at $Z$ , and let $OY$ be the radius of the larger circle that contains $Z$ . Let $a=XZ$ , $d=YZ$ , and $e=XY$ . What is the area of the annulus?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "All the students in an algebra class took a $100$ -point test. Five students scored $100$ , each student scored at least $60$ , and the mean score was $76$ . What is the smallest possible number of students in the class?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "In the sequence $2001$ , $2002$ , $2003$ , $\\ldots$ , each term after the third is found by subtracting the previous term from the sum of the two terms that precede that term. For example, the fourth term is $2001 + 2002 - 2003 = 2000$ . What is the $2004^\\textrm{th}$ term in this sequence?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "If $f(x) = ax+b$ and $f^{-1}(x) = bx+a$ with $a$ and $b$ real, what is the value of $a+b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "In $\\triangle ABC$ , $AB=13$ , $AC=5$ , and $BC=12$ . Points $M$ and $N$ lie on $AC$ and $BC$ , respectively, with $CM=CN=4$ . Points $J$ and $K$ are on $AB$ so that $MJ$ and $NK$ are perpendicular to $AB$ . What is the area of pentagon $CMJKN$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "The two digits in Jack's age are the same as the digits in Bill's age, but in reverse order. In five years Jack will be twice as old as Bill will be then. What is the difference in their current ages?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "A function $f$ is defined by $f(z) = i\\overline{z}$ , where $i=\\sqrt{-1}$ and $\\overline{z}$ is the complex conjugate of $z$ . How many values of $z$ satisfy both $|z| = 5$ and $f(z) = z$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "For some real numbers $a$ and $b$ , the equation \\[8x^3 + 4ax^2 + 2bx + a = 0\\] has three distinct positive roots. If the sum of the base- $2$ logarithms of the roots is $5$ , what is the value of $a$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Points $A$ and $B$ are on the parabola $y=4x^2+7x-1$ , and the origin is the midpoint of $AB$ . What is the length of $AB$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "A truncated cone has horizontal bases with radii $18$ and $2$ . A sphere is tangent to the top, bottom, and lateral surface of the truncated cone. What is the radius of the sphere?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Each face of a cube is painted either red or blue, each with probability $1/2$ . The color of each face is determined independently. What is the probability that the painted cube can be placed on a horizontal surface so that the four vertical faces are all the same color?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "The graph of $2x^2 + xy + 3y^2 - 11x - 20y + 40 = 0$ is an ellipse in the first quadrant of the $xy$ -plane. Let $a$ and $b$ be the maximum and minimum values of $\\frac yx$ over all points $(x,y)$ on the ellipse. What is the value of $a+b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "The square",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "The polynomial $x^3 - 2004 x^2 + mx + n$ has integer coefficients and three distinct positive zeros. Exactly one of these is an integer, and it is the sum of the other two. How many values of $n$ are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "In $\\triangle ABC$ , $AB = BC$ , and $\\overline{BD}$ is an altitude . Point $E$ is on the extension of $\\overline{AC}$ such that $BE = 10$ . The values of $\\tan \\angle CBE$ , $\\tan \\angle DBE$ , and $\\tan \\angle ABE$ form a geometric progression , and the values of $\\cot \\angle DBE,$ $\\cot \\angle CBE,$ $\\cot \\angle DBC$ form an arithmetic progression . What is the area of $\\triangle ABC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Given that $2^{2004}$ is a $604$ - digit number whose first digit is $1$ , how many elements of the set $S = \\{2^0,2^1,2^2,\\ldots ,2^{2003}\\}$ have a first digit of $4$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12B_Problems/Problem_25"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "startedAt": "2026-03-05T05:29:02.454Z",
+  "finishedAt": "2026-03-05T05:29:09.830Z",
+  "contest": "AMC12",
+  "year": 2025,
+  "exam": "A",
+  "expectedProblemCount": 25,
+  "artifacts": {
+    "problemsPdf": "/Users/yimingsun/Desktop/Arcmath/tmp/pdf-verify/AMC12_2025_A_problems.pdf",
+    "answersPdf": "/Users/yimingsun/Desktop/Arcmath/tmp/pdf-verify/AMC12_2025_A_answers.pdf",
+    "verifyJson": "/Users/yimingsun/Desktop/Arcmath/tmp/pdf-verify/AMC12_2025_A_verify.json"
+  },
+  "cached": {
+    "problemsPath": "/Users/yimingsun/Desktop/Arcmath/tmp/official-pdfs/cmmd0qycz00013d714fuud1ey.pdf",
+    "answersPath": "/Users/yimingsun/Desktop/Arcmath/tmp/official-pdfs/cmmd0qycz00013d714fuud1ey_answers.pdf"
+  },
+  "checks": {
+    "problems": {
+      "pdfPath": "/Users/yimingsun/Desktop/Arcmath/tmp/pdf-verify/AMC12_2025_A_problems.pdf",
+      "pageCount": 1,
+      "detectedProblemMarkers": 29,
+      "texLeakCount": 0,
+      "hasNonWhitespaceLastPage": true,
+      "passed": true
+    },
+    "answers": {
+      "pdfPath": "/Users/yimingsun/Desktop/Arcmath/tmp/pdf-verify/AMC12_2025_A_answers.pdf",
+      "pageCount": 1,
+      "detectedProblemMarkers": 25,
+      "texLeakCount": 0,
+      "hasNonWhitespaceLastPage": true,
+      "passed": true
+    }
+  },
+  "passed": true
+}

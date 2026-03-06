@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 1997,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1997_AIME"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "How many of the integers between 1 and 1000, inclusive, can be expressed as the difference of the squares of two nonnegative integers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "750",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1997_AIME_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "The nine horizontal and nine vertical lines on an $8\\times8$ checkerboard form $r$ rectangles , of which $s$ are squares . The number $s/r$ can be written in the form $m/n,$ where $m$ and $n$ are relatively prime positive integers. Find $m + n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "125",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1997_AIME_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Sarah intended to multiply a two-digit number and a three-digit number, but she left out the multiplication sign and simply placed the two-digit number to the left of the three-digit number, thereby forming a five-digit number. This number is exactly nine times the product Sarah should have obtained. What is the sum of the two-digit number and the three-digit number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "126",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1997_AIME_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Circles of radii $5, 5, 8,$ and $\\frac mn$ are mutually externally tangent, where $m$ and $n$ are relatively prime positive integers. Find $m + n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "017",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1997_AIME_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "The number $r$ can be expressed as a four-place decimal $0.abcd,$ where $a, b, c,$ and $d$ represent digits , any of which could be zero. It is desired to approximate $r$ by a fraction whose numerator is 1 or 2 and whose denominator is an integer. The closest such fraction to $r$ is $\\frac 27.$ What is the number of possible values for $r$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "417",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1997_AIME_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Point $B$ is in the exterior of the regular $n$ -sided polygon $A_1A_2\\cdots A_n$ , and $A_1A_2B$ is an equilateral triangle . What is the largest value of $n$ for which $A_1$ , $A_n$ , and $B$ are consecutive vertices of a regular polygon?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "042",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1997_AIME_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "A car travels due east at $\\frac 23$ mile per minute on a long, straight road. At the same time, a circular storm, whose radius is $51$ miles, moves southeast at $\\frac 12\\sqrt{2}$ mile per minute. At time $t=0$ , the center of the storm is $110$ miles due north of the car. At time $t=t_1$ minutes, the car enters the storm circle, and at time $t=t_2$ minutes, the car leaves the storm circle. Find $\\frac 12(t_1+t_2)$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "198",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1997_AIME_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "How many different $4\\times 4$ arrays whose entries are all 1's and -1's have the property that the sum of the entries in each row is 0 and the sum of the entries in each column is 0?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "090",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1997_AIME_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Given a nonnegative real number $x$ , let $\\langle x\\rangle$ denote the fractional part of $x$ ; that is, $\\langle x\\rangle=x-\\lfloor x\\rfloor$ , where $\\lfloor x\\rfloor$ denotes the greatest integer less than or equal to $x$ . Suppose that $a$ is positive, $\\langle a^{-1}\\rangle=\\langle a^2\\rangle$ , and $2<a^2<3$ . Find the value of $a^{12}-144a^{-1}$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "233",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1997_AIME_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Every card in a deck has a picture of one shape - circle, square, or triangle, which is painted in one of the three colors - red, blue, or green. Furthermore, each color is applied in one of three shades - light, medium, or dark. The deck has 27 cards, with every shape-color-shade combination represented. A set of three cards from the deck is called complementary if all of the following statements are true:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "117",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1997_AIME_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Let $x=\\frac{\\sum\\limits_{n=1}^{44} \\cos n^\\circ}{\\sum\\limits_{n=1}^{44} \\sin n^\\circ}$ . What is the greatest integer that does not exceed $100x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "241",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1997_AIME_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "The function $f$ defined by $f(x)= \\frac{ax+b}{cx+d}$ , where $a$ , $b$ , $c$ and $d$ are nonzero real numbers, has the properties $f(19)=19$ , $f(97)=97$ and $f(f(x))=x$ for all values except $\\frac{-d}{c}$ . Find the unique number that is not in the range of $f$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "058",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1997_AIME_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Let $S$ be the set of points in the Cartesian plane that satisfy",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "066",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1997_AIME_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Let $v$ and $w$ be distinct, randomly chosen roots of the equation $z^{1997}-1=0$ . Let $\\frac{m}{n}$ be the probability that $\\sqrt{2+\\sqrt{3}}\\le\\left|v+w\\right|$ , where $m$ and $n$ are relatively prime positive integers . Find $m+n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "582",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1997_AIME_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "The sides of rectangle $ABCD$ have lengths $10$ and $11$ . An equilateral triangle is drawn so that no point of the triangle lies outside $ABCD$ . The maximum possible area of such a triangle can be written in the form $p\\sqrt{q}-r$ , where $p$ , $q$ , and $r$ are positive integers, and $q$ is not divisible by the square of any prime number. Find $p+q+r$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "554",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1997_AIME_Problems/Problem_15"
+    }
+  ]
+}

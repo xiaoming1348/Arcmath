@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2010,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Makarla attended two meetings during her $9$ -hour work day. The first meeting took $45$ minutes and the second meeting took twice as long. What percent of her work day was spent attending meetings?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "A big $L$ is formed as shown. What is its area?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "A ticket to a school play cost $x$ dollars, where $x$ is a whole number. A group of 9th graders buys tickets costing a total of \\$ $48$ , and a group of 10th graders buys tickets costing a total of \\$ $64$ . How many values for $x$ are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "A month with $31$ days has the same number of Mondays and Wednesdays. How many of the seven days of the week could be the first day of this month?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Lucky Larry's teacher asked him to substitute numbers for $a$ , $b$ , $c$ , $d$ , and $e$ in the expression $a-(b-(c-(d+e)))$ and evaluate the result. Larry ignored the parenthese but added and subtracted correctly and obtained the correct result by coincidence. The number Larry substituted for $a$ , $b$ , $c$ , and $d$ were $1$ , $2$ , $3$ , and $4$ , respectively. What number did Larry substitute for $e$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "At the beginning of the school year, $50\\%$ of all students in Mr. Well's class answered \"Yes\" to the question \"Do you love math\", and $50\\%$ answered \"No.\" At the end of the school year, $70\\%$ answered \"Yes\" and $30\\%$ answered \"No.\" Altogether, $x\\%$ of the students gave a different answer at the beginning and end of the school year. What is the difference between the maximum and the minimum possible values of $x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Shelby drives her scooter at a speed of $30$ miles per hour if it is not raining, and $20$ miles per hour if it is raining. Today she drove in the sun in the morning and in the rain in the evening, for a total of $16$ miles in $40$ minutes. How many minutes did she drive in the rain?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Every high school in the city of Euclid sent a team of $3$ students to a math contest. Each participant in the contest received a different score. Andrea's score was the median among all students, and hers was the highest score on her team. Andrea's teammates Beth and Carla placed $37$ th and $64$ th , respectively. How many schools are in the city?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Let $n$ be the smallest positive integer such that $n$ is divisible by $20$ , $n^2$ is a perfect cube, and $n^3$ is a perfect square. What is the number of digits of $n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "The average of the numbers $1, 2, 3,\\cdots, 98, 99,$ and $x$ is $100x$ . What is $x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A palindrome between $1000$ and $10,000$ is chosen at random. What is the probability that it is divisible by $7$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "For what value of $x$ does",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "In $\\triangle ABC$ , $\\cos(2A-B)+\\sin(A+B)=2$ and $AB=4$ . What is $BC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Let $a$ , $b$ , $c$ , $d$ , and $e$ be positive integers with $a+b+c+d+e=2010$ and let $M$ be the largest of the sum $a+b$ , $b+c$ , $c+d$ and $d+e$ . What is the smallest possible value of $M$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "For how many ordered triples $(x,y,z)$ of nonnegative integers less than $20$ are there exactly two distinct elements in the set $\\{i^x, (1+i)^y, z\\}$ , where $i=\\sqrt{-1}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Positive integers $a$ , $b$ , and $c$ are randomly and independently selected with replacement from the set $\\{1, 2, 3,\\dots, 2010\\}$ . What is the probability that $abc + ab + a$ is divisible by $3$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "The entries in a $3 \\times 3$ array include all the digits from $1$ through $9$ , arranged so that the entries in every row and column are in increasing order. How many such arrays are there?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "A frog makes $3$ jumps, each exactly $1$ meter long. The directions of the jumps are chosen independently at random. What is the probability that the frog's final position is no more than $1$ meter from its starting position?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "A high school basketball game between the Raiders and Wildcats was tied at the end of the first quarter. The number of points scored by the Raiders in each of the four quarters formed an increasing geometric sequence, and the number of points scored by the Wildcats in each of the four quarters formed an increasing arithmetic sequence. At the end of the fourth quarter, the Raiders had won by one point. Neither team scored more than $100$ points. What was the total number of points scored by the two teams in the first half?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "A geometric sequence $(a_n)$ has $a_1=\\sin x$ , $a_2=\\cos x$ , and $a_3= \\tan x$ for some real number $x$ . For what value of $n$ does $a_n=1+\\cos x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Let $a > 0$ , and let $P(x)$ be a polynomial with integer coefficients such that",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Let $ABCD$ be a cyclic quadrilateral. The side lengths of $ABCD$ are distinct integers less than $15$ such that $BC\\cdot CD=AB\\cdot DA$ . What is the largest possible value of $BD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Monic quadratic polynomial $P(x)$ and $Q(x)$ have the property that $P(Q(x))$ has zeros at $x=-23, -21, -17,$ and $-15$ , and $Q(P(x))$ has zeros at $x=-59,-57,-51$ and $-49$ . What is the sum of the minimum values of $P(x)$ and $Q(x)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "The set of real numbers $x$ for which",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "For every integer $n\\ge2$ , let $\\text{pow}(n)$ be the largest power of the largest prime that divides $n$ . For example $\\text{pow}(144)=\\text{pow}(2^4\\cdot3^2)=3^2$ . What is the largest integer $m$ such that $2010^m$ divides",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2010_AMC_12B_Problems/Problem_25"
+    }
+  ]
+}

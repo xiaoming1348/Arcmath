@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2019,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Alicia had two containers. The first was $\\tfrac{5}{6}$ full of water and the second was empty. She poured all the water from the first container into the second container, at which point the second container was $\\tfrac{3}{4}$ full of water. What is the ratio of the volume of the first container to the volume of the second container?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Consider the statement, \"If $n$ is not prime, then $n-2$ is prime.\" Which of the following values of $n$ is a counterexample to this statement?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Which of the following rigid transformations (isometries) maps the line segment $\\overline{AB}$ onto the line segment $\\overline{A'B'}$ so that the image of $A(-2, 1)$ is $A'(2, -1)$ and the image of $B(-1, 4)$ is $B'(1, -4)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "There is a positive integer $n$ such that $(n+1)! + (n+2)! = n! \\cdot 440$ . What is the sum of the digits of $n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Each piece of candy in a store costs a whole number of cents. Casper has exactly enough money to buy either $12$ pieces of red candy, $14$ pieces of green candy, $15$ pieces of blue candy, or $n$ pieces of purple candy. A piece of purple candy costs $20$ cents. What is the smallest possible value of $n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "In a given plane, points $A$ and $B$ are $10$ units apart. How many points $C$ are there in the plane such that the perimeter of $\\triangle ABC$ is $50$ units and the area of $\\triangle ABC$ is $100$ square units?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "What is the sum of all real numbers $x$ for which the median of the numbers $4,6,8,17,$ and $x$ is equal to the mean of those five numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Let $f(x) = x^{2}(1-x)^{2}$ . What is the value of the sum \\[f \\left(\\frac{1}{2019} \\right)-f \\left(\\frac{2}{2019} \\right)+f \\left(\\frac{3}{2019} \\right)-f \\left(\\frac{4}{2019} \\right)+\\cdots + f \\left(\\frac{2017}{2019} \\right) - f \\left(\\frac{2018}{2019} \\right)?\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "For how many integral values of $x$ can a triangle of positive area be formed having side lengths $\\log_{2} x, \\log_{4} x, 3$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "The figure below is a map showing $12$ cities and $17$ roads connecting certain pairs of cities. Paula wishes to travel along exactly $13$ of those roads, starting at city $A$ and ending at city $L$ , without traveling along any portion of a road more than once. (Paula is allowed to visit a city more than once.) [asy] import olympiad; unitsize(50); for (int i = 0; i < 3; ++i) { for (int j = 0; j < 4; ++j) { pair A = (j,i); dot(A); } } for (int i = 0; i < 3; ++i) { for (int j = 0; j < 4; ++j) { if (j != 3) { draw((j,i)--(j+1,i)); } if (i != 2) { draw((j,i)--(j,i+1)); } } } label(\"$A$\", (0,2), W); label(\"$L$\", (3,0), E); [/asy]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "How many unordered pairs of edges of a given cube determine a plane?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Right triangle $ACD$ with right angle at $C$ is constructed outwards on the hypotenuse $\\overline{AC}$ of isosceles right triangle $ABC$ with leg length $1$ , as shown, so that the two triangles have equal perimeters. What is $\\sin(2\\angle BAD)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "A red ball and a green ball are randomly and independently tossed into bins numbered with the positive integers so that for each ball, the probability that it is tossed into bin $k$ is $2^{-k}$ for $k = 1,2,3....$ What is the probability that the red ball is tossed into a higher-numbered bin than the green ball? $\\textbf{(A) } \\frac{1}{4} \\qquad\\textbf{(B) } \\frac{2}{7} \\qquad\\textbf{(C) } \\frac{1}{3} \\qquad\\textbf{(D) } \\frac{3}{8} \\qquad\\textbf{(E) } \\frac{3}{7}$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Let $S$ be the set of all positive integer divisors of $100,000.$ How many numbers are the product of two distinct elements of $S?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "As shown in the figure, line segment $\\overline{AD}$ is trisected by points $B$ and $C$ so that $AB=BC=CD=2.$ Three semicircles of radius $1,$ $\\overarc{AEB},\\overarc{BFC},$ and $\\overarc{CGD},$ have their diameters on $\\overline{AD},$ lie in the same halfplane determined by line $AD$ , and are tangent to line $EG$ at $E,F,$ and $G,$ respectively. A circle of radius $2$ has its center on $F.$ The area of the region inside the circle but outside the three semicircles, shaded in the figure, can be expressed in the form \\[\\frac{a}{b}\\cdot\\pi-\\sqrt{c}+d,\\] where $a,b,c,$ and $d$ are positive integers and $a$ and $b$ are relatively prime. What is $a+b+c+d$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "There are lily pads in a row numbered $0$ to $11$ , in that order. There are predators on lily pads $3$ and $6$ , and a morsel of food on lily pad $10$ . Fiona the frog starts on pad $0$ , and from any given lily pad, has a $\\frac{1}{2}$ chance to hop to the next pad, and an equal chance to jump $2$ pads. What is the probability that Fiona reaches pad $10$ without landing on either pad $3$ or pad $6$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "How many nonzero complex numbers $z$ have the property that $0, z,$ and $z^3,$ when represented by points in the complex plane, are the three distinct vertices of an equilateral triangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Square pyramid $ABCDE$ has base $ABCD$ , which measures $3$ cm on a side, and altitude $AE$ perpendicular to the base, which measures $6$ cm. Point $P$ lies on $BE$ , one third of the way from $B$ to $E$ ; point $Q$ lies on $DE$ , one third of the way from $D$ to $E$ ; and point $R$ lies on $CE$ , two thirds of the way from $C$ to $E$ . What is the area, in square centimeters, of $\\triangle{PQR}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Raashan, Sylvia, and Ted play the following game. Each starts with $\\$1$ . A bell rings every $15$ seconds, at which time each of the players who currently have money simultaneously chooses one of the other two players independently and at random and gives $\\$1$ to that player. What is the probability that after the bell has rung $2019$ times, each player will have $\\$1$ ? (For example, Raashan and Ted may each decide to give $\\$1$ to Sylvia, and Sylvia may decide to give her dollar to Ted, at which point Raashan will have $\\$0$ , Sylvia will have $\\$2$ , and Ted will have $\\$1$ , and that is the end of the first round of play. In the second round Rashaan has no money to give, but Sylvia and Ted might choose each other to give their $\\$1$ to, and the holdings will be the same at the end of the second round.)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Points $A=(6,13)$ and $B=(12,11)$ lie on circle $\\omega$ in the plane. Suppose that the tangent lines to $\\omega$ at $A$ and $B$ intersect at a point on the $x$ -axis. What is the area of $\\omega$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "How many quadratic polynomials with real coefficients are there such that the set of roots equals the set of coefficients? (For clarification: If the polynomial is $ax^2+bx+c,a\\neq 0,$ and the roots are $r$ and $s,$ then the requirement is that $\\{a,b,c\\}=\\{r,s\\}$ .)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Define a sequence recursively by $x_0=5$ and \\[x_{n+1}=\\frac{x_n^2+5x_n+4}{x_n+6}\\] for all nonnegative integers $n.$ Let $m$ be the least positive integer such that",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "How many sequences of $0$ s and $1$ s of length $19$ are there that begin with a $0$ , end with a $0$ , contain no two consecutive $0$ s, and contain no three consecutive $1$ s?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Let $\\omega=-\\tfrac{1}{2}+\\tfrac{1}{2}i\\sqrt3.$ Let $S$ denote all points in the complex plane of the form $a+b\\omega+c\\omega^2,$ where $0\\leq a \\leq 1,0\\leq b\\leq 1,$ and $0\\leq c\\leq 1.$ What is the area of $S$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Let $ABCD$ be a convex quadrilateral with $BC=2$ and $CD=6.$ Suppose that the centroids of $\\triangle ABC,\\triangle BCD,$ and $\\triangle ACD$ form the vertices of an equilateral triangle. What is the maximum possible value of the area of $ABCD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12B_Problems/Problem_25"
+    }
+  ]
+}

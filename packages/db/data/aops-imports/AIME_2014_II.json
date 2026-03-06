@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 2014,
+    "exam": "II",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AIME_II"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Abe can paint the room in 15 hours, Bea can paint 50 percent faster than Abe, and Coe can paint twice as fast as Abe. Abe begins to paint the room and works alone for the first hour and a half. Then Bea joins Abe, and they work together until half the room is painted. Then Coe joins Abe and Bea, and they work together until the entire room is painted. Find the number of minutes after Abe begins for the three of them to finish painting the room.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "334",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AIME_II_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Arnold is studying the prevalence of three health risk factors, denoted by A, B, and C, within a population of men. For each of the three factors, the probability that a randomly selected man in the population has only this risk factor (and none of the others) is 0.1. For any two of the three factors, the probability that a randomly selected man has exactly these two risk factors (but not the third) is 0.14. The probability that a randomly selected man has all three risk factors, given that he has A and B is $\\frac{1}{3}$ . The probability that a man has none of the three risk factors given that he does not have risk factor A is $\\frac{p}{q}$ , where $p$ and $q$ are relatively prime positive integers. Find $p+q$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "076",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AIME_II_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "A rectangle has sides of length $a$ and 36. A hinge is installed at each vertex of the rectangle, and at the midpoint of each side of length 36. The sides of length $a$ can be pressed toward each other keeping those two sides parallel so the rectangle becomes a convex hexagon as shown. When the figure is a hexagon with the sides of length $a$ parallel and separated by a distance of 24, the hexagon has the same area as the original rectangle. Find $a^2$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "720",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AIME_II_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "The repeating decimals $0.abab\\overline{ab}$ and $0.abcabc\\overline{abc}$ satisfy",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "447",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AIME_II_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Real numbers $r$ and $s$ are roots of $p(x)=x^3+ax+b$ , and $r+4$ and $s-3$ are roots of $q(x)=x^3+ax+b+240$ . Find the sum of all possible values of $|b|$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "420",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AIME_II_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Charles has two six-sided die. One of the die is fair, and the other die is biased so that it comes up six with probability $\\frac{2}{3}$ and each of the other five sides has probability $\\frac{1}{15}$ . Charles chooses one of the two dice at random and rolls it three times. Given that the first two rolls are both sixes, the probability that the third roll will also be a six is $\\frac{p}{q}$ , where $p$ and $q$ are relatively prime positive integers. Find $p+q$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "167",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AIME_II_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Let $f(x)=(x^2+3x+2)^{\\cos(\\pi x)}$ . Find the sum of all positive integers $n$ for which \\[\\left |\\sum_{k=1}^n\\log_{10}f(k)\\right|=1.\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "021",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AIME_II_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Circle $C$ with radius 2 has diameter $\\overline{AB}$ . Circle D is internally tangent to circle $C$ at $A$ . Circle $E$ is internally tangent to circle $C$ , externally tangent to circle $D$ , and tangent to $\\overline{AB}$ . The radius of circle $D$ is three times the radius of circle $E$ , and can be written in the form $\\sqrt{m}-n$ , where $m$ and $n$ are positive integers. Find $m+n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "254",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AIME_II_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Ten chairs are arranged in a circle. Find the number of subsets of this set of chairs that contain at least three adjacent chairs.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "581",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AIME_II_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Let $z$ be a complex number with $|z|=2014$ . Let $P$ be the polygon in the complex plane whose vertices are $z$ and every $w$ such that $\\frac{1}{z+w}=\\frac{1}{z}+\\frac{1}{w}$ . Then the area enclosed by $P$ can be written in the form $n\\sqrt{3}$ , where $n$ is an integer. Find the remainder when $n$ is divided by $1000$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "147",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AIME_II_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "In $\\triangle RED$ , $\\measuredangle DRE=75^{\\circ}$ and $\\measuredangle RED=45^{\\circ}$ . $RD=1$ . Let $M$ be the midpoint of segment $\\overline{RD}$ . Point $C$ lies on side $\\overline{ED}$ such that $\\overline{RC}\\perp\\overline{EM}$ . Extend segment $\\overline{DE}$ through $E$ to point $A$ such that $CA=AR$ . Then $AE=\\frac{a-\\sqrt{b}}{c}$ , where $a$ and $c$ are relatively prime positive integers, and $b$ is a positive integer. Find $a+b+c$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "056",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AIME_II_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Suppose that the angles of $\\triangle ABC$ satisfy $\\cos(3A)+\\cos(3B)+\\cos(3C)=1.$ Two sides of the triangle have lengths 10 and 13. There is a positive integer $m$ so that the maximum possible length for the remaining side of $\\triangle ABC$ is $\\sqrt{m}.$ Find $m.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "399",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AIME_II_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Ten adults enter a room, remove their shoes, and toss their shoes into a pile. Later, a child randomly pairs each left shoe with a right shoe without regard to which shoes belong together. The probability that for every positive integer $k<5$ , no collection of $k$ pairs made by the child contains the shoes from exactly $k$ of the adults is $\\frac{m}{n}$ , where m and n are relatively prime positive integers. Find $m+n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "028",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AIME_II_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "In $\\triangle{ABC}, AB=10, \\angle{A}=30^\\circ$ , and $\\angle{C=45^\\circ}$ . Let $H, D,$ and $M$ be points on the line $BC$ such that $AH\\perp{BC}$ , $\\angle{BAD}=\\angle{CAD}$ , and $BM=CM$ . Point $N$ is the midpoint of the segment $HM$ , and point $P$ is on ray $AD$ such that $PN\\perp{BC}$ . Then $AP^2=\\dfrac{m}{n}$ , where $m$ and $n$ are relatively prime positive integers. Find $m+n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "077",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AIME_II_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "For any integer $k\\geq 1$ , let $p(k)$ be the smallest prime which does not divide $k.$ Define the integer function $X(k)$ to be the product of all primes less than $p(k)$ if $p(k)>2$ , and $X(k)=1$ if $p(k)=2.$ Let $\\{x_n\\}$ be the sequence defined by $x_0=1$ , and $x_{n+1}X(x_n)=x_np(x_n)$ for $n\\geq 0.$ Find the smallest positive integer $t$ such that $x_t=2090.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "149",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AIME_II_Problems/Problem_15"
+    }
+  ]
+}

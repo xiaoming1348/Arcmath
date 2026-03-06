@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2011,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "What is \\[\\dfrac{2+4+6}{1+3+5} - \\dfrac{1+3+5}{2+4+6} ?\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Josanna's test scores to date are $90, 80, 70, 60,$ and $85$ . Her goal is to raise here test average at least $3$ points with her next test. What is the minimum test score she would need to accomplish this goal?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "At a store, when a length is reported as $x$ inches that means the length is at least $x - 0.5$ inches and at most $x + 0.5$ inches. Suppose the dimensions of a rectangular tile are reported as $2$ inches by $3$ inches. In square inches, what is the minimum area for the rectangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "LeRoy and Bernardo went on a week-long trip together and agreed to share the costs equally. Over the week, each of them paid for various joint expenses such as gasoline and car rental. At the end of the trip it turned out that LeRoy had paid $A$ dollars and Bernardo had paid $B$ dollars, where $A < B$ . How many dollars must LeRoy give to Bernardo so that they share the costs equally?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "In multiplying two positive integers $a$ and $b$ , Ron reversed the digits of the two-digit number $a$ . His erroneous product was $161$ . What is the correct value of the product of $a$ and $b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "On Halloween Casper ate $\\frac{1}{3}$ of his candies and then gave $2$ candies to his brother. The next day he ate $\\frac{1}{3}$ of his remaining candies and then gave $4$ candies to his sister. On the third day he ate his final $8$ candies. How many candies did Casper have at the beginning?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "The sum of two angles of a triangle is $\\frac{6}{5}$ of a right angle, and one of these two angles is $30^{\\circ}$ larger than the other. What is the degree measure of the largest angle in the triangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "At a certain beach if it is at least $80^{\\circ} F$ and sunny, then the beach will be crowded. On June 10 the beach was not crowded. What can be concluded about the weather conditions on June 10?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "The area of $\\triangle$ $EBD$ is one third of the area of $\\triangle$ $ABC$ . Segment $DE$ is perpendicular to segment $AB$ . What is $BD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Consider the set of numbers $\\{1, 10, 10^2, 10^3, \\ldots, 10^{10}\\}$ . The ratio of the largest element of the set to the sum of the other ten elements of the set is closest to which integer?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "There are $52$ people in a room. what is the largest value of $n$ such that the statement \"At least $n$ people in this room have birthdays falling in the same month\" is always true?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Keiko walks once around a track at exactly the same constant speed every day. The sides of the track are straight, and the ends are semicircles. The track has a width of $6$ meters, and it takes her $36$ seconds longer to walk around the outside edge of the track than around the inside edge. What is Keiko's speed in meters per second?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Two real numbers are selected independently at random from the interval $[-20, 10]$ . What is the probability that the product of those numbers is greater than zero?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "A rectangular parking lot has a diagonal of $25$ meters and an area of $168$ square meters. In meters, what is the perimeter of the parking lot?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Let $@$ denote the \"averaged with\" operation: $a @ b = \\frac{a+b}{2}$ . Which of the following distributive laws hold for all numbers $x, y,$ and $z$ ? \\[\\text{I. x @ (y + z) = (x @ y) + (x @ z)}\\] \\[\\text{II. x + (y @ z) = (x + y) @ (x + z)}\\] \\[\\text{III. x @ (y @ z) = (x @ y) @ (x @ z)}\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "A dart board is a regular octagon divided into regions as shown. Suppose that a dart thrown at the board is equally likely to land anywhere on the board. What is the probability that the dart lands within the center square?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "In the given circle, the diameter $\\overline{EB}$ is parallel to $\\overline{DC}$ , and $\\overline{AB}$ is parallel to $\\overline{ED}$ . The angles $AEB$ and $ABE$ are in the ratio $4 : 5$ . What is the degree measure of angle $BCD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Rectangle $ABCD$ has $AB = 6$ and $BC = 3$ . Point $M$ is chosen on side $AB$ so that $\\angle AMD = \\angle CMD$ . What is the degree measure of $\\angle AMD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "What is the product of all the roots of the equation \\[\\sqrt{5 | x | + 8} = \\sqrt{x^2 - 16}.\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Rhombus $ABCD$ has side length $2$ and $\\angle B = 120$ °. Region $R$ consists of all points inside the rhombus that are closer to vertex $B$ than any of the other three vertices. What is the area of $R$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Brian writes down four integers $w > x > y > z$ whose sum is $44$ . The pairwise positive differences of these numbers are $1, 3, 4, 5, 6,$ and $9$ . What is the sum of the possible values for $w$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "A pyramid has a square base with sides of length $1$ and has lateral faces that are equilateral triangles. A cube is placed within the pyramid so that one face is on the base of the pyramid and its opposite face has all its edges on the lateral faces of the pyramid. What is the volume of this cube?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "What is the hundreds digit of $2011^{2011}?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "A lattice point in an $xy$ -coordinate system is any point $(x, y)$ where both $x$ and $y$ are integers. The graph of $y = mx +2$ passes through no lattice point with $0 < x \\le 100$ for all $m$ such that $\\frac{1}{2} < m < a$ . What is the maximum possible value of $a$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Let $T_1$ be a triangle with side lengths $2011, 2012,$ and $2013$ . For $n \\ge 1$ , if $T_n = \\triangle ABC$ and $D, E,$ and $F$ are the points of tangency of the incircle of $\\triangle ABC$ to the sides $AB, BC$ , and $AC,$ respectively, then $T_{n+1}$ is a triangle with side lengths $AD, BE,$ and $CF,$ if it exists. What is the perimeter of the last triangle in the sequence $( T_n )$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_10B_Problems/Problem_25"
+    }
+  ]
+}

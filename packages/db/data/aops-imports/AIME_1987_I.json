@@ -1,0 +1,129 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 1987,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1987_AIME"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "An ordered pair $(m,n)$ of non-negative integers is called \"simple\" if the addition $m+n$ in base $10$ requires no carrying. Find the number of simple ordered pairs of non-negative integers that sum to $1492$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "300",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1987_AIME_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "137",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1987_AIME_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "By a proper divisor of a natural number we mean a positive integral divisor other than 1 and the number itself. A natural number greater than 1 will be called nice if it is equal to the product of its distinct proper divisors. What is the sum of the first ten nice numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "182",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1987_AIME_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Find the area of the region enclosed by the graph of $|x-60|+|y|=\\left|\\frac{x}{4}\\right|.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "480",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1987_AIME_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Find $3x^2 y^2$ if $x$ and $y$ are integers such that $y^2 + 3x^2 y^2 = 30x^2 + 517$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "588",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1987_AIME_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Rectangle $ABCD$ is divided into four parts of equal area by five segments as shown in the figure, where $XY = YB + BC + CZ = ZW = WD + DA + AX$ , and $PQ$ is parallel to $AB$ . Find the length of $AB$ (in cm) if $BC = 19$ cm and $PQ = 87$ cm.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "193",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1987_AIME_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Let $[r,s]$ denote the least common multiple of positive integers $r$ and $s$ . Find the number of ordered triples $(a,b,c)$ of positive integers for which $[a,b] = 1000$ , $[b,c] = 2000$ , and $[c,a] = 2000$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "070",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1987_AIME_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "What is the largest positive integer $n$ for which there is a unique integer $k$ such that $\\frac{8}{15} < \\frac{n}{n + k} < \\frac{7}{13}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "112",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1987_AIME_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Triangle $ABC$ has right angle at $B$ , and contains a point $P$ for which $PA = 10$ , $PB = 6$ , and $\\angle APB = \\angle BPC = \\angle CPA$ . Find $PC$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "033",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1987_AIME_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Al walks down to the bottom of an escalator that is moving up and he counts 150 steps. His friend, Bob, walks up to the top of the escalator and counts 75 steps. If Al's speed of walking (in steps per unit time) is three times Bob's walking speed, how many steps are visible on the escalator at a given time? (Assume that this value is constant.)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "120",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1987_AIME_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Find the largest possible value of $k$ for which $3^{11}$ is expressible as the sum of $k$ consecutive positive integers .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "486",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1987_AIME_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Let $m$ be the smallest integer whose cube root is of the form $n+r$ , where $n$ is a positive integer and $r$ is a positive real number less than $1/1000$ . Find $n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "019",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1987_AIME_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "A given sequence $r_1, r_2, \\dots, r_n$ of distinct real numbers can be put in ascending order by means of one or more \"bubble passes\". A bubble pass through a given sequence consists of comparing the second term with the first term, and exchanging them if and only if the second term is smaller, then comparing the third term with the second term and exchanging them if and only if the third term is smaller, and so on in order, through comparing the last term, $r_n$ , with its current predecessor and exchanging them if and only if the last term is smaller.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "931",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1987_AIME_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Compute \\[\\frac{(10^4+324)(22^4+324)(34^4+324)(46^4+324)(58^4+324)}{(4^4+324)(16^4+324)(28^4+324)(40^4+324)(52^4+324)}.\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "373",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1987_AIME_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Squares $S_1$ and $S_2$ are inscribed in right triangle $ABC$ , as shown in the figures below. Find $AC + CB$ if area $(S_1) = 441$ and area $(S_2) = 440$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "462",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1987_AIME_Problems/Problem_15"
+    }
+  ]
+}

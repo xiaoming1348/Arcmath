@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2012,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Each third-grade classroom at Pearl Creek Elementary has $18$ students and $2$ pet rabbits. How many more students than rabbits are there in all $4$ of the third-grade classrooms?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "A circle of radius 5 is inscribed in a rectangle as shown. The ratio of the length of the rectangle to its width is 2:1. What is the area of the rectangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "For a science project, Sammy observed a chipmunk and squirrel stashing acorns in holes. The chipmunk hid 3 acorns in each of the holes it dug. The squirrel hid 4 acorns in each of the holes it dug. They each hid the same number of acorns, although the squirrel needed 4 fewer holes. How many acorns did the chipmunk hide?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Suppose that the euro is worth 1.3 dollars. If Diana has 500 dollars and Etienne has 400 euros, by what percent is the value of Etienne's money greater that the value of Diana's money?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Two integers have a sum of $26$ . when two more integers are added to the first two, the sum is $41$ . Finally, when two more integers are added to the sum of the previous $4$ integers, the sum is $57$ . What is the minimum number of even integers among the $6$ integers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "In order to estimate the value of $x-y$ where $x$ and $y$ are real numbers with $x>y>0$ , Xiaoli rounded $x$ up by a small amount, rounded $y$ down by the same amount, and then subtracted her rounded values. Which of the following statements is necessarily correct?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Small lights are hung on a string $6$ inches apart in the order red, red, green, green, green, red, red, green, green, green, and so on continuing this pattern of $2$ red lights followed by $3$ green lights. How many feet separate the 3rd red light and the 21st red light?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "A dessert chef prepares the dessert for every day of a week starting with Sunday. The dessert each day is either cake, pie, ice cream, or pudding. The same dessert may not be served two days in a row. There must be cake on Friday because of a birthday. How many different dessert menus for the week are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "It takes Clea 60 seconds to walk down an escalator when it is not moving, and 24 seconds when it is moving. How many seconds would it take Clea to ride the escalator down when she is not walking?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "What is the area of the polygon whose vertices are the points of intersection of the curves $x^2 + y^2 =25$ and $(x-4)^2 + 9y^2 = 81 ?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "In the equation below, $A$ and $B$ are consecutive positive integers, and $A$ , $B$ , and $A+B$ represent number bases: \\[132_A+43_B=69_{A+B}.\\] What is $A+B$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "How many sequences of zeros and ones of length 20 have all the zeros consecutive, or all the ones consecutive, or both?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D OR E (BOTH WERE ACCEPTED)",
+      "answerFormat": "EXPRESSION",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Two parabolas have equations $y= x^2 + ax +b$ and $y= x^2 + cx +d$ , where $a, b, c,$ and $d$ are integers, each chosen independently by rolling a fair six-sided die. What is the probability that the parabolas will have at least one point in common?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Bernardo and Silvia play the following game. An integer between $0$ and $999$ inclusive is selected and given to Bernardo. Whenever Bernardo receives a number, he doubles it and passes the result to Silvia. Whenever Silvia receives a number, she adds $50$ to it and passes the result to Bernardo. The winner is the last person who produces a number less than $1000$ . Let $N$ be the smallest initial number that results in a win for Bernardo. What is the sum of the digits of $N$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Jesse cuts a circular disk of radius 12, along 2 radii to form 2 sectors, one with a central angle of 120. He makes two circular cones using each sector to form the lateral surface of each cone. What is the ratio of the volume of the smaller cone to the larger cone?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Amy, Beth, and Jo listen to four different songs and discuss which ones they like. No song is liked by all three. Furthermore, for each of the three pairs of the girls, there is at least one song liked by those two girls but disliked by the third. In how many different ways is this possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Square $PQRS$ lies in the first quadrant. Points $(3,0), (5,0), (7,0),$ and $(13,0)$ lie on lines $SP, RQ, PQ$ , and $SR$ , respectively. What is the sum of the coordinates of the center of the square $PQRS$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Let $(a_1,a_2, \\dots ,a_{10})$ be a list of the first 10 positive integers such that for each $2 \\le i \\le 10$ either $a_i+1$ or $a_i-1$ or both appear somewhere before $a_i$ in the list. How many such lists are there?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "A unit cube has vertices $P_1,P_2,P_3,P_4,P_1',P_2',P_3',$ and $P_4'$ . Vertices $P_2$ , $P_3$ , and $P_4$ are adjacent to $P_1$ , and for $1\\le i\\le 4,$ vertices $P_i$ and $P_i'$ are opposite to each other. A regular octahedron has one vertex in each of the segments $P_1P_2$ , $P_1P_3$ , $P_1P_4$ , $P_1'P_2'$ , $P_1'P_3'$ , and $P_1'P_4'$ . What is the octahedron's side length?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "A trapezoid has side lengths 3, 5, 7, and 11. The sum of all the possible areas of the trapezoid can be written in the form of $r_1\\sqrt{n_1}+r_2\\sqrt{n_2}+r_3$ , where $r_1$ , $r_2$ , and $r_3$ are rational numbers and $n_1$ and $n_2$ are positive integers not divisible by the square of any prime. What is the greatest integer less than or equal to $r_1+r_2+r_3+n_1+n_2$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Square $AXYZ$ is inscribed in equiangular hexagon $ABCDEF$ with $X$ on $\\overline{BC}$ , $Y$ on $\\overline{DE}$ , and $Z$ on $\\overline{EF}$ . Suppose that $AB=40$ , and $EF=41(\\sqrt{3}-1)$ . What is the side-length of the square?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "A bug travels from A to B along the segments in the hexagonal lattice pictured below. The segments marked with an arrow can be traveled only in the direction of the arrow, and the bug never travels the same segment more than once. How many different paths are there?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Consider all polynomials of a complex variable, $P(z)=4z^4+az^3+bz^2+cz+d$ , where $a,b,c,$ and $d$ are integers, $0\\le d\\le c\\le b\\le a\\le 4$ , and the polynomial has a zero $z_0$ with $|z_0|=1.$ What is the sum of all values $P(1)$ over all the polynomials with these properties?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Define the function $f_1$ on the positive integers by setting $f_1(1)=1$ and if $n=p_1^{e_1}p_2^{e_2}\\cdots p_k^{e_k}$ is the prime factorization of $n>1$ , then \\[f_1(n)=(p_1+1)^{e_1-1}(p_2+1)^{e_2-1}\\cdots (p_k+1)^{e_k-1}.\\] For every $m\\ge 2$ , let $f_m(n)=f_1(f_{m-1}(n))$ . For how many $N$ s in the range $1\\le N\\le 400$ is the sequence $(f_1(N),f_2(N),f_3(N),\\dots )$ unbounded?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Let $S=\\{(x,y) : x\\in \\{0,1,2,3,4\\}, y\\in \\{0,1,2,3,4,5\\},\\text{ and } (x,y)\\ne (0,0)\\}$ . Let $T$ be the set of all right triangles whose vertices are in $S$ . For every right triangle $t=\\triangle{ABC}$ with vertices $A$ , $B$ , and $C$ in counter-clockwise order and right angle at $A$ , let $f(t)=\\tan(\\angle{CBA})$ . What is \\[\\prod_{t\\in T} f(t)?\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12B_Problems/Problem_25"
+    }
+  ]
+}

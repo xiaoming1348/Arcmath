@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2003,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Which of the following is the same as",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Al gets the disease algebritis and must take one green pill and one pink pill each day for two weeks. A green pill costs $\\$ $1$ more than a pink pill, and Al's pills cost a total of $\\textdollar 546$ for the two weeks. How much does one green pill cost?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Rose fills each of the rectangular regions of her rectangular flower bed with a different type of flower. The lengths, in feet, of the rectangular regions in her flower bed are as shown in the figure. She plants one flower per square foot in each region. Asters cost $\\$ $1$ each, begonias $\\$ $1.50$ each, cannas $\\$ $2$ each, dahlias $\\$ $2.50$ each, and Easter lilies $\\$ $3$ each. What is the least possible cost, in dollars, for her garden?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Moe uses a mower to cut his rectangular $90$ -foot by $150$ -foot lawn. The swath he cuts is $28$ inches wide, but he overlaps each cut by $4$ inches to make sure that no grass is missed. He walks at the rate of $5000$ feet per hour while pushing the mower. Which of the following is closest to the number of hours it will take Moe to mow the lawn?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Many television screens are rectangles that are measured by the length of their diagonals. The ratio of the horizontal length to the height in a standard television screen is $4:3$ . The horizontal length of a \" $27$ -inch\" television screen is closest, in inches, to which of the following?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "The second and fourth terms of a geometric sequence are $2$ and $6$ . Which of the following is a possible first term?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Penniless Pete's piggy bank has no pennies in it, but it has 100 coins, all nickels,dimes, and quarters, whose total value is $8.35. It does not necessarily contain coins of all three types. What is the difference between the largest and smallest number of dimes that could be in the bank?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Let $\\clubsuit(x)$ denote the sum of the digits of the positive integer $x$ . For example, $\\clubsuit(8)=8$ and $\\clubsuit(123)=1+2+3=6$ . For how many two-digit values of $x$ is $\\clubsuit(\\clubsuit(x))=3$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Let $f$ be a linear function for which $f(6) - f(2) = 12.$ What is $f(12) - f(2)?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Several figures can be made by attaching two equilateral triangles to the regular pentagon ABCDE in two of the five positions shown. How many non-congruent figures can be constructed in this way?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Cassandra sets her watch to the correct time at noon. At the actual time of 1:00 PM, she notices that her watch reads 12:57 and 36 seconds. Assuming that her watch loses time at a constant rate, what will be the actual time when her watch first reads 10:00 PM?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "What is the largest integer that is a divisor of",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "An ice cream cone consists of a sphere of vanilla ice cream and a right circular cone that has the same diameter as the sphere. If the ice cream melts, it will exactly fill the cone. Assume that the melted ice cream occupies $75\\%$ of the volume of the frozen ice cream. What is the ratio of the cone’s height to its radius ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "In rectangle $ABCD, AB=5$ and $BC=3$ . Points $F$ and $G$ are on $\\overline{CD}$ so that $DF=1$ and $GC=2$ . Lines $AF$ and $BG$ intersect at $E$ . Find the area of $\\triangle AEB$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "A regular octagon $ABCDEFGH$ has an area of one square unit. What is the area of the rectangle $ABEF$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Three semicircles of radius $1$ are constructed on diameter $\\overline{AB}$ of a semicircle of radius $2$ . The centers of the small semicircles divide $\\overline{AB}$ into four line segments of equal length, as shown. What is the area of the shaded region that lies within the large semicircle but outside the smaller semicircles?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "If $\\log (xy^3) = 1$ and $\\log (x^2y) = 1$ , what is $\\log (xy)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Let $x$ and $y$ be positive integers such that $7x^5 = 11y^{13}.$ The minimum possible value of $x$ has a prime factorization $a^cb^d.$ What is $a + b + c + d?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Let $S$ be the set of permutations of the sequence $1,2,3,4,5$ for which the first term is not $1$ . A permutation is chosen randomly from $S$ . The probability that the second term is $2$ , in lowest terms, is $a/b$ . What is $a+b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Part of the graph of $f(x) = ax^3 + bx^2 + cx + d$ is shown. What is $b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "An object moves $8$ cm in a straight line from $A$ to $B$ , turns at an angle $\\alpha$ , measured in radians and chosen at random from the interval $(0,\\pi)$ , and moves $5$ cm in a straight line to $C$ . What is the probability that $AC < 7$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Let $ABCD$ be a rhombus with $AC = 16$ and $BD = 30$ . Let $N$ be a point on $\\overline{AB}$ , and let $P$ and $Q$ be the feet of the perpendiculars from $N$ to $\\overline{AC}$ and $\\overline{BD}$ , respectively. Which of the following is closest to the minimum possible value of $PQ$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "The number of $x$ -intercepts on the graph of $y=\\sin(1/x)$ in the interval $(0.0001,0.001)$ is closest to",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Positive integers $a,b,$ and $c$ are chosen so that $a<b<c$ , and the system of equations",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Three points are chosen randomly and independently on a circle. What is the probability that all three pairwise distances between the points are less than the radius of the circle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12B_Problems/Problem_25"
+    }
+  ]
+}

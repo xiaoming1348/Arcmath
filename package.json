@@ -1,0 +1,36 @@
+{
+  "name": "arcmath-mvp0",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.18.2",
+  "scripts": {
+    "dev": "sh -c 'ORIG_DATABASE_URL=${DATABASE_URL:-}; set -a; . ./.env; set +a; if [ -n \"$ORIG_DATABASE_URL\" ]; then export DATABASE_URL=\"$ORIG_DATABASE_URL\"; fi; pnpm -C apps/web dev'",
+    "build": "sh -c 'ORIG_DATABASE_URL=${DATABASE_URL:-}; set -a; . ./.env; set +a; if [ -n \"$ORIG_DATABASE_URL\" ]; then export DATABASE_URL=\"$ORIG_DATABASE_URL\"; fi; pnpm -C apps/web build'",
+    "test": "vitest --workspace vitest.workspace.ts --run --passWithNoTests",
+    "test:watch": "vitest --workspace vitest.workspace.ts --passWithNoTests",
+    "db:generate": "sh -c 'ORIG_DATABASE_URL=${DATABASE_URL:-}; set -a; . ./.env; set +a; if [ -n \"$ORIG_DATABASE_URL\" ]; then export DATABASE_URL=\"$ORIG_DATABASE_URL\"; fi; pnpm -C packages/db prisma generate'",
+    "db:migrate": "sh -c 'ORIG_DATABASE_URL=${DATABASE_URL:-}; set -a; . ./.env; set +a; if [ -n \"$ORIG_DATABASE_URL\" ]; then export DATABASE_URL=\"$ORIG_DATABASE_URL\"; fi; pnpm -C packages/db prisma migrate dev --name init'",
+    "db:migrate:deploy": "sh -c 'ORIG_DATABASE_URL=${DATABASE_URL:-}; set -a; . ./.env; set +a; if [ -n \"$ORIG_DATABASE_URL\" ]; then export DATABASE_URL=\"$ORIG_DATABASE_URL\"; fi; pnpm -C packages/db prisma migrate deploy'",
+    "db:status": "sh -c 'ORIG_DATABASE_URL=${DATABASE_URL:-}; set -a; . ./.env; set +a; if [ -n \"$ORIG_DATABASE_URL\" ]; then export DATABASE_URL=\"$ORIG_DATABASE_URL\"; fi; pnpm -C packages/db prisma migrate status'",
+    "db:seed": "sh -c 'ORIG_DATABASE_URL=${DATABASE_URL:-}; set -a; . ./.env; set +a; if [ -n \"$ORIG_DATABASE_URL\" ]; then export DATABASE_URL=\"$ORIG_DATABASE_URL\"; fi; pnpm -C packages/db prisma db seed'",
+    "db:studio": "sh -c 'ORIG_DATABASE_URL=${DATABASE_URL:-}; set -a; . ./.env; set +a; if [ -n \"$ORIG_DATABASE_URL\" ]; then export DATABASE_URL=\"$ORIG_DATABASE_URL\"; fi; pnpm -C packages/db prisma studio'",
+    "preflight:production": "node --import tsx scripts/preflight-production.ts",
+    "aops:fetch": "pnpm -C packages/db aops:fetch",
+    "aops:import": "sh -c 'ORIG_DATABASE_URL=${DATABASE_URL:-}; set -a; . ./.env; set +a; if [ -n \"$ORIG_DATABASE_URL\" ]; then export DATABASE_URL=\"$ORIG_DATABASE_URL\"; fi; pnpm -C packages/db aops:import \"$@\"' --",
+    "pdf:backfill:legacy-official": "sh -c 'ORIG_DATABASE_URL=${DATABASE_URL:-}; set -a; . ./.env; set +a; if [ -n \"$ORIG_DATABASE_URL\" ]; then export DATABASE_URL=\"$ORIG_DATABASE_URL\"; fi; pnpm -C apps/web pdf:backfill:legacy-official \"$@\"' --",
+    "pdf:backfill-generated": "sh -c 'ORIG_DATABASE_URL=${DATABASE_URL:-}; set -a; . ./.env; set +a; if [ -n \"$ORIG_DATABASE_URL\" ]; then export DATABASE_URL=\"$ORIG_DATABASE_URL\"; fi; pnpm -C apps/web pdf:backfill-generated \"$@\"' --",
+    "pdf:render-verify": "sh -c 'ORIG_DATABASE_URL=${DATABASE_URL:-}; set -a; . ./.env; set +a; if [ -n \"$ORIG_DATABASE_URL\" ]; then export DATABASE_URL=\"$ORIG_DATABASE_URL\"; fi; pnpm -C apps/web pdf:render-verify \"$@\"' --",
+    "pdf:validate-searchable": "sh -c 'ORIG_DATABASE_URL=${DATABASE_URL:-}; if [ -f ./.env ]; then set -a; . ./.env; set +a; fi; if [ -n \"$ORIG_DATABASE_URL\" ]; then export DATABASE_URL=\"$ORIG_DATABASE_URL\"; fi; node --import tsx scripts/validate-searchable.ts \"$@\"' --",
+    "papers:bootstrap-generated": "node --import tsx scripts/bootstrap-generated-papers.ts",
+    "papers:materialize-last10": "sh -c 'ORIG_DATABASE_URL=${DATABASE_URL:-}; if [ -f ./.env ]; then set -a; . ./.env; set +a; fi; if [ -n \"$ORIG_DATABASE_URL\" ]; then export DATABASE_URL=\"$ORIG_DATABASE_URL\"; fi; node --import tsx scripts/materialize-last10.ts \"$@\"' --",
+    "paper:from-topic-url": "sh -c 'ORIG_DATABASE_URL=${DATABASE_URL:-}; if [ -f ./.env ]; then set -a; . ./.env; set +a; fi; if [ -n \"$ORIG_DATABASE_URL\" ]; then export DATABASE_URL=\"$ORIG_DATABASE_URL\"; fi; node --import tsx scripts/paper-from-topic-url.ts \"$@\"' --",
+    "ingest:warm-cache": "pnpm -F @arcmath/ingest-aops warm-cache",
+    "ingest:fetch": "pnpm -F @arcmath/ingest-aops fetch",
+    "ingest:fetch-pdf": "pnpm -F @arcmath/ingest-aops fetch-official-pdf",
+    "ingest:fetch-pdf-batch": "pnpm -F @arcmath/ingest-aops fetch-official-pdf-batch"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0",
+    "vitest": "^2.1.9"
+  }
+}

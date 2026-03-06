@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC8",
+    "year": 2015,
+    "exam": null,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Onkon wants to cover his room's floor with his favourite red carpet. How many square yards of red carpet are required to cover a rectangular floor that is $12$ feet long and $9$ feet wide? (There are 3 feet in a yard.)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Point $O$ is the center of the regular octagon $ABCDEFGH$ , and $X$ is the midpoint of the side $\\overline{AB}.$ What fraction of the area of the octagon is shaded?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Jack and Jill are going swimming at a pool that is one mile from their house. They leave home simultaneously. Jill rides her bicycle to the pool at a constant speed of $10$ miles per hour. Jack walks to the pool at a constant speed of $4$ miles per hour. How many minutes before Jack does Jill arrive?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "The Blue Bird High School chess team consists of two boys and three girls. A photographer wants to take a picture of the team to appear in the local newspaper. She decides to have them sit in a row with a boy at each end and the three girls in the middle. How many such arrangements are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Billy's basketball team scored the following points over the course of the first $11$ games of the season. If his team scores $40$ in the $12^{th}$ game, which of the following statistics will show an increase?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "In $\\bigtriangleup ABC$ , $AB=BC=29$ , and $AC=42$ . What is the area of $\\bigtriangleup ABC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Each of two boxes contains three chips numbered $1$ , $2$ , $3$ . A chip is drawn randomly from each box and the numbers on the two chips are multiplied. What is the probability that their product is even?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "What is the smallest whole number larger than the perimeter of any triangle with a side of length $5$ and a side of length $19$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "On her first day of work, Janabel sold one widget. On day two, she sold three widgets. On day three, she sold five widgets, and on each succeeding day, she sold two more widgets than she had sold on the previous day. How many widgets in total had Janabel sold after working $20$ days?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "How many integers between 1000 and 9999 have four distinct digits?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "In the small country of Mathland, all automobile license plates have four symbols. The first must be a vowel (A, E, I, O, or U), the second and third must be two different letters among the 21 non-vowels, and the fourth must be a digit (0 through 9). If the symbols are chosen at random subject to these conditions, what is the probability that the plate will read \"AMC8\"?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "How many pairs of parallel edges, such as $\\overline{AB}$ and $\\overline{GH}$ or $\\overline{EH}$ and $\\overline{FG}$ , does a cube have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "How many subsets of two elements can be removed from the set $\\{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11\\}$ so that the mean (average) of the remaining numbers is 6?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Which of the following integers cannot be written as the sum of four consecutive odd integers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "At Euler Middle School, $198$ students voted on two issues in a school referendum with the following results: $149$ voted in favor of the first issue and $119$ voted in favor of the second issue. If there were exactly $29$ students who voted against both issues, how many students voted in favor of both issues?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "In a middle-school mentoring program, a number of the sixth graders are paired with a ninth-grade student as a buddy. No ninth grader is assigned more than one sixth-grade buddy. If $\\frac{1}{3}$ of all the ninth graders are paired with $\\frac{2}{5}$ of all the sixth graders, what fraction of the total number of sixth and ninth graders have a buddy?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Jeremy's father drives him to school in rush hour traffic in 20 minutes. One day there is no traffic, so his father can drive him 18 miles per hour faster and gets him to school in 12 minutes. How far in miles is it to school?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "An arithmetic sequence is a sequence in which each term after the first is obtained by adding a constant to the previous term. For example, $2,5,8,11,14$ is an arithmetic sequence with five terms, in which the first term is $2$ and the constant added is $3$ . Each row and each column in this $5\\times5$ array is an arithmetic sequence with five terms. The square in the center is labelled $X$ as shown. What is the value of $X$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "A triangle with vertices as $A=(1,3)$ , $B=(5,1)$ , and $C=(4,4)$ is plotted on a $6\\times5$ grid. What fraction of the grid is covered by the triangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Ralph went to the store and bought 12 pairs of socks for a total of $\\$24$ . Some of the socks he bought cost $\\$1$ a pair, some of the socks he bought cost $\\$3$ a pair, and some of the socks he bought cost $\\$4$ a pair. If he bought at least one pair of each type, how many pairs of $\\$1$ socks did Ralph buy?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "In the given figure, hexagon $ABCDEF$ is equiangular, $ABJI$ and $FEHG$ are squares with areas $18$ and $32$ respectively, $\\triangle JBK$ is equilateral and $FE=BC$ . What is the area of $\\triangle KBC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "On June 1, a group of students is standing in rows, with 15 students in each row. On June 2, the same group is standing with all of the students in one long row. On June 3, the same group is standing with just one student in each row. On June 4, the same group is standing with 6 students in each row. This process continues through June 12 with a different number of students per row each day. However, on June 13, they cannot find a new way of organizing the students. What is the smallest possible number of students in the group?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Tom has twelve slips of paper which he wants to put into five cups labeled $A$ , $B$ , $C$ , $D$ , $E$ . He wants the sum of the numbers on the slips in each cup to be an integer. Furthermore, he wants the five integers to be consecutive and increasing from $A$ to $E$ . The numbers on the papers are $2, 2, 2, 2.5, 2.5, 3, 3, 3, 3, 3.5, 4,$ and $4.5$ . If a slip with $2$ goes into cup $E$ and a slip with $3$ goes into cup $B$ , then the slip with $3.5$ must go into what cup?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "A baseball league consists of two four-team divisions. Each team plays every other team in its division $N$ games. Each team plays every team in the other division $M$ games with $N>2M$ and $M>4$ . Each team plays a $76$ game schedule. How many games does a team play within its own division?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "One-inch squares are cut from the corners of this 5 inch square. What is the area in square inches of the largest square that can be fitted into the remaining space?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_8_Problems/Problem_25"
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2003,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "What is the difference between the sum of the first $2003$ even counting numbers and the sum of the first $2003$ odd counting numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Members of the Rockham Soccer League buy socks and T-shirts. Socks cost $4 per pair and each T-shirt costs $5 more than a pair of socks. Each member needs one pair of socks and a shirt for home games and another pair of socks and a shirt for away games. If the total cost is $2366, how many members are in the League?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "A solid box is $15$ cm by $10$ cm by $8$ cm. A new solid is formed by removing a cube $3$ cm on a side from each corner of this box. What percent of the original volume is removed?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "It takes Anna $30$ minutes to walk uphill $1$ km from her home to school, but it takes her only $10$ minutes to walk from school to her home along the same route. What is her average speed, in km/hr, for the round trip?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Let $d$ and $e$ denote the solutions of $2x^{2}+3x-5=0$ . What is the value of $(d-1)(e-1)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Define $x \\heartsuit y$ to be $|x-y|$ for all real numbers $x$ and $y$ . Which of the following statements is not true?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "How many non- congruent triangles with perimeter $7$ have integer side lengths?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "What is the probability that a randomly drawn positive factor of $60$ is less than $7$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Simplify $\\sqrt[3]{x\\sqrt[3]{x\\sqrt[3]{x\\sqrt{x}}}}$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "The polygon enclosed by the solid lines in the figure consists of 4 congruent squares joined edge -to-edge. One more congruent square is attached to an edge at one of the nine positions indicated. How many of the nine resulting polygons can be folded to form a cube with one face missing?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "The sum of the two 5-digit numbers $AMC10$ and $AMC12$ is $123422$ . What is $A+M+C$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "A point $(x,y)$ is randomly picked from inside the rectangle with vertices $(0,0)$ , $(4,0)$ , $(4,1)$ , and $(0,1)$ . What is the probability that $x<y$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "The sum of three numbers is $20$ . The first is four times the sum of the other two. The second is seven times the third. What is the product of all three?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Let $n$ be the largest integer that is the product of exactly 3 distinct prime numbers $d$ , $e$ , and $10d+e$ , where $d$ and $e$ are single digits. What is the sum of the digits of $n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "What is the probability that an integer in the set $\\{1,2,3,...,100\\}$ is divisible by $2$ and not divisible by $3$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "What is the units digit of $13^{2003}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "The number of inches in the perimeter of an equilateral triangle equals the number of square inches in the area of its circumscribed circle. What is the radius, in inches, of the circle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "What is the sum of the reciprocals of the roots of the equation $\\frac{2003}{2004}x+1+\\frac{1}{x}=0$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "A semicircle of diameter $1$ sits at the top of a semicircle of diameter $2$ , as shown. The shaded area inside the smaller semicircle and outside the larger semicircle is called a lune . Determine the area of this lune.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "A base-10 three digit number $n$ is selected at random. Which of the following is closest to the probability that the base-9 representation and the base-11 representation of $n$ are both three-digit numerals?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Pat is to select six cookies from a tray containing only chocolate chip, oatmeal, and peanut butter cookies. There are at least six of each of these three kinds of cookies on the tray. How many different assortments of six cookies can be selected?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "In rectangle $ABCD$ , we have $AB=8$ , $BC=9$ , $H$ is on $BC$ with $BH=6$ , $E$ is on $AD$ with $DE=4$ , line $EC$ intersects line $AH$ at $G$ , and $F$ is on line $AD$ with $GF \\perp AF$ . Find the length of $GF$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "A large equilateral triangle is constructed by using toothpicks to create rows of small equilateral triangles. For example, in the figure, we have $3$ rows of small congruent equilateral triangles, with $5$ small triangles in the base row. How many toothpicks would be needed to construct a large equilateral triangle if the base row of the triangle consists of $2003$ small equilateral triangles?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Sally has five red cards numbered $1$ through $5$ and four blue cards numbered $3$ through $6$ . She stacks the cards so that the colors alternate and so that the number on each red card divides evenly into the number on each neighboring blue card. What is the sum of the numbers on the middle three cards?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Let $n$ be a $5$ -digit number, and let $q$ and $r$ be the quotient and the remainder, respectively, when $n$ is divided by $100$ . For how many values of $n$ is $q+r$ divisible by $11$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10A_Problems/Problem_25"
+    }
+  ]
+}

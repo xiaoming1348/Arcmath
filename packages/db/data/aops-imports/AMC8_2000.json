@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC8",
+    "year": 2000,
+    "exam": null,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Aunt Anna is $42$ years old. Caitlin is $5$ years younger than Brianna, and Brianna is half as old as Aunt Anna. How old is Caitlin?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Which of these numbers is less than its reciprocal?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "How many whole numbers lie in the interval between $\\frac{5}{3}$ and $2\\pi$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "In 1960 only 5% of the working adults in Carlin City worked at home. By 1970 the \"at-home\" work force had increased to 8%. In 1980 there were approximately 15% working at home, and in 1990 there were 30%. The graph that best illustrates this is:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Each principal of Lincoln High School serves exactly one $3$ -year term. What is the maximum number of principals this school could have during an $8$ -year period?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Figure $ABCD$ is a square. Inside this square three smaller squares are drawn with the side lengths as labeled. The area of the shaded $L$ -shaped region is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "What is the minimum possible product of three different numbers of the set $\\{-8,-6,-4,0,3,5,7\\}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Three dice with faces numbered $1$ through $6$ are stacked as shown. Seven of the eighteen faces are visible, leaving eleven faces hidden (back, bottom, between). The total number of dots NOT visible in this view is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Three-digit powers of $2$ and $5$ are used in this \"cross-number\" puzzle. What is the only possible digit for the outlined square? \\[\\begin{array}{lcl} \\textbf{ACROSS} & & \\textbf{DOWN} \\\\ \\textbf{2}.~ 2^m & & \\textbf{1}.~ 5^n \\end{array}\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Ara and Shea were once the same height. Since then Shea has grown 20% while Ara has grown half as many inches as Shea. Shea is now 60 inches tall. How tall, in inches, is Ara now?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "The number $64$ has the property that it is divisible by its unit digit. How many whole numbers between 10 and 50 have this property?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "A block wall 100 feet long and 7 feet high will be constructed using blocks that are 1 foot high and either 2 feet long or 1 foot long (no blocks may be cut). The vertical joins in the blocks must be staggered as shown, and the wall must be even on the ends. What is the smallest number of blocks needed to build this wall?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "In triangle $CAT$ , we have $\\angle ACT =\\angle ATC$ and $\\angle CAT = 36^\\circ$ . If $\\overline{TR}$ bisects $\\angle ATC$ , then $\\angle CRT =$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "What is the units digit of $19^{19} + 99^{99}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Triangles $ABC$ , $ADE$ , and $EFG$ are all equilateral. Points $D$ and $G$ are midpoints of $\\overline{AC}$ and $\\overline{AE}$ , respectively. If $AB = 4$ , what is the perimeter of figure $ABCDEFG$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "In order for Mateen to walk a kilometer (1000m) in his rectangular backyard, he must walk the length 25 times or walk its perimeter 10 times. What is the area of Mateen's backyard in square meters?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "The operation $\\otimes$ is defined for all nonzero numbers by $a\\otimes b =\\frac{a^{2}}{b}$ . Determine $[(1\\otimes 2)\\otimes 3]-[1\\otimes (2\\otimes 3)]$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Consider these two geoboard quadrilaterals. Which of the following statements is true?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Three circular arcs of radius $5$ units bound the region shown. Arcs $AB$ and $AD$ are quarter-circles, and arc $BCD$ is a semicircle. What is the area, in square units, of the region?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "You have nine coins: a collection of pennies, nickels, dimes, and quarters having a total value of $ $1.02$ , with at least one coin of each type. How many dimes must you have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Keiko tosses one penny and Ephraim tosses two pennies. The probability that Ephraim gets the same number of heads that Keiko gets is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "A cube has edge length $2$ . Suppose that we glue a cube of edge length $1$ on top of the big cube so that one of its faces rests entirely on the top face of the larger cube. The percent increase in the surface area (sides, top, and bottom) from the original cube to the new solid formed is closest to",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "There is a list of seven numbers. The average of the first four numbers is $5$ , and the average of the last four numbers is $8$ . If the average of all seven numbers is $6\\frac{4}{7}$ , then the number common to both sets of four numbers is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "If $\\angle A = 20^\\circ$ and $\\angle AFG =\\angle AGF$ , then $\\angle B+\\angle D =$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "The area of rectangle $ABCD$ is $72$ units squared. If point $A$ and the midpoints of $\\overline{BC}$ and $\\overline{CD}$ are joined to form a triangle, the area of that triangle is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AMC_8_Problems/Problem_25"
+    }
+  ]
+}

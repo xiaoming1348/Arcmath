@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2007,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "One ticket to a show costs $\\$ $20$ at full price. Susan buys 4 tickets using a coupon that gives her a 25% discount. Pam buys 5 tickets using a coupon that gives her a 30% discount. How many more dollars does Pam pay than Susan?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Define $a@b = ab - b^{2}$ and $a\\#b = a + b - ab^{2}$ . What is $\\frac {6@2}{6\\#2}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "An aquarium has a rectangular base that measures $100$ cm by $40$ cm and has a height of $50$ cm. It is filled with water to a height of $40$ cm. A brick with a rectangular base that measures $40$ cm by $20$ cm and a height of $10$ cm is placed in the aquarium. By how many centimeters does the water rise?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "The larger of two consecutive odd integers is three times the smaller. What is their sum?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "The school store sells 7 pencils and 8 notebooks for $\\mathdollar 4.15$ . It also sells 5 pencils and 3 notebooks for $\\mathdollar 1.77$ . How much do 16 pencils and 10 notebooks cost?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "At Euclid High School, the number of students taking the AMC 10 was $60$ in 2002, $66$ in 2003, $70$ in 2004, $76$ in 2005, $78$ and 2006, and is $85$ in 2007. Between what two consecutive years was there the largest percentage increase?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Last year Mr. Jon Q. Public received an inheritance. He paid $20\\%$ in federal taxes on the inheritance, and paid $10\\%$ of what he had left in state taxes. He paid a total of $\\textdollar10500$ for both taxes. How many dollars was his inheritance?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Triangles $ABC$ and $ADC$ are isosceles with $AB=BC$ and $AD=DC$ . Point $D$ is inside triangle $ABC$ , angle $ABC$ measures $40$ degrees, and angle $ADC$ measures $140$ degrees. What is the degree measure of angle $BAD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Real numbers $a$ and $b$ satisfy the equations $3^{a} = 81^{b + 2}$ and $125^{b} = 5^{a - 3}$ . What is $ab$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "The Dunbar family consists of a mother, a father, and some children. The average age of the members of the family is $20$ , the father is $48$ years old, and the average age of the mother and children is $16$ . How many children are in the family?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "The numbers from $1$ to $8$ are placed at the vertices of a cube in such a manner that the sum of the four numbers on each face is the same. What is this common sum?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Two tour guides are leading six tourists. The guides decide to split up. Each tourist must choose one of the guides, but with the stipulation that each guide must take at least one tourist. How many different groupings of guides and tourists are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "The trip from Carville to Nikpath requires $4\\frac 12$ hours when traveling at an average speed of 70 miles per hour. How many hours does the trip require when traveling at an average speed of 60 miles per hour? Express your answer as a decimal to the nearest hundredth.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "A triangle with side lengths in the ratio $3 : 4 : 5$ is inscribed in a circle with radius 3. What is the area of the triangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Four circles of radius $1$ are each tangent to two sides of a square and externally tangent to a circle of radius $2$ , as shown. What is the area of the square?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Integers $a, b, c,$ and $d$ , not necessarily distinct, are chosen independently and at random from 0 to 2007, inclusive. What is the probability that $ad-bc$ is even ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Suppose that $m$ and $n$ are positive integers such that $75m = n^{3}$ . What is the minimum possible value of $m + n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Consider the $12$ -sided polygon $ABCDEFGHIJKL$ , as shown. Each of its sides has length $4$ , and each two consecutive sides form a right angle. Suppose that $\\overline{AG}$ and $\\overline{CH}$ meet at $M$ . What is the area of quadrilateral $ABCM$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "A paint brush is swept along both diagonals of a square to produce the symmetric painted area, as shown. Half the area of the square is painted. What is the ratio of the side length of the square to the brush width?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Suppose that the number $a$ satisfies the equation $4 = a + a^{ - 1}$ . What is the value of $a^{4} + a^{ - 4}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "A sphere is inscribed in a cube that has a surface area of $24$ square meters. A second cube is then inscribed within the sphere. What is the surface area in square meters of the inner cube?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "A finite sequence of three-digit integers has the property that the tens and units digits of each term are, respectively, the hundreds and tens digits of the next term, and the tens and units digits of the last term are, respectively, the hundreds and tens digits of the first term. For example, such a sequence might begin with the terms 247, 475, and 756 and end with the term 824. Let $S$ be the sum of all the terms in the sequence. What is the largest prime factor that always divides $S$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "How many ordered pairs $(m,n)$ of positive integers , with $m \\ge n$ , have the property that their squares differ by $96$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Circles centered at $A$ and $B$ each have radius $2$ , as shown. Point $O$ is the midpoint of $\\overline{AB}$ , and $OA = 2\\sqrt {2}$ . Segments $OC$ and $OD$ are tangent to the circles centered at $A$ and $B$ , respectively, and $EF$ is a common tangent . What is the area of the shaded region $ECODF$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "For each positive integer $n$ , let $S(n)$ denote the sum of the digits of $n.$ For how many values of $n$ is $n + S(n) + S(S(n)) = 2007?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10A_Problems/Problem_25"
+    }
+  ]
+}

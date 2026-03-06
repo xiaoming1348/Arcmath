@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2018,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Kate bakes a $20$ -inch by $18$ -inch pan of cornbread. The cornbread is cut into pieces that measure $2$ inches by $2$ inches. How many pieces of cornbread does the pan contain?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Sam drove $96$ miles in $90$ minutes. His average speed during the first $30$ minutes was $60$ mph (miles per hour), and his average speed during the second $30$ minutes was $65$ mph. What was his average speed, in mph, during the last $30$ minutes?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "A line with slope $2$ intersects a line with slope $6$ at the point $(40,30)$ . What is the distance between the $x$ -intercepts of these two lines?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "A circle has a chord of length $10$ , and the distance from the center of the circle to the chord is $5$ . What is the area of the circle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "How many subsets of $\\{2,3,4,5,6,7,8,9\\}$ contain at least one prime number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Suppose $S$ cans of soda can be purchased from a vending machine for $Q$ quarters. Which of the following expressions describes the number of cans of soda that can be purchased for $D$ dollars, where $1$ dollar is worth $4$ quarters?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "What is the value of \\[\\log_37\\cdot\\log_59\\cdot\\log_711\\cdot\\log_913\\cdots\\log_{21}25\\cdot\\log_{23}27?\\] $\\textbf{(A) } 3 \\qquad \\textbf{(B) } 3\\log_{7}23 \\qquad \\textbf{(C) } 6 \\qquad \\textbf{(D) } 9 \\qquad \\textbf{(E) } 10$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Line segment $\\overline{AB}$ is a diameter of a circle with $AB = 24$ . Point $C$ , not equal to $A$ or $B$ , lies on the circle. As point $C$ moves around the circle, the centroid (center of mass) of $\\triangle ABC$ traces out a closed curve missing two points. To the nearest positive integer, what is the area of the region bounded by this curve?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "What is \\[\\sum^{100}_{i=1} \\sum^{100}_{j=1} (i+j) ?\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "A list of $2018$ positive integers has a unique mode, which occurs exactly $10$ times. What is the least number of distinct values that can occur in the list?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A closed box with a square base is to be wrapped with a square sheet of wrapping paper. The box is centered on the wrapping paper with the vertices of the base lying on the midlines of the square sheet of paper, as shown in the figure on the left. The four corners of the wrapping paper are to be folded up over the sides and brought together to meet at the center of the top of the box, point $A$ in the figure on the right. The box has base length $w$ and height $h$ . What is the area of the sheet of wrapping paper?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Side $\\overline{AB}$ of $\\triangle ABC$ has length $10$ . The bisector of angle $A$ meets $\\overline{BC}$ at $D$ , and $CD = 3$ . The set of all possible values of $AC$ is an open interval $(m,n)$ . What is $m+n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Square $ABCD$ has side length $30$ . Point $P$ lies inside the square so that $AP = 12$ and $BP = 26$ . The centroids of $\\triangle{ABP}$ , $\\triangle{BCP}$ , $\\triangle{CDP}$ , and $\\triangle{DAP}$ are the vertices of a convex quadrilateral. What is the area of that quadrilateral?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Joey and Chloe and their daughter Zoe all have the same birthday. Joey is $1$ year older than Chloe, and Zoe is exactly $1$ year old today. Today is the first of the $9$ birthdays on which Chloe's age will be an integral multiple of Zoe's age. What will be the sum of the two digits of Joey's age the next time his age is a multiple of Zoe's age?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "How many odd positive $3$ -digit integers are divisible by $3$ but do not contain the digit $3$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "The solutions to the equation $(z+6)^8=81$ are connected in the complex plane to form a convex regular polygon, three of whose vertices are labeled $A,B,$ and $C$ . What is the least possible area of $\\triangle ABC?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Let $p$ and $q$ be positive integers such that \\[\\frac{5}{9} < \\frac{p}{q} < \\frac{4}{7}\\] and $q$ is as small as possible. What is $q-p$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "A function $f$ is defined recursively by $f(1)=f(2)=1$ and \\[f(n)=f(n-1)-f(n-2)+n\\] for all integers $n \\geq 3$ . What is $f(2018)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Mary chose an even $4$ -digit number $n$ . She wrote down all the divisors of $n$ in increasing order from left to right: $1,2,\\ldots,\\dfrac{n}{2},n$ . At some moment Mary wrote $323$ as a divisor of $n$ . What is the smallest possible value of the next divisor written to the right of $323$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Let $ABCDEF$ be a regular hexagon with side length $1$ . Denote by $X$ , $Y$ , and $Z$ the midpoints of sides $\\overline {AB}$ , $\\overline{CD}$ , and $\\overline{EF}$ , respectively. What is the area of the convex hexagon whose interior is the intersection of the interiors of $\\triangle ACE$ and $\\triangle XYZ$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "In $\\triangle{ABC}$ with side lengths $AB = 13$ , $AC = 12$ , and $BC = 5$ , let $O$ and $I$ denote the circumcenter and incenter, respectively. A circle with center $M$ is tangent to the legs $AC$ and $BC$ and to the circumcircle of $\\triangle{ABC}$ . What is the area of $\\triangle{MOI}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Consider polynomials $P(x)$ of degree at most $3$ , each of whose coefficients is an element of $\\{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\\}$ . How many such polynomials satisfy $P(-1) = -9$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Ajay is standing at point $A$ near Pontianak, Indonesia, $0^\\circ$ latitude and $110^\\circ \\text{ E}$ longitude. Billy is standing at point $B$ near Big Baldy Mountain, Idaho, USA, $45^\\circ \\text{ N}$ latitude and $115^\\circ \\text{ W}$ longitude. Assume that Earth is a perfect sphere with center $C.$ What is the degree measure of $\\angle ACB?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Let $\\lfloor x \\rfloor$ denote the greatest integer less than or equal to $x$ . How many real numbers $x$ satisfy the equation $x^2 + 10,000\\lfloor x \\rfloor = 10,000x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Circles $\\omega_1$ , $\\omega_2$ , and $\\omega_3$ each have radius $4$ and are placed in the plane so that each circle is externally tangent to the other two. Points $P_1$ , $P_2$ , and $P_3$ lie on $\\omega_1$ , $\\omega_2$ , and $\\omega_3$ respectively such that $P_1P_2=P_2P_3=P_3P_1$ and line $P_iP_{i+1}$ is tangent to $\\omega_i$ for each $i=1,2,3$ , where $P_4 = P_1$ . See the figure below. The area of $\\triangle P_1P_2P_3$ can be written in the form $\\sqrt{a}+\\sqrt{b}$ for positive integers $a$ and $b$ . What is $a+b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12B_Problems/Problem_25"
+    }
+  ]
+}

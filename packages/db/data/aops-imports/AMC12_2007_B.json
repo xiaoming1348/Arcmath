@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2007,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Isabella's house has $3$ bedrooms. Each bedroom is $12$ feet long, $10$ feet wide, and $8$ feet high. Isabella must paint the walls of all the bedrooms. Doorways and windows, which will not be painted, occupy $60$ square feet in each bedroom. How many square feet of walls must be painted?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "A college student drove his compact car $120$ miles home for the weekend and averaged $30$ miles per gallon. On the return trip the student drove his parents' SUV and averaged only $20$ miles per gallon. What was the average gas mileage, in miles per gallon, for the round trip?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "The point $O$ is the center of the circle circumscribed about triangle $ABC$ , with $\\angle BOC = 120^{\\circ}$ and $\\angle AOB = 140^{\\circ}$ , as shown. What is the degree measure of $\\angle ABC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "At Frank's Fruit Market, $3$ bananas cost as much as $2$ apples, and $6$ apples cost as much as $4$ oranges. How many oranges cost as much as $18$ bananas?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "The 2007 AMC 12 contests will be scored by awarding 6 points for each correct response, 0 points for each incorrect response, and 1.5 points for each problem left unanswered. After looking over the 25 problems, Sarah has decided to attempt the first 22 and leave the last 3 unanswered. How many of the first 22 problems must she solve correctly in order to score at least 100 points?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Triangle $ABC$ has side lengths $AB = 5$ , $BC = 6$ , and $AC = 7$ . Two bugs start simultaneously from $A$ and crawl along the sides of the triangle in opposite directions at the same speed. They meet at point $D$ . What is $BD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "All sides of the convex pentagon $ABCDE$ are of equal length, and $\\angle A = \\angle B = 90^{\\circ}$ . What is the degree measure of $\\angle E$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Tom's age is $T$ years, which is also the sum of the ages of his three children. His age $N$ years ago was twice the sum of their ages then. What is $T/N$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "A function $f$ has the property that $f(3x-1)=x^2+x+1$ for all real numbers $x$ . What is $f(5)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Some boys and girls are having a car wash to raise money for a class trip to China. Initially $40\\%$ of the group are girls. Shortly thereafter two girls leave and two boys arrive, and then $30\\%$ of the group are girls. How many girls were initially in the group?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "The angles of quadrilateral $ABCD$ satisfy $\\angle A=2 \\angle B=3 \\angle C=4 \\angle D.$ What is the degree measure of $\\angle A,$ rounded to the nearest whole number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "A teacher gave a test to a class in which $10\\%$ of the students are juniors and $90\\%$ are seniors. The average score on the test was $84.$ The juniors all received the same score, and the average score of the seniors was $83.$ What score did each of the juniors receive on the test?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "A traffic light runs repeatedly through the following cycle: green for $30$ seconds, then yellow for $3$ seconds, and then red for $30$ seconds. Leah picks a random three-second time interval to watch the light. What is the probability that the color changes while she is watching?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Point $P$ is inside equilateral $\\triangle ABC$ . Points $Q$ , $R$ , and $S$ are the feet of the perpendiculars from $P$ to $\\overline{AB}$ , $\\overline{BC}$ , and $\\overline{CA}$ , respectively. Given that $PQ=1$ , $PR=2$ , and $PS=3$ , what is $AB$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "The geometric series $a+ar+ar^2\\ldots$ has a sum of $7$ , and the terms involving odd powers of $r$ have a sum of $3$ . What is $a+r$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Each face of a regular tetrahedron is painted either red, white, or blue. Two colorings are considered indistinguishable if two congruent tetrahedra with those colorings can be rotated so that their appearances are identical. How many distinguishable colorings are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "If $a$ is a nonzero integer and $b$ is a positive number such that $ab^2=\\log_{10}b$ , what is the median of the set $\\{0,1,a,b,1/b\\}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Let $a$ , $b$ , and $c$ be digits with $a\\ne 0$ . The three-digit integer $abc$ lies one third of the way from the square of a positive integer to the square of the next larger integer. The integer $acb$ lies two thirds of the way between the same two squares. What is $a+b+c$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Rhombus $ABCD$ , with side length $6$ , is rolled to form a cylinder of volume $6$ by taping $\\overline{AB}$ to $\\overline{DC}$ . What is $\\sin(\\angle ABC)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "The parallelogram bounded by the lines $y=ax+c$ , $y=ax+d$ , $y=bx+c$ , and $y=bx+d$ has area $18$ . The parallelogram bounded by the lines $y=ax+c$ , $y=ax-d$ , $y=bx+c$ , and $y=bx-d$ has area $72$ . Given that $a$ , $b$ , $c$ , and $d$ are positive integers, what is the smallest possible value of $a+b+c+d$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "The first $2007$ positive integers are each written in base $3$ . How many of these base- $3$ representations are palindromes? (A palindrome is a number that reads the same forward and backward.)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Two particles move along the edges of equilateral $\\triangle ABC$ in the direction \\[A\\Rightarrow B\\Rightarrow C\\Rightarrow A,\\] starting simultaneously and moving at the same speed. One starts at $A$ , and the other starts at the midpoint of $\\overline{BC}$ . The midpoint of the line segment joining the two particles traces out a path that encloses a region $R$ . What is the ratio of the area of $R$ to the area of $\\triangle ABC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "How many non-congruent right triangles with positive integer leg lengths have areas that are numerically equal to $3$ times their perimeters?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "How many pairs of positive integers $(a,b)$ are there such that $\\text{gcd}(a,b)=1$ and $\\frac{a}{b} + \\frac{14b}{9a}$ is an integer?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Points $A,B,C,D$ and $E$ are located in 3-dimensional space with $AB=BC=CD=DE=EA=2$ and $\\angle ABC=\\angle CDE=\\angle DEA=90^o$ . The plane of $\\triangle ABC$ is parallel to $\\overline{DE}$ . What is the area of $\\triangle BDE$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12B_Problems/Problem_25"
+    }
+  ]
+}

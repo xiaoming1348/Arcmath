@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2013,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "On a particular January day, the high temperature in Lincoln, Nebraska, was $16$ degrees higher than the low temperature, and the average of the high and low temperatures was $3$ . In degrees, what was the low temperature in Lincoln that day?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Mr. Green measures his rectangular garden by walking two of the sides and finds that it is $15$ steps by $20$ steps. Each of Mr. Green's steps is $2$ feet long. Mr. Green expects a half a pound of potatoes per square foot from his garden. How many pounds of potatoes does Mr. Green expect from his garden?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "When counting from $3$ to $201$ , $53$ is the $51^{\\text{st}}$ number counted. When counting backwards from $201$ to $3$ , $53$ is the $n^{\\text{th}}$ number counted. What is $n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Ray's car averages $40$ miles per gallon of gasoline, and Tom's car averages $10$ miles per gallon of gasoline. Ray and Tom each drive the same number of miles. What is the cars' combined rate of miles per gallon of gasoline? $\\textbf{(A)}\\ 10 \\qquad \\textbf{(B)}\\ 16 \\qquad \\textbf{(C)}\\ 25 \\qquad \\textbf{(D)}\\ 30 \\qquad \\textbf{(E)}\\ 40$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "The average age of $33$ fifth-graders is $11$ . The average age of $55$ of their parents is $33$ . What is the average age of all of these parents and fifth-graders?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Real numbers $x$ and $y$ satisfy the equation $x^2+y^2=10x-6y-34$ . What is $x+y$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Jo and Blair take turns counting from $1$ to one more than the last number said by the other person. Jo starts by saying $``1\"$ , so Blair follows by saying $``1, 2\"$ . Jo then says $``1, 2, 3\"$ , and so on. What is the $53^{\\text{rd}}$ number said?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Line $l_1$ has equation $3x - 2y = 1$ and goes through $A = (-1, -2)$ . Line $l_2$ has equation $y = 1$ and meets line $l_1$ at point $B$ . Line $l_3$ has positive slope, goes through point $A$ , and meets $l_2$ at point $C$ . The area of $\\triangle ABC$ is $3$ . What is the slope of $l_3$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "What is the sum of the exponents of the prime factors of the square root of the largest perfect square that divides $12!$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Alex has $75$ red tokens and $75$ blue tokens. There is a booth where Alex can give two red tokens and receive in return a silver token and a blue token and another booth where Alex can give three blue tokens and receive in return a silver token and a red token. Alex continues to exchange tokens until no more exchanges are possible. How many silver tokens will Alex have at the end?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Two bees start at the same spot and fly at the same rate in the following directions. Bee $A$ travels $1$ foot north, then $1$ foot east, then $1$ foot upwards, and then continues to repeat this pattern. Bee $B$ travels $1$ foot south, then $1$ foot west, and then continues to repeat this pattern. In what directions are the bees traveling when they are exactly $10$ feet away from each other?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Cities $A$ , $B$ , $C$ , $D$ , and $E$ are connected by roads $\\widetilde{AB}$ , $\\widetilde{AD}$ , $\\widetilde{AE}$ , $\\widetilde{BC}$ , $\\widetilde{BD}$ , $\\widetilde{CD}$ , and $\\widetilde{DE}$ . How many different routes are there from $A$ to $B$ that use each road exactly once? (Such a route will necessarily visit some cities more than once.)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "The internal angles of quadrilateral $ABCD$ form an arithmetic progression. Triangles $ABD$ and $DCB$ are similar with $\\angle DBA = \\angle DCB$ and $\\angle ADB = \\angle CBD$ . Moreover, the angles in each of these two triangles also form an arithmetic progression. In degrees, what is the largest possible sum of the two largest angles of $ABCD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Two non-decreasing sequences of nonnegative integers have different first terms. Each sequence has the property that each term beginning with the third is the sum of the previous two terms, and the seventh term of each sequence is $N$ . What is the smallest possible value of $N$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "The number $2013$ is expressed in the form",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Let $ABCDE$ be an equiangular convex pentagon of perimeter $1$ . The pairwise intersections of the lines that extend the sides of the pentagon determine a five-pointed star polygon. Let $s$ be the perimeter of this star. What is the difference between the maximum and the minimum possible values of $s$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Let $a,b,$ and $c$ be real numbers such that",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Barbara and Jenna play the following game, in which they take turns. A number of coins lie on a table. When it is Barbara’s turn, she must remove $2$ or $4$ coins, unless only one coin remains, in which case she loses her turn. When it is Jenna’s turn, she must remove $1$ or $3$ coins. A coin flip determines who goes first. Whoever removes the last coin wins the game. Assume both players use their best strategy. Who will win when the game starts with $2013$ coins and when the game starts with $2014$ coins?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "In triangle $ABC$ , $AB=13$ , $BC=14$ , and $CA=15$ . Distinct points $D$ , $E$ , and $F$ lie on segments $\\overline{BC}$ , $\\overline{CA}$ , and $\\overline{DE}$ , respectively, such that $\\overline{AD}\\perp\\overline{BC}$ , $\\overline{DE}\\perp\\overline{AC}$ , and $\\overline{AF}\\perp\\overline{BF}$ . The length of segment $\\overline{DF}$ can be written as $\\frac{m}{n}$ , where $m$ and $n$ are relatively prime positive integers. What is $m+n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "For $135^\\circ < x < 180^\\circ$ , points $P=(\\cos x, \\cos^2 x), Q=(\\cot x, \\cot^2 x), R=(\\sin x, \\sin^2 x)$ and $S =(\\tan x, \\tan^2 x)$ are the vertices of a trapezoid. What is $\\sin(2x)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Consider the set of 30 parabolas defined as follows: all parabolas have as focus the point (0,0) and the directrix lines have the form $y=ax+b$ with $a$ and $b$ integers such that $a\\in \\{-2,-1,0,1,2\\}$ and $b\\in \\{-3,-2,-1,1,2,3\\}$ . No three of these parabolas have a common point. How many points in the plane are on two of these parabolas?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Let $m>1$ and $n>1$ be integers. Suppose that the product of the solutions for $x$ of the equation",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Bernardo chooses a three-digit positive integer $N$ and writes both its base-5 and base-6 representations on a blackboard. Later LeRoy sees the two numbers Bernardo has written. Treating the two numbers as base-10 integers, he adds them to obtain an integer $S$ . For example, if $N = 749$ , Bernardo writes the numbers $10,\\!444$ and $3,\\!245$ , and LeRoy obtains the sum $S = 13,\\!689$ . For how many choices of $N$ are the two rightmost digits of $S$ , in order, the same as those of $2N$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Let $ABC$ be a triangle where $M$ is the midpoint of $\\overline{AC}$ , and $\\overline{CN}$ is the angle bisector of $\\angle{ACB}$ with $N$ on $\\overline{AB}$ . Let $X$ be the intersection of the median $\\overline{BM}$ and the bisector $\\overline{CN}$ . In addition $\\triangle BXN$ is equilateral with $AC=2$ . What is $BN^2$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Let $G$ be the set of polynomials of the form \\[P(z)=z^n+c_{n-1}z^{n-1}+\\cdots+c_2z^2+c_1z+50,\\] where $c_1,c_2,\\cdots, c_{n-1}$ are integers and $P(z)$ has distinct roots of the form $a+ib$ with $a$ and $b$ integers. How many polynomials are in $G$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12B_Problems/Problem_25"
+    }
+  ]
+}

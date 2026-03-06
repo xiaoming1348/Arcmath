@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2003,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Which of the following is the same as",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Al gets the disease algebritis and must take one green pill and one pink pill each day for two weeks. A green pill costs $\\$ $1$ more than a pink pill, and Al's pills cost a total of $\\textdollar 546$ for the two weeks. How much does one green pill cost?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "The sum of $5$ consecutive even integers is $4$ less than the sum of the first $8$ consecutive odd counting numbers. What is the smallest of the even integers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Rose fills each of the rectangular regions of her rectangular flower bed with a different type of flower. The lengths, in feet, of the rectangular regions in her flower bed are as shown in the figure. She plants one flower per square foot in each region. Asters cost $\\$ $1$ each, begonias $\\$ $1.50$ each, cannas $\\$ $2$ each, dahlias $\\$ $2.50$ each, and Easter lilies $\\$ $3$ each. What is the least possible cost, in dollars, for her garden?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Moe uses a mower to cut his rectangular $90$ -foot by $150$ -foot lawn. The swath he cuts is $28$ inches wide, but he overlaps each cut by $4$ inches to make sure that no grass is missed. He walks at the rate of $5000$ feet per hour while pushing the mower. Which of the following is closest to the number of hours it will take Moe to mow the lawn?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Many television screens are rectangles that are measured by the length of their diagonals. The ratio of the horizontal length to the height in a standard television screen is $4:3$ . The horizontal length of a \" $27$ -inch\" television screen is closest, in inches, to which of the following?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "The symbolism $\\lfloor x \\rfloor$ denotes the largest integer not exceeding $x$ . For example, $\\lfloor 3 \\rfloor = 3,$ and $\\lfloor 9/2 \\rfloor = 4$ . Compute \\[\\lfloor \\sqrt{1} \\rfloor + \\lfloor \\sqrt{2} \\rfloor + \\lfloor \\sqrt{3} \\rfloor + \\cdots + \\lfloor \\sqrt{16} \\rfloor.\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "The second and fourth terms of a geometric sequence are $2$ and $6$ . Which of the following is a possible first term?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Find the value of $x$ that satisfies the equation $25^{-2} = \\frac{5^{48/x}}{5^{26/x} \\cdot 25^{17/x}}.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Nebraska, the home of the AMC, changed its license plate scheme. Each old license plate consisted of a letter followed by four digits. Each new license plate consists of three letters followed by three digits. By how many times has the number of possible license plates increased?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A line with slope $3$ intersects a line with slope $5$ at point $(10,15)$ . What is the distance between the $x$ -intercepts of these two lines?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Al, Betty, and Clare split $\\textdollar 1000$ among them to be invested in different ways. Each begins with a different amount. At the end of one year, they have a total of $\\textdollar 1500$ dollars. Betty and Clare have both doubled their money, whereas Al has managed to lose $\\textdollar100$ dollars. What was Al's original portion?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Let $\\clubsuit(x)$ denote the sum of the digits of the positive integer $x$ . For example, $\\clubsuit(8)=8$ and $\\clubsuit(123)=1+2+3=6$ . For how many two-digit values of $x$ is $\\clubsuit(\\clubsuit(x))=3$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Given that $3^8\\cdot5^2=a^b,$ where both $a$ and $b$ are positive integers, find the smallest possible value for $a+b$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "There are $100$ players in a single tennis tournament. The tournament is single elimination, meaning that a player who loses a match is eliminated. In the first round, the strongest $28$ players are given a bye, and the remaining $72$ players are paired off to play. After each round, the remaining players play in the next round. The match continues until only one player remains unbeaten. The total number of matches played is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "A restaurant offers three desserts, and exactly twice as many appetizers as main courses. A dinner consists of an appetizer, a main course, and a dessert. What is the least number of main courses that a restaurant should offer so that a customer could have a different dinner each night in the year $2003$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "An ice cream cone consists of a sphere of vanilla ice cream and a right circular cone that has the same diameter as the sphere. If the ice cream melts, it will exactly fill the cone. Assume that the melted ice cream occupies $75\\%$ of the volume of the frozen ice cream. What is the ratio of the cone's height to its radius? (Note: a cone with radius $r$ and height $h$ has volume $\\pi r^2 h / 3$ and a sphere with radius $r$ has volume $4 \\pi r^3 / 3$ .)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "What is the largest integer that is a divisor of",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Three semicircles of radius $1$ are constructed on diameter $\\overline{AB}$ of a semicircle of radius $2$ . The centers of the small semicircles divide $\\overline{AB}$ into four line segments of equal length, as shown. What is the area of the shaded region that lies within the large semicircle but outside the smaller semicircles?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "In rectangle $ABCD, AB=5$ and $BC=3$ . Points $F$ and $G$ are on $\\overline{CD}$ so that $DF=1$ and $GC=2$ . Lines $AF$ and $BG$ intersect at $E$ . Find the area of $\\triangle AEB$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "A bag contains two red beads and two green beads. You reach into the bag and pull out a bead, replacing it with a red bead regardless of the color you pulled out. What is the probability that all beads in the bag are red after three such replacements?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "A clock chimes once at $30$ minutes past each hour and chimes on the hour according to the hour. For example, at $1 \\text{PM}$ there is one chime and at noon and midnight there are twelve chimes. Starting at $11:15 \\text{AM}$ on $\\text{February 26, 2003},$ on what date will the $2003^{\\text{rd}}$ chime occur?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "A regular octagon $ABCDEFGH$ has an area of one square unit. What is the area of the rectangle $ABEF$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "The first four terms in an arithmetic sequence are $x+y$ , $x-y$ , $xy$ , and $\\frac{x}{y}$ , in that order. What is the fifth term?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "How many distinct four-digit numbers are divisible by $3$ and have $23$ as their last two digits?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_10B_Problems/Problem_25"
+    }
+  ]
+}

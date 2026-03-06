@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2003,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "What is the difference between the sum of the first $2003$ even counting numbers and the sum of the first $2003$ odd counting numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Members of the Rockham Soccer League buy socks and T-shirts. Socks cost $4 per pair and each T-shirt costs $5 more than a pair of socks. Each member needs one pair of socks and a shirt for home games and another pair of socks and a shirt for away games. If the total cost is $2366, how many members are in the League?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "A solid box is $15$ cm by $10$ cm by $8$ cm. A new solid is formed by removing a cube $3$ cm on a side from each corner of this box. What percent of the original volume is removed?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "It takes Anna $30$ minutes to walk uphill $1$ km from her home to school, but it takes her only $10$ minutes to walk from school to her home along the same route. What is her average speed, in km/hr, for the round trip?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "The sum of the two 5-digit numbers $AMC10$ and $AMC12$ is $123422$ . What is $A+M+C$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Define $x \\heartsuit y$ to be $|x-y|$ for all real numbers $x$ and $y$ . Which of the following statements is not true?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "How many non- congruent triangles with perimeter $7$ have integer side lengths?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "What is the probability that a randomly drawn positive factor of $60$ is less than $7$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "A set $S$ of points in the $xy$ -plane is symmetric about the origin, both coordinate axes, and the line $y=x$ . If $(2,3)$ is in $S$ , what is the smallest number of points in $S$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Al, Bert, and Carl are the winners of a school drawing for a pile of Halloween candy, which they are to divide in a ratio of $3:2:1$ , respectively. Due to some confusion they come at different times to claim their prizes, and each assumes he is the first to arrive. If each takes what he believes to be the correct share of candy, what fraction of the candy goes unclaimed?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A square and an equilateral triangle have the same perimeter. Let $A$ be the area of the circle circumscribed about the square and $B$ the area of the circle circumscribed around the triangle. Find $A/B$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Sally has five red cards numbered $1$ through $5$ and four blue cards numbered $3$ through $6$ . She stacks the cards so that the colors alternate and so that the number on each red card divides evenly into the number on each neighboring blue card. What is the sum of the numbers on the middle three cards?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "The polygon enclosed by the solid lines in the figure consists of 4 congruent squares joined edge -to-edge. One more congruent square is attached to an edge at one of the nine positions indicated. How many of the nine resulting polygons can be folded to form a cube with one face missing?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Points $K, L, M,$ and $N$ lie in the plane of the square $ABCD$ such that $AKB$ , $BLC$ , $CMD$ , and $DNA$ are equilateral triangles. If $ABCD$ has an area of 16, find the area of $KLMN$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "A semicircle of diameter $1$ sits at the top of a semicircle of diameter $2$ , as shown. The shaded area inside the smaller semicircle and outside the larger semicircle is called a lune . Determine the area of this lune.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "A point P is chosen at random in the interior of equilateral triangle $ABC$ . What is the probability that $\\triangle ABP$ has a greater area than each of $\\triangle ACP$ and $\\triangle BCP$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Square $ABCD$ has sides of length $4$ , and $M$ is the midpoint of $\\overline{CD}$ . A circle with radius $2$ and center $M$ intersects a circle with radius $4$ and center $A$ at points $P$ and $D$ . What is the distance from $P$ to $\\overline{AD}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Let $n$ be a $5$ -digit number, and let $q$ and $r$ be the quotient and the remainder, respectively, when $n$ is divided by $100$ . For how many values of $n$ is $q+r$ divisible by $11$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "A parabola with equation $y=ax^2+bx+c$ is reflected about the $x$ -axis. The parabola and its reflection are translated horizontally five units in opposite directions to become the graphs of $y=f(x)$ and $y=g(x)$ , respectively. Which of the following describes the graph of $y=(f+g)(x)?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "How many $15$ -letter arrangements of $5$ A's, $5$ B's, and $5$ C's have no A's in the first $5$ letters, no B's in the next $5$ letters, and no C's in the last $5$ letters?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "The graph of the polynomial",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Objects $A$ and $B$ move simultaneously in the coordinate plane via a sequence of steps, each of length one. Object $A$ starts at $(0,0)$ and each of its steps is either right or up, both equally likely. Object $B$ starts at $(5,7)$ and each of its steps is either to the left or down, both equally likely. Which of the following is closest to the probability that the objects meet?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "How many perfect squares are divisors of the product $1! \\cdot 2! \\cdot 3! \\cdot \\hdots \\cdot 9!$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "If $a\\geq b > 1,$ what is the largest possible value of $\\log_{a}(a/b) + \\log_{b}(b/a)?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Let $f(x)= \\sqrt{ax^2+bx}$ . For how many real values of $a$ is there at least one positive value of $b$ for which the domain of $f$ and the range of $f$ are the same set ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_12A_Problems/Problem_25"
+    }
+  ]
+}

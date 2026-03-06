@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 2013,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AIME_I"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "The AIME Triathlon consists of a half-mile swim, a 30-mile bicycle ride, and an eight-mile run. Tom swims, bicycles, and runs at constant rates. He runs fives times as fast as he swims, and he bicycles twice as fast as he runs. Tom completes the AIME Triathlon in four and a quarter hours. How many minutes does he spend bicycling?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "150",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AIME_I_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Find the number of five-digit positive integers, $n$ , that satisfy the following conditions:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "200",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AIME_I_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Let $ABCD$ be a square, and let $E$ and $F$ be points on $\\overline{AB}$ and $\\overline{BC},$ respectively. The line through $E$ parallel to $\\overline{BC}$ and the line through $F$ parallel to $\\overline{AB}$ divide $ABCD$ into two squares and two nonsquare rectangles. The sum of the areas of the two squares is $\\frac{9}{10}$ of the area of square $ABCD.$ Find $\\frac{AE}{EB} + \\frac{EB}{AE}.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "018",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AIME_I_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "In the array of 13 squares shown below, 8 squares are colored red, and the remaining 5 squares are colored blue. If one of all possible such colorings is chosen at random, the probability that the chosen colored array appears the same when rotated 90 degrees around the central square is $\\frac{1}{n}$ , where n is a positive integer. Find n .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "429",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AIME_I_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "The real root of the equation $8x^3 - 3x^2 - 3x - 1 = 0$ can be written in the form $\\frac{\\sqrt[3]a + \\sqrt[3]b + 1}{c}$ , where $a$ , $b$ , and $c$ are positive integers. Find $a+b+c$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "098",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AIME_I_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Melinda has three empty boxes and $12$ textbooks, three of which are mathematics textbooks. One box will hold any three of her textbooks, one will hold any four of her textbooks, and one will hold any five of her textbooks. If Melinda packs her textbooks into these boxes in random order, the probability that all three mathematics textbooks end up in the same box can be written as $\\frac{m}{n}$ , where $m$ and $n$ are relatively prime positive integers. Find $m+n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "047",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AIME_I_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "A rectangular box has width $12$ inches, length $16$ inches, and height $\\frac{m}{n}$ inches, where $m$ and $n$ are relatively prime positive integers. Three faces of the box meet at a corner of the box. The center points of those three faces are the vertices of a triangle with an area of $30$ square inches. Find $m+n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "041",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AIME_I_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "The domain of the function $f(x) = \\arcsin(\\log_{m}(nx))$ is a closed interval of length $\\frac{1}{2013}$ , where $m$ and $n$ are positive integers and $m>1$ . Find the remainder when the smallest possible sum $m+n$ is divided by 1000.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "371",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AIME_I_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "A paper equilateral triangle $ABC$ has side length $12$ . The paper triangle is folded so that vertex $A$ touches a point on side $\\overline{BC}$ a distance $9$ from point $B$ . The length of the line segment along which the triangle is folded can be written as $\\frac{m\\sqrt{p}}{n}$ , where $m$ , $n$ , and $p$ are positive integers, $m$ and $n$ are relatively prime, and $p$ is not divisible by the square of any prime. Find $m+n+p$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "113",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AIME_I_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "There are nonzero integers $a$ , $b$ , $r$ , and $s$ such that the complex number $r+si$ is a zero of the polynomial $P(x)={x}^{3}-a{x}^{2}+bx-65$ . For each possible combination of $a$ and $b$ , let ${p}_{a,b}$ be the sum of the zeros of $P(x)$ . Find the sum of the ${p}_{a,b}$ 's for all possible combinations of $a$ and $b$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "080",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AIME_I_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Ms. Math's kindergarten class has $16$ registered students. The classroom has a very large number, $N$ , of play blocks which satisfies the conditions:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "148",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AIME_I_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Let $\\bigtriangleup PQR$ be a triangle with $\\angle P = 75^\\circ$ and $\\angle Q = 60^\\circ$ . A regular hexagon $ABCDEF$ with side length 1 is drawn inside $\\triangle PQR$ so that side $\\overline{AB}$ lies on $\\overline{PQ}$ , side $\\overline{CD}$ lies on $\\overline{QR}$ , and one of the remaining vertices lies on $\\overline{RP}$ . There are positive integers $a, b, c,$ and $d$ such that the area of $\\triangle PQR$ can be expressed in the form $\\frac{a+b\\sqrt{c}}{d}$ , where $a$ and $d$ are relatively prime, and c is not divisible by the square of any prime. Find $a+b+c+d$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "021",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AIME_I_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Triangle $AB_0C_0$ has side lengths $AB_0 = 12$ , $B_0C_0 = 17$ , and $C_0A = 25$ . For each positive integer $n$ , points $B_n$ and $C_n$ are located on $\\overline{AB_{n-1}}$ and $\\overline{AC_{n-1}}$ , respectively, creating three similar triangles $\\triangle AB_nC_n \\sim \\triangle B_{n-1}C_nC_{n-1} \\sim \\triangle AB_{n-1}C_{n-1}$ . The area of the union of all triangles $B_{n-1}C_nB_n$ for $n\\geq1$ can be expressed as $\\tfrac pq$ , where $p$ and $q$ are relatively prime positive integers. Find $q$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "961",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AIME_I_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "For $\\pi \\le \\theta < 2\\pi$ , let \\begin{align*} P &= \\frac12\\cos\\theta - \\frac14\\sin 2\\theta - \\frac18\\cos 3\\theta + \\frac{1}{16}\\sin 4\\theta + \\frac{1}{32} \\cos 5\\theta - \\frac{1}{64} \\sin 6\\theta - \\frac{1}{128} \\cos 7\\theta + \\cdots \\end{align*} and \\begin{align*} Q &= 1 - \\frac12\\sin\\theta -\\frac14\\cos 2\\theta + \\frac18 \\sin 3\\theta + \\frac{1}{16}\\cos 4\\theta - \\frac{1}{32}\\sin 5\\theta - \\frac{1}{64}\\cos 6\\theta +\\frac{1}{128}\\sin 7\\theta + \\cdots \\end{align*} so that $\\frac{P}{Q} = \\frac{2\\sqrt2}{7}$ . Then $\\sin\\theta = -\\frac{m}{n}$ where $m$ and $n$ are relatively prime positive integers. Find $m+n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "036",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AIME_I_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Let $N$ be the number of ordered triples $(A,B,C)$ of integers satisfying the conditions (a) $0\\le A<B<C\\le99$ , (b) there exist integers $a$ , $b$ , and $c$ , and prime $p$ where $0\\le b<a<c<p$ , (c) $p$ divides $A-a$ , $B-b$ , and $C-c$ , and (d) each ordered triple $(A,B,C)$ and each ordered triple $(b,a,c)$ form arithmetic sequences. Find $N$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "272",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AIME_I_Problems/Problem_15"
+    }
+  ]
+}

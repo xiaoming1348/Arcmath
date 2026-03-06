@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 1986,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1986_AIME"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "What is the sum of the solutions to the equation $\\sqrt[4]{x} = \\frac{12}{7 - \\sqrt[4]{x}}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "337",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1986_AIME_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Evaluate the product \\[\\left(\\sqrt{5}+\\sqrt{6}+\\sqrt{7}\\right)\\left(\\sqrt{5}+\\sqrt{6}-\\sqrt{7}\\right)\\left(\\sqrt{5}-\\sqrt{6}+\\sqrt{7}\\right)\\left(-\\sqrt{5}+\\sqrt{6}+\\sqrt{7}\\right).\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "104",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1986_AIME_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "If $\\tan x+\\tan y=25$ and $\\cot x + \\cot y=30$ , what is $\\tan(x+y)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "150",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1986_AIME_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Determine $3x_4+2x_5$ if $x_1$ , $x_2$ , $x_3$ , $x_4$ , and $x_5$ satisfy the system of equations below.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "181",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1986_AIME_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "What is the largest positive integer $n$ for which $n^3+100$ is divisible by $n+10$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "890",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1986_AIME_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "The pages of a book are numbered $1_{}^{}$ through $n_{}^{}$ . When the page numbers of the book were added, one of the page numbers was mistakenly added twice, resulting in an incorrect sum of $1986_{}^{}$ . What was the number of the page that was added twice?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "033",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1986_AIME_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "The increasing sequence $1,3,4,9,10,12,13\\cdots$ consists of all those positive integers which are powers of 3 or sums of distinct powers of 3. Find the $100^{\\mbox{th}}$ term of this sequence.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "981",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1986_AIME_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Let $S$ be the sum of the base $10$ logarithms of all the proper divisors (all divisors of a number excluding itself) of $1000000$ . What is the integer nearest to $S$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "141",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1986_AIME_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "In $\\triangle ABC$ , $AB= 425$ , $BC=450$ , and $AC=510$ . An interior point $P$ is then drawn, and segments are drawn through $P$ parallel to the sides of the triangle . If these three segments are of an equal length $d$ , find $d$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "306",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1986_AIME_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "In a parlor game, the magician asks one of the participants to think of a three digit number $(abc)$ where $a$ , $b$ , and $c$ represent digits in base $10$ in the order indicated. The magician then asks this person to form the numbers $(acb)$ , $(bca)$ , $(bac)$ , $(cab)$ , and $(cba)$ , to add these five numbers, and to reveal their sum, $N$ . If told the value of $N$ , the magician can identify the original number, $(abc)$ . Play the role of the magician and determine $(abc)$ if $N= 3194$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "358",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1986_AIME_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "The polynomial $1-x+x^2-x^3+\\cdots+x^{16}-x^{17}$ may be written in the form $a_0+a_1y+a_2y^2+\\cdots +a_{16}y^{16}+a_{17}y^{17}$ , where $y=x+1$ and the $a_i$ 's are constants . Find the value of $a_2$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "816",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1986_AIME_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Let the sum of a set of numbers be the sum of its elements. Let $S$ be a set of positive integers, none greater than 15. Suppose no two disjoint subsets of $S$ have the same sum. What is the largest sum a set $S$ with these properties can have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "061",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1986_AIME_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "In a sequence of coin tosses, one can keep a record of instances in which a tail is immediately followed by a head, a head is immediately followed by a head, and etc. We denote these by TH , HH , and etc. For example, in the sequence TTTHHTHTTTHHTTH of 15 coin tosses we observe that there are two HH , three HT , four TH , and five TT subsequences. How many different sequences of 15 coin tosses will contain exactly two HH , three HT , four TH , and five TT subsequences?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "560",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1986_AIME_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "The shortest distances between an interior diagonal of a rectangular parallelepiped , $P$ , and the edges it does not meet are $2\\sqrt{5}$ , $\\frac{30}{\\sqrt{13}}$ , and $\\frac{15}{\\sqrt{10}}$ . Determine the volume of $P$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "750",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1986_AIME_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Let triangle $ABC$ be a right triangle in the xy-plane with a right angle at $C_{}$ . Given that the length of the hypotenuse $AB$ is $60$ , and that the medians through $A$ and $B$ lie along the lines $y=x+3$ and $y=2x+4$ respectively, find the area of triangle $ABC$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "400",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1986_AIME_Problems/Problem_15"
+    }
+  ]
+}

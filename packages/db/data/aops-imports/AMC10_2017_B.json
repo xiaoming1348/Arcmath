@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2017,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Mary thought of a positive two-digit number. She multiplied it by $3$ and added $11$ . Then she switched the digits of the result, obtaining a number between $71$ and $75$ , inclusive. What was Mary's number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Sofia ran $5$ laps around the $400$ -meter track at her school. For each lap, she ran the first $100$ meters at an average speed of $4$ meters per second and the remaining $300$ meters at an average speed of $5$ meters per second. How much time did Sofia take running the $5$ laps?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Real numbers $x$ , $y$ , and $z$ satisfy the inequalities $0<x<1$ , $-1<y<0$ , and $1<z<2$ . Which of the following numbers is necessarily positive?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Supposed that $x$ and $y$ are nonzero real numbers such that $\\frac{3x+y}{x-3y}=-2$ . What is the value of $\\frac{x+3y}{3x-y}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Camilla had twice as many blueberry jelly beans as cherry jelly beans. After eating 10 pieces of each kind, she now has three times as many blueberry jelly beans as cherry jelly beans. How many blueberry jelly beans did she originally have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "What is the largest number of solid $2\\text{-in} \\times 2\\text{-in} \\times 1\\text{-in}$ blocks that can fit in a $3\\text{-in} \\times 2\\text{-in}\\times3\\text{-in}$ box?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Samia set off on her bicycle to visit her friend, traveling at an average speed of $17$ kilometers per hour. When she had gone half the distance to her friend's house, a tire went flat, and she walked the rest of the way at $5$ kilometers per hour. In all it took her $44$ minutes to reach her friend's house. In kilometers rounded to the nearest tenth, how far did Samia walk?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Points $A(11, 9)$ and $B(2, -3)$ are vertices of $\\triangle ABC$ with $AB=AC$ . The altitude from $A$ meets the opposite side at $D(-1, 3)$ . What are the coordinates of point $C$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "A radio program has a quiz consisting of $3$ multiple-choice questions, each with $3$ choices. A contestant wins if he or she gets $2$ or more of the questions right. The contestant answers randomly to each question. What is the probability of winning?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "The lines with equations $ax-2y=c$ and $2x+by=-c$ are perpendicular and intersect at $(1, -5)$ . What is $c$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "At Typico High School, $60\\%$ of the students like dancing, and the rest dislike it. Of those who like dancing, $80\\%$ say that they like it, and the rest say that they dislike it. Of those who dislike dancing, $90\\%$ say that they dislike it, and the rest say that they like it. What fraction of students who say they dislike dancing actually like it?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Elmer's new car gives $50\\%$ percent better fuel efficiency, measured in kilometers per liter, than his old car. However, his new car uses diesel fuel, which is $20\\%$ more expensive per liter than the gasoline his old car used. By what percent will Elmer save money if he uses his new car instead of his old car for a long trip?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "There are $20$ students participating in an after-school program offering classes in yoga, bridge, and painting. Each student must take at least one of these three classes, but may take two or all three. There are $10$ students taking yoga, $13$ taking bridge, and $9$ taking painting. There are $9$ students taking at least two classes. How many students are taking all three classes?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "An integer $N$ is selected at random in the range $1\\leq N \\leq 2020$ . What is the probability that the remainder when $N^{16}$ is divided by $5$ is $1$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Rectangle $ABCD$ has $AB=3$ and $BC=4$ . Point $E$ is the foot of the perpendicular from $B$ to diagonal $\\overline{AC}$ . What is the area of $\\triangle AED$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "How many of the base-ten numerals for the positive integers less than or equal to $2017$ contain the digit $0$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Call a positive integer monotonous if it is a one-digit number or its digits, when read from left to right, form either a strictly increasing or a strictly decreasing sequence. For example, $3$ , $23578$ , and $987620$ are monotonous, but $88$ , $7434$ , and $23557$ are not. How many monotonous positive integers are there?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "In the figure below, $3$ of the $6$ disks are to be painted blue, $2$ are to be painted red, and $1$ is to be painted green. Two paintings that can be obtained from one another by a rotation or a reflection of the entire figure are considered the same. How many different paintings are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Let $ABC$ be an equilateral triangle. Extend side $\\overline{AB}$ beyond $B$ to a point $B'$ so that $BB'=3 \\cdot AB$ . Similarly, extend side $\\overline{BC}$ beyond $C$ to a point $C'$ so that $CC'=3 \\cdot BC$ , and extend side $\\overline{CA}$ beyond $A$ to a point $A'$ so that $AA'=3 \\cdot CA$ . What is the ratio of the area of $\\triangle A'B'C'$ to the area of $\\triangle ABC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "The number $21!=51,090,942,171,709,440,000$ has over $60,000$ positive integer divisors. One of them is chosen at random. What is the probability that it is odd?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "In $\\triangle ABC$ , $AB=6$ , $AC=8$ , $BC=10$ , and $D$ is the midpoint of $\\overline{BC}$ . What is the sum of the radii of the circles inscribed in $\\triangle ADB$ and $\\triangle ADC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "The diameter $\\overline{AB}$ of a circle of radius $2$ is extended to a point $D$ outside the circle so that $BD=3$ . Point $E$ is chosen so that $ED=5$ and line $ED$ is perpendicular to line $AD$ . Segment $\\overline{AE}$ intersects the circle at a point $C$ between $A$ and $E$ . What is the area of $\\triangle ABC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Let $N=123456789101112\\dots4344$ be the $79$ -digit number that is formed by writing the integers from $1$ to $44$ in order, one after the other. What is the remainder when $N$ is divided by $45$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "The vertices of an equilateral triangle lie on the hyperbola $xy=1$ , and a vertex of this hyperbola is the centroid of the triangle. What is the square of the area of the triangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Last year Isabella took $7$ math tests and received $7$ different scores, each an integer between $91$ and $100$ , inclusive. After each test she noticed that the average of her test scores was an integer. Her score on the seventh test was $95$ . What was her score on the sixth test?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10B_Problems/Problem_25"
+    }
+  ]
+}

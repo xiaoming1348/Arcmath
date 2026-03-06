@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2012,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "A bug crawls along a number line, starting at $-2$ . It crawls to $-6$ , then turns around and crawls to $5$ . How many units does the bug crawl altogether?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Cagney can frost a cupcake every 20 seconds and Lacey can frost a cupcake every 30 seconds. Working together, how many cupcakes can they frost in 5 minutes?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "A box $2$ centimeters high, $3$ centimeters wide, and $5$ centimeters long can hold $40$ grams of clay. A second box with twice the height, three times the width, and the same length as the first box can hold $n$ grams of clay. What is $n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "In a bag of marbles, $\\frac{3}{5}$ of the marbles are blue and the rest are red. If the number of red marbles is doubled and the number of blue marbles stays the same, what fraction of the marbles will be red?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "A fruit salad consists of blueberries, raspberries, grapes, and cherries. The fruit salad has a total of $280$ pieces of fruit. There are twice as many raspberries as blueberries, three times as many grapes as cherries, and four times as many cherries as raspberries. How many cherries are there in the fruit salad?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "The sums of three whole numbers taken in pairs are 12, 17, and 19. What is the middle number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Mary divides a circle into 12 sectors. The central angles of these sectors, measured in degrees, are all integers and they form an arithmetic sequence. What is the degree measure of the smallest possible sector angle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "An iterative average of the numbers 1, 2, 3, 4, and 5 is computed the following way. Arrange the five numbers in some order. Find the mean of the first two numbers, then find the mean of that with the third number, then the mean of that with the fourth number, and finally the mean of that with the fifth number. What is the difference between the largest and smallest possible values that can be obtained using this procedure?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "A year is a leap year if and only if the year number is divisible by 400 (such as 2000) or is divisible by 4 but not 100 (such as 2012). The 200th anniversary of the birth of novelist Charles Dickens was celebrated on February 7, 2012, a Tuesday. On what day of the week was Dickens born?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "A triangle has area $30$ , one side of length $10$ , and the median to that side of length $9$ . Let $\\theta$ be the acute angle formed by that side and the median. What is $\\sin{\\theta}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Alex, Mel, and Chelsea play a game that has $6$ rounds. In each round there is a single winner, and the outcomes of the rounds are independent. For each round the probability that Alex wins is $\\frac{1}{2}$ , and Mel is twice as likely to win as Chelsea. What is the probability that Alex wins three rounds, Mel wins two rounds, and Chelsea wins one round?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "A square region $ABCD$ is externally tangent to the circle with equation $x^2+y^2=1$ at the point $(0,1)$ on the side $CD$ . Vertices $A$ and $B$ are on the circle with equation $x^2+y^2=4$ . What is the side length of this square?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Paula the painter and her two helpers each paint at constant, but different, rates. They always start at 8:00 AM, and all three always take the same amount of time to eat lunch. On Monday the three of them painted 50% of a house, quitting at 4:00 PM. On Tuesday, when Paula wasn't there, the two helpers painted only 24% of the house and quit at 2:12 PM. On Wednesday Paula worked by herself and finished the house by working until 7:12 P.M. How long, in minutes, was each day's lunch break?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "The closed curve in the figure is made up of 9 congruent circular arcs each of length $\\frac{2\\pi}{3}$ , where each of the centers of the corresponding circles is among the vertices of a regular hexagon of side 2. What is the area enclosed by the curve?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "A $3 \\times 3$ square is partitioned into $9$ unit squares. Each unit square is painted either white or black with each color being equally likely, chosen independently and at random. The square is then rotated $90\\,^{\\circ}$ clockwise about its center, and every white square in a position formerly occupied by a black square is painted black. The colors of all other squares are left unchanged. What is the probability the grid is now entirely black?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Circle $C_1$ has its center $O$ lying on circle $C_2$ . The two circles meet at $X$ and $Y$ . Point $Z$ in the exterior of $C_1$ lies on circle $C_2$ and $XZ=13$ , $OZ=11$ , and $YZ=7$ . What is the radius of circle $C_1$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Let $S$ be a subset of $\\{1,2,3,\\dots,30\\}$ with the property that no pair of distinct elements in $S$ has a sum divisible by $5$ . What is the largest possible size of $S$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Triangle $ABC$ has $AB=27$ , $AC=26$ , and $BC=25$ . Let $I$ be the intersection of the internal angle bisectors of $\\triangle ABC$ . What is $BI$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Adam, Benin, Chiang, Deshawn, Esther, and Fiona have internet accounts. Some, but not all, of them are internet friends with each other, and none of them has an internet friend outside this group. Each of them has the same number of internet friends. In how many different ways can this happen?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Consider the polynomial",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Let $a$ , $b$ , and $c$ be positive integers with $a\\ge$ $b\\ge$ $c$ such that $a^2-b^2-c^2+ab=2011$ and $a^2+3b^2+3c^2-3ab-2ac-2bc=-1997$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Distinct planes $p_1,p_2,....,p_k$ intersect the interior of a cube $Q$ . Let $S$ be the union of the faces of $Q$ and let $P =\\bigcup_{j=1}^{k}p_{j}$ . The intersection of $P$ and $S$ consists of the union of all segments joining the midpoints of every pair of edges belonging to the same face of $Q$ . What is the difference between the maximum and minimum possible values of $k$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Let $S$ be the square one of whose diagonals has endpoints $(1/10,7/10)$ and $(-1/10,-7/10)$ . A point $v=(x,y)$ is chosen uniformly at random over all pairs of real numbers $x$ and $y$ such that $0 \\le x \\le 2012$ and $0\\le y\\le 2012$ . Let $T(v)$ be a translated copy of $S$ centered at $v$ . What is the probability that the square region determined by $T(v)$ contains exactly two points with integer coefficients in its interior?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Let $\\{a_k\\}_{k=1}^{2011}$ be the sequence of real numbers defined by $a_1=0.201,$ $a_2=(0.2011)^{a_1},$ $a_3=(0.20101)^{a_2},$ $a_4=(0.201011)^{a_3}$ , and in general,",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Let $f(x)=|2\\{x\\}-1|$ where $\\{x\\}$ denotes the fractional part of $x$ . The number $n$ is the smallest positive integer such that the equation \\[nf(xf(x))=x\\] has at least $2012$ real solutions. What is $n$ ? Note: the fractional part of $x$ is a real number $y=\\{x\\}$ such that $0\\le y<1$ and $x-y$ is an integer.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_12A_Problems/Problem_25"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 2000,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_I"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Find the least positive integer $n$ such that no matter how $10^{n}$ is expressed as the product of any two positive integers, at least one of these two integers contains the digit $0$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "008",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_I_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Let $u$ and $v$ be integers satisfying $0 < v < u$ . Let $A = (u,v)$ , let $B$ be the reflection of $A$ across the line $y = x$ , let $C$ be the reflection of $B$ across the y-axis, let $D$ be the reflection of $C$ across the x-axis, and let $E$ be the reflection of $D$ across the y-axis. The area of pentagon $ABCDE$ is $451$ . Find $u + v$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "021",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_I_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "In the expansion of $(ax + b)^{2000},$ where $a$ and $b$ are relatively prime positive integers, the coefficients of $x^{2}$ and $x^{3}$ are equal. Find $a + b$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "667",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_I_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "The diagram shows a rectangle that has been dissected into nine non-overlapping squares . Given that the width and the height of the rectangle are relatively prime positive integers, find the perimeter of the rectangle.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "260",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_I_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Each of two boxes contains both black and white marbles, and the total number of marbles in the two boxes is $25.$ One marble is taken out of each box randomly. The probability that both marbles are black is $27/50,$ and the probability that both marbles are white is $m/n,$ where $m$ and $n$ are relatively prime positive integers. What is $m + n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "026",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_I_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "For how many ordered pairs $(x,y)$ of integers is it true that $0 < x < y < 10^6$ and that the arithmetic mean of $x$ and $y$ is exactly $2$ more than the geometric mean of $x$ and $y$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "997",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_I_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Suppose that $x,$ $y,$ and $z$ are three positive numbers that satisfy the equations $xyz = 1,$ $x + \\frac {1}{z} = 5,$ and $y + \\frac {1}{x} = 29.$ Then $z + \\frac {1}{y} = \\frac {m}{n},$ where $m$ and $n$ are relatively prime positive integers. Find $m + n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "005",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_I_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "A container in the shape of a right circular cone is $12$ inches tall and its base has a $5$ -inch radius . The liquid that is sealed inside is $9$ inches deep when the cone is held with its point down and its base horizontal. When the liquid is held with its point up and its base horizontal, the height of the liquid is $m - n\\sqrt [3]{p},$ from the base where $m,$ $n,$ and $p$ are positive integers and $p$ is not divisible by the cube of any prime number. Find $m + n + p$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "052",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_I_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "The system of equations \\begin{eqnarray*}\\log_{10}(2000xy) - (\\log_{10}x)(\\log_{10}y) & = & 4 \\\\ \\log_{10}(2yz) - (\\log_{10}y)(\\log_{10}z) & = & 1 \\\\ \\log_{10}(zx) - (\\log_{10}z)(\\log_{10}x) & = & 0 \\\\ \\end{eqnarray*}",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "025",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_I_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "A sequence of numbers $x_{1},x_{2},x_{3},\\ldots,x_{100}$ has the property that, for every integer $k$ between $1$ and $100,$ inclusive, the number $x_{k}$ is $k$ less than the sum of the other $99$ numbers. Given that $x_{50} = m/n,$ where $m$ and $n$ are relatively prime positive integers, find $m + n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "173",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_I_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Let $S$ be the sum of all numbers of the form $a/b,$ where $a$ and $b$ are relatively prime positive divisors of $1000.$ What is the greatest integer that does not exceed $S/10$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "248",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_I_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Given a function $f$ for which \\[f(x) = f(398 - x) = f(2158 - x) = f(3214 - x)\\] holds for all real $x,$ what is the largest number of different values that can appear in the list $f(0),f(1),f(2),\\ldots,f(999)?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "177",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_I_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "In the middle of a vast prairie, a firetruck is stationed at the intersection of two perpendicular straight highways. The truck travels at $50$ miles per hour along the highways and at $14$ miles per hour across the prairie. Consider the set of points that can be reached by the firetruck within six minutes. The area of this region is $m/n$ square miles, where $m$ and $n$ are relatively prime positive integers. Find $m + n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "731",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_I_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "In triangle $ABC,$ it is given that angles $B$ and $C$ are congruent . Points $P$ and $Q$ lie on $\\overline{AC}$ and $\\overline{AB},$ respectively, so that $AP = PQ = QB = BC.$ Angle $ACB$ is $r$ times as large as angle $APQ,$ where $r$ is a positive real number. Find $\\lfloor 1000r \\rfloor$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "571",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_I_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "A stack of $2000$ cards is labelled with the integers from $1$ to $2000,$ with different integers on different cards. The cards in the stack are not in numerical order. The top card is removed from the stack and placed on the table, and the next card is moved to the bottom of the stack. The new top card is removed from the stack and placed on the table, to the right of the card already there, and the next card in the stack is moved to the bottom of the stack. The process - placing the top card to the right of the cards already on the table and moving the next card in the stack to the bottom of the stack - is repeated until all cards are on the table. It is found that, reading from left to right, the labels on the cards are now in ascending order: $1,2,3,\\ldots,1999,2000.$ In the original stack of cards, how many cards were above the card labeled $1999$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "927",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_I_Problems/Problem_15"
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2013,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Square $ABCD$ has side length $10$ . Point $E$ is on $\\overline{BC}$ , and the area of $\\bigtriangleup ABE$ is $40$ . What is $BE$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "A softball team played ten games, scoring $1,2,3,4,5,6,7,8,9$ , and $10$ runs. They lost by one run in exactly five games. In each of the other games, they scored twice as many runs as their opponent. How many total runs did their opponents score?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "A flower bouquet contains pink roses, red roses, pink carnations, and red carnations. One third of the pink flowers are roses, three fourths of the red flowers are carnations, and six tenths of the flowers are pink. What percent of the flowers are carnations?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "What is the value of \\[\\frac{2^{2014}+2^{2012}}{2^{2014}-2^{2012}}?\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Tom, Dorothy, and Sammy went on a vacation and agreed to split the costs evenly. During their trip Tom paid $ $105$ , Dorothy paid $ $125$ , and Sammy paid $ $175$ . In order to share the costs equally, Tom gave Sammy $t$ dollars, and Dorothy gave Sammy $d$ dollars. What is $t-d$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "In a recent basketball game, Shenille attempted only three-point shots and two-point shots. She was successful on $20\\%$ of her three-point shots and $30\\%$ of her two-point shots. Shenille attempted $30$ shots. How many points did she score?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "The sequence $S_1, S_2, S_3, \\cdots, S_{10}$ has the property that every term beginning with the third is the sum of the previous two. That is, \\[S_n = S_{n-2} + S_{n-1} \\text{ for } n \\ge 3.\\] Suppose that $S_9 = 110$ and $S_7 = 42$ . What is $S_4$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Given that $x$ and $y$ are distinct nonzero real numbers such that $x+\\tfrac{2}{x} = y + \\tfrac{2}{y}$ , what is $xy$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "In $\\triangle ABC$ , $AB=AC=28$ and $BC=20$ . Points $D,E,$ and $F$ are on sides $\\overline{AB}$ , $\\overline{BC}$ , and $\\overline{AC}$ , respectively, such that $\\overline{DE}$ and $\\overline{EF}$ are parallel to $\\overline{AC}$ and $\\overline{AB}$ , respectively. What is the perimeter of parallelogram $ADEF$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Let $S$ be the set of positive integers $n$ for which $\\tfrac{1}{n}$ has the repeating decimal representation $0.\\overline{ab} = 0.ababab\\cdots,$ with $a$ and $b$ different digits. What is the sum of the elements of $S$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Triangle $ABC$ is equilateral with $AB=1$ . Points $E$ and $G$ are on $\\overline{AC}$ and points $D$ and $F$ are on $\\overline{AB}$ such that both $\\overline{DE}$ and $\\overline{FG}$ are parallel to $\\overline{BC}$ . Furthermore, triangle $ADE$ and trapezoids $DFGE$ and $FBCG$ all have the same perimeter. What is $DE+FG$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "The angles in a particular triangle are in arithmetic progression, and the side lengths are $4,5,x$ . The sum of the possible values of x equals $a+\\sqrt{b}+\\sqrt{c}$ where $a, b$ , and $c$ are positive integers. What is $a+b+c$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Let points $A = (0,0) , \\ B = (1,2), \\ C = (3,3),$ and $D = (4,0)$ . Quadrilateral $ABCD$ is cut into equal area pieces by a line passing through $A$ . This line intersects $\\overline{CD}$ at point $\\left (\\frac{p}{q}, \\frac{r}{s} \\right )$ , where these fractions are in lowest terms. What is $p + q + r + s$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "The sequence",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Rabbits Peter and Pauline have three offspring—Flopsie, Mopsie, and Cotton-tail. These five rabbits are to be distributed to four different pet stores so that no store gets both a parent and a child. It is not required that every store gets a rabbit. In how many different ways can this be done?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "$A$ , $B$ , $C$ are three piles of rocks. The mean weight of the rocks in $A$ is $40$ pounds, the mean weight of the rocks in $B$ is $50$ pounds, the mean weight of the rocks in the combined piles $A$ and $B$ is $43$ pounds, and the mean weight of the rocks in the combined piles $A$ and $C$ is $44$ pounds. What is the greatest possible integer value for the mean in pounds of the rocks in the combined piles $B$ and $C$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "A group of $12$ pirates agree to divide a treasure chest of gold coins among themselves as follows. The $k^\\text{th}$ pirate to take a share takes $\\frac{k}{12}$ of the coins that remain in the chest. The number of coins initially in the chest is the smallest number for which this arrangement will allow each pirate to receive a positive whole number of coins. How many coins does the $12^{\\text{th}}$ pirate receive?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Six spheres of radius $1$ are positioned so that their centers are at the vertices of a regular hexagon of side length $2$ . The six spheres are internally tangent to a larger sphere whose center is the center of the hexagon. An eighth sphere is externally tangent to the six smaller spheres and internally tangent to the larger sphere. What is the radius of this eighth sphere?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "In $\\bigtriangleup ABC$ , $AB = 86$ , and $AC = 97$ . A circle with center $A$ and radius $AB$ intersects $\\overline{BC}$ at points $B$ and $X$ . Moreover $\\overline{BX}$ and $\\overline{CX}$ have integer lengths. What is $BC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Let $S$ be the set $\\{1,2,3,...,19\\}$ . For $a,b \\in S$ , define $a \\succ b$ to mean that either $0 < a - b \\le 9$ or $b - a > 9$ . How many ordered triples $(x,y,z)$ of elements of $S$ have the property that $x \\succ y$ , $y \\succ z$ , and $z \\succ x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Consider $A = \\log (2013 + \\log (2012 + \\log (2011 + \\log (\\cdots + \\log (3 + \\log 2) \\cdots ))))$ . Which of the following intervals contains $A$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "A palindrome is a nonnegative integer number that reads the same forwards and backwards when written in base 10 with no leading zeros. A 6-digit palindrome $n$ is chosen uniformly at random. What is the probability that $\\frac{n}{11}$ is also a palindrome?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "$ABCD$ is a square of side length $\\sqrt{3} + 1$ . Point $P$ is on $\\overline{AC}$ such that $AP = \\sqrt{2}$ . The square region bounded by $ABCD$ is rotated $90^{\\circ}$ counterclockwise with center $P$ , sweeping out a region whose area is $\\frac{1}{c} (a \\pi + b)$ , where $a$ , $b$ , and $c$ are positive integers and $\\text{gcd}(a,b,c) = 1$ . What is $a + b + c$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Three distinct segments are chosen at random among the segments whose end-points are the vertices of a regular 12-gon. What is the probability that the lengths of these three segments are the three side lengths of a triangle with positive area?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Let $f : \\mathbb{C} \\to \\mathbb{C}$ be defined by $f(z) = z^2 + iz + 1$ . How many complex numbers $z$ are there such that $\\text{Im}(z) > 0$ and both the real and the imaginary parts of $f(z)$ are integers with absolute value at most $10$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_12A_Problems/Problem_25"
+    }
+  ]
+}

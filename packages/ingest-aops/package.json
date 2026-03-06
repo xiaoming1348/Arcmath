@@ -1,0 +1,20 @@
+{
+  "name": "@arcmath/ingest-aops",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/cli.ts",
+  "types": "src/cli.ts",
+  "scripts": {
+    "warm-cache": "node --import tsx src/cli.ts warm-cache",
+    "fetch": "node --import tsx src/cli.ts fetch",
+    "fetch-official-pdf": "node --import tsx src/cli.ts fetch-official-pdf",
+    "fetch-official-pdf-batch": "node --import tsx src/cli.ts fetch-official-pdf-batch"
+  },
+  "dependencies": {
+    "@arcmath/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}

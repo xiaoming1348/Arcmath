@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2008,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "A bakery owner turns on his doughnut machine at $\\text{8:30}\\ {\\small\\text{AM}}$ . At $\\text{11:10}\\ {\\small\\text{AM}}$ the machine has completed one third of the day's job. At what time will the doughnut machine complete the job?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "What is the reciprocal of $\\frac{1}{2}+\\frac{2}{3}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Suppose that $\\tfrac{2}{3}$ of $10$ bananas are worth as much as $8$ oranges. How many oranges are worth as much as $\\tfrac{1}{2}$ of $5$ bananas?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Which of the following is equal to the product \\[\\frac{8}{4}\\cdot\\frac{12}{8}\\cdot\\frac{16}{12}\\cdot\\cdots\\cdot\\frac{4n+4}{4n}\\cdot\\cdots\\cdot\\frac{2008}{2004}?\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Suppose that \\[\\frac{2x}{3}-\\frac{x}{6}\\] is an integer. Which of the following statements must be true about $x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Heather compares the price of a new computer at two different stores. Store $A$ offers $15\\%$ off the sticker price followed by a $\\$90$ rebate, and store $B$ offers $25\\%$ off the same sticker price with no rebate. Heather saves $\\$15$ by buying the computer at store $A$ instead of store $B$ . What is the sticker price of the computer, in dollars?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "While Steve and LeRoy are fishing 1 mile from shore, their boat springs a leak, and water comes in at a constant rate of 10 gallons per minute. The boat will sink if it takes in more than 30 gallons of water. Steve starts rowing towards the shore at a constant rate of 4 miles per hour while LeRoy bails water out of the boat. What is the slowest rate, in gallons per minute, at which LeRoy can bail if they are to reach the shore without sinking?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "What is the volume of a cube whose surface area is twice that of a cube with volume 1?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Older television screens have an aspect ratio of $4: 3$ . That is, the ratio of the width to the height is $4: 3$ . The aspect ratio of many movies is not $4: 3$ , so they are sometimes shown on a television screen by \"letterboxing\" - darkening strips of equal height at the top and bottom of the screen, as shown. Suppose a movie has an aspect ratio of $2: 1$ and is shown on an older television screen with a $27$ -inch diagonal. What is the height, in inches, of each darkened strip?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Doug can paint a room in $5$ hours. Dave can paint the same room in $7$ hours. Doug and Dave paint the room together and take a one-hour break for lunch. Let $t$ be the total time, in hours, required for them to complete the job working together, including lunch. Which of the following equations is satisfied by $t$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Three cubes are each formed from the pattern shown. They are then stacked on a table one on top of another so that the $13$ visible numbers have the greatest possible sum. What is that sum?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "A function $f$ has domain $[0,2]$ and range $[0,1]$ . (The notation $[a,b]$ denotes $\\{x:a \\le x \\le b \\}$ .) What are the domain and range, respectively, of the function $g$ defined by $g(x)=1-f(x+1)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Points $A$ and $B$ lie on a circle centered at $O$ , and $\\angle AOB = 60^\\circ$ . A second circle is internally tangent to the first and tangent to both $\\overline{OA}$ and $\\overline{OB}$ . What is the ratio of the area of the smaller circle to that of the larger circle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "What is the area of the region defined by the inequality $|3x-18|+|2y+7|\\le3$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Let $k={2008}^{2}+{2}^{2008}$ . What is the units digit of $k^2+2^k$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "The numbers $\\log(a^3b^7)$ , $\\log(a^5b^{12})$ , and $\\log(a^8b^{15})$ are the first three terms of an arithmetic sequence , and the $12^\\text{th}$ term of the sequence is $\\log{b^n}$ . What is $n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Let $a_1,a_2,\\ldots$ be a sequence determined by the rule $a_n=a_{n-1}/2$ if $a_{n-1}$ is even and $a_n=3a_{n-1}+1$ if $a_{n-1}$ is odd. For how many positive integers $a_1 \\le 2008$ is it true that $a_1$ is less than each of $a_2$ , $a_3$ , and $a_4$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Triangle $ABC$ , with sides of length $5$ , $6$ , and $7$ , has one vertex on the positive $x$ -axis, one on the positive $y$ -axis, and one on the positive $z$ -axis. Let $O$ be the origin . What is the volume of tetrahedron $OABC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "In the expansion of \\[\\left(1 + x + x^2 + \\cdots + x^{27}\\right)\\left(1 + x + x^2 + \\cdots + x^{14}\\right)^2,\\] what is the coefficient of $x^{28}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Triangle $ABC$ has $AC=3$ , $BC=4$ , and $AB=5$ . Point $D$ is on $\\overline{AB}$ , and $\\overline{CD}$ bisects the right angle. The inscribed circles of $\\triangle ADC$ and $\\triangle BCD$ have radii $r_a$ and $r_b$ , respectively. What is $r_a/r_b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "A permutation $(a_1,a_2,a_3,a_4,a_5)$ of $(1,2,3,4,5)$ is heavy-tailed if $a_1 + a_2 < a_4 + a_5$ . What is the number of heavy-tailed permutations?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "A round table has radius $4$ . Six rectangular place mats are placed on the table. Each place mat has width $1$ and length $x$ as shown. They are positioned so that each mat has two corners on the edge of the table, these two corners being end points of the same side of length $x$ . Further, the mats are positioned so that the inner corners each touch an inner corner of an adjacent mat. What is $x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "The solutions of the equation $z^4+4z^3i-6z^2-4zi-i=0$ are the vertices of a convex polygon in the complex plane. What is the area of the polygon?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Triangle $ABC$ has $\\angle C = 60^{\\circ}$ and $BC = 4$ . Point $D$ is the midpoint of $BC$ . What is the largest possible value of $\\tan{\\angle BAD}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "A sequence $(a_1,b_1)$ , $(a_2,b_2)$ , $(a_3,b_3)$ , $\\ldots$ of points in the coordinate plane satisfies",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12A_Problems/Problem_25"
+    }
+  ]
+}

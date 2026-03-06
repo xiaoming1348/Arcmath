@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2006,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Sandwiches at Joe's Fast Food cost $\\$3$ each and sodas cost $\\$2$ each. How many dollars will it cost to purchase $5$ sandwiches and $8$ sodas?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Define $x\\otimes y=x^3-y$ . What is $h\\otimes (h\\otimes h)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "The ratio of Mary's age to Alice's age is $3:5$ . Alice is $30$ years old. How old is Mary?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "A digital watch displays hours and minutes with AM and PM. What is the largest possible sum of the digits in the display?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Doug and Dave shared a pizza with $8$ equally-sized slices. Doug wanted a plain pizza, but Dave wanted anchovies on half the pizza. The cost of a plain pizza was $8$ dollars, and there was an additional cost of $2$ dollars for putting anchovies on one half. Dave ate all the slices of anchovy pizza and one plain slice. Doug ate the remainder. Each paid for what he had eaten. How many more dollars did Dave pay than Doug?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "The $8\\times18$ rectangle $ABCD$ is cut into two congruent hexagons, as shown, in such a way that the two hexagons can be repositioned without overlap to form a square. What is $y$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Mary is $20\\%$ older than Sally, and Sally is $40\\%$ younger than Danielle. The sum of their ages is $23.2$ years. How old will Mary be on her next birthday?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "How many sets of two or more consecutive positive integers have a sum of $15$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Oscar buys $13$ pencils and $3$ erasers for $1.00$ . A pencil costs more than an eraser, and both items cost a whole number of cents. What is the total cost, in cents, of one pencil and one eraser?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "For how many real values of $x$ is $\\sqrt{120-\\sqrt{x}}$ an integer?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Which of the following describes the graph of the equation $(x+y)^2=x^2+y^2$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "A number of linked rings, each $1$ cm thick, are hanging on a peg. The top ring has an outside diameter of $20$ cm. The outside diameter of each of the outer rings is $1$ cm less than that of the ring above it. The bottom ring has an outside diameter of $3$ cm. What is the distance, in cm, from the top of the top ring to the bottom of the bottom ring?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "The vertices of a $3-4-5$ right triangle are the centers of three mutually externally tangent circles , as shown. What is the sum of the areas of the three circles?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Two farmers agree that pigs are worth $300$ dollars and that goats are worth $210$ dollars. When one farmer owes the other money, he pays the debt in pigs or goats, with \"change\" received in the form of goats or pigs as necessary. (For example, a $390$ dollar debt could be paid with two pigs, with one goat received in change.) What is the amount of the smallest positive debt that can be resolved in this way?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Suppose $\\cos x=0$ and $\\cos (x+z)=1/2$ . What is the smallest possible positive value of $z$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Circles with centers $A$ and $B$ have radius 3 and 8, respectively. A common internal tangent intersects the circles at $C$ and $D$ , respectively. Lines $AB$ and $CD$ intersect at $E$ , and $AE=5$ . What is $CD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Square $ABCD$ has side length $s$ , a circle centered at $E$ has radius $r$ , and $r$ and $s$ are both rational. The circle passes through $D$ , and $D$ lies on $\\overline{BE}$ . Point $F$ lies on the circle, on the same side of $\\overline{BE}$ as $A$ . Segment $AF$ is tangent to the circle, and $AF=\\sqrt{9+5\\sqrt{2}}$ . What is $r/s$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "The function $f$ has the property that for each real number $x$ in its domain, $1/x$ is also in its domain and",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Circles with centers $(2,4)$ and $(14,9)$ have radii $4$ and $9$ , respectively. The equation of a common external tangent to the circles can be written in the form $y=mx+b$ with $m>0$ . What is $b$ ? [asy] size(150); defaultpen(linewidth(0.7)+fontsize(8)); draw(circle((2,4),4));draw(circle((14,9),9)); draw((0,-2)--(0,20));draw((-6,0)--(25,0)); draw((2,4)--(2,4)+4*expi(pi*4.5/11)); draw((14,9)--(14,9)+9*expi(pi*6/7)); label(\"4\",(2,4)+2*expi(pi*4.5/11),(-1,0)); label(\"9\",(14,9)+4.5*expi(pi*6/7),(1,1)); label(\"(2,4)\",(2,4),(0.5,-1.5));label(\"(14,9)\",(14,9),(1,-1)); draw((-4,120*-4/119+912/119)--(11,120*11/119+912/119)); dot((2,4)^^(14,9)); [/asy]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "A bug starts at one vertex of a cube and moves along the edges of the cube according to the following rule. At each vertex the bug will choose to travel along one of the three edges emanating from that vertex. Each edge has equal probability of being chosen, and all choices are independent. What is the probability that after seven moves the bug will have visited every vertex exactly once?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Let $S_1=\\{(x,y)|\\log_{10}(1+x^2+y^2)\\le 1+\\log_{10}(x+y)\\}$ and $S_2=\\{(x,y)|\\log_{10}(2+x^2+y^2)\\le 2+\\log_{10}(x+y)\\}$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "A circle of radius $r$ is concentric with and outside a regular hexagon of side length $2$ . The probability that three entire sides of hexagon are visible from a randomly chosen point on the circle is $1/2$ . What is $r$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Given a finite sequence $S=(a_1,a_2,\\ldots ,a_n)$ of $n$ real numbers, let $A(S)$ be the sequence $\\left(\\frac{a_1+a_2}{2},\\frac{a_2+a_3}{2},\\ldots ,\\frac{a_{n-1}+a_n}{2}\\right)$ of $n-1$ real numbers. Define $A^1(S)=A(S)$ and, for each integer $m$ , $2\\le m\\le n-1$ , define $A^m(S)=A(A^{m-1}(S))$ . Suppose $x>0$ , and let $S=(1,x,x^2,\\ldots ,x^{100})$ . If $A^{100}(S)=(1/2^{50})$ , then what is $x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "The expression",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "How many non- empty subsets $S$ of $\\{1,2,3,\\ldots ,15\\}$ have the following two properties?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12A_Problems/Problem_25"
+    }
+  ]
+}

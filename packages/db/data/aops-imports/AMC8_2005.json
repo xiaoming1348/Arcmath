@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC8",
+    "year": 2005,
+    "exam": null,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Connie multiplies a number by $2$ and gets $60$ as her answer. However, she should have divided the number by $2$ to get the correct answer. What is the correct answer?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Karl bought five folders from Pay-A-Lot at a cost of $\\textdollar 2.50$ each. Pay-A-Lot had a 20%-off sale the following day. How much could Karl have saved on the purchase by waiting a day?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "What is the minimum number of small squares that must be colored black so that a line of symmetry lies on the diagonal $\\overline{BD}$ of square $ABCD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "A square and a triangle have equal perimeters. The lengths of the three sides of the triangle are 6.1 cm, 8.2 cm and 9.7 cm. What is the area of the square in square centimeters?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Soda is sold in packs of 6, 12 and 24 cans. What is the minimum number of packs needed to buy exactly 90 cans of soda?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Suppose $d$ is a digit. For how many values of $d$ is $2.00d5 > 2.005$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Bill walks $\\tfrac12$ mile south, then $\\tfrac34$ mile east, and finally $\\tfrac12$ mile south. How many miles is he, in a direct line, from his starting point?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Suppose m and n are positive odd integers. Which of the following must also be an odd integer?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "In quadrilateral $ABCD$ , sides $\\overline{AB}$ and $\\overline{BC}$ both have length 10, sides $\\overline{CD}$ and $\\overline{DA}$ both have length 17, and the measure of angle $ADC$ is $60^\\circ$ . What is the length of diagonal $\\overline{AC}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Joe had walked half way from home to school when he realized he was late. He ran the rest of the way to school. He ran 3 times as fast as he walked. Joe took 6 minutes to walk half way to school. How many minutes did it take Joe to get from home to school?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "The sales tax rate in Rubenenkoville is 6%. During a sale at the Bergville Coat Closet, the price of a coat is discounted 20% from its $90.00 price. Two clerks, Jack and Jill, calculate the bill independently. Jack rings up $90.00 and adds 6% sales tax, then subtracts 20% from this total. Jill rings up $90.00, subtracts 20% of the price, then adds 6% of the discounted price for sales tax. What is Jack's total minus Jill's total?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Big Al, the ape, ate 100 bananas from May 1 through May 5. Each day he ate six more bananas than on the previous day. How many bananas did Big Al eat on May 5?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "The area of polygon $ABCDEF$ is 52 with $AB=8$ , $BC=9$ and $FA=5$ . What is $DE+EF$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "The Little Twelve Basketball Conference has two divisions, with six teams in each division. Each team plays each of the other teams in its own division twice and every team in the other division once. How many conference games are scheduled?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "How many different isosceles triangles have integer side lengths and perimeter 23?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "A five-legged Martian has a drawer full of socks, each of which is red, white or blue, and there are at least five socks of each color. The Martian pulls out one sock at a time without looking. How many socks must the Martian remove from the drawer to be certain there will be 5 socks of the same color?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "The results of a cross-country team's training run are graphed below. Which student has the greatest average speed?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "How many three-digit numbers are divisible by 13?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "What is the perimeter of trapezoid $ABCD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Alice and Bob play a game involving a circle whose circumference is divided by 12 equally-spaced points. The points are numbered clockwise, from 1 to 12. Both start on point 12. Alice moves clockwise and Bob, counterclockwise. In a turn of the game, Alice moves 5 points clockwise and Bob moves 9 points counterclockwise. The game ends when they stop on the same point. How many turns will this take?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "How many distinct triangles can be drawn using three of the dots below as vertices?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "A company sells detergent in three different sized boxes: small (S), medium (M) and large (L). The medium size costs 50% more than the small size and contains 20% less detergent than the large size. The large size contains twice as much detergent as the small size and costs 30% more than the medium size. Rank the three sizes from best to worst buy.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Isosceles right triangle $ABC$ encloses a semicircle of area $2\\pi$ . The circle has its center $O$ on hypotenuse $\\overline{AB}$ and is tangent to sides $\\overline{AC}$ and $\\overline{BC}$ . What is the area of triangle $ABC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "A certain calculator has only two keys [+1] and [x2]. When you press one of the keys, the calculator automatically displays the result. For instance, if the calculator originally displayed \"9\" and you pressed [+1], it would display \"10.\" If you then pressed [x2], it would display \"20.\" Starting with the display \"1,\" what is the fewest number of keystrokes you would need to reach \"200\"?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "A square with side length 2 and a circle share the same center. The total area of the regions that are inside the circle and outside the square is equal to the total area of the regions that are outside the circle and inside the square. What is the radius of the circle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_8_Problems/Problem_25"
+    }
+  ]
+}

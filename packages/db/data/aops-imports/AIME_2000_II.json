@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 2000,
+    "exam": "II",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_II"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "The number",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "007",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_II_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "A point whose coordinates are both integers is called a lattice point. How many lattice points lie on the hyperbola $x^2 - y^2 = 2000^2$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "098",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_II_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "A deck of forty cards consists of four $1$ 's, four $2$ 's,..., and four $10$ 's. A matching pair (two cards with the same number) is removed from the deck. Given that these cards are not returned to the deck, let $\\frac{m}{n}$ be the probability that two randomly selected cards also form a pair, where $m$ and $n$ are relatively prime positive integers. Find $m + n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "758",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_II_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "What is the smallest positive integer with six positive odd integer divisors and twelve positive even integer divisors?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "180",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_II_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Given eight distinguishable rings, let $n$ be the number of possible five-ring arrangements on the four fingers (not the thumb) of one hand. The order of rings on each finger is significant, but it is not required that each finger have a ring. Find the leftmost three nonzero digits of $n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "376",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_II_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "One base of a trapezoid is $100$ units longer than the other base. The segment that joins the midpoints of the legs divides the trapezoid into two regions whose areas are in the ratio $2: 3$ . Let $x$ be the length of the segment joining the legs of the trapezoid that is parallel to the bases and that divides the trapezoid into two regions of equal area. Find the greatest integer that does not exceed $x^2/100$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "181",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_II_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Given that",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "137",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_II_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "In trapezoid $ABCD$ , leg $\\overline{BC}$ is perpendicular to bases $\\overline{AB}$ and $\\overline{CD}$ , and diagonals $\\overline{AC}$ and $\\overline{BD}$ are perpendicular. Given that $AB=\\sqrt{11}$ and $AD=\\sqrt{1001}$ , find $BC^2$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "110",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_II_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Given that $z$ is a complex number such that $z+\\frac 1z=2\\cos 3^\\circ$ , find the least integer that is greater than $z^{2000}+\\frac 1{z^{2000}}$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "000",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_II_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "A circle is inscribed in quadrilateral $ABCD$ , tangent to $\\overline{AB}$ at $P$ and to $\\overline{CD}$ at $Q$ . Given that $AP=19$ , $PB=26$ , $CQ=37$ , and $QD=23$ , find the square of the radius of the circle.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "647",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_II_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "The coordinates of the vertices of isosceles trapezoid $ABCD$ are all integers, with $A=(20,100)$ and $D=(21,107)$ . The trapezoid has no horizontal or vertical sides, and $\\overline{AB}$ and $\\overline{CD}$ are the only parallel sides. The sum of the absolute values of all possible slopes for $\\overline{AB}$ is $m/n$ , where $m$ and $n$ are relatively prime positive integers. Find $m+n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "131",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_II_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "The points $A$ , $B$ and $C$ lie on the surface of a sphere with center $O$ and radius $20$ . It is given that $AB=13$ , $BC=14$ , $CA=15$ , and that the distance from $O$ to $\\triangle ABC$ is $\\frac{m\\sqrt{n}}k$ , where $m$ , $n$ , and $k$ are positive integers, $m$ and $k$ are relatively prime, and $n$ is not divisible by the square of any prime. Find $m+n+k$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "118",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_II_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "The equation $2000x^6+100x^5+10x^3+x-2=0$ has exactly two real roots, one of which is $\\frac{m+\\sqrt{n}}r$ , where $m$ , $n$ and $r$ are integers, $m$ and $r$ are relatively prime, and $r>0$ . Find $m+n+r$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "200",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_II_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Every positive integer $k$ has a unique factorial base expansion $(f_1,f_2,f_3,\\ldots,f_m)$ , meaning that $k=1!\\cdot f_1+2!\\cdot f_2+3!\\cdot f_3+\\cdots+m!\\cdot f_m$ , where each $f_i$ is an integer, $0\\le f_i\\le i$ , and $0<f_m$ . Given that $(f_1,f_2,f_3,\\ldots,f_j)$ is the factorial base expansion of $16!-32!+48!-64!+\\cdots+1968!-1984!+2000!$ , find the value of $f_1-f_2+f_3-f_4+\\cdots+(-1)^{j+1}f_j$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "495",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_II_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Find the least positive integer $n$ such that",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "001",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2000_AIME_II_Problems/Problem_15"
+    }
+  ]
+}

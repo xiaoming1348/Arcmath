@@ -1,0 +1,31 @@
+{
+  "name": "@arcmath/db",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "aops:fetch": "node --import tsx src/aops/fetch-cli.ts",
+    "aops:import": "node --import tsx src/aops/import-cli.ts",
+    "prisma": "prisma",
+    "generate": "prisma generate",
+    "migrate": "prisma migrate dev --name init",
+    "migrate:deploy": "prisma migrate deploy",
+    "status": "prisma migrate status",
+    "seed": "prisma db seed"
+  },
+  "dependencies": {
+    "@arcmath/shared": "workspace:*",
+    "@prisma/client": "^5.22.0",
+    "bcryptjs": "^3.0.3"
+  },
+  "devDependencies": {
+    "prisma": "^5.22.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma",
+    "seed": "tsx prisma/seed.ts"
+  }
+}

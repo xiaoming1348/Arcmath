@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2004,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Alicia earns 20 dollars per hour, of which $1.45\\%$ is deducted to pay local taxes. How many cents per hour of Alicia's wages are used to pay local taxes?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "On the AMC 12, each correct answer is worth $6$ points, each incorrect answer is worth $0$ points, and each problem left unanswered is worth $2.5$ points. If Charlyn leaves $8$ of the $25$ problems unanswered, how many of the remaining problems must she answer correctly in order to score at least $100$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "For how many ordered pairs of positive integers $(x,y)$ is $x + 2y = 100$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Bertha has 6 daughters and no sons. Some of her daughters have 6 daughters, and the rest have none. Bertha has a total of 30 daughters and granddaughters, and no great-granddaughters. How many of Bertha's daughters and grand-daughters have no daughters?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "The graph of the line $y=mx+b$ is shown. Which of the following is true?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Let $U=2\\cdot 2004^{2005}$ , $V=2004^{2005}$ , $W=2003\\cdot 2004^{2004}$ , $X=2\\cdot 2004^{2004}$ , $Y=2004^{2004}$ and $Z=2004^{2003}$ . Which of the following is the largest?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "A game is played with tokens according to the following rule. In each round, the player with the most tokens gives one token to each of the other players and also places one token in the discard pile. The game ends when some player runs out of tokens. Players $A$ , $B$ , and $C$ start with $15$ , $14$ , and $13$ tokens, respectively. How many rounds will there be in the game?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "In the overlapping triangles $\\triangle{ABC}$ and $\\triangle{ABE}$ sharing common side $AB$ , $\\angle{EAB}$ and $\\angle{ABC}$ are right angles , $AB=4$ , $BC=6$ , $AE=8$ , and $\\overline{AC}$ and $\\overline{BE}$ intersect at $D$ . What is the difference between the areas of $\\triangle{ADE}$ and $\\triangle{BDC}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "A company sells peanut butter in cylindrical jars. Marketing research suggests that using wider jars will increase sales. If the diameter of the jars is increased by $25\\%$ without altering the volume , by what percent must the height be decreased?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "The sum of $49$ consecutive integers is $7^5$ . What is their median ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "The average value of all the pennies, nickels, dimes, and quarters in Paula's purse is $20$ cents. If she had one more quarter, the average value would be $21$ cents. How many dimes does she have in her purse?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Let $A = (0,9)$ and $B = (0,12)$ . Points $A'$ and $B'$ are on the line $y = x$ , and $\\overline{AA'}$ and $\\overline{BB'}$ intersect at $C = (2,8)$ . What is the length of $\\overline{A'B'}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Let $S$ be the set of points $(a,b)$ in the coordinate plane , where each of $a$ and $b$ may be $- 1$ , $0$ , or $1$ . How many distinct lines pass through at least two members of $S$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "A sequence of three real numbers forms an arithmetic progression with a first term of $9$ . If $2$ is added to the second term and $20$ is added to the third term, the three resulting numbers form a geometric progression . What is the smallest possible value for the third term in the geometric progression?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Brenda and Sally run in opposite directions on a circular track, starting at diametrically opposite points. They first meet after Brenda has run 100 meters. They next meet after Sally has run 150 meters past their first meeting point. Each girl runs at a constant speed. What is the length of the track in meters?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "The set of all real numbers $x$ for which",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Let $f$ be a function with the following properties:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Square $ABCD$ has side length $2$ . A semicircle with diameter $\\overline{AB}$ is constructed inside the square, and the tangent to the semicircle from $C$ intersects side $\\overline{AD}$ at $E$ . What is the length of $\\overline{CE}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Circles $A, B$ and $C$ are externally tangent to each other, and internally tangent to circle $D$ . Circles $B$ and $C$ are congruent. Circle $A$ has radius $1$ and passes through the center of $D$ . What is the radius of circle $B$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Select numbers $a$ and $b$ between $0$ and $1$ independently and at random, and let $c$ be their sum. Let $A, B$ and $C$ be the results when $a, b$ and $c$ , respectively, are rounded to the nearest integer. What is the probability that $A + B = C$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "If $\\sum_{n = 0}^{\\infty}{\\cos^{2n}}\\theta = 5$ , what is the value of $\\cos{2\\theta}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Three mutually tangent spheres of radius $1$ rest on a horizontal plane. A sphere of radius $2$ rests on them. What is the distance from the plane to the top of the larger sphere?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "A polynomial",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "A plane contains points $A$ and $B$ with $AB = 1$ . Let $S$ be the union of all disks of radius $1$ in the plane that cover $\\overline{AB}$ . What is the area of $S$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "For each integer $n\\geq 4$ , let $a_n$ denote the base- $n$ number $0.\\overline{133}_n$ . The product $a_4a_5\\cdots a_{99}$ can be expressed as $\\frac {m}{n!}$ , where $m$ and $n$ are positive integers and $n$ is as small as possible. What is $m$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_12A_Problems/Problem_25"
+    }
+  ]
+}

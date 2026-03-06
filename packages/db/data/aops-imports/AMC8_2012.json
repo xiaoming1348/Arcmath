@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC8",
+    "year": 2012,
+    "exam": null,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Rachelle uses 3 pounds of meat to make 8 hamburgers for her family. How many pounds of meat does she need to make 24 hamburgers for a neighbourhood picnic?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "In the country of East Westmore, statisticians estimate there is a baby born every $8$ hours and a death every day. To the nearest hundred, how many people are added to the population of East Westmore each year?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "On February 13 The Oshkosh Northwester listed the length of daylight as 10 hours and 24 minutes, the sunrise was $6:57\\textsc{am}$ , and the sunset as $8:15\\textsc{pm}$ . The length of daylight and sunrise were correct, but the sunset was wrong. When did the sun really set?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Peter's family ordered a 12-slice pizza for dinner. Peter ate one slice and shared another slice equally with his brother Paul. What fraction of the pizza did Peter eat?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "In the diagram, all angles are right angles and the lengths of the sides are given in centimeters. Note the diagram is not drawn to scale. What is , $X$ in centimeters?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "A rectangular photograph is placed in a frame that forms a border two inches wide on all sides of the photograph. The photograph measures $8$ inches high and $10$ inches wide. What is the area of the border, in square inches?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Isabella must take four 100-point tests in her math class. Her goal is to achieve an average grade of 95 on the tests. Her first two test scores were 97 and 91. After seeing her score on the third test, she realized she can still reach her goal. What is the lowest possible score she could have made on the third test?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "A shop advertises everything is \"half price in today's sale.\" In addition, a coupon gives a 20% discount on sale prices. Using the coupon, the price today represents what percentage off the original price?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "The Fort Worth Zoo has a number of two-legged birds and a number of four-legged mammals. On one visit to the zoo, Margie counted 200 heads and 522 legs. How many of the animals that Margie counted were two-legged birds?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "How many 4-digit numbers greater than 1000 are there that use the four digits of 2012?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "The mean, median, and unique mode of the positive integers 3, 4, 5, 6, 6, 7, and $x$ are all equal. What is the value of $x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "What is the units digit of $13^{2012}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Jamar bought some pencils costing more than a penny each at the school bookstore and paid $\\textdollar 1.43$ . Sharona bought some of the same pencils and paid $\\textdollar 1.87$ . How many more pencils did Sharona buy than Jamar?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "In the BIG N, a middle school football conference, each team plays every other team exactly once. If a total of 21 conference games were played during the 2012 season, how many teams were members of the BIG N conference?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "The smallest number greater than 2 that leaves a remainder of 2 when divided by 3, 4, 5, or 6 lies between what numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Each of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9 is used only once to make two five-digit numbers so that they have the largest possible sum. Which of the following could be one of the numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "A square with integer side length is cut into 10 squares, all of which have integer side length and at least 8 of which have area 1. What is the smallest possible value of the length of the side of the original square?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "What is the smallest positive integer that is neither prime nor square and that has no prime factor less than 50?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "In a jar of red, green, and blue marbles, all but 6 are red marbles, all but 8 are green, and all but 4 are blue. How many marbles are in the jar?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "What is the correct ordering of the three numbers $\\frac{5}{19}$ , $\\frac{7}{21}$ , and $\\frac{9}{23}$ , in increasing order?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Marla has a large white cube that has an edge of 10 feet. She also has enough green paint to cover 300 square feet. Marla uses all the paint to create a white square centered on each face, surrounded by a green border. What is the area of one of the white squares, in square feet? $\\textbf{(A)}\\hspace{.05in}5\\sqrt2\\qquad\\textbf{(B)}\\hspace{.05in}10\\qquad\\textbf{(C)}\\hspace{.05in}10\\sqrt2\\qquad\\textbf{(D)}\\hspace{.05in}50\\qquad\\textbf{(E)}\\hspace{.05in}50\\sqrt2$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Let $R$ be a set of nine distinct integers. Six of the elements are $2$ , $3$ , $4$ , $6$ , $9$ , and $14$ . What is the number of possible values of the median of $R$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "An equilateral triangle and a regular hexagon have equal perimeters. If the triangle's area is 4, what is the area of the hexagon?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "A circle of radius $2$ is cut into four congruent arcs. The four arcs are joined to form the star figure shown. What is the ratio of the area of the star figure to the area of the original circle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "A square with area $4$ is inscribed in a square with area $5$ , with each vertex of the smaller square on a side of the larger square. A vertex of the smaller square divides a side of the larger square into two segments, one of length $a$ , and the other of length $b$ . What is the value of $ab$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2012_AMC_8_Problems/Problem_25"
+    }
+  ]
+}

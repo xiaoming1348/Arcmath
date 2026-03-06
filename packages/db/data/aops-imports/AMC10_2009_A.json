@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2009,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "One can holds $12$ ounces of soda, what is the minimum number of cans needed to provide a gallon ( $128$ ounces) of soda?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Four coins are picked out of a piggy bank that contains a collection of pennies, nickels, dimes, and quarters. Which of the following could not be the total value of the four coins, in cents?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Which of the following is equal to $1 + \\frac {1}{1 + \\frac {1}{1 + 1}}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Eric plans to compete in a triathlon. He can average $2$ miles per hour in the $\\frac{1}{4}$ -mile swim and $6$ miles per hour in the $3$ -mile run. His goal is to finish the triathlon in $2$ hours. To accomplish his goal what must his average speed in miles per hour, be for the $15$ -mile bicycle ride?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "What is the sum of the digits of the square of $\\text 111111111$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "A circle of radius $2$ is inscribed in a semicircle, as shown. The area inside the semicircle but outside the circle is shaded. What fraction of the semicircle's area is shaded?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "A carton contains milk that is $2$ % fat, an amount that is $40$ % less fat than the amount contained in a carton of whole milk. What is the percentage of fat in whole milk?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Three generations of the Wen family are going to the movies, two from each generation. The two members of the youngest generation receive a $50$ % discount as children. The two members of the oldest generation receive a $25\\%$ discount as senior citizens. The two members of the middle generation receive no discount. Grandfather Wen, whose senior ticket costs $\\$6.00$ , is paying for everyone. How many dollars must he pay?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Positive integers $a$ , $b$ , and $2009$ , with $a<b<2009$ , form a geometric sequence with an integer ratio. What is $a$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Triangle $ABC$ has a right angle at $B$ . Point $D$ is the foot of the altitude from $B$ , $AD=3$ , and $DC=4$ . What is the area of $\\triangle ABC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "One dimension of a cube is increased by $1$ , another is decreased by $1$ , and the third is left unchanged. The volume of the new rectangular solid is $5$ less than that of the cube. What was the volume of the cube?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "In quadrilateral $ABCD$ , $AB = 5$ , $BC = 17$ , $CD = 5$ , $DA = 9$ , and $BD$ is an integer. What is $BD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Suppose that $P = 2^m$ and $Q = 3^n$ . Which of the following is equal to $12^{mn}$ for every pair of integers $(m,n)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Four congruent rectangles are placed as shown. The area of the outer square is $4$ times that of the inner square. What is the ratio of the length of the longer side of each rectangle to the length of its shorter side?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "The figures $F_1$ , $F_2$ , $F_3$ , and $F_4$ shown are the first in a sequence of figures. For $n\\ge3$ , $F_n$ is constructed from $F_{n - 1}$ by surrounding it with a square and placing one more diamond on each side of the new square than $F_{n - 1}$ had on each side of its outside square. For example, figure $F_3$ has $13$ diamonds. How many diamonds are there in figure $F_{20}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Let $a$ , $b$ , $c$ , and $d$ be real numbers with $|a-b|=2$ , $|b-c|=3$ , and $|c-d|=4$ . What is the sum of all possible values of $|a-d|$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Rectangle $ABCD$ has $AB=4$ and $BC=3$ . Segment $EF$ is constructed through $B$ so that $EF$ is perpendicular to $DB$ , and $A$ and $C$ lie on $DE$ and $DF$ , respectively. What is $EF$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "At Jefferson Summer Camp, $60\\%$ of the children play soccer, $30\\%$ of the children swim, and $40\\%$ of the soccer players swim. To the nearest whole percent, what percent of the non-swimmers play soccer?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Circle $A$ has radius $100$ . Circle $B$ has an integer radius $r<100$ and remains internally tangent to circle $A$ as it rolls once around the circumference of circle $A$ . The two circles have the same points of tangency at the beginning and end of circle $B$ 's trip. How many possible values can $r$ have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Andrea and Lauren are $20$ kilometers apart. They bike toward one another with Andrea traveling three times as fast as Lauren, and the distance between them decreasing at a rate of $1$ kilometer per minute. After $5$ minutes, Andrea stops biking because of a flat tire and waits for Lauren. After how many minutes from the time they started to bike does Lauren reach Andrea?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Many Gothic cathedrals have windows with portions containing a ring of congruent circles that are circumscribed by a larger circle, In the figure shown, the number of smaller circles is four. What is the ratio of the sum of the areas of the four smaller circles to the area of the larger circle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Two cubical dice each have removable numbers $1$ through $6$ . The twelve numbers on the two dice are removed, put into a bag, then drawn one at a time and randomly reattached to the faces of the cubes, one number to each face. The dice are then rolled and the numbers on the two top faces are added. What is the probability that the sum is $7$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Convex quadrilateral $ABCD$ has $AB = 9$ and $CD = 12$ . Diagonals $AC$ and $BD$ intersect at $E$ , $AC = 14$ , and $\\triangle AED$ and $\\triangle BEC$ have equal areas. What is $AE$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Three distinct vertices of a cube are chosen at random. What is the probability that the plane determined by these three vertices contains points inside the cube?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "For $k > 0$ , let $I_k = 10\\ldots 064$ , where there are $k$ zeros between the $1$ and the $6$ . Let $N(k)$ be the number of factors of $2$ in the prime factorization of $I_k$ . What is the maximum value of $N(k)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_10A_Problems/Problem_25"
+    }
+  ]
+}

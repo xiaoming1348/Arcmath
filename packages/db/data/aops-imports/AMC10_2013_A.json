@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2013,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "A taxi ride costs $\\$1.50$ plus $\\$0.25$ per mile traveled. How much does a $5$ -mile taxi ride cost?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Alice is making a batch of cookies and needs $2\\frac{1}{2}$ cups of sugar. Unfortunately, her measuring cup holds only $\\frac{1}{4}$ cup of sugar. How many times must she fill that cup to get the correct amount of sugar?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Square $ABCD$ has side length $10$ . Point $E$ is on $\\overline{BC}$ , and the area of $\\bigtriangleup ABE$ is $40$ . What is $BE$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "A softball team played ten games, scoring $1$ , $2$ , $3$ , $4$ , $5$ , $6$ , $7$ , $8$ , $9$ , and $10$ runs. They lost by one run in exactly five games. In each of their other games, they scored twice as many runs as their opponent. How many total runs did their opponents score?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Tom, Dorothy, and Sammy went on a vacation and agreed to split the costs evenly. During their trip Tom paid \\$105, Dorothy paid \\$125, and Sammy paid \\$175. In order to share costs equally, Tom gave Sammy $t$ dollars, and Dorothy gave Sammy $d$ dollars. What is $t-d$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Joey and his five brothers are ages $3$ , $5$ , $7$ , $9$ , $11$ , and $13$ . One afternoon two of his brothers whose ages sum to $16$ went to the movies, two brothers younger than $10$ went to play baseball, and Joey and the $5$ -year-old stayed home. How old is Joey?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "A student must choose a program of four courses from a menu of courses consisting of English, Algebra, Geometry, History, Art, and Latin. This program must contain English and at least one mathematics course. In how many ways can this program be chosen?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "What is the value of \\[\\frac{2^{2014}+2^{2012}}{2^{2014}-2^{2012}} ?\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "In a recent basketball game, Shenille attempted only three-point shots and two-point shots. She was successful on $20\\%$ of her three-point shots and $30\\%$ of her two-point shots. Shenille attempted $30$ shots. How many points did she score?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "A flower bouquet contains pink roses, red roses, pink carnations, and red carnations. One third of the pink flowers are roses, three fourths of the red flowers are carnations, and six tenths of the flowers are pink. What percent of the flowers are carnations?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A student council must select a two-person welcoming committee and a three-person planning committee from among its members. There are exactly $10$ ways to select a two-person team for the welcoming committee. It is possible for students to serve on both committees. In how many different ways can a three-person planning committee be selected?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "In $\\triangle ABC$ , $AB=AC=28$ and $BC=20$ . Points $D,E,$ and $F$ are on sides $\\overline{AB}$ , $\\overline{BC}$ , and $\\overline{AC}$ , respectively, such that $\\overline{DE}$ and $\\overline{EF}$ are parallel to $\\overline{AC}$ and $\\overline{AB}$ , respectively. What is the perimeter of parallelogram $ADEF$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "How many three-digit numbers are not divisible by $5$ , have digits that sum to less than $20$ , and have the first digit equal to the third digit?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "A solid cube of side length $1$ is removed from each corner of a solid cube of side length $3$ . How many edges does the remaining solid have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Two sides of a triangle have lengths $10$ and $15$ . The length of the altitude to the third side is the average of the lengths of the altitudes to the two given sides. How long is the third side?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "A triangle with vertices $(6, 5)$ , $(8, -3)$ , and $(9, 1)$ is reflected about the line $x=8$ to create a second triangle. What is the area of the union of the two triangles?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Daphne is visited periodically by her three best friends: Alice, Beatrix, and Claire. Alice visits every third day, Beatrix visits every fourth day, and Claire visits every fifth day. All three friends visited Daphne yesterday. How many days of the next $365$ -day period will exactly two friends visit her?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Let points $A = (0, 0)$ , $B = (1, 2)$ , $C=(3, 3)$ , and $D = (4, 0)$ . Quadrilateral $ABCD$ is cut into equal area pieces by a line passing through $A$ . This line intersects $\\overline{CD}$ at point $\\left(\\frac{p}{q}, \\frac{r}{s}\\right)$ , where these fractions are in lowest terms. What is $p+q+r+s$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "In base $10$ , the number $2013$ ends in the digit $3$ . In base $9$ , on the other hand, the same number is written as $(2676)_{9}$ and ends in the digit $6$ . For how many positive integers $b$ does the base- $b$ -representation of $2013$ end in the digit $3$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "A unit square is rotated $45^\\circ$ about its center. What is the area of the region swept out by the interior of the square?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "A group of $12$ pirates agree to divide a treasure chest of gold coins among themselves as follows. The $k^{\\text{th}}$ pirate to take a share takes $\\frac{k}{12}$ of the coins that remain in the chest. The number of coins initially in the chest is the smallest number for which this arrangement will allow each pirate to receive a positive whole number of coins. How many coins does the $12^{\\text{th}}$ pirate receive?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Six spheres of radius $1$ are positioned so that their centers are at the vertices of a regular hexagon of side length $2$ . The six spheres are internally tangent to a larger sphere whose center is the center of the hexagon. An eighth sphere is externally tangent to the six smaller spheres and internally tangent to the larger sphere. What is the radius of this eighth sphere?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "In $\\triangle ABC$ , $AB = 86$ , and $AC=97$ . A circle with center $A$ and radius $AB$ intersects $\\overline{BC}$ at points $B$ and $X$ . Moreover $\\overline{BX}$ and $\\overline{CX}$ have integer lengths. What is $BC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Central High School is competing against Northern High School in a backgammon match. Each school has three players, and the contest rules require that each player play two games against each of the other school's players. The match takes place in six rounds, with three games played simultaneously in each round. In how many different ways can the match be scheduled?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "All $20$ diagonals are drawn in a regular octagon. At how many distinct points in the interior of the octagon (not on the boundary) do two or more diagonals intersect?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems/Problem_25"
+    }
+  ]
+}

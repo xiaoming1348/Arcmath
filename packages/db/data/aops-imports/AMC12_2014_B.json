@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2014,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Leah has $13$ coins, all of which are pennies and nickels. If she had one more nickel than she has now, then she would have the same number of pennies and nickels. In cents, how much are Leah's coins worth?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Orvin went to the store with just enough money to buy $30$ balloons. When he arrived he discovered that the store had a special sale on balloons: buy $1$ balloon at the regular price and get a second at $\\frac{1}{3}$ off the regular price. What is the greatest number of balloons Orvin could buy?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Randy drove the first third of his trip on a gravel road, the next $20$ miles on pavement, and the remaining one-fifth on a dirt road. In miles, how long was Randy's trip?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Susie pays for $4$ muffins and $3$ bananas. Calvin spends twice as much paying for $2$ muffins and $16$ bananas. A muffin is how many times as expensive as a banana?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Doug constructs a square window using $8$ equal-size panes of glass, as shown. The ratio of the height to width for each pane is $5 : 2$ , and the borders around and between the panes are $2$ inches wide. In inches, what is the side length of the square window?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Ed and Ann both have lemonade with their lunch. Ed orders the regular size. Ann gets the large lemonade, which is 50% more than the regular. After both consume $\\frac{3}{4}$ of their drinks, Ann gives Ed a third of what she has left, and 2 additional ounces. When they finish their lemonades they realize that they both drank the same amount. How many ounces of lemonade did they drink together?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "For how many positive integers $n$ is $\\frac{n}{30-n}$ also a positive integer?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "In the addition shown below $A$ , $B$ , $C$ , and $D$ are distinct digits. How many different values are possible for $D$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Convex quadrilateral $ABCD$ has $AB=3$ , $BC=4$ , $CD=13$ , $AD=12$ , and $\\angle ABC=90^{\\circ}$ , as shown. What is the area of the quadrilateral?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Danica drove her new car on a trip for a whole number of hours, averaging 55 miles per hour. At the beginning of the trip, $abc$ miles was displayed on the odometer, where $abc$ is a 3-digit number with $a \\geq{1}$ and $a+b+c \\leq{7}$ . At the end of the trip, the odometer showed $cba$ miles. What is $a^2+b^2+c^2?$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A list of $11$ positive integers has a mean of $10$ , a median of $9$ , and a unique mode of $8$ . What is the largest possible value of an integer in the list?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "A set S consists of triangles whose sides have integer lengths less than 5, and no two elements of S are congruent or similar. What is the largest number of elements that S can have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Real numbers $a$ and $b$ are chosen with $1<a<b$ such that no triangle with positive area has side lengths $1$ , $a$ , and $b$ or $\\frac{1}{b}$ , $\\frac{1}{a}$ , and $1$ . What is the smallest possible value of $b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "A rectangular box has a total surface area of 94 square inches. The sum of the lengths of all its edges is 48 inches. What is the sum of the lengths in inches of all of its interior diagonals?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "When $p = \\sum\\limits_{k=1}^{6} k \\text{ ln }{k}$ , the number $e^p$ is an integer. What is the largest power of $2$ that is a factor of $e^p$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Let $P$ be a cubic polynomial with $P(0) = k$ , $P(1) = 2k$ , and $P(-1) = 3k$ . What is $P(2) + P(-2)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Let $P$ be the parabola with equation $y=x^2$ and let $Q = (20, 14)$ . There are real numbers $r$ and $s$ such that the line through $Q$ with slope $m$ does not intersect $P$ if and only if $r < m < s$ . What is $r + s$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "The numbers 1, 2, 3, 4, 5 are to be arranged in a circle. An arrangement is $bad$ if it is not true that for every $n$ from $1$ to $15$ one can find a subset of the numbers that appear consecutively on the circle that sum to $n$ . Arrangements that differ only by a rotation or a reflection are considered the same. How many different bad arrangements are there?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "A sphere is inscribed in a truncated right circular cone as shown. The volume of the truncated cone is twice that of the sphere. What is the ratio of the radius of the bottom base of the truncated cone to the radius of the top base of the truncated cone?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "For how many positive integers $x$ is $\\log_{10}(x-40) + \\log_{10}(60-x) < 2$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "In the figure, $ABCD$ is a square of side length $1$ . The rectangles $JKHG$ and $EBCF$ are congruent. What is $BE$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "In a small pond there are eleven lily pads in a row labeled 0 through 10. A frog is sitting on pad 1. When the frog is on pad $N$ , $0<N<10$ , it will jump to pad $N-1$ with probability $\\frac{N}{10}$ and to pad $N+1$ with probability $1-\\frac{N}{10}$ . Each jump is independent of the previous jumps. If the frog reaches pad 0 it will be eaten by a patiently waiting snake. If the frog reaches pad 10 it will exit the pond, never to return. What is the probability that the frog will escape without being eaten by the snake?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "The number $2017$ is prime. Let $S = \\sum \\limits_{k=0}^{62} \\dbinom{2014}{k}$ . What is the remainder when $S$ is divided by $2017?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Let $ABCDE$ be a pentagon inscribed in a circle such that $AB = CD = 3$ , $BC = DE = 10$ , and $AE= 14$ . The sum of the lengths of all diagonals of $ABCDE$ is equal to $\\frac{m}{n}$ , where $m$ and $n$ are relatively prime positive integers. What is $m+n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Find the sum of all the positive solutions of",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2014_AMC_12B_Problems/Problem_25"
+    }
+  ]
+}

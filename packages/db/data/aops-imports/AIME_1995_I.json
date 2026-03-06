@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 1995,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1995_AIME"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Square $S_{1}$ is $1\\times 1.$ For $i\\ge 1,$ the lengths of the sides of square $S_{i+1}$ are half the lengths of the sides of square $S_{i},$ two adjacent sides of square $S_{i}$ are perpendicular bisectors of two adjacent sides of square $S_{i+1},$ and the other two sides of square $S_{i+1},$ are the perpendicular bisectors of two adjacent sides of square $S_{i+2}.$ The total area enclosed by at least one of $S_{1}, S_{2}, S_{3}, S_{4}, S_{5}$ can be written in the form $m/n,$ where $m$ and $n$ are relatively prime positive integers. Find $m-n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "255",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1995_AIME_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Find the last three digits of the product of the positive roots of $\\sqrt{1995}x^{\\log_{1995}x}=x^2$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "025",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1995_AIME_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Starting at $(0,0),$ an object moves in the coordinate plane via a sequence of steps, each of length one. Each step is left, right, up, or down, all four equally likely. Let $p$ be the probability that the object reaches $(2,2)$ in six or fewer steps. Given that $p$ can be written in the form $m/n,$ where $m$ and $n$ are relatively prime positive integers, find $m+n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "067",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1995_AIME_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Circles of radius $3$ and $6$ are externally tangent to each other and are internally tangent to a circle of radius $9$ . The circle of radius $9$ has a chord that is a common external tangent of the other two circles. Find the square of the length of this chord.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "224",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1995_AIME_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "For certain real values of $a, b, c,$ and $d_{},$ the equation $x^4+ax^3+bx^2+cx+d=0$ has four non-real roots. The product of two of these roots is $13+i$ and the sum of the other two roots is $3+4i,$ where $i=\\sqrt{-1}.$ Find $b.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "051",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1995_AIME_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Let $n=2^{31}3^{19}.$ How many positive integer divisors of $n^2$ are less than $n_{}$ but do not divide $n_{}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "589",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1995_AIME_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Given that $(1+\\sin t)(1+\\cos t)=5/4$ and",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "027",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1995_AIME_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "For how many ordered pairs of positive integers $(x,y),$ with $y<x\\le 100,$ are both $\\frac xy$ and $\\frac{x+1}{y+1}$ integers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "085",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1995_AIME_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Triangle $ABC$ is isosceles, with $AB=AC$ and altitude $AM=11.$ Suppose that there is a point $D$ on $\\overline{AM}$ with $AD=10$ and $\\angle BDC=3\\angle BAC.$ Then the perimeter of $\\triangle ABC$ may be written in the form $a+\\sqrt{b},$ where $a$ and $b$ are integers. Find $a+b.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "616",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1995_AIME_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "What is the largest positive integer that is not the sum of a positive integral multiple of $42$ and a positive composite integer?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "215",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1995_AIME_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A right rectangular prism $P_{}$ (i.e., a rectangular parallelpiped) has sides of integral length $a, b, c,$ with $a\\le b\\le c.$ A plane parallel to one of the faces of $P_{}$ cuts $P_{}$ into two prisms, one of which is similar to $P_{},$ and both of which have nonzero volume. Given that $b=1995,$ for how many ordered triples $(a, b, c)$ does such a plane exist?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "040",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1995_AIME_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Pyramid $OABCD$ has square base $ABCD,$ congruent edges $\\overline{OA}, \\overline{OB}, \\overline{OC},$ and $\\overline{OD},$ and $\\angle AOB=45^\\circ.$ Let $\\theta$ be the measure of the dihedral angle formed by faces $OAB$ and $OBC.$ Given that $\\cos \\theta=m+\\sqrt{n},$ where $m_{}$ and $n_{}$ are integers, find $m+n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "005",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1995_AIME_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Let $f(n)$ be the integer closest to $\\sqrt[4]{n}.$ Find $\\sum_{k=1}^{1995}\\frac 1{f(k)}.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "400",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1995_AIME_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "In a circle of radius $42$ , two chords of length $78$ intersect at a point whose distance from the center is $18$ . The two chords divide the interior of the circle into four regions. Two of these regions are bordered by segments of unequal lengths, and the area of either of them can be expressed uniquely in the form $m\\pi-n\\sqrt{d},$ where $m, n,$ and $d_{}$ are positive integers and $d_{}$ is not divisible by the square of any prime number. Find $m+n+d.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "378",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1995_AIME_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Let $p_{}$ be the probability that, in the process of repeatedly flipping a fair coin, one will encounter a run of $5$ heads before one encounters a run of $2$ tails. Given that $p_{}$ can be written in the form $m/n$ where $m_{}$ and $n_{}$ are relatively prime positive integers, find $m+n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "037",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1995_AIME_Problems/Problem_15"
+    }
+  ]
+}

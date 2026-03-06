@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2009,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Kim's flight took off from Newark at 10:34 AM and landed in Miami at 1:18 PM. Both cities are in the same time zone. If her flight took $h$ hours and $m$ minutes, with $0 < m < 60$ , what is $h + m$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Which of the following is equal to $1 + \\frac {1}{1 + \\frac {1}{1 + 1}}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "What number is one third of the way from $\\frac14$ to $\\frac34$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Four coins are picked out of a piggy bank that contains a collection of pennies, nickels, dimes, and quarters. Which of the following could not be the total value of the four coins, in cents?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "One dimension of a cube is increased by $1$ , another is decreased by $1$ , and the third is left unchanged. The volume of the new rectangular solid is $5$ less than that of the cube. What was the volume of the cube?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Suppose that $P = 2^m$ and $Q = 3^n$ . Which of the following is equal to $12^{mn}$ for every pair of integers $(m,n)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "The first three terms of an arithmetic sequence are $2x - 3$ , $5x - 11$ , and $3x + 1$ respectively. The $n$ th term of the sequence is $2009$ . What is $n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Four congruent rectangles are placed as shown. The area of the outer square is $4$ times that of the inner square. What is the ratio of the length of the longer side of each rectangle to the length of its shorter side?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Suppose that $f(x+3)=3x^2 + 7x + 4$ and $f(x)=ax^2 + bx + c$ . What is $a+b+c$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "In quadrilateral $ABCD$ , $AB = 5$ , $BC = 17$ , $CD = 5$ , $DA = 9$ , and $BD$ is an integer. What is $BD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "The figures $F_1$ , $F_2$ , $F_3$ , and $F_4$ shown are the first in a sequence of figures. For $n\\ge3$ , $F_n$ is constructed from $F_{n - 1}$ by surrounding it with a square and placing one more diamond on each side of the new square than $F_{n - 1}$ had on each side of its outside square. For example, figure $F_3$ has $13$ diamonds. How many diamonds are there in figure $F_{20}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "How many positive integers less than $1000$ are $6$ times the sum of their digits?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "A ship sails $10$ miles in a straight line from $A$ to $B$ , turns through an angle between $45^{\\circ}$ and $60^{\\circ}$ , and then sails another $20$ miles to $C$ . Let $AC$ be measured in miles. Which of the following intervals contains $AC^2$ ? [asy] unitsize(2mm); defaultpen(linewidth(.8pt)+fontsize(10pt)); dotfactor=4; pair B=(0,0), A=(-10,0), C=20*dir(50); draw(A--B--C); draw(A--C,linetype(\"4 4\")); dot(A); dot(B); dot(C); label(\"$10$\",midpoint(A--B),S); label(\"$20$\",midpoint(B--C),SE); label(\"$A$\",A,SW); label(\"$B$\",B,SE); label(\"$C$\",C,NE); [/asy]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "A triangle has vertices $(0,0)$ , $(1,1)$ , and $(6m,0)$ , and the line $y = mx$ divides the triangle into two triangles of equal area. What is the sum of all possible values of $m$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "For what value of $n$ is $i + 2i^2 + 3i^3 + \\cdots + ni^n = 48 + 49i$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "A circle with center $C$ is tangent to the positive $x$ and $y$ -axes and externally tangent to the circle centered at $(3,0)$ with radius $1$ . What is the sum of all possible radii of the circle with center $C$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Let $a + ar_1 + ar_1^2 + ar_1^3 + \\cdots$ and $a + ar_2 + ar_2^2 + ar_2^3 + \\cdots$ be two different infinite geometric series of positive numbers with the same first term. The sum of the first series is $r_1$ , and the sum of the second series is $r_2$ . What is $r_1 + r_2$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "For $k > 0$ , let $I_k = 10\\ldots 064$ , where there are $k$ zeros between the $1$ and the $6$ . Let $N(k)$ be the number of factors of $2$ in the prime factorization of $I_k$ . What is the maximum value of $N(k)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Andrea inscribed a circle inside a regular pentagon, circumscribed a circle around the pentagon, and calculated the area of the region between the two circles. Bethany did the same with a regular heptagon (7 sides). The areas of the two regions were $A$ and $B$ , respectively. Each polygon had a side length of $2$ . Which of the following is true?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Convex quadrilateral $ABCD$ has $AB = 9$ and $CD = 12$ . Diagonals $AC$ and $BD$ intersect at $E$ , $AC = 14$ , and $\\triangle AED$ and $\\triangle BEC$ have equal areas. What is $AE$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Let $p(x) = x^3 + ax^2 + bx + c$ , where $a$ , $b$ , and $c$ are complex numbers. Suppose that",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "A regular octahedron has side length $1$ . A plane parallel to two of its opposite faces cuts the octahedron into the two congruent solids. The polygon formed by the intersection of the plane and the octahedron has area $\\frac {a\\sqrt {b}}{c}$ , where $a$ , $b$ , and $c$ are positive integers, $a$ and $c$ are relatively prime, and $b$ is not divisible by the square of any prime. What is $a + b + c$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Functions $f$ and $g$ are quadratic , $g(x) = - f(100 - x)$ , and the graph of $g$ contains the vertex of the graph of $f$ . The four $x$ -intercepts on the two graphs have $x$ -coordinates $x_1$ , $x_2$ , $x_3$ , and $x_4$ , in increasing order, and $x_3 - x_2 = 150$ . Then $x_4 - x_1 = m + n\\sqrt p$ , where $m$ , $n$ , and $p$ are positive integers, and $p$ is not divisible by the square of any prime. What is $m + n + p$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "The tower function of twos is defined recursively as follows: $T(1) = 2$ and $T(n + 1) = 2^{T(n)}$ for $n\\ge1$ . Let $A = (T(2009))^{T(2009)}$ and $B = (T(2009))^A$ . What is the largest integer $k$ for which \\[\\underbrace{\\log_2\\log_2\\log_2\\ldots\\log_2B}_{k\\text{ times}}\\] is defined?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "The first two terms of a sequence are $a_1 = 1$ and $a_2 = \\frac {1}{\\sqrt3}$ . For $n\\ge1$ ,",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2009_AMC_12A_Problems/Problem_25"
+    }
+  ]
+}

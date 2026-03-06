@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 2003,
+    "exam": "II",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_II"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "The product $N$ of three positive integers is $6$ times their sum , and one of the integers is the sum of the other two. Find the sum of all possible values of $N$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "336",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_II_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Let $N$ be the greatest integer multiple of 8, no two of whose digits are the same. What is the remainder when $N$ is divided by 1000?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "120",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_II_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Define a $\\text{good~word}$ as a sequence of letters that consists only of the letters $A$ , $B$ , and $C$ - some of these letters may not appear in the sequence - and in which $A$ is never immediately followed by $B$ , $B$ is never immediately followed by $C$ , and $C$ is never immediately followed by $A$ . How many seven-letter good words are there?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "192",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_II_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "In a regular tetrahedron the centers of the four faces are the vertices of a smaller tetrahedron. The ratio of the volume of the smaller tetrahedron to that of the larger is $m/n$ , where $m$ and $n$ are relatively prime positive integers. Find $m+n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "028",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_II_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "A cylindrical log has diameter $12$ inches. A wedge is cut from the log by making two planar cuts that go entirely through the log. The first is perpendicular to the axis of the cylinder, and the plane of the second cut forms a $45^\\circ$ angle with the plane of the first cut. The intersection of these two planes has exactly one point in common with the log. The number of cubic inches in the wedge can be expressed as $n\\pi$ , where n is a positive integer. Find $n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "216",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_II_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "In triangle $ABC,$ $AB = 13,$ $BC = 14,$ $AC = 15,$ and point $G$ is the intersection of the medians. Points $A',$ $B',$ and $C',$ are the images of $A,$ $B,$ and $C,$ respectively, after a $180^\\circ$ rotation about $G.$ What is the area of the union of the two regions enclosed by the triangles $ABC$ and $A'B'C'?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "112",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_II_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Find the area of rhombus $ABCD$ given that the circumradii of triangles $ABD$ and $ACD$ are $12.5$ and $25$ , respectively.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "400",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_II_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Find the eighth term of the sequence $1440,$ $1716,$ $1848,\\ldots,$ whose terms are formed by multiplying the corresponding terms of two arithmetic sequences.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "348",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_II_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Consider the polynomials $P(x) = x^{6} - x^{5} - x^{3} - x^{2} - x$ and $Q(x) = x^{4} - x^{3} - x^{2} - 1.$ Given that $z_{1},z_{2},z_{3},$ and $z_{4}$ are the roots of $Q(x) = 0,$ find $P(z_{1}) + P(z_{2}) + P(z_{3}) + P(z_{4}).$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "006",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_II_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Two positive integers differ by $60$ . The sum of their square roots is the square root of an integer that is not a perfect square. What is the maximum possible sum of the two integers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "156",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_II_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Triangle $ABC$ is a right triangle with $AC = 7,$ $BC = 24,$ and right angle at $C.$ Point $M$ is the midpoint of $AB,$ and $D$ is on the same side of line $AB$ as $C$ so that $AD = BD = 15.$ Given that the area of triangle $CDM$ may be expressed as $\\frac {m\\sqrt {n}}{p},$ where $m,$ $n,$ and $p$ are positive integers, $m$ and $p$ are relatively prime, and $n$ is not divisible by the square of any prime, find $m + n + p.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "578",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_II_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "The members of a distinguished committee were choosing a president, and each member gave one vote to one of the 27 candidates. For each candidate, the exact percentage of votes the candidate got was smaller by at least 1 than the number of votes for that candidate. What was the smallest possible number of members of the committee?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "134",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_II_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "A bug starts at a vertex of an equilateral triangle. On each move, it randomly selects one of the two vertices where it is not currently located, and crawls along a side of the triangle to that vertex. Given that the probability that the bug moves to its starting vertex on its tenth move is $m/n,$ where $m$ and $n$ are relatively prime positive integers, find $m + n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "683",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_II_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Let $A = (0,0)$ and $B = (b,2)$ be points on the coordinate plane. Let $ABCDEF$ be a convex equilateral hexagon such that $\\angle FAB = 120^\\circ,$ $\\overline{AB}\\parallel \\overline{DE},$ $\\overline{BC}\\parallel \\overline{EF,}$ $\\overline{CD}\\parallel \\overline{FA},$ and the y-coordinates of its vertices are distinct elements of the set $\\{0,2,4,6,8,10\\}.$ The area of the hexagon can be written in the form $m\\sqrt {n},$ where $m$ and $n$ are positive integers and $n$ is not divisible by the square of any prime. Find $m + n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "051",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_II_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Let \\[P(x) = 24x^{24} + \\sum_{j = 1}^{23}(24 - j)(x^{24 - j} + x^{24 + j}).\\] Let $z_{1},z_{2},\\ldots,z_{r}$ be the distinct zeros of $P(x),$ and let $z_{k}^{2} = a_{k} + b_{k}i$ for $k = 1,2,\\ldots,r,$ where $a_{k}$ and $b_{k}$ are real numbers. Let",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "015",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AIME_II_Problems/Problem_15"
+    }
+  ]
+}

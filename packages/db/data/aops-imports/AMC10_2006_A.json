@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2006,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Sandwiches at Joe's Fast Food cost $\\$3$ each and sodas cost $\\$2$ each. How many dollars will it cost to purchase $5$ sandwiches and $8$ sodas?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Define $x\\otimes y=x^3-y$ . What is $h\\otimes (h\\otimes h)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "The ratio of Mary's age to Alice's age is $3:5$ . Alice is $30$ years old. How old is Mary?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "A digital watch displays hours and minutes with AM and PM. What is the largest possible sum of the digits in the display?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Doug and Dave shared a pizza with $8$ equally-sized slices. Doug wanted a plain pizza, but Dave wanted anchovies on half the pizza. The cost of a plain pizza was $8$ dollars, and there was an additional cost of $2$ dollars for putting anchovies on one half. Dave ate all the slices of anchovy pizza and one plain slice. Doug ate the remainder. Each paid for what he had eaten. How many more dollars did Dave pay than Doug?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "What non-zero real value for $x$ satisfies $(7x)^{14}=(14x)^7$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "The $8\\times18$ rectangle $ABCD$ is cut into two congruent hexagons, as shown, in such a way that the two hexagons can be repositioned without overlap to form a square. What is $y$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "A parabola with equation $y=x^2+bx+c$ passes through the points $(2,3)$ and $(4,3)$ . What is $c$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "How many sets of two or more consecutive positive integers have a sum of $15$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "For how many real values of $x$ is $\\sqrt{120-\\sqrt{x}}$ an integer?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Which of the following describes the graph of the equation $(x+y)^2=x^2+y^2$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Rolly wishes to secure his dog with an 8-foot rope to a square shed that is 16 feet on each side. His preliminary drawings are shown.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "A player pays $\\textdollar 5$ to play a game. A die is rolled. If the number on the die is odd, the game is lost. If the number on the die is even, the die is rolled again. In this case the player wins if the second number matches the first and loses otherwise. How much should the player win if the game is fair? (In a fair game the probability of winning times the amount won is what the player should pay.)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "A number of linked rings, each $1$ cm thick, are hanging on a peg. The top ring has an outside diameter of $20$ cm. The outside diameter of each of the outer rings is $1$ cm less than that of the ring above it. The bottom ring has an outside diameter of $3$ cm. What is the distance, in cm, from the top of the top ring to the bottom of the bottom ring?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Odell and Kershaw run for $30$ minutes on a circular track. Odell runs clockwise at $\\text{250 m/min}$ and uses the inner lane with a radius of $50$ meters. Kershaw runs counterclockwise at $\\text{300 m/min}$ and uses the outer lane with a radius of $60$ meters, starting on the same radial line as Odell. How many times after the start do they pass each other?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "A circle of radius $1$ is tangent to a circle of radius $2$ . The sides of $\\triangle ABC$ are tangent to the circles as shown, and the sides $\\overline{AB}$ and $\\overline{AC}$ are congruent. What is the area of $\\triangle ABC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "In rectangle $ADEH$ , points $B$ and $C$ trisect $\\overline{AD}$ , and points $G$ and $F$ trisect $\\overline{HE}$ . In addition, $AH=AC=2$ , and $AD=3$ . What is the area of quadrilateral $WXYZ$ shown in the figure?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "A license plate in a certain state consists of $4$ digits, not necessarily distinct, and $2$ letters, also not necessarily distinct. These six characters may appear in any order, except that the two letters must appear next to each other. How many distinct license plates are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "How many non- similar triangles have angles whose degree measures are distinct positive integers in arithmetic progression ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Six distinct positive integers are randomly chosen between $1$ and $2006$ , inclusive. What is the probability that some pair of these integers has a difference that is a multiple of $5$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "How many four-digit positive integers have at least one digit that is a $2$ or a $3$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Two farmers agree that pigs are worth $300$ dollars and that goats are worth $210$ dollars. When one farmer owes the other money, he pays the debt in pigs or goats, with \"change\" received in the form of goats or pigs as necessary. (For example, a $390$ dollar debt could be paid with two pigs, with one goat received in change.) What is the amount of the smallest positive debt that can be resolved in this way?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Circles with centers $A$ and $B$ have radius 3 and 8, respectively. A common internal tangent intersects the circles at $C$ and $D$ , respectively. Lines $AB$ and $CD$ intersect at $E$ , and $AE=5$ . What is $CD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Centers of adjacent faces of a unit cube are joined to form a regular octahedron . What is the volume of this octahedron?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "A bug starts at one vertex of a cube and moves along the edges of the cube according to the following rule. At each vertex the bug will choose to travel along one of the three edges emanating from that vertex. Each edge has equal probability of being chosen, and all choices are independent. What is the probability that after seven moves the bug will have visited every vertex exactly once?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_10A_Problems/Problem_25"
+    }
+  ]
+}

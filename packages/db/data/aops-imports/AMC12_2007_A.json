@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2007,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "One ticket to a show costs $\\$ $20$ at full price. Susan buys 4 tickets using a coupon that gives her a 25% discount. Pam buys 5 tickets using a coupon that gives her a 30% discount. How many more dollars does Pam pay than Susan?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "An aquarium has a rectangular base that measures 100 cm by 40 cm and has a height of 50 cm. It is filled with water to a height of 40 cm. A brick with a rectangular base that measures 40 cm by 20 cm and a height of 10 cm is placed in the aquarium. By how many centimeters does the water rise?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "The larger of two consecutive odd integers is three times the smaller. What is their sum?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Kate rode her bicycle for 30 minutes at a speed of 16 mph, then walked for 90 minutes at a speed of 4 mph. What was her overall average speed in miles per hour?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Last year Mr. Jon Q. Public received an inheritance. He paid $20\\%$ in federal taxes on the inheritance, and paid $10\\%$ of what he had left in state taxes. He paid a total of $\\textdollar10500$ for both taxes. How many dollars was his inheritance?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Triangles $ABC$ and $ADC$ are isosceles with $AB=BC$ and $AD=DC$ . Point $D$ is inside triangle $ABC$ , angle $ABC$ measures $40$ degrees, and angle $ADC$ measures $140$ degrees. What is the degree measure of angle $BAD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Let $a, b, c, d$ , and $e$ be five consecutive terms in an arithmetic sequence, and suppose that $a+b+c+d+e=30$ . Which of $a, b, c, d,$ or $e$ can be found?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "A star- polygon is drawn on a clock face by drawing a chord from each number to the fifth number counted clockwise from that number. That is, chords are drawn from 12 to 5, from 5 to 10, from 10 to 3, and so on, ending back at 12. What is the degree measure of the angle at each vertex in the star polygon?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "The trip from Carville to Nikpath requires $4\\frac 12$ hours when traveling at an average speed of 70 miles per hour. How many hours does the trip require when traveling at an average speed of 60 miles per hour? Express your answer as a decimal to the nearest hundredth.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "A triangle with side lengths in the ratio $3 : 4 : 5$ is inscribed in a circle with radius 3. What is the area of the triangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A finite sequence of three-digit integers has the property that the tens and units digits of each term are, respectively, the hundreds and tens digits of the next term, and the tens and units digits of the last term are, respectively, the hundreds and tens digits of the first term. For example, such a sequence might begin with the terms 247, 475, and 756 and end with the term 824. Let $S$ be the sum of all the terms in the sequence. What is the largest prime factor that always divides $S$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Integers $a, b, c,$ and $d$ , not necessarily distinct, are chosen independently and at random from 0 to 2007, inclusive. What is the probability that $ad-bc$ is even ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "A piece of cheese is located at $(12,10)$ in a coordinate plane . A mouse is at $(4,-2)$ and is running up the line $y=-5x+18$ . At the point $(a,b)$ the mouse starts getting farther from the cheese rather than closer to it. What is $a+b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Let $a$ , $b$ , $c$ , $d$ , and $e$ be distinct integers such that $(6-a)(6-b)(6-c)(6-d)(6-e)=45$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "The set $\\{3,6,9,10\\}$ is augmented by a fifth element $n$ , not equal to any of the other four. The median of the resulting set is equal to its mean . What is the sum of all possible values of $n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "How many three-digit numbers are composed of three distinct digits such that one digit is the average of the other two?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Suppose that $\\sin a + \\sin b = \\sqrt{\\frac{5}{3}}$ and $\\cos a + \\cos b = 1$ . What is $\\cos (a - b)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "The polynomial $f(x) = x^{4} + ax^{3} + bx^{2} + cx + d$ has real coefficients, and $f(2i) = f(2 + i) = 0.$ What is $a + b + c + d?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Triangles $ABC$ and $ADE$ have areas $2007$ and $7002,$ respectively, with $B = (0,0),$ $C = (223,0),$ $D = (680,380),$ and $E = (689,389).$ What is the sum of all possible x coordinates of $A$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Corners are sliced off a unit cube so that the six faces each become regular octagons. What is the total volume of the removed tetrahedra?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "The sum of the zeros , the product of the zeros, and the sum of the coefficients of the function $f(x)=ax^{2}+bx+c$ are equal. Their common value must also be which of the following?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "For each positive integer $n$ , let $S(n)$ denote the sum of the digits of $n.$ For how many values of $n$ is $n + S(n) + S(S(n)) = 2007?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Square $ABCD$ has area $36,$ and $\\overline{AB}$ is parallel to the x-axis . Vertices $A,$ $B$ , and $C$ are on the graphs of $y = \\log_{a}x,$ $y = 2\\log_{a}x,$ and $y = 3\\log_{a}x,$ respectively. What is $a?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "For each integer $n>1$ , let $F(n)$ be the number of solutions to the equation $\\sin{x}=\\sin{(nx)}$ on the interval $[0,\\pi]$ . What is $\\sum_{n=2}^{2007} F(n)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Call a set of integers spacy if it contains no more than one out of any three consecutive integers. How many subsets of $\\{1,2,3,\\ldots,12\\},$ including the empty set , are spacy?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_12A_Problems/Problem_25"
+    }
+  ]
+}

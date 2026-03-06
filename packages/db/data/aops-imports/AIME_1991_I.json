@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 1991,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1991_AIME"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Find $x^2+y^2_{}$ if $x_{}^{}$ and $y_{}^{}$ are positive integers such that \\begin{align*} xy+x+y&=71, \\\\ x^2y+xy^2&=880. \\end{align*}",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "146",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1991_AIME_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Rectangle $ABCD_{}^{}$ has sides $\\overline {AB}$ of length 4 and $\\overline {CB}$ of length 3. Divide $\\overline {AB}$ into 168 congruent segments with points $A_{}^{}=P_0, P_1, \\ldots, P_{168}=B$ , and divide $\\overline {CB}$ into 168 congruent segments with points $C_{}^{}=Q_0, Q_1, \\ldots, Q_{168}=B$ . For $1_{}^{} \\le k \\le 167$ , draw the segments $\\overline {P_kQ_k}$ . Repeat this construction on the sides $\\overline {AD}$ and $\\overline {CD}$ , and then draw the diagonal $\\overline {AC}$ . Find the sum of the lengths of the 335 parallel segments drawn.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "840",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1991_AIME_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Expanding $(1+0.2)^{1000}_{}$ by the binomial theorem and doing no further manipulation gives",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "166",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1991_AIME_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "How many real numbers $x^{}_{}$ satisfy the equation $\\frac{1}{5}\\log_2 x = \\sin (5\\pi x)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "159",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1991_AIME_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Given a rational number , write it as a fraction in lowest terms and calculate the product of the resulting numerator and denominator . For how many rational numbers between $0$ and $1$ will $20_{}^{}!$ be the resulting product ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "128",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1991_AIME_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Suppose $r^{}_{}$ is a real number for which",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "743",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1991_AIME_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Find $A^2_{}$ , where $A^{}_{}$ is the sum of the absolute values of all roots of the following equation:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "383",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1991_AIME_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "For how many real numbers $a$ does the quadratic equation $x^2 + ax + 6a=0$ have only integer roots for $x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "010",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1991_AIME_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Suppose that $\\sec x+\\tan x=\\frac{22}7$ and that $\\csc x+\\cot x=\\frac mn,$ where $\\frac mn$ is in lowest terms. Find $m+n^{}_{}.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "044",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1991_AIME_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Two three-letter strings, $aaa^{}_{}$ and $bbb^{}_{}$ , are transmitted electronically. Each string is sent letter by letter. Due to faulty equipment, each of the six letters has a 1/3 chance of being received incorrectly, as an $a^{}_{}$ when it should have been a $b^{}_{}$ , or as a $b^{}_{}$ when it should be an $a^{}_{}$ . However, whether a given letter is received correctly or incorrectly is independent of the reception of any other letter. Let $S_a^{}$ be the three-letter string received when $aaa^{}_{}$ is transmitted and let $S_b^{}$ be the three-letter string received when $bbb^{}_{}$ is transmitted. Let $p$ be the probability that $S_a^{}$ comes before $S_b^{}$ in alphabetical order. When $p$ is written as a fraction in lowest terms , what is its numerator ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "532",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1991_AIME_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Twelve congruent disks are placed on a circle $C^{}_{}$ of radius 1 in such a way that the twelve disks cover $C^{}_{}$ , no two of the disks overlap, and so that each of the twelve disks is tangent to its two neighbors. The resulting arrangement of disks is shown in the figure below. The sum of the areas of the twelve disks can be written in the from $\\pi(a-b\\sqrt{c})$ , where $a,b,c^{}_{}$ are positive integers and $c^{}_{}$ is not divisible by the square of any prime. Find $a+b+c^{}_{}$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "135",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1991_AIME_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Rhombus $PQRS^{}_{}$ is inscribed in rectangle $ABCD^{}_{}$ so that vertices $P^{}_{}$ , $Q^{}_{}$ , $R^{}_{}$ , and $S^{}_{}$ are interior points on sides $\\overline{AB}$ , $\\overline{BC}$ , $\\overline{CD}$ , and $\\overline{DA}$ , respectively. It is given that $PB^{}_{}=15$ , $BQ^{}_{}=20$ , $PR^{}_{}=30$ , and $QS^{}_{}=40$ . Let $\\frac{m}{n}$ , in lowest terms, denote the perimeter of $ABCD^{}_{}$ . Find $m+n^{}_{}$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "677",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1991_AIME_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "A drawer contains a mixture of red socks and blue socks, at most $1991$ in all. It so happens that, when two socks are selected randomly without replacement, there is a probability of exactly $\\frac{1}{2}$ that both are red or both are blue. What is the largest possible number of red socks in the drawer that is consistent with this data?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "990",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1991_AIME_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "A hexagon is inscribed in a circle . Five of the sides have length $81$ and the sixth, denoted by $\\overline{AB}$ , has length $31$ . Find the sum of the lengths of the three diagonals that can be drawn from $A_{}^{}$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "384",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1991_AIME_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "For positive integer $n_{}^{}$ , define $S_n^{}$ to be the minimum value of the sum $\\sum_{k=1}^n \\sqrt{(2k-1)^2+a_k^2},$ where $a_1,a_2,\\ldots,a_n^{}$ are positive real numbers whose sum is 17. There is a unique positive integer $n^{}_{}$ for which $S_n^{}$ is also an integer. Find this $n^{}_{}$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "012",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1991_AIME_Problems/Problem_15"
+    }
+  ]
+}

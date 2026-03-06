@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2015,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "What is the value of $2-(-2)^{-2}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Marie does three equally time-consuming tasks in a row without taking breaks. She begins the first task at $1\\!:\\!00$ PM and finishes the second task at $2\\!:\\!40$ PM. When does she finish the third task?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Isaac has written down one integer two times and another integer three times. The sum of the five numbers is $100$ , and one of the numbers is $28.$ What is the other number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Four siblings ordered an extra large pizza. Alex ate $\\frac15$ , Beth $\\frac13$ , and Cyril $\\frac14$ of the pizza. Dan got the leftovers. What is the sequence of the siblings in decreasing order of the part of pizza they consumed?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "David, Hikmet, Jack, Marta, Rand, and Todd were in a $12$ -person race with $6$ other people. Rand finished $6$ places ahead of Hikmet. Marta finished $1$ place behind Jack. David finished $2$ places behind Hikmet. Jack finished $2$ places behind Todd. Todd finished $1$ place behind Rand. Marta finished in $6$ th place. Who finished in $8$ th place?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Mahdi practices exactly one sport each day of the week. He runs three days a week but never on two consecutive days. On Monday he plays basketball and two days later golf. He swims and plays tennis, but he never plays tennis the day after running or swimming. Which day of the week does Mahdi swim?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Consider the operation \"minus the reciprocal of,\" defined by $a\\diamond b=a-\\frac{1}{b}$ . What is $((1\\diamond2)\\diamond3)-(1\\diamond(2\\diamond3))$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "The letter F shown below is rotated $90^\\circ$ clockwise around the origin, then reflected in the $y$ -axis, and then rotated a half turn around the origin. What is the final image?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "The shaded region below is called a shark's fin falcata, a figure studied by Leonardo da Vinci. It is bounded by the portion of the circle of radius $3$ and center $(0,0)$ that lies in the first quadrant, the portion of the circle with radius $\\tfrac{3}{2}$ and center $(0,\\tfrac{3}{2})$ that lies in the first quadrant, and the line segment from $(0,0)$ to $(3,0)$ . What is the area of the shark's fin falcata?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "What are the sign and units digit of the product of all the odd negative integers strictly greater than $-2015$ ? $\\textbf{(A) }$ It is a negative number ending with a 1. $\\textbf{(B) }$ It is a positive number ending with a 1. $\\textbf{(C) }$ It is a negative number ending with a 5. $\\textbf{(D) }$ It is a positive number ending with a 5. $\\textbf{(E) }$ It is a negative number ending with a 0.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Among the positive integers less than $100$ , each of whose digits is a prime number, one is selected at random. What is the probability that the selected number is prime?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "For how many integers $x$ is the point $(x, -x)$ inside or on the circle of radius $10$ centered at $(5, 5)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "The line $12x+5y=60$ forms a triangle with the coordinate axes. What is the sum of the lengths of the altitudes of this triangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Let $a$ , $b$ , and $c$ be three distinct one-digit numbers. What is the maximum value of the sum of the roots of the equation $(x-a)(x-b)+(x-b)(x-c)=0$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "The town of Hamlet has $3$ people for each horse, $4$ sheep for each cow, and $3$ ducks for each person. Which of the following could not possibly be the total number of people, horses, sheep, cows, and ducks in Hamlet?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Al, Bill, and Cal will each randomly be assigned a whole number from $1$ to $10$ , inclusive, with no two of them getting the same number. What is the probability that Al's number will be a whole number multiple of Bill's and Bill's number will be a whole number multiple of Cal's?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "The centers of the faces of the right rectangular prism shown below are joined to create an octahedron. What is the volume of this octahedron?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Johann has $64$ fair coins. He flips all the coins. Any coin that lands on tails is tossed again. Coins that land on tails on the second toss are tossed a third time. What is the expected number of coins that are now heads?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "In $\\triangle{ABC}$ , $\\angle{C} = 90^{\\circ}$ and $AB = 12$ . Squares $ABXY$ and $ACWZ$ are constructed outside of the triangle. The points $X, Y, Z$ , and $W$ lie on a circle. What is the perimeter of the triangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Erin the ant starts at a given corner of a cube and crawls along exactly 7 edges in such a way that she visits every corner exactly once and then finds that she is unable to return along an edge to her starting point. How many paths are there meeting these conditions?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Cozy the Cat and Dash the Dog are going up a staircase with a certain number of steps. However, instead of walking up the steps one at a time, both Cozy and Dash jump. Cozy goes two steps up with each jump (though if necessary, he will just jump the last step). Dash goes five steps up with each jump (though if necessary, he will just jump the last steps if there are fewer than $5$ steps left). Suppose Dash takes $19$ fewer jumps than Cozy to reach the top of the staircase. Let $s$ denote the sum of all possible numbers of steps this staircase can have. What is the sum of the digits of $s$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "In the figure shown below, $ABCDE$ is a regular pentagon and $AG=1$ . What is $FG + JH + CD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Let $n$ be a positive integer greater than $4$ such that the decimal representation of $n!$ ends in $k$ zeros and the decimal representation of $(2n)!$ ends in $3k$ zeros. Let $s$ denote the sum of the four least possible values of $n$ . What is the sum of the digits of $s$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Aaron the ant walks on the coordinate plane according to the following rules. He starts at the origin $p_0=(0,0)$ facing to the east and walks one unit, arriving at $p_1=(1,0)$ . For $n=1,2,3,\\dots$ , right after arriving at the point $p_n$ , if Aaron can turn $90^\\circ$ left and walk one unit to an unvisited point $p_{n+1}$ , he does that. Otherwise, he walks one unit straight ahead to reach $p_{n+1}$ . Thus the sequence of points continues $p_2=(1,1), p_3=(0,1), p_4=(-1,1), p_5=(-1,0)$ , and so on in a counterclockwise spiral pattern. What is $p_{2015}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "A rectangular box measures $a \\times b \\times c$ , where $a$ , $b$ , and $c$ are integers and $1\\leq a \\leq b \\leq c$ . The volume and the surface area of the box are numerically equal. How many ordered triples $(a,b,c)$ are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_10B_Problems/Problem_25"
+    }
+  ]
+}

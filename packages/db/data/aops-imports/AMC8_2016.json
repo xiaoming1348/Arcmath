@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC8",
+    "year": 2016,
+    "exam": null,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "The longest professional tennis match ever played lasted a total of $11$ hours and $5$ minutes. How many minutes was this?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "In rectangle $ABCD$ , $AB=6$ and $AD=8$ . Point $M$ is the midpoint of $\\overline{AD}$ . What is the area of $\\triangle AMC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Four students take an exam. Three of their scores are $70, 80,$ and $90$ . If the average of their four scores is $70$ , then what is the remaining score?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "When Cheenu was a boy, he could run $15$ miles in $3$ hours and $30$ minutes. As an old man, he can now walk $10$ miles in $4$ hours. How many minutes longer does it take for him to walk a mile now compared to when he was a boy?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "The number $N$ is a two-digit number.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "The following bar graph represents the length (in letters) of the names of 19 people. What is the median length of these names? [asy] unitsize(0.9cm); draw((-0.5,0)--(10,0), linewidth(1.5)); draw((-0.5,1)--(10,1)); draw((-0.5,2)--(10,2)); draw((-0.5,3)--(10,3)); draw((-0.5,4)--(10,4)); draw((-0.5,5)--(10,5)); draw((-0.5,6)--(10,6)); draw((-0.5,7)--(10,7)); label(\"frequency\",(-0.5,8)); label(\"0\", (-1, 0)); label(\"1\", (-1, 1)); label(\"2\", (-1, 2)); label(\"3\", (-1, 3)); label(\"4\", (-1, 4)); label(\"5\", (-1, 5)); label(\"6\", (-1, 6)); label(\"7\", (-1, 7)); filldraw((0,0)--(0,7)--(1,7)--(1,0)--cycle, black); filldraw((2,0)--(2,3)--(3,3)--(3,0)--cycle, black); filldraw((4,0)--(4,1)--(5,1)--(5,0)--cycle, black); filldraw((6,0)--(6,4)--(7,4)--(7,0)--cycle, black); filldraw((8,0)--(8,4)--(9,4)--(9,0)--cycle, black); label(\"3\", (0.5, -0.5)); label(\"4\", (2.5, -0.5)); label(\"5\", (4.5, -0.5)); label(\"6\", (6.5, -0.5)); label(\"7\", (8.5, -0.5)); label(\"name length\", (4.5, -1)); [/asy]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Which of the following numbers is not a perfect square?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Find the value of the expression \\[100-98+96-94+92-90+\\cdots+8-6+4-2.\\] $\\textbf{(A) }20\\qquad\\textbf{(B) }40\\qquad\\textbf{(C) }50\\qquad\\textbf{(D) }80\\qquad \\textbf{(E) }100$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "What is the sum of the distinct prime integer divisors of $2016$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Suppose that $a * b$ means $3a-b.$ What is the value of $x$ if \\[2 * (5 * x)=1\\] $\\textbf{(A) }\\frac{1}{10} \\qquad\\textbf{(B) }2\\qquad\\textbf{(C) }\\frac{10}{3} \\qquad\\textbf{(D) }10\\qquad \\textbf{(E) }14$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Determine how many two-digit numbers satisfy the following property: when the number is added to the number obtained by reversing its digits, the sum is $132.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Jefferson Middle School has the same number of boys and girls. $\\frac{3}{4}$ of the girls and $\\frac{2}{3}$ of the boys went on a field trip. What fraction of the students on the field trip were girls?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Two different numbers are randomly selected from the set $\\{ - 2, -1, 0, 3, 4, 5\\}$ and multiplied together. What is the probability that the product is $0$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Karl's car uses a gallon of gas every $35$ miles, and his gas tank holds $14$ gallons when it is full. One day, Karl started with a full tank of gas, drove $350$ miles, bought $8$ gallons of gas, and continued driving to his destination. When he arrived, his gas tank was half full. How many miles did Karl drive that day?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "What is the largest power of $2$ that is a divisor of $13^4 - 11^4$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Annie and Bonnie are running laps around a $400$ -meter oval track. They started together, but Annie has pulled ahead, because she runs $25\\%$ faster than Bonnie. How many laps will Annie have run when she first passes Bonnie?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "An ATM password at Fred's Bank is composed of four digits from $0$ to $9$ , with repeated digits allowable. If no password may begin with the sequence $9,1,1,$ then how many passwords are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "In an All-Area track meet, $216$ sprinters enter a $100-$ meter dash competition. The track has $6$ lanes, so only $6$ sprinters can compete at a time. At the end of each race, the five non-winners are eliminated, and the winner will compete again in a later race. How many races are needed to determine the champion sprinter?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "The sum of $25$ consecutive even integers is $10,000$ . What is the largest of these $25$ consecutive integers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "The least common multiple of $a$ and $b$ is $12$ , and the least common multiple of $b$ and $c$ is $15$ . What is the least possible value of the least common multiple of $a$ and $c$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "A top hat contains 3 red chips and 2 green chips. Chips are drawn randomly, one at a time without replacement, until all 3 of the reds are drawn or until both green chips are drawn. What is the probability that the 3 reds are drawn?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Rectangle $DEFA$ below is a $3 \\times 4$ rectangle with $DC=CB=BA=1$ . The area of the \"bat wings\" (shaded area) is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Two congruent circles centered at points $A$ and $B$ each pass through the other circle's center. The line containing both $A$ and $B$ is extended to intersect the circles at points $C$ and $D$ . The circles intersect at two points, one of which is $E$ . What is the degree measure of $\\angle CED$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "The digits $1$ , $2$ , $3$ , $4$ , and $5$ are each used once to write a five-digit number $PQRST$ . The three-digit number $PQR$ is divisible by $4$ , the three-digit number $QRS$ is divisible by $5$ , and the three-digit number $RST$ is divisible by $3$ . What is $P$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "A semicircle is inscribed in an isosceles triangle with base $16$ and height $15$ so that the diameter of the semicircle is contained in the base of the triangle as shown. What is the radius of the semicircle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_25"
+    }
+  ]
+}

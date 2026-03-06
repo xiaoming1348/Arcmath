@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 2004,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AIME_I"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "The digits of a positive integer $n$ are four consecutive integers in decreasing order when read from left to right. What is the sum of the possible remainders when $n$ is divided by $37$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "217",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AIME_I_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Set $A$ consists of $m$ consecutive integers whose sum is $2m$ , and set $B$ consists of $2m$ consecutive integers whose sum is $m.$ The absolute value of the difference between the greatest element of $A$ and the greatest element of $B$ is $99$ . Find $m.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "201",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AIME_I_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "A convex polyhedron $P$ has $26$ vertices, $60$ edges, and $36$ faces, $24$ of which are triangular and $12$ of which are quadrilaterals. A space diagonal is a line segment connecting two non-adjacent vertices that do not belong to the same face. How many space diagonals does $P$ have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "241",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AIME_I_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Square $ABCD$ has sides of length 2. Set $S$ is the set of all line segments that have length 2 and whose endpoints are on adjacent sides of the square. The midpoints of the line segments in set $S$ enclose a region whose area to the nearest hundredth is $k$ . Find $100k$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "086",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AIME_I_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Alpha and Beta both took part in a two-day problem-solving competition. At the end of the second day, each had attempted questions worth a total of 500 points. Alpha scored 160 points out of 300 points attempted on the first day, and scored 140 points out of 200 points attempted on the second day. Beta who did not attempt 300 points on the first day, had a positive integer score on each of the two days, and Beta's daily success rate (points scored divided by points attempted) on each day was less than Alpha's on that day. Alpha's two-day success ratio was 300/500 = 3/5. The largest possible two-day success ratio that Beta could achieve is $m/n,$ where $m$ and $n$ are relatively prime positive integers. What is $m+n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "849",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AIME_I_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "An integer is called snakelike if its decimal representation $a_1a_2a_3\\cdots a_k$ satisfies $a_i<a_{i+1}$ if $i$ is odd and $a_i>a_{i+1}$ if $i$ is even . How many snakelike integers between 1000 and 9999 have four distinct digits?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "882",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AIME_I_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Let $C$ be the coefficient of $x^2$ in the expansion of the product $(1 - x)(1 + 2x)(1 - 3x)\\cdots(1 + 14x)(1 - 15x).$ Find $|C|.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "588",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AIME_I_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Define a regular $n$ -pointed star to be the union of $n$ line segments $P_1P_2, P_2P_3,\\ldots, P_nP_1$ such that",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "199",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AIME_I_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Let $ABC$ be a triangle with sides 3, 4, and 5, and $DEFG$ be a 6-by-7 rectangle . A segment is drawn to divide triangle $ABC$ into a triangle $U_1$ and a trapezoid $V_1$ and another segment is drawn to divide rectangle $DEFG$ into a triangle $U_2$ and a trapezoid $V_2$ such that $U_1$ is similar to $U_2$ and $V_1$ is similar to $V_2.$ The minimum value of the area of $U_1$ can be written in the form $m/n,$ where $m$ and $n$ are relatively prime positive integers. Find $m+n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "035",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AIME_I_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "A circle of radius 1 is randomly placed in a 15-by-36 rectangle $ABCD$ so that the circle lies completely within the rectangle. Given that the probability that the circle will not touch diagonal $AC$ is $m/n,$ where $m$ and $n$ are relatively prime positive integers. Find $m + n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "817",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AIME_I_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A solid in the shape of a right circular cone is 4 inches tall and its base has a 3-inch radius. The entire surface of the cone, including its base, is painted. A plane parallel to the base of the cone divides the cone into two solids, a smaller cone-shaped solid $C$ and a frustum -shaped solid $F,$ in such a way that the ratio between the areas of the painted surfaces of $C$ and $F$ and the ratio between the volumes of $C$ and $F$ are both equal to $k$ . Given that $k=\\frac m n,$ where $m$ and $n$ are relatively prime positive integers , find $m+n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "512",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AIME_I_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Let $S$ be the set of ordered pairs $(x, y)$ such that $0 < x \\le 1, 0<y\\le 1,$ and $\\left\\lfloor\\log_2{\\left(\\frac 1x\\right)}\\right\\rfloor$ and $\\left\\lfloor\\log_5{\\left(\\frac 1y\\right)}\\right\\rfloor$ are both even. Given that the area of the graph of $S$ is $m/n,$ where $m$ and $n$ are relatively prime positive integers, find $m+n.$ The notation $\\lfloor{z}\\rfloor$ denotes the greatest integer that is less than or equal to $z.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "014",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AIME_I_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "The polynomial $P(x)=(1+x+x^2+\\cdots+x^{17})^2-x^{17}$ has $34$ complex roots of the form $z_k = r_k[\\cos(2\\pi a_k)+i\\sin(2\\pi a_k)], k=1, 2, 3,\\ldots, 34,$ with $0 < a_1 \\le a_2 \\le a_3 \\le \\cdots \\le a_{34} < 1$ and $r_k>0.$ Given that $a_1 + a_2 + a_3 + a_4 + a_5 = m/n,$ where $m$ and $n$ are relatively prime positive integers, find $m+n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "482",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AIME_I_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "A unicorn is tethered by a $20$ -foot silver rope to the base of a magician's cylindrical tower whose radius is $8$ feet. The rope is attached to the tower at ground level and to the unicorn at a height of $4$ feet. The unicorn has pulled the rope taut, the end of the rope is $4$ feet from the nearest point on the tower, and the length of the rope that is touching the tower is $\\frac{a-\\sqrt{b}}c$ feet, where $a, b,$ and $c$ are positive integers , and $c$ is prime. Find $a+b+c.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "813",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AIME_I_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "For all positive integers $x$ , let \\[f(x)=\\begin{cases}1 & \\text{if }x = 1\\\\ \\frac x{10} & \\text{if }x\\text{ is divisible by 10}\\\\ x+1 & \\text{otherwise}\\end{cases}\\] and define a sequence as follows: $x_1=x$ and $x_{n+1}=f(x_n)$ for all positive integers $n$ . Let $d(x)$ be the smallest $n$ such that $x_n=1$ . (For example, $d(100)=3$ and $d(87)=7$ .) Let $m$ be the number of positive integers $x$ such that $d(x)=20$ . Find the sum of the distinct prime factors of $m$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "511",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AIME_I_Problems/Problem_15"
+    }
+  ]
+}

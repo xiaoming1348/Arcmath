@@ -1,0 +1,115 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 2022,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "116",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "227",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "242",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "834",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "550",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "228",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "289",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "378",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "247",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "756",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "150",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "245",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "392",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "459",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "033",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_15"
+    }
+  ]
+}

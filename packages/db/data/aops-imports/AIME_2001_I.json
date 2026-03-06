@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 2001,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AIME_I"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Find the sum of all positive two-digit integers that are divisible by each of their digits.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "630",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AIME_I_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "A finite set $\\mathcal{S}$ of distinct real numbers has the following properties: the mean of $\\mathcal{S}\\cup\\{1\\}$ is $13$ less than the mean of $\\mathcal{S}$ , and the mean of $\\mathcal{S}\\cup\\{2001\\}$ is $27$ more than the mean of $\\mathcal{S}$ . Find the mean of $\\mathcal{S}$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "651",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AIME_I_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Find the sum of the roots , real and non-real, of the equation $x^{2001}+\\left(\\frac 12-x\\right)^{2001}=0$ , given that there are no multiple roots.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "500",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AIME_I_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "In triangle $ABC$ , angles $A$ and $B$ measure $60$ degrees and $45$ degrees, respectively. The bisector of angle $A$ intersects $\\overline{BC}$ at $T$ , and $AT=24$ . The area of triangle $ABC$ can be written in the form $a+b\\sqrt{c}$ , where $a$ , $b$ , and $c$ are positive integers, and $c$ is not divisible by the square of any prime. Find $a+b+c$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "291",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AIME_I_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "An equilateral triangle is inscribed in the ellipse whose equation is $x^2+4y^2=4$ . One vertex of the triangle is $(0,1)$ , one altitude is contained in the y-axis, and the square of the length of each side is $\\sqrt{\\frac{m}{n}}$ , where $m$ and $n$ are relatively prime positive integers. Find $m+n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "937",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AIME_I_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "A fair die is rolled four times. The probability that each of the final three rolls is at least as large as the roll preceding it may be expressed in the form $\\frac{m}{n}$ where $m$ and $n$ are relatively prime positive integers . Find $m + n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "079",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AIME_I_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Triangle $ABC$ has $AB=21$ , $AC=22$ and $BC=20$ . Points $D$ and $E$ are located on $\\overline{AB}$ and $\\overline{AC}$ , respectively, such that $\\overline{DE}$ is parallel to $\\overline{BC}$ and contains the center of the inscribed circle of triangle $ABC$ . Then $DE=m/n$ , where $m$ and $n$ are relatively prime positive integers. Find $m+n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "923",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AIME_I_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Call a positive integer $N$ a 7-10 double if the digits of the base- $7$ representation of $N$ form a base- $10$ number that is twice $N$ . For example, $51$ is a 7-10 double because its base- $7$ representation is $102$ . What is the largest 7-10 double?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "315",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AIME_I_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "In triangle $ABC$ , $AB=13$ , $BC=15$ and $CA=17$ . Point $D$ is on $\\overline{AB}$ , $E$ is on $\\overline{BC}$ , and $F$ is on $\\overline{CA}$ . Let $AD=p\\cdot AB$ , $BE=q\\cdot BC$ , and $CF=r\\cdot CA$ , where $p$ , $q$ , and $r$ are positive and satisfy $p+q+r=2/3$ and $p^2+q^2+r^2=2/5$ . The ratio of the area of triangle $DEF$ to the area of triangle $ABC$ can be written in the form $m/n$ , where $m$ and $n$ are relatively prime positive integers. Find $m+n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "061",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AIME_I_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Let $S$ be the set of points whose coordinates $x,$ $y,$ and $z$ are integers that satisfy $0\\le x\\le2,$ $0\\le y\\le3,$ and $0\\le z\\le4.$ Two distinct points are randomly chosen from $S.$ The probability that the midpoint of the segment they determine also belongs to $S$ is $m/n,$ where $m$ and $n$ are relatively prime positive integers. Find $m + n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "200",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AIME_I_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "In a rectangular array of points, with 5 rows and $N$ columns, the points are numbered consecutively from left to right beginning with the top row. Thus the top row is numbered 1 through $N,$ the second row is numbered $N + 1$ through $2N,$ and so forth. Five points, $P_1, P_2, P_3, P_4,$ and $P_5,$ are selected so that each $P_i$ is in row $i.$ Let $x_i$ be the number associated with $P_i.$ Now renumber the array consecutively from top to bottom, beginning with the first column. Let $y_i$ be the number associated with $P_i$ after the renumbering. It is found that $x_1 = y_2,$ $x_2 = y_1,$ $x_3 = y_4,$ $x_4 = y_5,$ and $x_5 = y_3.$ Find the smallest possible value of $N.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "149",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AIME_I_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "A sphere is inscribed in the tetrahedron whose vertices are $A = (6,0,0), B = (0,4,0), C = (0,0,2),$ and $D = (0,0,0).$ The radius of the sphere is $m/n,$ where $m$ and $n$ are relatively prime positive integers. Find $m + n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "005",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AIME_I_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "In a certain circle , the chord of a $d$ -degree arc is $22$ centimeters long, and the chord of a $2d$ -degree arc is $20$ centimeters longer than the chord of a $3d$ -degree arc, where $d < 120.$ The length of the chord of a $3d$ -degree arc is $- m + \\sqrt {n}$ centimeters, where $m$ and $n$ are positive integers. Find $m + n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "174",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AIME_I_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "A mail carrier delivers mail to the nineteen houses on the east side of Elm Street. The carrier notices that no two adjacent houses ever get mail on the same day, but that there are never more than two houses in a row that get no mail on the same day. How many different patterns of mail delivery are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "351",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AIME_I_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "The numbers $1, 2, 3, 4, 5, 6, 7,$ and $8$ are randomly written on the faces of a regular octahedron so that each face contains a different number. The probability that no two consecutive numbers, where $8$ and $1$ are considered to be consecutive, are written on faces that share an edge is $m/n,$ where $m$ and $n$ are relatively prime positive integers. Find $m + n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "085",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AIME_I_Problems/Problem_15"
+    }
+  ]
+}

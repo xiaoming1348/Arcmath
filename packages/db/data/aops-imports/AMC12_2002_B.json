@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2002,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "The arithmetic mean of the nine numbers in the set $\\{9, 99, 999, 9999, \\ldots, 999999999\\}$ is a $9$ -digit number $M$ , all of whose digits are distinct. The number $M$ doesn't contain the digit",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "What is the value of $(3x - 2)(4x + 1) - (3x - 2)4x + 1$ when $x=4$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "For how many positive integers $n$ is $n^2 - 3n + 2$ a prime number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Let $n$ be a positive integer such that $\\frac 12 + \\frac 13 + \\frac 17 + \\frac 1n$ is an integer. Which of the following statements is not true:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Let $v, w, x, y,$ and $z$ be the degree measures of the five angles of a pentagon . Suppose that $v < w < x < y < z$ and $v, w, x, y,$ and $z$ form an arithmetic sequence . Find the value of $x$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Suppose that $a$ and $b$ are nonzero real numbers, and that the equation $x^2 + ax + b = 0$ has solutions $a$ and $b$ . Then the pair $(a,b)$ is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "The product of three consecutive positive integers is $8$ times their sum. What is the sum of their squares ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Suppose July of year $N$ has five Mondays. Which of the following must occur five times in the August of year $N$ ? (Note: Both months have $31$ days.)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "If $a,b,c,d$ are positive real numbers such that $a,b,c,d$ form an increasing arithmetic sequence and $a,b,d$ form a geometric sequence, then $\\frac ad$ is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "How many different integers can be expressed as the sum of three distinct members of the set $\\{1,4,7,10,13,16,19\\}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "The positive integers $A, B, A-B,$ and $A+B$ are all prime numbers. The sum of these four primes is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "For how many integers $n$ is $\\dfrac n{20-n}$ the square of an integer?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "The sum of $18$ consecutive positive integers is a perfect square . The smallest possible value of this sum is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Four distinct circles are drawn in a plane . What is the maximum number of points where at least two of the circles intersect?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "How many four-digit numbers $N$ have the property that the three-digit number obtained by removing the leftmost digit is one ninth of $N$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Juan rolls a fair regular octahedral die marked with the numbers $1$ through $8$ . Then Amal rolls a fair six-sided die. What is the probability that the product of the two rolls is a multiple of 3?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Andy's lawn has twice as much area as Beth's lawn and three times as much area as Carlos' lawn. Carlos' lawn mower cuts half as fast as Beth's mower and one third as fast as Andy's mower. If they all start to mow their lawns at the same time, who will finish first?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "A point $P$ is randomly selected from the rectangular region with vertices $(0,0),(2,0),(2,1),(0,1)$ . What is the probability that $P$ is closer to the origin than it is to the point $(3,1)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "If $a,b,$ and $c$ are positive real numbers such that $a(b+c) = 152, b(c+a) = 162,$ and $c(a+b) = 170$ , then $abc$ is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Let $\\triangle XOY$ be a right-angled triangle with $m\\angle XOY = 90^{\\circ}$ . Let $M$ and $N$ be the midpoints of legs $OX$ and $OY$ , respectively. Given that $XN = 19$ and $YM = 22$ , find $XY$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "For all positive integers $n$ less than $2002$ , let",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "For all integers $n$ greater than $1$ , define $a_n = \\frac{1}{\\log_n 2002}$ . Let $b = a_2 + a_3 + a_4 + a_5$ and $c = a_{10} + a_{11} + a_{12} + a_{13} + a_{14}$ . Then $b- c$ equals",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "In $\\triangle ABC$ , we have $AB = 1$ and $AC = 2$ . Side $\\overline{BC}$ and the median from $A$ to $\\overline{BC}$ have the same length. What is $BC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "A convex quadrilateral $ABCD$ with area $2002$ contains a point $P$ in its interior such that $PA = 24, PB = 32, PC = 28, PD = 45$ . Find the perimeter of $ABCD$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Let $f(x) = x^2 + 6x + 1$ , and let $R$ denote the set of points $(x,y)$ in the coordinate plane such that \\[f(x) + f(y) \\le 0 \\qquad \\text{and} \\qquad f(x)-f(y) \\le 0\\] The area of $R$ is closest to",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12B_Problems/Problem_25"
+    }
+  ]
+}

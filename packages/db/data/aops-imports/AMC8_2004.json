@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC8",
+    "year": 2004,
+    "exam": null,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "On a map, a $12$ -centimeter length represents $72$ kilometers. How many kilometers does a $17$ -centimeter length represent?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "How many different four-digit numbers can be formed by rearranging the four digits in $2004$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Twelve friends met for dinner at Oscar's Overstuffed Oyster House, and each ordered one meal. The portions were so large, there was enough food for $18$ people. If they shared, how many meals should they have ordered to have just enough food for the $12$ of them?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Ms. Hamilton’s eighth-grade class wants to participate in the annual three-person-team basketball tournament.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Ms. Hamilton's eighth-grade class wants to participate in the annual three-person-team basketball tournament. The losing team of each game is eliminated from the tournament. If sixteen teams compete, how many games will be played to determine the winner?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "After Sally takes $20$ shots, she has made $55\\%$ of her shots. After she takes $5$ more shots, she raises her percentage to $56\\%$ . How many of the last $5$ shots did she make?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "An athlete's target heart rate, in beats per minute, is $80\\%$ of the theoretical maximum heart rate. The maximum heart rate is found by subtracting the athlete's age, in years, from $220$ . To the nearest whole number, what is the target heart rate of an athlete who is $26$ years old?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Find the number of two-digit positive integers whose digits total $7$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "The average of the five numbers in a list is $54$ . The average of the first two numbers is $48$ . What is the average of the last three numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Handy Aaron helped a neighbor $1 \\frac14$ hours on Monday, $50$ minutes on Tuesday, from 8:20 to 10:45 on Wednesday morning, and a half-hour on Friday. He is paid $\\textdollar 3$ per hour. How much did he earn for the week?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "The numbers $-2, 4, 6, 9$ and $12$ are rearranged according to these rules:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Niki usually leaves her cell phone on. If her cell phone is on but she is not actually using it, the battery will last for $24$ hours. If she is using it constantly, the battery will last for only $3$ hours. Since the last recharge, her phone has been on $9$ hours, and during that time she has used it for $60$ minutes. If she doesn’t use it any more but leaves the phone on, how many more hours will the battery last?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Amy, Bill and Celine are friends with different ages. Exactly one of the following statements is true.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "What is the area enclosed by the geoboard quadrilateral below?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Thirteen black and six white hexagonal tiles were used to create the figure below. If a new figure is created by attaching a border of white tiles with the same size and shape as the others, what will be the difference between the total number of white tiles and the total number of black tiles in the new figure?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Two $600$ mL pitchers contain orange juice. One pitcher is $1/3$ full and the other pitcher is $2/5$ full. Water is added to fill each pitcher completely, then both pitchers are poured into one large container. What fraction of the mixture in the large container is orange juice?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Three friends have a total of $6$ identical pencils, and each one has at least one pencil. In how many ways can this happen?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Five friends compete in a dart-throwing contest. Each one has two darts to throw at the same circular target, and each individual's score is the sum of the scores in the target regions that are hit. The scores for the target regions are the whole numbers $1$ through $10$ . Each throw hits the target in a region with a different value. The scores are: Alice $16$ points, Ben $4$ points, Cindy $7$ points, Dave $11$ points, and Ellen $17$ points. Who hits the region worth $6$ points?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "A whole number larger than $2$ leaves a remainder of $2$ when divided by each of the numbers $3, 4, 5,$ and $6$ . The smallest such number lies between which two numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Two-thirds of the people in a room are seated in three-fourths of the chairs. The rest of the people are standing. If there are $6$ empty chairs, how many people are in the room?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Spinners $A$ and $B$ are spun. On each spinner, the arrow is equally likely to land on each number. What is the probability that the product of the two spinners' numbers is even?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "At a party there are only single women and married men with their wives. The probability that a randomly selected woman is single is $\\frac25$ . What fraction of the people in the room are married men?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Tess runs counterclockwise around rectangular block $JKLM$ . She lives at corner $J$ . Which graph could represent her straight-line distance from home?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "In the figure, $ABCD$ is a rectangle and $EFGH$ is a parallelogram. Using the measurements given in the figure, what is the length $d$ of the segment that is perpendicular to $\\overline{HE}$ and $\\overline{FG}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Two $4 \\times 4$ squares intersect at right angles, bisecting their intersecting sides, as shown. The circle's diameter is the segment between the two points of intersection. What is the area of the shaded region created by removing the circle from the squares?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_8_Problems/Problem_25"
+    }
+  ]
+}

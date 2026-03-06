@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC8",
+    "year": 1999,
+    "exam": null,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "$(6?3) + 4 - (2 - 1) = 5.$ To make this statement true, the question mark between the 6 and the 3 should be replaced by",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "What is the degree measure of the smaller angle formed by the hands of a clock at 10 o'clock?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Which triplet of numbers has a sum NOT equal to 1?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "The diagram shows the miles traveled by bikers Alberto and Bjorn. After four hours, about how many more miles has Alberto biked than Bjorn?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "A rectangular garden 60 feet long and 20 feet wide is enclosed by a fence. To make the garden larger, while using the same fence, its shape is changed to a square. By how many square feet does this enlarge the garden?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Bo, Coe, Flo, Jo, and Moe have different amounts of money. Neither Jo nor Bo has as much money as Flo. Both Bo and Coe have more than Moe. Jo has more than Moe, but less than Bo. Who has the least amount of money?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "The third exit on a highway is located at milepost 40 and the tenth exit is at milepost 160. There is a service center on the highway located three-fourths of the way from the third exit to the tenth exit. At what milepost would you expect to find this service center?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Six squares are colored, front and back, (R = red, B = blue, O = orange, Y = yellow, G = green, and W = white). They are hinged together as shown, then folded to form a cube. The face opposite the white face is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Three flower beds overlap as shown. Bed A has 500 plants, bed B has 450 plants, and bed C has 350 plants. Beds A and B share 50 plants, while beds A and C share 100. The total number of plants is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "A complete cycle of a traffic light takes 60 seconds. During each cycle the light is green for 25 seconds, yellow for 5 seconds, and red for 30 seconds. At a randomly chosen time, what is the probability that the light will NOT be green?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Each of the five numbers 1, 4, 7, 10, and 13 is placed in one of the five squares so that the sum of the three numbers in the horizontal row equals the sum of the three numbers in the vertical column. The largest possible value for the horizontal or vertical sum is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "The ratio of the number of games won to the number of games lost (no ties) by the Middle School Middies is $11/4$ . To the nearest whole percent, what percent of its games did the team lose?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "The average age of the 40 members of a computer science camp is 17 years. There are 20 girls, 15 boys, and 5 adults. If the average age of the girls is 15 and the average age of the boys is 16, what is the average age of the adults?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "In trapezoid $ABCD$ , the sides $AB$ and $CD$ are equal. The perimeter of $ABCD$ is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Bicycle license plates in Flatville each contain three letters. The first is chosen from the set {C,H,L,P,R}, the second from {A,I,O}, and the third from {D,M,N,T}.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Tori's mathematics test had 75 problems: 10 arithmetic, 30 algebra, and 35 geometry problems. Although she answered 70% of the arithmetic, 40% of the algebra, and 60% of the geometry problems correctly, she did not pass the test because she got less than 60% of the problems right. How many more problems would she have needed to answer correctly to earn a 60% passing grade?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "At Central Middle School the 108 students who take the AMC 8 meet in the evening to talk about problems and eat an average of two cookies apiece. Walter and Gretel are baking Bonnie's Best Bar Cookies this year. Their recipe, which makes a pan of 15 cookies, lists this items: $1\\frac{1}{2}$ cups of flour, $2$ eggs, $3$ tablespoons butter, $\\frac{3}{4}$ cups sugar, and $1$ package of chocolate drops. They will make only full recipes, not partial recipes.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "At Central Middle School the $108$ students who take the AMC8 meet in the evening to talk about problems and eat an average of two cookies apiece. Walter and Gretel are baking Bonnie's Best Bar Cookies this year. Their recipe, which makes a pan of $15$ cookies, lists this items: $1\\frac{1}{2}$ cups flour, $2$ eggs, $3$ tablespoons butter, $\\frac{3}{4}$ cups sugar, and $1$ package of chocolate drops. They will make only full recipes, not partial recipes.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "At Central Middle School, the 108 students who take the AMC 8 meet in the evening to talk about food and eat an average of two cookies apiece. Hansel and Gretel are baking Bonnie's Best Bar Cookies this year. Their recipe, which makes a pan of 15 cookies, lists these items: $1\\frac{1}{2}$ cups flour, $2$ eggs, $3$ tablespoons butter, $\\frac{3}{4}$ cups sugar, and $1$ package of chocolate drops. They will make full recipes, not partial recipes.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Figure 1 is called a \"stack map.\" The numbers tell how many cubes are stacked in each position. Fig. 2 shows these cubes, and Fig. 3 shows the view of the stacked cubes as seen from the front.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "The degree measure of angle $A$ is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "In a far-off land three fish can be traded for two loaves of bread and a loaf of bread can be traded for four bags of rice. How many bags of rice is one fish worth?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Square $ABCD$ has sides of length 3. Segments $CM$ and $CN$ divide the square's area into three equal parts. How long is segment $CM$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "When $1999^{2000}$ is divided by $5$ , the remainder is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Points $B$ , $D$ , and $J$ are midpoints of the sides of right triangle $ACG$ . Points $K$ , $E$ , $I$ are midpoints of the sides of triangle $JDG$ , etc. If the dividing and shading process is done 100 times (the first three are shown) and $AC=CG=6$ , then the total area of the shaded triangles is nearest",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AMC_8_Problems/Problem_25"
+    }
+  ]
+}

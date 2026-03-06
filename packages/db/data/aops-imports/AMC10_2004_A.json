@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2004,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "You and five friends need to raise $1500$ dollars in donations for a charity, dividing the fundraising equally. How many dollars will each of you need to raise?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "For any three real numbers $a$ , $b$ , and $c$ , with $b\\neq c$ , the operation $\\otimes$ is defined by: \\[\\otimes(a,b,c)=\\frac{a}{b-c}\\] What is $\\otimes(\\otimes(1,2,3),\\otimes(2,3,1),\\otimes(3,1,2))$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Alicia earns 20 dollars per hour, of which $1.45\\%$ is deducted to pay local taxes. How many cents per hour of Alicia's wages are used to pay local taxes?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "What is the value of $x$ if $|x-1|=|x-2|$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "A set of three points is randomly chosen from the grid shown. Each three point set has the same probability of being chosen. What is the probability that the points lie on the same straight line?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Bertha has 6 daughters and no sons. Some of her daughters have 6 daughters, and the rest have none. Bertha has a total of 30 daughters and granddaughters, and no great-granddaughters. How many of Bertha's daughters and grand-daughters have no daughters?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "A grocer stacks oranges in a pyramid-like stack whose rectangular base is $5$ oranges by $8$ oranges. Each orange above the first level rests in a pocket formed by four oranges below. The stack is completed by a single row of oranges. How many oranges are in the stack?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "A game is played with tokens according to the following rule. In each round, the player with the most tokens gives one token to each of the other players and also places one token in the discard pile. The game ends when some player runs out of tokens. Players $A$ , $B$ , and $C$ start with $15$ , $14$ , and $13$ tokens, respectively. How many rounds will there be in the game?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "In the overlapping triangles $\\triangle{ABC}$ and $\\triangle{ABE}$ sharing common side $AB$ , $\\angle{EAB}$ and $\\angle{ABC}$ are right angles , $AB=4$ , $BC=6$ , $AE=8$ , and $\\overline{AC}$ and $\\overline{BE}$ intersect at $D$ . What is the difference between the areas of $\\triangle{ADE}$ and $\\triangle{BDC}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Coin $A$ is flipped three times and coin $B$ is flipped four times. What is the probability that the number of heads obtained from flipping the two fair coins is the same?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A company sells peanut butter in cylindrical jars. Marketing research suggests that using wider jars will increase sales. If the diameter of the jars is increased by $25\\%$ without altering the volume , by what percent must the height be decreased?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Henry's Hamburger Haven offers its hamburgers with the following condiments: ketchup, mustard, mayonnaise, tomato, lettuce, pickles, cheese, and onions. A customer can choose one, two,or three meat patties and any collection of condiments. How many different kinds of hamburgers can be ordered?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "At a party, each man danced with exactly three women and each woman danced with exactly two men. Twelve men attended the party. How many women attended the party?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "The average value of all the pennies, nickels, dimes, and quarters in Paula's purse is $20$ cents. If she had one more quarter, the average value would be $21$ cents. How many dimes does she have in her purse?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Given that $-4\\leq x\\leq-2$ and $2\\leq y\\leq4$ , what is the largest possible value of $\\frac{x+y}{x}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "The $5\\times 5$ grid shown contains a collection of squares with sizes from $1\\times 1$ to $5\\times 5$ . How many of these squares contain the black center square?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Brenda and Sally run in opposite directions on a circular track, starting at diametrically opposite points. They first meet after Brenda has run 100 meters. They next meet after Sally has run 150 meters past their first meeting point. Each girl runs at a constant speed. What is the length of the track in meters?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "A sequence of three real numbers forms an arithmetic progression with a first term of $9$ . If $2$ is added to the second term and $20$ is added to the third term, the three resulting numbers form a geometric progression . What is the smallest possible value for the third term in the geometric progression?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "A white cylindrical silo has a diameter of 30 feet and a height of 80 feet. A red stripe with a horizontal width of 3 feet is painted on the silo, as shown, making two complete revolutions around it. What is the area of the stripe in square feet?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Points $E$ and $F$ are located on square $ABCD$ so that $\\triangle BEF$ is equilateral. What is the ratio of the area of $\\triangle DEF$ to that of $\\triangle ABE$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Two distinct lines pass through the center of three concentric circles of radii 3, 2, and 1. The area of the shaded region in the diagram is $\\frac{8}{13}$ of the area of the unshaded region. What is the radian measure of the acute angle formed by the two lines? (Note: $\\pi$ radian is $180$ degree.)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Square $ABCD$ has side length $2$ . A semicircle with diameter $\\overline{AB}$ is constructed inside the square, and the tangent to the semicircle from $C$ intersects side $\\overline{AD}$ at $E$ . What is the length of $\\overline{CE}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Circles $A, B$ and $C$ are externally tangent to each other, and internally tangent to circle $D$ . Circles $B$ and $C$ are congruent. Circle $A$ has radius $1$ and passes through the center of $D$ . What is the radius of circle $B$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Let $f$ be a function with the following properties:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Three mutually tangent spheres of radius $1$ rest on a horizontal plane. A sphere of radius $2$ rests on them. What is the distance from the plane to the top of the larger sphere?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2004_AMC_10A_Problems/Problem_25"
+    }
+  ]
+}

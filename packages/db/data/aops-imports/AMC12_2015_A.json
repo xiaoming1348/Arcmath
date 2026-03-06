@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2015,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "What is the value of $(2^0-1+5^2-0)^{-1}\\times5?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Two of the three sides of a triangle are 20 and 15. Which of the following numbers is not a possible perimeter of the triangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Mr. Patrick teaches math to $15$ students. He was grading tests and found that when he graded everyone's test except Payton's, the average grade for the class was $80$ . After he graded Payton's test, the test average became $81$ . What was Payton's score on the test?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "The sum of two positive numbers is $5$ times their difference. What is the ratio of the larger number to the smaller number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Sreshtha needs to estimate the quantity $\\frac{a}{b} - c$ , where $a, b,$ and $c$ are large positive integers. She rounds each of the integers so that the calculation will be easier to do mentally. In which of these situations will her answer necessarily be greater than the exact value of $\\frac{a}{b} - c$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Two years ago Pete was three times as old as his cousin Claire. Two years before that, Pete was four times as old as Claire. In how many years will the ratio of their ages be $2$ : $1$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Two right circular cylinders have the same volume. The radius of the second cylinder is $10\\%$ more than the radius of the first. What is the relationship between the heights of the two cylinders?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "The ratio of the length to the width of a rectangle is $4$ : $3$ . If the rectangle has diagonal of length $d$ , then the area may be expressed as $kd^2$ for some constant $k$ . What is $k$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "A box contains 2 red marbles, 2 green marbles, and 2 yellow marbles. Carol takes 2 marbles from the box at random; then Claudia takes 2 of the remaining marbles at random; and then Cheryl takes the last 2 marbles. What is the probability that Cheryl gets 2 marbles of the same color?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Integers $x$ and $y$ with $x>y>0$ satisfy $x+y+xy=80$ . What is $x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "On a sheet of paper, Isabella draws a circle of radius $2$ , a circle of radius $3$ , and all possible lines simultaneously tangent to both circles. Isabella notices that she has drawn exactly $k \\ge 0$ lines. How many different values of $k$ are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "The parabolas $y=ax^2 - 2$ and $y=4 - bx^2$ intersect the coordinate axes in exactly four points, and these four points are the vertices of a kite of area $12$ . What is $a+b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "A league with 12 teams holds a round-robin tournament, with each team playing every other team exactly once. Games either end with one team victorious or else end in a draw. A team scores 2 points for every game it wins and 1 point for every game it draws. Which of the following is NOT a true statement about the list of 12 scores?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "What is the value of $a$ for which $\\frac{1}{\\log_2a} + \\frac{1}{\\log_3a} + \\frac{1}{\\log_4a} = 1$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "What is the minimum number of digits to the right of the decimal point needed to express the fraction $\\frac{123456789}{2^{26}\\cdot 5^4}$ as a decimal?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Tetrahedron $ABCD$ has $AB=5$ , $AC=3$ , $BC=4$ , $BD=4$ , $AD=3$ , and $CD=\\tfrac{12}5\\sqrt2$ . What is the volume of the tetrahedron?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Eight people are sitting around a circular table, each holding a fair coin. All eight people flip their coins and those who flip heads stand while those who flip tails remain seated. What is the probability that no two adjacent people will stand?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "The zeros of the function $f(x) = x^2-ax+2a$ are integers. What is the sum of the possible values of $a$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "For some positive integers $p$ , there is a quadrilateral $ABCD$ with positive integer side lengths, perimeter $p$ , right angles at $B$ and $C$ , $AB=2$ , and $CD=AD$ . How many different values of $p<2015$ are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Isosceles triangles $T$ and $T'$ are not congruent but have the same area and the same perimeter. The sides of $T$ have lengths $5$ , $5$ , and $8$ , while those of $T'$ have lengths $a$ , $a$ , and $b$ . Which of the following numbers is closest to $b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "A circle of radius $r$ passes through both foci of, and exactly four points on, the ellipse with equation $x^2+16y^2=16.$ The set of all possible values of $r$ is an interval $[a,b).$ What is $a+b?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "For each positive integer $n$ , let $S(n)$ be the number of sequences of length $n$ consisting solely of the letters $A$ and $B$ , with no more than three $A$ s in a row and no more than three $B$ s in a row. What is the remainder when $S(2015)$ is divided by $12$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Let $S$ be a square of side length 1. Two points are chosen independently at random on the sides of $S$ . The probability that the straight-line distance between the points is at least $\\frac12$ is $\\frac{a-b\\pi}{c}$ , where $a,b,$ and $c$ are positive integers and $\\text{gcd}(a,b,c) = 1$ . What is $a+b+c$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Rational numbers $a$ and $b$ are chosen at random among all rational numbers in the interval $[0,2)$ that can be written as fractions $\\frac{n}{d}$ where $n$ and $d$ are integers with $1 \\le d \\le 5$ . What is the probability that \\[(\\text{cos}(a\\pi)+i\\text{sin}(b\\pi))^4\\] is a real number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "A collection of circles in the upper half-plane, all tangent to the $x$ -axis, is constructed in layers as follows. Layer $L_0$ consists of two circles of radii $70^2$ and $73^2$ that are externally tangent. For $k \\ge 1$ , the circles in $\\bigcup_{j=0}^{k-1}L_j$ are ordered according to their points of tangency with the $x$ -axis. For every pair of consecutive circles in this order, a new circle is constructed externally tangent to each of the two circles in the pair. Layer $L_k$ consists of the $2^{k-1}$ circles constructed in this way. Let $S=\\bigcup_{j=0}^{6}L_j$ , and for every circle $C$ denote by $r(C)$ its radius. What is \\[\\sum_{C\\in S} \\frac{1}{\\sqrt{r(C)}}?\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AMC_12A_Problems/Problem_25"
+    }
+  ]
+}

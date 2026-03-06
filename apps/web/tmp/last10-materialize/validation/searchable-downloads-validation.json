@@ -1,0 +1,23 @@
+{
+  "startedAt": "2026-03-05T07:55:09.201Z",
+  "finishedAt": "2026-03-05T07:55:55.643Z",
+  "yearWindow": {
+    "yearFrom": 2016,
+    "yearTo": 2025
+  },
+  "totalSearchableSets": 69,
+  "byContest": {
+    "AIME": 20,
+    "AMC10": 20,
+    "AMC12": 20,
+    "AMC8": 9
+  },
+  "totals": {
+    "checkedVariants": 138,
+    "routeFailures": 0,
+    "qualityFailures": 0
+  },
+  "failures": [],
+  "passed": true,
+  "reportPath": "/Users/yimingsun/Desktop/Arcmath/apps/web/tmp/last10-materialize/validation/searchable-downloads-validation.json"
+}

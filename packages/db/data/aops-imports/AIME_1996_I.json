@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 1996,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1996_AIME"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "In a magic square , the sum of the three entries in any row, column, or diagonal is the same value. The figure shows four of the entries of a magic square. Find $x$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "200",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1996_AIME_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "For each real number $x$ , let $\\lfloor x \\rfloor$ denote the greatest integer that does not exceed x. For how many positive integers $n$ is it true that $n<1000$ and that $\\lfloor \\log_{2} n \\rfloor$ is a positive even integer?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "340",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1996_AIME_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Find the smallest positive integer $n$ for which the expansion of $(xy-3x+7y-21)^n$ , after like terms have been collected, has at least 1996 terms.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "044",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1996_AIME_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "A wooden cube , whose edges are one centimeter long, rests on a horizontal surface. Illuminated by a point source of light that is $x$ centimeters directly above an upper vertex , the cube casts a shadow on the horizontal surface. The area of the shadow, which does not include the area beneath the cube is 48 square centimeters. Find the greatest integer that does not exceed $1000x$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "166",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1996_AIME_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Suppose that the roots of $x^3+3x^2+4x-11=0$ are $a$ , $b$ , and $c$ , and that the roots of $x^3+rx^2+sx+t=0$ are $a+b$ , $b+c$ , and $c+a$ . Find $t$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "023",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1996_AIME_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "In a five-team tournament, each team plays one game with every other team. Each team has a $50\\%$ chance of winning any game it plays. (There are no ties.) Let $\\dfrac{m}{n}$ be the probability that the tournament will produce neither an undefeated team nor a winless team, where $m$ and $n$ are relatively prime integers. Find $m+n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "049",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1996_AIME_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Two squares of a $7\\times 7$ checkerboard are painted yellow, and the rest are painted green. Two color schemes are equivalent if one can be obtained from the other by applying a rotation in the plane board. How many inequivalent color schemes are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "300",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1996_AIME_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "The harmonic mean of two positive integers is the reciprocal of the arithmetic mean of their reciprocals. For how many ordered pairs of positive integers $(x,y)$ with $x<y$ is the harmonic mean of $x$ and $y$ equal to $6^{20}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "799",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1996_AIME_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "A bored student walks down a hall that contains a row of closed lockers, numbered $1$ to $1024$ . He opens the locker numbered 1, and then alternates between skipping and opening each locker thereafter. When he reaches the end of the hall, the student turns around and starts back. He opens the first closed locker he encounters, and then alternates between skipping and opening each closed locker thereafter. The student continues wandering back and forth in this manner until every locker is open. What is the number of the last locker he opens?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "342",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1996_AIME_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Find the smallest positive integer solution to $\\tan{19x^{\\circ}}=\\dfrac{\\cos{96^{\\circ}}+\\sin{96^{\\circ}}}{\\cos{96^{\\circ}}-\\sin{96^{\\circ}}}$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "159",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1996_AIME_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Let $\\mathrm {P}$ be the product of the roots of $z^6+z^4+z^3+z^2+1=0$ that have a positive imaginary part, and suppose that $\\mathrm {P}=r(\\cos{\\theta^{\\circ}}+i\\sin{\\theta^{\\circ}})$ , where $0<r$ and $0\\leq \\theta <360$ . Find $\\theta$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "276",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1996_AIME_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "For each permutation $a_1,a_2,a_3,\\cdots,a_{10}$ of the integers $1,2,3,\\cdots,10$ , form the sum",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "058",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1996_AIME_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "In triangle $ABC$ , $AB=\\sqrt{30}$ , $AC=\\sqrt{6}$ , and $BC=\\sqrt{15}$ . There is a point $D$ for which $\\overline{AD}$ bisects $\\overline{BC}$ , and $\\angle ADB$ is a right angle. The ratio $\\frac{[ADB]}{[ABC]}$ can be written in the form $\\dfrac{m}{n}$ , where $m$ and $n$ are relatively prime positive integers. Find $m+n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "065",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1996_AIME_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "A $150\\times 324\\times 375$ rectangular solid is made by gluing together $1\\times 1\\times 1$ cubes. An internal diagonal of this solid passes through the interiors of how many of the $1\\times 1\\times 1$ cubes ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "768",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1996_AIME_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "In parallelogram $ABCD$ , let $O$ be the intersection of diagonals $\\overline{AC}$ and $\\overline{BD}$ . Angles $CAB$ and $DBC$ are each twice as large as angle $DBA$ , and angle $ACB$ is $r$ times as large as angle $AOB$ . Find $\\lfloor 1000r \\rfloor$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "777",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1996_AIME_Problems/Problem_15"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 2005,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_I"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Six congruent circles form a ring with each circle externally tangent to two circles adjacent to it. All circles are internally tangent to a circle $C$ with radius 30. Let $K$ be the area of the region inside circle $C$ and outside of the six circles in the ring. Find $\\lfloor K \\rfloor$ (the floor function ).",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "942",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_I_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "For each positive integer $k$ , let $S_k$ denote the increasing arithmetic sequence of integers whose first term is $1$ and whose common difference is $k$ . For example, $S_3$ is the sequence $1,4,7,10,\\ldots.$ For how many values of $k$ does $S_k$ contain the term $2005$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "012",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_I_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "How many positive integers have exactly three proper divisors (positive integral divisors excluding itself), each of which is less than 50?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "109",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_I_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "The director of a marching band wishes to place the members into a formation that includes all of them and has no unfilled positions. If they are arranged in a square formation, there are 5 members left over. The director realizes that if he arranges the group in a formation with 7 more rows than columns, there are no members left over. Find the maximum number of members this band can have.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "294",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_I_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Robert has 4 indistinguishable gold coins and 4 indistinguishable silver coins. Each coin has an engraving of one face on one side, but not on the other. He wants to stack the eight coins on a table into a single stack so that no two adjacent coins are face to face. Find the number of possible distinguishable arrangements of the 8 coins.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "630",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_I_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Let $P$ be the product of the nonreal roots of $x^4-4x^3+6x^2-4x=2005.$ Find $\\lfloor P\\rfloor.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "045",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_I_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "In quadrilateral $ABCD,\\ BC=8,\\ CD=12,\\ AD=10,$ and $m\\angle A= m\\angle B = 60^\\circ.$ Given that $AB = p + \\sqrt{q},$ where $p$ and $q$ are positive integers , find $p+q.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "150",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_I_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "The equation $2^{333x-2} + 2^{111x+2} = 2^{222x+1} + 1$ has three real roots . Given that their sum is $m/n$ where $m$ and $n$ are relatively prime positive integers , find $m+n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "113",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_I_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Twenty seven unit cubes are painted orange on a set of four faces so that two non-painted faces share an edge . The 27 cubes are randomly arranged to form a $3\\times 3 \\times 3$ cube. Given the probability of the entire surface area of the larger cube is orange is $\\frac{p^a}{q^br^c},$ where $p,q,$ and $r$ are distinct primes and $a,b,$ and $c$ are positive integers , find $a+b+c+p+q+r.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "074",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_I_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Triangle $ABC$ lies in the cartesian plane and has an area of $70$ . The coordinates of $B$ and $C$ are $(12,19)$ and $(23,20),$ respectively, and the coordinates of $A$ are $(p,q).$ The line containing the median to side $BC$ has slope $-5.$ Find the largest possible value of $p+q.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "047",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_I_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A semicircle with diameter $d$ is contained in a square whose sides have length 8. Given the maximum value of $d$ is $m - \\sqrt{n},$ find $m+n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "544",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_I_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "For positive integers $n,$ let $\\tau (n)$ denote the number of positive integer divisors of $n,$ including 1 and $n.$ For example, $\\tau (1)=1$ and $\\tau(6) =4.$ Define $S(n)$ by $S(n)=\\tau(1)+ \\tau(2) + \\cdots + \\tau(n).$ Let $a$ denote the number of positive integers $n \\leq 2005$ with $S(n)$ odd , and let $b$ denote the number of positive integers $n \\leq 2005$ with $S(n)$ even . Find $|a-b|.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "025",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_I_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "A particle moves in the Cartesian plane according to the following rules:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "083",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_I_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Consider the points $A(0,12), B(10,9), C(8,0),$ and $D(-4,7).$ There is a unique square $S$ such that each of the four points is on a different side of $S.$ Let $K$ be the area of $S.$ Find the remainder when $10K$ is divided by $1000$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "936",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_I_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Triangle $ABC$ has $BC=20.$ The incircle of the triangle evenly trisects the median $AD.$ If the area of the triangle is $m \\sqrt{n}$ where $m$ and $n$ are integers and $n$ is not divisible by the square of a prime, find $m+n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "038",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_I_Problems/Problem_15"
+    }
+  ]
+}

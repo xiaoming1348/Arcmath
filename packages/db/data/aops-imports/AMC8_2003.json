@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC8",
+    "year": 2003,
+    "exam": null,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Jamie counted the number of edges of a cube, Jimmy counted the numbers of corners, and Judy counted the number of faces. They then added the three numbers. What was the resulting sum?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Which of the following numbers has the smallest prime factor?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "A burger at Ricky C's weighs $120$ grams, of which $30$ grams are filler. What percent of the burger is not filler?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "A group of children riding on bicycles and tricycles rode past Billy Bob's house. Billy Bob counted $7$ children and $19$ wheels. How many tricycles were there?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "If $20\\%$ of a number is $12$ , what is $30\\%$ of the same number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Given the areas of the three squares in the figure, what is the area of the interior triangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Blake and Jenny each took four $100$ -point tests. Blake averaged $78$ on the four tests. Jenny scored $10$ points higher than Blake on the first test, $10$ points lower than him on the second test, and $20$ points higher on both the third and fourth tests. What is the difference between Jenny's average and Blake's average on these four tests?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Problems 8, 9 and 10 use the data found in the accompanying paragraph and figures",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Problems 8, 9 and 10 use the data found in the accompanying paragraph and figures",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Problems 8, 9 and 10 use the data found in the accompanying paragraph and figures",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Business is a little slow at Lou's Fine Shoes, so Lou decides to have a sale. On Friday, Lou increases all of Thursday's prices by $10$ percent. Over the weekend, Lou advertises the sale: \"Ten percent off the listed price. Sale starts Monday.\" How much does a pair of shoes cost on Monday that cost $40$ dollars on Thursday?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "When a fair six-sided dice is tossed on a table top, the bottom face cannot be seen. What is the probability that the product of the faces that can be seen is divisible by $6$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Fourteen white cubes are put together to form the figure on the right. The complete surface of the figure, including the bottom, is painted red. The figure is then separated into individual cubes. How many of the individual cubes have exactly four red faces",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "In this addition problem, each letter stands for a different digit.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "A figure is constructed from unit cubes. Each cube shares at least one face with another cube. What is the minimum number of cubes needed to build a figure with the front and side views shown?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Ali, Bonnie, Carlo, and Dianna are going to drive together to a nearby theme park. The car they are using has $4$ seats: $1$ Driver seat, $1$ front passenger seat, and $2$ back passenger seats. Bonnie and Carlo are the only ones who know how to drive the car. How many possible seating arrangements are there?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "The six children listed below are from two families of three siblings each. Each child has blue or brown eyes and black or blond hair. Children from the same family have at least one of these characteristics in common. Which two children are Jim's siblings?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Each of the twenty dots on the graph below represents one of Sarah's classmates. Classmates who are friends are connected with a line segment. For her birthday party, Sarah is inviting only the following: all of her friends and all of those classmates who are friends with at least one of her friends. How many classmates will not be invited to Sarah's party? [asy]/* AMC8 2003 #18 Problem */ pair a=(102,256), b=(68,131), c=(162,101), d=(134,150); pair e=(269,105), f=(359,104), g=(303,12), h=(579,211); pair i=(534, 342), j=(442,432), k=(374,484), l=(278,501); pair m=(282,411), n=(147,451), o=(103,437), p=(31,373); pair q=(419,175), r=(462,209), s=(477,288), t=(443,358); pair oval=(282,303); draw(l--m--n--cycle); draw(p--oval); draw(o--oval); draw(b--d--oval); draw(c--d--e--oval); draw(e--f--g--h--i--j--oval); draw(k--oval); draw(q--oval); draw(s--oval); draw(r--s--t--oval); dot(a); dot(b); dot(c); dot(d); dot(e); dot(f); dot(g); dot(h); dot(i); dot(j); dot(k); dot(l); dot(m); dot(n); dot(o); dot(p); dot(q); dot(r); dot(s); dot(t); filldraw(yscale(.5)*Circle((282,606),80),white,black); label(scale(0.75)*\"Sarah\", oval);[/asy]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "How many integers between 1000 and 2000 have all three of the numbers 15, 20, and 25 as factors?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "What is the measure of the acute angle formed by the hands of the clock at 4:20 PM?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "The area of trapezoid $ABCD$ is $164\\text{ cm}^2$ . The altitude is 8 cm, $AB$ is 10 cm, and $CD$ is 17 cm. What is $BC$ , in centimeters?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "The following figures are composed of squares and circles. Which figure has a shaded region with largest area?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "In the pattern below, the cat moves clockwise through the four squares, and the mouse moves counterclockwise through the eight exterior segments of the four squares.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "A ship travels from point $A$ to point $B$ along a semicircular path, centered at Island $X$ . Then it travels along a straight path from $B$ to $C$ . Which of these graphs best shows the ship's distance from Island $X$ as it moves along its course?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "In the figure, the area of square $WXYZ$ is $25 \\text{ cm}^2$ . The four smaller squares have sides 1 cm long, either parallel to or coinciding with the sides of the large square. In $\\triangle ABC$ , $AB = AC$ , and when $\\triangle ABC$ is folded over side $\\overline{BC}$ , point $A$ coincides with $O$ , the center of square $WXYZ$ . What is the area of $\\triangle ABC$ , in square centimeters?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2003_AMC_8_Problems/Problem_25"
+    }
+  ]
+}

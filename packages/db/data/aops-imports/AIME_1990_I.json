@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 1990,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1990_AIME"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "The increasing sequence $2,3,5,6,7,10,11,\\ldots$ consists of all positive integers that are neither the square nor the cube of a positive integer. Find the 500th term of this sequence.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "528",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1990_AIME_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Find the value of $(52+6\\sqrt{43})^{3/2}-(52-6\\sqrt{43})^{3/2}$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "828",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1990_AIME_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Let $P_1^{}$ be a regular $r~\\mbox{gon}$ and $P_2^{}$ be a regular $s~\\mbox{gon}$ $(r\\geq s\\geq 3)$ such that each interior angle of $P_1^{}$ is $\\frac{59}{58}$ as large as each interior angle of $P_2^{}$ . What's the largest possible value of $s_{}^{}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "117",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1990_AIME_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Find the positive solution to",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "013",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1990_AIME_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Let $n^{}_{}$ be the smallest positive integer that is a multiple of $75_{}^{}$ and has exactly $75_{}^{}$ positive integral divisors, including $1_{}^{}$ and itself. Find $\\frac{n}{75}$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "432",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1990_AIME_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "A biologist wants to calculate the number of fish in a lake. On May 1 she catches a random sample of 60 fish, tags them, and releases them. On September 1 she catches a random sample of 70 fish and finds that 3 of them are tagged. To calculate the number of fish in the lake on May 1, she assumes that 25% of these fish are no longer in the lake on September 1 (because of death and emigrations), that 40% of the fish were not in the lake May 1 (because of births and immigrations), and that the number of untagged fish and tagged fish in the September 1 sample are representative of the total population. What does the biologist calculate for the number of fish in the lake on May 1?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "840",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1990_AIME_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "A triangle has vertices $P_{}^{}=(-8,5)$ , $Q_{}^{}=(-15,-19)$ , and $R_{}^{}=(1,-7)$ . The equation of the bisector of $\\angle P$ can be written in the form $ax+2y+c=0_{}^{}$ . Find $a+c_{}^{}$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "089",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1990_AIME_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "In a shooting match, eight clay targets are arranged in two hanging columns of three targets each and one column of two targets. A marksman is to break all the targets according to the following rules:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "560",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1990_AIME_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "A fair coin is to be tossed $10_{}^{}$ times. Let $\\frac{i}{j}^{}_{}$ , in lowest terms, be the probability that heads never occur on consecutive tosses. Find $i+j_{}^{}$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "073",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1990_AIME_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "The sets $A = \\{z : z^{18} = 1\\}$ and $B = \\{w : w^{48} = 1\\}$ are both sets of complex roots of unity . The set $C = \\{zw : z \\in A ~ \\mbox{and} ~ w \\in B\\}$ is also a set of complex roots of unity. How many distinct elements are in $C_{}^{}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "144",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1990_AIME_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Someone observed that $6! = 8 \\cdot 9 \\cdot 10$ . Find the largest positive integer $n^{}_{}$ for which $n^{}_{}!$ can be expressed as the product of $n - 3_{}^{}$ consecutive positive integers.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "023",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1990_AIME_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "A regular 12-gon is inscribed in a circle of radius 12. The sum of the lengths of all sides and diagonals of the 12-gon can be written in the form $a + b \\sqrt{2} + c \\sqrt{3} + d \\sqrt{6},$ where $a^{}_{}$ , $b^{}_{}$ , $c^{}_{}$ , and $d^{}_{}$ are positive integers. Find $a + b + c + d^{}_{}$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "720",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1990_AIME_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Let $T = \\{9^k : k ~ \\mbox{is an integer}, 0 \\le k \\le 4000\\}$ . Given that $9^{4000}_{}$ has 3817 digits and that its first (leftmost) digit is 9, how many elements of $T_{}^{}$ have 9 as their leftmost digit?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "184",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1990_AIME_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "The rectangle $ABCD^{}_{}$ below has dimensions $AB^{}_{} = 12 \\sqrt{3}$ and $BC^{}_{} = 13 \\sqrt{3}$ . Diagonals $\\overline{AC}$ and $\\overline{BD}$ intersect at $P^{}_{}$ . If triangle $ABP^{}_{}$ is cut out and removed, edges $\\overline{AP}$ and $\\overline{BP}$ are joined, and the figure is then creased along segments $\\overline{CP}$ and $\\overline{DP}$ , we obtain a triangular pyramid , all four of whose faces are isosceles triangles . Find the volume of this pyramid.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "594",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1990_AIME_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Find $ax^5 + by^5$ if the real numbers $a,b,x,$ and $y$ satisfy the equations \\begin{align*} ax + by &= 3, \\\\ ax^2 + by^2 &= 7, \\\\ ax^3 + by^3 &= 16, \\\\ ax^4 + by^4 &= 42. \\end{align*}",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "020",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1990_AIME_Problems/Problem_15"
+    }
+  ]
+}

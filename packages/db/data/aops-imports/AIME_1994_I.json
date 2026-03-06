@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 1994,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1994_AIME"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "The increasing sequence $3, 15, 24, 48, \\ldots\\,$ consists of those positive multiples of 3 that are one less than a perfect square . What is the remainder when the 1994th term of the sequence is divided by 1000?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "063",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1994_AIME_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "A circle with diameter $\\overline{PQ}$ of length 10 is internally tangent at $P$ to a circle of radius 20. Square $ABCD$ is constructed with $A$ and $B$ on the larger circle, $\\overline{CD}$ tangent at $Q$ to the smaller circle, and the smaller circle outside $ABCD$ . The length of $\\overline{AB}$ can be written in the form $m + \\sqrt{n}$ , where $m$ and $n$ are integers. Find $m + n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "312",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1994_AIME_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "The function $f_{}^{}$ has the property that, for each real number $x,\\,$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "561",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1994_AIME_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Find the positive integer $n\\,$ for which \\[\\lfloor\\log_2{1}\\rfloor+\\lfloor\\log_2{2}\\rfloor+\\lfloor\\log_2{3}\\rfloor+\\cdots+\\lfloor\\log_2{n}\\rfloor=1994\\] (For real $x\\,$ , $\\lfloor x\\rfloor\\,$ is the greatest integer $\\le x.\\,$ )",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "312",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1994_AIME_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Given a positive integer $n\\,$ , let $p(n)\\,$ be the product of the non-zero digits of $n\\,$ . (If $n\\,$ has only one digit, then $p(n)\\,$ is equal to that digit.) Let",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "103",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1994_AIME_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "The graphs of the equations",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "660",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1994_AIME_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "For certain ordered pairs $(a,b)\\,$ of real numbers , the system of equations",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "072",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1994_AIME_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "The points $(0,0)\\,$ , $(a,11)\\,$ , and $(b,37)\\,$ are the vertices of an equilateral triangle. Find the value of $ab\\,$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "315",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1994_AIME_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "A solitaire game is played as follows. Six distinct pairs of matched tiles are placed in a bag. The player randomly draws tiles one at a time from the bag and retains them, except that matching tiles are put aside as soon as they appear in the player's hand. The game ends if the player ever holds three tiles, no two of which match; otherwise the drawing continues until the bag is empty. The probability that the bag will be emptied is $p/q,\\,$ where $p\\,$ and $q\\,$ are relatively prime positive integers. Find $p+q.\\,$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "394",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1994_AIME_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "In triangle $ABC,\\,$ angle $C$ is a right angle and the altitude from $C\\,$ meets $\\overline{AB}\\,$ at $D.\\,$ The lengths of the sides of $\\triangle ABC\\,$ are integers, $BD=29^3,\\,$ and $\\cos B=m/n\\,$ , where $m\\,$ and $n\\,$ are relatively prime positive integers. Find $m+n.\\,$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "450",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1994_AIME_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Ninety-four bricks, each measuring $4''\\times10''\\times19'',$ are to be stacked one on top of another to form a tower 94 bricks tall. Each brick can be oriented so it contributes $4''\\,$ or $10''\\,$ or $19''\\,$ to the total height of the tower. How many different tower heights can be achieved using all of the ninety-four bricks?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "465",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1994_AIME_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "A fenced, rectangular field measures $24$ meters by $52$ meters. An agricultural researcher has 1994 meters of fence that can be used for internal fencing to partition the field into congruent, square test plots. The entire field must be partitioned, and the sides of the squares must be parallel to the edges of the field. What is the largest number of square test plots into which the field can be partitioned using all or some of the 1994 meters of fence?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "702",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1994_AIME_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "The equation",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "850",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1994_AIME_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "A beam of light strikes $\\overline{BC}\\,$ at point $C\\,$ with angle of incidence $\\alpha=19.94^\\circ\\,$ and reflects with an equal angle of reflection as shown. The light beam continues its path, reflecting off line segments $\\overline{AB}\\,$ and $\\overline{BC}\\,$ according to the rule: angle of incidence equals angle of reflection. Given that $\\beta=\\alpha/10=1.994^\\circ\\,$ and $AB=BC,\\,$ determine the number of times the light beam will bounce off the two line segments. Include the first reflection at $C\\,$ in your count.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "071",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1994_AIME_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Given a point $P^{}_{}$ on a triangular piece of paper $ABC,\\,$ consider the creases that are formed in the paper when $A, B,\\,$ and $C\\,$ are folded onto $P.\\,$ Let us call $P_{}^{}$ a fold point of $\\triangle ABC\\,$ if these creases, which number three unless $P^{}_{}$ is one of the vertices, do not intersect. Suppose that $AB=36, AC=72,\\,$ and $\\angle B=90^\\circ.\\,$ Then the area of the set of all fold points of $\\triangle ABC\\,$ can be written in the form $q\\pi-r\\sqrt{s},\\,$ where $q, r,\\,$ and $s\\,$ are positive integers and $s\\,$ is not divisible by the square of any prime. What is $q+r+s\\,$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "597",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1994_AIME_Problems/Problem_15"
+    }
+  ]
+}

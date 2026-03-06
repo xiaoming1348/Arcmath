@@ -1,0 +1,211 @@
+                                                  AMC 12A 2025
+                                                 AMC12 2025 A • Problems
+          Problem 1
+          Andy and Betsy both live in Mathville. Andy leaves Mathville on his bicycle at 1:30 , traveling due north
+          at a steady 8 miles per hour. Betsy leaves on her bicycle from the same point at 2:30 , traveling due east at
+          a steady 12 miles per hour. At what time will they be exactly the same distance from their common
+          starting point?
+          $
+          A. 3:30
+           B. 3:45
+           C. 4:00
+          D. 4:15
+           E. 4:30$
+          Problem 2
+          A box contains 10 pounds of a nut mix that is 50 percent peanuts, 20 percent cashews, and 30 percent
+          almonds. A second nut mix containing 20 percent peanuts, 40 percent cashews, and 40 percent almonds is
+          added to the box resulting in a new nut mix that is 40 percent peanuts. How many pounds of cashews are
+          now in the box?
+          $
+          A. 3.5
+           B. 4
+           C. 4.5
+          D. 5
+           E. 6$
+                                                        Page 1 of 7
+          Problem 3
+          A team of students is going to compete against a team of teachers in a trivia contest. The total number of
+          students and teachers is 15 . Ash, a cousin of one of the students, wants to join the contest. If Ash plays
+          with the students, the average age on that team will increase from 12 to 14 . If Ash plays with the teachers,
+          the average age on that team will decrease from 55 to 52 . How old is Ash?
+          $
+          A. ~28
+          B. ~29
+          C. ~30
+          D. ~32
+          E. ~33$
+          Problem 4
+          Agnes writes the following four statements on a blank piece of paper.
+          At least one of these statements is true.
+          Problem 5
+          In the figure below, the outside square contains infinitely many squares, each of them with the same center
+          and sides parallel to the outside square. The ratio of the side length of a square to the side length of the
+          next inner square is k, where 0 < k < 1. The spaces between squares are alternately shaded, as shown in
+          the figure (which is not necessarily drawn to scale).
+          The area of the shaded portion of the figure is 64\% of the area of the original square. What is k?
+          Problem 6
+          Six chairs are arranged around a round table. Two students and two teachers randomly select four of the
+          chairs to sit in. What is the probability that the two students will sit in two adjacent chairs and the two
+          teachers will also sit in two adjacent chairs?
+          $
+          A. 16
+          B. 15
+          C. 29
+          D. 313
+          E. 14$
+                                                    Page 2 of 7
+          Problem 7
+          In a certain alien world, the maximum running speed v of an organism is dependent on its number of toes
+          n and number of eyes m . The relationship can be expressed as v = kn^am^b centimeters per hour, where
+          k, a, b are integer constants. In a population where all organisms have 5 toes, v = 4+2 m ; and in a
+          population where all organisms have 25 eyes, v = 4 + 4 n , where all logs are in base 10. What is k+a+b ?
+          $
+          A. 20
+          B. 21
+          C. 22
+          D. 23
+          E. 24$
+          Problem 8
+          Pentagon ABCDE is inscribed in a circle, and BEC = CED = 30^ . Let line AC and line BD intersect at
+          point F , and suppose that AB = 9 and AD = 24 . What is BF ?
+          $
+          A. (57)/(11)
+          B. (59)/(11)
+          C. (60)/(11)
+          D. (61)/(11)
+          E. (63)/(11)$
+          Problem 9
+          Let w be the complex number 2+i , where i=sqrt(-1) . What real number r has the property that r , w , and
+          w^2 are three collinear points in the complex plane?
+          $
+          A. ~34
+          B. ~1
+          C. ~75
+          D. ~32
+          E. ~53$
+                                                    Page 3 of 7
+          Problem 10
+          In the figure shown below, major arc and minor arc have the same center, O . Also, A lies between O and
+          B , and D lies between O and C . Major arc , minor arc , and each of the two segments and have length 2pi
+          . What is the distance from O to A ?
+          $
+          A. ~1
+           B. ~1 - pi + ^2 + 1
+           C. ~(pi)/(2)
+          D. ~^2 + 12
+           E. ~2$
+          Problem 11
+          The orthocenter of a triangle is the concurrent intersection of the three (possibly extended) altitudes. What
+          is the sum of the coordinates of the orthocenter of the triangle whose vertices are A(2,31), B(8,27), and
+          C(18,27) ?
+          $
+          A. ~5
+           B. ~17
+           C. ~10+4sqrt(17) +2sqrt(13)
+          D. ~(113)/(3)
+           E. ~54$
+          Problem 12
+          The harmonic mean of a collection of numbers is the reciprocal of the arithmetic mean of the reciprocals
+          of the numbers in the collection. For example, the harmonic mean of 4,4, and 5 is
+          (1)/((1)/(3)((1)/(4)+(1)/(4)+(1)/(5)))=(30)/(7).
+          Problem 13
+          Let C = \1, 2, 3, , 13\ . Let N be the greatest integer such that there exists a subset of C with N elements
+          that does not contain five consecutive integers. Suppose N integers are chosen at random from C without
+          replacement. What is the probability that the chosen elements do not include five consecutive integers?
+          $
+          A. ~(3)/(130)
+           B. ~(3)/(143)
+           C. ~(5)/(143)
+          D. ~(1)/(26)
+           E. ~(5)/(78)$
+                                                        Page 4 of 7
+          Problem 14
+          Points F , G , and H are collinear with G between F and H . The ellipse with foci at G and H is internally
+          tangent to the ellipse with foci at F and G , as shown below.
+          The two ellipses have the same eccentricity e , and the ratio of their areas is 2025 . (Recall that the
+          eccentricity of an ellipse is e = , where c is the distance from the center to a focus, and 2a is the length of
+          the major axis.) What is e ?
+          Problem 15
+          A set of numbers is called sum-free if whenever x and y are (not necessarily distinct) elements of the set,
+          x+y is not an element of the set. For example, \1,4,6\ and the empty set are sum-free, but \1,4,5\ is not.
+          What is the greatest possible number of elements in a sum-free subset of \1,2,3,...,20\ ?
+          $
+          A. 8
+          B. 9
+          C. 10
+          D. 11
+          E. 12$
+          Problem 16
+          Triangle ABC has side lengths AB = 80 , BC = 45 , and AC = 75 . The bisector of B and the altitude to
+          side intersect at point P . What is BP ?
+          $
+          A. ~18
+          B. ~19
+          C. ~20
+          D. ~21
+          E. ~22$
+          Problem 17
+          The polynomial (z + i)(z + 2i)(z + 3i) + 10 has three roots in the complex plane, where i = sqrt(-1) . What
+          is the area of the triangle formed by these three roots?
+          $
+          A. ~6
+          B. ~8
+          C. ~10
+          D. ~12
+          E. ~14$
+                                                     Page 5 of 7
+          Problem 18
+          1 Problem 18
+          2 Solution 1
+          Problem 19
+          Let a , b , and c be the roots of the polynomial x^3 + kx + 1 . What is the sum a^3b^2 + a^2b^3 + b^3c^2
+          + b^2c^3 + c^3a^2 + c^2a^3? $
+          A. ~-k
+          B. ~-k+1
+          C. ~1
+          D. ~k-1
+          E. ~k$
+          Problem 20
+          The base of the pentahedron shown below is a 13 × 8 rectangle, and its lateral faces are two isosceles
+          triangles with base of length 8 and congruent sides of length 13 , and two isosceles trapezoids with bases
+          of length 7 and 13 and nonparallel sides of length 13 .
+          What is the volume of the pentahedron?
+          Problem 21
+          1 Problem 21
+          2 Solution 1
+          Problem 22
+          1 Problem 22
+          2 Problem 22 (Chinese exams)
+          Problem 23
+          Call a positive integer fair if no digit is used more than once, it has no 0 s, and no digit is adjacent to two
+          greater digits. For example, 196, 23 and 12463 are fair, but 1546, 320, and 34321 are not. How many fair
+          positive integers are there?
+          $
+          A. 511
+          B. 2584
+          C. 9841
+          D. 17711
+          E. 19682$
+                                                       Page 6 of 7
+          Problem 24
+          A circle of radius r is surrounded by 12 circles of radius 1, externally tangent to the central circle and
+          sequentially tangent to each other, as shown. Then r can be written as a + b + c, where a, b, c are integers.
+          What is a+b+c?
+          $
+          A. 3
+          B. 5
+          C. 7
+          D. 9
+          E. 11$
+          Problem 25
+          Polynomials P(x) and Q(x) each have degree 3 and leading coefficient 1 , and their roots are all elements
+          of \1,2,3,4,5\ . The function f(x) = (x)Q(x) has the property that there exist real numbers a < b < c < d such
+          that the set of all real numbers x such that f(x) ≤ 0 consists of the closed interval [a,b] together with the
+          open interval (c,d) . How many ordered pairs of polynomials (P, Q) are possible?
+          $
+          A. ~7
+          B. ~9
+          C. ~11
+          D. ~12
+          E. ~13 (F)~8$
+                                                      Page 7 of 7

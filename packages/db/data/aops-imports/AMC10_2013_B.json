@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2013,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "What is $\\frac{2+4+6}{1+3+5} - \\frac{1+3+5}{2+4+6}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Mr. Green measures his rectangular garden by walking two of the sides and finds that it is $15$ steps by $20$ steps. Each of Mr. Green's steps is $2$ feet long. Mr. Green expects a half a pound of potatoes per square foot from his garden. How many pounds of potatoes does Mr. Green expect from his garden?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "On a particular January day, the high temperature in Lincoln, Nebraska, was $16$ degrees higher than the low temperature, and the average of the high and low temperatures was $3$ . In degrees, what was the low temperature in Lincoln that day?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "When counting from $3$ to $201$ , $53$ is the $51^{\\text{st}}$ number counted. When counting backwards from $201$ to $3$ , $53$ is the $n^{\\text{th}}$ number counted. What is $n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Positive integers $a$ and $b$ are each less than $6$ . What is the smallest possible value for $2 \\cdot a - a \\cdot b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "The average age of $33$ fifth-graders is $11$ . The average age of $55$ of their parents is $33$ . What is the average age of all of these parents and fifth-graders?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Six points are equally spaced around a circle of radius 1. Three of these points are the vertices of a triangle that is neither equilateral nor isosceles. What is the area of this triangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Ray's car averages $40$ miles per gallon of gasoline, and Tom's car averages $10$ miles per gallon of gasoline. Ray and Tom each drive the same number of miles. What is the cars' combined rate of miles per gallon of gasoline? $\\textbf{(A)}\\ 10 \\qquad \\textbf{(B)}\\ 16 \\qquad \\textbf{(C)}\\ 25 \\qquad \\textbf{(D)}\\ 30 \\qquad \\textbf{(E)}\\ 40$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Three positive integers are each greater than $1$ , have a product of $27000$ , and are pairwise relatively prime. What is their sum?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "A basketball team's players were successful on 50% of their two-point shots and 40% of their three-point shots, which resulted in 54 points. They attempted 50% more two-point shots than three-point shots. How many three-point shots did they attempt?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Real numbers $x$ and $y$ satisfy the equation $x^2+y^2=10x-6y-34$ . What is $x+y$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Let $S$ be the set of sides and diagonals of a regular pentagon. A pair of elements of $S$ are selected at random without replacement. What is the probability that the two chosen segments have the same length?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Jo and Blair take turns counting from $1$ to one more than the last number said by the other person. Jo starts by saying $``1\"$ , so Blair follows by saying $``1, 2\"$ . Jo then says $``1, 2, 3\"$ , and so on. What is the $53^{\\text{rd}}$ number said?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Define $a\\clubsuit b=a^2b-ab^2$ . Which of the following describes the set of points $(x, y)$ for which $x\\clubsuit y=y\\clubsuit x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "A wire is cut into two pieces, one of length $a$ and the other of length $b$ . The piece of length $a$ is bent to form an equilateral triangle, and the piece of length $b$ is bent to form a regular hexagon. The triangle and the hexagon have equal area. What is $\\frac{a}{b}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "In triangle $ABC$ , medians $AD$ and $CE$ intersect at $P$ , $PE=1.5$ , $PD=2$ , and $DE=2.5$ . What is the area of $AEDC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Alex has $75$ red tokens and $75$ blue tokens. There is a booth where Alex can give two red tokens and receive in return a silver token and a blue token and another booth where Alex can give three blue tokens and receive in return a silver token and a red token. Alex continues to exchange tokens until no more exchanges are possible. How many silver tokens will Alex have at the end?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "The number $2013$ has the property that its units digit is the sum of its other digits, that is $2+0+1=3$ . How many integers less than $2013$ but greater than $1000$ have this property?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "The real numbers $c,b,a$ form an arithmetic sequence with $a \\geq b \\geq c \\geq 0$ . The quadratic $ax^2+bx+c$ has exactly one root. What is this root?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "The number $2013$ is expressed in the form",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Two non-decreasing sequences of nonnegative integers have different first terms. Each sequence has the property that each term beginning with the third is the sum of the previous two terms, and the seventh term of each sequence is $N$ . What is the smallest possible value of $N$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "The regular octagon $ABCDEFGH$ has its center at $J$ . Each of the vertices and the center are to be associated with one of the digits $1$ through $9$ , with each digit used once, in such a way that the sums of the numbers on the lines $AJE$ , $BJF$ , $CJG$ , and $DJH$ are all equal. In how many ways can this be done?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "In triangle $ABC$ , $AB=13$ , $BC=14$ , and $CA=15$ . Distinct points $D$ , $E$ , and $F$ lie on segments $\\overline{BC}$ , $\\overline{CA}$ , and $\\overline{DE}$ , respectively, such that $\\overline{AD}\\perp\\overline{BC}$ , $\\overline{DE}\\perp\\overline{AC}$ , and $\\overline{AF}\\perp\\overline{BF}$ . The length of segment $\\overline{DF}$ can be written as $\\frac{m}{n}$ , where $m$ and $n$ are relatively prime positive integers. What is $m+n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "A positive integer $n$ is nice if there is a positive integer $m$ with exactly four positive divisors (including $1$ and $m$ ) such that the sum of the four divisors is equal to $n$ . How many numbers in the set $\\{ 2010,2011,2012,\\dotsc,2019 \\}$ are nice?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Bernardo chooses a three-digit positive integer $N$ and writes both its base-5 and base-6 representations on a blackboard. Later LeRoy sees the two numbers Bernardo has written. Treating the two numbers as base-10 integers, he adds them to obtain an integer $S$ . For example, if $N = 749$ , Bernardo writes the numbers $10,\\!444$ and $3,\\!245$ , and LeRoy obtains the sum $S = 13,\\!689$ . For how many choices of $N$ are the two rightmost digits of $S$ , in order, the same as those of $2N$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10B_Problems/Problem_25"
+    }
+  ]
+}

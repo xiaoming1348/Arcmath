@@ -1,0 +1,144 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  TEACHER
+  ADMIN
+}
+
+enum Contest {
+  AMC8
+  AMC10
+  AMC12
+  AIME
+}
+
+enum ProblemSetStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum StatementFormat {
+  MARKDOWN_LATEX
+  HTML
+  PLAIN
+}
+
+enum AnswerFormat {
+  MULTIPLE_CHOICE
+  INTEGER
+  EXPRESSION
+}
+
+model User {
+  id           String       @id @default(cuid())
+  email        String       @unique
+  name         String?
+  passwordHash String
+  role         Role         @default(STUDENT)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  enrollments  Enrollment[]
+  importJobs   ImportJob[]
+  resourceAccesses UserResourceAccess[]
+}
+
+model Class {
+  id          String       @id @default(cuid())
+  name        String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  enrollments Enrollment[]
+}
+
+model Enrollment {
+  id        String   @id @default(cuid())
+  userId    String
+  classId   String
+  role      Role     @default(STUDENT)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  class     Class    @relation(fields: [classId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, classId])
+  @@index([classId])
+}
+
+model ProblemSet {
+  id        String           @id @default(cuid())
+  contest   Contest
+  year      Int
+  exam      String?
+  title     String
+  sourceUrl String?
+  verifiedPdfUrl String?
+  cachedPdfPath String?
+  cachedPdfSha256 String?
+  cachedPdfSize Int?
+  cachedPdfAt DateTime?
+  cachedPdfStatus String?
+  cachedPdfError String?
+  status    ProblemSetStatus @default(DRAFT)
+  problems  Problem[]
+  resourceAccesses UserResourceAccess[]
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  @@unique([contest, year, exam])
+  @@index([contest, year])
+  @@index([cachedPdfStatus])
+}
+
+model UserResourceAccess {
+  id           String   @id @default(cuid())
+  userId       String
+  problemSetId String
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  problemSet   ProblemSet @relation(fields: [problemSetId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, problemSetId])
+  @@index([userId, createdAt])
+  @@index([problemSetId, createdAt])
+}
+
+model Problem {
+  id              String          @id @default(cuid())
+  problemSetId    String
+  number          Int
+  statement       String?
+  statementFormat StatementFormat @default(MARKDOWN_LATEX)
+  choices         Json?
+  answer          String?
+  answerFormat    AnswerFormat    @default(MULTIPLE_CHOICE)
+  sourceUrl       String?
+  tags            Json?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  problemSet      ProblemSet      @relation(fields: [problemSetId], references: [id], onDelete: Cascade)
+
+  @@unique([problemSetId, number])
+  @@index([problemSetId])
+  @@index([number])
+}
+
+model ImportJob {
+  id               String   @id @default(cuid())
+  uploadedByUserId String
+  filename         String
+  sha256           String
+  status           String
+  report           Json?
+  createdAt        DateTime @default(now())
+  uploadedByUser   User     @relation(fields: [uploadedByUserId], references: [id], onDelete: Cascade)
+
+  @@index([uploadedByUserId])
+  @@index([sha256])
+}

@@ -1,0 +1,217 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f2ea;
+  --background-accent: #eef5f3;
+  --foreground: #0f172a;
+  --font-sans-custom: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
+  --font-display-custom: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --surface: #ffffff;
+  --surface-muted: #f8fafc;
+  --border: rgba(15, 23, 42, 0.08);
+  --muted: #52606d;
+  --accent: #2f7a6d;
+  --accent-strong: #215d53;
+  --accent-soft: #d9eee8;
+  --highlight: #f6c07a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans-custom);
+  --font-display: var(--font-display-custom);
+  --font-mono: "SFMono-Regular", Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #f7f2ea;
+    --background-accent: #eef5f3;
+    --foreground: #0f172a;
+  }
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(1100px 520px at -15% -20%, #ffe6c6 0%, transparent 62%),
+    radial-gradient(900px 420px at 110% -10%, #cfe9e5 0%, transparent 58%),
+    linear-gradient(135deg, var(--background) 0%, var(--background-accent) 100%);
+  color: var(--foreground);
+  font-family: var(--font-sans-custom);
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  filter: blur(0px);
+}
+
+body::before {
+  background:
+    radial-gradient(500px 280px at 15% 20%, rgba(47, 122, 109, 0.18), transparent 60%),
+    radial-gradient(420px 240px at 80% 15%, rgba(246, 192, 122, 0.2), transparent 60%);
+  animation: float-slow 18s ease-in-out infinite;
+}
+
+body::after {
+  background: radial-gradient(360px 220px at 65% 85%, rgba(47, 122, 109, 0.12), transparent 60%);
+  animation: float-soft 22s ease-in-out infinite;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display-custom);
+    letter-spacing: -0.02em;
+    color: var(--foreground);
+  }
+
+  p {
+    color: var(--muted);
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(2%, 1%, 0);
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-2%, -1%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@layer components {
+  .surface-card {
+    @apply rounded-3xl border p-6 backdrop-blur-xl;
+    border-color: var(--border);
+    background: rgba(255, 255, 255, 0.86);
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition;
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 12px 24px rgba(47, 122, 109, 0.24);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border px-4 py-2 text-sm font-semibold transition;
+    border-color: var(--border);
+    background: rgba(255, 255, 255, 0.85);
+    color: var(--foreground);
+  }
+
+  .input-field {
+    @apply mt-1 w-full rounded-xl border px-3 py-2 text-sm transition;
+    border-color: var(--border);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05);
+  }
+
+  .route-chip {
+    @apply inline-flex items-center justify-center rounded-full border px-3 py-1 text-sm font-semibold transition;
+    border-color: var(--border);
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--foreground);
+    box-shadow: 0 8px 16px rgba(15, 23, 42, 0.06);
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide;
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+  }
+
+  .stat-card {
+    @apply rounded-2xl border px-4 py-3;
+    border-color: var(--border);
+    background: rgba(255, 255, 255, 0.75);
+  }
+
+  .code-block {
+    @apply rounded-2xl border p-4 text-xs md:text-sm;
+    border-color: var(--border);
+    background: rgba(248, 250, 252, 0.9);
+  }
+
+  .motion-rise {
+    animation: rise-in 280ms ease-out both;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-strong);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:focus-visible {
+    outline: 2px solid rgba(47, 122, 109, 0.35);
+    outline-offset: 3px;
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.6;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .btn-secondary:hover {
+    background: var(--accent-soft);
+  }
+
+  .btn-secondary:focus-visible,
+  .route-chip:focus-visible,
+  .input-field:focus-visible {
+    outline: 2px solid rgba(47, 122, 109, 0.25);
+    outline-offset: 3px;
+  }
+
+  .input-field:focus-visible {
+    box-shadow: 0 0 0 4px rgba(47, 122, 109, 0.12);
+  }
+}

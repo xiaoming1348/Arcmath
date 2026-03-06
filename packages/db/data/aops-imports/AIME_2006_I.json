@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 2006,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AIME_I"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "In quadrilateral $ABCD$ , $\\angle B$ is a right angle , diagonal $\\overline{AC}$ is perpendicular to $\\overline{CD}$ , $AB=18$ , $BC=21$ , and $CD=14$ . Find the perimeter of $ABCD$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "084",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AIME_I_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Let set $\\mathcal{A}$ be a 90- element subset of $\\{1,2,3,\\ldots,100\\},$ and let $S$ be the sum of the elements of $\\mathcal{A}.$ Find the number of possible values of $S.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "901",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AIME_I_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Find the least positive integer such that when its leftmost digit is deleted, the resulting integer is $\\frac{1}{29}$ of the original integer.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "725",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AIME_I_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Let $N$ be the number of consecutive $0$ 's at the right end of the decimal representation of the product $1!2!3!4!\\cdots99!100!.$ Find the remainder when $N$ is divided by $1000$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "124",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AIME_I_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "The number $\\sqrt{104\\sqrt{6}+468\\sqrt{10}+144\\sqrt{15}+2006}$ can be written as $a\\sqrt{2}+b\\sqrt{3}+c\\sqrt{5},$ where $a, b,$ and $c$ are positive integers . Find $abc$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "936",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AIME_I_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Let $\\mathcal{S}$ be the set of real numbers that can be represented as repeating decimals of the form $0.\\overline{abc}$ where $a, b, c$ are distinct digits . Find the sum of the elements of $\\mathcal{S}.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "360",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AIME_I_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "An angle is drawn on a set of equally spaced parallel lines as shown. The ratio of the area of shaded region $C$ to the area of shaded region $B$ is 11/5. Find the ratio of shaded region $D$ to the area of shaded region $A.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "408",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AIME_I_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Hexagon $ABCDEF$ is divided into five rhombuses , $\\mathcal{P, Q, R, S,}$ and $\\mathcal{T,}$ as shown. Rhombuses $\\mathcal{P, Q, R,}$ and $\\mathcal{S}$ are congruent , and each has area $\\sqrt{2006}.$ Let $K$ be the area of rhombus $\\mathcal{T}$ . Given that $K$ is a positive integer , find the number of possible values for $K$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "089",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AIME_I_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "The sequence $a_1, a_2, \\ldots$ is geometric with $a_1=a$ and common ratio $r,$ where $a$ and $r$ are positive integers. Given that $\\log_8 a_1+\\log_8 a_2+\\cdots+\\log_8 a_{12} = 2006,$ find the number of possible ordered pairs $(a,r).$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "046",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AIME_I_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Eight circles of diameter 1 are packed in the first quadrant of the coordinate plane as shown. Let region $\\mathcal{R}$ be the union of the eight circular regions. Line $l,$ with slope 3, divides $\\mathcal{R}$ into two regions of equal area. Line $l$ 's equation can be expressed in the form $ax=by+c,$ where $a, b,$ and $c$ are positive integers whose greatest common divisor is 1. Find $a^2+b^2+c^2.$ [asy] size(150);defaultpen(linewidth(0.7)); draw((6.5,0)--origin--(0,6.5), Arrows(5)); int[] array={3,3,2}; int i,j; for(i=0; i<3; i=i+1) { for(j=0; j<array[i]; j=j+1) { draw(Circle((1+2*i,1+2*j),1)); }} label(\"x\", (7,0)); label(\"y\", (0,7));[/asy]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "065",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AIME_I_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A collection of 8 cubes consists of one cube with edge - length $k$ for each integer $k, 1 \\le k \\le 8.$ A tower is to be built using all 8 cubes according to the rules:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "458",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AIME_I_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Find the sum of the values of $x$ such that $\\cos^3 3x+ \\cos^3 5x = 8 \\cos^3 4x \\cos^3 x$ , where $x$ is measured in degrees and $100< x< 200.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "906",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AIME_I_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "For each even positive integer $x$ , let $g(x)$ denote the greatest power of 2 that divides $x.$ For example, $g(20)=4$ and $g(16)=16.$ For each positive integer $n,$ let $S_n=\\sum_{k=1}^{2^{n-1}}g(2k).$ Find the greatest integer $n$ less than 1000 such that $S_n$ is a perfect square .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "899",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AIME_I_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "A tripod has three legs each of length $5$ feet. When the tripod is set up, the angle between any pair of legs is equal to the angle between any other pair, and the top of the tripod is $4$ feet from the ground. In setting up the tripod, the lower 1 foot of one leg breaks off. Let $h$ be the height in feet of the top of the tripod from the ground when the broken tripod is set up. Then $h$ can be written in the form $\\frac m{\\sqrt{n}},$ where $m$ and $n$ are positive integers and $n$ is not divisible by the square of any prime. Find $\\lfloor m+\\sqrt{n}\\rfloor.$ (The notation $\\lfloor x\\rfloor$ denotes the greatest integer that is less than or equal to $x.$ )",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "183",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AIME_I_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Given that a sequence of real numbers satisfies $x_0=0$ and $|x_k|=|x_{k-1}+3|$ for all integers $k\\ge 1,$ find the minimum possible value of $|x_1+x_2+\\cdots+x_{2006}|.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "027",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AIME_I_Problems/Problem_15"
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC8",
+    "year": 2011,
+    "exam": null,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Margie bought $3$ apples at a cost of $50$ cents per apple. She paid with a 5-dollar bill. How much change did Margie receive?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Karl's rectangular vegetable garden is $20$ feet by $45$ feet, and Makenna's is $25$ feet by $40$ feet. Whose garden is larger in area?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Extend the square pattern of 8 black and 17 white square tiles by attaching a border of black tiles around the square. What is the ratio of black tiles to white tiles in the extended pattern? [asy] filldraw((0,0)--(5,0)--(5,5)--(0,5)--cycle,white,black); filldraw((1,1)--(4,1)--(4,4)--(1,4)--cycle,mediumgray,black); filldraw((2,2)--(3,2)--(3,3)--(2,3)--cycle,white,black); draw((4,0)--(4,5)); draw((3,0)--(3,5)); draw((2,0)--(2,5)); draw((1,0)--(1,5)); draw((0,4)--(5,4)); draw((0,3)--(5,3)); draw((0,2)--(5,2)); draw((0,1)--(5,1)); [/asy]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Here is a list of the numbers of fish that Tyler caught in nine outings last summer: \\[2,0,1,3,0,3,3,1,2.\\] Which statement about the mean, median, and mode is true?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "What time was it $2011$ minutes after midnight on January 1, 2011?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "In a town of $351$ adults, every adult owns a car, motorcycle, or both. If $331$ adults own cars and $45$ adults own motorcycles, how many of the car owners do not own a motorcycle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Each of the following four large congruent squares is subdivided into combinations of congruent triangles or rectangles and is partially bolded . What percent of the total area is partially bolded? [asy] import graph; size(7.01cm); real lsf=0.5; pen dps=linewidth(0.7)+fontsize(10); defaultpen(dps); pen ds=black; real xmin=-0.42,xmax=14.59,ymin=-10.08,ymax=5.26; pair A=(0,0), B=(4,0), C=(0,4), D=(4,4), F=(2,0), G=(3,0), H=(1,4), I=(2,4), J=(3,4), K=(0,-2), L=(4,-2), M=(0,-6), O=(0,-4), P=(4,-4), Q=(2,-2), R=(2,-6), T=(6,4), U=(10,0), V=(10,4), Z=(10,2), A_1=(8,4), B_1=(8,0), C_1=(6,-2), D_1=(10,-2), E_1=(6,-6), F_1=(10,-6), G_1=(6,-4), H_1=(10,-4), I_1=(8,-2), J_1=(8,-6), K_1=(8,-4); draw(C--H--(1,0)--A--cycle,linewidth(1.6)); draw(M--O--Q--R--cycle,linewidth(1.6)); draw(A_1--V--Z--cycle,linewidth(1.6)); draw(G_1--K_1--J_1--E_1--cycle,linewidth(1.6)); draw(C--D); draw(D--B); draw(B--A); draw(A--C); draw(H--(1,0)); draw(I--F); draw(J--G); draw(C--H,linewidth(1.6)); draw(H--(1,0),linewidth(1.6)); draw((1,0)--A,linewidth(1.6)); draw(A--C,linewidth(1.6)); draw(K--L); draw((4,-6)--L); draw((4,-6)--M); draw(M--K); draw(O--P); draw(Q--R); draw(O--Q); draw(M--O,linewidth(1.6)); draw(O--Q,linewidth(1.6)); draw(Q--R,linewidth(1.6)); draw(R--M,linewidth(1.6)); draw(T--V); draw(V--U); draw(U--(6,0)); draw((6,0)--T); draw((6,2)--Z); draw(A_1--B_1); draw(A_1--Z); draw(A_1--V,linewidth(1.6)); draw(V--Z,linewidth(1.6)); draw(Z--A_1,linewidth(1.6)); draw(C_1--D_1); draw(D_1--F_1); draw(F_1--E_1); draw(E_1--C_1); draw(G_1--H_1); draw(I_1--J_1); draw(G_1--K_1,linewidth(1.6)); draw(K_1--J_1,linewidth(1.6)); draw(J_1--E_1,linewidth(1.6)); draw(E_1--G_1,linewidth(1.6)); dot(A,linewidth(1pt)+ds); dot(B,linewidth(1pt)+ds); dot(C,linewidth(1pt)+ds); dot(D,linewidth(1pt)+ds); dot((1,0),linewidth(1pt)+ds); dot(F,linewidth(1pt)+ds); dot(G,linewidth(1pt)+ds); dot(H,linewidth(1pt)+ds); dot(I,linewidth(1pt)+ds); dot(J,linewidth(1pt)+ds); dot(K,linewidth(1pt)+ds); dot(L,linewidth(1pt)+ds); dot(M,linewidth(1pt)+ds); dot((4,-6),linewidth(1pt)+ds); dot(O,linewidth(1pt)+ds); dot(P,linewidth(1pt)+ds); dot(Q,linewidth(1pt)+ds); dot(R,linewidth(1pt)+ds); dot((6,0),linewidth(1pt)+ds); dot(T,linewidth(1pt)+ds); dot(U,linewidth(1pt)+ds); dot(V,linewidth(1pt)+ds); dot((6,2),linewidth(1pt)+ds); dot(Z,linewidth(1pt)+ds); dot(A_1,linewidth(1pt)+ds); dot(B_1,linewidth(1pt)+ds); dot(C_1,linewidth(1pt)+ds); dot(D_1,linewidth(1pt)+ds); dot(E_1,linewidth(1pt)+ds); dot(F_1,linewidth(1pt)+ds); dot(G_1,linewidth(1pt)+ds); dot(H_1,linewidth(1pt)+ds); dot(I_1,linewidth(1pt)+ds); dot(J_1,linewidth(1pt)+ds); dot(K_1,linewidth(1pt)+ds); clip((xmin,ymin)--(xmin,ymax)--(xmax,ymax)--(xmax,ymin)--cycle);[/asy] $\\textbf{(A) }12\\frac{1}{2} \\qquad\\textbf{(B) }20 \\qquad\\textbf{(C) }25 \\qquad\\textbf{(D) }33\\frac{1}{3} \\qquad\\textbf{(E) }37\\frac{1}{2}$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Bag A has three chips labeled 1, 3, and 5. Bag B has three chips labeled 2, 4, and 6. If one chip is drawn from each bag, how many different values are possible for the sum of the two numbers on the chips?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Carmen takes a long bike ride on a hilly highway. The graph indicates the miles traveled during the time of her ride. What is Carmen's average speed for her entire ride in miles per hour?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "The taxi fare in Gotham City is $2.40 for the first $\\frac12$ mile and additional mileage charged at the rate $0.20 for each additional 0.1 mile. You plan to give the driver a $2 tip. How many miles can you ride for $10?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "The graph shows the number of minutes studied by both Asha (black bar) and Sasha (grey bar) in one week. On the average, how many more minutes per day did Sasha study than Asha?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Angie, Bridget, Carlos, and Diego are seated at random around a square table, one person to a side. What is the probability that Angie and Carlos are seated opposite each other?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Two congruent squares, $ABCD$ and $PQRS$ , have side length $15$ . They overlap to form the $15$ by $25$ rectangle $AQRD$ shown. What percent of the area of rectangle $AQRD$ is shaded?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "There are $270$ students at Colfax Middle School, where the ratio of boys to girls is $5 : 4$ . There are $180$ students at Winthrop Middle School, where the ratio of boys to girls is $4 : 5$ . The two schools hold a dance and all students from both schools attend. What fraction of the students at the dance are girls?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "How many digits are in the product $4^5 \\cdot 5^{10}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Let $A$ be the area of the triangle with sides of length $25, 25$ , and $30$ . Let $B$ be the area of the triangle with sides of length $25, 25,$ and $40$ . What is the relationship between $A$ and $B$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Let $w$ , $x$ , $y$ , and $z$ be whole numbers. If $2^w \\cdot 3^x \\cdot 5^y \\cdot 7^z = 588$ , then what does $2w + 3x + 5y + 7z$ equal?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "A fair $6$ sided die is rolled twice. What is the probability that the first number that comes up is greater than or equal to the second number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "How many rectangles are in this figure?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Quadrilateral $ABCD$ is a trapezoid, $AD = 15$ , $AB = 50$ , $BC = 20$ , and the altitude is $12$ . What is the area of the trapezoid?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Students guess that Norb's age is $24, 28, 30, 32, 36, 38, 41, 44, 47$ , and $49$ . Norb says, \"At least half of you guessed too low, two of you are off by one, and my age is a prime number.\" How old is Norb?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "What is the tens digit of $7^{2011}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "How many 4-digit positive integers have four different digits, where the leading digit is not zero, the integer is a multiple of 5, and 5 is the largest digit?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "In how many ways can $10001$ be written as the sum of two primes?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "A circle with radius $1$ is inscribed in a square and circumscribed about another square as shown. Which fraction is closest to the ratio of the circle's shaded area to the area between the two squares?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_8_Problems/Problem_25"
+    }
+  ]
+}

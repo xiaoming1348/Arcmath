@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2007,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Isabella's house has $3$ bedrooms. Each bedroom is $12$ feet long, $10$ feet wide, and $8$ feet high. Isabella must paint the walls of all the bedrooms. Doorways and windows, which will not be painted, occupy $60$ square feet in each bedroom. How many square feet of walls must be painted?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Define the operation $\\star$ by $a \\star b = (a+b)b.$ What is $(3 \\star 5) - (5 \\star 3)?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "A college student drove his compact car $120$ miles home for the weekend and averaged $30$ miles per gallon. On the return trip the student drove his parents' SUV and averaged only $20$ miles per gallon. What was the average gas mileage, in miles per gallon, for the round trip?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "The point $O$ is the center of the circle circumscribed about $\\triangle ABC,$ with $\\angle BOC=120^\\circ$ and $\\angle AOB=140^\\circ,$ as shown. What is the degree measure of $\\angle ABC?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "In a certain land, all Arogs are Brafs, all Crups are Brafs, all Dramps are Arogs, and all Crups are Dramps. Which of the following statements is implied by these facts?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "The $2007 \\text{ AMC }10$ will be scored by awarding $6$ points for each correct response, $0$ points for each incorrect response, and $1.5$ points for each problem left unanswered. After looking over the $25$ problems, Sarah has decided to attempt the first $22$ and leave only the last $3$ unanswered. How many of the first $22$ problems must she solve correctly in order to score at least $100$ points?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "All sides of the convex pentagon $ABCDE$ are of equal length, and $\\angle A= \\angle B = 90^\\circ.$ What is the degree measure of $\\angle E?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "On the trip home from the meeting where this AMC10 was constructed, the Contest Chair noted that his airport parking receipt had digits of the form $bbcac,$ where $0 \\le a < b < c \\le 9,$ and $b$ was the average of $a$ and $c.$ How many different five-digit numbers satisfy all these properties?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "A cryptographic code is designed as follows. The first time a letter appears in a given message it is replaced by the letter that is $1$ place to its right in the alphabet (asumming that the letter $A$ is one place to the right of the letter $Z$ ). The second time this same letter appears in the given message, it is replaced by the letter that is $1+2$ places to the right, the third time it is replaced by the letter that is $1+2+3$ places to the right, and so on. For example, with this code the word \"banana\" becomes \"cbodqg\". What letter will replace the last letter $s$ in the message \\[\\text{\"Lee's sis is a Mississippi miss, Chriss!\"?}\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Two points $B$ and $C$ are in a plane. Let $S$ be the set of all points $A$ in the plane for which $\\triangle ABC$ has area $1.$ Which of the following describes $S?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A circle passes through the three vertices of an isosceles triangle that has two sides of length $3$ and a base of length $2$ . What is the area of this circle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Tom's age is $T$ years, which is also the sum of the ages of his three children. His age $N$ years ago was twice the sum of their ages then. What is $T/N$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Two circles of radius $2$ are centered at $(2,0)$ and at $(0,2).$ What is the area of the intersection of the interiors of the two circles?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Some boys and girls are having a car wash to raise money for a class trip to China. Initially $40\\%$ of the group are girls. Shortly thereafter two girls leave and two boys arrive, and then $30\\%$ of the group are girls. How many girls were initially in the group?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "The angles of quadrilateral $ABCD$ satisfy $\\angle A=2 \\angle B=3 \\angle C=4 \\angle D.$ What is the degree measure of $\\angle A,$ rounded to the nearest whole number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "A teacher gave a test to a class in which $10\\%$ of the students are juniors and $90\\%$ are seniors. The average score on the test was $84.$ The juniors all received the same score, and the average score of the seniors was $83.$ What score did each of the juniors receive on the test?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Point $P$ is inside equilateral $\\triangle ABC$ . Points $Q$ , $R$ , and $S$ are the feet of the perpendiculars from $P$ to $\\overline{AB}$ , $\\overline{BC}$ , and $\\overline{CA}$ , respectively. Given that $PQ=1$ , $PR=2$ , and $PS=3$ , what is $AB$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "A circle of radius $1$ is surrounded by $4$ circles of radius $r$ as shown. What is $r$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "The wheel shown is spun twice, and the randomly determined numbers opposite the pointer are recorded. The first number is divided by $4,$ and the second number is divided by $5.$ The first remainder designates a column, and the second remainder designates a row on the checkerboard shown. What is the probability that the pair of numbers designates a shaded square?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "A set of $25$ square blocks is arranged into a $5 \\times 5$ square. How many different combinations of $3$ blocks can be selected from that set so that no two are in the same row or column?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Right $\\triangle ABC$ has $AB=3, BC=4,$ and $AC=5.$ Square $XYZW$ is inscribed in $\\triangle ABC$ with $X$ and $Y$ on $\\overline{AC}, W$ on $\\overline{AB},$ and $Z$ on $\\overline{BC}.$ What is the side length of the square?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "A player chooses one of the numbers $1$ through $4$ . After the choice has been made, two regular four-sided (tetrahedral) dice are rolled, with the sides of the dice numbered $1$ through $4.$ If the number chosen appears on the bottom of exactly one die after it has been rolled, then the player wins $1$ dollar. If the number chosen appears on the bottom of both of the dice, then the player wins $2$ dollars. If the number chosen does not appear on the bottom of either of the dice, the player loses $1$ dollar. What is the expected return to the player, in dollars, for one roll of the dice?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "A pyramid with a square base is cut by a plane that is parallel to its base and $2$ units from the base. The surface area of the smaller pyramid that is cut from the top is half the surface area of the original pyramid. What is the altitude of the original pyramid?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Let $n$ denote the smallest positive integer that is divisible by both $4$ and $9,$ and whose base- $10$ representation consists of only $4$ 's and $9$ 's, with at least one of each. What are the last four digits of $n?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "How many pairs of positive integers $(a,b)$ are there such that $a$ and $b$ have no common factors greater than $1$ and:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2007_AMC_10B_Problems/Problem_25"
+    }
+  ]
+}

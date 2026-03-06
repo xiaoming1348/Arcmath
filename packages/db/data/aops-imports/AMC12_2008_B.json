@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2008,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "A basketball player made $5$ baskets during a game. Each basket was worth either $2$ or $3$ points. How many different numbers could represent the total points scored by the player?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "A $4\\times 4$ block of calendar dates is shown. First, the order of the numbers in the second and the fourth rows are reversed. Then, the numbers on each diagonal are added. What will be the positive difference between the two diagonal sums?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "A semipro baseball league has teams with $21$ players each. League rules state that a player must be paid at least $15,000$ dollars, and that the total of all players' salaries for each team cannot exceed $700,000$ dollars. What is the maximum possiblle salary, in dollars, for a single player?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "On circle $O$ , points $C$ and $D$ are on the same side of diameter $\\overline{AB}$ , $\\angle AOC = 30^\\circ$ , and $\\angle DOB = 45^\\circ$ . What is the ratio of the area of the smaller sector $COD$ to the area of the circle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "A class collects $50$ dollars to buy flowers for a classmate who is in the hospital. Roses cost $3$ dollars each, and carnations cost $2$ dollars each. No other flowers are to be used. How many different bouquets could be purchased for exactly $50$ dollars?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Postman Pete has a pedometer to count his steps. The pedometer records up to $99999$ steps, then flips over to $00000$ on the next step. Pete plans to determine his mileage for a year. On January $1$ Pete sets the pedometer to $00000$ . During the year, the pedometer flips from $99999$ to $00000$ forty-four times. On December $31$ the pedometer reads $50000$ . Pete takes $1800$ steps per mile. Which of the following is closest to the number of miles Pete walked during the year?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "For real numbers $a$ and $b$ , define $a\\textdollar b = (a - b)^2$ . What is $(x - y)^2\\textdollar(y - x)^2$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Points $B$ and $C$ lie on $\\overline{AD}$ . The length of $\\overline{AB}$ is $4$ times the length of $\\overline{BD}$ , and the length of $\\overline{AC}$ is $9$ times the length of $\\overline{CD}$ . The length of $\\overline{BC}$ is what fraction of the length of $\\overline{AD}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Points $A$ and $B$ are on a circle of radius $5$ and $AB = 6$ . Point $C$ is the midpoint of the minor arc $AB$ . What is the length of the line segment $AC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Bricklayer Brenda would take $9$ hours to build a chimney alone, and bricklayer Brandon would take $10$ hours to build it alone. When they work together they talk a lot, and their combined output is decreased by $10$ bricks per hour. Working together, they build the chimney in $5$ hours. How many bricks are in the chimney?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A cone-shaped mountain has its base on the ocean floor and has a height of 8000 feet. The top $\\frac{1}{8}$ of the volume of the mountain is above water. What is the depth of the ocean at the base of the mountain in feet?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "For each positive integer $n$ , the mean of the first $n$ terms of a sequence is $n$ . What is the $2008$ th term of the sequence?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Vertex $E$ of equilateral $\\triangle{ABE}$ is in the interior of unit square $ABCD$ . Let $R$ be the region consisting of all points inside $ABCD$ and outside $\\triangle{ABE}$ whose distance from $AD$ is between $\\frac{1}{3}$ and $\\frac{2}{3}$ . What is the area of $R$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "A circle has a radius of $\\log_{10}{(a^2)}$ and a circumference of $\\log_{10}{(b^4)}$ . What is $\\log_{a}{b}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "On each side of a unit square, an equilateral triangle of side length 1 is constructed. On each new side of each equilateral triangle, another equilateral triangle of side length 1 is constructed. The interiors of the square and the 12 triangles have no points in common. Let $R$ be the region formed by the union of the square and all the triangles, and $S$ be the smallest convex polygon that contains $R$ . What is the area of the region that is inside $S$ but outside $R$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "A rectangular floor measures $a$ by $b$ feet, where $a$ and $b$ are positive integers with $b > a$ . An artist paints a rectangle on the floor with the sides of the rectangle parallel to the sides of the floor. The unpainted part of the floor forms a border of width $1$ foot around the painted rectangle and occupies half of the area of the entire floor. How many possibilities are there for the ordered pair $(a,b)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Let $A$ , $B$ and $C$ be three distinct points on the graph of $y=x^2$ such that line $AB$ is parallel to the $x$ -axis and $\\triangle ABC$ is a right triangle with area $2008$ . What is the sum of the digits of the $y$ -coordinate of $C$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "A pyramid has a square base $ABCD$ and vertex $E$ . The area of square $ABCD$ is $196$ , and the areas of $\\triangle ABE$ and $\\triangle CDE$ are $105$ and $91$ , respectively. What is the volume of the pyramid?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "A function $f$ is defined by $f(z) = (4 + i) z^2 + \\alpha z + \\gamma$ for all complex numbers $z$ , where $\\alpha$ and $\\gamma$ are complex numbers and $i^2 = - 1$ . Suppose that $f(1)$ and $f(i)$ are both real. What is the smallest possible value of $| \\alpha | + |\\gamma |$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Michael walks at the rate of $5$ feet per second on a long straight path. Trash pails are located every $200$ feet along the path. A garbage truck traveling at $10$ feet per second in the same direction as Michael stops for $30$ seconds at each pail. As Michael passes a pail, he notices the truck ahead of him just leaving the next pail. How many times will Michael and the truck meet?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Two circles of radius 1 are to be constructed as follows. The center of circle $A$ is chosen uniformly and at random from the line segment joining $(0,0)$ and $(2,0)$ . The center of circle $B$ is chosen uniformly and at random, and independently of the first choice, from the line segment joining $(0,1)$ to $(2,1)$ . What is the probability that circles $A$ and $B$ intersect?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "A parking lot has 16 spaces in a row. Twelve cars arrive, each of which requires one parking space, and their drivers chose spaces at random from among the available spaces. Auntie Em then arrives in her SUV, which requires 2 adjacent spaces. What is the probability that she is able to park?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "The sum of the base- $10$ logarithms of the divisors of $10^n$ is $792$ . What is $n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Let $A_0=(0,0)$ . Distinct points $A_1,A_2,\\dots$ lie on the $x$ -axis, and distinct points $B_1,B_2,\\dots$ lie on the graph of $y=\\sqrt{x}$ . For every positive integer $n,\\ A_{n-1}B_nA_n$ is an equilateral triangle. What is the least $n$ for which the length $A_0A_n\\geq100$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Let $ABCD$ be a trapezoid with $AB||CD, AB=11, BC=5, CD=19,$ and $DA=7$ . Bisectors of $\\angle A$ and $\\angle D$ meet at $P$ , and bisectors of $\\angle B$ and $\\angle C$ meet at $Q$ . What is the area of hexagon $ABQCDP$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_12B_Problems/Problem_25"
+    }
+  ]
+}

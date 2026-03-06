@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2002,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Compute the sum of all the roots of $(2x+3)(x-4)+(2x+3)(x-6)=0$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Cindy was asked by her teacher to subtract 3 from a certain number and then divide the result by 9. Instead, she subtracted 9 and then divided the result by 3, giving an answer of 43. What would her answer have been had she worked the problem correctly?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "According to the standard convention for exponentiation, \\[2^{2^{2^{2}}} = 2^{(2^{(2^2)})} = 2^{16} = 65536.\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Find the degree measure of an angle whose complement is 25% of its supplement.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Each of the small circles in the figure has radius one. The innermost circle is tangent to the six circles that surround it, and each of those circles is tangent to the large circle and to its small-circle neighbors. Find the area of the shaded region.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "For how many positive integers $m$ does there exist at least one positive integer n such that $m \\cdot n \\le m + n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "A $45^\\circ$ arc of circle A is equal in length to a $30^\\circ$ arc of circle B. What is the ratio of circle A's area and circle B's area?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Betsy designed a flag using blue triangles, small white squares, and a red center square, as shown. Let $B$ be the total area of the blue triangles, $W$ the total area of the white squares, and $P$ the area of the red square. Which of the following is correct?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Jamal wants to save 30 files onto disks, each with 1.44 MB space. 3 of the files take up 0.8 MB, 12 of the files take up 0.7 MB, and the rest take up 0.4 MB. It is not possible to split a file onto 2 different disks. What is the smallest number of disks needed to store all 30 files?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Sarah places four ounces of coffee into an eight-ounce cup and four ounces of cream into a second cup of the same size. She then pours half the coffee from the first cup to the second and, after stirring thoroughly, pours half the liquid in the second cup back to the first. What fraction of the liquid in the first cup is now cream?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Mr. Earl E. Bird gets up every day at 8:00 AM to go to work. If he drives at an average speed of 40 miles per hour, he will be late by 3 minutes. If he drives at an average speed of 60 miles per hour, he will be early by 3 minutes. How many miles per hour does Mr. Bird need to drive to get to work exactly on time?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Both roots of the quadratic equation $x^2 - 63x + k = 0$ are prime numbers. The number of possible values of $k$ is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Two different positive numbers $a$ and $b$ each differ from their reciprocals by $1$ . What is $a+b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "For all positive integers $n$ , let $f(n)=\\log_{2002} n^2$ . Let $N=f(11)+f(13)+f(14)$ . Which of the following relations is true?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "The mean, median, unique mode, and range of a collection of eight integers are all equal to 8. The largest integer that can be an element of this collection is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Tina randomly selects two distinct numbers from the set $\\{ 1, 2, 3, 4, 5 \\}$ , and Sergio randomly selects a number from the set $\\{ 1, 2, ..., 10 \\}$ . What is the probability that Sergio's number is larger than the sum of the two numbers chosen by Tina?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Several sets of prime numbers, such as $\\{7,83,421,659\\}$ use each of the nine nonzero digits exactly once. What is the smallest possible sum such a set of primes could have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Let $C_1$ and $C_2$ be circles defined by $(x-10)^2 + y^2 = 36$ and $(x+15)^2 + y^2 = 81$ respectively. What is the length of the shortest line segment $PQ$ that is tangent to $C_1$ at $P$ and to $C_2$ at $Q$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "The graph of the function $f$ is shown below. How many solutions does the equation $f(f(x))=6$ have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Suppose that $a$ and $b$ are digits, not both nine and not both zero, and the repeating decimal $0.\\overline{ab}$ is expressed as a fraction in lowest terms. How many different denominators are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Consider the sequence of numbers: $4,7,1,8,9,7,6,\\dots$ For $n>2$ , the $n$ -th term of the sequence is the units digit of the sum of the two previous terms. Let $S_n$ denote the sum of the first $n$ terms of this sequence. The smallest value of $n$ for which $S_n>10,000$ is:",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Triangle $ABC$ is a right triangle with $\\angle ACB$ as its right angle, $m\\angle ABC = 60^\\circ$ , and $AB = 10$ . Let $P$ be randomly chosen inside $ABC$ , and extend $\\overline{BP}$ to meet $\\overline{AC}$ at $D$ . What is the probability that $BD > 5\\sqrt2$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "In triangle $ABC$ , side $AC$ and the perpendicular bisector of $BC$ meet in point $D$ , and $BD$ bisects $\\angle ABC$ . If $AD=9$ and $DC=7$ , what is the area of triangle $ABD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Find the number of ordered pairs of real numbers $(a,b)$ such that $(a+bi)^{2002} = a-bi$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "The nonzero coefficients of a polynomial $P$ with real coefficients are all replaced by their mean to form a polynomial $Q$ . Which of the following could be a graph of $y = P(x)$ and $y = Q(x)$ over the interval $-4\\leq x \\leq 4$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_12A_Problems/Problem_25"
+    }
+  ]
+}

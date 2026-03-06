@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC8",
+    "year": 2008,
+    "exam": null,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Susan had 50 dollars to spend at the carnival. She spent 12 dollars on food and twice as much on rides. How many dollars did she have left to spend?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "The ten-letter code $\\text{BEST OF LUCK}$ represents the ten digits $0-9$ , in order. What 4-digit number is represented by the code word $\\text{CLUE}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "If February is a month that contains Friday the $13^{\\text{th}}$ , what day of the week is February 1?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "In the figure, the outer equilateral triangle has area $16$ , the inner equilateral triangle has area $1$ , and the three trapezoids are congruent. What is the area of one of the trapezoids?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Barney Schwinn notices that the odometer on his bicycle reads $1441$ , a palindrome, because it reads the same forward and backward. After riding $4$ more hours that day and $6$ the next, he notices that the odometer shows another palindrome, $1661$ . What was his average speed in miles per hour?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "In the figure, what is the ratio of the area of the gray squares to the area of the white squares?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "If $\\frac{3}{5}=\\frac{M}{45}=\\frac{60}{N}$ , what is $M+N$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Candy sales from the Boosters Club from January through April are shown. What were the average sales per month in dollars?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "In $2005$ Tycoon Tammy invested $100$ dollars for two years. During the first year her investment suffered a $15\\%$ loss, but during the second year the remaining investment showed a $20\\%$ gain. Over the two-year period, what was the change in Tammy's investment?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "The average age of the $6$ people in Room A is $40$ . The average age of the $4$ people in Room B is $25$ . If the two groups are combined, what is the average age of all the people?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Each of the $39$ students in the eighth grade at Lincoln Middle School has one dog or one cat or both a dog and a cat. Twenty students have a dog and $26$ students have a cat. How many students have both a dog and a cat?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "A ball is dropped from a height of $3$ meters. On its first bounce it rises to a height of $2$ meters. It keeps falling and bouncing to $\\frac{2}{3}$ of the height it reached in the previous bounce. On which bounce will it not rise to a height of $0.5$ meters?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Mr. Harman needs to know the combined weight in pounds of three boxes he wants to mail. However, the only available scale is not accurate for weights less than $100$ pounds or more than $150$ pounds. So the boxes are weighed in pairs in every possible way. The results are $122$ , $125$ and $127$ pounds. What is the combined weight in pounds of the three boxes?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Three $\\text{A's}$ , three $\\text{B's}$ , and three $\\text{C's}$ are placed in the nine spaces so that each row and column contain one of each letter. If $\\text{A}$ is placed in the upper left corner, how many arrangements are possible? [asy] size((80)); draw((0,0)--(9,0)--(9,9)--(0,9)--(0,0)); draw((3,0)--(3,9)); draw((6,0)--(6,9)); draw((0,3)--(9,3)); draw((0,6)--(9,6)); label(\"A\", (1.5,7.5)); [/asy] $\\textbf{(A)}\\ 2\\qquad\\textbf{(B)}\\ 3\\qquad\\textbf{(C)}\\ 4\\qquad\\textbf{(D)}\\ 5\\qquad\\textbf{(E)}\\ 6$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "In Theresa's first $8$ basketball games, she scored $7, 4, 3, 6, 8, 3, 1$ and $5$ points. In her ninth game, she scored fewer than $10$ points and her points-per-game average for the nine games was an integer. Similarly in her tenth game, she scored fewer than $10$ points and her points-per-game average for the $10$ games was also an integer. What is the product of the number of points she scored in the ninth and tenth games?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "A shape is created by joining seven unit cubes, as shown. What is the ratio of the volume in cubic units to the surface area in square units?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Ms.Osborne asks each student in her class to draw a rectangle with integer side lengths and a perimeter of $50$ units. All of her students calculate the area of the rectangle they draw. What is the difference between the largest and smallest possible areas of the rectangles?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Two circles that share the same center have radii $10$ meters and $20$ meters. An aardvark runs along the path shown, starting at $A$ and ending at $K$ . How many meters does the aardvark run?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Eight points are spaced around at intervals of one unit around a $2 \\times 2$ square, as shown. Two of the $8$ points are chosen at random. What is the probability that the two points are one unit apart? [asy] size((50)); dot((5,0)); dot((5,5)); dot((0,5)); dot((-5,5)); dot((-5,0)); dot((-5,-5)); dot((0,-5)); dot((5,-5)); [/asy] $\\textbf{(A)}\\ \\frac{1}{4}\\qquad\\textbf{(B)}\\ \\frac{2}{7}\\qquad\\textbf{(C)}\\ \\frac{4}{11}\\qquad\\textbf{(D)}\\ \\frac{1}{2}\\qquad\\textbf{(E)}\\ \\frac{4}{7}$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "The students in Mr. Neatkin's class took a penmanship test. Two-thirds of the boys and $\\frac{3}{4}$ of the girls passed the test, and an equal number of boys and girls passed the test. What is the minimum possible number of students in the class?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Jerry cuts a wedge from a $6$ -cm cylinder of bologna as shown by the dashed curve. Which answer choice is closest to the volume of his wedge in cubic centimeters?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "For how many positive integer values of $n$ are both $\\frac{n}{3}$ and $3n$ three-digit whole numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "In square $ABCE$ , $AF=2FE$ and $CD=2DE$ . What is the ratio of the area of $\\triangle BFD$ to the area of square $ABCE$ ? [asy] size((100)); draw((0,0)--(9,0)--(9,9)--(0,9)--cycle); draw((3,0)--(9,9)--(0,3)--cycle); dot((3,0)); dot((0,3)); dot((9,9)); dot((0,0)); dot((9,0)); dot((0,9)); label(\"$A$\", (0,9), NW); label(\"$B$\", (9,9), NE); label(\"$C$\", (9,0), SE); label(\"$D$\", (3,0), S); label(\"$E$\", (0,0), SW); label(\"$F$\", (0,3), W); [/asy]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Ten tiles numbered $1$ through $10$ are turned face down. One tile is turned up at random, and a die is rolled. What is the probability that the product of the numbers on the tile and the die will be a square?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Margie's winning art design is shown. The smallest circle has radius 2 inches, with each successive circle's radius increasing by 2 inches. Which of the following is closest to the percent of the design that is black?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_8_Problems/Problem_25"
+    }
+  ]
+}

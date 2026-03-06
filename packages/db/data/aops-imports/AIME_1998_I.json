@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 1998,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1998_AIME"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "For how many values of $k$ is $12^{12}$ the least common multiple of the positive integers $6^6$ , $8^8$ , and $k$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "025",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1998_AIME_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Find the number of ordered pairs $(x,y)$ of positive integers that satisfy $x \\le 2y \\le 60$ and $y \\le 2x \\le 60$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "480",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1998_AIME_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "The graph of $y^2 + 2xy + 40|x|= 400$ partitions the plane into several regions. What is the area of the bounded region?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "800",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1998_AIME_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Nine tiles are numbered $1, 2, 3, \\cdots, 9,$ respectively. Each of three players randomly selects and keeps three of the tiles, and sums those three values. The probability that all three players obtain an odd sum is $m/n,$ where $m$ and $n$ are relatively prime positive integers . Find $m+n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "017",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1998_AIME_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Given that $A_k = \\frac {k(k - 1)}2\\cos\\frac {k(k - 1)\\pi}2,$ find $|A_{19} + A_{20} + \\cdots + A_{98}|.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "040",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1998_AIME_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Let $ABCD$ be a parallelogram . Extend $\\overline{DA}$ through $A$ to a point $P,$ and let $\\overline{PC}$ meet $\\overline{AB}$ at $Q$ and $\\overline{DB}$ at $R.$ Given that $PQ = 735$ and $QR = 112,$ find $RC.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "308",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1998_AIME_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Let $n$ be the number of ordered quadruples $(x_1,x_2,x_3,x_4)$ of positive odd integers that satisfy $\\sum_{i = 1}^4 x_i = 98.$ Find $\\frac n{100}.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "196",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1998_AIME_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Except for the first two terms, each term of the sequence $1000, x, 1000 - x,\\ldots$ is obtained by subtracting the preceding term from the one before that. The last term of the sequence is the first negative term encounted. What positive integer $x$ produces a sequence of maximum length?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "618",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1998_AIME_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Two mathematicians take a morning coffee break each day. They arrive at the cafeteria independently, at random times between 9 a.m. and 10 a.m., and stay for exactly $m$ minutes. The probability that either one arrives while the other is in the cafeteria is $40 \\%,$ and $m = a - b\\sqrt {c},$ where $a, b,$ and $c$ are positive integers , and $c$ is not divisible by the square of any prime . Find $a + b + c.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "087",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1998_AIME_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Eight spheres of radius 100 are placed on a flat surface so that each sphere is tangent to two others and their centers are the vertices of a regular octagon . A ninth sphere is placed on the flat surface so that it is tangent to each of the other eight spheres. The radius of this last sphere is $a +b\\sqrt {c},$ where $a, b,$ and $c$ are positive integers , and $c$ is not divisible by the square of any prime . Find $a + b + c$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "152",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1998_AIME_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Three of the edges of a cube are $\\overline{AB}, \\overline{BC},$ and $\\overline{CD},$ and $\\overline{AD}$ is an interior diagonal. Points $P, Q,$ and $R$ are on $\\overline{AB}, \\overline{BC},$ and $\\overline{CD},$ respectively, so that $AP = 5, PB = 15, BQ = 15,$ and $CR = 10.$ What is the area of the polygon that is the intersection of plane $PQR$ and the cube?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "525",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1998_AIME_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Let $ABC$ be equilateral , and $D, E,$ and $F$ be the midpoints of $\\overline{BC}, \\overline{CA},$ and $\\overline{AB},$ respectively. There exist points $P, Q,$ and $R$ on $\\overline{DE}, \\overline{EF},$ and $\\overline{FD},$ respectively, with the property that $P$ is on $\\overline{CQ}, Q$ is on $\\overline{AR},$ and $R$ is on $\\overline{BP}.$ The ratio of the area of triangle $ABC$ to the area of triangle $PQR$ is $a + b\\sqrt {c},$ where $a, b$ and $c$ are integers, and $c$ is not divisible by the square of any prime . What is $a^{2} + b^{2} + c^{2}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "083",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1998_AIME_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "If $\\{a_1,a_2,a_3,\\ldots,a_n\\}$ is a set of real numbers , indexed so that $a_1 < a_2 < a_3 < \\cdots < a_n,$ its complex power sum is defined to be $a_1i + a_2i^2+ a_3i^3 + \\cdots + a_ni^n,$ where $i^2 = - 1.$ Let $S_n$ be the sum of the complex power sums of all nonempty subsets of $\\{1,2,\\ldots,n\\}.$ Given that $S_8 = - 176 - 64i$ and $S_9 = p + qi,$ where $p$ and $q$ are integers, find $\\left\\lvert p\\right\\rvert + \\left\\lvert q\\right\\rvert.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "368",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1998_AIME_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "An $m\\times n\\times p$ rectangular box has half the volume of an $(m + 2)\\times(n + 2)\\times(p + 2)$ rectangular box, where $m, n,$ and $p$ are integers, and $m\\le n\\le p.$ What is the largest possible value of $p$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "130",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1998_AIME_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Define a domino to be an ordered pair of distinct positive integers. A proper sequence of dominos is a list of distinct dominos in which the first coordinate of each pair after the first equals the second coordinate of the immediately preceding pair, and in which $(i,j)$ and $(j,i)$ do not both appear for any $i$ and $j$ . Let $D_{40}$ be the set of all dominos whose coordinates are no larger than 40. Find the length of the longest proper sequence of dominos that can be formed using the dominos of $D_{40}.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "761",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1998_AIME_Problems/Problem_15"
+    }
+  ]
+}

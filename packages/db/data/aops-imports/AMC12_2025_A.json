@@ -1,0 +1,185 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2025,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "NONE OF THE OFFICIAL ANSWER CHOICES WERE CORRECT.",
+      "answerFormat": "EXPRESSION",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2025_AMC_12A_Problems/Problem_25"
+    }
+  ]
+}

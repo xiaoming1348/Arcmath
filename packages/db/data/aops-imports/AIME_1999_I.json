@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 1999,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AIME"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Find the smallest prime that is the fifth term of an increasing arithmetic sequence , all four preceding terms also being prime .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "029",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AIME_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Consider the parallelogram with vertices $(10,45)$ , $(10,114)$ , $(28,153)$ , and $(28,84)$ . A line through the origin cuts this figure into two congruent polygons . The slope of the line is $m/n,$ where $m_{}$ and $n_{}$ are relatively prime positive integers . Find $m+n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "118",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AIME_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Find the sum of all positive integers $n$ for which $n^2-19n+99$ is a perfect square .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "038",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AIME_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "The two squares shown share the same center $O_{}$ and have sides of length 1. The length of $\\overline{AB}$ is $43/99$ and the area of octagon $ABCDEFGH$ is $m/n,$ where $m_{}$ and $n_{}$ are relatively prime positive integers . Find $m+n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "185",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AIME_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "For any positive integer $x_{}$ , let $S(x)$ be the sum of the digits of $x_{}$ , and let $T(x)$ be $|S(x+2)-S(x)|.$ For example, $T(199)=|S(201)-S(199)|=|3-19|=16.$ How many values of $T(x)$ do not exceed 1999?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "223",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AIME_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "A transformation of the first quadrant of the coordinate plane maps each point $(x,y)$ to the point $(\\sqrt{x},\\sqrt{y}).$ The vertices of quadrilateral $ABCD$ are $A=(900,300), B=(1800,600), C=(600,1800),$ and $D=(300,900).$ Let $k_{}$ be the area of the region enclosed by the image of quadrilateral $ABCD.$ Find the greatest integer that does not exceed $k_{}.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "314",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AIME_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "There is a set of 1000 switches, each of which has four positions, called $A, B, C$ , and $D$ . When the position of any switch changes, it is only from $A$ to $B$ , from $B$ to $C$ , from $C$ to $D$ , or from $D$ to $A$ . Initially each switch is in position $A$ . The switches are labeled with the 1000 different integers $(2^{x})(3^{y})(5^{z})$ , where $x, y$ , and $z$ take on the values $0, 1, \\ldots, 9$ . At step i of a 1000-step process, the $i$ -th switch is advanced one step, and so are all the other switches whose labels divide the label on the $i$ -th switch. After step 1000 has been completed, how many switches will be in position $A$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "650",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AIME_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Let $\\mathcal{T}$ be the set of ordered triples $(x,y,z)$ of nonnegative real numbers that lie in the plane $x+y+z=1.$ Let us say that $(x,y,z)$ supports $(a,b,c)$ when exactly two of the following are true: $x\\ge a, y\\ge b, z\\ge c.$ Let $\\mathcal{S}$ consist of those triples in $\\mathcal{T}$ that support $\\left(\\frac 12,\\frac 13,\\frac 16\\right).$ The area of $\\mathcal{S}$ divided by the area of $\\mathcal{T}$ is $m/n,$ where $m_{}$ and $n_{}$ are relatively prime positive integers. Find $m+n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "025",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AIME_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "A function $f$ is defined on the complex numbers by $f(z)=(a+bi)z,$ where $a_{}$ and $b_{}$ are positive numbers. This function has the property that the image of each point in the complex plane is equidistant from that point and the origin . Given that $|a+bi|=8$ and that $b^2=m/n,$ where $m_{}$ and $n_{}$ are relatively prime positive integers, find $m+n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "259",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AIME_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Ten points in the plane are given, with no three collinear . Four distinct segments joining pairs of these points are chosen at random, all such segments being equally likely. The probability that some three of the segments form a triangle whose vertices are among the ten given points is $m/n,$ where $m_{}$ and $n_{}$ are relatively prime positive integers . Find $m+n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "489",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AIME_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Given that $\\sum_{k=1}^{35}\\sin 5k=\\tan \\frac mn,$ where angles are measured in degrees, and $m_{}$ and $n_{}$ are relatively prime positive integers that satisfy $\\frac mn<90,$ find $m+n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "177",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AIME_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "The inscribed circle of triangle $ABC$ is tangent to $\\overline{AB}$ at $P_{},$ and its radius is $21$ . Given that $AP=23$ and $PB=27,$ find the perimeter of the triangle.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "345",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AIME_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Forty teams play a tournament in which every team plays every other team exactly once. No ties occur, and each team has a $50 \\%$ chance of winning any game it plays. The probability that no two teams win the same number of games is $\\frac mn,$ where $m_{}$ and $n_{}$ are relatively prime positive integers. Find $\\log_2 n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "742",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AIME_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Point $P_{}$ is located inside triangle $ABC$ so that angles $PAB, PBC,$ and $PCA$ are all congruent. The sides of the triangle have lengths $AB=13, BC=14,$ and $CA=15,$ and the tangent of angle $PAB$ is $m/n,$ where $m_{}$ and $n_{}$ are relatively prime positive integers. Find $m+n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "463",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AIME_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Consider the paper triangle whose vertices are $(0,0), (34,0),$ and $(16,24).$ The vertices of its midpoint triangle are the midpoints of its sides. A triangular pyramid is formed by folding the triangle along the sides of its midpoint triangle. What is the volume of this pyramid?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "408",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=1999_AIME_Problems/Problem_15"
+    }
+  ]
+}

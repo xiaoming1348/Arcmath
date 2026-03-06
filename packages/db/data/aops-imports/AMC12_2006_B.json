@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2006,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "What is $( - 1)^1 + ( - 1)^2 + \\cdots + ( - 1)^{2006}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "For real numbers $x$ and $y$ , define $x\\spadesuit y = (x + y)(x - y)$ . What is $3\\spadesuit(4\\spadesuit 5)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "A football game was played between two teams, the Cougars and the Panthers. The two teams scored a total of 34 points, and the Cougars won by a margin of 14 points. How many points did the Panthers score?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Mary is about to pay for five items at the grocery store. The prices of the items are $7.99$ , $4.99$ , $2.99$ , $1.99$ , and $0.99$ . Mary will pay with a twenty-dollar bill. Which of the following is closest to the percentage of the $20.00$ that she will receive in change?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "John is walking east at a speed of 3 miles per hour, while Bob is also walking east, but at a speed of 5 miles per hour. If Bob is now 1 mile west of John, how many minutes will it take for Bob to catch up to John?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Francesca uses 100 grams of lemon juice, 100 grams of sugar, and 400 grams of water to make lemonade. There are 25 calories in 100 grams of lemon juice and 386 calories in 100 grams of sugar. Water contains no calories. How many calories are in 200 grams of her lemonade?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Mr. and Mrs. Lopez have two children. When they get into their family car, two people sit in the front, and the other two sit in the back. Either Mr. Lopez or Mrs. Lopez must sit in the driver's seat. How many seating arrangements are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "The lines $x = \\frac 14y + a$ and $y = \\frac 14x + b$ intersect at the point $(1,2)$ . What is $a + b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "How many even three-digit integers have the property that their digits, all read from left to right, are in strictly increasing order?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "In a triangle with integer side lengths, one side is three times as long as a second side, and the length of the third side is 15. What is the greatest possible perimeter of the triangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Joe and JoAnn each bought 12 ounces of coffee in a 16-ounce cup. Joe drank 2 ounces of his coffee and then added 2 ounces of cream. JoAnn added 2 ounces of cream, stirred the coffee well, and then drank 2 ounces. What is the resulting ratio of the amount of cream in Joe's coffee to that in JoAnn's coffee?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "The parabola $y=ax^2+bx+c$ has vertex $(p,p)$ and $y$ -intercept $(0,-p)$ , where $p\\ne 0$ . What is $b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Rhombus $ABCD$ is similar to rhombus $BFDE$ . The area of rhombus $ABCD$ is 24, and $\\angle BAD = 60^\\circ$ . What is the area of rhombus $BFDE$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Elmo makes $N$ sandwiches for a fundraiser. For each sandwich he uses $B$ globs of peanut butter at $4$ cents per glob and $J$ blobs of jam at $5$ cents per glob. The cost of the peanut butter and jam to make all the sandwiches is $2.53$ . Assume that $B$ , $J$ and $N$ are all positive integers with $N>1$ . What is the cost of the jam Elmo uses to make the sandwiches?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Circles with centers $O$ and $P$ have radii 2 and 4, respectively, and are externally tangent. Points $A$ and $B$ are on the circle centered at $O$ , and points $C$ and $D$ are on the circle centered at $P$ , such that $\\overline{AD}$ and $\\overline{BC}$ are common external tangents to the circles. What is the area of hexagon $AOBCPD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Regular hexagon $ABCDEF$ has vertices $A$ and $C$ at $(0,0)$ and $(7,1)$ , respectively. What is its area?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "For a particular peculiar pair of dice, the probabilities of rolling $1$ , $2$ , $3$ , $4$ , $5$ and $6$ on each die are in the ratio $1:2:3:4:5:6$ . What is the probability of rolling a total of $7$ on the two dice?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "An object in the plane moves from one lattice point to another. At each step, the object may move one unit to the right, one unit to the left, one unit up, or one unit down. If the object starts at the origin and takes a ten-step path, how many different points could be the final point?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Mr. Jones has eight children of different ages. On a family trip his oldest child, who is 9, spots a license plate with a 4-digit number in which each of two digits appears two times. \"Look, daddy!\" she exclaims. \"That number is evenly divisible by the age of each of us kids!\" \"That's right,\" replies Mr. Jones, \"and the last two digits just happen to be my age.\" Which of the following is not the age of one of Mr. Jones's children?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Let $x$ be chosen at random from the interval $(0,1)$ . What is the probability that $\\lfloor\\log_{10}4x\\rfloor - \\lfloor\\log_{10}x\\rfloor = 0$ ? Here $\\lfloor x\\rfloor$ denotes the greatest integer that is less than or equal to $x$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Rectangle $ABCD$ has area $2006$ . An ellipse with area $2006\\pi$ passes through $A$ and $C$ and has foci at $B$ and $D$ . What is the perimeter of the rectangle? (The area of an ellipse is $ab\\pi$ where $2a$ and $2b$ are the lengths of the axes.)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Suppose $a$ , $b$ and $c$ are positive integers with $a+b+c=2006$ , and $a!b!c!=m\\cdot 10^n$ , where $m$ and $n$ are integers and $m$ is not divisible by $10$ . What is the smallest possible value of $n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Isosceles $\\triangle ABC$ has a right angle at $C$ . Point $P$ is inside $\\triangle ABC$ , such that $PA=11$ , $PB=7$ , and $PC=6$ . Legs $\\overline{AC}$ and $\\overline{BC}$ have length $s=\\sqrt{a+b\\sqrt{2}}$ , where $a$ and $b$ are positive integers. What is $a+b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Let $S$ be the set of all point $(x,y)$ in the coordinate plane such that $0 \\le x \\le \\frac{\\pi}{2}$ and $0 \\le y \\le \\frac{\\pi}{2}$ . What is the area of the subset of $S$ for which \\[\\sin^2x-\\sin x \\sin y + \\sin^2y \\le \\frac34?\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "A sequence $a_1,a_2,\\dots$ of non-negative integers is defined by the rule $a_{n+2}=|a_{n+1}-a_n|$ for $n\\geq 1$ . If $a_1=999$ , $a_2<999$ and $a_{2006}=1$ , how many different values of $a_2$ are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2006_AMC_12B_Problems/Problem_25"
+    }
+  ]
+}

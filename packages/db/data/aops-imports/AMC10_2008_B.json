@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2008,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "A basketball player made 5 baskets during a game. Each basket was worth either 2 or 3 points. How many different numbers could represent the total points scored by the player?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "A $4\\times 4$ block of calendar dates is shown. First, the order of the numbers in the second and the fourth rows are reversed. Then, the numbers on each diagonal are added. What will be the positive difference between the two diagonal sums?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Assume that $x$ is a positive real number . Which is equivalent to $\\sqrt[3]{x\\sqrt{x}}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "A semipro baseball league has teams with $21$ players each. League rules state that a player must be paid at least $15,000$ dollars, and that the total of all players' salaries for each team cannot exceed $700,000$ dollars. What is the maximum possiblle salary, in dollars, for a single player?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "For real numbers $a$ and $b$ , define $a * b=(a-b)^2$ . What is $(x-y)^2*(y-x)^2$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Points $B$ and $C$ lie on $\\overline{AD}$ . The length of $\\overline{AB}$ is $4$ times the length of $\\overline{BD}$ , and the length of $\\overline{AC}$ is $9$ times the length of $\\overline{CD}$ . The length of $\\overline{BC}$ is what fraction of the length of $\\overline{AD}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "An equilateral triangle of side length $10$ is completely filled in by non-overlapping equilateral triangles of side length $1$ . How many small triangles are required?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "A class collects 50 dollars to buy flowers for a classmate who is in the hospital. Roses cost 3 dollars each, and carnations cost 2 dollars each. No other flowers are to be used. How many different bouquets could be purchased for exactly 50 dollars?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "A quadratic equation $ax^2 - 2ax + b = 0$ has two real solutions. What is the average of these two solutions?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Points $A$ and $B$ are on a circle of radius $5$ and $AB=6$ . Point $C$ is the midpoint of the minor arc $AB$ . What is the length of the line segment $AC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Suppose that $(u_n)$ is a sequence of real numbers satifying $u_{n+2}=2u_{n+1}+u_n$ ,",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Postman Pete has a pedometer to count his steps. The pedometer records up to 99999 steps, then flips over to 00000 on the next step. Pete plans to determine his mileage for a year. On January 1 Pete sets the pedometer to 00000. During the year, the pedometer flips from 99999 to 00000 forty-four times. On December 31 the pedometer reads 50000. Pete takes 1800 steps per mile. Which of the following is closest to the number of miles Pete walked during the year?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "For each positive integer $n$ , the mean of the first $n$ terms of a sequence is $n$ . What is the $2008^{\\text{th}}$ term of the sequence?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Triangle [katex]OAB[/katex] has [katex]O=(0,0)[/katex], [katex]B=(5,0)[/katex], and [katex]A[/katex] in the first quadrant. In addition, [katex]\\angle ABO=90^\\circ[/katex] and [katex]\\angle AOB=30^\\circ[/katex]. Suppose that [katex]OA[/katex] is rotated [katex]90^\\circ[/katex] counterclockwise about [katex]O[/katex]. What are the coordinates of the image of [katex]A[/katex]?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "How many right triangles have integer leg lengths $a$ and $b$ and a hypotenuse of length $b+1$ , where $b<100$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Two fair coins are to be tossed once. For each head that results, one fair die is to be rolled. What is the probability that the sum of the die rolls is odd? (Note that if no die is rolled, the sum is 0.)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "A poll shows that $70\\%$ of all voters approve of the mayor's work. On three separate occasions a pollster selects a voter at random. What is the probability that on exactly one of these three occasions the voter approves of the mayor's work?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Bricklayer Brenda takes $9$ hours to build a chimney alone, and bricklayer Brandon takes $10$ hours to build it alone. When they work together, they talk a lot, and their combined output decreases by $10$ bricks per hour. Working together, they build the chimney in $5$ hours. How many bricks are in the chimney?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "A cylindrical tank with radius $4$ feet and height $9$ feet is lying on its side. The tank is filled with water to a depth of $2$ feet. What is the volume of water, in cubic feet?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "The faces of a cubical die are marked with the numbers $1$ , $2$ , $2$ , $3$ , $3$ , and $4$ . The faces of another die are marked with the numbers $1$ , $3$ , $4$ , $5$ , $6$ , and $8$ . What is the probability that the sum of the top two numbers will be $5$ , $7$ , or $9$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Ten chairs are evenly spaced around a round table and numbered clockwise from $1$ through $10$ . Five married couples are to sit in the chairs with men and women alternating, and no one is to sit either next to or across from his/her spouse. How many seating arrangements are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Three red beads, two white beads, and one blue bead are placed in line in random order. What is the probability that no two neighboring beads are the same color?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "A rectangular floor measures $a$ by $b$ feet, where $a$ and $b$ are positive integers and $b > a$ . An artist paints a rectangle on the floor with the sides of the rectangle parallel to the floor. The unpainted part of the floor forms a border of width $1$ foot around the painted rectangle and occupies half the area of the whole floor. How many possibilities are there for the ordered pair $(a,b)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Quadrilateral $ABCD$ has $AB = BC = CD$ , $m\\angle ABC = 70^\\circ$ and $m\\angle BCD = 170^\\circ$ . What is the degree measure of $\\angle BAD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Michael walks at the rate of $5$ feet per second on a long straight path. Trash pails are located every $200$ feet along the path. A garbage truck traveling at $10$ feet per second in the same direction as Michael stops for $30$ seconds at each pail. As Michael passes a pail, he notices the truck ahead of him just leaving the next pail. How many times will Michael and the truck meet?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2008_AMC_10B_Problems/Problem_25"
+    }
+  ]
+}

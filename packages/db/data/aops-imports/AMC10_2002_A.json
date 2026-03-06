@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2002,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "The ratio $\\frac{10^{2000}+10^{2002}}{10^{2001}+10^{2001}}$ is closest to which of the following numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Given that a, b, and c are non-zero real numbers, define $(a, b, c) = \\frac{a}{b} + \\frac{b}{c} + \\frac{c}{a}$ , find $(2, 12, 9)$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "According to the standard convention for exponentiation, \\[2^{2^{2^{2}}} = 2^{(2^{(2^2)})} = 2^{16} = 65536.\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "For how many positive integers $m$ does there exist at least one positive integer n such that $m \\cdot n \\le m + n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Each of the small circles in the figure has radius one. The innermost circle is tangent to the six circles that surround it, and each of those circles is tangent to the large circle and to its small-circle neighbors. Find the area of the shaded region.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Cindy was asked by her teacher to subtract 3 from a certain number and then divide the result by 9. Instead, she subtracted 9 and then divided the result by 3, giving an answer of 43. What would her answer have been had she worked the problem correctly?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "A $45^\\circ$ arc of circle A is equal in length to a $30^\\circ$ arc of circle B. What is the ratio of circle A's area and circle B's area?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Betsy designed a flag using blue triangles, small white squares, and a red center square, as shown. Let $B$ be the total area of the blue triangles, $W$ the total area of the white squares, and $P$ the area of the red square. Which of the following is correct?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "There are 3 numbers A, B, and C, such that $1001C - 2002A = 4004$ , and $1001B + 3003A = 5005$ . What is the average of A, B, and C?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Compute the sum of all the roots of $(2x+3)(x-4)+(2x+3)(x-6)=0$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Jamal wants to save 30 files onto disks, each with 1.44 MB space. 3 of the files take up 0.8 MB, 12 of the files take up 0.7 MB, and the rest take up 0.4 MB. It is not possible to split a file onto 2 different disks. What is the smallest number of disks needed to store all 30 files?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Mr. Earl E. Bird gets up every day at 8:00 AM to go to work. If he drives at an average speed of 40 miles per hour, he will be late by 3 minutes. If he drives at an average speed of 60 miles per hour, he will be early by 3 minutes. How many miles per hour does Mr. Bird need to drive to get to work exactly on time?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Given a triangle with side lengths 15, 20, and 25, find the triangle's shortest altitude.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Both roots of the quadratic equation $x^2 - 63x + k = 0$ are prime numbers. The number of possible values of $k$ is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Using the digits 1, 2, 3, 4, 5, 6, 7, and 9, form 4 two-digit prime numbers, using each digit only once. What is the sum of the 4 prime numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Let $a + 1 = b + 2 = c + 3 = d + 4 = a + b + c + d + 5$ . What is $a + b + c + d$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Sarah places four ounces of coffee into an eight-ounce cup and four ounces of cream into a second cup of the same size. She then pours half the coffee from the first cup to the second and, after stirring thoroughly, pours half the liquid in the second cup back to the first. What fraction of the liquid in the first cup is now cream?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "A $3$ x $3$ x $3$ cube is made of $27$ normal dice. Each die's opposite sides sum to $7$ . What is the smallest possible sum of all of the values visible on the $6$ faces of the large cube?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Spot's doghouse has a regular hexagonal base that measures one yard on each side. He is tethered to a vertex with a two-yard rope. What is the area, in square yards, of the region outside of the doghouse that Spot can reach?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Points $A,B,C,D,E$ and $F$ lie, in that order, on $\\overline{AF}$ , dividing it into five segments, each of length 1. Point $G$ is not on line $AF$ . Point $H$ lies on $\\overline{GD}$ , and point $J$ lies on $\\overline{GF}$ . The line segments $\\overline{HC}, \\overline{JE},$ and $\\overline{AG}$ are parallel. Find $HC/JE$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "The mean, median, unique mode, and range of a collection of eight integers are all equal to 8. The largest integer that can be an element of this collection is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "A set of tiles numbered 1 through 100 is modified repeatedly by the following operation: remove all tiles numbered with a perfect square , and renumber the remaining tiles consecutively starting with 1. How many times must the operation be performed to reduce the number of tiles in the set to one?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Points $A,B,C$ and $D$ lie on a line, in that order, with $AB = CD$ and $BC = 12$ . Point $E$ is not on the line, and $BE = CE = 10$ . The perimeter of $\\triangle AED$ is twice the perimeter of $\\triangle BEC$ . Find $AB$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Tina randomly selects two distinct numbers from the set $\\{ 1, 2, 3, 4, 5 \\}$ , and Sergio randomly selects a number from the set $\\{ 1, 2, ..., 10 \\}$ . What is the probability that Sergio's number is larger than the sum of the two numbers chosen by Tina?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "In trapezoid $ABCD$ with bases $AB$ and $CD$ , we have $AB = 52$ , $BC = 12$ , $CD = 39$ , and $DA = 5$ . The area of $ABCD$ is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2002_AMC_10A_Problems/Problem_25"
+    }
+  ]
+}

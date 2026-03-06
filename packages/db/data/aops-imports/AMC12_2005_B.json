@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2005,
+    "exam": "B",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "A scout troop buys $1000$ candy bars at a price of five for $2$ dollars. They sell all the candy bars at the price of two for $1$ dollar. What was their profit, in dollars?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "A positive number $x$ has the property that $x\\%$ of $x$ is $4$ . What is $x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Brianna is using part of the money she earned on her weekend job to buy several equally-priced CDs. She used one fifth of her money to buy one third of the CDs. What fraction of her money will she have left after she buys all the CDs?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "At the beginning of the school year, Lisa's goal was to earn an $A$ on at least $80\\%$ of her $50$ quizzes for the year. She earned an $A$ on $22$ of the first $30$ quizzes. If she is to achieve her goal, on at most how many of the remaining quizzes can she earn a grade lower than an $A$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "An $8$ -foot by $10$ -foot bathroom floor is tiled with square tiles of size $1$ foot by $1$ foot. Each tile has a pattern consisting of four white quarter circles of radius $1/2$ foot centered at each corner of the tile. The remaining portion of the tile is shaded. How many square feet of the floor are shaded?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "In $\\triangle ABC$ , we have $AC=BC=7$ and $AB=2$ . Suppose that $D$ is a point on line $AB$ such that $B$ lies between $A$ and $D$ and $CD=8$ . What is $BD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "What is the area enclosed by the graph of $|3x|+|4y|=12$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "For how many values of $a$ is it true that the line $y = x + a$ passes through the vertex of the parabola $y = x^2 + a^2$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "On a certain math exam, $10\\%$ of the students got $70$ points, $25\\%$ got $80$ points, $20\\%$ got $85$ points, $15\\%$ got $90$ points, and the rest got $95$ points. What is the difference between the mean and the median score on this exam?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "The first term of a sequence is $2005$ . Each succeeding term is the sum of the cubes of the digits of the previous term. What is the ${2005}^{\\text{th}}$ term of the sequence?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "An envelope contains eight bills: $2$ ones, $2$ fives, $2$ tens, and $2$ twenties. Two bills are drawn at random without replacement. What is the probability that their sum is $ $20$ or more?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "The quadratic equation $x^2+mx+n$ has roots twice those of $x^2+px+m$ , and none of $m,n,$ and $p$ is zero. What is the value of $n/p$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Suppose that $4^{x_1}=5$ , $5^{x_2}=6$ , $6^{x_3}=7$ , ... , $127^{x_{124}}=128$ . What is $x_1x_2...x_{124}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "A circle having center $(0,k)$ , with $k>6$ , is tangent to the lines $y=x$ , $y=-x$ and $y=6$ . What is the radius of this circle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "The sum of four two-digit numbers is $221$ . None of the eight digits is $0$ and no two of them are the same. Which of the following is not included among the eight digits?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Eight spheres of radius 1, one per octant, are each tangent to the coordinate planes. What is the radius of the smallest sphere, centered at the origin, that contains these eight spheres?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "How many distinct four-tuples $(a,b,c,d)$ of rational numbers are there with",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Let $A(2,2)$ and $B(7,7)$ be points in the plane. Define $R$ as the region in the first quadrant consisting of those points $C$ such that $\\triangle ABC$ is an acute triangle. What is the closest integer to the area of the region $R$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Let $x$ and $y$ be two-digit integers such that $y$ is obtained by reversing the digits of $x$ . The integers $x$ and $y$ satisfy $x^{2}-y^{2}=m^{2}$ for some positive integer $m$ . What is $x+y+m$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Let $a,b,c,d,e,f,g$ and $h$ be distinct elements in the set $\\{-7,-5,-3,-2,2,4,6,13\\}.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "A positive integer $n$ has $60$ divisors and $7n$ has $80$ divisors. What is the greatest integer $k$ such that $7^k$ divides $n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "A sequence of complex numbers $z_{0}, z_{1}, z_{2}, ...$ is defined by the rule",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Let $S$ be the set of ordered triples $(x,y,z)$ of real numbers for which",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "All three vertices of an equilateral triangle are on the parabola $y = x^2$ , and one of its sides has a slope of $2$ . The $x$ -coordinates of the three vertices have a sum of $m/n$ , where $m$ and $n$ are relatively prime positive integers. What is the value of $m + n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Six ants simultaneously stand on the six vertices of a regular octahedron , with each ant at a different vertex. Simultaneously and independently, each ant moves from its vertex to one of the four adjacent vertices, each with equal probability . What is the probability that no two ants arrive at the same vertex?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AMC_12B_Problems/Problem_25"
+    }
+  ]
+}

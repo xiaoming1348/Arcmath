@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC8",
+    "year": 2001,
+    "exam": null,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Casey's shop class is making a golf trophy. He has to paint 300 dimples on a golf ball. If it takes him 2 seconds to paint one dimple, how many minutes will it take for him to finish",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "I'm thinking of two whole numbers. Their product is 24 and their sum is 11. What is the larger number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Granny Smith has \\$63. Elberta has \\$2 more than Anjou and Anjou has one-third as much as Granny Smith. How many dollars does Elberta have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "The digits 1, 2, 3, 4 and 9 are each used once to form the smallest possible even five-digit number. The digit in the tens place is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "On a dark and stormy night Snoopy suddenly saw a flash of lightning. Ten seconds later he heard the sound of thunder. The speed of sound is 1088 feet per second and one mile is 5280 feet. Estimate, to the nearest half-mile, how far Snoopy was from the flash of lightning.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Six trees are equally spaced along one side of a straight road. The distance from the first tree to the fourth is 60 feet. What is the distance in feet between the first and last trees?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "To promote her school's annual Kite Olympics, Genevieve makes a small kite and a large kite for a bulletin board display. The kites look like the one in the diagram. For her small kite Genevieve draws the kite on a one-inch grid. For the large kite she triples both the height and width of the entire grid. [asy] for (int a = 0; a < 7; ++a) { for (int b = 0; b < 8; ++b) { dot((a,b)); } } draw((3,0)--(0,5)--(3,7)--(6,5)--cycle); [/asy]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "To promote her school's annual Kite Olympics, Genevieve makes a small kite and a large kite for a bulletin board display. The kites look like the one in the diagram. For her small kite Genevieve draws the kite on a one-inch grid. For the large kite she triples both the height and width of the entire grid.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "To promote her school's annual Kite Olympics, Genevieve makes a small kite and a large kite for a bulletin board display. The kites look like the one in the diagram. For her small kite Genevieve draws the kite on a one-inch grid. For the large kite she triples both the height and width of the entire grid.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "A collector offers to buy state quarters for 2000% of their face value. At that rate how much will Bryden get for his four state quarters?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Points $A$ , $B$ , $C$ and $D$ have these coordinates: $A(3,2)$ , $B(3,-2)$ , $C(-3,-2)$ and $D(-3, 0)$ . The area of quadrilateral $ABCD$ is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "If $a\\otimes b = \\dfrac{a + b}{a - b}$ , then $(6\\otimes 4)\\otimes 3 =$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Of the 36 students in Richelle's class, 12 prefer chocolate pie, 8 prefer apple, and 6 prefer blueberry. Half of the remaining students prefer cherry pie and half prefer lemon. For Richelle's pie graph showing this data, how many degrees should she use for cherry pie?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Tyler has entered a buffet line in which he chooses one kind of meat, two different vegetables and one dessert. If the order of food items is not important, how many different meals might he choose?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Homer began peeling a pile of 44 potatoes at the rate of 3 potatoes per minute. Four minutes later Christen joined him and peeled at the rate of 5 potatoes per minute. When they finished, how many potatoes had Christen peeled?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "A square piece of paper, 4 inches on a side, is folded in half vertically. Both layers are then cut in half parallel to the fold. Three new rectangles are formed, a large one and two small ones. What is the ratio of the perimeter of one of the small rectangles to the perimeter of the large rectangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "For the game show Who Wants To Be A Millionaire? , the dollar values of each question are shown in the following table (where K = 1000).",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Two dice are thrown. What is the probability that the product of the two numbers is a multiple of 5?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Car M traveled at a constant speed for a given time. This is shown by the dashed line. Car N traveled at twice the speed for the same distance. If Car M and Car N's speed and time are shown as solid line, which graph illustrates this?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Kaleana shows her test score to Quay, Marty and Shana, but the others keep theirs hidden. Quay thinks, \"At least two of us have the same score.\" Marty thinks, \"I didn't get the lowest score.\" Shana thinks, \"I didn't get the highest score.\" List the scores from lowest to highest for Marty (M), Quay (Q) and Shana (S).",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "The mean of a set of five different positive integers is 15. The median is 18. The maximum possible value of the largest of these five integers is",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "On a twenty-question test, each correct answer is worth 5 points, each unanswered question is worth 1 point and each incorrect answer is worth 0 points. Which of the following scores is NOT possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Points $R$ , $S$ and $T$ are vertices of an equilateral triangle, and points $X$ , $Y$ and $Z$ are midpoints of its sides. How many noncongruent triangles can be drawn using any three of these six points as vertices?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Each half of this figure is composed of 3 red triangles, 5 blue triangles and 8 white triangles. When the upper half is folded down over the centerline, 2 pairs of red triangles coincide, as do 3 pairs of blue triangles. There are 2 red-white pairs. How many white pairs coincide?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "There are 24 four-digit whole numbers that use each of the four digits 2, 4, 5 and 7 exactly once. Only one of these four-digit numbers is a multiple of another one. Which of the following is it?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2001_AMC_8_Problems/Problem_25"
+    }
+  ]
+}

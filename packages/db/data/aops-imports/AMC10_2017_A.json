@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2017,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "What is the value of $(2(2(2(2(2(2+1)+1)+1)+1)+1)+1)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Pablo buys popsicles for his friends. The store sells single popsicles for $\\$1$ each, $3$ -popsicle boxes for $\\$2$ each, and $5$ -popsicle boxes for $\\$3$ . What is the greatest number of popsicles that Pablo can buy with $\\$8$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Tamara has three rows of two $6$ -feet by $2$ -feet flower beds in her garden. The beds are separated and also surrounded by $1$ -foot-wide walkways, as shown on the diagram. What is the total area of the walkways, in square feet?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Mia is \"helping\" her mom pick up $30$ toys that are strewn on the floor. Mia’s mom manages to put $3$ toys into the toy box every $30$ seconds, but each time immediately after those $30$ seconds have elapsed, Mia takes $2$ toys out of the box. How much time, in minutes, will it take Mia and her mom to put all $30$ toys into the box for the first time?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "The sum of two nonzero real numbers is $4$ times their product. What is the sum of the reciprocals of the two numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Ms. Carroll promised that anyone who got all the multiple choice questions right on the upcoming exam would receive an A on the exam. Which one of these statements necessarily follows logically?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Jerry and Silvia wanted to go from the southwest corner of a square field to the northeast corner. Jerry walked due east and then due north to reach the goal, but Silvia headed northeast and reached the goal walking in a straight line. Which of the following is closest to how much shorter Silvia's trip was, compared to Jerry's trip?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "At a gathering of $30$ people, there are $20$ people who all know each other and $10$ people who know no one. People who know each other hug, and people who do not know each other shake hands. How many handshakes occur within the group?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Minnie rides on a flat road at $20$ kilometers per hour (kph), downhill at $30$ kph, and uphill at $5$ kph. Penny rides on a flat road at $30$ kph, downhill at $40$ kph, and uphill at $10$ kph. Minnie goes from town $A$ to town $B$ , a distance of $10$ km all uphill, then from town $B$ to town $C$ , a distance of $15$ km all downhill, and then back to town $A$ , a distance of $20$ km on the flat. Penny goes the other way around using the same route. How many more minutes does it take Minnie to complete the $45$ -km ride than it takes Penny?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Joy has $30$ thin rods, one each of every integer length from $1$ cm through $30$ cm. She places the rods with lengths $3$ cm, $7$ cm, and $15$ cm on a table. She then wants to choose a fourth rod that she can put with these three to form a quadrilateral with positive area. How many of the remaining rods can she choose as the fourth rod?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "The region consisting of all points in three-dimensional space within $3$ units of line segment $\\overline{AB}$ has volume $216\\pi$ . What is the length $\\textit{AB}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Let $S$ be a set of points $(x,y)$ in the coordinate plane such that two of the three quantities $3,~x+2,$ and $y-4$ are equal and the third of the three quantities is no greater than this common value. Which of the following is a correct description for $S?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Define a sequence recursively by $F_{0}=0,~F_{1}=1,$ and $F_{n}=$ the remainder when $F_{n-1}+F_{n-2}$ is divided by $3,$ for all $n\\geq 2.$ Thus the sequence starts $0,1,1,2,0,2,\\ldots$ What is $F_{2017}+F_{2018}+F_{2019}+F_{2020}+F_{2021}+F_{2022}+F_{2023}+F_{2024}?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Every week Roger pays for a movie ticket and a soda out of his allowance. Last week, Roger's allowance was $A$ dollars. The cost of his movie ticket was $20\\%$ of the difference between $A$ and the cost of his soda, while the cost of his soda was $5\\%$ of the difference between $A$ and the cost of his movie ticket. To the nearest whole percent, what fraction of $A$ did Roger pay for his movie ticket and soda?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Chloe chooses a real number uniformly at random from the interval $[0, 2017]$ . Independently, Laurent chooses a real number uniformly at random from the interval $[0, 4034]$ . What is the probability that Laurent's number is greater than Chloe's number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "There are $10$ horses, named Horse $1$ , Horse $2$ , . . . , Horse $10$ . They get their names from how many minutes it takes them to run one lap around a circular race track: Horse $k$ runs one lap in exactly $k$ minutes. At time $0$ all the horses are together at the starting point on the track. The horses start running in the same direction, and they keep running around the circular track at their constant speeds. The least time $S > 0$ , in minutes, at which all $10$ horses will again simultaneously be at the starting point is $S=2520$ . Let $T > 0$ be the least time, in minutes, such that at least $5$ of the horses are again at the starting point. What is the sum of the digits of $T?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Distinct points $P$ , $Q$ , $R$ , $S$ lie on the circle $x^{2}+y^{2}=25$ and have integer coordinates. The distances $PQ$ and $RS$ are irrational numbers. What is the greatest possible value of the ratio $\\frac{PQ}{RS}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Amelia has a coin that lands heads with probability $\\frac{1}{3}\\,$ , and Blaine has a coin that lands on heads with probability $\\frac{2}{5}$ . Amelia and Blaine alternately toss their coins until someone gets a head; the first one to get a head wins. All coin tosses are independent. Amelia goes first. The probability that Amelia wins is $\\frac{p}{q}$ , where $p$ and $q$ are relatively prime positive integers. What is $q-p$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Alice refuses to sit next to either Bob or Carla. Derek refuses to sit next to Eric. How many ways are there for the five of them to sit in a row of $5$ chairs under these conditions?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Let $S(n)$ equal the sum of the digits of positive integer $n$ . For example, $S(1507) = 13$ . For a particular positive integer $n$ , $S(n) = 1274$ . Which of the following could be the value of $S(n+1)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "A square with side length $x$ is inscribed in a right triangle with sides of length $3$ , $4$ , and $5$ so that one vertex of the square coincides with the right-angle vertex of the triangle. A square with side length $y$ is inscribed in another right triangle with sides of length $3$ , $4$ , and $5$ so that one side of the square lies on the hypotenuse of the triangle. What is $\\dfrac{x}{y}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Sides $\\overline{AB}$ and $\\overline{AC}$ of equilateral triangle $ABC$ are tangent to a circle at points $B$ and $C$ respectively. What fraction of the area of $\\triangle ABC$ lies outside the circle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "How many triangles with positive area have all their vertices at points $(i,j)$ in the coordinate plane, where $i$ and $j$ are integers between $1$ and $5$ , inclusive?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "For certain real numbers $a$ , $b$ , and $c$ , the polynomial \\[g(x) = x^3 + ax^2 + x + 10\\] has three distinct roots, and each root of $g(x)$ is also a root of the polynomial \\[f(x) = x^4 + x^3 + bx^2 + 100x + c.\\] What is $f(1)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "How many integers between 100 and 999, inclusive, have the property that some permutation of its digits is a multiple of 11 between 100 and 999? For example, both 121 and 211 have this property.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_10A_Problems/Problem_25"
+    }
+  ]
+}

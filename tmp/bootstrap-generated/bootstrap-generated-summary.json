@@ -1,0 +1,79 @@
+{
+  "startedAt": "2026-02-25T15:37:56.231Z",
+  "finishedAt": "2026-02-25T15:37:56.233Z",
+  "overallStatus": "success",
+  "effectiveArgs": {
+    "outputDir": "/Users/yimingsun/Desktop/Arcmath/tmp/bootstrap-generated",
+    "dryRun": true,
+    "skipFetch": false,
+    "skipImport": false,
+    "skipGenerate": false,
+    "retryFailedOnly": false,
+    "continueOnError": false,
+    "yearFrom": 2010,
+    "yearTo": 2025,
+    "contests": [
+      "AMC12"
+    ],
+    "summaryOut": "/Users/yimingsun/Desktop/Arcmath/tmp/bootstrap-generated/bootstrap-generated-summary.json"
+  },
+  "steps": {
+    "fetch": {
+      "name": "fetch",
+      "command": "pnpm",
+      "args": [
+        "aops:fetch",
+        "--output",
+        "/Users/yimingsun/Desktop/Arcmath/tmp/bootstrap-generated",
+        "--include",
+        "AMC12"
+      ],
+      "exitCode": null,
+      "status": "skipped",
+      "message": "dry-run plan only",
+      "planned": true,
+      "executed": false,
+      "skipReason": "dry-run plan only"
+    },
+    "import": {
+      "name": "import",
+      "command": "pnpm",
+      "args": [
+        "aops:import",
+        "--dir",
+        "/Users/yimingsun/Desktop/Arcmath/tmp/bootstrap-generated",
+        "--contest",
+        "AMC12",
+        "--year-from",
+        "2010",
+        "--year-to",
+        "2025"
+      ],
+      "exitCode": null,
+      "status": "skipped",
+      "message": "dry-run plan only",
+      "planned": true,
+      "executed": false,
+      "skipReason": "dry-run plan only"
+    },
+    "generate": {
+      "name": "generate",
+      "command": "pnpm",
+      "args": [
+        "pdf:backfill-generated",
+        "--contest",
+        "AMC12",
+        "--year-from",
+        "2010",
+        "--year-to",
+        "2025"
+      ],
+      "exitCode": null,
+      "status": "skipped",
+      "message": "dry-run plan only",
+      "planned": true,
+      "executed": false,
+      "skipReason": "dry-run plan only"
+    }
+  }
+}

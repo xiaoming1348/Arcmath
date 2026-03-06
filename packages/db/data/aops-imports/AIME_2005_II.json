@@ -1,0 +1,130 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 2005,
+    "exam": "II",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_II"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "A game uses a deck of $n$ different cards, where $n$ is an integer and $n \\geq 6.$ The number of possible sets of 6 cards that can be drawn from the deck is 6 times the number of possible sets of 3 cards that can be drawn. Find $n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "013",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_II_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "A hotel packed breakfast for each of three guests. Each breakfast should have consisted of three types of rolls, one each of nut, cheese, and fruit rolls. The preparer wrapped each of the nine rolls and once wrapped, the rolls were indistinguishable from one another. She then randomly put three rolls in a bag for each of the guests. Given that the probability each guest got one roll of each type is $\\frac mn,$ where $m$ and $n$ are relatively prime integers , find $m+n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "079",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_II_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "An infinite geometric series has sum 2005. A new series, obtained by squaring each term of the original series, has 10 times the sum of the original series. The common ratio of the original series is $\\frac mn$ where $m$ and $n$ are relatively prime integers . Find $m+n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "802",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_II_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Find the number of positive integers that are divisors of at least one of $10^{10},15^7,18^{11}.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "435",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_II_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Determine the number of ordered pairs $(a,b)$ of integers such that $\\log_a b + 6\\log_b a=5, 2 \\leq a \\leq 2005,$ and $2 \\leq b \\leq 2005.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "054",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_II_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "The cards in a stack of $2n$ cards are numbered consecutively from 1 through $2n$ from top to bottom. The top $n$ cards are removed, kept in order, and form pile $A.$ The remaining cards form pile $B.$ The cards are then restacked by taking cards alternately from the tops of pile $B$ and $A,$ respectively. In this process, card number $(n+1)$ becomes the bottom card of the new stack, card number 1 is on top of this card, and so on, until piles $A$ and $B$ are exhausted. If, after the restacking process, at least one card from each pile occupies the same position that it occupied in the original stack, the stack is named magical. For example, eight cards form a magical stack because cards number 3 and number 6 retain their original positions. Find the number of cards in the magical stack in which card number 131 retains its original position.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "392",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_II_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Let $x=\\frac{4}{(\\sqrt{5}+1)(\\sqrt[4]{5}+1)(\\sqrt[8]{5}+1)(\\sqrt[16]{5}+1)}.$ Find $(x+1)^{48}$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "125",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_II_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Circles $C_1$ and $C_2$ are externally tangent , and they are both internally tangent to circle $C_3.$ The radii of $C_1$ and $C_2$ are 4 and 10, respectively, and the centers of the three circles are all collinear . A chord of $C_3$ is also a common external tangent of $C_1$ and $C_2.$ Given that the length of the chord is $\\frac{m\\sqrt{n}}p$ where $m,n,$ and $p$ are positive integers, $m$ and $p$ are relatively prime , and $n$ is not divisible by the square of any prime , find $m+n+p.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "405",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_II_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "For how many positive integers $n$ less than or equal to $1000$ is $(\\sin t + i \\cos t)^n = \\sin nt + i \\cos nt$ true for all real $t$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "250",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_II_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Given that $O$ is a regular octahedron , that $C$ is the cube whose vertices are the centers of the faces of $O,$ and that the ratio of the volume of $O$ to that of $C$ is $\\frac mn,$ where $m$ and $n$ are relatively prime integers, find $m+n.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "011",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_II_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Let $m$ be a positive integer, and let $a_0, a_1,\\ldots,a_m$ be a sequence of reals such that $a_0 = 37, a_1 = 72, a_m = 0,$ and $a_{k+1} = a_{k-1} - \\frac 3{a_k}$ for $k = 1,2,\\ldots, m-1.$ Find $m.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "889",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_II_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Square $ABCD$ has center $O,\\ AB=900,\\ E$ and $F$ are on $AB$ with $AE<BF$ and $E$ between $A$ and $F, m\\angle EOF =45^\\circ,$ and $EF=400.$ Given that $BF=p+q\\sqrt{r},$ where $p,q,$ and $r$ are positive integers and $r$ is not divisible by the square of any prime , find $p+q+r.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "307",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_II_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Let $P(x)$ be a polynomial with integer coefficients that satisfies $P(17)=10$ and $P(24)=17.$ Given that $P(n)=n+3$ has two distinct integer solutions $n_1$ and $n_2,$ find the product $n_1\\cdot n_2.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "418",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_II_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "In triangle $ABC, AB=13, BC=15,$ and $CA = 14.$ Point $D$ is on $\\overline{BC}$ with $CD=6.$ Point $E$ is on $\\overline{BC}$ such that $\\angle BAE\\cong \\angle CAD.$ Given that $BE=\\frac pq$ where $p$ and $q$ are relatively prime positive integers, find $q.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "463",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_II_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Let $w_1$ and $w_2$ denote the circles $x^2+y^2+10x-24y-87=0$ and $x^2 +y^2-10x-24y+153=0,$ respectively. Let $m$ be the smallest positive value of $a$ for which the line $y=ax$ contains the center of a circle that is externally tangent to $w_2$ and internally tangent to $w_1.$ Given that $m^2=\\frac pq,$ where $p$ and $q$ are relatively prime integers, find $p+q.$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "169",
+      "answerFormat": "INTEGER",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2005_AIME_II_Problems/Problem_15"
+    }
+  ]
+}

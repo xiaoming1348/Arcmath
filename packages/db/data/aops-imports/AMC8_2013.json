@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC8",
+    "year": 2013,
+    "exam": null,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Danica wants to arrange her model cars in rows with exactly 6 cars in each row. She now has 23 model cars. What is the smallest number of additional cars she must buy in order to be able to arrange all her cars this way?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "A sign at the fish market says, \"50 $\\%$ off, today only: half-pound packages for just \\$3 per package.\" What is the regular price for a full pound of fish, in dollars?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "What is the value of $4 \\cdot (-1+2-3+4-5+6-7+\\cdots+1000)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Eight friends ate at a restaurant and agreed to share the bill equally. Because Judi forgot her money, each of her seven friends paid an extra \\$2.50 to cover her portion of the total bill. What was the total bill?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Hammie is in $6^\\text{th}$ grade and weighs 106 pounds. His quadruplet sisters are tiny babies and weigh 5, 5, 6, and 8 pounds. Which is greater, the average (mean) weight of these five children or the median weight, and by how many pounds?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "The number in each box below is the product of the numbers in the two boxes that touch it in the row above. For example, $30 = 6\\times5$ . What is the missing number in the top row?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Trey and his mom stopped at a railroad crossing to let a train pass. As the train began to pass, Trey counted 6 cars in the first 10 seconds. It took the train 2 minutes and 45 seconds to clear the crossing at a constant speed. Which of the following was the most likely number of cars in the train?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "A fair coin is tossed 3 times. What is the probability of at least two consecutive heads?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "The Incredible Hulk can double the distance he jumps with each succeeding jump. If his first jump is 1 meter, the second jump is 2 meters, the third jump is 4 meters, and so on, then on which jump will he first be able to jump more than 1 kilometer (1,000 meters)?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "What is the ratio of the least common multiple of 180 and 594 to the greatest common factor of 180 and 594?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Ted's grandfather used his treadmill on 3 days this week. He went 2 miles each day. On Monday he jogged at a speed of 5 miles per hour. He walked at the rate of 3 miles per hour on Wednesday and at 4 miles per hour on Friday. If Grandfather had always walked at 4 miles per hour, he would have spent less time on the treadmill. How many minutes less?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "At the 2013 Winnebago County Fair a vendor is offering a \"fair special\" on sandals. If you buy one pair of sandals at the regular price of \\$50, you get a second pair at a 40% discount, and a third pair at half the regular price. Javier took advantage of the \"fair special\" to buy three pairs of sandals. What percentage of the \\$150 regular price did he save?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "When Clara totaled her scores, she inadvertently reversed the units digit and the tens digit of one score. By which of the following might her incorrect sum have differed from the correct one?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Abe holds 1 green and 1 red jelly bean in his hand. Bob holds 1 green, 1 yellow, and 2 red jelly beans in his hand. Each randomly picks a jelly bean to show the other. What is the probability that the colors match?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "If $3^p + 3^4 = 90$ , $2^r + 44 = 76$ , and $5^3 + 6^s = 1421$ , what is the product of $p$ , $r$ , and $s$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "A number of students from Fibonacci Middle School are taking part in a community service project. The ratio of $8^\\text{th}$ -graders to $6^\\text{th}$ -graders is $5:3$ , and the the ratio of $8^\\text{th}$ -graders to $7^\\text{th}$ -graders is $8:5$ . What is the smallest number of students that could be participating in the project?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "The sum of six consecutive positive integers is 2013. What is the largest of these six integers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Isabella uses one-foot cubical blocks to build a rectangular fort that is $12$ feet long, $10$ feet wide, and $5$ feet high. The floor and the four walls are all one foot thick. How many blocks does the fort contain?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Bridget, Cassie, and Hannah are discussing the results of their last math test. Hannah shows Bridget and Cassie her test, but Bridget and Cassie don't show theirs to anyone. Cassie says, 'I didn't get the lowest score in our class,' and Bridget adds, 'I didn't get the highest score.' What is the ranking of the three girls from highest to lowest?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "A $1\\times 2$ rectangle is inscribed in a semicircle with the longer side on the diameter. What is the area of the semicircle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Samantha lives 2 blocks west and 1 block south of the southwest corner of City Park. Her school is 2 blocks east and 2 blocks north of the northeast corner of City Park. On school days she bikes on streets to the southwest corner of City Park, then takes a diagonal path through the park to the northeast corner, and then bikes on streets to school. If her route is as short as possible, how many different routes can she take?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Toothpicks are used to make a grid that is $60$ toothpicks long and $32$ toothpicks wide. How many toothpicks are used altogether?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Angle $ABC$ of $\\triangle ABC$ is a right angle. The sides of $\\triangle ABC$ are the diameters of semicircles as shown. The area of the semicircle on $\\overline{AB}$ equals $8\\pi$ , and the arc of the semicircle on $\\overline{AC}$ has length $8.5\\pi$ . What is the radius of the semicircle on $\\overline{BC}$ ? [asy] import graph; pair A,B,C; A=(0,8); B=(0,0); C=(15,0); draw((0,8)..(-4,4)..(0,0)--(0,8)); draw((0,0)..(7.5,-7.5)..(15,0)--(0,0)); real theta = aTan(8/15); draw(arc((15/2,4),17/2,-theta,180-theta)); draw((0,8)--(15,0)); dot(A); dot(C); label(\"$A$\", A, NW); label(\"$B$\", B, SW); label(\"$C$\", C, SE);[/asy]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Squares $ABCD$ , $EFGH$ , and $GHIJ$ are equal in area. Points $C$ and $D$ are the midpoints of sides $IH$ and $HE$ , respectively. What is the ratio of the area of the shaded pentagon $AJICB$ to the sum of the areas of the three squares?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "A ball with diameter 4 inches starts at point A to roll along the track shown. The track is comprised of 3 semicircular arcs whose radii are $R_1 = 100$ inches, $R_2 = 60$ inches, and $R_3 = 80$ inches, respectively. The ball always remains in contact with the track and does not slip. What is the distance the center of the ball travels over the course from A to B?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_8_Problems/Problem_25"
+    }
+  ]
+}

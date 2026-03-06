@@ -1,0 +1,210 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2011,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "A cell phone plan costs $20$ dollars each month, plus $5$ cents per text message sent, plus $10$ cents for each minute used over $30$ hours. In January Michelle sent $100$ text messages and talked for $30.5$ hours. How much did she have to pay?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "There are $5$ coins placed flat on a table according to the figure. What is the order of the coins from top to bottom?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "A small bottle of shampoo can hold $35$ milliliters of shampoo, whereas a large bottle can hold $500$ milliliters of shampoo. Jasmine wants to buy the minimum number of small bottles necessary to completely fill a large bottle. How many bottles must she buy?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "At an elementary school, the students in third grade, fourth grade, and fifth grade run an average of $12$ , $15$ , and $10$ minutes per day, respectively. There are twice as many third graders as fourth graders, and twice as many fourth graders as fifth graders. What is the average number of minutes run per day by these students?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Last summer $30\\%$ of the birds living on Town Lake were geese, $25\\%$ were swans, $10\\%$ were herons, and $35\\%$ were ducks. What percent of the birds that were not swans were geese?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "The players on a basketball team made some three-point shots, some two-point shots, and some one-point free throws. They scored as many points with two-point shots as with three-point shots. Their number of successful free throws was one more than their number of successful two-point shots. The team's total score was $61$ points. How many free throws did they make?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "A majority of the $30$ students in Ms. Demeanor's class bought pencils at the school bookstore. Each of these students bought the same number of pencils, and this number was greater than $1$ . The cost of a pencil in cents was greater than the number of pencils each student bought, and the total cost of all the pencils was $\\$17.71$ . What was the cost of a pencil in cents?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "In the eight term sequence $A$ , $B$ , $C$ , $D$ , $E$ , $F$ , $G$ , $H$ , the value of $C$ is $5$ and the sum of any three consecutive terms is $30$ . What is $A+H$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "At a twins and triplets convention, there were $9$ sets of twins and $6$ sets of triplets, all from different families. Each twin shook hands with all the twins except his/her siblings and with half the triplets. Each triplet shook hands with all the triplets except his/her siblings and with half the twins. How many handshakes took place?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "A pair of standard $6$ -sided dice is rolled once. The sum of the numbers rolled determines the diameter of a circle. What is the probability that the numerical value of the area of the circle is less than the numerical value of the circle's circumference?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Circles $A, B,$ and $C$ each has radius $1$ . Circles $A$ and $B$ share one point of tangency. Circle $C$ has a point of tangency with the midpoint of $\\overline{AB}.$ What is the area inside circle $C$ but outside circle $A$ and circle $B?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "A power boat and a raft both left dock $A$ on a river and headed downstream. The raft drifted at the speed of the river current. The power boat maintained a constant speed with respect to the river. The power boat reached dock $B$ downriver, then immediately turned and traveled back upriver. It eventually met the raft on the river 9 hours after leaving dock $A.$ How many hours did it take the power boat to go from $A$ to $B$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Triangle $ABC$ has side-lengths $AB = 12, BC = 24,$ and $AC = 18.$ The line through the incenter of $\\triangle ABC$ parallel to $\\overline{BC}$ intersects $\\overline{AB}$ at $M$ and $\\overline{AC}$ at $N.$ What is the perimeter of $\\triangle AMN?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Suppose $a$ and $b$ are single-digit positive integers chosen independently and at random. What is the probability that the point $(a,b)$ lies above the parabola $y=ax^2-bx$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "The circular base of a hemisphere of radius $2$ rests on the base of a square pyramid of height $6$ . The hemisphere is tangent to the other four faces of the pyramid. What is the edge-length of the base of the pyramid?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Each vertex of convex pentagon $ABCDE$ is to be assigned a color. There are $6$ colors to choose from, and the ends of each diagonal must have different colors. How many different colorings are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Circles with radii $1$ , $2$ , and $3$ are mutually externally tangent. What is the area of the triangle determined by the points of tangency?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Suppose that $\\left|x+y\\right|+\\left|x-y\\right|=2$ . What is the maximum possible value of $x^2-6x+y^2$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "At a competition with $N$ players, the number of players given elite status is equal to $2^{1+\\lfloor \\log_{2} (N-1) \\rfloor}-N$ . Suppose that $19$ players are given elite status. What is the sum of the two smallest possible values of $N$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Let $f(x)=ax^2+bx+c$ , where $a$ , $b$ , and $c$ are integers. Suppose that $f(1)=0$ , $50<f(7)<60$ , $70<f(8)<80$ , $5000k<f(100)<5000(k+1)$ for some integer $k$ . What is $k$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Let $f_{1}(x)=\\sqrt{1-x}$ , and for integers $n \\geq 2$ , let $f_{n}(x)=f_{n-1}(\\sqrt{n^2 - x})$ . If $N$ is the largest value of $n$ for which the domain of $f_{n}$ is nonempty, the domain of $f_{N}$ is $\\{c\\}$ . What is $N+c$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Let $R$ be a unit square region and $n \\geq 4$ an integer. A point $X$ in the interior of $R$ is called n-ray partitional if there are $n$ rays emanating from $X$ that divide $R$ into $n$ triangles of equal area. How many points are $100$ -ray partitional but not $60$ -ray partitional?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Let $f(z)= \\frac{z+a}{z+b}$ and $g(z)=f(f(z))$ , where $a$ and $b$ are complex numbers. Suppose that $\\left| a \\right| = 1$ and $g(g(z))=z$ for all $z$ for which $g(g(z))$ is defined. What is the difference between the largest and smallest possible values of $\\left| b \\right|$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Consider all quadrilaterals $ABCD$ such that $AB=14$ , $BC=9$ , $CD=7$ , and $DA=12$ . What is the radius of the largest possible circle that fits inside or on the boundary of such a quadrilateral?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Triangle $ABC$ has $\\angle BAC = 60^{\\circ}$ , $\\angle CBA \\leq 90^{\\circ}$ , $BC=1$ , and $AC \\geq AB$ . Let $H$ , $I$ , and $O$ be the orthocenter, incenter, and circumcenter of $\\triangle ABC$ , respectively. Assume that the area of pentagon $BCOIH$ is the maximum possible. What is $\\angle CBA$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2011_AMC_12A_Problems/Problem_25"
+    }
+  ]
+}
