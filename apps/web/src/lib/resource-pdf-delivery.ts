@@ -78,7 +78,8 @@ export async function getResourcePdfResponse(input: {
     variant: input.variant
   });
   if (generation.ok) {
-    return new NextResponse(generation.pdfBytes, {
+    const pdfBody = new Uint8Array(generation.pdfBytes);
+    return new NextResponse(pdfBody, {
       status: 200,
       headers: {
         "content-type": "application/pdf",

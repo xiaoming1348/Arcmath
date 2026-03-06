@@ -354,7 +354,7 @@ export const adminResourceAccessRouter = router({
         });
       }
 
-      let resolved: { pdfUrl: string | null; discoveredFrom?: string };
+      let resolved: { pdfUrl: string | null; discoveredFrom: string | null };
       try {
         resolved = await resolveAoPSPdfUrlFromSource(problemSet.sourceUrl);
       } catch (error) {

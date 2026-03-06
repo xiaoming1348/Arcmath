@@ -186,7 +186,7 @@ export async function listScopedDownloadableProblemSets(input: {
     };
   }>;
 
-  const checks = await Promise.all(
+  const checks: Array<ResourceScopeRow | null> = await Promise.all(
     rows.map(async (row) => {
       const normalizedExam = normalizeExamInput(row.exam);
       if (!isValidContestExamPair(row.contest, normalizedExam)) {

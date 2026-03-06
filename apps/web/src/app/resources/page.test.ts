@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildResourcePdfDownloadUrl } from "./page";
+import { buildResourcePdfDownloadUrl } from "@/lib/resources/build-resource-pdf-download-url";
 
 describe("resources page download URL builder", () => {
   it("builds problems and answers variant URLs", () => {

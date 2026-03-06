@@ -4,16 +4,7 @@ import { useMemo } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { trpc } from "@/lib/trpc/client";
-
-export type ResourcePdfVariant = "problems" | "answers";
-
-export function buildResourcePdfDownloadUrl(problemSetId: string, variant: ResourcePdfVariant): string {
-  const params = new URLSearchParams({
-    id: problemSetId,
-    variant
-  });
-  return `/api/resources/pdf?${params.toString()}`;
-}
+import { buildResourcePdfDownloadUrl } from "@/lib/resources/build-resource-pdf-download-url";
 
 const allowedContests = new Set(["AMC8", "AMC10", "AMC12", "AIME"]);
 
