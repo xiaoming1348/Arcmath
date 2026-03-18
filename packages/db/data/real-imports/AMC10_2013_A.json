@@ -1,0 +1,477 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2013,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A",
+    "verifiedPdfUrl": "https://artofproblemsolving.com/community/contest/download/c3414_amc_10/2013"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "A taxi ride costs $\\$1.50$ plus $\\$0.25$ per mile traveled. How much does a $5$ -mile taxi ride cost?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "2.25",
+        "2.50",
+        "2.75",
+        "3.00",
+        "3.75"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "arithmetic.word_problems",
+      "difficultyBand": "EASY",
+      "solutionSketch": "Compute the fixed fee plus five times the per-mile fee: 1.50 + 5(0.25).",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Alice is making a batch of cookies and needs $2\\frac{1}{2}$ cups of sugar. Unfortunately, her measuring cup holds only $\\frac{1}{4}$ cup of sugar. How many times must she fill that cup to get the correct amount of sugar?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "8",
+        "10",
+        "12",
+        "16",
+        "20"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "arithmetic.fractions",
+      "difficultyBand": "EASY",
+      "solutionSketch": "Convert 2 1/2 cups into fourth-cups by dividing by 1/4, or note that each whole cup is four quarter-cups.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Square $ABCD$ has side length $10$ . Point $E$ is on $\\overline{BC}$ , and the area of $\\bigtriangleup ABE$ is $40$ . What is $BE$ ?",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/5/d/e/5deb6040701b50303c4593a48dd3b09550139cd9.png",
+      "diagramImageAlt": "Square ABCD with point E on side BC and segment AE drawn.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.triangles",
+      "difficultyBand": "EASY",
+      "solutionSketch": "Use the triangle area formula: area = 1/2 * AB * BE. With AB = 10 and area 40, solve directly for BE.",
+      "curatedHintLevel1": "Use the area formula for a triangle with base AB and height measured from E to line AB.",
+      "curatedHintLevel2": "Here AB = 10, so the area formula becomes 1/2 * 10 * BE = 40.",
+      "curatedHintLevel3": "Simplify to 5 * BE = 40, then solve for BE.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_3"
+    },
+    {
+      "number": 4,
+      "statement": "A softball team played ten games, scoring $1$ , $2$ , $3$ , $4$ , $5$ , $6$ , $7$ , $8$ , $9$ , and $10$ runs. They lost by one run in exactly five games. In each of their other games, they scored twice as many runs as their opponent. How many total runs did their opponents score?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "35",
+        "40",
+        "45",
+        "50",
+        "55"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "arithmetic.word_problems",
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Separate the five one-run losses from the five wins where the team doubled the opponent. Use the total of the team's runs to recover the opponents' total.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Tom, Dorothy, and Sammy went on a vacation and agreed to split the costs evenly. During their trip Tom paid \\$105, Dorothy paid \\$125, and Sammy paid \\$175. In order to share costs equally, Tom gave Sammy $t$ dollars, and Dorothy gave Sammy $d$ dollars. What is $t-d$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "15",
+        "20",
+        "25",
+        "30",
+        "35"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "arithmetic.fair_sharing",
+      "difficultyBand": "EASY",
+      "solutionSketch": "Add the three payments, divide by 3 to find the fair share, then compare each person with that amount to determine how much Tom and Dorothy must pay Sammy.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Joey and his five brothers are ages $3$ , $5$ , $7$ , $9$ , $11$ , and $13$ . One afternoon two of his brothers whose ages sum to $16$ went to the movies, two brothers younger than $10$ went to play baseball, and Joey and the $5$ -year-old stayed home. How old is Joey?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "3",
+        "7",
+        "9",
+        "11",
+        "13"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "logic.casework",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_6"
+    },
+    {
+      "number": 7,
+      "statement": "A student must choose a program of four courses from a menu of courses consisting of English, Algebra, Geometry, History, Art, and Latin. This program must contain English and at least one mathematics course. In how many ways can this program be chosen?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "6",
+        "8",
+        "9",
+        "12",
+        "16"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.combinations",
+      "difficultyBand": "EASY",
+      "solutionSketch": "English is mandatory, so choose 3 more courses from the remaining 5, then subtract the choices that contain no mathematics course.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_7"
+    },
+    {
+      "number": 8,
+      "statement": "What is the value of \\[\\frac{2^{2014}+2^{2012}}{2^{2014}-2^{2012}} ?\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "-1",
+        "1",
+        "\\frac{5}{3}",
+        "2013",
+        "2^{4024}"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "algebra.expressions",
+      "difficultyBand": "EASY",
+      "solutionSketch": "Factor out 2^2012 from the numerator and denominator to reduce the expression to (4 + 1) / (4 - 1).",
+      "curatedHintLevel1": "Look for the largest common power of 2 that can be factored from both numerator and denominator.",
+      "curatedHintLevel2": "Factor out 2^2012. Then rewrite the fraction in terms of 2^2 and 1.",
+      "curatedHintLevel3": "After factoring, the fraction becomes (4 + 1) / (4 - 1). Simplify that reduced expression.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_8"
+    },
+    {
+      "number": 9,
+      "statement": "In a recent basketball game, Shenille attempted only three-point shots and two-point shots. She was successful on $20\\%$ of her three-point shots and $30\\%$ of her two-point shots. Shenille attempted $30$ shots. How many points did she score?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "12",
+        "18",
+        "24",
+        "30",
+        "36"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "arithmetic.percentages",
+      "difficultyBand": "EASY",
+      "solutionSketch": "Let x be the number of three-point attempts. Compute total points as 3(20% of x) + 2(30% of (30 - x)); the x terms cancel.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_9"
+    },
+    {
+      "number": 10,
+      "statement": "A flower bouquet contains pink roses, red roses, pink carnations, and red carnations. One third of the pink flowers are roses, three fourths of the red flowers are carnations, and six tenths of the flowers are pink. What percent of the flowers are carnations?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "15",
+        "30",
+        "40",
+        "60",
+        "70"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "arithmetic.percentages",
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Choose a convenient total number of flowers so that thirds, fourths, and tenths become whole counts, then count carnations from the pink and red groups.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A student council must select a two-person welcoming committee and a three-person planning committee from among its members. There are exactly $10$ ways to select a two-person team for the welcoming committee. It is possible for students to serve on both committees. In how many different ways can a three-person planning committee be selected?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "10",
+        "12",
+        "15",
+        "18",
+        "25"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.combinations",
+      "difficultyBand": "EASY",
+      "solutionSketch": "If there are exactly 10 two-person committees, then C(n, 2) = 10 determines the council size. Then compute C(n, 3) for the planning committee.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_11"
+    },
+    {
+      "number": 12,
+      "statement": "In $\\triangle ABC$ , $AB=AC=28$ and $BC=20$ . Points $D,E,$ and $F$ are on sides $\\overline{AB}$ , $\\overline{BC}$ , and $\\overline{AC}$ , respectively, such that $\\overline{DE}$ and $\\overline{EF}$ are parallel to $\\overline{AC}$ and $\\overline{AB}$ , respectively. What is the perimeter of parallelogram $ADEF$ ?",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/e/c/4/ec45f0635e288a5e5da73a19319f4eb7045b5eab.png",
+      "diagramImageAlt": "Triangle ABC with B and C on the base, A above them, D on AB, E on BC, and F on AC, forming interior parallelogram ADEF with DE parallel to AC and EF parallel to AB.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "48",
+        "52",
+        "56",
+        "60",
+        "72"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.similarity",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_12"
+    },
+    {
+      "number": 13,
+      "statement": "How many three-digit numbers are not divisible by $5$ , have digits that sum to less than $20$ , and have the first digit equal to the third digit?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "52",
+        "60",
+        "66",
+        "68",
+        "70"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.digit_constraints",
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Write the number as ABA. Exclude A = 0, exclude endings 0 or 5 to avoid divisibility by 5, then count digit pairs with 2A + B < 20.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_13"
+    },
+    {
+      "number": 14,
+      "statement": "A solid cube of side length $1$ is removed from each corner of a solid cube of side length $3$ . How many edges does the remaining solid have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "36",
+        "60",
+        "72",
+        "84",
+        "108"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.solid_geometry",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Two sides of a triangle have lengths $10$ and $15$ . The length of the altitude to the third side is the average of the lengths of the altitudes to the two given sides. How long is the third side?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "6",
+        "8",
+        "9",
+        "12",
+        "18"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.triangles",
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Let the triangle area be K. Then the three altitudes are 2K/10, 2K/15, and 2K/x; use the average condition to solve for x.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_15"
+    },
+    {
+      "number": 16,
+      "statement": "A triangle with vertices $(6, 5)$ , $(8, -3)$ , and $(9, 1)$ is reflected about the line $x=8$ to create a second triangle. What is the area of the union of the two triangles?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "9",
+        "\\frac{28}{3}",
+        "10",
+        "\\frac{31}{3}",
+        "\\frac{32}{3}"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.coordinate_geometry",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Daphne is visited periodically by her three best friends: Alice, Beatrix, and Claire. Alice visits every third day, Beatrix visits every fourth day, and Claire visits every fifth day. All three friends visited Daphne yesterday. How many days of the next $365$ -day period will exactly two friends visit her?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "48",
+        "54",
+        "60",
+        "66",
+        "72"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.inclusion_exclusion",
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Pairwise simultaneous visits occur every lcm(3,4)=12, lcm(3,5)=15, and lcm(4,5)=20 days. Triple visits occur every lcm(3,4,5)=60 days, so use inclusion-exclusion to count days with exactly two visits.",
+      "curatedHintLevel1": "Count when each pair of friends visits together. Those repeat on periods given by least common multiples.",
+      "curatedHintLevel2": "The pairwise periods are lcm(3,4), lcm(3,5), and lcm(4,5). Also track when all three visit together using lcm(3,4,5).",
+      "curatedHintLevel3": "First count all pairwise-coincidence days in the 365-day window. Then subtract the triple-visit days enough times so that only days with exactly two friends remain.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Let points $A = (0, 0)$ , $B = (1, 2)$ , $C=(3, 3)$ , and $D = (4, 0)$ . Quadrilateral $ABCD$ is cut into equal area pieces by a line passing through $A$ . This line intersects $\\overline{CD}$ at point $\\left(\\frac{p}{q}, \\frac{r}{s}\\right)$ , where these fractions are in lowest terms. What is $p+q+r+s$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "54",
+        "58",
+        "62",
+        "70",
+        "75"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.coordinate_geometry",
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Find the area of quadrilateral ABCD, halve it, and use triangle ADE with base AD = 4 to get the y-coordinate of the intersection point on CD. Then use the equation of line CD to get the x-coordinate.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_18"
+    },
+    {
+      "number": 19,
+      "statement": "In base $10$ , the number $2013$ ends in the digit $3$ . In base $9$ , on the other hand, the same number is written as $(2676)_{9}$ and ends in the digit $6$ . For how many positive integers $b$ does the base- $b$ -representation of $2013$ end in the digit $3$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "6",
+        "9",
+        "13",
+        "16",
+        "18"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "number_theory.base_representation",
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "A base-b representation ends in 3 exactly when 2013 ≡ 3 (mod b), so b must divide 2010. Count divisors b > 3.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_19"
+    },
+    {
+      "number": 20,
+      "statement": "A unit square is rotated $45^\\circ$ about its center. What is the area of the region swept out by the interior of the square?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "1 - \\frac{\\sqrt2}{2} + \\frac{\\pi}{4}",
+        "\\frac{1}{2} + \\frac{\\pi}{4}",
+        "2 - \\sqrt2 + \\frac{\\pi}{4}",
+        "\\frac{\\sqrt2}{2} + \\frac{\\pi}{4}",
+        "1 + \\frac{\\sqrt2}{4} + \\frac{\\pi}{8}"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.area",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_20"
+    },
+    {
+      "number": 21,
+      "statement": "A group of $12$ pirates agree to divide a treasure chest of gold coins among themselves as follows. The $k^{\\text{th}}$ pirate to take a share takes $\\frac{k}{12}$ of the coins that remain in the chest. The number of coins initially in the chest is the smallest number for which this arrangement will allow each pirate to receive a positive whole number of coins. How many coins does the $12^{\\text{th}}$ pirate receive?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "720",
+        "1296",
+        "1728",
+        "1925",
+        "3850"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "number_theory.divisibility",
+      "difficultyBand": "HARD",
+      "solutionSketch": "Track the leftover fraction after each pirate. The smallest initial amount must make every share integral, so factor the denominators that survive in the product and read off the final pirate's share.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Six spheres of radius $1$ are positioned so that their centers are at the vertices of a regular hexagon of side length $2$ . The six spheres are internally tangent to a larger sphere whose center is the center of the hexagon. An eighth sphere is externally tangent to the six smaller spheres and internally tangent to the larger sphere. What is the radius of this eighth sphere?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "\\sqrt2",
+        "\\frac{3}{2}",
+        "\\frac{5}{3}",
+        "\\sqrt3",
+        "2"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.solid_geometry",
+      "difficultyBand": "HARD",
+      "solutionSketch": "Work with sphere centers. The large sphere has radius 3 because its center is 2 units from each small-sphere center and each small sphere has radius 1. Put the eighth sphere's center on the axis through the hexagon center, use its tangency to the large sphere to express its height, and then use the distance to one small-sphere center to solve for its radius.",
+      "curatedHintLevel1": "Replace the spheres by their centers. Tangency becomes a statement about distances between centers.",
+      "curatedHintLevel2": "The six small centers form a regular hexagon of side 2, so each is 2 units from the large sphere's center. Use that to find the large sphere's radius.",
+      "curatedHintLevel3": "Let r be the radius of the eighth sphere and h the distance of its center from the hexagon plane. Use h = 3 - r from tangency to the large sphere, and use the distance formula from this center to a small-sphere center to get a solvable equation for r.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_22"
+    },
+    {
+      "number": 23,
+      "statement": "In $\\triangle ABC$ , $AB = 86$ , and $AC=97$ . A circle with center $A$ and radius $AB$ intersects $\\overline{BC}$ at points $B$ and $X$ . Moreover $\\overline{BX}$ and $\\overline{CX}$ have integer lengths. What is $BC$ ?",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/4/4/1/4413f31f90b322835d31bb200de469091dded18b.png",
+      "diagramImageAlt": "Triangle ABC with a circle centered at A passing through B and meeting BC again at X.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "11",
+        "28",
+        "33",
+        "61",
+        "72"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.circles",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Central High School is competing against Northern High School in a backgammon match. Each school has three players, and the contest rules require that each player play two games against each of the other school's players. The match takes place in six rounds, with three games played simultaneously in each round. In how many different ways can the match be scheduled?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "540",
+        "600",
+        "720",
+        "810",
+        "900"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.arrangements",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_24"
+    },
+    {
+      "number": 25,
+      "statement": "All $20$ diagonals are drawn in a regular octagon. At how many distinct points in the interior of the octagon (not on the boundary) do two or more diagonals intersect?",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/3/a/8/3a8a2f2837978820f77e3bbaf68d676be0114ff7.png",
+      "diagramImageAlt": "A regular octagon with all 20 diagonals drawn and their interior intersection points shown.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "49",
+        "65",
+        "70",
+        "96",
+        "128"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.geometry_intersections",
+      "difficultyBand": "HARD",
+      "solutionSketch": "In a convex octagon, most diagonal intersections correspond to choosing 4 vertices, so start with C(8,4). Then correct for the center point, where several diagonal pairs intersect at the same location.",
+      "curatedHintLevel1": "In a convex polygon, an interior intersection of two diagonals is usually determined by choosing 4 vertices.",
+      "curatedHintLevel2": "So a natural first count is C(8,4), because each 4-vertex set gives a diagonal intersection in a generic convex octagon.",
+      "curatedHintLevel3": "A regular octagon is not completely generic: several long diagonals pass through the same center point. Adjust the C(8,4) count to merge those repeated counts into one intersection point.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_25"
+    }
+  ]
+}

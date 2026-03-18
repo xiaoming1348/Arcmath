@@ -1,0 +1,159 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 2018,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AIME_I"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Let $S$ be the number of ordered pairs of integers $(a,b)$ with $1 \\leq a \\leq 100$ and $b \\geq 0$ such that the polynomial $x^2+ax+b$ can be factored into the product of two (not necessarily distinct) linear factors with integer coefficients. Find the remainder when $S$ is divided by $1000$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "600",
+      "answerFormat": "INTEGER",
+      "topicKey": "counting.general",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AIME_I_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "The number $n$ can be written in base $14$ as $\\underline{a}\\text{ }\\underline{b}\\text{ }\\underline{c}$ , can be written in base $15$ as $\\underline{a}\\text{ }\\underline{c}\\text{ }\\underline{b}$ , and can be written in base $6$ as $\\underline{a}\\text{ }\\underline{c}\\text{ }\\underline{a}\\text{ }\\underline{c}\\text{ }$ , where $a > 0$ . Find the base- $10$ representation of $n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "925",
+      "answerFormat": "INTEGER",
+      "topicKey": "number_theory.general",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AIME_I_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Kathy has $5$ red cards and $5$ green cards. She shuffles the $10$ cards and lays out $5$ of the cards in a row in a random order. She will be happy if and only if all the red cards laid out are adjacent and all the green cards laid out are adjacent. For example, card orders $RRGGG$ , $GGGGR$ , or $RRRRR$ will make Kathy happy, but $RRRGR$ will not. The probability that Kathy will be happy is $\\frac{m}{n}$ , where $m$ and $n$ are relatively prime positive integers. Find $m + n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "157",
+      "answerFormat": "INTEGER",
+      "topicKey": "probability.general",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AIME_I_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "In $\\triangle ABC, AB = AC = 10$ and $BC = 12$ . Point $D$ lies strictly between $A$ and $B$ on $\\overline{AB}$ and point $E$ lies strictly between $A$ and $C$ on $\\overline{AC}$ so that $AD = DE = EC$ . Then $AD$ can be expressed in the form $\\dfrac{p}{q}$ , where $p$ and $q$ are relatively prime positive integers. Find $p+q$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "289",
+      "answerFormat": "INTEGER",
+      "topicKey": "geometry.general",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AIME_I_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "For each ordered pair of real numbers $(x,y)$ satisfying \\[\\log_2(2x+y) = \\log_4(x^2+xy+7y^2)\\] there is a real number $K$ such that \\[\\log_3(3x+y) = \\log_9(3x^2+4xy+Ky^2).\\] Find the product of all possible values of $K$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "189",
+      "answerFormat": "INTEGER",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AIME_I_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Let $N$ be the number of complex numbers $z$ with the properties that $|z|=1$ and $z^{6!}-z^{5!}$ is a real number. Find the remainder when $N$ is divided by $1000$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "440",
+      "answerFormat": "INTEGER",
+      "topicKey": "number_theory.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AIME_I_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "A right hexagonal prism has height $2$ . The bases are regular hexagons with side length $1$ . Any $3$ of the $12$ vertices determine a triangle. Find the number of these triangles that are isosceles (including equilateral triangles).",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "52",
+      "answerFormat": "INTEGER",
+      "topicKey": "geometry.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AIME_I_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Let $ABCDEF$ be an equiangular hexagon such that $AB=6, BC=8, CD=10$ , and $DE=12$ . Denote by $d$ the diameter of the largest circle that fits inside the hexagon. Find $d^2$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "147",
+      "answerFormat": "INTEGER",
+      "topicKey": "geometry.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AIME_I_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Find the number of four-element subsets of $\\{1,2,3,4,\\dots, 20\\}$ with the property that two distinct elements of a subset have a sum of $16$ , and two distinct elements of a subset have a sum of $24$ . For example, $\\{3,5,13,19\\}$ and $\\{6,10,20,18\\}$ are two such subsets.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "210",
+      "answerFormat": "INTEGER",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AIME_I_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "The wheel shown below consists of two circles and five spokes, with a label at each point where a spoke meets a circle. A bug walks along the wheel, starting at point $A$ . At every step of the process, the bug walks from one labeled point to an adjacent labeled point. Along the inner circle the bug only walks in a counterclockwise direction, and along the outer circle the bug only walks in a clockwise direction. For example, the bug could travel along the path $AJABCHCHIJA$ , which has $10$ steps. Let $n$ be the number of paths with $15$ steps that begin and end at point $A$ . Find the remainder when $n$ is divided by $1000.$",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/5/e/1/5e14e54dea77f9fbb819cf7f81efad0cfbce0990.png",
+      "diagramImageAlt": "Two concentric circles with five spokes and labeled points A through J on the inner and outer circles.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "4",
+      "answerFormat": "INTEGER",
+      "topicKey": "geometry.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AIME_I_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Find the least positive integer $n$ such that when $3^n$ is written in base $143$ , its two right-most digits in base $143$ are $01$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "195",
+      "answerFormat": "INTEGER",
+      "topicKey": "number_theory.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AIME_I_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "For every subset $T$ of $U = \\{ 1,2,3,\\ldots,18 \\}$ , let $s(T)$ be the sum of the elements of $T$ , with $s(\\emptyset)$ defined to be $0$ . If $T$ is chosen at random among all subsets of $U$ , the probability that $s(T)$ is divisible by $3$ is $\\frac{m}{n}$ , where $m$ and $n$ are relatively prime positive integers. Find $m$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "683",
+      "answerFormat": "INTEGER",
+      "topicKey": "probability.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AIME_I_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Let $\\triangle ABC$ have side lengths $AB=30$ , $BC=32$ , and $AC=34$ . Point $X$ lies in the interior of $\\overline{BC}$ , and points $I_1$ and $I_2$ are the incenters of $\\triangle ABX$ and $\\triangle ACX$ , respectively. Find the minimum possible area of $\\triangle AI_1I_2$ as $X$ varies along $\\overline{BC}$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "126",
+      "answerFormat": "INTEGER",
+      "topicKey": "geometry.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AIME_I_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Let $SP_1P_2P_3EP_4P_5$ be a heptagon. A frog starts jumping at vertex $S$ . From any vertex of the heptagon except $E$ , the frog may jump to either of the two adjacent vertices. When it reaches vertex $E$ , the frog stops and stays there. Find the number of distinct sequences of jumps of no more than $12$ jumps that end at $E$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "351",
+      "answerFormat": "INTEGER",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AIME_I_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "David found four sticks of different lengths that can be used to form three non-congruent convex cyclic quadrilaterals, $A,\\text{ }B,\\text{ }C$ , which can each be inscribed in a circle with radius $1$ . Let $\\varphi_A$ denote the measure of the acute angle made by the diagonals of quadrilateral $A$ , and define $\\varphi_B$ and $\\varphi_C$ similarly. Suppose that $\\sin\\varphi_A=\\tfrac{2}{3}$ , $\\sin\\varphi_B=\\tfrac{3}{5}$ , and $\\sin\\varphi_C=\\tfrac{6}{7}$ . All three quadrilaterals have the same area $K$ , which can be written in the form $\\dfrac{m}{n}$ , where $m$ and $n$ are relatively prime positive integers. Find $m+n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "59",
+      "answerFormat": "INTEGER",
+      "topicKey": "geometry.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AIME_I_Problems/Problem_15"
+    }
+  ]
+}

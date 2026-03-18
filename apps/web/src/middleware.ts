@@ -4,7 +4,8 @@ import { canAccessAdmin, isRole } from "@arcmath/shared";
 import { getToken } from "next-auth/jwt";
 
 const authSecret = process.env.NEXTAUTH_SECRET ?? "dev-insecure-secret-change-me";
-const protectedPrefixes = ["/dashboard", "/problems", "/assignments", "/resources", "/membership", "/admin"];
+const isDevelopment = process.env.NODE_ENV !== "production";
+const protectedPrefixes = ["/dashboard", "/problems", "/reports", "/assignments", "/resources", "/membership", "/admin"];
 
 export async function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
@@ -14,7 +15,16 @@ export async function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  const token = await getToken({ req, secret: authSecret });
+  const token = await getToken({
+    req,
+    secret: authSecret,
+    ...(isDevelopment
+      ? {
+          cookieName: "arcmath.dev.session-token",
+          secureCookie: false
+        }
+      : {})
+  });
 
   if (!token) {
     const loginUrl = new URL("/login", req.url);
@@ -36,6 +46,7 @@ export const config = {
   matcher: [
     "/dashboard/:path*",
     "/problems/:path*",
+    "/reports/:path*",
     "/assignments/:path*",
     "/resources/:path*",
     "/membership/:path*",

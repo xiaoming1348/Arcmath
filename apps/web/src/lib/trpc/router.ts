@@ -1,6 +1,8 @@
 import { protectedProcedure, publicProcedure, router } from "@/lib/trpc/server";
 import { adminImportRouter } from "@/lib/trpc/routers/admin-import";
 import { adminResourceAccessRouter } from "@/lib/trpc/routers/admin-resource-access";
+import { hintTutorRouter } from "@/lib/trpc/routers/hint-tutor";
+import { learningReportRouter } from "@/lib/trpc/routers/learning-report";
 import { problemsRouter, problemSetsRouter, resourcesRouter, resourceSetsRouter } from "@/lib/trpc/routers/problems";
 
 export const appRouter = router({
@@ -20,6 +22,8 @@ export const appRouter = router({
     import: adminImportRouter,
     resourceAccess: adminResourceAccessRouter
   }),
+  hintTutor: hintTutorRouter,
+  learningReport: learningReportRouter,
   resources: resourcesRouter,
   resourceSets: resourceSetsRouter,
   problems: problemsRouter,

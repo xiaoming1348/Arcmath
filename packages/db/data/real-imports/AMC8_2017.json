@@ -1,0 +1,441 @@
+{
+  "problemSet": {
+    "contest": "AMC8",
+    "year": 2017,
+    "exam": null,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Which of the following values is largest?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "2+0+1+7",
+        "2 × 0 +1+7",
+        "2+0 × 1 + 7",
+        "2+0+1 × 7",
+        "2 × 0 × 1 × 7"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Alicia, Brenda, and Colby were the candidates in a recent election for student president. The pie chart below shows how the votes were distributed among the three candidates. If Brenda received $36$ votes, then how many votes were cast all together?",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/7/b/7/7b7b4b1940b8afd1669156f092481dd6fc6f5a83.png",
+      "diagramImageAlt": "A pie chart with Colby 25%, Alicia 45%, and Brenda 30%.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "70",
+        "84",
+        "100",
+        "106",
+        "120"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.general",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "What is the value of the expression $\\sqrt{16\\sqrt{8\\sqrt{4}}}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "4",
+        "4\\sqrt{2}",
+        "8",
+        "8\\sqrt{2}",
+        "16"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "algebra.general",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "When $0.000315$ is multiplied by $7,928,564$ the product is closest to which of the following?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "210",
+        "240",
+        "2100",
+        "2400",
+        "24000"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "What is the value of the expression $\\frac{1 \\cdot 2 \\cdot 3 \\cdot 4 \\cdot 5 \\cdot 6 \\cdot 7 \\cdot 8}{1+2+3+4+5+6+7+8}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "1020",
+        "1120",
+        "1220",
+        "2240",
+        "3360"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "algebra.general",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "If the degree measures of the angles of a triangle are in the ratio $3:3:4$ , what is the degree measure of the largest angle of the triangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "18",
+        "36",
+        "60",
+        "72",
+        "90"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.general",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Let $Z$ be a 6-digit positive integer, such as 247247, whose first three digits are the same as its last three digits taken in the same order. Which of the following numbers must also be a factor of $Z$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "11",
+        "19",
+        "101",
+        "111",
+        "1111"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "number_theory.general",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Malcolm wants to visit Isabella after school today and knows the street where she lives but doesn't know her house number. She tells him, \"My house number has two digits, and exactly three of the following four statements about it are true.\"",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "4",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "number_theory.general",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "All of Marcy's marbles are blue, red, green, or yellow. One third of her marbles are blue, one fourth of them are red, and six of them are green. What is the smallest number of yellow marbles that Marcy could have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "A box contains five cards, numbered 1, 2, 3, 4, and 5. Three cards are selected randomly without replacement from the box. What is the probability that 4 is the largest value selected?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "The mean increases by 1 and the median does not change.",
+        "The mean increases by 1 and the median increases by 1.",
+        "The mean increases by 1 and the median increases by 5.",
+        "The mean increases by 5 and the median increases by 1.",
+        "The mean increases by 5 and the median increases by 5."
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "probability.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "A square-shaped floor is covered with congruent square tiles. If the total number of tiles that lie on the two diagonals is 37, how many tiles cover the floor?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "16",
+        "25",
+        "36",
+        "49",
+        "64"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "The smallest positive integer greater than 1 that leaves a remainder of 1 when divided by 4, 5, and 6 lies between which of the following pairs of numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "2 and 19",
+        "20 and 39",
+        "40 and 59",
+        "60 and 79",
+        "80 and 124"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "number_theory.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Peter, Emma, and Kyler played chess with each other. Peter won 4 games and lost 2 games. Emma won 3 games and lost 3 games. If Kyler lost 3 games, how many games did he win?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Chloe and Zoe are both students in Ms. Demeanor's math class. Last night, they each solved half of the problems in their homework assignment alone and then solved the other half together. Chloe had correct answers to only $80\\%$ of the problems she solved alone, but overall $88\\%$ of her answers were correct. Zoe had correct answers to $90\\%$ of the problems she solved alone. What was Zoe's overall percentage of correct answers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "89",
+        "92",
+        "93",
+        "96",
+        "98"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "arithmetic.word_problems",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "In the arrangement of letters and numerals below, by how many different paths can one spell AMC8? Beginning at the A in the middle, a path only allows moves from one letter to an adjacent (above, below, left, or right, but not diagonal) letter. One example of such a path is traced in the picture.",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/c/3/b/c3b81f82e730c8fce3fba2c0d1e893252c432d58.png",
+      "diagramImageAlt": "A cross-shaped 5 by 5 arrangement of the letters A, M, C and the numeral 8 for path counting.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "8",
+        "9",
+        "12",
+        "24",
+        "36"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "In the figure below, choose point $D$ on $\\overline{BC}$ so that $\\triangle ACD$ and $\\triangle ABD$ have equal perimeters. What is the area of $\\triangle ABD$ ?",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/5/3/e/53eb67d35ecca7ac6f68e8dff60b0eb5f3e4a602.png",
+      "diagramImageAlt": "A 3-4-5 right triangle with vertices A, B, and C.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "\\frac{3}{4}",
+        "\\frac{3}{2}",
+        "2",
+        "\\frac{12}{5}",
+        "\\frac{5}{2}"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Starting with some gold coins and some empty treasure chests, I tried to put $9$ gold coins in each treasure chest, but that left $2$ treasure chests empty. So instead I put $6$ gold coins in each treasure chest, but then I had $3$ gold coins left over. How many gold coins did I have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "9",
+        "27",
+        "45",
+        "63",
+        "81"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "probability.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "In the non-convex quadrilateral $ABCD$ shown below, $\\angle BCD$ is a right angle, $AB=12$ , $BC=4$ , $CD=3$ , and $AD=13$ . What is the area of quadrilateral $ABCD$ ?",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/b/e/3/be32bf473ea4532b8cc3eb844835e13b70bbfba9.png",
+      "diagramImageAlt": "A non-convex quadrilateral ABCD with vertices laid out as shown in the AMC 8 figure.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "12",
+        "24",
+        "26",
+        "30",
+        "36"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "For any positive integer $M$ , the notation $M!$ denotes the product of the integers $1$ through $M$ . What is the largest integer $n$ for which $5^n$ is a factor of the sum $98!+99!+100!$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "23",
+        "24",
+        "25",
+        "26",
+        "27"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "number_theory.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "An integer between 1000 and 9999, inclusive, is chosen at random. What is the probability that it is an odd integer whose digits are all distinct?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "\\frac{14}{75}",
+        "\\frac{56}{225}",
+        "\\frac{107}{400}",
+        "\\frac{7}{25}",
+        "\\frac{9}{25}"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "probability.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Suppose $a$ , $b$ , and $c$ are nonzero real numbers, and $a+b+c=0$ . What are the possible value(s) for $\\frac{a}{|a|}+\\frac{b}{|b|}+\\frac{c}{|c|}+\\frac{abc}{|abc|}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "0",
+        "1 and -1",
+        "2 and -2",
+        "0,2, and -2",
+        "0,1, and -1"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "In the right triangle $ABC$ , $AC=12$ , $BC=5$ , and angle $C$ is a right angle. A semicircle is inscribed in the triangle as shown. What is the radius of the semicircle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "\\frac{7}{6}",
+        "\\frac{13}{5}",
+        "\\frac{59}{18}",
+        "\\frac{10}{3}",
+        "\\frac{60}{13}"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Each day for four days, Linda traveled for one hour at a speed that resulted in her traveling one mile in an integer number of minutes. Each day after the first, her speed decreased so that the number of minutes to travel one mile increased by $5$ minutes over the preceding day. Each of the four days, her distance traveled was also an integer number of miles. What was the total number of miles for the four trips?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "10",
+        "15",
+        "25",
+        "50",
+        "82"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "number_theory.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Mrs. Sanders has three grandchildren, who call her regularly. One calls her every three days, one calls her every four days, and one calls her every five days. All three called her on December 31, 2016. On how many days during the next year did she not receive a phone call from any of her grandchildren?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "78",
+        "80",
+        "144",
+        "146",
+        "152"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "In the figure shown, $\\overline{US}$ and $\\overline{UT}$ are line segments each of length 2, and $m\\angle TUS = 60^\\circ$ . Arcs $\\overarc{TR}$ and $\\overarc{SR}$ are each one-sixth of a circle with radius 2. What is the area of the region shown?",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/7/9/f/79f3ffcfa12364f64959c7aeadc809ba8d2aa6ac.png",
+      "diagramImageAlt": "Two segments from U to S and T, with arcs from T to R and S to R forming a symmetric curved figure.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "3\\sqrt{3}-pi",
+        "4\\sqrt{3}-\\frac{4pi}{3}",
+        "2\\sqrt{3}",
+        "4\\sqrt{3}-\\frac{2pi}{3}",
+        "4+\\frac{4pi}{3}"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_8_Problems/Problem_25"
+    }
+  ]
+}

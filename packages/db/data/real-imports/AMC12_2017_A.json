@@ -1,0 +1,439 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2017,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Pablo buys popsicles for his friends. The store sells single popsicles for $\\$1$ each, 3-popsicle boxes for $\\$2$ , and 5-popsicle boxes for $\\$3$ . What is the greatest number of popsicles that Pablo can buy with $\\$8$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "8",
+        "11",
+        "12",
+        "13",
+        "15"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "difficultyBand": "EASY",
+      "solutionSketch": "Compare the cost efficiency of singles, 3-packs, and 12-packs, then assemble the cheapest combination that reaches the required total.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "The sum of two nonzero real numbers is 4 times their product. What is the sum of the reciprocals of the two numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "1",
+        "2",
+        "4",
+        "8",
+        "12"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "difficultyBand": "EASY",
+      "solutionSketch": "Use 1/x + 1/y = (x + y)/xy and substitute the relation saying the sum is four times the product.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Ms. Carroll promised that anyone who got all the multiple choice questions right on the upcoming exam would receive an A on the exam. Which one of these statements necessarily follows logically?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "If Lewis did not receive an A, then he got all of the multiple choice questions wrong.",
+        "If Lewis did not receive an A, then he got at least one of the multiple choice questions wrong.",
+        "If Lewis got at least one of the multiple choice questions wrong, then he did not receive an A.",
+        "If Lewis received an A, then he got all of the multiple choice questions right.",
+        "If Lewis received an A, then he got at least one of the multiple choice questions right."
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "logic.general",
+      "difficultyBand": "EASY",
+      "solutionSketch": "Translate the promise into an implication, then identify its logically equivalent contrapositive among the answer choices.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Jerry and Silvia wanted to go from the southwest corner of a square field to the northeast corner. Jerry walked due east and then due north to reach the goal, but Silvia headed northeast and reached the goal walking in a straight line. Which of the following is closest to how much shorter Silvia's trip was, compared to Jerry's trip?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "30%",
+        "40%",
+        "50%",
+        "60%",
+        "70%"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.general",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "At a gathering of $30$ people, there are $20$ people who all know each other and $10$ people who know no one. People who know each other hug, and people who do not know each other shake hands. How many handshakes occur?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "240",
+        "245",
+        "290",
+        "480",
+        "490"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.general",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Joy has $30$ thin rods, one each of every integer length from $1 \\text{ cm}$ through $30 \\text{ cm}$ . She places the rods with lengths $3 \\text{ cm}$ , $7 \\text{ cm}$ , and $15 \\text{cm}$ on a table. She then wants to choose a fourth rod that she can put with these three to form a quadrilateral with positive area. How many of the remaining rods can she choose as the fourth rod?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.general",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Define a function on the positive integers recursively by $f(1) = 2$ , $f(n) = f(n-1) + 1$ if $n$ is even, and $f(n) = f(n-2) + 2$ if $n$ is odd and greater than $1$ . What is $f(2017)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "2017",
+        "2018",
+        "4034",
+        "4035",
+        "4036"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "number_theory.general",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "The region consisting of all points in three-dimensional space within $3$ units of line segment $\\overline{AB}$ has volume $216 \\pi$ . What is the length $AB$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "6",
+        "12",
+        "18",
+        "20",
+        "24"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Let $S$ be the set of points $(x,y)$ in the coordinate plane such that two of the three quantities $3$ , $x+2$ , and $y-4$ are equal and the third of the three quantities is no greater than the common value. Which of the following is a correct description of $S$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "a single point",
+        "two intersecting lines",
+        "three lines whose pairwise intersections are three distinct points",
+        "a triangle",
+        "three rays with a common point"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.coordinate_geometry",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Chloe chooses a real number uniformly at random from the interval $[ 0,2017 ]$ . Independently, Laurent chooses a real number uniformly at random from the interval $[ 0 , 4034 ]$ . What is the probability that Laurent's number is greater than Chloe's number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "12",
+        "23",
+        "34",
+        "56",
+        "78"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "probability.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Claire adds the degree measures of the interior angles of a convex polygon and arrives at a sum of $2017$ . She then discovers that she forgot to include one angle. What is the degree measure of the forgotten angle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "37",
+        "63",
+        "117",
+        "143",
+        "163"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "There are $10$ horses, named Horse 1, Horse 2, $\\ldots$ , Horse 10. They get their names from how many minutes it takes them to run one lap around a circular race track: Horse $k$ runs one lap in exactly $k$ minutes. At time 0 all the horses are together at the starting point on the track. The horses start running in the same direction, and they keep running around the circular track at their constant speeds. The least time $S > 0$ , in minutes, at which all $10$ horses will again simultaneously be at the starting point is $S = 2520$ . Let $T>0$ be the least time, in minutes, such that at least $5$ of the horses are again at the starting point. What is the sum of the digits of $T$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Driving at a constant speed, Sharon usually takes $180$ minutes to drive from her house to her mother's house. One day Sharon begins the drive at her usual speed, but after driving $\\frac{1}{3}$ of the way, she hits a bad snowstorm and reduces her speed by $20$ miles per hour. This time the trip takes her a total of $276$ minutes. How many miles is the drive from Sharon's house to her mother's house?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "132",
+        "135",
+        "138",
+        "141",
+        "144"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Alice refuses to sit next to either Bob or Carla. Derek refuses to sit next to Eric. How many ways are there for the five of them to sit in a row of $5$ chairs under these conditions?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "12",
+        "16",
+        "28",
+        "32",
+        "40"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Let $f(x) = \\sin{x} + 2\\cos{x} + 3\\tan{x}$ , using radian measure for the variable $x$ . In what interval does the smallest positive value of $x$ for which $f(x) = 0$ lie?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "(0,1)",
+        "(1, 2)",
+        "(2, 3)",
+        "(3, 4)",
+        "(4,5)"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "algebra.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "In the figure below, semicircles with centers at $A$ and $B$ and with radii 2 and 1, respectively, are drawn in the interior of, and sharing bases with, a semicircle with diameter $JK$ . The two smaller semicircles are externally tangent to each other and internally tangent to the largest semicircle. A circle centered at $P$ is drawn externally tangent to the two smaller semicircles and internally tangent to the largest semicircle. What is the radius of the circle centered at $P$ ?",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/4/7/0/470af758ec2f0cc263c4f39339447434ac16587c.png",
+      "diagramImageAlt": "A large semicircle with diameter JK contains two smaller tangent semicircles with centers A and B, and a circle centered at P tangent to all three.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "\\frac{3}{4}",
+        "\\frac{6}{7}",
+        "\\sqrt{\\frac{3}{2}}",
+        "\\frac{5}{8}\\sqrt{2}",
+        "\\frac{11}{12}"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.general",
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Model the three tangent circles by their centers and radii, use the semicircle geometry to express the common tangencies, and solve for the small radius.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "There are $24$ different complex numbers $z$ such that $z^{24}=1$ . For how many of these is $z^6$ a real number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "0",
+        "4",
+        "6",
+        "12",
+        "24"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Let $S(n)$ equal the sum of the digits of positive integer $n$ . For example, $S(1507) = 13$ . For a particular positive integer $n$ , $S(n) = 1274$ . Which of the following could be the value of $S(n+1)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "1",
+        "3",
+        "12",
+        "1239",
+        "1265"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "number_theory.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "A square with side length $x$ is inscribed in a right triangle with sides of length $3$ , $4$ , and $5$ so that one vertex of the square coincides with the right-angle vertex of the triangle. A square with side length $y$ is inscribed in another right triangle with sides of length $3$ , $4$ , and $5$ so that one side of the square lies on the hypotenuse of the triangle. What is $\\frac{x}{y}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "\\frac{12}{13}",
+        "\\frac{35}{37}",
+        "1",
+        "\\frac{37}{35}",
+        "\\frac{13}{12}"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "How many ordered pairs $(a,b)$ such that $a$ is a positive real number and $b$ is an integer between $2$ and $200$ , inclusive, satisfy the equation $(\\log_b a)^{2017}=\\log_b(a^{2017})?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "198",
+        "199",
+        "398",
+        "399",
+        "597"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "A set $S$ is constructed as follows. To begin, $S = \\{0,10\\}$ . Repeatedly, as long as possible, if $x$ is an integer root of some polynomial $a_{n}x^n + a_{n-1}x^{n-1} + \\dots + a_{1}x + a_0$ for some $n\\geq{1}$ , all of whose coefficients $a_i$ are elements of $S$ , then $x$ is put into $S$ . When no more elements can be added to $S$ , how many elements does $S$ have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "4",
+        "5",
+        "7",
+        "9",
+        "11"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "A square is drawn in the Cartesian coordinate plane with vertices at $(2, 2)$ , $(-2, 2)$ , $(-2, -2)$ , $(2, -2)$ . A particle starts at $(0,0)$ . Every second it moves with equal probability to one of the eight lattice points (points with integer coordinates) closest to its current position, independently of its previous moves. In other words, the probability is $1/8$ that the particle will move from $(x, y)$ to each of $(x, y + 1)$ , $(x + 1, y + 1)$ , $(x + 1, y)$ , $(x + 1, y - 1)$ , $(x, y - 1)$ , $(x - 1, y - 1)$ , $(x - 1, y)$ , or $(x - 1, y + 1)$ . The particle will eventually hit the square for the first time, either at one of the 4 corners of the square or at one of the 12 lattice points in the interior of one of the sides of the square. The probability that it will hit at a corner rather than at an interior point of a side is $m/n$ , where $m$ and $n$ are relatively prime positive integers. What is $m + n$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "4",
+        "5",
+        "7",
+        "15",
+        "39"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "probability.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "For certain real numbers $a$ , $b$ , and $c$ , the polynomial \\[g(x) = x^3 + ax^2 + x + 10\\] has three distinct roots, and each root of $g(x)$ is also a root of the polynomial \\[f(x) = x^4 + x^3 + bx^2 + 100x + c.\\] What is $f(1)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "-9009",
+        "-8008",
+        "-7007",
+        "-6006",
+        "-5005"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "algebra.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Quadrilateral $ABCD$ is inscribed in circle $O$ and has side lengths $AB=3, BC=2, CD=6$ , and $DA=8$ . Let $X$ and $Y$ be points on $\\overline{BD}$ such that $\\frac{DX}{BD} = \\frac{1}{4}$ and $\\frac{BY}{BD} = \\frac{11}{36}$ . Let $E$ be the intersection of line $AX$ and the line through $Y$ parallel to $\\overline{AD}$ . Let $F$ be the intersection of line $CX$ and the line through $E$ parallel to $\\overline{AC}$ . Let $G$ be the point on circle $O$ other than $C$ that lies on line $CX$ . What is $XF\\cdot XG$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "17",
+        "\\frac{59 - 5\\sqrt{2}}{3}",
+        "\\frac{91 - 12\\sqrt{3}}{4}",
+        "\\frac{67 - 10\\sqrt{2}}{3}",
+        "18"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "The vertices $V$ of a centrally symmetric hexagon in the complex plane are given by \\[V=\\left\\{ \\sqrt{2}i,-\\sqrt{2}i, \\frac{1}{\\sqrt{8}}(1+i),\\frac{1}{\\sqrt{8}}(-1+i),\\frac{1}{\\sqrt{8}}(1-i),\\frac{1}{\\sqrt{8}}(-1-i) \\right\\}.\\] For each $j$ , $1\\leq j\\leq 12$ , an element $z_j$ is chosen from $V$ at random, independently of the other choices. Let $P={\\prod}_{j=1}^{12}z_j$ be the product of the $12$ numbers selected. What is the probability that $P=-1$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "5113^10",
+        "5^21123^10",
+        "5113^9",
+        "571123^10",
+        "2^25113^10"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "probability.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AMC_12A_Problems/Problem_25"
+    }
+  ]
+}

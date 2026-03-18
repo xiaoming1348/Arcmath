@@ -1,0 +1,440 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2016,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "What is the value of $\\dfrac{11!-10!}{9!}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "99",
+        "100",
+        "110",
+        "121",
+        "132"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "difficultyBand": "EASY",
+      "solutionSketch": "Factor out 10! from the numerator and divide by 9! so the expression becomes a simple product.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "For what value of $x$ does $10^{x}\\cdot 100^{2x}=1000^{5}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "difficultyBand": "EASY",
+      "solutionSketch": "Convert 100 and 1000 into powers of 10, add exponents on the left side, and solve the linear equation in x.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "The remainder can be defined for all real numbers $x$ and $y$ with $y \\neq 0$ by \\[\\text{rem} (x ,y)=x-y\\left \\lfloor \\frac{x}{y} \\right \\rfloor\\] where $\\left \\lfloor \\tfrac{x}{y} \\right \\rfloor$ denotes the greatest integer less than or equal to $\\tfrac{x}{y}$ . What is the value of $\\text{rem} (\\tfrac{3}{8}, -\\tfrac{2}{5} )$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "\\frac{3}{8}",
+        "\\frac{1}{40}",
+        "0",
+        "\\frac{3}{8}",
+        "\\frac{31}{40}"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "number_theory.general",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "The mean, median, and mode of the $7$ data values $60, 100, x, 40, 50, 200, 90$ are all equal to $x$ . What is the value of $x$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "50",
+        "60",
+        "75",
+        "90",
+        "100"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "arithmetic.word_problems",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Goldbach's conjecture states that every even integer greater than 2 can be written as the sum of two prime numbers (for example, $2016=13+2003$ ). So far, no one has been able to prove that the conjecture is true, and no one has found a counterexample to show that the conjecture is false. What would a counterexample consist of?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "an odd integer greater than 2 that can be written as the sum of two prime numbers",
+        "an odd integer greater than 2 that cannot be written as the sum of two prime numbers",
+        "an even integer greater than 2 that can be written as the sum of two numbers that are not prime",
+        "an even integer greater than 2 that can be written as the sum of two prime numbers",
+        "an even integer greater than 2 that cannot be written as the sum of two prime numbers"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "number_theory.general",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "A triangular array of $2016$ coins has $1$ coin in the first row, $2$ coins in the second row, $3$ coins in the third row, and so on up to $N$ coins in the $N$ th row. What is the sum of the digits of $N$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "probability.general",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Which of these describes the graph of $x^2(x+y+1)=y^2(x+y+1)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "two parallel lines",
+        "two intersecting lines",
+        "three lines that all pass through a common point",
+        "three lines that do not all pass through a common point",
+        "a line and a parabola"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Find the area of the shaded region.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "435",
+        "5",
+        "514",
+        "612",
+        "8"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "The five small shaded squares inside this unit square are congruent and have disjoint interiors. The midpoint of each side of the middle square coincides with one of the vertices of the other four small squares as shown. The common side length is $\\tfrac{a-\\sqrt{2}}{b}$ , where $a$ and $b$ are positive integers. What is $a+b$ ?",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/6/f/e/6fe0c7ae4ee1fd4c6e5cbf56da9bf7722133636f.png",
+      "diagramImageAlt": "A unit square containing five congruent shaded squares, one centered and four around it touching the midpoints of the centered square.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.general",
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Express the area of the large square as the sum of the five congruent shaded squares plus the remaining white regions, then solve for one shaded square.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Five friends sat in a movie theater in a row containing $5$ seats, numbered $1$ to $5$ from left to right. (The directions \"left\" and \"right\" are from the point of view of the people as they sit in the seats.) During the movie Ada went to the lobby to get some popcorn. When she returned, she found that Bea had moved two seats to the right, Ceci had moved one seat to the left, and Dee and Edie had switched seats, leaving an end seat for Ada. In which seat had Ada been sitting before she got up?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "probability.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Each of the $100$ students in a certain summer camp can either sing, dance, or act. Some students have more than one talent, but no student has all three talents. There are $42$ students who cannot sing, $65$ students who cannot dance, and $29$ students who cannot act. How many students have two of these talents?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "16",
+        "25",
+        "36",
+        "49",
+        "64"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "In $\\triangle ABC$ , $AB = 6$ , $BC = 7$ , and $CA = 8$ . Point $D$ lies on $\\overline{BC}$ , and $\\overline{AD}$ bisects $\\angle BAC$ . Point $E$ lies on $\\overline{AC}$ , and $\\overline{BE}$ bisects $\\angle ABC$ . The bisectors intersect at $F$ . What is the ratio $AF$ : $FD$ ?",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/5/0/b/50b0f8f69ee6677a5d5e89b5d864839232ff3faa.png",
+      "diagramImageAlt": "Triangle ABC with A at the left base, B at the right base, and C at the top. Point D lies on side BC, point E lies on side AC, and segments AD and BE intersect at interior point F.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "3:2",
+        "5:3",
+        "2:1",
+        "7:3",
+        "5:2"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.general",
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Use the given area ratios to compare triangles that share the same altitude, then convert those area ratios into the requested segment ratio.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Let $N$ be a positive multiple of $5$ . One red ball and $N$ green balls are arranged in a line in random order. Let $P(N)$ be the probability that at least $\\tfrac{3}{5}$ of the green balls are on the same side of the red ball. Observe that $P(5)=1$ and that $P(N)$ approaches $\\tfrac{4}{5}$ as $N$ grows large. What is the sum of the digits of the least value of $N$ such that $P(N) < \\tfrac{321}{400}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "12",
+        "14",
+        "16",
+        "18",
+        "20"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "probability.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Each vertex of a cube is to be labeled with an integer $1$ through $8$ , with each integer being used once, in such a way that the sum of the four numbers on the vertices of a face is the same for each face. Arrangements that can be obtained from each other through rotations of the cube are considered to be the same. How many different arrangements are possible?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "1",
+        "3",
+        "6",
+        "12",
+        "24"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Circles with centers $P, Q$ and $R$ , having radii $1, 2$ and $3$ , respectively, lie on the same side of line $l$ and are tangent to $l$ at $P', Q'$ and $R'$ , respectively, with $Q'$ between $P'$ and $R'$ . The circle with center $Q$ is externally tangent to each of the other two circles. What is the area of triangle $PQR$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "0",
+        "\\sqrt{\\frac{2}{3}}",
+        "1",
+        "\\sqrt{6}-\\sqrt{2}",
+        "\\sqrt{\\frac{3}{2}}"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "The graphs of $y=\\log_3 x, y=\\log_x 3, y=\\log_\\frac{1}{3} x,$ and $y=\\log_x \\dfrac{1}{3}$ are plotted on the same set of axes. How many points in the plane with positive $x$ -coordinates lie on two or more of the graphs?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Let $ABCD$ be a square. Let $E, F, G$ and $H$ be the centers, respectively, of equilateral triangles with bases $\\overline{AB}, \\overline{BC}, \\overline{CD},$ and $\\overline{DA},$ each exterior to the square. What is the ratio of the area of square $EFGH$ to the area of square $ABCD$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "1",
+        "\\frac{2+\\sqrt{3}}{3}",
+        "\\sqrt{2}",
+        "\\frac{\\sqrt{2}+\\sqrt{3}}{2}",
+        "\\sqrt{3}"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.general",
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "For some positive integer $n$ , the number $110n^3$ has $110$ positive integer divisors, including $1$ and the number $110n^3$ . How many positive integer divisors does the number $81n^4$ have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "110",
+        "191",
+        "261",
+        "325",
+        "425"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Jerry starts at $0$ on the real number line. He tosses a fair coin $8$ times. When he gets heads, he moves $1$ unit in the positive direction; when he gets tails, he moves $1$ unit in the negative direction. The probability that he reaches $4$ at some time during this process $\\frac{a}{b},$ where $a$ and $b$ are relatively prime positive integers. What is $a + b?$ (For example, he succeeds if his sequence of tosses is $HTHHHHHH.$ )",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "69",
+        "151",
+        "257",
+        "293",
+        "313"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "probability.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "A binary operation $\\diamondsuit$ has the properties that $a\\,\\diamondsuit\\, (b\\,\\diamondsuit \\,c) = (a\\,\\diamondsuit \\,b)\\cdot c$ and that $a\\,\\diamondsuit \\,a=1$ for all nonzero real numbers $a, b,$ and $c$ . (Here $\\cdot$ represents multiplication). The solution to the equation $2016 \\,\\diamondsuit\\, (6\\,\\diamondsuit\\, x)=100$ can be written as $\\tfrac{p}{q}$ , where $p$ and $q$ are relatively prime positive integers. What is $p+q?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "109",
+        "201",
+        "301",
+        "3049",
+        "33,601"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "number_theory.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "A quadrilateral is inscribed in a circle of radius $200\\sqrt{2}$ . Three of the sides of this quadrilateral have length $200$ . What is the length of the fourth side?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "200",
+        "200\\sqrt{2}",
+        "200\\sqrt{3}",
+        "300\\sqrt{2}",
+        "500"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "How many ordered triples $(x,y,z)$ of positive integers satisfy $\\text{lcm}(x,y) = 72, \\text{lcm}(x,z) = 600,$ and $\\text{lcm}(y,z)=900$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "15",
+        "16",
+        "24",
+        "27",
+        "64"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "counting.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Three numbers in the interval $\\left[0,1\\right]$ are chosen independently and at random. What is the probability that the chosen numbers are the side lengths of a triangle with positive area?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "16",
+        "13",
+        "12",
+        "23",
+        "56"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "probability.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "There is a smallest positive real number $a$ such that there exists a positive real number $b$ such that all the roots of the polynomial $x^3-ax^2+bx-a$ are real. In fact, for this value of $a$ the value of $b$ is unique. What is this value of $b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "algebra.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Let $k$ be a positive integer. Bernardo and Silvia take turns writing and erasing numbers on a blackboard as follows: Bernardo starts by writing the smallest perfect square with $k+1$ digits. Every time Bernardo writes a number, Silvia erases the last $k$ digits of it. Bernardo then writes the next perfect square, Silvia erases the last $k$ digits of it, and this process continues until the last two numbers that remain on the board differ by at least 2. Let $f(k)$ be the smallest positive integer not written on the board. For example, if $k = 1$ , then the numbers that Bernardo writes are $16, 25, 36, 49, 64$ , and the numbers showing on the board after Silvia erases are $1, 2, 3, 4,$ and $6$ , and thus $f(1) = 5$ . What is the sum of the digits of $f(2) + f(4)+ f(6) + \\dots + f(2016)$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "7986",
+        "8002",
+        "8030",
+        "8048",
+        "8064"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "topicKey": "geometry.general",
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_25"
+    }
+  ]
+}

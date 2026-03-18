@@ -48,12 +48,104 @@ pnpm dev
 
 Open `http://localhost:3000`.
 
+## Local env choice
+
+Use the script that matches the database you intend to hit:
+
+- `pnpm dev`: prefers root `.env.local` when present, so local testing uses Neon by default.
+- `pnpm dev:local`: loads root `.env` and is meant for local Docker/local Postgres development.
+- `pnpm dev:neon`: loads root `.env.local` safely and runs the app against Neon.
+
+For the current env-file architecture and exact script/file mapping, see [ENV_SETUP.md](/Users/yimingsun/Desktop/Arcmath/ENV_SETUP.md).
+
+Why this matters:
+- newer tutor features depend on recent Prisma migrations (`topicKey`, `difficultyBand`, `solutionSketch`, curated hints, `PracticeRun`)
+- if your local Postgres has not been migrated up, `/problems` routes can fail with Prisma `P2022 column does not exist`
+- using `pnpm dev` or `pnpm dev:neon` avoids that drift when `.env.local` points at the up-to-date Neon database
+
+Neon helpers:
+
+```bash
+pnpm migrate:neon
+pnpm seed:neon
+pnpm dev:neon
+pnpm hint:precompute:neon -- --problem-set-id <problemSetId>
+```
+
+Do not `source .env.local` directly in shell when `DATABASE_URL` contains `&...` query params; use the scripts above instead.
+
+## Hint Tutor AI config
+
+The Hint Tutor server uses OpenAI when `OPENAI_API_KEY` is set.
+
+- Required for real AI responses: `OPENAI_API_KEY`
+- Optional overrides:
+  - `OPENAI_MODEL` (defaults to `gpt-4.1-mini`)
+  - `OPENAI_BASE_URL` (defaults to `https://api.openai.com/v1/responses`)
+
+If `OPENAI_API_KEY` is missing or the model response cannot be parsed, the app falls back to safe server-side placeholder hints/explanations so the route still works.
+
+Hint generation path for `"I'm stuck"` is:
+- curated hints on `Problem`
+- precomputed generated hints on `Problem`
+- live OpenAI generation as the final fallback
+
+Use `pnpm hint:precompute:neon -- --problem-set-id <problemSetId>` to precompute level 1/2/3 hints for a tutor-ready set without coupling that work to the import transaction.
+
+## Real import quality workflow
+
+For real contest sets, keep one canonical JSON file under `packages/db/data/real-imports/` as the source of truth, then run the shared quality pass before preview/commit:
+
+```bash
+pnpm real-import:refresh-quality --file packages/db/data/real-imports/<SET>.json
+pnpm real-import:audit
+pnpm real-import:run preview --file packages/db/data/real-imports/<SET>.json
+pnpm real-import:run commit --file packages/db/data/real-imports/<SET>.json
+pnpm hint:precompute:neon -- --problem-set-id <problemSetId>
+```
+
+What the quality pass currently does:
+- normalizes noisy multiple-choice text extracted from AoPS/PDF sources
+- applies a baseline `difficultyBand` to every problem
+- infers coarse `topicKey` values when the statement is clear enough
+- reapplies the shared per-set image/choice overrides used by the real-import builders
+
+Use `pnpm real-import:audit` after refresh to see remaining gaps such as likely figure-dependent problems or missing tutor metadata.
+
 ## Dev auth credentials
 Seed creates a development admin user:
 - Email: `admin@arcmath.local`
 - Password: `Admin12345!`
 
 This is dev-only and should not be used in production.
+
+## E2E acceptance test
+The repository now includes a first Playwright acceptance test for the AI Hint Tutor MVP at `apps/web/tests/e2e/ai-hint-tutor.spec.ts`.
+
+Run it from the repo root:
+
+```bash
+pnpm test:e2e
+```
+
+What it covers:
+- opens the app
+- provisions a fresh test student through `/api/register`
+- logs in through the real `/login` form
+- opens `/problems`
+- verifies the seeded `Hint Tutor MVP Seed Set`
+- opens a seeded problem
+- requests a hint
+- submits an answer and verifies the explanation UI
+- opens `/reports` and verifies the report is populated
+
+Local assumptions:
+- the app can start with `pnpm dev`
+- Postgres is running and migrations have been applied
+- `pnpm db:seed` has been run so `Hint Tutor MVP Seed Set` exists
+- Playwright browser binaries are installed locally; if needed, run `pnpm -C apps/web exec playwright install chromium`
+
+The E2E flow does not require `OPENAI_API_KEY`; Hint Tutor falls back to safe local responses when that key is absent.
 
 ## Auth + RBAC behavior
 - Protected routes: `/dashboard`, `/problems`, `/assignments`, `/resources`, `/membership`, `/admin`

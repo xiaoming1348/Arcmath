@@ -50,11 +50,7 @@ function cleanWhitespace(value: string): string {
   return value.replace(/\s+/g, " ").trim();
 }
 
-function statementPreview(statement: string | undefined): string {
-  if (!statement) {
-    return "(no statement)";
-  }
-
+function statementPreview(statement: string): string {
   const withoutHtml = statement.replace(/<[^>]*>/g, " ");
   const cleaned = cleanWhitespace(withoutHtml);
   if (cleaned.length <= 120) {
@@ -167,8 +163,13 @@ async function buildPreviewFromParsed(prisma: PrismaClient, data: ImportProblemS
   const incomingNumbers = new Set(data.problems.map((problem) => problem.number));
   const overlappingNumbers = existingProblemNumbers.filter((number) => incomingNumbers.has(number));
   const warnings: string[] = [];
-  const emptyStatementCount = data.problems.filter((problem) => !problem.statement || problem.statement.trim().length === 0).length;
-  const emptyStatementRatio = data.problems.length > 0 ? emptyStatementCount / data.problems.length : 0;
+  const formatMismatchCount = data.problems.filter((problem) => {
+    if (data.problemSet.contest === "AIME") {
+      return problem.answerFormat !== "INTEGER";
+    }
+
+    return problem.answerFormat !== "MULTIPLE_CHOICE";
+  }).length;
 
   if (existingSet) {
     warnings.push("Problem set already exists; commit will update matching problems and insert new ones.");
@@ -178,11 +179,12 @@ async function buildPreviewFromParsed(prisma: PrismaClient, data: ImportProblemS
     warnings.push(`Existing problem numbers in this file: ${overlappingNumbers.join(", ")}`);
   }
 
-  if (emptyStatementCount > 0) {
-    warnings.push(`Missing statements detected: ${emptyStatementCount}/${data.problems.length} problems have empty statement.`);
-  }
-  if (emptyStatementRatio >= 0.3) {
-    warnings.push("Large portion of statements are empty. This often means the fetch/import source only included answers.");
+  if (formatMismatchCount > 0) {
+    warnings.push(
+      data.problemSet.contest === "AIME"
+        ? `AIME normally uses INTEGER answers; ${formatMismatchCount} problems use a different answerFormat.`
+        : `${data.problemSet.contest} normally uses MULTIPLE_CHOICE answers; ${formatMismatchCount} problems use a different answerFormat.`
+    );
   }
 
   return {
@@ -222,26 +224,58 @@ function makeProblemCreateInput(problemSetId: string, problem: ImportProblem): P
     problemSet: { connect: { id: problemSetId } },
     number: problem.number,
     statement: problem.statement,
+    diagramImageUrl: problem.diagramImageUrl,
+    diagramImageAlt: problem.diagramImageAlt,
+    choicesImageUrl: problem.choicesImageUrl,
+    choicesImageAlt: problem.choicesImageAlt,
     statementFormat: (problem.statementFormat ?? "MARKDOWN_LATEX") as StatementFormat,
     choices: problem.choices,
     answer: problem.answer,
     answerFormat: (problem.answerFormat ?? "MULTIPLE_CHOICE") as AnswerFormat,
+    topicKey: problem.topicKey,
+    difficultyBand: problem.difficultyBand,
+    solutionSketch: problem.solutionSketch,
+    curatedHintLevel1: problem.curatedHintLevel1,
+    curatedHintLevel2: problem.curatedHintLevel2,
+    curatedHintLevel3: problem.curatedHintLevel3,
     sourceUrl: problem.sourceUrl
   };
 }
 
 function buildProblemUpdateData(problem: ImportProblem, existing: {
   statement: string | null;
+  diagramImageUrl: string | null;
+  diagramImageAlt: string | null;
+  choicesImageUrl: string | null;
+  choicesImageAlt: string | null;
   statementFormat: StatementFormat;
   choices: Prisma.JsonValue | null;
   answer: string | null;
   answerFormat: AnswerFormat;
+  topicKey: string | null;
+  difficultyBand: string | null;
+  solutionSketch: string | null;
+  curatedHintLevel1: string | null;
+  curatedHintLevel2: string | null;
+  curatedHintLevel3: string | null;
   sourceUrl: string | null;
 }): Prisma.ProblemUpdateInput {
   const updateData: Prisma.ProblemUpdateInput = {};
 
   if (problem.statement !== undefined && problem.statement !== existing.statement) {
     updateData.statement = problem.statement;
+  }
+  if (problem.diagramImageUrl !== undefined && problem.diagramImageUrl !== existing.diagramImageUrl) {
+    updateData.diagramImageUrl = problem.diagramImageUrl;
+  }
+  if (problem.diagramImageAlt !== undefined && problem.diagramImageAlt !== existing.diagramImageAlt) {
+    updateData.diagramImageAlt = problem.diagramImageAlt;
+  }
+  if (problem.choicesImageUrl !== undefined && problem.choicesImageUrl !== existing.choicesImageUrl) {
+    updateData.choicesImageUrl = problem.choicesImageUrl;
+  }
+  if (problem.choicesImageAlt !== undefined && problem.choicesImageAlt !== existing.choicesImageAlt) {
+    updateData.choicesImageAlt = problem.choicesImageAlt;
   }
   if (problem.statementFormat !== undefined && problem.statementFormat !== existing.statementFormat) {
     updateData.statementFormat = problem.statementFormat as StatementFormat;
@@ -254,6 +288,24 @@ function buildProblemUpdateData(problem: ImportProblem, existing: {
   }
   if (problem.answerFormat !== undefined && problem.answerFormat !== existing.answerFormat) {
     updateData.answerFormat = problem.answerFormat as AnswerFormat;
+  }
+  if (problem.topicKey !== undefined && problem.topicKey !== existing.topicKey) {
+    updateData.topicKey = problem.topicKey;
+  }
+  if (problem.difficultyBand !== undefined && problem.difficultyBand !== existing.difficultyBand) {
+    updateData.difficultyBand = problem.difficultyBand;
+  }
+  if (problem.solutionSketch !== undefined && problem.solutionSketch !== existing.solutionSketch) {
+    updateData.solutionSketch = problem.solutionSketch;
+  }
+  if (problem.curatedHintLevel1 !== undefined && problem.curatedHintLevel1 !== existing.curatedHintLevel1) {
+    updateData.curatedHintLevel1 = problem.curatedHintLevel1;
+  }
+  if (problem.curatedHintLevel2 !== undefined && problem.curatedHintLevel2 !== existing.curatedHintLevel2) {
+    updateData.curatedHintLevel2 = problem.curatedHintLevel2;
+  }
+  if (problem.curatedHintLevel3 !== undefined && problem.curatedHintLevel3 !== existing.curatedHintLevel3) {
+    updateData.curatedHintLevel3 = problem.curatedHintLevel3;
   }
   if (problem.sourceUrl !== undefined && problem.sourceUrl !== existing.sourceUrl) {
     updateData.sourceUrl = problem.sourceUrl;
@@ -328,56 +380,62 @@ export async function commitImportFromJson(options: {
   });
 
   try {
-    const result = await prisma.$transaction(async (tx) => {
-      const problemSet = await resolveProblemSet(
-        tx,
-        toProblemSetKey(payload),
-        payload.problemSet.sourceUrl,
-        payload.problemSet.verifiedPdfUrl
-      );
-      let createdProblems = 0;
-      let updatedProblems = 0;
-      let skippedProblems = 0;
+    const result = await prisma.$transaction(
+      async (tx) => {
+        const problemSet = await resolveProblemSet(
+          tx,
+          toProblemSetKey(payload),
+          payload.problemSet.sourceUrl,
+          payload.problemSet.verifiedPdfUrl
+        );
+        let createdProblems = 0;
+        let updatedProblems = 0;
+        let skippedProblems = 0;
 
-      for (const problem of payload.problems) {
-        const existingProblem = await tx.problem.findUnique({
-          where: {
-            problemSetId_number: {
-              problemSetId: problemSet.id,
-              number: problem.number
+        for (const problem of payload.problems) {
+          const existingProblem = await tx.problem.findUnique({
+            where: {
+              problemSetId_number: {
+                problemSetId: problemSet.id,
+                number: problem.number
+              }
             }
-          }
-        });
-
-        if (!existingProblem) {
-          await tx.problem.create({
-            data: makeProblemCreateInput(problemSet.id, problem)
           });
-          createdProblems += 1;
-          continue;
+
+          if (!existingProblem) {
+            await tx.problem.create({
+              data: makeProblemCreateInput(problemSet.id, problem)
+            });
+            createdProblems += 1;
+            continue;
+          }
+
+          const updateData = buildProblemUpdateData(problem, existingProblem);
+          if (!hasUpdateData(updateData)) {
+            skippedProblems += 1;
+            continue;
+          }
+
+          await tx.problem.update({
+            where: { id: existingProblem.id },
+            data: updateData
+          });
+          updatedProblems += 1;
         }
 
-        const updateData = buildProblemUpdateData(problem, existingProblem);
-        if (!hasUpdateData(updateData)) {
-          skippedProblems += 1;
-          continue;
-        }
-
-        await tx.problem.update({
-          where: { id: existingProblem.id },
-          data: updateData
-        });
-        updatedProblems += 1;
+        return {
+          problemSetId: problemSet.id,
+          createdProblems,
+          updatedProblems,
+          skippedProblems,
+          warnings: preview.warnings
+        };
+      },
+      {
+        maxWait: 10_000,
+        timeout: 120_000
       }
-
-      return {
-        problemSetId: problemSet.id,
-        createdProblems,
-        updatedProblems,
-        skippedProblems,
-        warnings: preview.warnings
-      };
-    });
+    );
 
     await prisma.importJob.update({
       where: { id: importJob.id },

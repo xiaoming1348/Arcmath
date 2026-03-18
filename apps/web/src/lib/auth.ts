@@ -7,12 +7,28 @@ import { loginSchema } from "@arcmath/shared";
 import { withPepper } from "@/lib/password";
 
 const authSecret = process.env.NEXTAUTH_SECRET ?? "dev-insecure-secret-change-me";
+const isDevelopment = process.env.NODE_ENV !== "production";
 
 export const authOptions: NextAuthOptions = {
   secret: authSecret,
   session: {
     strategy: "jwt"
   },
+  ...(isDevelopment
+    ? {
+        cookies: {
+          sessionToken: {
+            name: "arcmath.dev.session-token",
+            options: {
+              httpOnly: true,
+              sameSite: "lax" as const,
+              path: "/",
+              secure: false
+            }
+          }
+        }
+      }
+    : {}),
   pages: {
     signIn: "/login"
   },

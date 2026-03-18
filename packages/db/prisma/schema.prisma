@@ -49,6 +49,9 @@ model User {
   enrollments  Enrollment[]
   importJobs   ImportJob[]
   resourceAccesses UserResourceAccess[]
+  problemAttempts ProblemAttempt[]
+  problemHintUsages ProblemHintUsage[]
+  practiceRuns PracticeRun[]
 }
 
 model Class {
@@ -88,6 +91,7 @@ model ProblemSet {
   cachedPdfError String?
   status    ProblemSetStatus @default(DRAFT)
   problems  Problem[]
+  practiceRuns PracticeRun[]
   resourceAccesses UserResourceAccess[]
   createdAt DateTime         @default(now())
   updatedAt DateTime         @updatedAt
@@ -115,19 +119,93 @@ model Problem {
   problemSetId    String
   number          Int
   statement       String?
+  diagramImageUrl String?
+  diagramImageAlt String?
+  choicesImageUrl String?
+  choicesImageAlt String?
   statementFormat StatementFormat @default(MARKDOWN_LATEX)
   choices         Json?
   answer          String?
   answerFormat    AnswerFormat    @default(MULTIPLE_CHOICE)
+  topicKey        String?
+  difficultyBand  String?
+  solutionSketch  String?
+  curatedHintLevel1 String?
+  curatedHintLevel2 String?
+  curatedHintLevel3 String?
+  generatedHintLevel1 String?
+  generatedHintLevel2 String?
+  generatedHintLevel3 String?
+  generatedHintPromptVersion String?
+  generatedHintUpdatedAt DateTime?
   sourceUrl       String?
   tags            Json?
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
   problemSet      ProblemSet      @relation(fields: [problemSetId], references: [id], onDelete: Cascade)
+  attempts        ProblemAttempt[]
+  hintUsages      ProblemHintUsage[]
 
   @@unique([problemSetId, number])
   @@index([problemSetId])
   @@index([number])
+}
+
+model ProblemAttempt {
+  id               String   @id @default(cuid())
+  userId           String
+  problemId        String
+  practiceRunId    String?
+  submittedAnswer  String
+  normalizedAnswer String?
+  isCorrect        Boolean
+  explanationText  String?
+  createdAt        DateTime @default(now())
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  problem          Problem  @relation(fields: [problemId], references: [id], onDelete: Cascade)
+  practiceRun      PracticeRun? @relation(fields: [practiceRunId], references: [id], onDelete: SetNull)
+  hintUsages       ProblemHintUsage[]
+
+  @@index([userId, createdAt])
+  @@index([problemId, createdAt])
+  @@index([practiceRunId, createdAt])
+}
+
+model ProblemHintUsage {
+  id            String         @id @default(cuid())
+  userId        String
+  problemId     String
+  attemptId     String?
+  practiceRunId String?
+  hintLevel     Int
+  hintText      String
+  promptVersion String
+  createdAt     DateTime       @default(now())
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  problem       Problem        @relation(fields: [problemId], references: [id], onDelete: Cascade)
+  attempt       ProblemAttempt? @relation(fields: [attemptId], references: [id], onDelete: SetNull)
+  practiceRun   PracticeRun?   @relation(fields: [practiceRunId], references: [id], onDelete: SetNull)
+
+  @@index([userId, createdAt])
+  @@index([problemId, createdAt])
+  @@index([attemptId])
+  @@index([practiceRunId, createdAt])
+}
+
+model PracticeRun {
+  id           String         @id @default(cuid())
+  userId       String
+  problemSetId String
+  startedAt    DateTime       @default(now())
+  completedAt  DateTime?
+  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  problemSet   ProblemSet     @relation(fields: [problemSetId], references: [id], onDelete: Cascade)
+  attempts     ProblemAttempt[]
+  hintUsages   ProblemHintUsage[]
+
+  @@index([userId, startedAt])
+  @@index([problemSetId, startedAt])
+  @@index([userId, problemSetId, completedAt])
 }
 
 model ImportJob {

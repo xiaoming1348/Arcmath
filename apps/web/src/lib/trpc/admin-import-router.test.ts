@@ -10,6 +10,7 @@ type MockProblemSet = {
   exam: string | null;
   title: string;
   sourceUrl: string | null;
+  verifiedPdfUrl?: string | null;
 };
 
 type MockProblem = {
@@ -17,10 +18,18 @@ type MockProblem = {
   problemSetId: string;
   number: number;
   statement: string | null;
+  diagramImageUrl?: string | null;
+  diagramImageAlt?: string | null;
   statementFormat: "MARKDOWN_LATEX" | "HTML" | "PLAIN";
   choices: unknown;
   answer: string | null;
   answerFormat: "MULTIPLE_CHOICE" | "INTEGER" | "EXPRESSION";
+  topicKey?: string | null;
+  difficultyBand?: string | null;
+  solutionSketch?: string | null;
+  curatedHintLevel1?: string | null;
+  curatedHintLevel2?: string | null;
+  curatedHintLevel3?: string | null;
   sourceUrl: string | null;
 };
 
@@ -65,14 +74,15 @@ function createPrismaMock() {
           ) ?? null
         );
       },
-      async create(args: { data: { contest: MockProblemSet["contest"]; year: number; exam: string | null; title: string; sourceUrl?: string } }) {
+      async create(args: { data: { contest: MockProblemSet["contest"]; year: number; exam: string | null; title: string; sourceUrl?: string; verifiedPdfUrl?: string } }) {
         const created: MockProblemSet = {
           id: `ps_${problemSetCounter++}`,
           contest: args.data.contest,
           year: args.data.year,
           exam: args.data.exam,
           title: args.data.title,
-          sourceUrl: args.data.sourceUrl ?? null
+          sourceUrl: args.data.sourceUrl ?? null,
+          verifiedPdfUrl: args.data.verifiedPdfUrl ?? null
         };
         problemSets.push(created);
         return created;
@@ -103,16 +113,24 @@ function createPrismaMock() {
           null
         );
       },
-      async create(args: { data: { problemSet: { connect: { id: string } }; number: number; statement?: string; statementFormat: MockProblem["statementFormat"]; choices?: unknown; answer?: string; answerFormat: MockProblem["answerFormat"]; sourceUrl?: string } }) {
+      async create(args: { data: { problemSet: { connect: { id: string } }; number: number; statement?: string; diagramImageUrl?: string; diagramImageAlt?: string; statementFormat: MockProblem["statementFormat"]; choices?: unknown; answer?: string; answerFormat: MockProblem["answerFormat"]; topicKey?: string; difficultyBand?: string; solutionSketch?: string; curatedHintLevel1?: string; curatedHintLevel2?: string; curatedHintLevel3?: string; sourceUrl?: string } }) {
         const created: MockProblem = {
           id: `p_${problemCounter++}`,
           problemSetId: args.data.problemSet.connect.id,
           number: args.data.number,
           statement: args.data.statement ?? null,
+          diagramImageUrl: args.data.diagramImageUrl ?? null,
+          diagramImageAlt: args.data.diagramImageAlt ?? null,
           statementFormat: args.data.statementFormat,
           choices: args.data.choices ?? null,
           answer: args.data.answer ?? null,
           answerFormat: args.data.answerFormat,
+          topicKey: args.data.topicKey ?? null,
+          difficultyBand: args.data.difficultyBand ?? null,
+          solutionSketch: args.data.solutionSketch ?? null,
+          curatedHintLevel1: args.data.curatedHintLevel1 ?? null,
+          curatedHintLevel2: args.data.curatedHintLevel2 ?? null,
+          curatedHintLevel3: args.data.curatedHintLevel3 ?? null,
           sourceUrl: args.data.sourceUrl ?? null
         };
         problems.push(created);
@@ -166,26 +184,31 @@ function createPrismaMock() {
   };
 }
 
-const sampleImportJson = JSON.stringify({
-  problemSet: {
-    contest: "AMC10",
-    year: 2022,
-    exam: "A",
-    sourceUrl: "https://example.com/amc10a-2022"
-  },
-  problems: [
-    {
-      number: 1,
-      statement: "What is 1+1?",
-      answer: "B"
+function makeCanonicalProblem(number: number) {
+  return {
+    number,
+    statement: `What is problem ${number}?`,
+    statementFormat: "MARKDOWN_LATEX" as const,
+    choices: ["1", "2", "3", "4", "5"],
+    answer: "B",
+    answerFormat: "MULTIPLE_CHOICE" as const
+  };
+}
+
+function makeCanonicalPayload() {
+  return {
+    problemSet: {
+      contest: "AMC10" as const,
+      year: 2022,
+      exam: "A",
+      sourceUrl: "https://example.com/amc10a-2022",
+      verifiedPdfUrl: "https://example.com/amc10a-2022.pdf"
     },
-    {
-      number: 2,
-      statement: "What is 2+2?",
-      answer: "D"
-    }
-  ]
-});
+    problems: Array.from({ length: 25 }, (_, index) => makeCanonicalProblem(index + 1))
+  };
+}
+
+const sampleImportJson = JSON.stringify(makeCanonicalPayload());
 
 describe("admin import router", () => {
   it("blocks non-admin users", async () => {
@@ -207,21 +230,88 @@ describe("admin import router", () => {
 
     const preview = await caller.admin.import.preview({ jsonText: sampleImportJson, filename: "sample.json" });
     expect(preview.isValid).toBe(true);
-    expect(preview.problemCount).toBe(2);
+    expect(preview.problemCount).toBe(25);
     expect(preview.existingSet).toBe(false);
 
     const firstCommit = await caller.admin.import.commit({ jsonText: sampleImportJson, filename: "sample.json" });
-    expect(firstCommit.createdProblems).toBe(2);
+    expect(firstCommit.createdProblems).toBe(25);
     expect(firstCommit.updatedProblems).toBe(0);
     expect(firstCommit.skippedProblems).toBe(0);
     expect(problemSets).toHaveLength(1);
-    expect(problems).toHaveLength(2);
+    expect(problems).toHaveLength(25);
 
     const secondCommit = await caller.admin.import.commit({ jsonText: sampleImportJson, filename: "sample.json" });
     expect(secondCommit.createdProblems).toBe(0);
     expect(secondCommit.updatedProblems).toBe(0);
-    expect(secondCommit.skippedProblems).toBe(2);
+    expect(secondCommit.skippedProblems).toBe(25);
     expect(problemSets).toHaveLength(1);
-    expect(problems).toHaveLength(2);
+    expect(problems).toHaveLength(25);
+  });
+
+  it("persists tutor metadata on create and update", async () => {
+    const { prisma, problems } = createPrismaMock();
+    const caller = appRouter.createCaller({
+      prisma: prisma as never,
+      session: makeAdminSession()
+    });
+
+    const initialPayload = makeCanonicalPayload();
+    initialPayload.problems[0] = {
+      ...initialPayload.problems[0],
+      diagramImageUrl: "https://example.com/problem-1-diagram.png",
+      diagramImageAlt: "A sample diagram for problem 1.",
+      topicKey: "algebra.linear_equations",
+      difficultyBand: "EASY",
+      solutionSketch: "Subtract first, then divide.",
+      curatedHintLevel1: "Undo the addition.",
+      curatedHintLevel2: "Isolate the variable term.",
+      curatedHintLevel3: "Now solve the one-step equation."
+    };
+
+    await caller.admin.import.commit({
+      jsonText: JSON.stringify(initialPayload),
+      filename: "sample.json"
+    });
+
+    expect(problems[0]).toMatchObject({
+      diagramImageUrl: "https://example.com/problem-1-diagram.png",
+      diagramImageAlt: "A sample diagram for problem 1.",
+      topicKey: "algebra.linear_equations",
+      difficultyBand: "EASY",
+      solutionSketch: "Subtract first, then divide.",
+      curatedHintLevel1: "Undo the addition.",
+      curatedHintLevel2: "Isolate the variable term.",
+      curatedHintLevel3: "Now solve the one-step equation."
+    });
+
+    const updatedPayload = makeCanonicalPayload();
+    updatedPayload.problems[0] = {
+      ...updatedPayload.problems[0],
+      diagramImageUrl: "https://example.com/problem-1-diagram-v2.png",
+      diagramImageAlt: "An updated sample diagram for problem 1.",
+      topicKey: "algebra.expressions",
+      difficultyBand: "MEDIUM",
+      solutionSketch: "Distribute before combining terms.",
+      curatedHintLevel1: "Look inside the parentheses first.",
+      curatedHintLevel2: "Distribute carefully.",
+      curatedHintLevel3: "Then combine like terms."
+    };
+
+    const updateCommit = await caller.admin.import.commit({
+      jsonText: JSON.stringify(updatedPayload),
+      filename: "sample-updated.json"
+    });
+
+    expect(updateCommit.updatedProblems).toBe(1);
+    expect(problems[0]).toMatchObject({
+      diagramImageUrl: "https://example.com/problem-1-diagram-v2.png",
+      diagramImageAlt: "An updated sample diagram for problem 1.",
+      topicKey: "algebra.expressions",
+      difficultyBand: "MEDIUM",
+      solutionSketch: "Distribute before combining terms.",
+      curatedHintLevel1: "Look inside the parentheses first.",
+      curatedHintLevel2: "Distribute carefully.",
+      curatedHintLevel3: "Then combine like terms."
+    });
   });
 });

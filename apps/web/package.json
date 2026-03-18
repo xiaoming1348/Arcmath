@@ -9,6 +9,7 @@
     "lint": "eslint",
     "pdf:backfill:legacy-official": "node --import tsx src/scripts/backfill-official-pdfs.ts",
     "pdf:backfill-generated": "node --import tsx src/scripts/backfill-generated-pdfs.ts",
+    "hint:precompute": "node --import tsx src/scripts/precompute-hint-artifacts.ts",
     "pdf:render-verify": "node --import tsx src/scripts/render-verify.ts",
     "pdf:validate-searchable": "node --import tsx src/scripts/validate-searchable-downloads.ts"
   },
@@ -22,11 +23,15 @@
     "@trpc/react-query": "^11.10.0",
     "@trpc/server": "^11.10.0",
     "bcryptjs": "^3.0.3",
+    "katex": "^0.16.38",
     "next": "16.1.6",
     "next-auth": "^4.24.13",
     "playwright": "^1.58.2",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-markdown": "^10.1.0",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
     "zod": "^3.25.76"
   },
   "devDependencies": {
