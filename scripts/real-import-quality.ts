@@ -3,7 +3,8 @@ import {
   DIFFICULTY_BANDS,
   importProblemSetSchema,
   type ImportProblemSetInput,
-  type DifficultyBand
+  type DifficultyBand,
+  type DiagnosticExam
 } from "../packages/shared/src/import-schema";
 
 type ProblemInput = ImportProblemSetInput["problems"][number];
@@ -142,6 +143,10 @@ const MANUAL_PROBLEM_OVERRIDES: Record<string, Record<number, ProblemOverride>> 
     }
   },
   AMC12_2017_A: {
+    15: {
+      topicKey: "trigonometry.general",
+      techniqueTags: ["trigonometric_modeling", "equation_solving"]
+    },
     16: {
       diagramImageUrl: "https://latex.artofproblemsolving.com/4/7/0/470af758ec2f0cc263c4f39339447434ac16587c.png",
       diagramImageAlt:
@@ -306,11 +311,23 @@ function inferDifficultyBand(contest: string, number: number): DifficultyBand {
   return "HARD";
 }
 
+function inferExamTrack(contest: string): DiagnosticExam | null {
+  if (contest === "AMC8" || contest === "AMC10" || contest === "AMC12") {
+    return contest;
+  }
+
+  return null;
+}
+
 export function inferTopicKey(statement: string, answerFormat: ProblemInput["answerFormat"]): string | null {
   const text = statement.toLowerCase();
 
   if (/necessarily follows logically|must be true|cannot be true|always true|logic/u.test(text)) {
     return "logic.general";
+  }
+
+  if (/\bsin\b|\bcos\b|\btan\b|\bcot\b|\bsec\b|\bcsc\b|trigon/u.test(text)) {
+    return "trigonometry.general";
   }
 
   if (/probability|expected value|die\b|dice\b|coin\b|coins\b|random/u.test(text)) {
@@ -344,6 +361,75 @@ export function inferTopicKey(statement: string, answerFormat: ProblemInput["ans
   return null;
 }
 
+export function inferTechniqueTags(
+  statement: string,
+  topicKey: string | null,
+  answerFormat: ProblemInput["answerFormat"]
+): string[] {
+  const text = statement.toLowerCase();
+  const tags = new Set<string>();
+
+  if (topicKey?.startsWith("probability.")) {
+    tags.add("probability_setup");
+  }
+  if (topicKey?.startsWith("trigonometry.")) {
+    tags.add("trigonometric_modeling");
+  }
+  if (topicKey?.startsWith("counting.")) {
+    tags.add("counting_principle");
+  }
+  if (topicKey === "geometry.coordinate_geometry") {
+    tags.add("coordinate_modeling");
+  }
+  if (topicKey?.startsWith("geometry.")) {
+    tags.add("diagram_reading");
+  }
+  if (topicKey?.startsWith("number_theory.")) {
+    tags.add("divisibility_reasoning");
+  }
+  if (topicKey?.startsWith("algebra.")) {
+    tags.add("algebra_setup");
+  }
+  if (topicKey === "arithmetic.word_problems") {
+    tags.add("working_backwards");
+  }
+  if (answerFormat === "INTEGER" && topicKey?.startsWith("number_theory.")) {
+    tags.add("modular_reasoning");
+  }
+  if (/how many|number of ways|arrangements|permut|combination|committee|select|choose/u.test(text)) {
+    tags.add("casework");
+  }
+  if (/probability|random|coin|dice|die\b/u.test(text)) {
+    tags.add("probability_setup");
+  }
+  if (/coordinate|slope|origin|point \(/u.test(text)) {
+    tags.add("coordinate_modeling");
+  }
+  if (/triangle|circle|polygon|parallelogram|segment|angle|diameter|radius|square|rectangle/u.test(text)) {
+    tags.add("diagram_reading");
+  }
+  if (/maximum|minimum|largest|smallest|least|greatest|optimi/u.test(text)) {
+    tags.add("optimization");
+  }
+  if (/symmetr/u.test(text)) {
+    tags.add("symmetry");
+  }
+  if (/remainder|divisible|prime|factor|multiple/u.test(text)) {
+    tags.add("divisibility_reasoning");
+  }
+  if (/remainder|mod/u.test(text)) {
+    tags.add("modular_reasoning");
+  }
+  if (/solve for|equation|expression|function|polynomial/u.test(text)) {
+    tags.add("equation_solving");
+  }
+  if (/average|mean|estimate|about|approximately/u.test(text)) {
+    tags.add("estimation");
+  }
+
+  return [...tags];
+}
+
 function getSetKey(payload: ImportProblemSetInput, explicitSetKey?: string): string {
   if (explicitSetKey) {
     return explicitSetKey;
@@ -375,15 +461,24 @@ export function applyRealImportQuality(payload: ImportProblemSetInput, explicitS
       let problem = mergeProblem(rawProblem, problemOverrides[rawProblem.number]);
       const statement = normalizeWhitespace(problem.statement ?? "");
       const normalizedChoices = normalizeImportedChoices(problem.choices);
+      const examTrack = problem.examTrack ?? inferExamTrack(payload.problemSet.contest);
       const inferredTopicKey = problem.topicKey ?? inferTopicKey(statement, problem.answerFormat);
+      const techniqueTags =
+        problem.techniqueTags && problem.techniqueTags.length > 0
+          ? problem.techniqueTags
+          : inferTechniqueTags(statement, inferredTopicKey, problem.answerFormat);
       const difficultyBand = problem.difficultyBand ?? inferDifficultyBand(payload.problemSet.contest, problem.number);
+      const diagnosticEligible = problem.diagnosticEligible ?? Boolean(examTrack);
 
       problem = {
         ...problem,
         statement,
         ...(normalizedChoices ? { choices: normalizedChoices } : {}),
+        ...(examTrack ? { examTrack } : {}),
         difficultyBand,
         ...(inferredTopicKey ? { topicKey: inferredTopicKey } : {}),
+        ...(techniqueTags.length > 0 ? { techniqueTags } : {}),
+        diagnosticEligible,
         ...metadataOverrides[problem.number]
       };
 

@@ -19,7 +19,13 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "solutionSketch": "Start with the red and blue counts in a 100-ball urn, remove only blue balls, and solve for the point where red becomes exactly one half of the remaining total.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_1"
@@ -37,7 +43,13 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_2"
     },
@@ -54,7 +66,13 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "solutionSketch": "Choose the three periods for the math courses, then arrange algebra, geometry, and number theory within those chosen slots.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_3"
@@ -72,7 +90,13 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_4"
     },
@@ -89,7 +113,13 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "algebra.general",
+      "techniqueTags": [
+        "algebra_setup",
+        "equation_solving"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_5"
     },
@@ -106,7 +136,13 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_6"
     },
@@ -123,7 +159,13 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_7"
     },
@@ -142,7 +184,13 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "solutionSketch": "Use similarity among the repeated small triangles to express the trapezoid area as a fraction of the full triangle.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_8"
@@ -160,6 +208,12 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "trigonometry.general",
+      "techniqueTags": [
+        "optimization"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_9"
     },
@@ -176,7 +230,14 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "equation_solving"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_10"
     },
@@ -195,7 +256,13 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "geometry.coordinate_geometry",
+      "techniqueTags": [
+        "coordinate_modeling",
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "solutionSketch": "Track how the fold identifies two points of the 3-4-5 triangle, then use the distance constraints after folding to determine the target length or area.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_11"
@@ -213,7 +280,13 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_12"
     },
@@ -230,7 +303,13 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_13"
     },
@@ -247,7 +326,13 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "equation_solving"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_14"
     },
@@ -264,7 +349,15 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading",
+        "optimization",
+        "symmetry",
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_15"
     },
@@ -281,6 +374,8 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_16"
     },
@@ -297,7 +392,12 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_17"
     },
@@ -314,7 +414,12 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_18"
     },
@@ -331,7 +436,12 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_19"
     },
@@ -348,7 +458,13 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading",
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_20"
     },
@@ -365,7 +481,14 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "algebra.general",
+      "techniqueTags": [
+        "algebra_setup",
+        "optimization",
+        "equation_solving"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_21"
     },
@@ -382,7 +505,14 @@
       ],
       "answer": "A",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading",
+        "divisibility_reasoning",
+        "equation_solving"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_22"
     },
@@ -399,7 +529,12 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_23"
     },
@@ -416,7 +551,13 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_24"
     },
@@ -433,7 +574,13 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2018_AMC_12A_Problems/Problem_25"
     }

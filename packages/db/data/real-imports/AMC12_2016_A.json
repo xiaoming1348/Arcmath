@@ -19,6 +19,8 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "solutionSketch": "Factor out 10! from the numerator and divide by 9! so the expression becomes a simple product.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_1"
@@ -36,6 +38,8 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "solutionSketch": "Convert 100 and 1000 into powers of 10, add exponents on the left side, and solve the linear equation in x.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_2"
@@ -53,7 +57,14 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "optimization",
+        "modular_reasoning"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_3"
     },
@@ -70,7 +81,14 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards",
+        "modular_reasoning",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_4"
     },
@@ -87,7 +105,12 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_5"
     },
@@ -104,7 +127,12 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_6"
     },
@@ -121,6 +149,8 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_7"
     },
@@ -137,7 +167,12 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_8"
     },
@@ -156,7 +191,13 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading",
+        "probability_setup"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "solutionSketch": "Express the area of the large square as the sum of the five congruent shaded squares plus the remaining white regions, then solve for one shaded square.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_9"
@@ -174,7 +215,12 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_10"
     },
@@ -191,7 +237,13 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_11"
     },
@@ -210,7 +262,12 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "solutionSketch": "Use the given area ratios to compare triangles that share the same altitude, then convert those area ratios into the requested segment ratio.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_12"
@@ -228,7 +285,14 @@
       ],
       "answer": "A",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup",
+        "optimization",
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_13"
     },
@@ -245,7 +309,13 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_14"
     },
@@ -262,7 +332,12 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_15"
     },
@@ -279,7 +354,14 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "coordinate_modeling"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_16"
     },
@@ -296,7 +378,12 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_17"
     },
@@ -313,7 +400,13 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_18"
     },
@@ -330,7 +423,13 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup",
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_19"
     },
@@ -347,7 +446,13 @@
       ],
       "answer": "A",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "equation_solving"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_20"
     },
@@ -364,7 +469,12 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_21"
     },
@@ -381,7 +491,13 @@
       ],
       "answer": "A",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_22"
     },
@@ -398,7 +514,13 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup",
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_23"
     },
@@ -415,7 +537,14 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "algebra.general",
+      "techniqueTags": [
+        "algebra_setup",
+        "optimization",
+        "equation_solving"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_24"
     },
@@ -432,7 +561,13 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_12A_Problems/Problem_25"
     }

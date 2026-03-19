@@ -18,10 +18,10 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
 
   return (
-    <html lang="en">
-      <body className="antialiased">
+    <html lang="en" suppressHydrationWarning>
+      <body className="antialiased" suppressHydrationWarning>
         <Providers>
-          <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col gap-6 px-6 pb-16 pt-8 md:px-8">
+          <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col gap-6 px-5 pb-20 pt-6 md:px-8 md:pt-8">
             <TopNav session={session} />
             {children}
           </div>

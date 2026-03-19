@@ -149,4 +149,36 @@ describe("importProblemSetSchema", () => {
 
     expect(parsed.success).toBe(true);
   });
+
+  it("accepts diagnostic metadata when valid", () => {
+    const parsed = importProblemSetSchema.safeParse({
+      ...makeBasePayload(),
+      problems: [
+        {
+          ...makeProblem(1),
+          examTrack: "AMC10",
+          techniqueTags: ["algebra_setup", "equation_solving"],
+          diagnosticEligible: true
+        },
+        ...makeBasePayload().problems.slice(1)
+      ]
+    });
+
+    expect(parsed.success).toBe(true);
+  });
+
+  it("rejects diagnostic examTrack that does not match the problem set contest", () => {
+    const parsed = importProblemSetSchema.safeParse({
+      ...makeBasePayload(),
+      problems: [
+        {
+          ...makeProblem(1),
+          examTrack: "AMC8"
+        },
+        ...makeBasePayload().problems.slice(1)
+      ]
+    });
+
+    expect(parsed.success).toBe(false);
+  });
 });

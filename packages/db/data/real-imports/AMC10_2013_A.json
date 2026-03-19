@@ -20,7 +20,12 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "solutionSketch": "Compute the fixed fee plus five times the per-mile fee: 1.50 + 5(0.25).",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_1"
@@ -38,7 +43,12 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "arithmetic.fractions",
+      "techniqueTags": [
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "solutionSketch": "Convert 2 1/2 cups into fourth-cups by dividing by 1/4, or note that each whole cup is four quarter-cups.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_2"
@@ -58,7 +68,12 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "geometry.triangles",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "solutionSketch": "Use the triangle area formula: area = 1/2 * AB * BE. With AB = 10 and area 40, solve directly for BE.",
       "curatedHintLevel1": "Use the area formula for a triangle with base AB and height measured from E to line AB.",
@@ -79,7 +94,13 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "solutionSketch": "Separate the five one-run losses from the five wins where the team doubled the opponent. Use the total of the team's runs to recover the opponents' total.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_4"
@@ -97,7 +118,9 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "arithmetic.fair_sharing",
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "solutionSketch": "Add the three payments, divide by 3 to find the fair share, then compare each person with that amount to determine how much Tom and Dorothy must pay Sammy.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_5"
@@ -115,7 +138,9 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "logic.casework",
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_6"
     },
@@ -132,7 +157,14 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "counting.combinations",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "solutionSketch": "English is mandatory, so choose 3 more courses from the remaining 5, then subtract the choices that contain no mathematics course.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_7"
@@ -150,7 +182,12 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "algebra.expressions",
+      "techniqueTags": [
+        "algebra_setup"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "solutionSketch": "Factor out 2^2012 from the numerator and denominator to reduce the expression to (4 + 1) / (4 - 1).",
       "curatedHintLevel1": "Look for the largest common power of 2 that can be factored from both numerator and denominator.",
@@ -171,7 +208,12 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "arithmetic.percentages",
+      "techniqueTags": [
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "solutionSketch": "Let x be the number of three-point attempts. Compute total points as 3(20% of x) + 2(30% of (30 - x)); the x terms cancel.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_9"
@@ -189,7 +231,9 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "arithmetic.percentages",
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "solutionSketch": "Choose a convenient total number of flowers so that thirds, fourths, and tenths become whole counts, then count carnations from the pink and red groups.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_10"
@@ -207,7 +251,13 @@
       ],
       "answer": "A",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "counting.combinations",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "solutionSketch": "If there are exactly 10 two-person committees, then C(n, 2) = 10 determines the council size. Then compute C(n, 3) for the planning committee.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_11"
@@ -227,7 +277,12 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "geometry.similarity",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_12"
     },
@@ -244,7 +299,14 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "counting.digit_constraints",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "solutionSketch": "Write the number as ABA. Exclude A = 0, exclude endings 0 or 5 to avoid divisibility by 5, then count digit pairs with 2A + B < 20.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_13"
@@ -262,7 +324,13 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "geometry.solid_geometry",
+      "techniqueTags": [
+        "diagram_reading",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_14"
     },
@@ -279,7 +347,13 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "geometry.triangles",
+      "techniqueTags": [
+        "diagram_reading",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "solutionSketch": "Let the triangle area be K. Then the three altitudes are 2K/10, 2K/15, and 2K/x; use the average condition to solve for x.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_15"
@@ -297,7 +371,14 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "geometry.coordinate_geometry",
+      "techniqueTags": [
+        "coordinate_modeling",
+        "diagram_reading",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_16"
     },
@@ -314,7 +395,13 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "counting.inclusion_exclusion",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "solutionSketch": "Pairwise simultaneous visits occur every lcm(3,4)=12, lcm(3,5)=15, and lcm(4,5)=20 days. Triple visits occur every lcm(3,4,5)=60 days, so use inclusion-exclusion to count days with exactly two visits.",
       "curatedHintLevel1": "Count when each pair of friends visits together. Those repeat on periods given by least common multiples.",
@@ -335,7 +422,13 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "geometry.coordinate_geometry",
+      "techniqueTags": [
+        "coordinate_modeling",
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "solutionSketch": "Find the area of quadrilateral ABCD, halve it, and use triangle ADE with base AD = 4 to get the y-coordinate of the intersection point on CD. Then use the equation of line CD to get the x-coordinate.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_18"
@@ -353,7 +446,13 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "number_theory.base_representation",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "solutionSketch": "A base-b representation ends in 3 exactly when 2013 ≡ 3 (mod b), so b must divide 2010. Count divisors b > 3.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_19"
@@ -371,7 +470,13 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "geometry.area",
+      "techniqueTags": [
+        "diagram_reading",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_20"
     },
@@ -388,7 +493,15 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "number_theory.divisibility",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "casework",
+        "probability_setup",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "solutionSketch": "Track the leftover fraction after each pirate. The smallest initial amount must make every share integral, so factor the denominators that survive in the product and read off the final pirate's share.",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_21"
@@ -406,7 +519,12 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "geometry.solid_geometry",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "solutionSketch": "Work with sphere centers. The large sphere has radius 3 because its center is 2 units from each small-sphere center and each small sphere has radius 1. Put the eighth sphere's center on the axis through the hexagon center, use its tangency to the large sphere to express its height, and then use the distance to one small-sphere center to solve for its radius.",
       "curatedHintLevel1": "Replace the spheres by their centers. Tangency becomes a statement about distances between centers.",
@@ -429,7 +547,12 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "geometry.circles",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_23"
     },
@@ -446,7 +569,13 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "counting.arrangements",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2013_AMC_10A_Problems%2FProblem_24"
     },
@@ -465,7 +594,13 @@
       ],
       "answer": "A",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
       "topicKey": "counting.geometry_intersections",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "solutionSketch": "In a convex octagon, most diagonal intersections correspond to choosing 4 vertices, so start with C(8,4). Then correct for the center point, where several diagonal pairs intersect at the same location.",
       "curatedHintLevel1": "In a convex polygon, an interior intersection of two diagonals is usually determined by choosing 4 vertices.",

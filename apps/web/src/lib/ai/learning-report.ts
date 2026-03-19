@@ -9,9 +9,12 @@ type LearningReportAttemptInput = {
   isCorrect: boolean;
   createdAt: string;
   problem: {
+    number: number;
     statement: string | null;
+    correctAnswer: string | null;
     topicKey: string | null;
     difficultyBand: string | null;
+    solutionSketch: string | null;
   };
   hintUsageCount: number;
   highestHintLevel: number;
@@ -27,6 +30,7 @@ export type LearningReportInput = {
     problemSetTitle: string | null;
     problemSetLabel: string | null;
     completedAt: string | null;
+    isDiagnostic: boolean;
   };
   attempts: LearningReportAttemptInput[];
   recommendedProblems: Array<{
@@ -54,6 +58,17 @@ export type LearningReport = {
   summary: string;
   learningPattern: string;
   nextPracticeSuggestions: string[];
+  questionResults: Array<{
+    problemId: string;
+    problemNumber: number;
+    statementSnippet: string;
+    submittedAnswer: string;
+    correctAnswer: string | null;
+    isCorrect: boolean;
+    topicKey: string | null;
+    difficultyBand: string | null;
+    solutionSketch: string | null;
+  }>;
 };
 
 export const LEARNING_REPORT_PROMPT_VERSION = "learning-report-v1";
@@ -522,6 +537,20 @@ function buildDeterministicLearningReport(input: LearningReportInput): LearningR
       difficultyBand: attempt.problem.difficultyBand
     }));
 
+  const questionResults = [...input.attempts]
+    .sort((left, right) => left.problem.number - right.problem.number)
+    .map((attempt) => ({
+      problemId: attempt.problemId,
+      problemNumber: attempt.problem.number,
+      statementSnippet: makeStatementSnippet(attempt.problem.statement),
+      submittedAnswer: attempt.submittedAnswer,
+      correctAnswer: attempt.problem.correctAnswer,
+      isCorrect: attempt.isCorrect,
+      topicKey: attempt.problem.topicKey,
+      difficultyBand: attempt.problem.difficultyBand,
+      solutionSketch: attempt.problem.solutionSketch
+    }));
+
   return {
     totalProblemsAttempted,
     totalCorrect,
@@ -541,12 +570,18 @@ function buildDeterministicLearningReport(input: LearningReportInput): LearningR
       primaryReinforcementTopic,
       hasWeakMediumOrHardPerformance
     ),
-    nextPracticeSuggestions
+    nextPracticeSuggestions,
+    questionResults
   };
 }
 
 export async function generateLearningReport(input: LearningReportInput): Promise<LearningReport> {
   const deterministicReport = buildDeterministicLearningReport(input);
+
+  if (input.reportScope.isDiagnostic) {
+    return deterministicReport;
+  }
+
   const promptInput = buildPromptInput(deterministicReport, input.attempts);
   const prompt = buildLearningReportPrompt(promptInput);
 

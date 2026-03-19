@@ -19,7 +19,13 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_1"
     },
@@ -36,7 +42,12 @@
       ],
       "answer": "A",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_2"
     },
@@ -53,7 +64,13 @@
       ],
       "answer": "A",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_3"
     },
@@ -70,7 +87,13 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_4"
     },
@@ -87,7 +110,12 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_5"
     },
@@ -106,7 +134,12 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_6"
     },
@@ -123,7 +156,12 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_7"
     },
@@ -140,7 +178,13 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "algebra.general",
+      "techniqueTags": [
+        "algebra_setup",
+        "equation_solving"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_8"
     },
@@ -157,7 +201,12 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_9"
     },
@@ -174,7 +223,13 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_10"
     },
@@ -191,7 +246,13 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_11"
     },
@@ -208,6 +269,8 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_12"
     },
@@ -224,7 +287,13 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_13"
     },
@@ -241,7 +310,13 @@
       ],
       "answer": "A",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_14"
     },
@@ -258,6 +333,11 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "techniqueTags": [
+        "optimization"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_15"
     },
@@ -274,7 +354,13 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_16"
     },
@@ -291,7 +377,13 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_17"
     },
@@ -308,7 +400,13 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_18"
     },
@@ -325,7 +423,13 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_19"
     },
@@ -342,7 +446,13 @@
       ],
       "answer": "A",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_20"
     },
@@ -359,7 +469,12 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_21"
     },
@@ -378,7 +493,12 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_22"
     },
@@ -395,7 +515,12 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_23"
     },
@@ -412,7 +537,12 @@
       ],
       "answer": "A",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_24"
     },
@@ -429,7 +559,12 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2016_AMC_8_Problems/Problem_25"
     }

@@ -13,6 +13,10 @@
       "answer": "390",
       "answerFormat": "INTEGER",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": false,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AIME_I_Problems/Problem_1"
     },
@@ -23,6 +27,11 @@
       "answer": "62",
       "answerFormat": "INTEGER",
       "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "modular_reasoning"
+      ],
+      "diagnosticEligible": false,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AIME_I_Problems/Problem_2"
     },
@@ -33,6 +42,11 @@
       "answer": "69",
       "answerFormat": "INTEGER",
       "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "modular_reasoning"
+      ],
+      "diagnosticEligible": false,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AIME_I_Problems/Problem_3"
     },
@@ -43,6 +57,11 @@
       "answer": "803",
       "answerFormat": "INTEGER",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading",
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": false,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AIME_I_Problems/Problem_4"
     },
@@ -53,6 +72,11 @@
       "answer": "321",
       "answerFormat": "INTEGER",
       "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "modular_reasoning"
+      ],
+      "diagnosticEligible": false,
       "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AIME_I_Problems/Problem_5"
     },
@@ -63,6 +87,12 @@
       "answer": "48",
       "answerFormat": "INTEGER",
       "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup",
+        "diagram_reading",
+        "optimization"
+      ],
+      "diagnosticEligible": false,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AIME_I_Problems/Problem_6"
     },
@@ -73,6 +103,11 @@
       "answer": "564",
       "answerFormat": "INTEGER",
       "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "modular_reasoning"
+      ],
+      "diagnosticEligible": false,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AIME_I_Problems/Problem_7"
     },
@@ -83,6 +118,12 @@
       "answer": "41",
       "answerFormat": "INTEGER",
       "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup",
+        "diagram_reading",
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": false,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AIME_I_Problems/Problem_8"
     },
@@ -93,6 +134,12 @@
       "answer": "45",
       "answerFormat": "INTEGER",
       "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "modular_reasoning",
+        "optimization"
+      ],
+      "diagnosticEligible": false,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AIME_I_Problems/Problem_9"
     },
@@ -102,6 +149,10 @@
       "statementFormat": "MARKDOWN_LATEX",
       "answer": "56",
       "answerFormat": "INTEGER",
+      "techniqueTags": [
+        "optimization"
+      ],
+      "diagnosticEligible": false,
       "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AIME_I_Problems/Problem_10"
     },
@@ -112,6 +163,13 @@
       "answer": "360",
       "answerFormat": "INTEGER",
       "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "divisibility_reasoning",
+        "modular_reasoning"
+      ],
+      "diagnosticEligible": false,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AIME_I_Problems/Problem_11"
     },
@@ -121,6 +179,7 @@
       "statementFormat": "MARKDOWN_LATEX",
       "answer": "252",
       "answerFormat": "INTEGER",
+      "diagnosticEligible": false,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AIME_I_Problems/Problem_12"
     },
@@ -131,6 +190,13 @@
       "answer": "59",
       "answerFormat": "INTEGER",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading",
+        "optimization",
+        "divisibility_reasoning",
+        "modular_reasoning"
+      ],
+      "diagnosticEligible": false,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AIME_I_Problems/Problem_13"
     },
@@ -141,6 +207,11 @@
       "answer": "896",
       "answerFormat": "INTEGER",
       "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "modular_reasoning"
+      ],
+      "diagnosticEligible": false,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AIME_I_Problems/Problem_14"
     },
@@ -151,6 +222,12 @@
       "answer": "145",
       "answerFormat": "INTEGER",
       "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading",
+        "optimization",
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": false,
       "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2017_AIME_I_Problems/Problem_15"
     }

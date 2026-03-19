@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import type {
   AnswerFormat,
   Contest,
+  ExamTrack,
   Prisma,
   PrismaClient,
   ProblemSet,
@@ -232,7 +233,10 @@ function makeProblemCreateInput(problemSetId: string, problem: ImportProblem): P
     choices: problem.choices,
     answer: problem.answer,
     answerFormat: (problem.answerFormat ?? "MULTIPLE_CHOICE") as AnswerFormat,
+    examTrack: (problem.examTrack ?? null) as ExamTrack | null,
     topicKey: problem.topicKey,
+    techniqueTags: problem.techniqueTags ?? [],
+    diagnosticEligible: problem.diagnosticEligible ?? false,
     difficultyBand: problem.difficultyBand,
     solutionSketch: problem.solutionSketch,
     curatedHintLevel1: problem.curatedHintLevel1,
@@ -252,7 +256,10 @@ function buildProblemUpdateData(problem: ImportProblem, existing: {
   choices: Prisma.JsonValue | null;
   answer: string | null;
   answerFormat: AnswerFormat;
+  examTrack: ExamTrack | null;
   topicKey: string | null;
+  techniqueTags: string[];
+  diagnosticEligible: boolean;
   difficultyBand: string | null;
   solutionSketch: string | null;
   curatedHintLevel1: string | null;
@@ -289,8 +296,18 @@ function buildProblemUpdateData(problem: ImportProblem, existing: {
   if (problem.answerFormat !== undefined && problem.answerFormat !== existing.answerFormat) {
     updateData.answerFormat = problem.answerFormat as AnswerFormat;
   }
+  if ((problem.examTrack ?? null) !== existing.examTrack) {
+    updateData.examTrack = (problem.examTrack ?? null) as ExamTrack | null;
+  }
   if (problem.topicKey !== undefined && problem.topicKey !== existing.topicKey) {
     updateData.topicKey = problem.topicKey;
+  }
+  const incomingTechniqueTags = problem.techniqueTags ?? [];
+  if (JSON.stringify(incomingTechniqueTags) !== JSON.stringify(existing.techniqueTags)) {
+    updateData.techniqueTags = incomingTechniqueTags;
+  }
+  if ((problem.diagnosticEligible ?? false) !== existing.diagnosticEligible) {
+    updateData.diagnosticEligible = problem.diagnosticEligible ?? false;
   }
   if (problem.difficultyBand !== undefined && problem.difficultyBand !== existing.difficultyBand) {
     updateData.difficultyBand = problem.difficultyBand;

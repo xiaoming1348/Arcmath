@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { unstable_noStore as noStore } from "next/cache";
 import { redirect } from "next/navigation";
@@ -17,6 +16,11 @@ function formatTopicLabel(topicKey: string): string {
     .map((part) => part.replaceAll("_", " "))
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(" / ");
+}
+
+function formatAnswerDisplay(value: string | null): string {
+  const normalized = value?.trim();
+  return normalized && normalized.length > 0 ? normalized : "No answer";
 }
 
 type ReportsPageProps = {
@@ -122,45 +126,6 @@ export default async function ReportsPage({ searchParams }: ReportsPageProps) {
         <p className="text-sm leading-7 text-slate-700">{report.learningPattern}</p>
       </section>
 
-      <section className="surface-card space-y-3">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className="space-y-1">
-            <h2 className="text-lg font-semibold text-slate-900">Continue Practice</h2>
-            <p className="text-sm text-slate-600">
-              Start your next round of practice directly from these recommended problems.
-            </p>
-          </div>
-        </div>
-
-        {reportInput.recommendedProblems.length > 0 ? (
-          <div className="space-y-3">
-            {reportInput.recommendedProblems.map((problem) => (
-              <article
-                key={problem.problemId}
-                className="flex flex-wrap items-start justify-between gap-3 rounded-3xl border border-slate-200 bg-slate-50/80 p-4"
-              >
-                <div className="space-y-2">
-                  <h3 className="text-base font-semibold text-slate-900">Problem {problem.number}</h3>
-                  <p className="text-sm text-slate-700">{problem.statementSnippet}</p>
-                  <div className="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                    {problem.topicKey ? <span className="badge">{formatTopicLabel(problem.topicKey)}</span> : null}
-                    {problem.difficultyBand ? <span className="badge">{problem.difficultyBand}</span> : null}
-                  </div>
-                </div>
-
-                <Link className="btn-primary" href={`/problems/${encodeURIComponent(problem.problemId)}`}>
-                  Continue
-                </Link>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <p className="text-sm text-slate-600">
-            No follow-up practice problem is ready yet. Solve a few more Hint Tutor problems to unlock recommendations.
-          </p>
-        )}
-      </section>
-
       <section className="grid gap-4 lg:grid-cols-2">
         <div className="surface-card space-y-3">
           <h2 className="text-lg font-semibold text-slate-900">Topics needing reinforcement</h2>
@@ -205,6 +170,53 @@ export default async function ReportsPage({ searchParams }: ReportsPageProps) {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section className="surface-card space-y-3">
+        <div className="space-y-1">
+          <h2 className="text-lg font-semibold text-slate-900">Question review</h2>
+          <p className="text-sm text-slate-600">
+            Compare your submitted answers with the correct answers. Incorrect problems include a short solution sketch.
+          </p>
+        </div>
+
+        <div className="space-y-3">
+          {report.questionResults.map((result) => (
+            <article key={result.problemId} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 space-y-3">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div className="space-y-1">
+                  <h3 className="text-base font-semibold text-slate-900">Problem {result.problemNumber}</h3>
+                  <p className="text-sm text-slate-700">{result.statementSnippet}</p>
+                </div>
+                <span
+                  className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                    result.isCorrect ? "bg-emerald-100 text-emerald-700" : "bg-rose-100 text-rose-700"
+                  }`}
+                >
+                  {result.isCorrect ? "Correct" : "Incorrect"}
+                </span>
+              </div>
+
+              <div className="grid gap-3 md:grid-cols-2">
+                <div className="rounded-2xl border border-slate-200 bg-white p-3">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Your answer</p>
+                  <p className="mt-2 text-sm text-slate-900">{formatAnswerDisplay(result.submittedAnswer)}</p>
+                </div>
+                <div className="rounded-2xl border border-slate-200 bg-white p-3">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Correct answer</p>
+                  <p className="mt-2 text-sm text-slate-900">{formatAnswerDisplay(result.correctAnswer)}</p>
+                </div>
+              </div>
+
+              {!result.isCorrect && result.solutionSketch ? (
+                <div className="rounded-2xl border border-amber-200 bg-amber-50 p-3">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-amber-700">Solution sketch</p>
+                  <p className="mt-2 text-sm leading-7 text-slate-800">{result.solutionSketch}</p>
+                </div>
+              ) : null}
+            </article>
+          ))}
+        </div>
       </section>
     </main>
   );

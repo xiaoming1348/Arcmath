@@ -64,7 +64,8 @@ function buildReportScope(
       problemSetId: null,
       problemSetTitle: null,
       problemSetLabel: null,
-      completedAt: null
+      completedAt: null,
+      isDiagnostic: false
     };
   }
 
@@ -73,8 +74,12 @@ function buildReportScope(
     practiceRunId: practiceRun.id,
     problemSetId: practiceRun.problemSetId,
     problemSetTitle: practiceRun.problemSet.title,
-    problemSetLabel: `${practiceRun.problemSet.contest} ${practiceRun.problemSet.year}${practiceRun.problemSet.exam ? ` ${practiceRun.problemSet.exam}` : ""}`,
-    completedAt: practiceRun.completedAt ? toIsoString(practiceRun.completedAt) : null
+    problemSetLabel:
+      practiceRun.problemSet.sourceUrl === "local://seed/diagnostic-test"
+        ? null
+        : `${practiceRun.problemSet.contest} ${practiceRun.problemSet.year}${practiceRun.problemSet.exam ? ` ${practiceRun.problemSet.exam}` : ""}`,
+    completedAt: practiceRun.completedAt ? toIsoString(practiceRun.completedAt) : null,
+    isDiagnostic: practiceRun.problemSet.sourceUrl === "local://seed/diagnostic-test"
   };
 }
 
@@ -161,9 +166,12 @@ export const learningReportRouter = router({
           createdAt: true,
           problem: {
             select: {
+              number: true,
               statement: true,
+              answer: true,
               topicKey: true,
-              difficultyBand: true
+              difficultyBand: true,
+              solutionSketch: true
             }
           }
         }
@@ -230,9 +238,12 @@ export const learningReportRouter = router({
           isCorrect: attempt.isCorrect,
           createdAt: toIsoString(attempt.createdAt),
           problem: {
+            number: attempt.problem.number,
             statement: attempt.problem.statement,
+            correctAnswer: attempt.problem.answer,
             topicKey: attempt.problem.topicKey,
-            difficultyBand: attempt.problem.difficultyBand
+            difficultyBand: attempt.problem.difficultyBand,
+            solutionSketch: attempt.problem.solutionSketch
           },
           hintUsageCount: hintSummary.hintUsageCount,
           highestHintLevel: hintSummary.highestHintLevel

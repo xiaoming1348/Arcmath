@@ -1,11 +1,13 @@
 import { z } from "zod";
 
 export const CONTESTS = ["AMC8", "AMC10", "AMC12", "AIME"] as const;
+export const DIAGNOSTIC_EXAMS = ["AMC8", "AMC10", "AMC12"] as const;
 export const STATEMENT_FORMATS = ["MARKDOWN_LATEX", "HTML", "PLAIN"] as const;
 export const ANSWER_FORMATS = ["MULTIPLE_CHOICE", "INTEGER", "EXPRESSION"] as const;
 export const DIFFICULTY_BANDS = ["EASY", "MEDIUM", "HARD"] as const;
 
 export const contestSchema = z.enum(CONTESTS);
+export const diagnosticExamSchema = z.enum(DIAGNOSTIC_EXAMS);
 export const statementFormatSchema = z.enum(STATEMENT_FORMATS);
 export const answerFormatSchema = z.enum(ANSWER_FORMATS);
 export const difficultyBandSchema = z.enum(DIFFICULTY_BANDS);
@@ -24,6 +26,15 @@ function trimmedNonEmptyString(message: string) {
 
 function optionalTrimmedNonEmptyString(message: string) {
   return z.preprocess(trimString, z.string().min(1, message).optional());
+}
+
+function optionalTrimmedNonEmptyStringArray(message: string) {
+  return z
+    .array(trimmedNonEmptyString(message))
+    .optional()
+    .refine((value) => !value || new Set(value).size === value.length, {
+      message: "techniqueTags must not contain duplicates."
+    });
 }
 
 function optionalUrlString(message: string) {
@@ -72,7 +83,10 @@ const importProblemSchema = z
     choices: z.array(trimmedNonEmptyString("Choice text must be non-empty")).optional(),
     answer: trimmedNonEmptyString("Problem answer is required"),
     answerFormat: answerFormatSchema,
+    examTrack: z.preprocess(trimString, diagnosticExamSchema.optional()),
     topicKey: optionalTrimmedNonEmptyString("topicKey must be trimmed and non-empty"),
+    techniqueTags: optionalTrimmedNonEmptyStringArray("techniqueTags entries must be trimmed and non-empty"),
+    diagnosticEligible: z.boolean().optional(),
     difficultyBand: z.preprocess(trimString, difficultyBandSchema.optional()),
     solutionSketch: optionalTrimmedNonEmptyString("solutionSketch must be trimmed and non-empty"),
     curatedHintLevel1: optionalTrimmedNonEmptyString("curatedHintLevel1 must be trimmed and non-empty"),
@@ -139,6 +153,7 @@ const importProblemSchema = z
         message: "Curated hint levels must not repeat the same text."
       });
     }
+
   });
 
 const importProblemSetMetaSchema = z.object({
@@ -187,6 +202,24 @@ export const importProblemSetSchema = z
       });
     }
 
+    for (const problem of payload.problems) {
+      if (problem.examTrack && problem.examTrack !== contest) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["problems", problem.number - 1, "examTrack"],
+          message: `Problem examTrack ${problem.examTrack} must match problemSet contest ${contest}.`
+        });
+      }
+
+      if (contest === "AIME" && problem.examTrack) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["problems", problem.number - 1, "examTrack"],
+          message: "AIME problems should not set examTrack."
+        });
+      }
+    }
+
     if (payload.problems.length !== expectedCount) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
@@ -230,3 +263,4 @@ export const importProblemSetSchema = z
 
 export type ImportProblemSetInput = z.infer<typeof importProblemSetSchema>;
 export type Contest = z.infer<typeof contestSchema>;
+export type DiagnosticExam = z.infer<typeof diagnosticExamSchema>;

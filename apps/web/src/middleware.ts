@@ -5,7 +5,7 @@ import { getToken } from "next-auth/jwt";
 
 const authSecret = process.env.NEXTAUTH_SECRET ?? "dev-insecure-secret-change-me";
 const isDevelopment = process.env.NODE_ENV !== "production";
-const protectedPrefixes = ["/dashboard", "/problems", "/reports", "/assignments", "/resources", "/membership", "/admin"];
+const protectedPrefixes = ["/dashboard", "/problems", "/reports", "/assignments", "/resources", "/membership", "/tutoring", "/admin"];
 
 export async function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
@@ -50,6 +50,7 @@ export const config = {
     "/assignments/:path*",
     "/resources/:path*",
     "/membership/:path*",
+    "/tutoring/:path*",
     "/admin/:path*"
   ]
 };

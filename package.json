@@ -25,6 +25,7 @@
     "real-import:build-integer": "node --import tsx scripts/build-integer-real-import.ts",
     "real-import:refresh-quality": "node --import tsx scripts/refresh-real-import-quality.ts",
     "real-import:audit": "node --import tsx scripts/audit-real-imports.ts",
+    "diagnostic:audit-pools": "node --import tsx scripts/audit-diagnostic-pools.ts",
     "real-import:run": "node --import tsx scripts/run-real-import.ts",
     "aops:fetch": "pnpm -C packages/db aops:fetch",
     "aops:import": "sh -c 'ORIG_DATABASE_URL=${DATABASE_URL:-}; set -a; . ./.env; set +a; if [ -n \"$ORIG_DATABASE_URL\" ]; then export DATABASE_URL=\"$ORIG_DATABASE_URL\"; fi; pnpm -C packages/db aops:import \"$@\"' --",

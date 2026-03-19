@@ -58,6 +58,8 @@ Use the script that matches the database you intend to hit:
 
 For the current env-file architecture and exact script/file mapping, see [ENV_SETUP.md](/Users/yimingsun/Desktop/Arcmath/ENV_SETUP.md).
 
+For the planned exam placement / diagnostic flow, see [DIAGNOSTIC_BLUEPRINT.md](/Users/yimingsun/Desktop/Arcmath/DIAGNOSTIC_BLUEPRINT.md).
+
 Why this matters:
 - newer tutor features depend on recent Prisma migrations (`topicKey`, `difficultyBand`, `solutionSketch`, curated hints, `PracticeRun`)
 - if your local Postgres has not been migrated up, `/problems` routes can fail with Prisma `P2022 column does not exist`
@@ -111,6 +113,14 @@ What the quality pass currently does:
 - reapplies the shared per-set image/choice overrides used by the real-import builders
 
 Use `pnpm real-import:audit` after refresh to see remaining gaps such as likely figure-dependent problems or missing tutor metadata.
+
+For diagnostic readiness, use:
+
+```bash
+pnpm diagnostic:audit-pools
+```
+
+This audits the current real-import corpus against the deterministic `AMC8 / AMC10 / AMC12` diagnostic blueprints and reports whether the repo can already assemble a full `4 EASY / 4 MEDIUM / 2 HARD` first-pass placement test for each exam.
 
 ## Dev auth credentials
 Seed creates a development admin user:

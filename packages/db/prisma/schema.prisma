@@ -21,6 +21,12 @@ enum Contest {
   AIME
 }
 
+enum ExamTrack {
+  AMC8
+  AMC10
+  AMC12
+}
+
 enum ProblemSetStatus {
   DRAFT
   PUBLISHED
@@ -127,7 +133,10 @@ model Problem {
   choices         Json?
   answer          String?
   answerFormat    AnswerFormat    @default(MULTIPLE_CHOICE)
+  examTrack       ExamTrack?
   topicKey        String?
+  techniqueTags   String[]        @default([])
+  diagnosticEligible Boolean      @default(false)
   difficultyBand  String?
   solutionSketch  String?
   curatedHintLevel1 String?

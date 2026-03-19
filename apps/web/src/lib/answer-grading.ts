@@ -21,6 +21,9 @@ function normalizeWhitespace(value: string): string {
 function normalizeChoiceText(value: string): string {
   return normalizeMathText(value)
     .replace(/^[A-E][\.\):]\s*/i, "")
+    .replace(/[°]/g, "")
+    .replace(/\bdegrees?\b/gi, "")
+    .replace(/%/g, "")
     .replace(/\s+/g, " ")
     .trim()
     .toLowerCase();

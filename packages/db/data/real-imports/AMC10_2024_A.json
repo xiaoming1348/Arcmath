@@ -20,8 +20,11 @@
       ],
       "answer": "A",
       "answerFormat": "MULTIPLE_CHOICE",
-      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_1",
-      "solutionSketch": "Rewrite around 100 or compute both products directly: 9901·101 = 1,000,001 and 99·10101 = 999,999, so the difference is 2."
+      "examTrack": "AMC10",
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "solutionSketch": "Rewrite around 100 or compute both products directly: 9901·101 = 1,000,001 and 99·10101 = 999,999, so the difference is 2.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_1"
     },
     {
       "number": 2,
@@ -36,8 +39,18 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
-      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_2",
-      "solutionSketch": "Set up two linear equations in a and b from the two trails, solve for the coefficients, then evaluate T = aL + bG at L = 4.2 and G = 4000."
+      "examTrack": "AMC10",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "modular_reasoning",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "solutionSketch": "Set up two linear equations in a and b from the two trails, solve for the coefficients, then evaluate T = aL + bG at L = 4.2 and G = 4000.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_2"
     },
     {
       "number": 3,
@@ -52,6 +65,14 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_3"
     },
     {
@@ -67,6 +88,14 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_4"
     },
     {
@@ -82,6 +111,14 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_5"
     },
     {
@@ -97,6 +134,12 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "techniqueTags": [
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_6"
     },
     {
@@ -112,6 +155,14 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_7"
     },
     {
@@ -119,14 +170,21 @@
       "statement": "Amy, Bomani, Charlie, and Daria work in a chocolate factory. On Monday Amy, Bomani, and Charlie started working at $1:00 \\ \\mathrm{PM}$ and were able to pack $4$ , $3$ , and $3$ packages, respectively, every $3$ minutes. At some later time, Daria joined the group, and Daria was able to pack $5$ packages every $4$ minutes. Together, they finished packing $450$ packages at exactly $2:45\\ \\mathrm{PM}$ . At what time did Daria join the group?",
       "statementFormat": "MARKDOWN_LATEX",
       "choices": [
-        "1:25\\text{ PM}",
-        "1:35\\text{ PM}",
-        "1:45\\text{ PM}",
-        "1:55\\text{ PM}",
-        "2:05\\text{ PM}"
+        "1:25 PM",
+        "1:35 PM",
+        "1:45 PM",
+        "1:55 PM",
+        "2:05 PM"
       ],
       "answer": "A",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_8"
     },
     {
@@ -142,6 +200,14 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_9"
     },
     {
@@ -157,6 +223,13 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_10"
     },
     {
@@ -168,10 +241,18 @@
         "2",
         "3",
         "4",
-        "\\text{infinitely many}"
+        "infinitely many"
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_11"
     },
     {
@@ -187,11 +268,19 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_12"
     },
     {
       "number": 13,
-      "statement": "Two transformations are said to commute if applying the first followed by the second gives the same result as applying the second followed by the first. Consider these four transformations of the coordinate plane:\n\na translation $2$ units to the right,\n\na $90^{\\circ}$ -rotation counterclockwise about the origin,\n\na reflection across the $x$ -axis, and\n\na dilation centered at the origin with scale factor $2.$\n\nOf the $6$ pairs of distinct transformations from this list, how many commute?",
+      "statement": "Two transformations are said to commute if applying the first followed by the second gives the same result as applying the second followed by the first. Consider these four transformations of the coordinate plane: a translation $2$ units to the right, a $90^{\\circ}$ -rotation counterclockwise about the origin, a reflection across the $x$ -axis, and a dilation centered at the origin with scale factor $2.$ Of the $6$ pairs of distinct transformations from this list, how many commute?",
       "statementFormat": "MARKDOWN_LATEX",
       "choices": [
         "1",
@@ -202,8 +291,19 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
-      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_13",
-      "solutionSketch": "Test each pair on a generic point. Translation commutes with reflection across the x-axis, and dilation commutes with both the rotation and the reflection."
+      "examTrack": "AMC10",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "coordinate_modeling",
+        "divisibility_reasoning",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Test each pair on a generic point. Translation commutes with reflection across the x-axis, and dilation commutes with both the rotation and the reflection.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_13"
     },
     {
       "number": 14,
@@ -218,6 +318,14 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading",
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_14"
     },
     {
@@ -233,6 +341,14 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_15"
     },
     {
@@ -248,6 +364,13 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_16"
     },
     {
@@ -263,6 +386,13 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_17"
     },
     {
@@ -278,6 +408,13 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_18"
     },
     {
@@ -293,11 +430,19 @@
       ],
       "answer": "E",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_19"
     },
     {
       "number": 20,
-      "statement": "Let $S$ be a subset of $\\{1, 2, 3, \\dots, 2024\\}$ such that the following two conditions hold:\n\nIf $x$ and $y$ are distinct elements of $S$ , then $|x-y| > 2.$\n\nIf $x$ and $y$ are distinct odd elements of $S$ , then $|x-y| > 6.$\n\nWhat is the maximum possible number of elements in $S$ ?",
+      "statement": "Let $S$ be a subset of $\\{1, 2, 3, \\dots, 2024\\}$ such that the following two conditions hold: If $x$ and $y$ are distinct elements of $S$ , then $|x-y| > 2.$ If $x$ and $y$ are distinct odd elements of $S$ , then $|x-y| > 6.$ What is the maximum possible number of elements in $S$ ?",
       "statementFormat": "MARKDOWN_LATEX",
       "choices": [
         "436",
@@ -308,12 +453,18 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
-      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_20",
-      "solutionSketch": "Construct a densest valid pattern such as 1, 4, 8, 11, 14, 18, ... with repeating gaps 3,4,3. Count full blocks up to 2024 and handle the final remainder."
+      "examTrack": "AMC10",
+      "techniqueTags": [
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "solutionSketch": "Construct a densest valid pattern such as 1, 4, 8, 11, 14, 18, ... with repeating gaps 3,4,3. Count full blocks up to 2024 and handle the final remainder.",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_20"
     },
     {
       "number": 21,
-      "statement": "The numbers, in order, of each row and the numbers, in order, of each column of a $5 \\times 5$ array of integers form an arithmetic progression of length $5$ . The numbers in positions $(5, 5), \\,(2,4),\\,(4,3),$ and $(3, 1)$ are $0, 48, 16,$ and $12$ , respectively. What number is in position $(1, 2)?$\n\n\\[\\begin{bmatrix} . & ? &.&.&. \\\\ .&.&.&48&.\\\\ 12&.&.&.&.\\\\ .&.&16&.&.\\\\ .&.&.&.&0\\end{bmatrix}\\]",
+      "statement": "The numbers, in order, of each row and the numbers, in order, of each column of a $5 \\times 5$ array of integers form an arithmetic progression of length $5$ . The numbers in positions $(5, 5), \\,(2,4),\\,(4,3),$ and $(3, 1)$ are $0, 48, 16,$ and $12$ , respectively. What number is in position $(1, 2)?$ \\[\\begin{bmatrix} . & ? &.&.&. \\\\ .&.&.&48&.\\\\ 12&.&.&.&.\\\\ .&.&16&.&.\\\\ .&.&.&.&0\\end{bmatrix}\\]",
       "statementFormat": "MARKDOWN_LATEX",
       "choices": [
         "19",
@@ -324,8 +475,15 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
-      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_21",
-      "solutionSketch": "Represent the array using row and column arithmetic-progressions. Use the given entries to solve for the row and column differences, then recover position (1,2)."
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "solutionSketch": "Represent the array using row and column arithmetic-progressions. Use the given entries to solve for the row and column differences, then recover position (1,2).",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_21"
     },
     {
       "number": 22,
@@ -340,6 +498,13 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_22"
     },
     {
@@ -355,6 +520,13 @@
       ],
       "answer": "D",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_23"
     },
     {
@@ -370,6 +542,13 @@
       ],
       "answer": "B",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_24"
     },
     {
@@ -385,6 +564,15 @@
       ],
       "answer": "C",
       "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
       "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2024_AMC_10A_Problems%2FProblem_25"
     }
   ]
