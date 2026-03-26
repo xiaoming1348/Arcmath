@@ -24,6 +24,86 @@ type QualitySummary = {
 };
 
 const MANUAL_PROBLEM_OVERRIDES: Record<string, Record<number, ProblemOverride>> = {
+  AMC8_2015: {
+    2: {
+      choices: ["\\frac{11}{32}", "\\frac{3}{8}", "\\frac{13}{32}", "\\frac{7}{16}", "\\frac{15}{32}"]
+    },
+    7: {
+      choices: ["\\frac{1}{9}", "\\frac{2}{9}", "\\frac{4}{9}", "\\frac{1}{2}", "\\frac{5}{9}"]
+    },
+    11: {
+      choices: ["\\frac{1}{22050}", "\\frac{1}{21000}", "\\frac{1}{10500}", "\\frac{1}{2100}", "\\frac{1}{1050}"]
+    },
+    16: {
+      choices: ["\\frac{2}{15}", "\\frac{4}{11}", "\\frac{11}{30}", "\\frac{3}{8}", "\\frac{11}{15}"]
+    },
+    18: {
+      choices: ["21", "31", "36", "40", "42"]
+    },
+    19: {
+      choices: ["\\frac{1}{6}", "\\frac{1}{5}", "\\frac{1}{4}", "\\frac{1}{3}", "\\frac{1}{2}"]
+    },
+    21: {
+      choices: ["6\\sqrt{2}", "9", "12", "9\\sqrt{2}", "32"]
+    },
+    25: {
+      choices: ["9", "12\\frac{1}{2}", "15", "15\\frac{1}{2}", "17"]
+    }
+  },
+  AMC10_2015_A: {
+    1: {
+      choices: ["-125", "-120", "\\frac{1}{5}", "\\frac{5}{24}", "25"]
+    },
+    4: {
+      choices: ["\\frac{1}{12}", "\\frac{1}{6}", "\\frac{1}{4}", "\\frac{1}{3}", "\\frac{1}{2}"]
+    },
+    6: {
+      choices: ["\\frac{5}{4}", "\\frac{3}{2}", "\\frac{9}{5}", "2", "\\frac{5}{2}"]
+    },
+    11: {
+      choices: ["\\frac{2}{7}", "\\frac{3}{7}", "\\frac{12}{25}", "\\frac{16}{25}", "\\frac{3}{4}"]
+    },
+    12: {
+      choices: ["1", "\\frac{\\pi}{2}", "2", "\\sqrt{1+\\pi}", "1+\\sqrt{\\pi}"]
+    },
+    15: {
+      choices: ["0", "1", "2", "3", "infinitely many"]
+    },
+    16: {
+      choices: ["10", "15", "20", "25", "30"]
+    },
+    17: {
+      choices: ["2\\sqrt{6}", "2+2\\sqrt{3}", "6", "3+2\\sqrt{3}", "6+\\frac{\\sqrt{3}}{3}"]
+    },
+    20: {
+      answerFormat: "MULTIPLE_CHOICE",
+      answer: "B",
+      choices: ["100", "102", "104", "106", "108"]
+    },
+    21: {
+      choices: ["3\\sqrt{2}", "2\\sqrt{5}", "\\frac{24}{5}", "3\\sqrt{3}", "\\frac{24}{5}\\sqrt{2}"]
+    },
+    25: {
+      choices: ["59", "60", "61", "62", "63"]
+    }
+  },
+  AMC12_2015_A: {
+    1: {
+      choices: ["-125", "-120", "\\frac{1}{5}", "\\frac{5}{24}", "25"]
+    },
+    4: {
+      choices: ["\\frac{5}{4}", "\\frac{3}{2}", "\\frac{9}{5}", "2", "\\frac{5}{2}"]
+    },
+    16: {
+      choices: ["3\\sqrt{2}", "2\\sqrt{5}", "\\frac{24}{5}", "3\\sqrt{3}", "\\frac{24}{5}\\sqrt{2}"]
+    },
+    17: {
+      choices: ["\\frac{47}{256}", "\\frac{3}{16}", "\\frac{49}{256}", "\\frac{25}{128}", "\\frac{51}{256}"]
+    },
+    21: {
+      choices: ["5\\sqrt{2}+4", "\\sqrt{17}+7", "6\\sqrt{2}+3", "\\sqrt{15}+8", "12"]
+    }
+  },
   AMC8_2016: {
     6: {
       diagramImageUrl: "https://latex.artofproblemsolving.com/7/3/9/7396694d92e8f9794065daafaf571852434d0b08.png",
@@ -108,6 +188,112 @@ const MANUAL_PROBLEM_OVERRIDES: Record<string, Record<number, ProblemOverride>> 
       choices: ["12", "14", "18", "24", "36"]
     }
   },
+  AMC8_2019: {
+    2: {
+      diagramImageUrl: "https://latex.artofproblemsolving.com/e/0/7/e0752885e3cff488bd89893347c595b7c570d339.png",
+      diagramImageAlt:
+        "Rectangle ABCD formed from three identical rectangles, with one vertical rectangle on the right and two stacked horizontal rectangles on the left."
+    },
+    5: {
+      choices: ["A", "B", "C", "D", "E"],
+      diagramImageUrl:
+        "https://artofproblemsolving.com/wiki/images/thumb/5/56/2019_AMC_8_-4_Image_1.png/900px-2019_AMC_8_-4_Image_1.png",
+      diagramImageAlt:
+        "The first half of the graph answer choices for the tortoise and hare race, with distance versus time curves labeled by answer choice.",
+      choicesImageUrl:
+        "https://artofproblemsolving.com/wiki/images/thumb/6/63/2019_AMC_8_-4_Image_2.png/600px-2019_AMC_8_-4_Image_2.png",
+      choicesImageAlt:
+        "The second half of the graph answer choices for the tortoise and hare race, continuing the distance versus time options."
+    },
+    6: {
+      diagramImageUrl: "https://latex.artofproblemsolving.com/2/e/f/2ef50880b9e105fcb40568742659a26c359c6c1a.png",
+      diagramImageAlt:
+        "An 8 by 8 square grid of equally spaced points with center point P marked, used to count symmetry lines through a random point Q."
+    },
+    12: {
+      diagramImageUrl: "https://latex.artofproblemsolving.com/3/a/8/3a8268817eeb341bf2b3a7be997d68e5f2fd5c56.png",
+      diagramImageAlt: "Three views of a painted cube with face colors R, W, G, B, A, and P.",
+      choices: ["red", "white", "green", "brown", "purple"]
+    },
+    10: {
+      diagramImageUrl: "https://latex.artofproblemsolving.com/e/1/7/e1796ef723acbb9a4cfeacf57e69202cddf3e0d3.png",
+      diagramImageAlt: "A horizontal bar graph showing the number of students at soccer practice on Monday through Friday.",
+      choices: [
+        "The mean increases by 1 and the median does not change.",
+        "The mean increases by 1 and the median increases by 1.",
+        "The mean increases by 1 and the median increases by 5.",
+        "The mean increases by 5 and the median increases by 1.",
+        "The mean increases by 5 and the median increases by 5."
+      ]
+    },
+    17: {
+      statement:
+        "What is the value of the product \\[\\left(\\frac{1\\cdot 3}{2\\cdot 2}\\right)\\left(\\frac{2\\cdot 4}{3\\cdot 3}\\right)\\left(\\frac{3\\cdot 5}{4\\cdot 4}\\right)\\cdots\\left(\\frac{97\\cdot 99}{98\\cdot 98}\\right)\\left(\\frac{98\\cdot 100}{99\\cdot 99}\\right)?\\]",
+      choices: ["\\frac{1}{2}", "\\frac{50}{99}", "\\frac{9800}{9801}", "\\frac{100}{99}", "50"]
+    },
+    25: {
+      choices: ["105", "114", "190", "210", "380"]
+    }
+  },
+  AMC8_2020: {
+    13: {
+      statement:
+        "Jamal has a drawer containing $6$ green socks, $18$ purple socks, and $12$ orange socks. After adding more purple socks, Jamal noticed that there is now a $60\\%$ chance that a sock randomly selected from the drawer is purple. How many purple socks did Jamal add?",
+      choices: ["6", "9", "12", "18", "24"]
+    },
+    19: {
+      statement:
+        "A number is called flippy if its digits alternate between two distinct digits. For example, $2020$ and $37373$ are flippy, but $3883$ and $123123$ are not. How many five-digit flippy numbers are divisible by $15$?",
+      choices: ["3", "4", "5", "6", "8"]
+    },
+    20: {
+      statement:
+        "A scientist walking through a forest recorded as integers the heights of $5$ trees standing in a row. She observed that each tree was either twice as tall or half as tall as the one to its right. Unfortunately some of her data was lost when rain fell on her notebook. Her notes are shown below, with blanks indicating the missing numbers. Based on her observations, the scientist was able to reconstruct the lost data. What was the average height of the trees, in meters?\n\n| Tree | Height |\n| --- | --- |\n| Tree 1 | ___ meters |\n| Tree 2 | 11 meters |\n| Tree 3 | ___ meters |\n| Tree 4 | ___ meters |\n| Tree 5 | ___ meters |\n| Average height | ___.2 meters |",
+      choices: ["22.2", "24.2", "33.2", "35.2", "37.2"]
+    },
+    24: {
+      statement:
+        "A large square region is paved with $n^2$ gray square tiles, each measuring $s$ inches on a side. A border $d$ inches wide surrounds each tile. The figure below shows the case for $n=3$. When $n=24$, the $576$ gray tiles cover $64\\%$ of the area of the large square region. What is the ratio $\\frac{d}{s}$ for this larger value of $n$?",
+      choices: ["\\frac{6}{25}", "\\frac{1}{4}", "\\frac{9}{25}", "\\frac{7}{16}", "\\frac{9}{16}"]
+    }
+  },
+  AMC8_2022: {
+    4: {
+      statement:
+        "The letter $M$ in the figure below is first reflected over the line $q$ and then reflected over the line $p$. What is the resulting image?",
+      choices: ["A", "B", "C", "D", "E"],
+      diagramImageUrl: "https://latex.artofproblemsolving.com/c/3/8/c38b67d113d5fbf1b6d6eae0d87161b539dbd849.png",
+      diagramImageAlt:
+        "An upright letter M together with two reflection lines p and q, where p is horizontal and q is a diagonal line.",
+      choicesImageUrl: "https://latex.artofproblemsolving.com/1/9/b/19b58c8f6aafe00e0ad5454583fda04c3567f944.png",
+      choicesImageAlt:
+        "Five answer-choice diagrams labeled A through E showing different reflected positions and orientations of the letter M relative to the same two lines."
+    },
+    10: {
+      statement:
+        "One sunny day, Ling decided to take a hike in the mountains. She left her house at $8\\,\\textsc{am}$, drove at a constant speed of $45$ miles per hour, and arrived at the hiking trail at $10\\,\\textsc{am}$. After hiking for $3$ hours, Ling drove home at a constant speed of $60$ miles per hour. Which of the following graphs best illustrates the distance between Ling's car and her house over the course of her trip?",
+      choices: ["A", "B", "C", "D", "E"],
+      choicesImageUrl: "https://latex.artofproblemsolving.com/c/b/1/cb1e2b28781a01015ec88e8948e5bda92a234383.png",
+      choicesImageAlt:
+        "Five candidate distance-versus-time graphs labeled A through E, showing Ling's car leaving home, remaining parked during the hike, and returning home."
+    },
+    19: {
+      statement:
+        "Mr. Ramos gave a test to his class of $20$ students. The dot plot below shows the distribution of test scores. Later Mr. Ramos discovered that there was a scoring error on one of the questions. He regraded the tests, awarding some of the students $5$ extra points, which increased the median test score to $85$. What is the minimum number of students who received extra points?\n\n(Note that the median test score equals the average of the $2$ scores in the middle if the $20$ test scores are arranged in increasing order.)",
+      choices: ["2", "3", "4", "5", "6"],
+      diagramImageUrl: "https://latex.artofproblemsolving.com/8/f/1/8f168ff6d1e7635e68e0139420bed9ecfc2e4993.png",
+      diagramImageAlt:
+        "A dot plot of 20 test scores with ticks at 65, 70, 75, 80, 85, 90, 95, and 100."
+    },
+    25: {
+      statement:
+        "A cricket randomly hops between $4$ leaves, on each turn hopping to one of the other $3$ leaves with equal probability. After $4$ hops what is the probability that the cricket has returned to the leaf where it started?",
+      choices: ["\\frac{2}{9}", "\\frac{19}{80}", "\\frac{20}{81}", "\\frac{1}{4}", "\\frac{7}{27}"],
+      diagramImageUrl:
+        "https://artofproblemsolving.com/wiki/images/thumb/f/f0/2022_AMC_8_Problem_25_Picture.jpg/600px-2022_AMC_8_Problem_25_Picture.jpg",
+      diagramImageAlt: "Four leaves connected in a symmetric arrangement, illustrating the cricket's possible hops among the leaves."
+    }
+  },
   AMC10_2016_A: {
     10: {
       diagramImageUrl: "https://latex.artofproblemsolving.com/0/e/8/0e824e15d0ac7359f7f694ceec6cd99e2f9f5f1e.png",
@@ -127,6 +313,175 @@ const MANUAL_PROBLEM_OVERRIDES: Record<string, Record<number, ProblemOverride>> 
       diagramImageUrl: "https://latex.artofproblemsolving.com/c/c/a/cca6874b4c948fd14b20cc66d7c9ca8ca5280c03.png",
       diagramImageAlt:
         "Three circles with centers P, Q, and R tangent to the same horizontal line, with Q between P and R."
+    }
+  },
+  AMC10_2019_A: {
+    1: {
+      statement: "What is the value of \\[2^{\\left(0^{\\left(1^9\\right)}\\right)}+\\left(\\left(2^0\\right)^1\\right)^9?\\]",
+      choices: ["0", "1", "2", "3", "4"]
+    },
+    2: {
+      statement: "What is the hundreds digit of $(20!-15!)?$",
+      choices: ["0", "1", "2", "4", "5"]
+    },
+    24: {
+      choices: ["243", "244", "245", "246", "247"]
+    },
+    25: {
+      choices: ["31", "32", "33", "34", "35"]
+    },
+    12: {
+      choices: ["\\mu<d<M", "M<d<\\mu", "d=M=\\mu", "d<M<\\mu", "d<\\mu<M"]
+    },
+    8: {
+      diagramImageUrl: "https://latex.artofproblemsolving.com/c/6/6/c66986a019a481aa0dad6c2a690111ffd5a52014.png",
+      diagramImageAlt:
+        "A repeating infinite pattern of alternating square-and-diagonal motifs arranged along a horizontal line l.",
+      choices: ["0", "1", "2", "3", "4"]
+    },
+    21: {
+      choices: ["2\\sqrt{3}", "4", "3\\sqrt{2}", "2\\sqrt{5}", "5"]
+    },
+    22: {
+      choices: ["\\frac{1}{3}", "\\frac{7}{16}", "\\frac{1}{2}", "\\frac{9}{16}", "\\frac{2}{3}"]
+    },
+    23: {
+      choices: ["5743", "5885", "5979", "6001", "6011"]
+    },
+    16: {
+      diagramImageUrl: "https://latex.artofproblemsolving.com/f/c/4/fc485e1337895925d85375cce1a9d3908ca8b7e3.png",
+      diagramImageAlt:
+        "Thirteen unit circles packed inside a larger circle, with the shaded region outside the small circles and inside the large circle.",
+      choices: [
+        "4\\pi\\sqrt{3}",
+        "7\\pi",
+        "\\pi(3\\sqrt{3}+2)",
+        "10\\pi(\\sqrt{3}-1)",
+        "\\pi(\\sqrt{3}+6)"
+      ]
+    }
+  },
+  AMC10_2020_A: {
+    19: {
+      statement:
+        "A regular dodecahedron (the polyhedron consisting of 12 congruent regular pentagonal faces) floats in space with two horizontal faces. Note that there is a ring of five slanted faces adjacent to the top face, and a ring of five slanted faces adjacent to the bottom face. How many ways are there to move from the top face to the bottom face via a sequence of adjacent faces so that each face is visited at most once and moves are not permitted from the bottom ring to the top ring?"
+    },
+    12: {
+      statement:
+        "Triangle $AMC$ is isosceles with $AM = AC$. Medians $\\overline{MV}$ and $\\overline{CU}$ are perpendicular to each other, and $MV = CU = 12$. What is the area of $\\triangle AMC$?",
+      choices: ["48", "72", "96", "144", "192"]
+    },
+    13: {
+      choices: ["\\frac{1}{2}", "\\frac{5}{8}", "\\frac{2}{3}", "\\frac{3}{4}", "\\frac{7}{8}"]
+    },
+    14: {
+      statement:
+        "Real numbers $x$ and $y$ satisfy $x + y = 4$ and $x \\cdot y = -2$. What is the value of \\[x + \\frac{x^3}{y^2} + \\frac{y^3}{x^2} + y?\\]",
+      choices: ["360", "400", "420", "440", "480"]
+    },
+    24: {
+      statement:
+        "Let $n$ be the least positive integer greater than $1000$ for which \\[\\gcd(63, n+120)=21 \\quad \\text{and} \\quad \\gcd(n+63, 120)=60.\\] What is the sum of the digits of $n$?",
+      choices: ["12", "15", "18", "21", "24"]
+    }
+  },
+  AMC10_2021_A: {
+    12: {
+      statement:
+        "Two right circular cones with vertices facing down contain the same amount of liquid. The radii of the tops of the liquid surfaces are 3 cm and 6 cm. Into each cone is dropped a spherical marble of radius 1 cm, which sinks to the bottom and is completely submerged without spilling any liquid. What is the ratio of the rise of the liquid level in the narrow cone to the rise of the liquid level in the wide cone?",
+      choices: ["1:1", "47:43", "2:1", "40:13", "4:1"]
+    },
+    17: {
+      statement:
+        "Trapezoid $ABCD$ has $\\overline{AB}\\parallel\\overline{CD}$, $BC=CD=43$, and $\\overline{AD}\\perp\\overline{BD}$. Let $O$ be the intersection of the diagonals $\\overline{AC}$ and $\\overline{BD}$, and let $P$ be the midpoint of $\\overline{BD}$. Given that $OP=11$, the length of $AD$ can be written in the form $m\\sqrt{n}$, where $m$ and $n$ are positive integers and $n$ is not divisible by the square of any prime. What is $m+n$?",
+      choices: ["65", "132", "157", "194", "215"]
+    },
+    7: {
+      statement:
+        "Tom has a collection of $13$ snakes, $4$ of which are purple and $5$ of which are happy. He observes that all of his happy snakes can add, none of his purple snakes can subtract, and all of his snakes that can't subtract also can't add. Which of these conclusions can be drawn about Tom's snakes?",
+      choices: [
+        "Purple snakes can add.",
+        "Purple snakes are happy.",
+        "Snakes that can add are purple.",
+        "Happy snakes are not purple.",
+        "Happy snakes can't subtract."
+      ]
+    },
+    18: {
+      statement:
+        "Let $f$ be a function defined on the set of positive rational numbers with the property that $f(a\\cdot b)=f(a)+f(b)$ for all positive rational numbers $a$ and $b$. Suppose that $f$ also has the property that $f(p)=p$ for every prime number $p$. For which of the following numbers $x$ is $f(x)<0$?",
+      choices: ["\\frac{17}{32}", "\\frac{11}{16}", "\\frac{7}{9}", "\\frac{7}{6}", "\\frac{25}{11}"]
+    }
+  },
+  AMC10_2022_A: {
+    12: {
+      statement:
+        "On Halloween $31$ children walked into the principal's office asking for candy. They can be classified into three types: Some always lie; some always tell the truth; and some alternately lie and tell the truth. The alternaters arbitrarily choose their first response, either a lie or the truth, but each subsequent statement has the opposite truth value from its predecessor. The principal asked everyone the same three questions in this order.\n\n\"Are you a truth-teller?\" The principal gave a piece of candy to each of the $22$ children who answered yes.\n\n\"Are you an alternater?\" The principal gave a piece of candy to each of the $15$ children who answered yes.\n\n\"Are you a liar?\" The principal gave a piece of candy to each of the $9$ children who answered yes.\n\nHow many pieces of candy in all did the principal give to the children who always tell the truth?",
+      choices: ["7", "12", "21", "27", "31"]
+    }
+  },
+  AMC12_2020_A: {
+    6: {
+      statement:
+        "In the plane, $3$ of the unit squares have been shaded. What is the least number of additional unit squares that must be shaded so that the resulting arrangement has two lines of symmetry?"
+    },
+    13: {
+      statement:
+        "There are integers $a$, $b$, and $c$, each greater than $1$, such that \\[\\sqrt[a]{N\\sqrt[b]{N\\sqrt[c]{N}}} = \\sqrt[36]{N^{25}}\\] for all $N \\neq 1$. What is $b$?",
+      choices: ["2", "3", "4", "5", "6"]
+    },
+    24: {
+      choices: ["1+\\sqrt{2}", "\\sqrt{7}", "\\frac{8}{3}", "\\sqrt{5+\\sqrt{5}}", "2\\sqrt{2}"]
+    }
+  },
+  AMC12_2021_A: {
+    2: {
+      choices: [
+        "It is never true.",
+        "It is true if and only if $ab=0$.",
+        "It is true if and only if $a+b\\ge 0$.",
+        "It is true if and only if $ab=0$ and $a+b\\ge 0$.",
+        "It is always true."
+      ]
+    },
+    4: {
+      statement:
+        "Tom has a collection of $13$ snakes, $4$ of which are purple and $5$ of which are happy. He observes that all of his happy snakes can add, none of his purple snakes can subtract, and all of his snakes that can't subtract also can't add. Which of these conclusions can be drawn about Tom's snakes?",
+      choices: [
+        "Purple snakes can add.",
+        "Purple snakes are happy.",
+        "Snakes that can add are purple.",
+        "Happy snakes are not purple.",
+        "Happy snakes can't subtract."
+      ]
+    },
+    10: {
+      statement:
+        "Two right circular cones with vertices facing down contain the same amount of liquid. The radii of the tops of the liquid surfaces are 3 cm and 6 cm. Into each cone is dropped a spherical marble of radius 1 cm, which sinks to the bottom and is completely submerged without spilling any liquid. What is the ratio of the rise of the liquid level in the narrow cone to the rise of the liquid level in the wide cone?",
+      choices: ["1:1", "47:43", "2:1", "40:13", "4:1"]
+    },
+    17: {
+      statement:
+        "Trapezoid $ABCD$ has $\\overline{AB}\\parallel\\overline{CD}$, $BC=CD=43$, and $\\overline{AD}\\perp\\overline{BD}$. Let $O$ be the intersection of the diagonals $\\overline{AC}$ and $\\overline{BD}$, and let $P$ be the midpoint of $\\overline{BD}$. Given that $OP=11$, the length of $AD$ can be written in the form $m\\sqrt{n}$, where $m$ and $n$ are positive integers and $n$ is not divisible by the square of any prime. What is $m+n$?",
+      choices: ["65", "132", "157", "194", "215"]
+    },
+    18: {
+      statement:
+        "Let $f$ be a function defined on the set of positive rational numbers with the property that $f(a\\cdot b)=f(a)+f(b)$ for all positive rational numbers $a$ and $b$. Suppose that $f$ also has the property that $f(p)=p$ for every prime number $p$. For which of the following numbers $x$ is $f(x)<0$?",
+      choices: ["\\frac{17}{32}", "\\frac{11}{16}", "\\frac{7}{9}", "\\frac{7}{6}", "\\frac{25}{11}"]
+    }
+  },
+  AMC12_2022_A: {
+    9: {
+      statement:
+        "On Halloween $31$ children walked into the principal's office asking for candy. They can be classified into three types: Some always lie; some always tell the truth; and some alternately lie and tell the truth. The alternaters arbitrarily choose their first response, either a lie or the truth, but each subsequent statement has the opposite truth value from its predecessor. The principal asked everyone the same three questions in this order.\n\n\"Are you a truth-teller?\" The principal gave a piece of candy to each of the $22$ children who answered yes.\n\n\"Are you an alternater?\" The principal gave a piece of candy to each of the $15$ children who answered yes.\n\n\"Are you a liar?\" The principal gave a piece of candy to each of the $9$ children who answered yes.\n\nHow many pieces of candy in all did the principal give to the children who always tell the truth?",
+      choices: ["7", "12", "21", "27", "31"]
+    }
+  },
+  AIME_2021_I: {
+    2: {
+      statement:
+        "ABCD is a rectangle with side lengths $AB=3$ and $BC=11$, and $AECF$ is a rectangle with side lengths $AF=7$ and $FC=9$. The area of the shaded region common to the interiors of both rectangles is $m/n$, where $m$ and $n$ are relatively prime positive integers. Find $m+n$."
     }
   },
   AMC12_2016_A: {
@@ -163,6 +518,53 @@ const MANUAL_PROBLEM_OVERRIDES: Record<string, Record<number, ProblemOverride>> 
       diagramImageUrl: "https://latex.artofproblemsolving.com/b/a/a/baa198d34d1add6371626eaee0c40418aeeb7d0b.png",
       diagramImageAlt:
         "A 3-4-5 triangle labeled with vertices A and B, shown before folding so that point A lands on point B."
+    }
+  },
+  AMC12_2019_A: {
+    2: {
+      choices: ["50", "66+\\frac{2}{3}", "150", "200", "450"]
+    },
+    5: {
+      choices: ["4", "4\\sqrt{2}", "6", "8", "6\\sqrt{2}"]
+    },
+    6: {
+      diagramImageUrl: "https://latex.artofproblemsolving.com/c/6/6/c66986a019a481aa0dad6c2a690111ffd5a52014.png",
+      diagramImageAlt:
+        "A repeating infinite pattern of alternating square-and-diagonal motifs arranged along a horizontal line l.",
+      choices: ["0", "1", "2", "3", "4"]
+    },
+    12: {
+      choices: ["\\frac{25}{2}", "20", "\\frac{45}{2}", "25", "32"]
+    },
+    10: {
+      diagramImageUrl: "https://latex.artofproblemsolving.com/f/c/4/fc485e1337895925d85375cce1a9d3908ca8b7e3.png",
+      diagramImageAlt:
+        "Thirteen unit circles packed inside a larger circle, with the shaded region outside the small circles and inside the large circle.",
+      choices: [
+        "4\\pi\\sqrt{3}",
+        "7\\pi",
+        "\\pi(3\\sqrt{3}+2)",
+        "10\\pi(\\sqrt{3}-1)",
+        "\\pi(\\sqrt{3}+6)"
+      ]
+    },
+    20: {
+      choices: ["\\frac{1}{3}", "\\frac{7}{16}", "\\frac{1}{2}", "\\frac{9}{16}", "\\frac{2}{3}"]
+    },
+    21: {
+      choices: ["18", "72-36\\sqrt{2}", "36", "72", "72+36\\sqrt{2}"]
+    },
+    22: {
+      choices: ["42", "86", "92", "114", "130"]
+    },
+    23: {
+      choices: ["8", "9", "10", "11", "12"]
+    },
+    24: {
+      choices: ["31", "32", "33", "34", "35"]
+    },
+    25: {
+      choices: ["10", "11", "13", "14", "15"]
     }
   },
   AIME_2016_I: {
@@ -245,8 +647,13 @@ function normalizeWhitespace(value: string): string {
   return value.replace(/\s+/gu, " ").trim();
 }
 
+function cleanImportedStatement(value: string): string {
+  return value.replace(/\s*\$\\textbf\{\s*$/u, "").trim();
+}
+
 function cleanChoiceMathSyntax(value: string): string {
   return value
+    .replace(/^\\\s*([0-9])([0-9])$/u, "\\frac{$1}{$2}")
     .replace(/^\\\s+/u, "")
     .replace(/\s*\\$/u, "")
     .replace(/^\\$/u, "")
@@ -459,7 +866,7 @@ export function applyRealImportQuality(payload: ImportProblemSetInput, explicitS
     ...payload,
     problems: payload.problems.map((rawProblem) => {
       let problem = mergeProblem(rawProblem, problemOverrides[rawProblem.number]);
-      const statement = normalizeWhitespace(problem.statement ?? "");
+      const statement = normalizeWhitespace(cleanImportedStatement(problem.statement ?? ""));
       const normalizedChoices = normalizeImportedChoices(problem.choices);
       const examTrack = problem.examTrack ?? inferExamTrack(payload.problemSet.contest);
       const inferredTopicKey = problem.topicKey ?? inferTopicKey(statement, problem.answerFormat);

@@ -26,6 +26,7 @@ export type LearningReportInput = {
   reportScope: {
     type: "practice-run" | "recent";
     practiceRunId: string | null;
+    organizationId: string | null;
     problemSetId: string | null;
     problemSetTitle: string | null;
     problemSetLabel: string | null;
@@ -45,6 +46,12 @@ export type LearningReportInput = {
 export type LearningReport = {
   totalProblemsAttempted: number;
   totalCorrect: number;
+  answerOutcomeBreakdown: {
+    withoutHintCorrect: number;
+    withoutHintIncorrect: number;
+    withHintCorrect: number;
+    withHintIncorrect: number;
+  };
   primaryReinforcementTopic: string | null;
   topicsNeedingReinforcement: string[];
   highHintProblems: Array<{
@@ -65,6 +72,7 @@ export type LearningReport = {
     submittedAnswer: string;
     correctAnswer: string | null;
     isCorrect: boolean;
+    usedHint: boolean;
     topicKey: string | null;
     difficultyBand: string | null;
     solutionSketch: string | null;
@@ -546,14 +554,40 @@ function buildDeterministicLearningReport(input: LearningReportInput): LearningR
       submittedAnswer: attempt.submittedAnswer,
       correctAnswer: attempt.problem.correctAnswer,
       isCorrect: attempt.isCorrect,
+      usedHint: attempt.hintUsageCount > 0,
       topicKey: attempt.problem.topicKey,
       difficultyBand: attempt.problem.difficultyBand,
       solutionSketch: attempt.problem.solutionSketch
     }));
 
+  const answerOutcomeBreakdown = input.attempts.reduce(
+    (totals, attempt) => {
+      const usedHint = attempt.hintUsageCount > 0;
+
+      if (usedHint && attempt.isCorrect) {
+        totals.withHintCorrect += 1;
+      } else if (usedHint && !attempt.isCorrect) {
+        totals.withHintIncorrect += 1;
+      } else if (!usedHint && attempt.isCorrect) {
+        totals.withoutHintCorrect += 1;
+      } else {
+        totals.withoutHintIncorrect += 1;
+      }
+
+      return totals;
+    },
+    {
+      withoutHintCorrect: 0,
+      withoutHintIncorrect: 0,
+      withHintCorrect: 0,
+      withHintIncorrect: 0
+    }
+  );
+
   return {
     totalProblemsAttempted,
     totalCorrect,
+    answerOutcomeBreakdown,
     primaryReinforcementTopic,
     topicsNeedingReinforcement,
     highHintProblems,

@@ -1,0 +1,561 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2021,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A",
+    "verifiedPdfUrl": "https://artofproblemsolving.com/community/contest/download/c3414_amc_10/2021"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "What is the value of (2^2-2)-(3^2-3)+(4^2-4)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "1",
+        "2",
+        "5",
+        "8",
+        "12"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Portia's high school has 3 times as many students as Lara's high school. The two high schools have a total of 2600 students. How many students does Portia's high school have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "600",
+        "650",
+        "1950",
+        "2000",
+        "2050"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "The sum of two natural numbers is 17,402 . One of the two numbers is divisible by 10 . If the units digit of that number is erased, the other number is obtained. What is the difference of these two numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "10,272",
+        "11,700",
+        "13,362",
+        "14,238",
+        "15,426"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "A cart rolls down a hill, travelling 5 inches the first second and accelerating so that during each successive 1 -second time interval, it travels 7 inches more than during the previous 1 -second interval. The cart takes 30 seconds to reach the bottom of the hill. How far, in inches, does it travel?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "215",
+        "360",
+        "2992",
+        "3195",
+        "3242"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "The quiz scores of a class with k > 12 students have a mean of 8 . The mean of a collection of 12 of these quiz scores is 14 . What is the mean of the remaining quiz scores in terms of k ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "\\frac{14-8}{k-12}",
+        "\\frac{8k-168}{k-12}",
+        "\\frac{14}{12} - \\frac{8}{k}",
+        "(14(k-12))/(k^2)",
+        "(14(k-12))/(8k)"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Chantal and Jean start hiking from a trailhead toward a fire tower. Jean is wearing a heavy backpack and walks slower. Chantal starts walking at 4 miles per hour. Halfway to the tower, the trail becomes really steep, and Chantal slows down to 2 miles per hour. After reaching the tower, she immediately turns around and descends the steep part of the trail at 3 miles per hour. She meets Jean at the halfway point. What was Jean's average speed, in miles per hour, until they meet?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "\\frac{12}{13}",
+        "1",
+        "\\frac{13}{12}",
+        "\\frac{24}{13}",
+        "2"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Tom has a collection of $13$ snakes, $4$ of which are purple and $5$ of which are happy. He observes that all of his happy snakes can add, none of his purple snakes can subtract, and all of his snakes that can't subtract also can't add. Which of these conclusions can be drawn about Tom's snakes?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "Purple snakes can add.",
+        "Purple snakes are happy.",
+        "Snakes that can add are purple.",
+        "Happy snakes are not purple.",
+        "Happy snakes can't subtract."
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "techniqueTags": [
+        "estimation"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "When a student multiplied the number 66 by the repeating decimal, 1. \\ \\ \\ =1. \\ , where a and b are digits, he did not notice the notation and just multiplied 66 times 1. \\ . Later he found that his answer is 0.5 less than the correct answer. What is the 2 -digit number \\ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "15",
+        "30",
+        "45",
+        "60",
+        "75"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "What is the least possible value of (xy-1)^2+(x+y)^2 for real numbers x and y ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "0",
+        "\\frac{1}{4}",
+        "\\frac{1}{2}",
+        "1",
+        "2"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "techniqueTags": [
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Which of the following is equivalent to (2+3)(2^2+3^2)(2^4+3^4)(2^8+3^8)(2^16+3^16)(2^32+3^32) (2^64+3^64)?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "3^127 + 2^127",
+        "3^127 + 2^127 + 2 · 3^63 + 3 · 2^63",
+        "3^128-2^128",
+        "3^128 + 2^128",
+        "5^127"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "For which of the following integers b is the base- b number 2021_b - 221_b not divisible by 3 ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "3",
+        "4",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Two right circular cones with vertices facing down contain the same amount of liquid. The radii of the tops of the liquid surfaces are 3 cm and 6 cm. Into each cone is dropped a spherical marble of radius 1 cm, which sinks to the bottom and is completely submerged without spilling any liquid. What is the ratio of the rise of the liquid level in the narrow cone to the rise of the liquid level in the wide cone?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "1:1",
+        "47:43",
+        "2:1",
+        "40:13",
+        "4:1"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "What is the volume of tetrahedron ABCD with edge lengths AB = 2 , AC = 3 , AD = 4 , BC = sqrt(13) , BD = 2sqrt(5) , and CD = 5 ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "3",
+        "2\\sqrt{3}",
+        "4",
+        "3\\sqrt{3}",
+        "6"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "All the roots of the polynomial z^6-10z^5+Az^4+Bz^3+Cz^2+Dz+16 are positive integers, possibly repeated. What is the value of B ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "88",
+        "80",
+        "64",
+        "41",
+        "40"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "equation_solving"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Values for A,B,C, and D are to be selected from 1, 2, 3, 4, 5, 6\\ without replacement (i.e. no two letters have the same value). How many ways are there to make such choices so that the two curves y=Ax^2+B and y=Cx^2+D intersect? (The order in which the curves are listed does not matter; for example, the choices A=3, B=2, C=4, D=1 is considered the same as the choices A=4, B=1, C=3, D=2. )",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "30",
+        "60",
+        "90",
+        "180",
+        "360"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "In the following list of numbers, the integer n appears n times in the list for 1 ≤ n ≤ 200 . 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, , 200, 200, , 200 What is the median of the numbers in this list?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "100.5",
+        "134",
+        "142",
+        "150.5",
+        "167"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Trapezoid $ABCD$ has $\\overline{AB}\\parallel\\overline{CD}$, $BC=CD=43$, and $\\overline{AD}\\perp\\overline{BD}$. Let $O$ be the intersection of the diagonals $\\overline{AC}$ and $\\overline{BD}$, and let $P$ be the midpoint of $\\overline{BD}$. Given that $OP=11$, the length of $AD$ can be written in the form $m\\sqrt{n}$, where $m$ and $n$ are positive integers and $n$ is not divisible by the square of any prime. What is $m+n$?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "65",
+        "132",
+        "157",
+        "194",
+        "215"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading",
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Let $f$ be a function defined on the set of positive rational numbers with the property that $f(a\\cdot b)=f(a)+f(b)$ for all positive rational numbers $a$ and $b$. Suppose that $f$ also has the property that $f(p)=p$ for every prime number $p$. For which of the following numbers $x$ is $f(x)<0$?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "\\frac{17}{32}",
+        "\\frac{11}{16}",
+        "\\frac{7}{9}",
+        "\\frac{7}{6}",
+        "\\frac{25}{11}"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "equation_solving"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "The area of the region bounded by the graph of x^2+y^2 = 3|x-y| + 3|x+y| is m+npi , where m and n are integers. What is m + n ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "18",
+        "27",
+        "36",
+        "45",
+        "54"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "In how many ways can the sequence 1,2,3,4,5 be rearranged so that no three consecutive terms are increasing and no three consecutive terms are decreasing?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "10",
+        "18",
+        "24",
+        "32",
+        "44"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Let ABCDEF be an equiangular hexagon. The lines AB, CD, and EF determine a triangle with area 192sqrt(3) , and the lines BC, DE, and FA determine a triangle with area 324sqrt(3) . The perimeter of hexagon ABCDEF can be expressed as m +nsqrt(p) , where m, n, and p are positive integers and p is not divisible by the square of any prime. What is m + n + p ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "47",
+        "52",
+        "55",
+        "58",
+        "63"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading",
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Hiram's algebra notes are 50 pages long and are printed on 25 sheets of paper; the first sheet contains pages 1 and 2 , the second sheet contains pages 3 and 4 , and so on. One day he leaves his notes on the table before leaving for lunch, and his roommate decides to borrow some pages from the middle of the notes. When Hiram comes back, he discovers that his roommate has taken a consecutive set of sheets from the notes and that the average (mean) of the page numbers on all remaining sheets is exactly 19 . How many sheets were borrowed?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "10",
+        "13",
+        "15",
+        "17",
+        "20"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Frieda the frog begins a sequence of hops on a 3 × 3 grid of squares, moving one square on each hop and choosing at random the direction of each hop-up, down, left, or right. She does not hop diagonally. When the direction of a hop would take Frieda off the grid, she \"wraps around\" and jumps to the opposite edge. For example if Frieda begins in the center square and makes two hops \"up\", the first hop would place her in the top row middle square, and the second hop would cause Frieda to jump to the opposite edge, landing in the bottom row middle square. Suppose Frieda starts from the center square, makes at most four hops at random, and stops hopping if she lands on a corner square. What is the probability that she reaches a corner square on one of the four hops?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "\\frac{9}{16}",
+        "\\frac{5}{8}",
+        "\\frac{3}{4}",
+        "\\frac{25}{32}",
+        "\\frac{13}{16}"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup",
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "The interior of a quadrilateral is bounded by the graphs of (x+ay)^2 = 4a^2 and (ax-y)^2 = a^2 , where a is a positive real number. What is the area of this region in terms of a , valid for all a > 0 ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "(8a^2)/((a+1)^2)",
+        "\\frac{4a}{a+1}",
+        "\\frac{8a}{a+1}",
+        "\\frac{8a^2}{a^2+1}",
+        "\\frac{8a}{a^2+1}"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "How many ways are there to place 3 indistinguishable red chips, 3 indistinguishable blue chips, and 3 indistinguishable green chips in the squares of a 3 × 3 grid so that no two chips of the same color are directly adjacent to each other, either vertically or horizontally?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "12",
+        "18",
+        "24",
+        "30",
+        "36"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2021_AMC_10A_Problems/Problem_25"
+    }
+  ]
+}

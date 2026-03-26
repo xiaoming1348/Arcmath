@@ -1,13 +1,19 @@
 import Link from "next/link";
 import type { Session } from "next-auth";
+import { canAccessAdmin } from "@arcmath/shared";
+import { prisma } from "@arcmath/db";
 import { LogoutButton } from "@/components/logout-button";
+import { canManageOrganization, getActiveOrganizationMembership } from "@/lib/organizations";
 
 type TopNavProps = {
   session: Session | null;
 };
 
-export function TopNav({ session }: TopNavProps) {
+export async function TopNav({ session }: TopNavProps) {
   const isLoggedIn = Boolean(session?.user);
+  const organizationMembership = session?.user ? await getActiveOrganizationMembership(prisma, session.user.id) : null;
+  const isOrganizationManager = organizationMembership ? canManageOrganization(organizationMembership.role) : false;
+  const canSeePlatformAdmin = canAccessAdmin(session?.user?.role);
 
   return (
     <header className="motion-rise surface-card relative overflow-hidden px-5 py-4 md:px-6">
@@ -40,21 +46,49 @@ export function TopNav({ session }: TopNavProps) {
                 <Link href="/dashboard" className="route-chip">
                   Dashboard
                 </Link>
-                <Link href="/problems" className="route-chip">
-                  Problems
-                </Link>
-                <Link href="/assignments" className="route-chip">
-                  Assignments
-                </Link>
-                <Link href="/resources" className="route-chip">
-                  Resources
-                </Link>
-                <Link href="/membership" className="route-chip">
-                  Membership
-                </Link>
-                <Link href="/admin" className="route-chip">
-                  Admin
-                </Link>
+                {organizationMembership ? (
+                  <Link href="/org" className="route-chip">
+                    Organization
+                  </Link>
+                ) : null}
+                {isOrganizationManager ? (
+                  <>
+                    <Link href="/assignments" className="route-chip">
+                      Assignments
+                    </Link>
+                    <Link href="/resources" className="route-chip">
+                      Resources
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link href="/problems" className="route-chip">
+                      Problems
+                    </Link>
+                    <Link href="/reports" className="route-chip">
+                      Reports
+                    </Link>
+                    {organizationMembership ? (
+                      <>
+                        <Link href="/assignments" className="route-chip">
+                          Assignments
+                        </Link>
+                        <Link href="/resources" className="route-chip">
+                          Resources
+                        </Link>
+                      </>
+                    ) : (
+                      <Link href="/membership" className="route-chip">
+                        Membership
+                      </Link>
+                    )}
+                  </>
+                )}
+                {canSeePlatformAdmin ? (
+                  <Link href="/admin" className="route-chip">
+                    Admin
+                  </Link>
+                ) : null}
               </>
             ) : (
               <>

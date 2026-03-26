@@ -10,6 +10,7 @@ const HINT_FALLBACKS = {
 export const HINT_TUTOR_PROMPT_VERSION = "hint-tutor-v1";
 
 export type HintTutorAnswerFormat = "MULTIPLE_CHOICE" | "INTEGER" | "EXPRESSION";
+export type InteractiveTutorIntent = "HELP_START" | "CHECK_STEP" | "CHECK_ANSWER_IDEA" | "SMALLER_HINT";
 
 export type GenerateHintParams = {
   problemStatement: string;
@@ -41,6 +42,27 @@ export type ExplanationModelOutput = {
   explanation: string;
 };
 
+export type GenerateInteractiveTutorResponseParams = {
+  problemStatement: string;
+  answerFormat: HintTutorAnswerFormat;
+  choices?: unknown;
+  diagramImageAlt?: string | null;
+  studentMessage?: string;
+  draftAnswer?: string;
+  hintLevel: number;
+  intent: InteractiveTutorIntent;
+  recentTurns: Array<{
+    actor: "STUDENT" | "TUTOR" | "SYSTEM";
+    text: string;
+  }>;
+  solutionSketch?: string | null;
+};
+
+export type InteractiveTutorModelOutput = {
+  tutorText: string;
+  nextSuggestedIntent: InteractiveTutorIntent;
+};
+
 const hintOutputSchema = z.object({
   hintText: z.string().min(1),
   checkQuestion: z.string().min(1)
@@ -48,6 +70,11 @@ const hintOutputSchema = z.object({
 
 const explanationOutputSchema = z.object({
   explanation: z.string().min(1)
+});
+
+const interactiveTutorOutputSchema = z.object({
+  tutorText: z.string().min(1),
+  nextSuggestedIntent: z.enum(["HELP_START", "CHECK_STEP", "CHECK_ANSWER_IDEA", "SMALLER_HINT"])
 });
 
 const hintOutputJsonSchema = {
@@ -67,6 +94,19 @@ const explanationOutputJsonSchema = {
     explanation: { type: "string" }
   },
   required: ["explanation"]
+} as const;
+
+const interactiveTutorOutputJsonSchema = {
+  type: "object",
+  additionalProperties: false,
+  properties: {
+    tutorText: { type: "string" },
+    nextSuggestedIntent: {
+      type: "string",
+      enum: ["HELP_START", "CHECK_STEP", "CHECK_ANSWER_IDEA", "SMALLER_HINT"]
+    }
+  },
+  required: ["tutorText", "nextSuggestedIntent"]
 } as const;
 
 function normalizeChoices(choices: unknown): string[] {
@@ -153,6 +193,51 @@ export function buildExplanationPrompt(params: GenerateExplanationParams): strin
   ].join("\n");
 }
 
+function formatRecentTurns(
+  turns: GenerateInteractiveTutorResponseParams["recentTurns"]
+): string {
+  if (turns.length === 0) {
+    return "(none)";
+  }
+
+  return turns
+    .map((turn) => `${turn.actor}: ${turn.text.trim() || "(empty)"}`)
+    .join("\n");
+}
+
+export function buildInteractiveTutorPrompt(params: GenerateInteractiveTutorResponseParams): string {
+  const choices = normalizeChoices(params.choices);
+  const diagramDescription = params.diagramImageAlt?.trim() || "(none)";
+  const solutionSketch = params.solutionSketch?.trim() || "(none)";
+  const studentMessage = params.studentMessage?.trim() || "(none)";
+  const draftAnswer = params.draftAnswer?.trim() || "(none)";
+  const choiceBlock =
+    choices.length > 0 ? `Choices:\n${choices.map((choice, index) => `${String.fromCharCode(65 + index)}. ${choice}`).join("\n")}` : "Choices:\n(none)";
+
+  return [
+    "You are an interactive AI math tutor in a multi-turn tutoring session.",
+    "Rules:",
+    "- Return valid JSON only.",
+    "- Do not reveal the final answer.",
+    "- Advance the student by one meaningful step only.",
+    "- If the student is checking a step, directly assess that step before giving the next move.",
+    "- If the student is checking an answer idea, do not simply confirm the final answer; ask for or test the reasoning.",
+    "- End with one concrete next action or one short check question.",
+    "- Use the solution sketch as hidden teacher context when present, but never quote it directly or reveal the final answer.",
+    '- Output schema: {"tutorText":"string","nextSuggestedIntent":"HELP_START|CHECK_STEP|CHECK_ANSWER_IDEA|SMALLER_HINT"}',
+    `Answer format: ${params.answerFormat}`,
+    `Intent: ${params.intent}`,
+    `Current hint level: ${clampHintLevel(params.hintLevel)}`,
+    `Student message: ${studentMessage}`,
+    `Student draft answer: ${draftAnswer}`,
+    `Problem:\n${params.problemStatement}`,
+    choiceBlock,
+    `Diagram description:\n${diagramDescription}`,
+    `Recent turns:\n${formatRecentTurns(params.recentTurns)}`,
+    `Hidden solution sketch:\n${solutionSketch}`
+  ].join("\n");
+}
+
 function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -206,6 +291,47 @@ export function getSafeFallbackHint(level: number): HintModelOutput {
   return {
     hintText: HINT_FALLBACKS[safeLevel],
     checkQuestion: "What is the next step you can try on your own?"
+  };
+}
+
+export function getSafeFallbackInteractiveTutorResponse(
+  intent: InteractiveTutorIntent,
+  hintLevel: number
+): InteractiveTutorModelOutput {
+  const safeLevel = clampHintLevel(hintLevel);
+
+  if (intent === "CHECK_STEP") {
+    return {
+      tutorText:
+        "Focus on whether your current step uses the right relationship from the problem. If one condition is missing, rewrite the step using that condition before you continue.",
+      nextSuggestedIntent: "CHECK_STEP"
+    };
+  }
+
+  if (intent === "CHECK_ANSWER_IDEA") {
+    return {
+      tutorText:
+        "Before confirming your answer idea, check the reasoning that produced it. What equation, count, or geometric fact leads to that result?",
+      nextSuggestedIntent: "CHECK_STEP"
+    };
+  }
+
+  if (intent === "SMALLER_HINT") {
+    return {
+      tutorText:
+        safeLevel === 1
+          ? "Start by identifying the most important quantity or relationship in the problem."
+          : "Step back one level and name the structure you need before computing anything.",
+      nextSuggestedIntent: "HELP_START"
+    };
+  }
+
+  return {
+    tutorText:
+      safeLevel === 1
+        ? "Start by identifying the main relationship or quantity the problem is built around."
+        : "Write down the setup carefully before trying to finish the computation.",
+    nextSuggestedIntent: "CHECK_STEP"
   };
 }
 
@@ -275,4 +401,24 @@ export async function generateExplanation(
   }
 
   return getSafeFallbackExplanation(params);
+}
+
+export async function generateInteractiveTutorResponse(
+  params: GenerateInteractiveTutorResponseParams
+): Promise<InteractiveTutorModelOutput> {
+  const prompt = buildInteractiveTutorPrompt(params);
+  const generated = await callOpenAIJson({
+    scope: "hint-tutor",
+    schemaName: "hint_tutor_interactive_turn",
+    prompt,
+    schema: interactiveTutorOutputSchema,
+    jsonSchema: interactiveTutorOutputJsonSchema,
+    maxOutputTokens: 260
+  });
+
+  if (generated) {
+    return generated;
+  }
+
+  return getSafeFallbackInteractiveTutorResponse(params.intent, params.hintLevel);
 }

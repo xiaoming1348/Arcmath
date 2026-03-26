@@ -1,0 +1,575 @@
+{
+  "problemSet": {
+    "contest": "AMC8",
+    "year": 2022,
+    "exam": null,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "The Math Team designed a logo shaped like a multiplication symbol, shown below on a grid of 1-inch squares. What is the area of the logo in square inches?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "10",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "12 See Also Consider these two operations: * a \\, \\, b &= a^2 - b^2\\ a \\, \\, b &= (a - b)^2 * What is the output of (5 \\, \\, 3) \\, \\, 6?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "20",
+        "4",
+        "16",
+        "100",
+        "220"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "When three positive integers a , b , and c are multiplied together, their product is 100 . Suppose a < b < c . In how many ways can the numbers be chosen?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "The letter $M$ in the figure below is first reflected over the line $q$ and then reflected over the line $p$. What is the resulting image?",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/c/3/8/c38b67d113d5fbf1b6d6eae0d87161b539dbd849.png",
+      "diagramImageAlt": "An upright letter M together with two reflection lines p and q, where p is horizontal and q is a diagonal line.",
+      "choicesImageUrl": "https://latex.artofproblemsolving.com/1/9/b/19b58c8f6aafe00e0ad5454583fda04c3567f944.png",
+      "choicesImageAlt": "Five answer-choice diagrams labeled A through E showing different reflected positions and orientations of the letter M relative to the same two lines.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Anna and Bella are celebrating their birthdays together. Five years ago, when Bella turned 6 years old, she received a newborn kitten as a birthday present. Today the sum of the ages of the two children and the kitten is 30 years. How many years older than Bella is Anna?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Three positive integers are equally spaced on a number line. The middle number is 15, and the largest number is 4 times the smallest number. What is the smallest of these three numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "When the World Wide Web first became popular in the 1990 s, download speeds reached a maximum of about 56 kilobits per second. Approximately how many minutes would the download of a 4.2 -megabyte song have taken at that speed? (Note that there are 8000 kilobits in a megabyte.)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "0.6",
+        "10",
+        "1800",
+        "7200",
+        "36000"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "optimization",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "What is the value of (1)/(3)·(2)/(4)·(3)/(5)(18)/(20)·(19)/(21)·(20)/(22)?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "\\frac{1}{462}",
+        "\\frac{1}{231}",
+        "\\frac{1}{132}",
+        "\\frac{2}{213}",
+        "\\frac{1}{22}"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "A cup of boiling water ( 212^ ) is placed to cool in a room whose temperature remains constant at 68^ . Suppose the difference between the water temperature and the room temperature is halved every 5 minutes. What is the water temperature, in degrees Fahrenheit, after 15 minutes?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "77",
+        "86",
+        "92",
+        "98",
+        "104"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "One sunny day, Ling decided to take a hike in the mountains. She left her house at $8\\,\\textsc{am}$, drove at a constant speed of $45$ miles per hour, and arrived at the hiking trail at $10\\,\\textsc{am}$. After hiking for $3$ hours, Ling drove home at a constant speed of $60$ miles per hour. Which of the following graphs best illustrates the distance between Ling's car and her house over the course of her trip?",
+      "choicesImageUrl": "https://latex.artofproblemsolving.com/c/b/1/cb1e2b28781a01015ec88e8948e5bda92a234383.png",
+      "choicesImageAlt": "Five candidate distance-versus-time graphs labeled A through E, showing Ling's car leaving home, remaining parked during the hike, and returning home.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Henry the donkey has a very long piece of pasta. He takes a number of bites of pasta, each time eating 3 inches of pasta from the middle of one piece. In the end, he has 10 pieces of pasta whose total length is 17 inches. How long, in inches, was the piece of pasta he started with?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "34",
+        "38",
+        "41",
+        "44",
+        "47"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "The arrows on the two spinners shown below are spun. Let the number N equal 10 times the number on Spinner A , added to the number on Spinner B . What is the probability that N is a perfect square number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "116",
+        "18",
+        "14",
+        "38",
+        "12"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup",
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "How many positive integers can fill the blank in the sentence below? <One positive integer is _____ more than twice another, and the sum of the two numbers is 28 .=",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "In how many ways can the letters in BEEKEEPER be rearranged so that two or more E s do not appear together?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "1",
+        "4",
+        "12",
+        "24",
+        "120"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Laszlo went online to shop for black pepper and found thirty different black pepper options varying in weight and price, shown in the scatter plot below. In ounces, what is the weight of the pepper that offers the lowest price per ounce?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Four numbers are written in a row. The average of the first two is 21, the average of the middle two is 26, and the average of the last two is 30. What is the average of the first and last of the numbers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "24",
+        "25",
+        "26",
+        "27",
+        "28"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "If n is an even positive integer, the factorial notation n!! represents the product of all the even integers from 2 to n . For example, 8!! = 2 · 4 · 6 · 8 . What is the units digit of the following sum? 2!! + 4!! + 6!! + + 2018!! + 2020!! + 2022!!",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "0",
+        "2",
+        "4",
+        "6",
+        "8"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "The midpoints of the four sides of a rectangle are (-3,0), (2,0), (5,4), and (0,4). What is the area of the rectangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "20",
+        "25",
+        "40",
+        "50",
+        "80"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "Mr. Ramos gave a test to his class of $20$ students. The dot plot below shows the distribution of test scores. Later Mr. Ramos discovered that there was a scoring error on one of the questions. He regraded the tests, awarding some of the students $5$ extra points, which increased the median test score to $85$. What is the minimum number of students who received extra points? (Note that the median test score equals the average of the $2$ scores in the middle if the $20$ test scores are arranged in increasing order.)",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/8/f/1/8f168ff6d1e7635e68e0139420bed9ecfc2e4993.png",
+      "diagramImageAlt": "A dot plot of 20 test scores with ticks at 65, 70, 75, 80, 85, 90, 95, and 100.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards",
+        "optimization",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "The grid below is to be filled with integers in such a way that the sum of the numbers in each row and the sum of the numbers in each column are the same. Four numbers are missing. The number x in the lower left corner is larger than the other three missing numbers. What is the smallest possible value of x ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "1",
+        "5",
+        "6",
+        "8",
+        "9"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Steph scored 15 baskets out of 20 attempts in the first half of a game, and 10 baskets out of 10 attempts in the second half. Candace took 12 attempts in the first half and 18 attempts in the second. In each half, Steph scored a higher percentage of baskets than Candace. Surprisingly they ended with the same overall percentage of baskets scored. How many more baskets did Candace score in the second half than in the first?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "A bus takes 2 minutes to drive from one stop to the next, and waits 1 minute at each stop to let passengers board. Zia takes 5 minutes to walk from one bus stop to the next. As Zia reaches a bus stop, if the bus is at the previous stop or has already left the previous stop, then she will wait for the bus. Otherwise she will start walking toward the next stop. Suppose the bus and Zia start at the same time toward the library, with the bus 3 stops behind. After how many minutes will Zia board the bus?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "17",
+        "19",
+        "20",
+        "21",
+        "23"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "A or is placed in each of the nine squares in a 3 -by- 3 grid. Shown below is a sample configuration with three s in a line. How many configurations will have three s in a line and three s in a line?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "39",
+        "42",
+        "78",
+        "84",
+        "96"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "The figure below shows a polygon ABCDEFGH , consisting of rectangles and right triangles. When cut out and folded on the dotted lines, the polygon forms a triangular prism. Suppose that AH = EF = 8 and GH = 14 . What is the volume of the prism?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "112",
+        "128",
+        "192",
+        "240",
+        "288"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "A cricket randomly hops between $4$ leaves, on each turn hopping to one of the other $3$ leaves with equal probability. After $4$ hops what is the probability that the cricket has returned to the leaf where it started?",
+      "diagramImageUrl": "https://artofproblemsolving.com/wiki/images/thumb/f/f0/2022_AMC_8_Problem_25_Picture.jpg/600px-2022_AMC_8_Problem_25_Picture.jpg",
+      "diagramImageAlt": "Four leaves connected in a symmetric arrangement, illustrating the cricket's possible hops among the leaves.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "\\frac{2}{9}",
+        "\\frac{19}{80}",
+        "\\frac{20}{81}",
+        "\\frac{1}{4}",
+        "\\frac{7}{27}"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AMC_8_Problems/Problem_25"
+    }
+  ]
+}

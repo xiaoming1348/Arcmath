@@ -1,5 +1,5 @@
 import type { PrismaClient, Role } from "@arcmath/db";
-import { buildRealTutorUsableProblemSetWhere } from "@/lib/tutor-usable-sets";
+import { buildRealExamProblemSetWhere } from "@/lib/tutor-usable-sets";
 
 type MinimalSessionUser = {
   id: string;
@@ -14,7 +14,7 @@ export async function listGrantedRealTutorProblemSetIds(prisma: PrismaClient, us
   const rows = await prisma.userResourceAccess.findMany({
     where: {
       userId,
-      problemSet: buildRealTutorUsableProblemSetWhere()
+      problemSet: buildRealExamProblemSetWhere()
     },
     select: {
       problemSetId: true
@@ -57,7 +57,7 @@ export async function grantAllLiveRealTutorProblemSets(params: {
   userId: string;
 }): Promise<number> {
   const sets = await params.prisma.problemSet.findMany({
-    where: buildRealTutorUsableProblemSetWhere(),
+    where: buildRealExamProblemSetWhere(),
     select: {
       id: true
     }

@@ -1,0 +1,568 @@
+{
+  "problemSet": {
+    "contest": "AMC10",
+    "year": 2019,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A",
+    "verifiedPdfUrl": "https://artofproblemsolving.com/community/contest/download/c3414_amc_10/2019"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "What is the value of \\[2^{\\left(0^{\\left(1^9\\right)}\\right)}+\\left(\\left(2^0\\right)^1\\right)^9?\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_1"
+    },
+    {
+      "number": 2,
+      "statement": "What is the hundreds digit of $(20!-15!)?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "0",
+        "1",
+        "2",
+        "4",
+        "5"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Ana and Bonita were born on the same date in different years, $n$ years apart. Last year Ana was $5$ times as old as Bonita. This year Ana's age is the square of Bonita's age. What is $n?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "3",
+        "5",
+        "9",
+        "12",
+        "15"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_3"
+    },
+    {
+      "number": 4,
+      "statement": "A box contains $28$ red balls, $20$ green balls, $19$ yellow balls, $13$ blue balls, $11$ white balls, and $9$ black balls. What is the minimum number of balls that must be drawn from the box without replacement to guarantee that at least $15$ balls of a single color will be drawn?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "75",
+        "76",
+        "79",
+        "84",
+        "91"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "techniqueTags": [
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_4"
+    },
+    {
+      "number": 5,
+      "statement": "What is the greatest number of consecutive integers whose sum is $45?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "9",
+        "25",
+        "45",
+        "90",
+        "120"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_5"
+    },
+    {
+      "number": 6,
+      "statement": "For how many of the following types of quadrilaterals does there exist a point in the plane of the quadrilateral that is equidistant from all four vertices of the quadrilateral? a square a rectangle that is not a square a rhombus that is not a square a parallelogram that is not a rectangle or a rhombus an isosceles trapezoid that is not a parallelogram",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Two lines with slopes $\\dfrac{1}{2}$ and $2$ intersect at $(2,2)$ . What is the area of the triangle enclosed by these two lines and the line $x+y=10 ?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "4",
+        "4 2",
+        "6",
+        "8",
+        "6 2"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "geometry.coordinate_geometry",
+      "techniqueTags": [
+        "coordinate_modeling",
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_7"
+    },
+    {
+      "number": 8,
+      "statement": "The figure below shows line $\\ell$ with a regular, infinite, recurring pattern of squares and line segments. [asy] size(300); defaultpen(linewidth(0.8)); real r = 0.35; path P = (0,0)--(0,1)--(1,1)--(1,0), Q = (1,1)--(1+r,1+r); path Pp = (0,0)--(0,-1)--(1,-1)--(1,0), Qp = (-1,-1)--(-1-r,-1-r); for(int i=0;i <= 4;i=i+1) { draw(shift((4*i,0)) * P); draw(shift((4*i,0)) * Q); } for(int i=1;i <= 4;i=i+1) { draw(shift((4*i-2,0)) * Pp); draw(shift((4*i-1,0)) * Qp); } draw((-1,0)--(18.5,0)); [/asy] How many of the following four kinds of rigid motion transformations of the plane in which this figure is drawn, other than the identity transformation, will transform this figure into itself? some rotation around a point of line $\\ell$ some translation in the direction parallel to line $\\ell$ the reflection across line $\\ell$ some reflection across a line perpendicular to line $\\ell$",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/c/6/6/c66986a019a481aa0dad6c2a690111ffd5a52014.png",
+      "diagramImageAlt": "A repeating infinite pattern of alternating square-and-diagonal motifs arranged along a horizontal line l.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_8"
+    },
+    {
+      "number": 9,
+      "statement": "What is the greatest three-digit positive integer $n$ for which the sum of the first $n$ positive integers is $\\underline{\\text{not}}$ a divisor of the product of the first $n$ positive integers?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "995",
+        "996",
+        "997",
+        "998",
+        "999"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_9"
+    },
+    {
+      "number": 10,
+      "statement": "A rectangular floor that is $10$ feet wide and $17$ feet long is tiled with $170$ one-foot square tiles. A bug walks from one corner to the opposite corner in a straight line. Including the first and the last tile, how many tiles does the bug visit?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "17",
+        "25",
+        "26",
+        "27",
+        "28"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_10"
+    },
+    {
+      "number": 11,
+      "statement": "How many positive integer divisors of $201^9$ are perfect squares or perfect cubes (or both)?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "32",
+        "36",
+        "37",
+        "39",
+        "41"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Melanie computes the mean $\\mu$ , the median $M$ , and the modes of the $365$ values that are the dates in the months of $2019$ . Thus her data consist of $12$ $1\\text{s}$ , $12$ $2\\text{s}$ , . . . , $12$ $28\\text{s}$ , $11$ $29\\text{s}$ , $11$ $30\\text{s}$ , and $7$ $31\\text{s}$ . Let $d$ be the median of the modes. Which of the following statements is true?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "\\mu<d<M",
+        "M<d<\\mu",
+        "d=M=\\mu",
+        "d<M<\\mu",
+        "d<\\mu<M"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards",
+        "modular_reasoning",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Let $\\triangle ABC$ be an isosceles triangle with $BC = AC$ and $\\angle ACB = 40^{\\circ}$ . Construct the circle with diameter $\\overline{BC}$ , and let $D$ and $E$ be the other intersection points of the circle with the sides $\\overline{AC}$ and $\\overline{AB}$ , respectively. Let $F$ be the intersection of the diagonals of the quadrilateral $BCDE$ . What is the degree measure of $\\angle BFC ?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "90",
+        "100",
+        "105",
+        "110",
+        "120"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_13"
+    },
+    {
+      "number": 14,
+      "statement": "For a set of four distinct lines in a plane, there are exactly $N$ distinct points that lie on two or more of the lines. What is the sum of all possible values of $N$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "14",
+        "16",
+        "18",
+        "19",
+        "21"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_14"
+    },
+    {
+      "number": 15,
+      "statement": "A sequence of numbers is defined recursively by $a_1 = 1$ , $a_2 = \\frac{3}{7}$ , and \\[a_n=\\frac{a_{n-2} \\cdot a_{n-1}}{2a_{n-2} - a_{n-1}}\\] for all $n \\geq 3$ Then $a_{2019}$ can be written as $\\frac{p}{q}$ , where $p$ and $q$ are relatively prime positive integers. What is $p+q ?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "2020",
+        "4039",
+        "6057",
+        "6061",
+        "8078"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_15"
+    },
+    {
+      "number": 16,
+      "statement": "The figure below shows $13$ circles of radius $1$ within a larger circle. All the intersections occur at points of tangency. What is the area of the region, shaded in the figure, inside the larger circle but outside all the circles of radius $1 ?$ [asy]unitsize(20);filldraw(circle((0,0),2*sqrt(3)+1),rgb(0.5,0.5,0.5));filldraw(circle((-2,0),1),white);filldraw(circle((0,0),1),white);filldraw(circle((2,0),1),white);filldraw(circle((1,sqrt(3)),1),white);filldraw(circle((3,sqrt(3)),1),white);filldraw(circle((-1,sqrt(3)),1),white);filldraw(circle((-3,sqrt(3)),1),white);filldraw(circle((1,-1*sqrt(3)),1),white);filldraw(circle((3,-1*sqrt(3)),1),white);filldraw(circle((-1,-1*sqrt(3)),1),white);filldraw(circle((-3,-1*sqrt(3)),1),white);filldraw(circle((0,2*sqrt(3)),1),white);filldraw(circle((0,-2*sqrt(3)),1),white);[/asy]",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/f/c/4/fc485e1337895925d85375cce1a9d3908ca8b7e3.png",
+      "diagramImageAlt": "Thirteen unit circles packed inside a larger circle, with the shaded region outside the small circles and inside the large circle.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "4\\pi\\sqrt{3}",
+        "7\\pi",
+        "\\pi(3\\sqrt{3}+2)",
+        "10\\pi(\\sqrt{3}-1)",
+        "\\pi(\\sqrt{3}+6)"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_16"
+    },
+    {
+      "number": 17,
+      "statement": "A child builds towers using identically shaped cubes of different colors. How many different towers with a height $8$ cubes can the child build with $2$ red cubes, $3$ blue cubes, and $4$ green cubes? (One cube will be left out.)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "24",
+        "288",
+        "312",
+        "1,260",
+        "40,320"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_17"
+    },
+    {
+      "number": 18,
+      "statement": "For some positive integer $k$ , the repeating base- $k$ representation of the (base-ten) fraction $\\frac{7}{51}$ is $0.\\overline{23}_k = 0.232323..._k$ . What is $k$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "13",
+        "14",
+        "15",
+        "16",
+        "17"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_18"
+    },
+    {
+      "number": 19,
+      "statement": "What is the least possible value of \\[(x+1)(x+2)(x+3)(x+4)+2019\\] where $x$ is a real number?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "techniqueTags": [
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_19"
+    },
+    {
+      "number": 20,
+      "statement": "The numbers $1,2,\\dots,9$ are randomly placed into the $9$ squares of a $3 \\times 3$ grid. Each square gets one number, and each of the numbers is used once. What is the probability that the sum of the numbers in each row and each column is odd?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "1/21",
+        "1/14",
+        "5/63",
+        "2/21",
+        "1/7"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup",
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_20"
+    },
+    {
+      "number": 21,
+      "statement": "A sphere with center $O$ has radius $6$ . A triangle with sides of length $15, 15,$ and $24$ is situated in space so that each of its sides is tangent to the sphere. What is the distance between $O$ and the plane determined by the triangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "2\\sqrt{3}",
+        "4",
+        "3\\sqrt{2}",
+        "2\\sqrt{5}",
+        "5"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Real numbers between 0 and 1, inclusive, are chosen in the following manner. A fair coin is flipped. If it lands heads, then it is flipped again and the chosen number is 0 if the second flip is heads, and 1 if the second flip is tails. On the other hand, if the first coin flip is tails, then the number is chosen uniformly at random from the closed interval $[0,1]$ . Two random numbers $x$ and $y$ are chosen independently in this manner. What is the probability that $|x-y| > \\tfrac{1}{2}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "\\frac{1}{3}",
+        "\\frac{7}{16}",
+        "\\frac{1}{2}",
+        "\\frac{9}{16}",
+        "\\frac{2}{3}"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Travis has to babysit the terrible Thompson triplets. Knowing that they love big numbers, Travis devises a counting game for them. First Tadd will say the number $1$ , then Todd must say the next two numbers ( $2$ and $3$ ), then Tucker must say the next three numbers ( $4$ , $5$ , $6$ ), then Tadd must say the next four numbers ( $7$ , $8$ , $9$ , $10$ ), and the process continues to rotate through the three children in order, each saying one more number than the previous child did, until the number $10,000$ is reached. What is the $2019$ th number said by Tadd?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "5743",
+        "5885",
+        "5979",
+        "6001",
+        "6011"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_23"
+    },
+    {
+      "number": 24,
+      "statement": "Let $p$ , $q$ , and $r$ be the distinct roots of the polynomial $x^3 - 22x^2 + 80x - 67$ . It is given that there exist real numbers $A$ , $B$ , and $C$ such that \\[\\dfrac{1}{s^3 - 22s^2 + 80s - 67} = \\dfrac{A}{s-p} + \\dfrac{B}{s-q} + \\frac{C}{s-r}\\] for all $s\\not\\in\\{p,q,r\\}$ . What is $\\tfrac1A+\\tfrac1B+\\tfrac1C$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "243",
+        "244",
+        "245",
+        "246",
+        "247"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "algebra.general",
+      "techniqueTags": [
+        "algebra_setup",
+        "equation_solving"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_24"
+    },
+    {
+      "number": 25,
+      "statement": "For how many integers $n$ between $1$ and $50$ , inclusive, is \\[\\frac{(n^2-1)!}{(n!)^n}\\] an integer? (Recall that $0! = 1$ .)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "31",
+        "32",
+        "33",
+        "34",
+        "35"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC10",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_10A_Problems%2FProblem_25"
+    }
+  ]
+}

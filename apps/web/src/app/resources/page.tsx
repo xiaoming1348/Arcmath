@@ -1,281 +1,280 @@
-"use client";
-
-import { useMemo } from "react";
 import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { trpc } from "@/lib/trpc/client";
-import { buildResourcePdfDownloadUrl } from "@/lib/resources/build-resource-pdf-download-url";
+import { getServerSession } from "next-auth";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import { prisma } from "@arcmath/db";
+import { authOptions } from "@/lib/auth";
+import { canManageOrganization, getActiveOrganizationMembership } from "@/lib/organizations";
+import { getOrganizationResourceStorage } from "@/lib/organization-resource-storage";
 
-const allowedContests = new Set(["AMC8", "AMC10", "AMC12", "AIME"]);
+type ResourcesPageProps = {
+  searchParams: Promise<{
+    created?: string;
+    error?: string;
+  }>;
+};
 
-function parseContest(value: string | null): "AMC8" | "AMC10" | "AMC12" | "AIME" | undefined {
-  if (!value || !allowedContests.has(value)) {
-    return undefined;
+function summarizeError(code: string | undefined): string | null {
+  switch (code) {
+    case "title-required":
+      return "Title is required.";
+    case "content-required":
+      return "Add either resource content or an attachment.";
+    case "attachment-too-large":
+      return "Attachment is too large. Keep uploads under 15 MB for this MVP.";
+    case "forbidden":
+      return "You do not have permission to manage organization resources.";
+    default:
+      return null;
   }
-  return value as "AMC8" | "AMC10" | "AMC12" | "AIME";
 }
 
-function parseYear(value: string | null): number | undefined {
-  if (!value) {
-    return undefined;
-  }
-  const parsed = Number(value);
-  if (!Number.isInteger(parsed) || parsed < 1950) {
-    return undefined;
-  }
-  return parsed;
+function formatDate(value: Date): string {
+  return value.toLocaleString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit"
+  });
 }
 
-function normalizeExam(value: string | null): string | undefined {
-  if (!value) {
-    return undefined;
+export default async function ResourcesPage({ searchParams }: ResourcesPageProps) {
+  const { created, error } = await searchParams;
+  const session = await getServerSession(authOptions);
+
+  if (!session?.user) {
+    redirect("/login?callbackUrl=%2Fresources");
   }
-  const normalized = value.trim().toUpperCase();
-  return normalized.length > 0 ? normalized : undefined;
-}
 
-function isExamRequired(contest: "AMC8" | "AMC10" | "AMC12" | "AIME" | undefined): boolean {
-  return contest === "AMC10" || contest === "AMC12" || contest === "AIME";
-}
-
-function getExamPlaceholder(contest: "AMC8" | "AMC10" | "AMC12" | "AIME" | undefined): string {
-  if (!contest) {
-    return "Select Contest first";
+  const membership = await getActiveOrganizationMembership(prisma, session.user.id);
+  if (!membership) {
+    redirect("/dashboard");
   }
-  if (contest === "AMC8") {
-    return "N/A";
-  }
-  return "Select Exam";
-}
 
-export default function ResourcesPage() {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+  async function createOrganizationResource(formData: FormData) {
+    "use server";
 
-  const contest = parseContest(searchParams.get("contest"));
-  const year = parseYear(searchParams.get("year"));
-  const exam = normalizeExam(searchParams.get("exam"));
-
-  const filtersQuery = trpc.resourceSets.listDistinctFilters.useQuery();
-  const examOptions =
-    contest && filtersQuery.data?.examOptionsByContest
-      ? filtersQuery.data.examOptionsByContest[contest]
-      : [];
-  const yearOptions =
-    contest && filtersQuery.data?.yearsByContest
-      ? filtersQuery.data.yearsByContest[contest]
-      : (filtersQuery.data?.years ?? []);
-
-  const searchReady = useMemo(() => {
-    if (!contest || !year) {
-      return false;
+    const currentSession = await getServerSession(authOptions);
+    if (!currentSession?.user) {
+      redirect("/login?callbackUrl=%2Fresources");
     }
-    if (contest === "AMC8") {
-      return true;
+
+    const currentMembership = await getActiveOrganizationMembership(prisma, currentSession.user.id);
+    if (!currentMembership || !canManageOrganization(currentMembership.role)) {
+      redirect("/resources?error=forbidden");
     }
-    return Boolean(exam);
-  }, [contest, year, exam]);
 
-  const resourceQuery = trpc.resources.byKey.useQuery(
-    {
-      contest: contest ?? "AMC8",
-      year: year ?? 2000,
-      exam: contest === "AMC8" ? null : (exam ?? null)
-    },
-    {
-      enabled: searchReady
+    const title = String(formData.get("title") ?? "").trim();
+    const description = String(formData.get("description") ?? "").trim() || null;
+    const content = String(formData.get("content") ?? "").trim();
+    const attachment = formData.get("attachment");
+
+    if (!title) {
+      redirect("/resources?error=title-required");
     }
-  );
 
-  const updateSearch = (next: { contest?: string; year?: string; exam?: string }) => {
-    const params = new URLSearchParams(searchParams.toString());
+    const uploadedFile =
+      attachment instanceof File && attachment.size > 0
+        ? attachment
+        : null;
 
-    if (next.contest !== undefined) {
-      if (next.contest) {
-        params.set("contest", next.contest);
-      } else {
-        params.delete("contest");
+    if (!content && !uploadedFile) {
+      redirect("/resources?error=content-required");
+    }
+
+    if (uploadedFile && uploadedFile.size > 15 * 1024 * 1024) {
+      redirect("/resources?error=attachment-too-large");
+    }
+
+    const resource = await prisma.organizationResource.create({
+      data: {
+        organizationId: currentMembership.organizationId,
+        createdByUserId: currentSession.user.id,
+        title,
+        description,
+        content
+      },
+      select: {
+        id: true
       }
+    });
+
+    if (uploadedFile) {
+      const storage = getOrganizationResourceStorage();
+      const bytes = Buffer.from(await uploadedFile.arrayBuffer());
+      const stored = await storage.putFile(resource.id, uploadedFile.name, uploadedFile.type || "application/octet-stream", bytes);
+
+      await prisma.organizationResource.update({
+        where: {
+          id: resource.id
+        },
+        data: {
+          attachmentLocator: stored.locator,
+          attachmentFilename: uploadedFile.name,
+          attachmentMimeType: uploadedFile.type || "application/octet-stream",
+          attachmentSize: stored.size,
+          attachmentSha256: stored.sha256
+        }
+      });
     }
 
-    if (next.year !== undefined) {
-      if (next.year) {
-        params.set("year", next.year);
-      } else {
-        params.delete("year");
+    revalidatePath("/resources");
+    revalidatePath("/dashboard");
+    revalidatePath("/org");
+    redirect("/resources?created=1");
+  }
+
+  const [organization, resources] = await Promise.all([
+    prisma.organization.findUnique({
+      where: { id: membership.organizationId },
+      select: {
+        id: true,
+        name: true
       }
-    }
-
-    if (next.exam !== undefined) {
-      if (next.exam) {
-        params.set("exam", next.exam);
-      } else {
-        params.delete("exam");
+    }),
+    prisma.organizationResource.findMany({
+      where: {
+        organizationId: membership.organizationId
+      },
+      orderBy: [
+        { updatedAt: "desc" },
+        { createdAt: "desc" }
+      ],
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        content: true,
+        attachmentFilename: true,
+        attachmentMimeType: true,
+        attachmentSize: true,
+        createdAt: true,
+        updatedAt: true,
+        createdByUser: {
+          select: {
+            name: true,
+            email: true
+          }
+        }
       }
-    }
+    })
+  ]);
 
-    const query = params.toString();
-    router.push(query ? `${pathname}?${query}` : pathname);
-  };
+  if (!organization) {
+    redirect("/org");
+  }
+
+  const canManage = canManageOrganization(membership.role);
 
   return (
     <main className="motion-rise space-y-4">
       <section className="surface-card space-y-3">
-        <h1 className="text-2xl font-semibold text-slate-900">Resources</h1>
-        <p className="text-sm text-slate-600">
-          First 3 file downloads are free. Any additional file download requires membership.
-        </p>
-        {filtersQuery.data?.yearWindow ? (
-          <p className="text-xs text-slate-500">
-            Showing downloadable papers for {filtersQuery.data.yearWindow.yearFrom}-{filtersQuery.data.yearWindow.yearTo}.
-          </p>
-        ) : null}
-
-        <div className="rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">
-          <p>
-            Free tier: search any file, but only the first 3 downloads are free. After 3, new downloads are locked until membership is unlocked.
-          </p>
-          <Link href="/membership" className="mt-2 inline-flex text-sm font-semibold underline">
-            Membership (placeholder)
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="space-y-2">
+            <span className="badge">Organization Resources</span>
+            <h1 className="text-2xl font-semibold text-slate-900">{organization.name}</h1>
+            <p className="text-sm text-slate-600">
+              Internal study materials for this organization. Students can read them here; admins can publish and update them.
+            </p>
+          </div>
+          <Link href="/org" className="btn-secondary">
+            Back to Organization
           </Link>
         </div>
 
-        <div className="grid gap-3 md:grid-cols-4">
-          <label className="text-sm text-slate-700">
-            Contest
-            <select
-              className="input-field"
-              value={contest ?? ""}
-              onChange={(event) => {
-                const nextContest = event.target.value;
-                updateSearch({ contest: nextContest, exam: "" });
-              }}
-            >
-              <option value="">Select Contest</option>
-              {(filtersQuery.data?.contests ?? []).map((contestValue) => (
-                <option key={contestValue} value={contestValue}>
-                  {contestValue}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label className="text-sm text-slate-700">
-            Year
-            <select
-              className="input-field"
-              value={year ? String(year) : ""}
-              onChange={(event) => updateSearch({ year: event.target.value })}
-            >
-              <option value="">Select Year</option>
-              {yearOptions.map((yearValue) => (
-                <option key={yearValue} value={yearValue}>
-                  {yearValue}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label className="text-sm text-slate-700">
-            Exam
-            <select
-              className="input-field"
-              value={exam ?? ""}
-              onChange={(event) => updateSearch({ exam: event.target.value })}
-              disabled={!contest || contest === "AMC8"}
-            >
-              <option value="">{getExamPlaceholder(contest)}</option>
-              {examOptions.map((examValue) => (
-                <option key={examValue} value={examValue}>
-                  {examValue}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <div className="flex items-end">
-            <button
-              type="button"
-              className="btn-secondary w-full"
-              onClick={() => {
-                router.push(pathname);
-              }}
-            >
-              Reset
-            </button>
-          </div>
-        </div>
-
-        {!searchReady ? (
-          <p className="text-sm text-slate-600">
-            Select Contest and Year{isExamRequired(contest) ? ", then Exam, " : " "}
-            to load the file.
-          </p>
-        ) : null}
+        {created ? <p className="text-sm text-emerald-700">Resource published successfully.</p> : null}
+        {summarizeError(error) ? <p className="text-sm text-red-600">{summarizeError(error)}</p> : null}
       </section>
 
-      {searchReady && resourceQuery.isLoading ? (
-        <section className="surface-card">
-          <p className="text-sm text-slate-600">Loading file...</p>
+      {canManage ? (
+        <section className="surface-card space-y-4">
+          <div className="space-y-1">
+            <h2 className="text-lg font-semibold text-slate-900">Publish resource</h2>
+            <p className="text-sm text-slate-600">
+              Use this for lesson notes, study guides, links, or an attached worksheet/PDF. This is the minimal internal resource workflow for organization users.
+            </p>
+          </div>
+
+          <form action={createOrganizationResource} className="grid gap-3">
+            <label className="space-y-2 text-sm text-slate-700">
+              <span>Title</span>
+              <input name="title" className="input-field" type="text" placeholder="Example: AMC 10 Angle Chasing Notes" />
+            </label>
+            <label className="space-y-2 text-sm text-slate-700">
+              <span>Description</span>
+              <input
+                name="description"
+                className="input-field"
+                type="text"
+                placeholder="Short context for students"
+              />
+            </label>
+            <label className="space-y-2 text-sm text-slate-700">
+              <span>Content</span>
+              <textarea
+                name="content"
+                className="input-field min-h-48"
+                placeholder="Paste notes, links, lesson summaries, or assignment support materials here."
+              />
+            </label>
+            <label className="space-y-2 text-sm text-slate-700 md:max-w-md">
+              <span>Attachment</span>
+              <input name="attachment" className="input-field" type="file" />
+            </label>
+            <button type="submit" className="btn-primary w-fit">
+              Publish Resource
+            </button>
+          </form>
         </section>
       ) : null}
 
-      {searchReady && resourceQuery.error ? (
-        <section className="surface-card">
-          <p className="text-sm text-red-600">{resourceQuery.error.message}</p>
-        </section>
-      ) : null}
-
-      {resourceQuery.data?.status === "locked" ? (
-        <section className="surface-card space-y-3">
-          <h2 className="text-xl font-semibold text-slate-900">File Locked</h2>
-          <p className="text-sm text-slate-600">{resourceQuery.data.message}</p>
+      <section className="surface-card space-y-4">
+        <div className="space-y-1">
+          <h2 className="text-lg font-semibold text-slate-900">Published resources</h2>
           <p className="text-sm text-slate-600">
-            Free usage: {resourceQuery.data.access.used}/{resourceQuery.data.access.freeLimit}
+            {canManage
+              ? "Everything posted here is visible to students in this organization."
+              : "These materials are shared by your organization admins."}
           </p>
-          <Link href="/membership" className="btn-primary inline-flex">
-            Unlock Membership
-          </Link>
-        </section>
-      ) : null}
+        </div>
 
-      {resourceQuery.data?.status === "ok" ? (
-        <>
-          <section className="surface-card space-y-2">
-            <h2 className="text-xl font-semibold text-slate-900">{resourceQuery.data.file.title}</h2>
-            <p className="text-sm text-slate-600">
-              {resourceQuery.data.file.contest} {resourceQuery.data.file.year}
-              {resourceQuery.data.file.exam ? ` ${resourceQuery.data.file.exam}` : ""}
-            </p>
-            <p className="text-sm text-slate-600">
-              Free usage: {resourceQuery.data.access.isMember ? "Membership" : `${resourceQuery.data.access.used}/${resourceQuery.data.access.freeLimit}`}
-            </p>
-            {!resourceQuery.data.access.trackingAvailable ? (
-              <p className="text-xs text-amber-700">
-                Access tracking table not found yet. Run DB migration to enforce 3-file limit.
-              </p>
-            ) : null}
-            <div className="flex flex-wrap gap-2">
-              <a
-                href={buildResourcePdfDownloadUrl(resourceQuery.data.file.id, "problems")}
-                className="btn-primary inline-flex w-fit"
-              >
-                Download Problems PDF
-              </a>
-              <a
-                href={buildResourcePdfDownloadUrl(resourceQuery.data.file.id, "answers")}
-                className="btn-secondary inline-flex w-fit"
-              >
-                Download Answers PDF
-              </a>
+        <div className="space-y-3">
+          {resources.length > 0 ? (
+            resources.map((resource) => (
+              <article key={resource.id} className="rounded-3xl border border-slate-200 bg-slate-50/80 p-5 space-y-3">
+                <div className="space-y-1">
+                  <h3 className="text-lg font-semibold text-slate-900">{resource.title}</h3>
+                  {resource.description ? <p className="text-sm text-slate-600">{resource.description}</p> : null}
+                </div>
+                <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm leading-7 text-slate-700 whitespace-pre-wrap">
+                  {resource.content || "Attachment-only resource."}
+                </div>
+                {resource.attachmentFilename ? (
+                  <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3">
+                    <div className="space-y-1">
+                      <p className="text-sm font-medium text-slate-900">{resource.attachmentFilename}</p>
+                      <p className="text-xs text-slate-500">
+                        {resource.attachmentMimeType || "file"}{resource.attachmentSize ? ` · ${Math.ceil(resource.attachmentSize / 1024)} KB` : ""}
+                      </p>
+                    </div>
+                    <Link className="btn-secondary" href={`/api/org-resources/${resource.id}/download`}>
+                      Download
+                    </Link>
+                  </div>
+                ) : null}
+                <p className="text-xs text-slate-500">
+                  Published by {resource.createdByUser.name ?? resource.createdByUser.email} · updated {formatDate(resource.updatedAt)}
+                </p>
+              </article>
+            ))
+          ) : (
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+              No organization resources yet.
             </div>
-            <p className="text-sm text-slate-600">
-              Downloads are generated from stored problem text and cached locally.
-            </p>
-          </section>
-        </>
-      ) : null}
+          )}
+        </div>
+      </section>
     </main>
   );
 }

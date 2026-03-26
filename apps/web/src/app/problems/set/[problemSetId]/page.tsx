@@ -5,6 +5,15 @@ import { prisma } from "@arcmath/db";
 import { ProblemStatement } from "@/components/problem-statement";
 import { gradeAnswer } from "@/lib/answer-grading";
 import { authOptions } from "@/lib/auth";
+import { getActiveOrganizationMembership } from "@/lib/organizations";
+import {
+  getDiagnosticStageLabel,
+  getProblemSetModeLabel,
+  isDiagnosticSet,
+  isPerProblemMode,
+  isRealExamSet,
+  isWholeSetSubmitMode
+} from "@/lib/problem-set-modes";
 import { userCanAccessRealTutorProblemSet } from "@/lib/tutor-premium-access";
 import { getTutorUsableSetKind } from "@/lib/tutor-usable-sets";
 
@@ -34,6 +43,28 @@ function formatTopicLabel(topicKey: string | null): string | null {
     .join(" / ");
 }
 
+function normalizeChoiceOptions(choices: unknown): Array<{ label: string; text: string }> {
+  if (Array.isArray(choices)) {
+    return choices
+      .map((choice, index) => ({
+        label: String.fromCharCode(65 + index),
+        text: typeof choice === "string" ? choice : String(choice ?? "")
+      }))
+      .filter((choice) => choice.text.trim().length > 0);
+  }
+
+  if (choices && typeof choices === "object") {
+    return Object.entries(choices as Record<string, unknown>)
+      .map(([label, value]) => ({
+        label: label.trim().toUpperCase(),
+        text: typeof value === "string" ? value : String(value ?? "")
+      }))
+      .filter((choice) => /^[A-E]$/.test(choice.label) && choice.text.trim().length > 0);
+  }
+
+  return [];
+}
+
 export default async function PracticeSetPage({ params }: PracticeSetPageProps) {
   const { problemSetId } = await params;
   const session = await getServerSession(authOptions);
@@ -41,6 +72,8 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
   if (!session?.user) {
     redirect(`/login?callbackUrl=${encodeURIComponent(`/problems/set/${problemSetId}`)}`);
   }
+
+  const organizationMembership = await getActiveOrganizationMembership(prisma, session.user.id);
 
   const practiceSet = await prisma.problemSet.findUnique({
     where: {
@@ -52,6 +85,10 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
       contest: true,
       year: true,
       exam: true,
+      category: true,
+      diagnosticStage: true,
+      submissionMode: true,
+      tutorEnabled: true,
       sourceUrl: true,
       problems: {
         orderBy: {
@@ -67,6 +104,9 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
           choices: true,
           diagramImageUrl: true,
           diagramImageAlt: true,
+          choicesImageUrl: true,
+          choicesImageAlt: true,
+          sourceLabel: true,
           topicKey: true,
           difficultyBand: true
         }
@@ -86,7 +126,7 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
   const practiceSetData = practiceSet;
 
   if (
-    setKind === "real" &&
+    isRealExamSet(practiceSetData) &&
     !(await userCanAccessRealTutorProblemSet({
       prisma,
       user: session.user,
@@ -103,6 +143,7 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
           where: {
             userId: session.user.id,
             problemSetId: practiceSetData.id,
+            organizationId: organizationMembership?.organizationId ?? null,
             completedAt: null
           },
           orderBy: {
@@ -115,7 +156,8 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
         (await prisma.practiceRun.create({
           data: {
             userId: session.user.id,
-            problemSetId: practiceSetData.id
+            problemSetId: practiceSetData.id,
+            organizationId: organizationMembership?.organizationId ?? null
           },
           select: {
             id: true
@@ -126,7 +168,7 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
   async function submitDiagnosticRun(formData: FormData) {
     "use server";
 
-    if (setKind !== "seeded") {
+    if (!isWholeSetSubmitMode(practiceSetData)) {
       notFound();
     }
 
@@ -199,13 +241,18 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
     redirect(`/reports?runId=${encodeURIComponent(validatedRun.id)}`);
   }
 
-  if (setKind === "real") {
+  if (isPerProblemMode(practiceSetData)) {
     return (
       <main className="motion-rise space-y-4">
         <section className="surface-card space-y-3">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div className="space-y-2">
-              <span className="badge">Premium Real Set</span>
+              <div className="flex flex-wrap gap-2">
+                <span className="badge">{getProblemSetModeLabel(practiceSetData)}</span>
+                {practiceSetData.diagnosticStage ? (
+                  <span className="badge">{getDiagnosticStageLabel(practiceSetData.diagnosticStage)}</span>
+                ) : null}
+              </div>
               <h1 className="text-2xl font-semibold text-slate-900">{practiceSetData.title}</h1>
               <p className="text-sm text-slate-600">
                 {practiceSetData.contest} {practiceSetData.year}
@@ -254,7 +301,7 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
                       className="btn-primary"
                       href={`/problems/${encodeURIComponent(problem.id)}?runId=${encodeURIComponent(practiceRun.id)}`}
                     >
-                      Open Tutor
+                      {practiceSetData.tutorEnabled ? "Open Tutor" : "Open Problem"}
                     </Link>
                   ) : null}
                 </div>
@@ -271,14 +318,23 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
       <section className="surface-card space-y-3">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="space-y-2">
-            <span className="badge">Diagnostic Test</span>
+            <div className="flex flex-wrap gap-2">
+              <span className="badge">{getProblemSetModeLabel(practiceSetData)}</span>
+              {practiceSetData.diagnosticStage ? (
+                <span className="badge">{getDiagnosticStageLabel(practiceSetData.diagnosticStage)}</span>
+              ) : null}
+            </div>
             <h1 className="text-2xl font-semibold text-slate-900">{practiceSetData.title}</h1>
-            <p className="text-sm text-slate-600">{totalProblems} integer-answer problems. Work in any order and submit once at the end.</p>
+            <p className="text-sm text-slate-600">
+              {isDiagnosticSet(practiceSetData)
+                ? `${totalProblems} problems. Work in any order and submit once at the end.`
+                : `${practiceSetData.contest} ${practiceSetData.year}${practiceSetData.exam ? ` ${practiceSetData.exam}` : ""} · ${totalProblems} problems. Submit once at the end to score the full set.`}
+            </p>
           </div>
 
           <div className="flex flex-wrap gap-2">
             <Link className="btn-secondary" href="/problems">
-              Back to Tests
+              Back to Catalog
             </Link>
           </div>
         </div>
@@ -289,12 +345,18 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
           <div className="space-y-2">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="space-y-1">
-                <span className="badge">Full Test Mode</span>
+                <span className="badge">Whole-set submit</span>
                 <h2 className="text-lg font-semibold text-slate-900">{practiceSetData.title}</h2>
               </div>
-              <p className="text-sm text-slate-600">All questions are integer response in this diagnostic mode.</p>
+              <p className="text-sm text-slate-600">
+                {practiceSetData.tutorEnabled
+                  ? "Tutor is enabled for this set."
+                  : "Hints are disabled during whole-set mode. Answers are revealed only after submission."}
+              </p>
             </div>
-            <p className="text-sm text-slate-600">Enter an integer for each problem. Leave blank if you want the problem counted as unanswered.</p>
+            <p className="text-sm text-slate-600">
+              Enter an answer for each problem. Leave blank if you want the problem counted as unanswered.
+            </p>
           </div>
 
           <div className="flex flex-wrap gap-2">
@@ -317,7 +379,14 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
                 className="space-y-4 rounded-3xl border border-slate-200 bg-slate-50/70 p-5"
               >
                 <div className="space-y-2">
-                  <h3 className="text-base font-semibold text-slate-900">Problem {problem.number}</h3>
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <h3 className="text-base font-semibold text-slate-900">Problem {problem.number}</h3>
+                    {problem.sourceLabel ? (
+                      <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                        Source · {problem.sourceLabel}
+                      </span>
+                    ) : null}
+                  </div>
                   <div className="rounded-2xl border border-slate-200 bg-white p-4">
                     <ProblemStatement statement={problem.statement} statementFormat={problem.statementFormat} />
                   </div>
@@ -334,16 +403,50 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
                   </div>
                 ) : null}
 
-                <label className="block text-sm text-slate-700">
-                  Your Answer
-                  <input
-                    name={`answer:${problem.id}`}
-                    className="input-field"
-                    type="text"
-                    placeholder="Type an integer"
-                    autoComplete="off"
-                  />
-                </label>
+                {problem.choicesImageUrl ? (
+                  <div className="rounded-2xl border border-slate-200 bg-white p-4">
+                    <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">Choice diagram</p>
+                    <img
+                      src={problem.choicesImageUrl}
+                      alt={problem.choicesImageAlt ?? `Problem ${problem.number} answer choices`}
+                      className="mx-auto max-h-[24rem] w-auto max-w-full rounded-lg"
+                      loading="lazy"
+                    />
+                  </div>
+                ) : null}
+
+                {problem.answerFormat === "MULTIPLE_CHOICE" ? (
+                  <fieldset className="space-y-2">
+                    <legend className="text-sm font-medium text-slate-700">Select your answer</legend>
+                    <div className="space-y-2">
+                      {normalizeChoiceOptions(problem.choices).map((choice) => (
+                        <label
+                          key={`${problem.id}-${choice.label}`}
+                          className="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 bg-white p-3 text-sm"
+                        >
+                          <input type="radio" name={`answer:${problem.id}`} value={choice.label} />
+                          <span className="flex-1 space-y-1 text-slate-700">
+                            <span className="block font-semibold text-slate-500">{choice.label}.</span>
+                            {!problem.choicesImageUrl ? (
+                              <ProblemStatement statement={choice.text} statementFormat="MARKDOWN_LATEX" compact />
+                            ) : null}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+                ) : (
+                  <label className="block text-sm text-slate-700">
+                    Your Answer
+                    <input
+                      name={`answer:${problem.id}`}
+                      className="input-field"
+                      type="text"
+                      placeholder={problem.answerFormat === "INTEGER" ? "Type an integer" : "Type your answer"}
+                      autoComplete="off"
+                    />
+                  </label>
+                )}
               </article>
             ))}
           </div>

@@ -1,0 +1,567 @@
+{
+  "problemSet": {
+    "contest": "AMC12",
+    "year": 2019,
+    "exam": "A",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A",
+    "verifiedPdfUrl": "https://artofproblemsolving.com/community/contest/download/c3415_amc_12/2019"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "The area of a pizza with radius $4$ is $N$ percent larger than the area of a pizza with radius $3$ inches. What is the integer closest to $N$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "25",
+        "33",
+        "44",
+        "66",
+        "78"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Suppose $a$ is $150\\%$ of $b$ . What percent of $a$ is $3b$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "50",
+        "66+\\frac{2}{3}",
+        "150",
+        "200",
+        "450"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_2"
+    },
+    {
+      "number": 3,
+      "statement": "A box contains $28$ red balls, $20$ green balls, $19$ yellow balls, $13$ blue balls, $11$ white balls, and $9$ black balls. What is the minimum number of balls that must be drawn from the box without replacement to guarantee that at least $15$ balls of a single color will be drawn?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "75",
+        "76",
+        "79",
+        "84",
+        "91"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "techniqueTags": [
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_3"
+    },
+    {
+      "number": 4,
+      "statement": "What is the greatest number of consecutive integers whose sum is $45?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "9",
+        "25",
+        "45",
+        "90",
+        "120"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Two lines with slopes $\\dfrac{1}{2}$ and $2$ intersect at $(2,2)$ . What is the area of the triangle enclosed by these two lines and the line $x+y=10 ?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "4",
+        "4\\sqrt{2}",
+        "6",
+        "8",
+        "6\\sqrt{2}"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "geometry.coordinate_geometry",
+      "techniqueTags": [
+        "coordinate_modeling",
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_5"
+    },
+    {
+      "number": 6,
+      "statement": "The figure below shows line $\\ell$ with a regular, infinite, recurring pattern of squares and line segments. [asy] size(300); defaultpen(linewidth(0.8)); real r = 0.35; path P = (0,0)--(0,1)--(1,1)--(1,0), Q = (1,1)--(1+r,1+r); path Pp = (0,0)--(0,-1)--(1,-1)--(1,0), Qp = (-1,-1)--(-1-r,-1-r); for(int i=0;i <= 4;i=i+1) { draw(shift((4*i,0)) * P); draw(shift((4*i,0)) * Q); } for(int i=1;i <= 4;i=i+1) { draw(shift((4*i-2,0)) * Pp); draw(shift((4*i-1,0)) * Qp); } draw((-1,0)--(18.5,0)); [/asy] How many of the following four kinds of rigid motion transformations of the plane in which this figure is drawn, other than the identity transformation, will transform this figure into itself? some rotation around a point of line $\\ell$ some translation in the direction parallel to line $\\ell$ the reflection across line $\\ell$ some reflection across a line perpendicular to line $\\ell$",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/c/6/6/c66986a019a481aa0dad6c2a690111ffd5a52014.png",
+      "diagramImageAlt": "A repeating infinite pattern of alternating square-and-diagonal motifs arranged along a horizontal line l.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Melanie computes the mean $\\mu$ , the median $M$ , and the modes of the $365$ values that are the dates in the months of $2019$ . Thus her data consist of $12$ $1\\text{s}$ , $12$ $2\\text{s}$ , . . . , $12$ $28\\text{s}$ , $11$ $29\\text{s}$ , $11$ $30\\text{s}$ , and $7$ $31\\text{s}$ . Let $d$ be the median of the modes. Which of the following statements is true?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "µ < d < M",
+        "M < d < µ",
+        "d = M = µ",
+        "d < M < µ",
+        "d < µ < M"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards",
+        "modular_reasoning",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_7"
+    },
+    {
+      "number": 8,
+      "statement": "For a set of four distinct lines in a plane, there are exactly $N$ distinct points that lie on two or more of the lines. What is the sum of all possible values of $N$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "14",
+        "16",
+        "18",
+        "19",
+        "21"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_8"
+    },
+    {
+      "number": 9,
+      "statement": "A sequence of numbers is defined recursively by $a_1 = 1$ , $a_2 = \\frac{3}{7}$ , and \\[a_n=\\frac{a_{n-2} \\cdot a_{n-1}}{2a_{n-2} - a_{n-1}}\\] for all $n \\geq 3$ Then $a_{2019}$ can be written as $\\frac{p}{q}$ , where $p$ and $q$ are relatively prime positive integers. What is $p+q ?$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "2020",
+        "4039",
+        "6057",
+        "6061",
+        "8078"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_9"
+    },
+    {
+      "number": 10,
+      "statement": "The figure below shows $13$ circles of radius $1$ within a larger circle. All the intersections occur at points of tangency. What is the area of the region, shaded in the figure, inside the larger circle but outside all the circles of radius $1 ?$ [asy]unitsize(20);filldraw(circle((0,0),2*sqrt(3)+1),rgb(0.5,0.5,0.5));filldraw(circle((-2,0),1),white);filldraw(circle((0,0),1),white);filldraw(circle((2,0),1),white);filldraw(circle((1,sqrt(3)),1),white);filldraw(circle((3,sqrt(3)),1),white);filldraw(circle((-1,sqrt(3)),1),white);filldraw(circle((-3,sqrt(3)),1),white);filldraw(circle((1,-1*sqrt(3)),1),white);filldraw(circle((3,-1*sqrt(3)),1),white);filldraw(circle((-1,-1*sqrt(3)),1),white);filldraw(circle((-3,-1*sqrt(3)),1),white);filldraw(circle((0,2*sqrt(3)),1),white);filldraw(circle((0,-2*sqrt(3)),1),white);[/asy]",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/f/c/4/fc485e1337895925d85375cce1a9d3908ca8b7e3.png",
+      "diagramImageAlt": "Thirteen unit circles packed inside a larger circle, with the shaded region outside the small circles and inside the large circle.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "4\\pi\\sqrt{3}",
+        "7\\pi",
+        "\\pi(3\\sqrt{3}+2)",
+        "10\\pi(\\sqrt{3}-1)",
+        "\\pi(\\sqrt{3}+6)"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_10"
+    },
+    {
+      "number": 11,
+      "statement": "For some positive integer $k$ , the repeating base- $k$ representation of the (base-ten) fraction $\\frac{7}{51}$ is $0.\\overline{23}_k = 0.232323..._k$ . What is $k$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "13",
+        "14",
+        "15",
+        "16",
+        "17"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Positive real numbers $x \\neq 1$ and $y \\neq 1$ satisfy $\\log_2{x} = \\log_y{16}$ and $xy = 64$ . What is $(\\log_2{\\tfrac{x}{y}})^2$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "\\frac{25}{2}",
+        "20",
+        "\\frac{45}{2}",
+        "25",
+        "32"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_12"
+    },
+    {
+      "number": 13,
+      "statement": "How many ways are there to paint each of the integers $2, 3, \\cdots , 9$ either red, green, or blue so that each number has a different color from each of its proper divisors?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "144",
+        "216",
+        "256",
+        "384",
+        "432"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_13"
+    },
+    {
+      "number": 14,
+      "statement": "For a certain complex number $c$ , the polynomial \\[P(x) = (x^2 - 2x + 2)(x^2 - cx + 4)(x^2 - 4x + 8)\\] has exactly 4 distinct roots. What is $|c|$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "2",
+        "6",
+        "2 2",
+        "3",
+        "10"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "algebra.general",
+      "techniqueTags": [
+        "algebra_setup",
+        "equation_solving"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Positive real numbers $a$ and $b$ have the property that \\[\\sqrt{\\log{a}} + \\sqrt{\\log{b}} + \\log \\sqrt{a} + \\log \\sqrt{b} = 100\\] and all four terms on the left are positive integers, where log denotes the base 10 logarithm. What is $ab$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "10",
+        "10",
+        "10",
+        "10",
+        "10"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_15"
+    },
+    {
+      "number": 16,
+      "statement": "The numbers $1,2,\\dots,9$ are randomly placed into the $9$ squares of a $3 \\times 3$ grid. Each square gets one number, and each of the numbers is used once. What is the probability that the sum of the numbers in each row and each column is odd?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "1/21",
+        "1/14",
+        "5/63",
+        "2/21",
+        "1/7"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup",
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_16"
+    },
+    {
+      "number": 17,
+      "statement": "Let $s_k$ denote the sum of the $\\textit{k}$ th powers of the roots of the polynomial $x^3-5x^2+8x-13$ . In particular, $s_0=3$ , $s_1=5$ , and $s_2=9$ . Let $a$ , $b$ , and $c$ be real numbers such that $s_{k+1} = a \\, s_k + b \\, s_{k-1} + c \\, s_{k-2}$ for $k = 2$ , $3$ , $....$ What is $a+b+c$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "−6",
+        "0",
+        "6",
+        "10",
+        "26"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "algebra.general",
+      "techniqueTags": [
+        "algebra_setup",
+        "equation_solving"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_17"
+    },
+    {
+      "number": 18,
+      "statement": "A sphere with center $O$ has radius $6$ . A triangle with sides of length $15, 15,$ and $24$ is situated in space so that each of its sides is tangent to the sphere. What is the distance between $O$ and the plane determined by the triangle?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "2 3",
+        "4",
+        "3 2",
+        "2 5",
+        "5"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_18"
+    },
+    {
+      "number": 19,
+      "statement": "In $\\triangle ABC$ with integer side lengths, $\\cos A = \\frac{11}{16}$ , $\\cos B = \\frac{7}{8}$ , and $\\cos C = -\\frac{1}{4}$ . What is the least possible perimeter for $\\triangle ABC$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "9",
+        "12",
+        "23",
+        "27",
+        "44"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "trigonometry.general",
+      "techniqueTags": [
+        "trigonometric_modeling",
+        "diagram_reading",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_19"
+    },
+    {
+      "number": 20,
+      "statement": "Real numbers between 0 and 1, inclusive, are chosen in the following manner. A fair coin is flipped. If it lands heads, then it is flipped again and the chosen number is 0 if the second flip is heads, and 1 if the second flip is tails. On the other hand, if the first coin flip is tails, then the number is chosen uniformly at random from the closed interval $[0,1]$ . Two random numbers $x$ and $y$ are chosen independently in this manner. What is the probability that $|x-y| > \\tfrac{1}{2}$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "\\frac{1}{3}",
+        "\\frac{7}{16}",
+        "\\frac{1}{2}",
+        "\\frac{9}{16}",
+        "\\frac{2}{3}"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_20"
+    },
+    {
+      "number": 21,
+      "statement": "Let \\[z=\\frac{1+i}{\\sqrt{2}}.\\] What is \\[\\left(z^{1^2}+z^{2^2}+z^{3^2}+\\dots+z^{{12}^2}\\right) \\cdot \\left(\\frac{1}{z^{1^2}}+\\frac{1}{z^{2^2}}+\\frac{1}{z^{3^2}}+\\dots+\\frac{1}{z^{{12}^2}}\\right)?\\]",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "18",
+        "72-36\\sqrt{2}",
+        "36",
+        "72",
+        "72+36\\sqrt{2}"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_21"
+    },
+    {
+      "number": 22,
+      "statement": "Circles $\\omega$ and $\\gamma$ , both centered at $O$ , have radii $20$ and $17$ , respectively. Equilateral triangle $ABC$ , whose interior lies in the interior of $\\omega$ but in the exterior of $\\gamma$ , has vertex $A$ on $\\omega$ , and the line containing side $\\overline{BC}$ is tangent to $\\gamma$ . Segments $\\overline{AO}$ and $\\overline{BC}$ intersect at $P$ , and $\\dfrac{BP}{CP} = 3$ . Then $AB$ can be written in the form $\\dfrac{m}{\\sqrt{n}} - \\dfrac{p}{\\sqrt{q}}$ for positive integers $m$ , $n$ , $p$ , $q$ with $\\text{gcd}(m,n) = \\text{gcd}(p,q) = 1$ . What is $m+n+p+q$ ? $\\phantom{}$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "42",
+        "86",
+        "92",
+        "114",
+        "130"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Define binary operations $\\diamondsuit$ and $\\heartsuit$ by \\[a \\, \\diamondsuit \\, b = a^{\\log_{7}(b)} \\qquad \\text{and} \\qquad a \\, \\heartsuit \\, b = a^{\\frac{1}{\\log_{7}(b)}}\\] for all real numbers $a$ and $b$ for which these expressions are defined. The sequence $(a_n)$ is defined recursively by $a_3 = 3\\, \\heartsuit\\, 2$ and \\[a_n = (n\\, \\heartsuit\\, (n-1)) \\,\\diamondsuit\\, a_{n-1}\\] for all integers $n \\geq 4$ . To the nearest integer, what is $\\log_{7}(a_{2019})$ ?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "equation_solving"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_23"
+    },
+    {
+      "number": 24,
+      "statement": "For how many integers $n$ between $1$ and $50$ , inclusive, is \\[\\frac{(n^2-1)!}{(n!)^n}\\] an integer? (Recall that $0! = 1$ .)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "31",
+        "32",
+        "33",
+        "34",
+        "35"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Let $\\triangle A_0B_0C_0$ be a triangle whose angle measures are exactly $59.999^\\circ$ , $60^\\circ$ , and $60.001^\\circ$ . For each positive integer $n$ , define $A_n$ to be the foot of the altitude from $A_{n-1}$ to line $B_{n-1}C_{n-1}$ . Likewise, define $B_n$ to be the foot of the altitude from $B_{n-1}$ to line $A_{n-1}C_{n-1}$ , and $C_n$ to be the foot of the altitude from $C_{n-1}$ to line $A_{n-1}B_{n-1}$ . What is the least positive integer $n$ for which $\\triangle A_nB_nC_n$ is obtuse?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "10",
+        "11",
+        "13",
+        "14",
+        "15"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC12",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2019_AMC_12A_Problems%2FProblem_25"
+    }
+  ]
+}

@@ -74,9 +74,6 @@ export default async function MembershipPage({ searchParams }: MembershipPagePro
               <Link href="/problems" className="btn-primary">
                 Open Problem Catalog
               </Link>
-              <Link href="/tutoring" className="btn-secondary">
-                Open Tutoring
-              </Link>
             </div>
           ) : (
             <form action={unlockPremiumAccess}>
@@ -89,34 +86,17 @@ export default async function MembershipPage({ searchParams }: MembershipPagePro
 
         <div className="surface-card space-y-4">
           <div className="space-y-2">
-            <h2 className="text-xl font-semibold text-slate-900">Tutor Coaching</h2>
+            <h2 className="text-xl font-semibold text-slate-900">What premium unlocks</h2>
             <p className="text-sm text-slate-600">
-              Small-group or 1v1 coaching can follow the weak topics from the student&apos;s diagnostic and practice reports.
+              This unlock is currently focused on reviewed real contest practice. Institution-side assignments and resources now live inside each organization workspace instead of a separate tutoring surface.
             </p>
           </div>
 
-          <div className="rounded-3xl border border-slate-200 bg-[linear-gradient(135deg,rgba(30,102,245,0.08),rgba(17,167,161,0.08))] p-5">
-            <div className="flex items-center gap-4">
-              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--accent),var(--accent-secondary))] text-2xl font-bold text-white shadow-[0_18px_32px_rgba(30,102,245,0.25)]">
-                TM
-              </div>
-              <div className="space-y-1">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Virtual tutor preview</p>
-                <h3 className="text-lg font-semibold text-slate-900">Tutor Mira</h3>
-                <p className="text-sm text-slate-600">Diagnostic-guided small-group coaching placeholder</p>
-              </div>
-            </div>
-          </div>
-
           <ul className="space-y-2 text-sm text-slate-700">
-            <li className="rounded-2xl border border-slate-200 bg-slate-50 p-3">Review weak topics from the student&apos;s report</li>
-            <li className="rounded-2xl border border-slate-200 bg-slate-50 p-3">Group students by exam track and weak-topic profile</li>
-            <li className="rounded-2xl border border-slate-200 bg-slate-50 p-3">Deliver targeted walkthroughs before more practice</li>
+            <li className="rounded-2xl border border-slate-200 bg-slate-50 p-3">Reviewed AMC and AIME real contest sets</li>
+            <li className="rounded-2xl border border-slate-200 bg-slate-50 p-3">The existing hint tutor on premium real problems</li>
+            <li className="rounded-2xl border border-slate-200 bg-slate-50 p-3">A clean upgrade path from diagnostics into harder practice</li>
           </ul>
-
-          <Link href="/tutoring" className="btn-secondary inline-flex">
-            View Tutoring Page
-          </Link>
         </div>
       </section>
     </main>

@@ -1,0 +1,244 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 2015,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AIME_I",
+    "verifiedPdfUrl": "https://artofproblemsolving.com/community/contest/download/c3418_aime_i/2015"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "The expressions $A$ = $1 \\times 2 + 3 \\times 4 + 5 \\times 6 + \\cdots + 37 \\times 38 + 39$ and $B$ = $1 + 2 \\times 3 + 4 \\times 5 + \\cdots + 36 \\times 37 + 38 \\times 39$ are obtained by writing multiplication and addition operators in an alternating pattern between successive integers. Find the positive difference between integers $A$ and $B$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "722",
+      "answerFormat": "INTEGER",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "modular_reasoning",
+        "equation_solving"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AIME_I_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "The nine delegates to the Economic Cooperation Conference include $2$ officials from Mexico, $3$ officials from Canada, and $4$ officials from the United States. During the opening session, three of the delegates fall asleep. Assuming that the three sleepers were determined randomly, the probability that exactly two of the sleepers are from the same country is $\\frac{m}{n}$ , where $m$ and $n$ are relatively prime positive integers. Find $m+n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "139",
+      "answerFormat": "INTEGER",
+      "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup",
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AIME_I_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "There is a prime number $p$ such that $16p+1$ is the cube of a positive integer. Find $p$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "307",
+      "answerFormat": "INTEGER",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading",
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AIME_I_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Point $B$ lies on line segment $\\overline{AC}$ with $AB=16$ and $BC=4$ . Points $D$ and $E$ lie on the same side of line $AC$ forming equilateral triangles $\\triangle ABD$ and $\\triangle BCE$ . Let $M$ be the midpoint of $\\overline{AE}$ , and $N$ be the midpoint of $\\overline{CD}$ . The area of $\\triangle BMN$ is $x$ . Find $x^2$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "507",
+      "answerFormat": "INTEGER",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AIME_I_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "In a drawer Sandy has $5$ pairs of socks, each pair a different color. On Monday Sandy selects two individual socks at random from the $10$ socks in the drawer. On Tuesday Sandy selects $2$ of the remaining $8$ socks at random and on Wednesday two of the remaining $6$ socks at random. The probability that Wednesday is the first day Sandy selects matching socks is $\\frac{m}{n}$ , where $m$ and $n$ are relatively prime positive integers, Find $m+n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "341",
+      "answerFormat": "INTEGER",
+      "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup",
+        "casework",
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AIME_I_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Point $A,B,C,D,$ and $E$ are equally spaced on a minor arc of a circle. Points $E,F,G,H,I$ and $A$ are equally spaced on a minor arc of a second circle with center $C$ as shown in the figure below. The angle $\\angle ABD$ exceeds $\\angle AHG$ by $12^\\circ$ . Find the degree measure of $\\angle BAG$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "58",
+      "answerFormat": "INTEGER",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AIME_I_Problems/Problem_6",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/5/5/9/5590bc90f068d76cce0399a7cf16b9bcf4f72c94.png",
+      "diagramImageAlt": "Two arcs from different circles sharing point C; points A through E equally spaced on one arc and E through I and A equally spaced on the second arc centered at C."
+    },
+    {
+      "number": 7,
+      "statement": "In the diagram below, $ABCD$ is a square. Point $E$ is the midpoint of $\\overline{AD}$ . Points $F$ and $G$ lie on $\\overline{CE}$ , and $H$ and $J$ lie on $\\overline{AB}$ and $\\overline{BC}$ , respectively, so that $FGHJ$ is a square. Points $K$ and $L$ lie on $\\overline{GH}$ , and $M$ and $N$ lie on $\\overline{AD}$ and $\\overline{AB}$ , respectively, so that $KLMN$ is a square. The area of $KLMN$ is 99. Find the area of $FGHJ$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "539",
+      "answerFormat": "INTEGER",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AIME_I_Problems/Problem_7",
+      "diagramImageUrl": "https://latex.artofproblemsolving.com/c/b/7/cb77adf6816bc8562daba9760fa320a553ddd4c3.png",
+      "diagramImageAlt": "Square ABCD with midpoint E on AD; nested squares FGHJ and KLMN constructed from segments on CE, AB, BC, and GH."
+    },
+    {
+      "number": 8,
+      "statement": "For positive integer $n$ , let $s(n)$ denote the sum of the digits of $n$ . Find the smallest positive integer satisfying $s(n) = s(n+864) = 20$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "695",
+      "answerFormat": "INTEGER",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "modular_reasoning",
+        "optimization"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AIME_I_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Let $S$ be the set of all ordered triple of integers $(a_1,a_2,a_3)$ with $1 \\le a_1,a_2,a_3 \\le 10$ . Each ordered triple in $S$ generates a sequence according to the rule $a_n=a_{n-1}\\cdot | a_{n-2}-a_{n-3} |$ for all $n\\ge 4$ . Find the number of such sequences for which $a_n=0$ for some $n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "494",
+      "answerFormat": "INTEGER",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "modular_reasoning"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AIME_I_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Let $f(x)$ be a third-degree polynomial with real coefficients satisfying \\[|f(1)|=|f(2)|=|f(3)|=|f(5)|=|f(6)|=|f(7)|=12.\\] Find $|f(0)|$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "72",
+      "answerFormat": "INTEGER",
+      "topicKey": "algebra.general",
+      "techniqueTags": [
+        "algebra_setup",
+        "equation_solving"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AIME_I_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Triangle $ABC$ has positive integer side lengths with $AB=AC$ . Let $I$ be the intersection of the bisectors of $\\angle B$ and $\\angle C$ . Suppose $BI=8$ . Find the smallest possible perimeter of $\\triangle ABC$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "108",
+      "answerFormat": "INTEGER",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading",
+        "optimization"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AIME_I_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "Consider all 1000-element subsets of the set $\\{1, 2, 3, ... , 2015\\}$ . From each such subset choose the least element. The arithmetic mean of all of these least elements is $\\frac{p}{q}$ , where $p$ and $q$ are relatively prime positive integers. Find $p + q$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "431",
+      "answerFormat": "INTEGER",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "optimization",
+        "divisibility_reasoning",
+        "estimation"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AIME_I_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "With all angles measured in degrees, the product $\\prod_{k=1}^{45} \\csc^2(2k-1)^\\circ=m^n$ , where $m$ and $n$ are integers greater than 1. Find $m+n$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "91",
+      "answerFormat": "INTEGER",
+      "topicKey": "trigonometry.general",
+      "techniqueTags": [
+        "trigonometric_modeling",
+        "diagram_reading"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AIME_I_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "For each integer $n \\ge 2$ , let $A(n)$ be the area of the region in the coordinate plane defined by the inequalities $1\\le x \\le n$ and $0\\le y \\le x \\left\\lfloor \\sqrt x \\right\\rfloor$ , where $\\left\\lfloor \\sqrt x \\right\\rfloor$ is the greatest integer not exceeding $\\sqrt x$ . Find the number of values of $n$ with $2\\le n \\le 1000$ for which $A(n)$ is an integer.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "483",
+      "answerFormat": "INTEGER",
+      "topicKey": "geometry.coordinate_geometry",
+      "techniqueTags": [
+        "coordinate_modeling",
+        "diagram_reading",
+        "optimization"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AIME_I_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "A block of wood has the shape of a right circular cylinder with radius $6$ and height $8$ , and its entire surface has been painted blue. Points $A$ and $B$ are chosen on the edge of one of the circular faces of the cylinder so that $\\overarc{AB}$ on that face measures $120^\\circ$ . The block is then sliced in half along the plane that passes through point $A$ , point $B$ , and the center of the cylinder, revealing a flat, unpainted face on each half. The area of one of these unpainted faces is $a\\cdot\\pi + b\\sqrt{c}$ , where $a$ , $b$ , and $c$ are integers and $c$ is not divisible by the square of any prime. Find $a+b+c$ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "53",
+      "answerFormat": "INTEGER",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading",
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2015_AIME_I_Problems/Problem_15"
+    }
+  ]
+}

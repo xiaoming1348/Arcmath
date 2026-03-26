@@ -1,19 +1,25 @@
-import type { Contest } from "@arcmath/db";
+import type { Contest, ProblemSetCategory, ProblemSetSubmissionMode } from "@arcmath/db";
 import { getRealTutorRolloutEntries } from "@/lib/real-tutor-rollout";
 
 export const HINT_TUTOR_SEED_SOURCE_URL = "local://seed/diagnostic-test";
 
-const REAL_TUTOR_USABLE_SET_KEYS = getRealTutorRolloutEntries("live");
+const LIVE_REAL_EXAM_KEYS = getRealTutorRolloutEntries("live");
 
 type ProblemSetIdentity = {
   contest?: Contest;
   year?: number;
   exam?: string | null;
   sourceUrl: string | null;
+  category: ProblemSetCategory;
+  submissionMode: ProblemSetSubmissionMode;
+  tutorEnabled: boolean;
 };
 
 export type TutorUsableProblemSetWhere = {
+  category?: ProblemSetCategory;
   sourceUrl?: string;
+  tutorEnabled?: boolean;
+  submissionMode?: ProblemSetSubmissionMode;
   OR?: Array<{
     contest: Contest;
     year: number;
@@ -21,20 +27,25 @@ export type TutorUsableProblemSetWhere = {
   }>;
 };
 
-export function getTutorUsableSetKind(set: ProblemSetIdentity): "seeded" | "real" | null {
-  if (set.sourceUrl === HINT_TUTOR_SEED_SOURCE_URL) {
-    return "seeded";
+export function getTutorUsableSetKind(set: ProblemSetIdentity): "diagnostic" | "real_exam" | "topic_practice" | null {
+  if (set.category === "DIAGNOSTIC" && set.sourceUrl === HINT_TUTOR_SEED_SOURCE_URL) {
+    return "diagnostic";
   }
 
   if (
-    REAL_TUTOR_USABLE_SET_KEYS.some(
+    set.category === "REAL_EXAM" &&
+    LIVE_REAL_EXAM_KEYS.some(
       (candidate) =>
         candidate.contest === set.contest &&
         candidate.year === set.year &&
         candidate.exam === (set.exam ?? null)
     )
   ) {
-    return "real";
+    return "real_exam";
+  }
+
+  if (set.category === "TOPIC_PRACTICE") {
+    return "topic_practice";
   }
 
   return null;
@@ -44,18 +55,30 @@ export function isTutorUsableProblemSet(set: ProblemSetIdentity): boolean {
   return getTutorUsableSetKind(set) !== null;
 }
 
-export function buildTutorUsableProblemSetWhere(): TutorUsableProblemSetWhere {
+export function buildDiagnosticProblemSetWhere(): TutorUsableProblemSetWhere {
   return {
-    sourceUrl: HINT_TUTOR_SEED_SOURCE_URL
+    category: "DIAGNOSTIC",
+    sourceUrl: HINT_TUTOR_SEED_SOURCE_URL,
+    submissionMode: "WHOLE_SET_SUBMIT",
+    tutorEnabled: false
   };
 }
 
-export function buildRealTutorUsableProblemSetWhere(): TutorUsableProblemSetWhere {
+export function buildRealExamProblemSetWhere(): TutorUsableProblemSetWhere {
   return {
-    OR: REAL_TUTOR_USABLE_SET_KEYS.map((candidate) => ({
+    category: "REAL_EXAM",
+    OR: LIVE_REAL_EXAM_KEYS.map((candidate) => ({
       contest: candidate.contest,
       year: candidate.year,
       exam: candidate.exam
     }))
+  };
+}
+
+export function buildTopicPracticeProblemSetWhere(): TutorUsableProblemSetWhere {
+  return {
+    category: "TOPIC_PRACTICE",
+    submissionMode: "PER_PROBLEM",
+    tutorEnabled: true
   };
 }

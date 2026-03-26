@@ -2,9 +2,11 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@arcmath/db";
+import { AnswerWorkspace } from "@/components/answer-workspace";
 import { HintTutorPanel } from "@/components/hint-tutor-panel";
 import { ProblemStatement } from "@/components/problem-statement";
 import { authOptions } from "@/lib/auth";
+import { isPerProblemMode } from "@/lib/problem-set-modes";
 import { userCanAccessRealTutorProblemSet } from "@/lib/tutor-premium-access";
 import { getTutorUsableSetKind } from "@/lib/tutor-usable-sets";
 
@@ -82,6 +84,9 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
           contest: true,
           year: true,
           exam: true,
+          category: true,
+          submissionMode: true,
+          tutorEnabled: true,
           sourceUrl: true,
           problems: {
             orderBy: {
@@ -106,13 +111,14 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
     notFound();
   }
 
-  if (setKind === "seeded") {
+  if (!isPerProblemMode(problem.problemSet)) {
     redirect(
       `/problems/set/${encodeURIComponent(problem.problemSet.id)}${runId ? `?runId=${encodeURIComponent(runId)}` : ""}#problem-${problem.number}`
     );
   }
 
   if (
+    setKind === "real_exam" &&
     !(await userCanAccessRealTutorProblemSet({
       prisma,
       user: session.user,
@@ -188,53 +194,48 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
         </div>
       </section>
 
-      <section className="surface-card space-y-4">
-        <div className="rounded-2xl border border-slate-200 bg-white p-4">
-          <ProblemStatement statement={problem.statement} statementFormat={problem.statementFormat} />
+      <section className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_24rem]">
+        <div className="surface-card space-y-4">
+          <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-5">
+            <ProblemStatement statement={problem.statement} statementFormat={problem.statementFormat} />
+          </div>
+
+          {problem.diagramImageUrl ? (
+            <div className="rounded-2xl border border-slate-200 bg-white p-4">
+              <img
+                src={problem.diagramImageUrl}
+                alt={problem.diagramImageAlt ?? `Problem ${problem.number} diagram`}
+                className="mx-auto max-h-[30rem] w-auto max-w-full rounded-lg"
+                loading="lazy"
+              />
+            </div>
+          ) : null}
+
+          {problem.choicesImageUrl ? (
+            <div className="rounded-2xl border border-slate-200 bg-white p-4">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">Choice diagram</p>
+              <img
+                src={problem.choicesImageUrl}
+                alt={problem.choicesImageAlt ?? `Problem ${problem.number} answer choices`}
+                className="mx-auto max-h-[24rem] w-auto max-w-full rounded-lg"
+                loading="lazy"
+              />
+            </div>
+          ) : null}
+
+          <AnswerWorkspace
+            problemId={problem.id}
+            practiceRunId={practiceRunId}
+            answerFormat={problem.answerFormat}
+            choiceOptions={choiceOptions}
+            showChoiceText={!problem.choicesImageUrl}
+          />
         </div>
 
-        {problem.diagramImageUrl ? (
-          <div className="rounded-2xl border border-slate-200 bg-white p-4">
-            <img
-              src={problem.diagramImageUrl}
-              alt={problem.diagramImageAlt ?? `Problem ${problem.number} diagram`}
-              className="mx-auto max-h-[28rem] w-auto max-w-full rounded-lg"
-              loading="lazy"
-            />
-          </div>
-        ) : null}
-
-        {problem.choicesImageUrl ? (
-          <div className="rounded-2xl border border-slate-200 bg-white p-4">
-            <img
-              src={problem.choicesImageUrl}
-              alt={problem.choicesImageAlt ?? `Problem ${problem.number} answer choices`}
-              className="mx-auto max-h-[24rem] w-auto max-w-full rounded-lg"
-              loading="lazy"
-            />
-          </div>
-        ) : null}
-
-        {problem.answerFormat === "MULTIPLE_CHOICE" && choiceOptions.length > 0 ? (
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Choices</p>
-            <div className="mt-3 space-y-2 text-sm text-slate-700">
-              {choiceOptions.map((choice) => (
-                <div key={`${choice.label}-${choice.text}`} className="rounded-xl border border-slate-200 bg-white p-3">
-                  <span className="font-semibold text-slate-500">{choice.label}.</span> {choice.text}
-                </div>
-              ))}
-            </div>
-          </div>
-        ) : null}
+        <div className="xl:sticky xl:top-6 xl:self-start">
+          <HintTutorPanel problemId={problem.id} practiceRunId={practiceRunId} />
+        </div>
       </section>
-
-      <HintTutorPanel
-        problemId={problem.id}
-        practiceRunId={practiceRunId}
-        answerFormat={problem.answerFormat}
-        choiceOptions={choiceOptions}
-      />
     </main>
   );
 }

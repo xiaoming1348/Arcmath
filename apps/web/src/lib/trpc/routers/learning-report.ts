@@ -3,8 +3,9 @@ import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { protectedProcedure, router } from "@/lib/trpc/server";
 import {
-  buildRealTutorUsableProblemSetWhere,
-  buildTutorUsableProblemSetWhere,
+  buildDiagnosticProblemSetWhere,
+  buildRealExamProblemSetWhere,
+  buildTopicPracticeProblemSetWhere,
   getTutorUsableSetKind
 } from "@/lib/tutor-usable-sets";
 
@@ -45,6 +46,7 @@ function buildReportScope(
   practiceRun:
     | {
         id: string;
+        organizationId: string | null;
         problemSetId: string;
         completedAt: Date | null;
         problemSet: {
@@ -52,6 +54,9 @@ function buildReportScope(
           contest: Contest;
           year: number;
           exam: string | null;
+          category: "DIAGNOSTIC" | "REAL_EXAM" | "TOPIC_PRACTICE";
+          submissionMode: "WHOLE_SET_SUBMIT" | "PER_PROBLEM";
+          tutorEnabled: boolean;
           sourceUrl: string | null;
         };
       }
@@ -61,6 +66,7 @@ function buildReportScope(
     return {
       type: "recent" as const,
       practiceRunId: null,
+      organizationId: null,
       problemSetId: null,
       problemSetTitle: null,
       problemSetLabel: null,
@@ -72,19 +78,23 @@ function buildReportScope(
   return {
     type: "practice-run" as const,
     practiceRunId: practiceRun.id,
+    organizationId: practiceRun.organizationId,
     problemSetId: practiceRun.problemSetId,
     problemSetTitle: practiceRun.problemSet.title,
     problemSetLabel:
-      practiceRun.problemSet.sourceUrl === "local://seed/diagnostic-test"
+      practiceRun.problemSet.category === "DIAGNOSTIC"
         ? null
         : `${practiceRun.problemSet.contest} ${practiceRun.problemSet.year}${practiceRun.problemSet.exam ? ` ${practiceRun.problemSet.exam}` : ""}`,
     completedAt: practiceRun.completedAt ? toIsoString(practiceRun.completedAt) : null,
-    isDiagnostic: practiceRun.problemSet.sourceUrl === "local://seed/diagnostic-test"
+    isDiagnostic: practiceRun.problemSet.category === "DIAGNOSTIC"
   };
 }
 
 function buildRecommendedProblemQuery(params: {
-  problemSetWhere: ReturnType<typeof buildTutorUsableProblemSetWhere>;
+  problemSetWhere:
+    | ReturnType<typeof buildDiagnosticProblemSetWhere>
+    | ReturnType<typeof buildRealExamProblemSetWhere>
+    | ReturnType<typeof buildTopicPracticeProblemSetWhere>;
   topicKey?: string | null;
   preferEasy?: boolean;
   excludedProblemIds: string[];
@@ -126,6 +136,7 @@ export const learningReportRouter = router({
             },
             select: {
               id: true,
+              organizationId: true,
               problemSetId: true,
               completedAt: true,
               problemSet: {
@@ -134,6 +145,9 @@ export const learningReportRouter = router({
                   contest: true,
                   year: true,
                   exam: true,
+                  category: true,
+                  submissionMode: true,
+                  tutorEnabled: true,
                   sourceUrl: true
                 }
               }
@@ -343,10 +357,10 @@ export const learningReportRouter = router({
       const secondaryTopic = reinforcementTopics[1] ?? null;
       const excludedProblemIds = Array.from(attemptedProblemIds);
       const preferredProblemSetWhere =
-        practiceRun && getTutorUsableSetKind(practiceRun.problemSet) === "real"
-          ? buildRealTutorUsableProblemSetWhere()
-          : buildTutorUsableProblemSetWhere();
-      const fallbackProblemSetWhere = buildTutorUsableProblemSetWhere();
+        practiceRun && getTutorUsableSetKind(practiceRun.problemSet) === "real_exam"
+          ? buildRealExamProblemSetWhere()
+          : buildTopicPracticeProblemSetWhere();
+      const fallbackProblemSetWhere = buildTopicPracticeProblemSetWhere();
 
       const candidateBatches = await Promise.all([
         ctx.prisma.problem.findMany(

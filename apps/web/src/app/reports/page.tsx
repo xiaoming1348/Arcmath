@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { unstable_noStore as noStore } from "next/cache";
 import { redirect } from "next/navigation";
-import { prisma } from "@arcmath/db";
+import { Prisma, prisma } from "@arcmath/db";
 import { authOptions } from "@/lib/auth";
 import { generateLearningReport } from "@/lib/ai/learning-report";
 import { appRouter } from "@/lib/trpc/router";
@@ -80,6 +80,26 @@ export default async function ReportsPage({ searchParams }: ReportsPageProps) {
 
   const report = await generateLearningReport(reportInput);
 
+  if (runId && reportInput.reportScope.type === "practice-run") {
+    await prisma.learningReportSnapshot.upsert({
+      where: {
+        practiceRunId: runId
+      },
+      create: {
+        practiceRunId: runId,
+        organizationId: reportInput.reportScope.organizationId,
+        userId: session.user.id,
+        reportJson: report as Prisma.InputJsonValue
+      },
+      update: {
+        organizationId: reportInput.reportScope.organizationId,
+        userId: session.user.id,
+        reportJson: report as Prisma.InputJsonValue,
+        generatedAt: new Date()
+      }
+    });
+  }
+
   return (
     <main className="motion-rise space-y-4">
       <section className="surface-card space-y-3">
@@ -96,6 +116,33 @@ export default async function ReportsPage({ searchParams }: ReportsPageProps) {
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Correct</p>
             <p className="mt-2 text-2xl font-semibold text-slate-900">{report.totalCorrect}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="surface-card space-y-3">
+        <div className="space-y-1">
+          <h2 className="text-lg font-semibold text-slate-900">Answer outcome breakdown</h2>
+          <p className="text-sm text-slate-600">
+            This separates direct solving from hinted solving, so the report reflects independence as well as accuracy.
+          </p>
+        </div>
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">No hint · correct</p>
+            <p className="mt-2 text-2xl font-semibold text-emerald-700">{report.answerOutcomeBreakdown.withoutHintCorrect}</p>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">No hint · incorrect</p>
+            <p className="mt-2 text-2xl font-semibold text-rose-700">{report.answerOutcomeBreakdown.withoutHintIncorrect}</p>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Used hint · correct</p>
+            <p className="mt-2 text-2xl font-semibold text-amber-700">{report.answerOutcomeBreakdown.withHintCorrect}</p>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Used hint · incorrect</p>
+            <p className="mt-2 text-2xl font-semibold text-slate-900">{report.answerOutcomeBreakdown.withHintIncorrect}</p>
           </div>
         </div>
       </section>
@@ -196,6 +243,10 @@ export default async function ReportsPage({ searchParams }: ReportsPageProps) {
                   {result.isCorrect ? "Correct" : "Incorrect"}
                 </span>
               </div>
+
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                {result.usedHint ? "Used hint before answering" : "Answered without hint"}
+              </p>
 
               <div className="grid gap-3 md:grid-cols-2">
                 <div className="rounded-2xl border border-slate-200 bg-white p-3">

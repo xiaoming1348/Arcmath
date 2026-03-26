@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import bcrypt from "bcryptjs";
-import { Prisma, ProblemSetStatus, Role } from "@prisma/client";
+import { Prisma, ProblemSetCategory, ProblemSetStatus, ProblemSetSubmissionMode, Role } from "@prisma/client";
 import { diagnosticProblemSets, DIAGNOSTIC_TEST_SEED_SOURCE_URL } from "./diagnostic-problem-sets";
 
 function applyEnvFile(filePath: string) {
@@ -71,9 +71,18 @@ async function main() {
   for (const problemSet of diagnosticProblemSets) {
     const existingProblemSet = await prisma.problemSet.findFirst({
       where: {
+        sourceUrl: DIAGNOSTIC_TEST_SEED_SOURCE_URL,
         contest: problemSet.contest,
         year: problemSet.year,
-        exam: problemSet.exam
+        exam: problemSet.exam,
+        OR: [
+          {
+            diagnosticStage: problemSet.diagnosticStage
+          },
+          {
+            diagnosticStage: null
+          }
+        ]
       },
       select: {
         id: true
@@ -87,6 +96,10 @@ async function main() {
           },
           data: {
             title: problemSet.title,
+            category: ProblemSetCategory.DIAGNOSTIC,
+            diagnosticStage: problemSet.diagnosticStage,
+            submissionMode: ProblemSetSubmissionMode.WHOLE_SET_SUBMIT,
+            tutorEnabled: false,
             sourceUrl: DIAGNOSTIC_TEST_SEED_SOURCE_URL,
             status: ProblemSetStatus.PUBLISHED
           },
@@ -101,6 +114,10 @@ async function main() {
             year: problemSet.year,
             exam: problemSet.exam,
             title: problemSet.title,
+            category: ProblemSetCategory.DIAGNOSTIC,
+            diagnosticStage: problemSet.diagnosticStage,
+            submissionMode: ProblemSetSubmissionMode.WHOLE_SET_SUBMIT,
+            tutorEnabled: false,
             sourceUrl: DIAGNOSTIC_TEST_SEED_SOURCE_URL,
             status: ProblemSetStatus.PUBLISHED
           },
@@ -137,6 +154,7 @@ async function main() {
         answer: problem.answer,
         answerFormat: problem.answerFormat,
         examTrack: problem.examTrack,
+        sourceLabel: problem.sourceLabel,
         topicKey: problem.topicKey,
         techniqueTags: problem.techniqueTags,
         diagnosticEligible: problem.diagnosticEligible,
@@ -191,6 +209,7 @@ async function main() {
       contest: true,
       year: true,
       exam: true,
+      diagnosticStage: true,
       _count: {
         select: {
           problems: true
@@ -204,21 +223,22 @@ async function main() {
 
   for (const problemSet of seededProblemSets) {
     console.log(
-      `Seeded diagnostic problem set: ${problemSet.id} - ${problemSet.title} (${problemSet.contest} ${problemSet.year}${problemSet.exam ? ` ${problemSet.exam}` : ""}, ${problemSet._count.problems} problems)`
+      `Seeded diagnostic problem set: ${problemSet.id} - ${problemSet.title} (${problemSet.contest} ${problemSet.year}${problemSet.exam ? ` ${problemSet.exam}` : ""}, stage=${problemSet.diagnosticStage ?? "n/a"}, ${problemSet._count.problems} problems)`
     );
 
     const problems = await prisma.problem.findMany({
       where: {
         problemSetId: problemSet.id
       },
-      select: {
-        id: true,
-        number: true,
-        answerFormat: true,
-        examTrack: true,
-        topicKey: true,
-        difficultyBand: true
-      },
+        select: {
+          id: true,
+          number: true,
+          answerFormat: true,
+          examTrack: true,
+          sourceLabel: true,
+          topicKey: true,
+          difficultyBand: true
+        },
       orderBy: {
         number: "asc"
       }
@@ -226,7 +246,7 @@ async function main() {
 
     for (const problem of problems) {
       console.log(
-        `Problem ${problem.number}: ${problem.id} (${problem.answerFormat}, ${problem.examTrack}, ${problem.topicKey}, ${problem.difficultyBand})`
+        `Problem ${problem.number}: ${problem.id} (${problem.answerFormat}, ${problem.examTrack}, ${problem.sourceLabel}, ${problem.topicKey}, ${problem.difficultyBand})`
       );
     }
   }

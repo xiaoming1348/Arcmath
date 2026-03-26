@@ -13,6 +13,30 @@ export type RealTutorSetRolloutEntry = {
 // product-visible when they have been imported, reviewed, and marked "live".
 export const REAL_TUTOR_SET_ROLLOUT: RealTutorSetRolloutEntry[] = [
   {
+    contest: "AMC8",
+    year: 2015,
+    exam: null,
+    status: "live"
+  },
+  {
+    contest: "AMC10",
+    year: 2015,
+    exam: "A",
+    status: "live"
+  },
+  {
+    contest: "AMC12",
+    year: 2015,
+    exam: "A",
+    status: "live"
+  },
+  {
+    contest: "AIME",
+    year: 2015,
+    exam: "I",
+    status: "live"
+  },
+  {
     contest: "AMC10",
     year: 2013,
     exam: "A",
@@ -61,6 +85,54 @@ export const REAL_TUTOR_SET_ROLLOUT: RealTutorSetRolloutEntry[] = [
     status: "live"
   },
   {
+    contest: "AMC8",
+    year: 2019,
+    exam: null,
+    status: "live"
+  },
+  {
+    contest: "AMC10",
+    year: 2019,
+    exam: "A",
+    status: "live"
+  },
+  {
+    contest: "AMC12",
+    year: 2019,
+    exam: "A",
+    status: "live"
+  },
+  {
+    contest: "AMC10",
+    year: 2020,
+    exam: "A",
+    status: "live"
+  },
+  {
+    contest: "AMC12",
+    year: 2020,
+    exam: "A",
+    status: "live"
+  },
+  {
+    contest: "AMC10",
+    year: 2021,
+    exam: "A",
+    status: "live"
+  },
+  {
+    contest: "AMC12",
+    year: 2021,
+    exam: "A",
+    status: "live"
+  },
+  {
+    contest: "AIME",
+    year: 2021,
+    exam: "I",
+    status: "live"
+  },
+  {
     contest: "AIME",
     year: 2016,
     exam: "I",
@@ -77,6 +149,42 @@ export const REAL_TUTOR_SET_ROLLOUT: RealTutorSetRolloutEntry[] = [
     year: 2018,
     exam: "I",
     status: "live"
+  },
+  {
+    contest: "AIME",
+    year: 2019,
+    exam: "I",
+    status: "live"
+  },
+  {
+    contest: "AIME",
+    year: 2020,
+    exam: "I",
+    status: "live"
+  },
+  {
+    contest: "AMC8",
+    year: 2022,
+    exam: null,
+    status: "planned"
+  },
+  {
+    contest: "AMC10",
+    year: 2022,
+    exam: "A",
+    status: "planned"
+  },
+  {
+    contest: "AMC12",
+    year: 2022,
+    exam: "A",
+    status: "planned"
+  },
+  {
+    contest: "AIME",
+    year: 2022,
+    exam: "I",
+    status: "planned"
   }
 ];
 

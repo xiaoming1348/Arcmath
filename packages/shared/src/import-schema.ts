@@ -5,12 +5,18 @@ export const DIAGNOSTIC_EXAMS = ["AMC8", "AMC10", "AMC12"] as const;
 export const STATEMENT_FORMATS = ["MARKDOWN_LATEX", "HTML", "PLAIN"] as const;
 export const ANSWER_FORMATS = ["MULTIPLE_CHOICE", "INTEGER", "EXPRESSION"] as const;
 export const DIFFICULTY_BANDS = ["EASY", "MEDIUM", "HARD"] as const;
+export const PROBLEM_SET_CATEGORIES = ["DIAGNOSTIC", "REAL_EXAM", "TOPIC_PRACTICE"] as const;
+export const PROBLEM_SET_SUBMISSION_MODES = ["WHOLE_SET_SUBMIT", "PER_PROBLEM"] as const;
+export const DIAGNOSTIC_STAGES = ["EARLY", "MID", "LATE"] as const;
 
 export const contestSchema = z.enum(CONTESTS);
 export const diagnosticExamSchema = z.enum(DIAGNOSTIC_EXAMS);
 export const statementFormatSchema = z.enum(STATEMENT_FORMATS);
 export const answerFormatSchema = z.enum(ANSWER_FORMATS);
 export const difficultyBandSchema = z.enum(DIFFICULTY_BANDS);
+export const problemSetCategorySchema = z.enum(PROBLEM_SET_CATEGORIES);
+export const problemSetSubmissionModeSchema = z.enum(PROBLEM_SET_SUBMISSION_MODES);
+export const diagnosticStageSchema = z.enum(DIAGNOSTIC_STAGES);
 
 const currentYear = new Date().getFullYear();
 const placeholderStatementPattern = /^(?:TBD|TODO)$/i;
@@ -84,6 +90,7 @@ const importProblemSchema = z
     answer: trimmedNonEmptyString("Problem answer is required"),
     answerFormat: answerFormatSchema,
     examTrack: z.preprocess(trimString, diagnosticExamSchema.optional()),
+    sourceLabel: optionalTrimmedNonEmptyString("sourceLabel must be trimmed and non-empty"),
     topicKey: optionalTrimmedNonEmptyString("topicKey must be trimmed and non-empty"),
     techniqueTags: optionalTrimmedNonEmptyStringArray("techniqueTags entries must be trimmed and non-empty"),
     diagnosticEligible: z.boolean().optional(),
@@ -164,6 +171,10 @@ const importProblemSetMetaSchema = z.object({
     .min(1950, "Year must be >= 1950")
     .max(currentYear + 1, `Year must be <= ${currentYear + 1}`),
   exam: normalizedExamSchema.optional(),
+  category: problemSetCategorySchema.optional(),
+  diagnosticStage: diagnosticStageSchema.optional(),
+  submissionMode: problemSetSubmissionModeSchema.optional(),
+  tutorEnabled: z.boolean().optional(),
   sourceUrl: optionalUrlString("problemSet.sourceUrl must be a valid URL"),
   verifiedPdfUrl: optionalUrlString("problemSet.verifiedPdfUrl must be a valid URL")
 });

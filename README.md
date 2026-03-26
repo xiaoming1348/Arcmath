@@ -60,6 +60,8 @@ For the current env-file architecture and exact script/file mapping, see [ENV_SE
 
 For the planned exam placement / diagnostic flow, see [DIAGNOSTIC_BLUEPRINT.md](/Users/yimingsun/Desktop/Arcmath/DIAGNOSTIC_BLUEPRINT.md).
 
+For the broader three-track content expansion plan, see [CONTENT_LIBRARY_PLAN.md](/Users/yimingsun/Desktop/Arcmath/CONTENT_LIBRARY_PLAN.md).
+
 Why this matters:
 - newer tutor features depend on recent Prisma migrations (`topicKey`, `difficultyBand`, `solutionSketch`, curated hints, `PracticeRun`)
 - if your local Postgres has not been migrated up, `/problems` routes can fail with Prisma `P2022 column does not exist`
@@ -118,6 +120,12 @@ For diagnostic readiness, use:
 
 ```bash
 pnpm diagnostic:audit-pools
+```
+
+For the larger library rollout status, use:
+
+```bash
+pnpm content-library:audit
 ```
 
 This audits the current real-import corpus against the deterministic `AMC8 / AMC10 / AMC12` diagnostic blueprints and reports whether the repo can already assemble a full `4 EASY / 4 MEDIUM / 2 HARD` first-pass placement test for each exam.

@@ -1,0 +1,233 @@
+{
+  "problemSet": {
+    "contest": "AIME",
+    "year": 2022,
+    "exam": "I",
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Quadratic polynomials P(x) and Q(x) have leading coefficients 2 and -2, respectively. The graphs of both polynomials pass through the two points (16,54) and (20,53). Find P(0) + Q(0).",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "116",
+      "answerFormat": "INTEGER",
+      "topicKey": "algebra.general",
+      "techniqueTags": [
+        "algebra_setup",
+        "equation_solving"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Find the three-digit positive integer \\,\\, whose representation in base nine is \\,\\,_\\,nine, where a, b, and c are (not necessarily distinct) digits.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "227",
+      "answerFormat": "INTEGER",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "modular_reasoning"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "In isosceles trapezoid ABCD , parallel bases and have lengths 500 and 650 , respectively, and AD=BC=333 . The angle bisectors of and meet at P , and the angle bisectors of and meet at Q . Find PQ .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "242",
+      "answerFormat": "INTEGER",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Let w = (3) + i2 and z = -1 + isqrt(3)2, where i = sqrt(-1). Find the number of ordered pairs (r,s) of positive integers not exceeding 100 that satisfy the equation i · w^r = z^s.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "834",
+      "answerFormat": "INTEGER",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "equation_solving"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "A straight river that is 264 meters wide flows from west to east at a rate of 14 meters per minute. Melanie and Sherry sit on the south bank of the river with Melanie a distance of D meters downstream from Sherry. Relative to the water, Melanie swims at 80 meters per minute, and Sherry swims at 60 meters per minute. At the same time, Melanie and Sherry begin swimming in straight lines to a point on the north bank of the river that is equidistant from their starting positions. The two women arrive at this point simultaneously. Find D .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "550",
+      "answerFormat": "INTEGER",
+      "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Find the number of ordered pairs of integers (a, b) such that the sequence 3, 4, 5, a, b, 30, 40, 50 is strictly increasing and no set of four (not necessarily consecutive) terms forms an arithmetic progression.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "228",
+      "answerFormat": "INTEGER",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "Let a,b,c,d,e,f,g,h,i be distinct integers from 1 to 9. The minimum possible positive value of · b · c - d · e · fg · h · i can be written as (m)/(n), where m and n are relatively prime positive integers. Find m+n.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "289",
+      "answerFormat": "INTEGER",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "modular_reasoning",
+        "optimization"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Equilateral triangle ABC is inscribed in circle with radius 18. Circle _A is tangent to sides and and is internally tangent to . Circles _B and _C are defined analogously. Circles _A, _B, and _C meet in six points---two points for each pair of circles. The three intersection points closest to the vertices of ABC are the vertices of a large equilateral triangle in the interior of ABC, and the other three intersection points are the vertices of a smaller equilateral triangle in the interior of ABC. The side length of the smaller equilateral triangle can be written as sqrt(a) - sqrt(b), where a and b are positive integers. Find a+b.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "378",
+      "answerFormat": "INTEGER",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Ellina has twelve blocks, two each of red ( R ), blue ( B ), yellow ( Y ), green ( G ), orange ( O ), and purple ( P ). Call an arrangement of blocks even if there is an even number of blocks between each pair of blocks of the same color. For example, the arrangement R B B Y G G Y R O P P O is even. Ellina arranges her blocks in a row in random order. The probability that her arrangement is even is (m)/(n), where m and n are relatively prime positive integers. Find m+n.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "247",
+      "answerFormat": "INTEGER",
+      "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup",
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Three spheres with radii 11 , 13 , and 19 are mutually externally tangent. A plane intersects the spheres in three congruent circles centered at A , B , and C , respectively, and the centers of the spheres all lie on the same side of this plane. Suppose that AB^2 = 560 . Find AC^2 .",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "756",
+      "answerFormat": "INTEGER",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "Let ABCD be a parallelogram with BAD < 90^. A circle tangent to sides , , and intersects diagonal at points P and Q with AP < AQ, as shown. Suppose that AP=3, PQ=9, and QC=16. Then the area of ABCD can be expressed in the form msqrt(n), where m and n are positive integers, and n is not divisible by the square of any prime. Find m+n.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "150",
+      "answerFormat": "INTEGER",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading",
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "For any finite set X , let | X | denote the number of elements in X . Define S_n = | A B | , where the sum is taken over all ordered pairs (A, B) such that A and B are subsets of \\ 1 , 2 , 3, , n \\ with |A| = |B| . For example, S_2 = 4 because the sum is taken over the pairs of subsets (A, B) \\ (, ) , ( 1\\ , 1\\ ), ( 1\\ , 2\\ ) , ( 2\\ , 1\\ ) , ( 2\\ , 2\\ ) , ( 1 , 2\\ , 1 , 2\\ ) \\ , giving S_2 = 0 + 1 + 0 + 0 + 1 + 2 = 4 . Let _2022S_2021 = (p)/(q) , where p and q are relatively prime positive integers. Find the remainder when p + q is divided by 1000.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "245",
+      "answerFormat": "INTEGER",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "divisibility_reasoning",
+        "modular_reasoning"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Let S be the set of all rational numbers that can be expressed as a repeating decimal in the form 0., where at least one of the digits a, b, c, or d is nonzero. Let N be the number of distinct numerators obtained when numbers in S are written as fractions in lowest terms. For example, both 4 and 410 are counted among the distinct numerators for numbers in S because 0.3636 = (4)/(11) and 0.1230 = (410)/(3333). Find the remainder when N is divided by 1000.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "392",
+      "answerFormat": "INTEGER",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "modular_reasoning",
+        "optimization"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "Given ABC and a point P on one of its sides, call line the splitting line of ABC through P if passes through P and divides ABC into two polygons of equal perimeter. Let ABC be a triangle where BC = 219 and AB and AC are positive integers. Let M and N be the midpoints of and , respectively, and suppose that the splitting lines of ABC through M and N intersect at 30^. Find the perimeter of ABC.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "459",
+      "answerFormat": "INTEGER",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Let x, y, and z be positive real numbers satisfying the system of equations: * sqrt(2x-xy) + sqrt(2y-xy) &= 1 \\ sqrt(2y-yz) + sqrt(2z-yz) &= 2 \\ sqrt(2z-zx) + sqrt(2x-zx) &= 3. * Then [ (1-x)(1-y)(1-z) ]^2 can be written as (m)/(n), where m and n are relatively prime positive integers. Find m+n.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "33",
+      "answerFormat": "INTEGER",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "modular_reasoning",
+        "equation_solving"
+      ],
+      "diagnosticEligible": false,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2022_AIME_I_Problems/Problem_15"
+    }
+  ]
+}

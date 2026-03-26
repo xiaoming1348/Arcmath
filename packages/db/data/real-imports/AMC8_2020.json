@@ -1,0 +1,578 @@
+{
+  "problemSet": {
+    "contest": "AMC8",
+    "year": 2020,
+    "exam": null,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8",
+    "verifiedPdfUrl": "https://artofproblemsolving.com/community/contest/download/c3414_amc_8/2020"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Luka is making lemonade to sell at a school fundraiser. His recipe requires 4 times as much water as sugar and twice as much sugar as lemon juice. He uses 3 cups of lemon juice. How many cups of water does he need?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "6",
+        "8",
+        "12",
+        "18",
+        "24"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Four friends do yardwork for their neighbors over the weekend, earning 15, 20, 25, and 40, respectively. They decide to split their earnings equally among themselves. In total, how much will the friend who earned 40 give to the others?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "5",
+        "10",
+        "15",
+        "20",
+        "25"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Carrie has a rectangular garden that measures 6 feet by 8 feet. She plants the entire garden with strawberry plants. Carrie is able to plant 4 strawberry plants per square foot, and she harvests an average of 10 strawberries per plant. How many strawberries can she expect to harvest?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "560",
+        "960",
+        "1120",
+        "1920",
+        "3840"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "diagram_reading",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Three hexagons of increasing size are shown below. Suppose the dot pattern continues so that each successive hexagon contains one more band of dots. How many dots are in the next hexagon?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "35",
+        "37",
+        "39",
+        "43",
+        "49"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Three fourths of a pitcher is filled with pineapple juice. The pitcher is emptied by pouring an equal amount of juice into each of 5 cups. What percent of the total capacity of the pitcher did each cup receive?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "5",
+        "10",
+        "15",
+        "20",
+        "25"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Aaron, Darren, Karen, Maren, and Sharon rode on a small train that has five cars that seat one person each. Maren sat in the last car. Aaron sat directly behind Sharon. Darren sat in one of the cars in front of Aaron. At least one person sat between Karen and Darren. Who sat in the middle car?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "Aaron",
+        "Darren",
+        "Karen",
+        "Maren",
+        "Sharon"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "techniqueTags": [
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_6"
+    },
+    {
+      "number": 7,
+      "statement": "How many integers between 2020 and 2400 have four distinct digits arranged in increasing order? (For example, 2347 is one integer.).",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "9",
+        "10",
+        "15",
+        "21",
+        "28"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_7"
+    },
+    {
+      "number": 8,
+      "statement": "Ricardo has 2020 coins, some of which are pennies ( 1 -cent coins) and the rest of which are nickels ( 5 - cent coins). He has at least one penny and at least one nickel. What is the difference in cents between the greatest possible and least amounts of money that Ricardo can have?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "806",
+        "8068",
+        "8072",
+        "8076",
+        "8082"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "EASY",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_8"
+    },
+    {
+      "number": 9,
+      "statement": "Akash's birthday cake is in the form of a 4 × 4 × 4 inch cube. The cake has icing on the top and the four side faces, and no icing on the bottom. Suppose the cake is cut into 64 smaller cubes, each measuring 1 × 1 × 1 inch, as shown below. How many of the small pieces will have icing on exactly two sides?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "12",
+        "16",
+        "18",
+        "20",
+        "24"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_9"
+    },
+    {
+      "number": 10,
+      "statement": "Zara has a collection of 4 marbles: an Aggie, a Bumblebee, a Steelie, and a Tiger. She wants to display them in a row on a shelf, but does not want to put the Steelie and the Tiger next to one another. In how many ways can she do this?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "6",
+        "8",
+        "12",
+        "18",
+        "24"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_10"
+    },
+    {
+      "number": 11,
+      "statement": "After school, Maya and Naomi headed to the beach, 6 miles away. Maya decided to bike while Naomi took a bus. The graph below shows their journeys, indicating the time and distance traveled. What was the difference, in miles per hour, between Naomi's and Maya's average speeds?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "6",
+        "12",
+        "18",
+        "20",
+        "24"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_11"
+    },
+    {
+      "number": 12,
+      "statement": "For a positive integer n , the factorial notation n! represents the product of the integers from n to 1 . What value of N satisfies the following equation? 5!· 9!=12· N!",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "equation_solving"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_12"
+    },
+    {
+      "number": 13,
+      "statement": "Jamal has a drawer containing $6$ green socks, $18$ purple socks, and $12$ orange socks. After adding more purple socks, Jamal noticed that there is now a $60\\%$ chance that a sock randomly selected from the drawer is purple. How many purple socks did Jamal add?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "6",
+        "9",
+        "12",
+        "18",
+        "24"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "probability.general",
+      "techniqueTags": [
+        "probability_setup",
+        "casework"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_13"
+    },
+    {
+      "number": 14,
+      "statement": "There are 20 cities in the County of Newton. Their populations are shown in the bar chart below. The average population of all the cities is indicated by the horizontal dashed line. Which of the following is closest to the total population of all 20 cities?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "65,000",
+        "75,000",
+        "85,000",
+        "95,000",
+        "105,000"
+      ],
+      "answer": "D",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_14"
+    },
+    {
+      "number": 15,
+      "statement": "Suppose 15\\% of x equals 20\\% of y. What percentage of x is y?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "5",
+        "35",
+        "75",
+        "133 13",
+        "300"
+      ],
+      "answer": "C",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "arithmetic.word_problems",
+      "techniqueTags": [
+        "working_backwards"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_15"
+    },
+    {
+      "number": 16,
+      "statement": "Each of the points A,B,C,D,E, and F in the figure below represents a different digit from 1 to 6. Each of the five lines shown passes through some of these points. The digits along each line are added to produce five sums, one for each line. The total of the five sums is 47. What is the digit represented by B?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_16"
+    },
+    {
+      "number": 17,
+      "statement": "How many positive integer factors of 2020 have more than 3 factors? (As an example, 12 has 6 factors, namely 1,2,3,4,6, and 12. )",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "MEDIUM",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_17"
+    },
+    {
+      "number": 18,
+      "statement": "Rectangle ABCD is inscribed in a semicircle with diameter , as shown in the figure. Let DA=16, and let FD=AE=9. What is the area of ABCD?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "240",
+        "248",
+        "256",
+        "264",
+        "272"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_18"
+    },
+    {
+      "number": 19,
+      "statement": "A number is called flippy if its digits alternate between two distinct digits. For example, $2020$ and $37373$ are flippy, but $3883$ and $123123$ are not. How many five-digit flippy numbers are divisible by $15$?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "8"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_19"
+    },
+    {
+      "number": 20,
+      "statement": "A scientist walking through a forest recorded as integers the heights of $5$ trees standing in a row. She observed that each tree was either twice as tall or half as tall as the one to its right. Unfortunately some of her data was lost when rain fell on her notebook. Her notes are shown below, with blanks indicating the missing numbers. Based on her observations, the scientist was able to reconstruct the lost data. What was the average height of the trees, in meters? | Tree | Height | | --- | --- | | Tree 1 | ___ meters | | Tree 2 | 11 meters | | Tree 3 | ___ meters | | Tree 4 | ___ meters | | Tree 5 | ___ meters | | Average height | ___.2 meters |",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "22.2",
+        "24.2",
+        "33.2",
+        "35.2",
+        "37.2"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning",
+        "estimation"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_20"
+    },
+    {
+      "number": 21,
+      "statement": "A game board consists of 64 squares that alternate in color between black and white. The figure below shows square P in the bottom row and square Q in the top row. A marker is placed at P. A step consists of moving the marker onto one of the adjoining white squares in the row above. How many 7 -step paths are there from P to Q? (The figure shows a sample path.)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "28",
+        "30",
+        "32",
+        "33",
+        "35"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_21"
+    },
+    {
+      "number": 22,
+      "statement": "When a positive integer N is fed into a machine, the output is a number calculated according to the rule shown below. For example, starting with an input of N=7, the machine will output 3 · 7 +1 = 22. Then if the output is repeatedly inserted into the machine five more times, the final output is 26. 7 22 11 34 17 52 26 When the same 6 -step process is applied to a different starting value of N, the final output is 1. What is the sum of all such integers N? N 0.5cm0.15mm 0.5cm0.15mm 0.5cm0.15mm 0.5cm0.15mm 0.5cm0.15mm 1",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "73",
+        "74",
+        "75",
+        "82",
+        "83"
+      ],
+      "answer": "E",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "number_theory.general",
+      "techniqueTags": [
+        "divisibility_reasoning"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_22"
+    },
+    {
+      "number": 23,
+      "statement": "Five different awards are to be given to three students. Each student will receive at least one award. In how many different ways can the awards be distributed?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "120",
+        "150",
+        "180",
+        "210",
+        "240"
+      ],
+      "answer": "B",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "counting.general",
+      "techniqueTags": [
+        "counting_principle",
+        "casework",
+        "optimization"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_23"
+    },
+    {
+      "number": 24,
+      "statement": "A large square region is paved with $n^2$ gray square tiles, each measuring $s$ inches on a side. A border $d$ inches wide surrounds each tile. The figure below shows the case for $n=3$. When $n=24$, the $576$ gray tiles cover $64\\%$ of the area of the large square region. What is the ratio $\\frac{d}{s}$ for this larger value of $n$?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "\\frac{6}{25}",
+        "\\frac{1}{4}",
+        "\\frac{9}{25}",
+        "\\frac{7}{16}",
+        "\\frac{9}{16}"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_24"
+    },
+    {
+      "number": 25,
+      "statement": "Rectangles R_1 and R_2 and squares S_1,\\,S_2,\\, and S_3, shown below, combine to form a rectangle that is 3322 units wide and 2020 units high. What is the side length of S_2 in units?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "choices": [
+        "651",
+        "655",
+        "656",
+        "662",
+        "666"
+      ],
+      "answer": "A",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "examTrack": "AMC8",
+      "topicKey": "geometry.general",
+      "techniqueTags": [
+        "diagram_reading"
+      ],
+      "diagnosticEligible": true,
+      "difficultyBand": "HARD",
+      "sourceUrl": "https://artofproblemsolving.com/wiki/index.php?title=2020_AMC_8_Problems/Problem_25"
+    }
+  ]
+}

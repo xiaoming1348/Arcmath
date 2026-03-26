@@ -1,0 +1,8 @@
+CREATE TYPE "ProblemSetCategory" AS ENUM ('DIAGNOSTIC', 'REAL_EXAM', 'TOPIC_PRACTICE');
+
+CREATE TYPE "ProblemSetSubmissionMode" AS ENUM ('WHOLE_SET_SUBMIT', 'PER_PROBLEM');
+
+ALTER TABLE "ProblemSet"
+ADD COLUMN "category" "ProblemSetCategory" NOT NULL DEFAULT 'REAL_EXAM',
+ADD COLUMN "submissionMode" "ProblemSetSubmissionMode" NOT NULL DEFAULT 'WHOLE_SET_SUBMIT',
+ADD COLUMN "tutorEnabled" BOOLEAN NOT NULL DEFAULT false;

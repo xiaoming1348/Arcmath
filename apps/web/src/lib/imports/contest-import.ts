@@ -234,6 +234,7 @@ function makeProblemCreateInput(problemSetId: string, problem: ImportProblem): P
     answer: problem.answer,
     answerFormat: (problem.answerFormat ?? "MULTIPLE_CHOICE") as AnswerFormat,
     examTrack: (problem.examTrack ?? null) as ExamTrack | null,
+    sourceLabel: problem.sourceLabel,
     topicKey: problem.topicKey,
     techniqueTags: problem.techniqueTags ?? [],
     diagnosticEligible: problem.diagnosticEligible ?? false,
@@ -257,6 +258,7 @@ function buildProblemUpdateData(problem: ImportProblem, existing: {
   answer: string | null;
   answerFormat: AnswerFormat;
   examTrack: ExamTrack | null;
+  sourceLabel: string | null;
   topicKey: string | null;
   techniqueTags: string[];
   diagnosticEligible: boolean;
@@ -299,6 +301,9 @@ function buildProblemUpdateData(problem: ImportProblem, existing: {
   if ((problem.examTrack ?? null) !== existing.examTrack) {
     updateData.examTrack = (problem.examTrack ?? null) as ExamTrack | null;
   }
+  if (problem.sourceLabel !== undefined && problem.sourceLabel !== existing.sourceLabel) {
+    updateData.sourceLabel = problem.sourceLabel;
+  }
   if (problem.topicKey !== undefined && problem.topicKey !== existing.topicKey) {
     updateData.topicKey = problem.topicKey;
   }
@@ -335,7 +340,11 @@ async function resolveProblemSet(
   tx: Prisma.TransactionClient,
   key: ProblemSetKey,
   sourceUrl: string | undefined,
-  verifiedPdfUrl: string | undefined
+  verifiedPdfUrl: string | undefined,
+  category: "DIAGNOSTIC" | "REAL_EXAM" | "TOPIC_PRACTICE" | undefined,
+  diagnosticStage: "EARLY" | "MID" | "LATE" | undefined,
+  submissionMode: "WHOLE_SET_SUBMIT" | "PER_PROBLEM" | undefined,
+  tutorEnabled: boolean | undefined
 ): Promise<ProblemSet> {
   const existingSet = await tx.problemSet.findFirst({
     where: makeProblemSetWhere(key)
@@ -348,6 +357,10 @@ async function resolveProblemSet(
       where: { id: existingSet.id },
       data: {
         title,
+        category: category ?? existingSet.category,
+        diagnosticStage: diagnosticStage ?? existingSet.diagnosticStage,
+        submissionMode: submissionMode ?? existingSet.submissionMode,
+        tutorEnabled: tutorEnabled ?? existingSet.tutorEnabled,
         sourceUrl: sourceUrl ?? existingSet.sourceUrl,
         verifiedPdfUrl: verifiedPdfUrl ?? existingSet.verifiedPdfUrl
       }
@@ -360,6 +373,10 @@ async function resolveProblemSet(
       year: key.year,
       exam: key.exam,
       title,
+      category: category ?? "REAL_EXAM",
+      diagnosticStage: diagnosticStage ?? null,
+      submissionMode: submissionMode ?? "WHOLE_SET_SUBMIT",
+      tutorEnabled: tutorEnabled ?? false,
       sourceUrl,
       verifiedPdfUrl
     }
@@ -403,7 +420,11 @@ export async function commitImportFromJson(options: {
           tx,
           toProblemSetKey(payload),
           payload.problemSet.sourceUrl,
-          payload.problemSet.verifiedPdfUrl
+          payload.problemSet.verifiedPdfUrl,
+          payload.problemSet.category,
+          payload.problemSet.diagnosticStage,
+          payload.problemSet.submissionMode,
+          payload.problemSet.tutorEnabled
         );
         let createdProblems = 0;
         let updatedProblems = 0;
