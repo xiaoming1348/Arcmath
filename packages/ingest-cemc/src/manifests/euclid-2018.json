@@ -1,0 +1,123 @@
+{
+  "problemSet": {
+    "contest": "EUCLID",
+    "year": 2018,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://cemc.uwaterloo.ca/contests/past_contests.html",
+    "verifiedPdfUrl": "https://cemc.uwaterloo.ca/sites/default/files/documents/2018/2018EuclidContest.pdf"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "**(a)** If $x = 11$, what is the value of $x + (x + 1) + (x + 2) + (x + 3)$?\n\n**(b)** If $\\dfrac{a}{6} + \\dfrac{6}{18} = 1$, what is the value of $a$?\n\n**(c)** The total cost of one chocolate bar and two identical packs of gum is \\$4.15. One chocolate bar costs \\$1.00 more than one pack of gum. Determine the cost of one chocolate bar.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2018 Euclid Contest, Problem 1",
+      "topicKey": "algebra.basic_equations",
+      "techniqueTags": ["arithmetic_sum", "linear_equation", "word_problem"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** $4x + 6 = 4(11) + 6 = 50$.\n\n**(b)** Multiply by $18$: $3a + 6 = 18$, so $a = 4$.\n\n**(c)** Let $x$ = cost of chocolate bar, $y$ = cost of gum. $x + 2y = 4.15$, $x = y + 1$. Substitute: $3y + 1 = 4.15$, so $y = 1.05$, $x = 2.05$. Cost of chocolate bar: \\$2.05."
+    },
+    {
+      "number": 2,
+      "statement": "**(a)** A five-digit integer is made using each of the digits $1, 3, 5, 7, 9$. The integer is greater than $80{,}000$ and less than $92{,}000$. The units digit is $3$. The hundreds and tens digits, in that order, form a two-digit integer that is divisible by $5$. What is the five-digit integer?\n\n**(b)** In the diagram, point $D$ is on $AC$ so that $BD$ is perpendicular to $AC$. Also, $AB = 13$, $BC = 12\\sqrt{2}$ and $BD = 12$. What is the length of $AC$?\n\n**(c)** Square $OABC$ has side length $6$, with $O$ at the origin, $A$ on the positive $x$-axis, $B = (6, 6)$, and $C$ on the positive $y$-axis. The line with equation $y = 2x$ intersects $CB$ at $D$. Determine the area of the shaded region (the part of the square below the line $y = 2x$).",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2018 Euclid Contest, Problem 2",
+      "topicKey": "mixed.digits_geometry",
+      "techniqueTags": ["digit_constraints", "pythagorean_theorem", "coordinate_area"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** Must have $a = 9$ (since $> 80{,}000$), $b = 1$ (since $< 92{,}000$), $e = 3$. Remaining digits $\\{5, 7\\}$ for $c, d$; $cd$ divisible by $5$ means $d = 5$ so $c = 7$. Integer: $91753$.\n\n**(b)** $AD = \\sqrt{13^2 - 12^2} = 5$. $CD = \\sqrt{(12\\sqrt{2})^2 - 12^2} = \\sqrt{144} = 12$. $AC = 5 + 12 = 17$.\n\n**(c)** Line $y = 2x$ hits $CB$ (where $y = 6$) at $x = 3$, so $D = (3, 6)$. Shaded region = square minus $\\triangle OCD$ where $OC = 6$ (vertical) and $CD = 3$. Area $= 36 - \\tfrac{1}{2}(6)(3) = 36 - 9 = 27$."
+    },
+    {
+      "number": 3,
+      "statement": "**(a)** What is the value of $\\sqrt{\\left(4 + \\sqrt{4}\\right)^4}$?\n\n**(b)** There is exactly one pair $(x, y)$ of positive integers for which $\\sqrt{23 - x} = 8 - y^2$. What is this pair $(x, y)$?\n\n**(c)** The line with equation $y = mx + 2$ intersects the parabola with equation $y = ax^2 + 5x - 2$ at the points $P(1, 5)$ and $Q$. Determine **(i)** the value of $m$, **(ii)** the value of $a$, and **(iii)** the coordinates of $Q$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2018 Euclid Contest, Problem 3",
+      "topicKey": "algebra.radicals_and_quadratics",
+      "techniqueTags": ["radical_simplification", "diophantine_search", "line_parabola_intersection"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** $4 + \\sqrt{4} = 6$, so $\\sqrt{6^4} = 6^2 = 36$.\n\n**(b)** Need $23 - x$ to be a perfect square, and $8 - y^2 \\geq 0$ so $y \\in \\{1, 2\\}$. Testing $23 - x = 16 \\Rightarrow x = 7$, $8 - y^2 = 4 \\Rightarrow y = 2$. So $(x, y) = (7, 2)$.\n\n**(c)** $(1, 5)$ on line: $5 = m + 2 \\Rightarrow m = 3$. On parabola: $5 = a + 5 - 2 \\Rightarrow a = 2$. Set $2x^2 + 5x - 2 = 3x + 2$: $2x^2 + 2x - 4 = 0 \\Rightarrow (x+2)(x-1) = 0$. So $Q$ has $x = -2$, $y = 3(-2) + 2 = -4$. $Q = (-2, -4)$."
+    },
+    {
+      "number": 4,
+      "statement": "**(a)** The positive integers $34$ and $80$ have exactly two positive common divisors, namely $1$ and $2$. How many positive integers $n$ with $1 \\leq n \\leq 30$ have the property that $n$ and $80$ have exactly two positive common divisors?\n\n**(b)** A function $f$ is defined so that\n\n- $f(1) = 1$,\n- if $n$ is an even positive integer, then $f(n) = f\\!\\left(\\tfrac{1}{2}n\\right)$, and\n- if $n$ is an odd positive integer with $n > 1$, then $f(n) = f(n - 1) + 1$.\n\nFor example, $f(34) = f(17)$ and $f(17) = f(16) + 1$. Determine the value of $f(50)$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2018 Euclid Contest, Problem 4",
+      "topicKey": "number_theory.divisors_and_recursion",
+      "techniqueTags": ["gcd_structure", "recursive_function", "binary_representation"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** $80 = 2^4 \\cdot 5$. Need $\\gcd(n, 80) \\in \\{2, 5\\}$ (only two common divisors $\\{1, p\\}$ for prime $p$). List $n \\in [1, 30]$ divisible by $2$ or $5$, exclude those divisible by $4$ or $10$: $\\{2, 5, 6, 14, 15, 18, 22, 25, 26\\}$. Count: $9$.\n\n**(b)** Trace: $f(50) = f(25) = f(24) + 1 = f(12) + 1 = f(6) + 1 = f(3) + 1 = f(2) + 2 = f(1) + 2 = 3$. (Equivalently, $f(n)$ counts the number of $1$s in the binary representation of $n$; $50 = 110010_2$ has $3$ ones.)"
+    },
+    {
+      "number": 5,
+      "statement": "**(a)** The perimeter of equilateral $\\triangle PQR$ is $12$. The perimeter of regular hexagon $STUVWX$ is also $12$. What is the ratio of the area of $\\triangle PQR$ to the area of $STUVWX$?\n\n**(b)** Sector $AOB$ is $\\tfrac{1}{6}$ of an entire circle with radius $AO = BO = 18$. The sector is cut into two regions with a single straight cut through $A$ and point $P$ on $OB$. The areas of the two regions are equal. Determine the length of $OP$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2018 Euclid Contest, Problem 5",
+      "topicKey": "geometry.area_ratios",
+      "techniqueTags": ["equilateral_hexagon_tiling", "sector_area", "trig_area_formula"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** Triangle side $= 4$, hexagon side $= 2$. A hexagon of side $s$ is $6$ unit-triangles of side $s$; an equilateral triangle of side $2s$ is $4$ unit-triangles of side $s$. So ratio $= 4 : 6 = 2 : 3$.\n\n**(b)** Sector area $= \\tfrac{1}{6} \\pi (18)^2 = 54\\pi$; half is $27\\pi$. $\\angle AOB = 60^\\circ$. Area of $\\triangle POA = \\tfrac{1}{2}(OP)(OA)\\sin 60^\\circ = \\tfrac{1}{2}(OP)(18)\\tfrac{\\sqrt{3}}{2} = \\tfrac{9\\sqrt{3}}{2} OP$. Setting this equal to $27\\pi$: $OP = \\dfrac{54\\pi}{9\\sqrt{3}} = \\dfrac{6\\pi}{\\sqrt{3}} = 2\\sqrt{3}\\,\\pi$."
+    },
+    {
+      "number": 6,
+      "statement": "**(a)** For how many integers $k$ with $0 < k < 18$ is $\\dfrac{5\\sin(10k^\\circ) - 2}{\\sin^2(10k^\\circ)} \\geq 2$?\n\n**(b)** A straight, flat road joins $A$ to $B$. Karuna runs from $A$ to $B$, turns around instantly, and runs back to $A$. Karuna runs at $6$ m/s. Starting at the same time as Karuna, Jorge runs from $B$ to $A$, turns around instantly, and runs back to $B$. Jorge runs from $B$ to $A$ at $5$ m/s and from $A$ to $B$ at $7.5$ m/s. The distance from $A$ to $B$ is $297$ m and each runner takes exactly $99$ s to run their route. Determine the two values of $t$ for which Karuna and Jorge are at the same place on the road after running for $t$ seconds.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2018 Euclid Contest, Problem 6",
+      "topicKey": "mixed.trig_inequality_and_kinematics",
+      "techniqueTags": ["sine_inequality", "quadratic_in_sin", "meeting_problem"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Let $\\theta = 10k^\\circ$. Multiply by $\\sin^2\\theta > 0$: $2\\sin^2\\theta - 5\\sin\\theta + 2 \\leq 0$, i.e. $(2\\sin\\theta - 1)(\\sin\\theta - 2) \\leq 0$. Since $\\sin\\theta - 2 < 0$ always, need $\\sin\\theta \\geq \\tfrac{1}{2}$, i.e. $30^\\circ \\leq \\theta \\leq 150^\\circ$. So $3 \\leq k \\leq 15$, giving $13$ integers.\n\n**(b)** First meeting: sum of distances run equals $297$ m. $6t_1 + 5t_1 = 297 \\Rightarrow t_1 = 27$ s. Second meeting: both are returning, combined distance from start is $3 \\cdot 297 = 891$ m. Jorge's first leg ($A$ to $B$): $297$ m at $5$ m/s takes $59.4$ s. After that, Jorge at $7.5$ m/s. Solve $6t_2 + 297 + 7.5(t_2 - 59.4) = 891$: $13.5 t_2 = 1039.5$, so $t_2 = 77$ s. Values: $t = 27, 77$."
+    },
+    {
+      "number": 7,
+      "statement": "**(a)** Eight people, including triplets Barry, Carrie and Mary, are going for a trip in four canoes. Each canoe seats two people. The eight people are to be randomly assigned to the four canoes in pairs. What is the probability that no two of Barry, Carrie and Mary will be in the same canoe?\n\n**(b)** Diagonal $WY$ of square $WXYZ$ has slope $2$. Determine the sum of the slopes of $WX$ and $XY$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2018 Euclid Contest, Problem 7",
+      "topicKey": "mixed.probability_and_slopes",
+      "techniqueTags": ["complementary_counting", "angle_sum_tan", "square_diagonals"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** $P(\\text{Barry and Carrie in same canoe}) = \\tfrac{1}{7}$ (Barry's canoe has one more seat, 7 candidates). By inclusion: $P(\\text{some pair same canoe}) = 3 \\cdot \\tfrac{1}{7}$. Answer: $1 - \\tfrac{3}{7} = \\tfrac{4}{7}$.\n\n**(b)** $\\tan\\theta = 2$ is the angle $WY$ makes with horizontal. Diagonals bisect the right angle: $WX$ makes angle $\\theta + 45^\\circ$, $WZ$ (and $XY$) makes $\\theta - 45^\\circ$. Using tangent addition: $\\tan(\\theta + 45^\\circ) = \\dfrac{2 + 1}{1 - 2} = -3$, $\\tan(\\theta - 45^\\circ) = \\dfrac{2 - 1}{1 + 2} = \\tfrac{1}{3}$. Sum $= -3 + \\tfrac{1}{3} = -\\tfrac{8}{3}$."
+    },
+    {
+      "number": 8,
+      "statement": "**(a)** Determine all values of $x$ such that $\\log_{2x}(48\\sqrt[3]{3}) = \\log_{3x}(162\\sqrt[3]{2})$.\n\n**(b)** Rectangle $PQRS$ is placed inside rectangle $ABCD$ in two different ways: first, with $Q$ at $B$ and $R$ at $C$; second, with $P$ on $AB$, $Q$ on $BC$, $R$ on $CD$, and $S$ on $DA$. If $AB = 718$ and $PQ = 250$, determine the length of $BC$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2018 Euclid Contest, Problem 8",
+      "topicKey": "mixed.logarithm_and_geometry",
+      "techniqueTags": ["change_of_base", "similar_right_triangles", "inscribed_rectangle"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Note $48 = 2^4 \\cdot 3$, $162 = 3^4 \\cdot 2$, $\\sqrt[3]{3} = 3^{1/3}$, $\\sqrt[3]{2} = 2^{1/3}$. Change of base: $\\dfrac{4\\log 2 + \\tfrac{4}{3}\\log 3}{\\log 2 + \\log x} = \\dfrac{4\\log 3 + \\tfrac{4}{3}\\log 2}{\\log 3 + \\log x}$. Cross-multiplying and simplifying yields $(\\log 3)^2 - (\\log 2)^2 = 2\\log x (\\log 3 - \\log 2)$, so $\\log x = \\tfrac{1}{2}(\\log 3 + \\log 2) = \\tfrac{1}{2}\\log 6$. Thus $x = \\sqrt{6}$.\n\n**(b)** Let $BC = x$, $PB = b$, $BQ = a$. Triangles $\\triangle PBQ$, $\\triangle QCR$, $\\triangle RDS$, $\\triangle SAP$ are all similar (AA) and congruent in pairs across the rectangle. Similarity gives $\\tfrac{718 - b}{a} = \\tfrac{x}{250}$ and $a^2 + b^2 = 250^2$. From these: $b^2 = (468 - b)^2 \\Rightarrow b = 234$, so $a^2 = 250^2 - 234^2 = 484 \\cdot 16 = 88^2$, $a = 88$. Finally $x = \\dfrac{250 \\cdot 484}{88} = 1375$. $BC = 1375$."
+    },
+    {
+      "number": 9,
+      "statement": "An L-shaped triomino is composed of three unit squares arranged in an L-shape. Suppose that $H$ and $W$ are positive integers. An $H \\times W$ rectangle can be tiled if it can be completely covered with non-overlapping copies of this triomino (each of which can be rotated and/or translated).\n\n**(a)** Draw a tiling of a $3 \\times 8$ rectangle.\n\n**(b)** Determine, with justification, all integers $W$ for which a $6 \\times W$ rectangle can be tiled.\n\n**(c)** Determine, with justification, all pairs $(H, W)$ of integers with $H \\geq 4$ and $W \\geq 4$ for which an $H \\times W$ rectangle can be tiled.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2018 Euclid Contest, Problem 9",
+      "topicKey": "combinatorics.tiling",
+      "techniqueTags": ["triomino_tiling", "area_divisibility", "constructive_tiling"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** A $3 \\times 2$ rectangle tiles with two triominos; combine four such pieces into $3 \\times 8$.\n\n**(b)** A $6 \\times 1$ cannot be tiled (each triomino needs width $\\geq 2$). For $W \\geq 2$: combine $3 \\times 2$ and $2 \\times 3$ blocks. Even $W = 2k$: stack $k$ copies of $6 \\times 2$. Odd $W = 2k + 1$ with $k \\geq 1$: one $6 \\times 3$ (three $2 \\times 3$ rows) plus $(k-1)$ $6 \\times 2$ blocks. Answer: $W \\geq 2$.\n\n**(c)** Area $HW$ must be divisible by $3$, so at least one of $H, W$ is a multiple of $3$. Conversely, any such rectangle with $H, W \\geq 4$ can be tiled. WLOG $3 \\mid H$. Case $H = 6m$: stack $m$ copies of $6 \\times W$. Case $H = 3q$, $q$ odd, $W$ even: tile with $3 \\times 2$ blocks. Case $H$ odd multiple of $3$, $W$ odd: write $H = 9 + 6s$, $W = 5 + 2t$; decompose into $9 \\times 5$ (explicit tiling exists), $9 \\times 2t$, and $6s \\times W$ pieces, each tileable by prior cases. Answer: $(H, W)$ with $H, W \\geq 4$ and $3 \\mid HW$."
+    },
+    {
+      "number": 10,
+      "statement": "In an infinite array with two rows, the numbers in the top row are denoted $\\ldots, A_{-2}, A_{-1}, A_0, A_1, A_2, \\ldots$ and the numbers in the bottom row are denoted $\\ldots, B_{-2}, B_{-1}, B_0, B_1, B_2, \\ldots$. For each integer $k$, $A_k$ is directly above $B_k$. For each integer $k$, $A_k$ is the average of its left neighbor, right neighbor, and the entry below; similarly each $B_k$ is the average of its left, right, and above.\n\n**(a)** In one such array, $A_0 = A_1 = A_2 = 0$ and $A_3 = 1$. Determine the value of $A_4$.\n\n**(b)** Define $S_k = A_k + B_k$ for each integer $k$. Prove that $S_{k+1} = 2S_k - S_{k-1}$ for each integer $k$.\n\n**(c)** Consider two statements: **(P)** If each entry is a positive integer, then all entries are equal. **(Q)** If each entry is a positive real number, then all entries are equal. Prove statement (Q).",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2018 Euclid Contest, Problem 10",
+      "topicKey": "algebra.recurrences_and_invariants",
+      "techniqueTags": ["averaging_invariant", "linear_recurrence", "contradiction_via_growth"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Using $3A_k = A_{k-1} + B_k + A_{k+1}$: From $3A_1 = A_0 + B_1 + A_2 \\Rightarrow B_1 = 0$. From $3A_2 = A_1 + B_2 + A_3 \\Rightarrow B_2 = -1$. From $3B_2 = B_1 + A_2 + B_3 \\Rightarrow B_3 = -3$. From $3A_3 = A_2 + B_3 + A_4 \\Rightarrow 3 = -3 + A_4$, so $A_4 = 6$.\n\n**(b)** Sum the averaging equations: $3A_k + 3B_k = (A_{k-1} + B_k + A_{k+1}) + (B_{k-1} + A_k + B_{k+1})$, giving $3S_k = S_{k-1} + S_k + S_{k+1}$, so $S_{k+1} = 2S_k - S_{k-1}$.\n\n**(c)** $S_k$ is arithmetic by (b). If non-constant, $S_k$ becomes negative for some $k$, contradicting positivity. So $S_k = c$ constant. Define $D_k = A_k - B_k$; similar manipulation gives $D_{k+1} = 4D_k - D_{k-1}$. If $D_0 > 0$ and $D_1 \\geq D_0$, then $D_k \\geq 3^{k-1} D_1$, growing unboundedly — contradicts $|D_k| < c$. If $D_1 < D_0$, same argument backwards: $D_{-j} > 3^j D_0$, unbounded. So $D_k = 0$ for all $k$, forcing $A_k = B_k = c/2$, all entries equal."
+    }
+  ]
+}

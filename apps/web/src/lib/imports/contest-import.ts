@@ -87,8 +87,33 @@ export function suggestProblemSetTitle(key: ProblemSetKey): string {
       return `AMC 12${key.exam ?? ""} ${key.year}`;
     case "AIME":
       return `AIME ${key.exam ?? ""} ${key.year}`;
-    default:
-      return `${key.contest} ${key.year}`;
+    case "USAMO":
+      return `USAMO ${key.year}`;
+    case "USAJMO":
+      return `USAJMO ${key.year}`;
+    case "IMO":
+      return `IMO ${key.year}`;
+    case "CMO":
+      return `CMO ${key.year}`;
+    case "PUTNAM":
+      return `Putnam ${key.year}`;
+    case "EUCLID":
+      return `Euclid ${key.year}`;
+    case "MAT":
+      return `MAT ${key.year}`;
+    case "STEP":
+      // STEP papers are labelled I / II / III. Exam is required by the
+      // schema for STEP, but we fall back defensively in case a caller
+      // passes a key without it (e.g. from a partial preview path).
+      return key.exam ? `STEP ${key.exam} ${key.year}` : `STEP ${key.year}`;
+    case "PRACTICE":
+      return `Practice ${key.year}`;
+    default: {
+      // Exhaustiveness check — TypeScript will flag missing contest
+      // branches here if a new value is added to the Contest enum.
+      const exhaustive: never = key.contest;
+      return `${String(exhaustive)} ${key.year}`;
+    }
   }
 }
 
@@ -164,13 +189,36 @@ async function buildPreviewFromParsed(prisma: PrismaClient, data: ImportProblemS
   const incomingNumbers = new Set(data.problems.map((problem) => problem.number));
   const overlappingNumbers = existingProblemNumbers.filter((number) => incomingNumbers.has(number));
   const warnings: string[] = [];
-  const formatMismatchCount = data.problems.filter((problem) => {
-    if (data.problemSet.contest === "AIME") {
-      return problem.answerFormat !== "INTEGER";
-    }
 
-    return problem.answerFormat !== "MULTIPLE_CHOICE";
-  }).length;
+  // Contest-aware format expectation. AMC and AIME have a single
+  // canonical answer format; admissions-track papers (USAMO / EUCLID
+  // / MAT / STEP) legitimately mix MULTIPLE_CHOICE, INTEGER,
+  // EXPRESSION, and WORKED_SOLUTION within a single paper, so the
+  // mismatch-warning only fires for the contests where a uniform
+  // format is actually expected. This keeps the admin preview UI
+  // quiet on the new contests while still flagging genuine AMC/AIME
+  // authoring mistakes.
+  const expectedFormat: "MULTIPLE_CHOICE" | "INTEGER" | null = (() => {
+    switch (data.problemSet.contest) {
+      case "AMC8":
+      case "AMC10":
+      case "AMC12":
+        return "MULTIPLE_CHOICE";
+      case "AIME":
+        return "INTEGER";
+      case "USAMO":
+      case "EUCLID":
+      case "MAT":
+      case "STEP":
+        // Mixed-format by design — no single expected format.
+        return null;
+    }
+  })();
+
+  const formatMismatchCount =
+    expectedFormat === null
+      ? 0
+      : data.problems.filter((problem) => problem.answerFormat !== expectedFormat).length;
 
   if (existingSet) {
     warnings.push("Problem set already exists; commit will update matching problems and insert new ones.");
@@ -180,11 +228,10 @@ async function buildPreviewFromParsed(prisma: PrismaClient, data: ImportProblemS
     warnings.push(`Existing problem numbers in this file: ${overlappingNumbers.join(", ")}`);
   }
 
-  if (formatMismatchCount > 0) {
+  if (formatMismatchCount > 0 && expectedFormat !== null) {
+    const canonical = expectedFormat === "INTEGER" ? "INTEGER" : "MULTIPLE_CHOICE";
     warnings.push(
-      data.problemSet.contest === "AIME"
-        ? `AIME normally uses INTEGER answers; ${formatMismatchCount} problems use a different answerFormat.`
-        : `${data.problemSet.contest} normally uses MULTIPLE_CHOICE answers; ${formatMismatchCount} problems use a different answerFormat.`
+      `${data.problemSet.contest} normally uses ${canonical} answers; ${formatMismatchCount} problem(s) use a different answerFormat.`
     );
   }
 

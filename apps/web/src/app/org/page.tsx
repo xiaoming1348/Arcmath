@@ -7,6 +7,8 @@ import { prisma } from "@arcmath/db";
 import { authOptions } from "@/lib/auth";
 import { canManageOrganization, getActiveOrganizationMembership } from "@/lib/organizations";
 import { withPepper } from "@/lib/password";
+import { resolveLocale } from "@/i18n/server";
+import { OrgAdminOverviewPanel } from "./org-admin-overview-panel";
 
 type OrganizationPageProps = {
   searchParams: Promise<{
@@ -38,7 +40,10 @@ function summarizeError(code: string | undefined): string | null {
     case "member-exists":
       return "That email is already registered. For this MVP, org admins can only create new accounts here.";
     case "admin-seat-limit":
-      return "This trial organization has already used all 5 admin seats.";
+      // Legacy error code from before the single-owner refactor; should
+      // no longer fire from the form, but kept in the switch so old
+      // bookmarked URLs still render a sensible message.
+      return "This school already has its admin account; only one admin per school is allowed.";
     case "student-seat-limit":
       return "This trial organization has already used all 30 student seats.";
     case "forbidden":
@@ -149,7 +154,14 @@ export default async function OrganizationPage({ searchParams }: OrganizationPag
     const email = String(formData.get("email") ?? "").toLowerCase().trim();
     const password = String(formData.get("password") ?? "");
     const name = String(formData.get("name") ?? "").trim() || null;
-    const role = String(formData.get("memberRole") ?? "STUDENT") === "ADMIN" ? "ADMIN" : "STUDENT";
+    // Allowed roles when adding members: TEACHER and STUDENT only.
+    // The OWNER (school admin) is created exactly once during the trial
+    // bootstrap and is never added through this form. ADMIN is treated
+    // as an alias for OWNER for legacy data and is rejected here so
+    // every school converges to the "1 owner / N teachers / rest
+    // students" structure the product requires.
+    const rawRole = String(formData.get("memberRole") ?? "STUDENT");
+    const role: "TEACHER" | "STUDENT" = rawRole === "TEACHER" ? "TEACHER" : "STUDENT";
 
     if (!email) {
       redirect("/org?error=member-email-required");
@@ -182,16 +194,14 @@ export default async function OrganizationPage({ searchParams }: OrganizationPag
       redirect("/org?error=forbidden");
     }
 
-    const activeAdminCount = org.memberships.filter((member) => member.role === "OWNER" || member.role === "ADMIN").length;
     const activeStudentCount = org.memberships.filter((member) => member.role === "STUDENT").length;
-
-    if (role === "ADMIN" && activeAdminCount >= org.maxAdminSeats) {
-      redirect("/org?error=admin-seat-limit");
-    }
 
     if (role === "STUDENT" && activeStudentCount >= org.maxStudentSeats) {
       redirect("/org?error=student-seat-limit");
     }
+    // Teachers are not seat-capped at this layer (Batch-2 admin overview
+    // will surface a soft warning). The single-OWNER invariant is
+    // enforced at trial bootstrap; this form cannot create OWNER/ADMIN.
 
     const existingUser = await prisma.user.findUnique({
       where: { email },
@@ -350,6 +360,7 @@ export default async function OrganizationPage({ searchParams }: OrganizationPag
   const activeAdminCount = organization.memberships.filter((item) => item.status === "ACTIVE" && (item.role === "OWNER" || item.role === "ADMIN")).length;
   const activeStudentCount = organization.memberships.filter((item) => item.status === "ACTIVE" && item.role === "STUDENT").length;
   const canManage = canManageOrganization(membership.role);
+  const locale = await resolveLocale();
 
   return (
     <main className="motion-rise space-y-4">
@@ -414,7 +425,7 @@ export default async function OrganizationPage({ searchParams }: OrganizationPag
               <span>Role</span>
               <select name="memberRole" className="input-field">
                 <option value="STUDENT">Student</option>
-                <option value="ADMIN">Admin</option>
+                <option value="TEACHER">Teacher</option>
               </select>
             </label>
             <div className="md:col-span-2">
@@ -425,6 +436,9 @@ export default async function OrganizationPage({ searchParams }: OrganizationPag
           </form>
         </section>
       ) : null}
+
+      {/* Batch-2 admin overview: teachers / students / classes / activity. */}
+      {canManage ? <OrgAdminOverviewPanel locale={locale} /> : null}
 
       {canManage ? (
         <>

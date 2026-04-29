@@ -1,0 +1,123 @@
+{
+  "problemSet": {
+    "contest": "EUCLID",
+    "year": 2021,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://cemc.uwaterloo.ca/contests/past_contests.html",
+    "verifiedPdfUrl": "https://cemc.uwaterloo.ca/sites/default/files/documents/2021/2021EuclidContest.pdf"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "**(a)** What is the value of $a$ for which $(a - 1) + (2a - 3) = 14$?\n\n**(b)** What are the two values of $c$ for which $(c^2 - c) + (2c - 3) = 9$?\n\n**(c)** Determine all values of $x$ for which $\\dfrac{1}{x^2} + \\dfrac{3}{2x^2} = 10$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2021 Euclid Contest, Problem 1",
+      "topicKey": "algebra.linear_and_quadratic",
+      "techniqueTags": ["linear_equation", "factoring_quadratic", "rational_equations"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** $3a - 4 = 14$, so $a = 6$.\n\n**(b)** $c^2 + c - 12 = 0 \\Rightarrow (c+4)(c-3) = 0$, so $c = 3$ or $c = -4$.\n\n**(c)** Multiply by $2x^2$: $2 + 3 = 20x^2$, so $x^2 = 1/4$ and $x = \\pm 1/2$."
+    },
+    {
+      "number": 2,
+      "statement": "**(a)** What is the sum of the digits of the integer equal to $(10^3 + 1)^2$?\n\n**(b)** A bakery sells small and large cookies. Before a price increase, the price of each small cookie is \\$1.50 and the price of each large cookie is \\$2.00. The price of each small cookie is increased by $10\\%$ and the price of each large cookie is increased by $5\\%$. What is the percentage increase in the total cost of a purchase of $2$ small cookies and $1$ large cookie?\n\n**(c)** Qing is twice as old as Rayna. Qing is $4$ years younger than Paolo. The average age of Paolo, Qing and Rayna is $13$. Determine their ages.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2021 Euclid Contest, Problem 2",
+      "topicKey": "algebra.arithmetic_word_problems",
+      "techniqueTags": ["digit_sum", "percentage_change", "age_problem"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** $(10^3 + 1)^2 = 1{,}002{,}001$, digit sum $= 1 + 2 + 1 = 4$.\n\n**(b)** Before: $2 \\cdot 1.50 + 2.00 = 5.00$. After: $2 \\cdot 1.65 + 2.10 = 5.40$. Increase $= 0.40 / 5.00 = 8\\%$.\n\n**(c)** Let Rayna be $x$. Then Qing $= 2x$, Paolo $= 2x + 4$, total $= 5x + 4 = 39$, so $x = 7$. Ages: Rayna $7$, Qing $14$, Paolo $18$."
+    },
+    {
+      "number": 3,
+      "statement": "**(a)** In the diagram, $PQRS$ is a quadrilateral with vertices $P(0, 12)$, $Q(5, 0)$, $R(0, -12)$, $S(-5, 0)$. What is its perimeter?\n\n**(b)** In the diagram, $A$ has coordinates $(0, 8)$. Also, the midpoint of $AB$ is $M(3, 9)$ and the midpoint of $BC$ is $N(7, 6)$. What is the slope of $AC$?\n\n**(c)** The parabola with equation $y = -2x^2 + 4x + c$ has vertex $V(1, 18)$. The parabola intersects the $y$-axis at $D$ and the $x$-axis at $E$ and $F$. Determine the area of $\\triangle DEF$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2021 Euclid Contest, Problem 3",
+      "topicKey": "geometry.coordinate",
+      "techniqueTags": ["distance_formula", "midpoint_segment_parallel", "parabola_intercepts"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** Each side $= \\sqrt{5^2 + 12^2} = 13$; perimeter $= 52$.\n\n**(b)** Since $MN$ is the midsegment of $\\triangle ABC$, $MN \\parallel AC$ and has the same slope: $(9 - 6)/(3 - 7) = -3/4$.\n\n**(c)** $V = (1, 18)$ gives $c = 16$. Parabola: $y = -2x^2 + 4x + 16 = -2(x-4)(x+2)$. Intercepts: $D = (0, 16)$, $E = (4, 0)$, $F = (-2, 0)$. Area $= \\tfrac{1}{2} \\cdot 6 \\cdot 16 = 48$."
+    },
+    {
+      "number": 4,
+      "statement": "**(a)** If $3(8^x) + 5(8^x) = 2^{61}$, what is the value of the real number $x$?\n\n**(b)** For some real numbers $m$ and $n$, the list $3n^2$, $m^2$, $2(n + 1)^2$ consists of three consecutive integers written in increasing order. Determine all possible values of $m$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2021 Euclid Contest, Problem 4",
+      "topicKey": "algebra.exponents_and_integer_lists",
+      "techniqueTags": ["exponent_laws", "consecutive_integers", "quadratic_case_analysis"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** $8(8^x) = 8^{x+1} = 2^{3(x+1)} = 2^{61}$, so $3(x+1) = 61$ and $x = 58/3$.\n\n**(b)** $2(n+1)^2 - 3n^2 = 2$ gives $-n^2 + 4n = 0$, so $n = 0$ or $n = 4$. If $n = 0$: $m^2 = 1$, so $m = \\pm 1$. If $n = 4$: $m^2 = 49$, so $m = \\pm 7$. Values: $m \\in \\{-7, -1, 1, 7\\}$."
+    },
+    {
+      "number": 5,
+      "statement": "**(a)** Chinara starts with the point $(3, 5)$, and applies the following three-step process, which we call $P$: (Step 1) reflect the point in the $x$-axis; (Step 2) translate the resulting point $2$ units upwards; (Step 3) reflect the resulting point in the $y$-axis. As she does this, $(3, 5)$ moves to $(3, -5)$, then to $(3, -3)$, and then to $(-3, -3)$. Chinara then starts with a different point $S_0$. She applies the three-step process $P$ to $S_0$ to obtain $S_1$, then applies $P$ to $S_1$ to obtain $S_2$, and continues four more times to eventually obtain $S_6(-7, -1)$. What are the coordinates of the point $S_0$?\n\n**(b)** In the diagram, $ABDE$ is a rectangle, $\\triangle BCD$ is equilateral, and $AD$ is parallel to $BC$. Also, $AE = 2x$ for some real number $x$.\n\n*(i)* Determine the length of $AB$ in terms of $x$.\n\n*(ii)* Determine positive integers $r$ and $s$ for which $\\dfrac{AC}{AD} = \\sqrt{\\dfrac{r}{s}}$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2021 Euclid Contest, Problem 5",
+      "topicKey": "geometry.transformations_and_30_60_90",
+      "techniqueTags": ["composition_of_transformations", "periodicity", "30_60_90_triangle"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** Applying $P$ twice is the identity: $(a,b) \\xrightarrow{P} (-a, -b+2) \\xrightarrow{P} (a, b)$. So $S_0 = S_2 = S_4 = S_6 = (-7, -1)$.\n\n**(b)(i)** $BD = AE = 2x$. Since $\\triangle ADB$ is $30^\\circ$-$60^\\circ$-$90^\\circ$ (with $\\angle ABD = 90^\\circ$, $\\angle ADB = 60^\\circ$), $AB = \\sqrt{3} \\cdot BD / 1 = 2\\sqrt{3}\\,x$.\n\n**(b)(ii)** With midpoints $M, N$ of $AE, BD$, $MC$ is perpendicular to $AE$ with $MC = 2\\sqrt{3}x + \\sqrt{3}x = 3\\sqrt{3}x$ (via $30^\\circ$-$60^\\circ$-$90^\\circ$ in $\\triangle BNC$). Then $AC = \\sqrt{x^2 + 27x^2} = 2\\sqrt{7}\\,x$, and $AD = 4x$. So $AC/AD = \\sqrt{7}/2 = \\sqrt{7/4}$, giving $r = 7$, $s = 4$."
+    },
+    {
+      "number": 6,
+      "statement": "**(a)** Suppose that $n > 5$ and that the numbers $t_1, t_2, t_3, \\ldots, t_{n-2}, t_{n-1}, t_n$ form an arithmetic sequence with $n$ terms. If $t_3 = 5$, $t_{n-2} = 95$, and the sum of all $n$ terms is $1000$, what is the value of $n$?\n\n**(b)** Suppose that $a$ and $r$ are real numbers. A geometric sequence with first term $a$ and common ratio $r$ has $4$ terms. The sum of this geometric sequence is $6 + 6\\sqrt{2}$. A second geometric sequence has the same first term $a$ and the same common ratio $r$, but has $8$ terms. The sum of this second geometric sequence is $30 + 30\\sqrt{2}$. Determine all possible values for $a$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2021 Euclid Contest, Problem 6",
+      "topicKey": "algebra.sequences",
+      "techniqueTags": ["arithmetic_sum_formula", "geometric_series", "radical_algebra"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** In an arithmetic sequence, $t_3 + t_{n-2} = t_1 + t_n$. Sum $= \\tfrac{n}{2}(t_1 + t_n) = \\tfrac{n}{2}(5 + 95) = 50n = 1000$, so $n = 20$.\n\n**(b)** Let $S_4 = a(1 + r + r^2 + r^3) = 6 + 6\\sqrt 2$ and $S_8 = (1 + r^4) S_4 = 30 + 30\\sqrt 2$. Dividing: $1 + r^4 = 5$, so $r^4 = 4$ and $r^2 = 2$, giving $r = \\pm\\sqrt{2}$. For $r = \\sqrt 2$: $a(3 + 3\\sqrt 2) = 6 + 6\\sqrt 2 \\Rightarrow a = 2$. For $r = -\\sqrt 2$: $a(3 - 3\\sqrt 2) = 6 + 6\\sqrt 2 \\Rightarrow a = -6 - 4\\sqrt 2$. So $a \\in \\{2, -6 - 4\\sqrt{2}\\}$."
+    },
+    {
+      "number": 7,
+      "statement": "**(a)** A bag contains $3$ green balls, $4$ red balls, and no other balls. Victor removes balls randomly from the bag, one at a time, and places them on a table. Each ball in the bag is equally likely to be chosen each time that he removes a ball. He stops removing balls when there are two balls of the same colour on the table. What is the probability that, when he stops, there is at least $1$ red ball and at least $1$ green ball on the table?\n\n**(b)** Suppose that $f(a) = 2a^2 - 3a + 1$ for all real numbers $a$ and $g(b) = \\log_{1/2} b$ for all $b > 0$. Determine all $\\theta$ with $0 \\le \\theta \\le 2\\pi$ for which $f(g(\\sin \\theta)) = 0$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2021 Euclid Contest, Problem 7",
+      "topicKey": "algebra.probability_and_trig_log",
+      "techniqueTags": ["complementary_counting", "composition_of_functions", "trig_equations"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** Victor stops with both colors iff his first two draws are different colors. $P(\\text{first two same}) = \\tfrac{3}{7} \\cdot \\tfrac{2}{6} + \\tfrac{4}{7} \\cdot \\tfrac{3}{6} = \\tfrac{1}{7} + \\tfrac{2}{7} = \\tfrac{3}{7}$. Answer: $1 - 3/7 = 4/7$.\n\n**(b)** $f(a) = 0 \\Leftrightarrow a \\in \\{1, 1/2\\}$. Need $g(\\sin\\theta) \\in \\{1, 1/2\\}$, i.e. $\\sin\\theta \\in \\{1/2, 1/\\sqrt{2}\\}$. On $[0, 2\\pi]$: $\\theta \\in \\{\\pi/6, 5\\pi/6, \\pi/4, 3\\pi/4\\}$."
+    },
+    {
+      "number": 8,
+      "statement": "**(a)** Five distinct integers are to be chosen from the set $\\{1, 2, 3, 4, 5, 6, 7, 8\\}$ and placed in some order in the top row of boxes in the diagram. Each box that is not in the top row then contains the product of the integers in the two boxes connected to it in the row directly above. Determine the number of ways in which the integers can be chosen and placed in the top row so that the integer in the bottom box is $9{,}953{,}280{,}000$.\n\n**(b)** Prove that the integer $\\dfrac{(1!)(2!)(3!) \\cdots (398!)(399!)(400!)}{200!}$ is a perfect square. (In this fraction, the numerator is the product of the factorials of the integers from $1$ to $400$, inclusive.)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2021 Euclid Contest, Problem 8",
+      "topicKey": "combinatorics.product_pyramid_and_factorial_identities",
+      "techniqueTags": ["prime_factorization_casework", "factorial_identity", "perfect_square_proof"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** The bottom box evaluates to $ab^4 c^6 d^4 e$ where the top row is $(a,b,c,d,e)$. Factor the target: $9{,}953{,}280{,}000 = 2^{16} \\cdot 3^5 \\cdot 5^4$. So no entry is $7$; the single factor of $5^4$ forces $b = 5$ or $d = 5$. Casework on the placement of $3$ and $6$ then yields $8$ valid quintuples (four with $b = 5$, four with $d = 5$).\n\n**(b)** Pair $(2k-1)!(2k)! = 2k \\cdot ((2k-1)!)^2$. So numerator $= \\prod_{k=1}^{200} 2k \\cdot ((2k-1)!)^2 = 2^{200} \\cdot 200! \\cdot \\prod_{k=1}^{200}((2k-1)!)^2$. Dividing by $200!$: $N = 2^{200} \\cdot \\prod_{k=1}^{200}((2k-1)!)^2 = \\left(2^{100} \\prod_{k=1}^{200}(2k-1)!\\right)^2$. Perfect square."
+    },
+    {
+      "number": 9,
+      "statement": "**(a)** Suppose that $a = 5$ and $b = 4$. Determine all pairs of integers $(K, L)$ for which $K^2 + 3L^2 = a^2 + b^2 - ab$.\n\n**(b)** Prove that, for all integers $K$ and $L$, there is at least one pair of integers $(a, b)$ for which $K^2 + 3L^2 = a^2 + b^2 - ab$.\n\n**(c)** Prove that, for all integers $a$ and $b$, there is at least one pair of integers $(K, L)$ for which $K^2 + 3L^2 = a^2 + b^2 - ab$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2021 Euclid Contest, Problem 9",
+      "topicKey": "number_theory.quadratic_forms",
+      "techniqueTags": ["exhaustive_search", "algebraic_identity", "parity_casework"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** $a^2 + b^2 - ab = 21$. Trying $L \\in \\{0, \\pm 1, \\pm 2, \\pm 3\\}$: only $L = \\pm 2$ gives $K^2 = 9$. Pairs: $(K, L) \\in \\{(3, 2), (-3, 2), (3, -2), (-3, -2)\\}$.\n\n**(b)** Set $a = K + L$, $b = K - L$. Direct expansion: $(K+L)^2 + (K-L)^2 - (K+L)(K-L) = 2K^2 + 2L^2 - (K^2 - L^2) = K^2 + 3L^2$.\n\n**(c)** Case 1, $a$ even: $K = a/2 - b$, $L = a/2$ gives $K^2 + 3L^2 = (a/2-b)^2 + 3(a/2)^2 = a^2 - ab + b^2$. Case 2, $b$ even: analogous. Case 3, $a, b$ both odd: $K = (a+b)/2$, $L = (a-b)/2$ (both integers) gives $K^2 + 3L^2 = (a^2 + 2ab + b^2)/4 + 3(a^2 - 2ab + b^2)/4 = (4a^2 - 4ab + 4b^2)/4 = a^2 + b^2 - ab$."
+    },
+    {
+      "number": 10,
+      "statement": "**(a)** In the diagram, eleven circles of four different sizes are drawn. Each circle labelled $W$ has radius $1$, each circle labelled $X$ has radius $2$, the circle labelled $Y$ has radius $4$, and the circle labelled $Z$ has radius $r$. Each of the circles labelled $W$ or $X$ is tangent to three other circles. The circle labelled $Y$ is tangent to all ten of the other circles. The circle labelled $Z$ is tangent to three other circles. Determine positive integers $s$ and $t$ for which $r = \\dfrac{s}{t}$.\n\n**(b)** Suppose that $c$ is a positive integer. Define $f(c)$ to be the number of pairs $(a, b)$ of positive integers with $c < a < b$ for which two circles of radius $a$, two circles of radius $b$, and one circle of radius $c$ can be drawn so that each circle of radius $a$ is tangent to both circles of radius $b$ and to the circle of radius $c$, and each circle of radius $b$ is tangent to both circles of radius $a$ and to the circle of radius $c$, as shown. Determine all positive integers $c$ for which $f(c)$ is even.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2021 Euclid Contest, Problem 10",
+      "topicKey": "geometry.tangent_circles",
+      "techniqueTags": ["law_of_cosines", "divisor_counting", "prime_factorization"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Label the 10 outer centers around $L$ (center of $Y$). The eight congruent triangles $\\triangle BLC, \\ldots$ each satisfy $BC = 3, BL = 6, CL = 5$, giving $\\cos\\alpha = 13/15$. Then $\\cos 4\\alpha = -25087/50625$ via double-angle. For $\\triangle ALB$ with $AB = r+2, AL = r+4, BL = 6$ and angle $\\theta = 180^\\circ - 4\\alpha$: cosine law gives $\\cos\\theta = (r+12)/(3r+12)$. Setting equal to $-\\cos 4\\alpha = 25087/50625$ and simplifying yields $r = 25538/2053$. So $s = 25538$, $t = 2053$.\n\n**(b)** By a right-angle argument, the configuration exists iff $(a - c)(b - c) = 2c^2$. So $f(c)$ counts divisor pairs of $2c^2$. Since $\\sqrt{2}c$ is irrational, $2c^2$ is never a perfect square, so the number of divisors is even and $f(c)$ is half that count. $f(c)$ even iff the number of divisors of $2c^2$ is a multiple of $4$. Writing $c = 2^r p_1^{e_1} \\cdots p_k^{e_k}$ gives $2c^2 = 2^{2r+1} p_1^{2e_1} \\cdots p_k^{2e_k}$, which has $(2r+2)(2e_1+1)\\cdots(2e_k+1)$ divisors. This is a multiple of $4$ iff $2r + 2$ is, i.e. $r$ is odd. Answer: $f(c)$ is even exactly when $c$ has an odd number of factors of $2$."
+    }
+  ]
+}

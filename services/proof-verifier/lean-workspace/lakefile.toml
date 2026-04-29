@@ -1,0 +1,15 @@
+name = "arcmath_verifier"
+version = "0.1.0"
+defaultTargets = ["ArcmathVerifier"]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "master"
+
+[[lean_lib]]
+name = "ArcmathVerifier"
+
+[[lean_exe]]
+name = "arcmath_verifier"
+root = "Main"

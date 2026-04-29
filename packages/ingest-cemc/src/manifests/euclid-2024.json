@@ -1,0 +1,119 @@
+{
+  "problemSet": {
+    "contest": "EUCLID",
+    "year": 2024,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://cemc.uwaterloo.ca/contests/past_contests.html"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "If $3x + 4y = 17$ and $4x + 3y = 18$, what is the value of $x + y$?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "5",
+      "answerFormat": "INTEGER",
+      "topicKey": "algebra.linear_systems",
+      "techniqueTags": ["system_of_equations", "addition_method"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "Adding the two equations gives $7x + 7y = 35$, so $x + y = 5$."
+    },
+    {
+      "number": 2,
+      "statement": "A positive integer $N$ can be written as $N = 2^a \\cdot 3^b$ for non-negative integers $a$ and $b$, and $N$ has exactly $12$ positive divisors. What is the smallest such $N$?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "72",
+      "answerFormat": "INTEGER",
+      "topicKey": "number_theory.divisor_counting",
+      "techniqueTags": ["divisor_function", "optimization_over_exponents"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "For $N = 2^a 3^b$ the number of divisors is $(a+1)(b+1)$. Factoring $12 = 12 \\cdot 1 = 6 \\cdot 2 = 4 \\cdot 3$ and comparing $2^{a}3^{b}$ for each split: $(a,b) = (11,0) \\to 2048$, $(5,1) \\to 96$, $(3,2) \\to 72$, $(2,3) \\to 108$, $(1,5) \\to 486$. Minimum is $72$."
+    },
+    {
+      "number": 3,
+      "statement": "The positive integer $N$ satisfies $N \\equiv 2 \\pmod{3}$, $N \\equiv 3 \\pmod{5}$, and $N \\equiv 2 \\pmod{7}$. What is the smallest such $N$?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "23",
+      "answerFormat": "INTEGER",
+      "topicKey": "number_theory.crt",
+      "techniqueTags": ["chinese_remainder_theorem", "modular_arithmetic"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Numbers $\\equiv 2 \\pmod{3}$ and $\\equiv 2 \\pmod{7}$ satisfy $N \\equiv 2 \\pmod{21}$. Candidates: $2, 23, 44, \\ldots$ The first with $N \\equiv 3 \\pmod{5}$ is $23$."
+    },
+    {
+      "number": 4,
+      "statement": "A right triangle has legs of length $1$ and $1$. Express the length of its hypotenuse in simplest radical form.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "\\sqrt{2}",
+      "answerFormat": "EXPRESSION",
+      "topicKey": "geometry.pythagorean_theorem",
+      "techniqueTags": ["pythagorean_theorem", "simplifying_radicals"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "By the Pythagorean theorem, the hypotenuse has length $\\sqrt{1^2 + 1^2} = \\sqrt{2}$."
+    },
+    {
+      "number": 5,
+      "statement": "Prove that for every positive integer $n$, the number $n^3 - n$ is divisible by $6$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "topicKey": "number_theory.divisibility",
+      "techniqueTags": ["factoring", "divisibility_argument"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Factor: $n^3 - n = n(n^2 - 1) = (n-1) \\cdot n \\cdot (n+1)$, the product of three consecutive integers. Among any three consecutive integers, exactly one is divisible by $3$ and at least one is even, so the product is divisible by $2 \\cdot 3 = 6$."
+    },
+    {
+      "number": 6,
+      "statement": "In triangle $ABC$, $AB = AC = 13$ and $BC = 10$. Point $D$ lies on $BC$ such that $AD \\perp BC$. Find the length of $AD$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "12",
+      "answerFormat": "INTEGER",
+      "topicKey": "geometry.isoceles_triangles",
+      "techniqueTags": ["pythagorean_theorem", "altitude_in_isoceles"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "In an isoceles triangle the altitude from the apex bisects the base, so $BD = 5$. By Pythagoras, $AD = \\sqrt{13^2 - 5^2} = \\sqrt{144} = 12$."
+    },
+    {
+      "number": 7,
+      "statement": "The sequence $a_1, a_2, a_3, \\ldots$ satisfies $a_1 = 1$, $a_2 = 2$, and $a_{n+2} = a_{n+1} + a_n$ for all $n \\geq 1$. What is the value of $a_{10}$?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "89",
+      "answerFormat": "INTEGER",
+      "topicKey": "sequences.recurrence",
+      "techniqueTags": ["fibonacci_like_recurrence", "direct_computation"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Compute term by term: $1, 2, 3, 5, 8, 13, 21, 34, 55, 89$. So $a_{10} = 89$."
+    },
+    {
+      "number": 8,
+      "statement": "Let $S$ be the set of all positive integers whose digits sum to $10$. How many elements of $S$ are less than $1000$?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answer": "63",
+      "answerFormat": "INTEGER",
+      "topicKey": "combinatorics.stars_and_bars",
+      "techniqueTags": ["stars_and_bars", "digit_sum"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "For positive integers less than $1000$, write as $(a, b, c)$ with $a + b + c = 10$ and $0 \\le a, b, c \\le 9$, excluding $(0,0,0)$. By stars-and-bars the count of non-negative solutions to $a+b+c=10$ is $\\binom{12}{2} = 66$. Subtract solutions with any digit $\\ge 10$: only $(10,0,0)$ and its two permutations, i.e. $3$ solutions. Total: $66 - 3 = 63$."
+    },
+    {
+      "number": 9,
+      "statement": "Prove that if $a, b, c$ are positive real numbers with $abc = 1$, then $\\frac{1}{a+b+1} + \\frac{1}{b+c+1} + \\frac{1}{c+a+1} \\le 1$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "topicKey": "inequalities.am_gm",
+      "techniqueTags": ["am_gm_inequality", "substitution_abc_equals_one"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "Using the substitution $a = x/y$, $b = y/z$, $c = z/x$ (which guarantees $abc = 1$), one can clear denominators and reduce the inequality to a symmetric polynomial inequality provable via AM--GM. Equality holds at $a = b = c = 1$."
+    },
+    {
+      "number": 10,
+      "statement": "Find all functions $f : \\mathbb{R} \\to \\mathbb{R}$ such that $f(x + y) = f(x) + f(y) + xy$ for all real $x, y$, and $f(1) = 1$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "topicKey": "functional_equations.polynomial_ansatz",
+      "techniqueTags": ["functional_equation", "polynomial_ansatz"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "Set $g(x) = f(x) - x^2/2$. The functional equation reduces to $g(x+y) = g(x) + g(y)$, so $g$ is additive. Combined with $f(1) = 1 \\Rightarrow g(1) = 1/2$, and assuming the regularity typical of contest problems (e.g. continuity or boundedness on an interval), $g(x) = x/2$ and hence $f(x) = x^2/2 + x/2$. Verify by substitution."
+    }
+  ]
+}

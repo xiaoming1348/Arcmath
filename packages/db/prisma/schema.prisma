@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
@@ -22,7 +22,20 @@ enum OrganizationPlanType {
 enum OrganizationMembershipRole {
   OWNER
   ADMIN
+  TEACHER
   STUDENT
+}
+
+// Who can see and run a ProblemSet. PUBLIC = arcmath-curated global
+// library (AMC past papers, etc.). ORG_ONLY = uploaded by a teacher and
+// only their school's users + arcmath admins can see it. CLASS_ONLY is
+// reserved for future per-class private sets (e.g. a quiz one teacher
+// doesn't want peers in the same school to see) but currently we only
+// enforce PUBLIC/ORG_ONLY.
+enum ProblemSetVisibility {
+  PUBLIC
+  ORG_ONLY
+  CLASS_ONLY
 }
 
 enum OrganizationMembershipStatus {
@@ -54,6 +67,23 @@ enum Contest {
   AMC10
   AMC12
   AIME
+  USAMO
+  USAJMO
+  IMO
+  CMO
+  PUTNAM
+  // International-school admissions track — added alongside the pilot
+  // expansion to UK/Canada routes (2026-Q2). EUCLID is CEMC/Waterloo's
+  // annual contest; MAT is Oxford + Imperial's maths admissions test;
+  // STEP is Cambridge's Sixth Term Examination Paper. See
+  // PILOT_ONBOARDING.md for the target customer framing.
+  EUCLID
+  MAT
+  STEP
+  // Non-competition practice content (warmups, fixture exercises, arcmath-
+  // authored material). Real competition past papers use the specific enums
+  // above with their real year and problem number; PRACTICE never does.
+  PRACTICE
 }
 
 enum ExamTrack {
@@ -94,58 +124,162 @@ enum AnswerFormat {
   MULTIPLE_CHOICE
   INTEGER
   EXPRESSION
+  // Formal mathematical proof — routed through services/proof-verifier's
+  // Lean+classifier pipeline (see FormalizedStatus). Reserved for USAMO,
+  // IMO, and Chinese-olympiad problems where a proof is the expected
+  // answer and we want to machine-check it.
+  PROOF
+  // Long-form worked solution (STEP full questions, MAT long questions,
+  // Euclid Part C). Graded by showing the official solution for student
+  // self-comparison; we do NOT attempt formal verification. Separate from
+  // PROOF so an importer can flag "this is open-ended but we're not going
+  // to run Lean on it" without silently creating PENDING FormalizedStatus
+  // rows that will churn in the formalizer queue.
+  WORKED_SOLUTION
+}
+
+enum AttemptStatus {
+  DRAFT
+  SUBMITTED
+  ABANDONED
+}
+
+enum AttemptEntryMode {
+  ANSWER_ONLY
+  STUCK_WITH_WORK
+  HINT_GUIDED
+  PROOF_STEPS
+}
+
+enum AttemptSelfReport {
+  SOLVED_CONFIDENT
+  ATTEMPTED_STUCK
+  NO_IDEA
+}
+
+enum PracticeRunReviewMode {
+  GRADE_ONLY
+  REVIEW_WITH_RETRY
+}
+
+enum ProofStepType {
+  ALGEBRAIC_EQUIVALENCE
+  EQUATION
+  INEQUALITY
+  CLAIM
+  DEDUCTION
+  CASE_SPLIT
+  CONCLUSION
+  UNKNOWN
+}
+
+enum ProofVerificationBackend {
+  SYMPY
+  LEAN
+  LLM_JUDGE
+  GEOGEBRA
+  CLASSIFIER_ONLY
+  NONE
+}
+
+enum ProofStepVerdict {
+  VERIFIED
+  PLAUSIBLE
+  UNKNOWN
+  INVALID
+  ERROR
+  PENDING
+}
+
+enum FormalizedStatus {
+  // Offline pre-processing has not yet run, or the problem was ingested
+  // after the last pass.
+  PENDING
+  // /prove returned VERIFIED: the canonical Lean statement type-checks AND
+  // at least one complete proof was machine-checked by the kernel.
+  VERIFIED
+  // /prove ran but the kernel rejected every attempt, or autoformalize
+  // itself failed. Keep the last error for offline triage; do NOT silently
+  // fall back to LLM-only grading without flagging it.
+  FAILED
+  // Human curator must intervene — e.g. non-provable conjecture statements,
+  // problems that need an unusual Mathlib import we haven't wired yet.
+  MANUAL_REVIEW
+  // Non-proof problem (multiple choice / integer / expression). Formal
+  // verification doesn't apply; attempts use the answer-key path.
+  SKIPPED
 }
 
 model User {
-  id           String       @id @default(cuid())
-  email        String       @unique
-  name         String?
-  passwordHash String
-  role         Role         @default(STUDENT)
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
-  enrollments  Enrollment[]
-  importJobs   ImportJob[]
-  resourceAccesses UserResourceAccess[]
-  organizationMemberships OrganizationMembership[]
-  problemAttempts ProblemAttempt[]
-  problemHintUsages ProblemHintUsage[]
-  practiceRuns PracticeRun[]
-  learningReportSnapshots LearningReportSnapshot[]
-  organizationResourcesCreated OrganizationResource[]
+  id                             String                   @id @default(cuid())
+  email                          String                   @unique
+  name                           String?
+  passwordHash                   String
+  role                           Role                     @default(STUDENT)
+  // Preferred UI language ("en" | "zh"). Null → fall back to browser
+  // Accept-Language or org-default. Stored here so a student who logs
+  // in from a shared device still sees their preferred language.
+  locale                         String?
+  createdAt                      DateTime                 @default(now())
+  updatedAt                      DateTime                 @updatedAt
+  enrollments                    Enrollment[]
+  importJobs                     ImportJob[]
+  resourceAccesses               UserResourceAccess[]
+  organizationMemberships        OrganizationMembership[]
+  problemAttempts                ProblemAttempt[]
+  problemHintUsages              ProblemHintUsage[]
+  practiceRuns                   PracticeRun[]
+  learningReportSnapshots        LearningReportSnapshot[]
+  organizationResourcesCreated   OrganizationResource[]
   organizationAssignmentsCreated OrganizationAssignment[]
-  tutorSessions TutorSession[]
-  tutorTurns TutorTurn[]
+  classesCreated                 Class[]                  @relation("ClassCreatedBy")
+  classesAssigned                Class[]                  @relation("ClassAssignedTeacher")
+  classAssignmentsCreated        ClassAssignment[]
+  problemSetsOwned               ProblemSet[]             @relation("ProblemSetOwner")
+  tutorSessions                  TutorSession[]
+  tutorTurns                     TutorTurn[]
+  attemptSteps                   AttemptStep[]
+  auditLogEvents                 AuditLogEvent[]  @relation("AuditLogActor")
 }
 
 model Organization {
-  id            String                     @id @default(cuid())
-  name          String
-  slug          String                     @unique
-  planType      OrganizationPlanType       @default(TRIAL)
-  trialStartedAt DateTime                  @default(now())
-  trialEndsAt    DateTime?
-  maxAdminSeats Int                        @default(5)
-  maxStudentSeats Int                      @default(30)
-  createdAt     DateTime                   @default(now())
-  updatedAt     DateTime                   @updatedAt
-  memberships   OrganizationMembership[]
-  practiceRuns  PracticeRun[]
+  id                      String                   @id @default(cuid())
+  name                    String
+  slug                    String                   @unique
+  planType                OrganizationPlanType     @default(TRIAL)
+  trialStartedAt          DateTime                 @default(now())
+  trialEndsAt             DateTime?
+  // Seat quotas enforced at invite-time. Pilot defaults for an
+  // international-school trial tenant: 1 org admin, 3 teachers, 50
+  // students. maxAdminSeats kept for owner/principal accounts.
+  maxAdminSeats           Int                      @default(5)
+  maxTeacherSeats         Int                      @default(3)
+  maxStudentSeats         Int                      @default(50)
+  // Default UI language for this school. Individual users can override
+  // via User.locale. Accepts "en" or "zh" for the pilot.
+  defaultLocale           String                   @default("en")
+  createdAt               DateTime                 @default(now())
+  updatedAt               DateTime                 @updatedAt
+  memberships             OrganizationMembership[]
+  classes                 Class[]
+  problemSetsOwned        ProblemSet[]             @relation("ProblemSetOwnerOrg")
+  practiceRuns            PracticeRun[]
   learningReportSnapshots LearningReportSnapshot[]
-  resources     OrganizationResource[]
-  assignments   OrganizationAssignment[]
+  resources               OrganizationResource[]
+  assignments             OrganizationAssignment[]
+  auditLogEvents          AuditLogEvent[]
 }
 
 model OrganizationMembership {
-  id             String                     @id @default(cuid())
+  id             String                       @id @default(cuid())
   organizationId String
   userId         String
   role           OrganizationMembershipRole
   status         OrganizationMembershipStatus @default(ACTIVE)
-  createdAt      DateTime                   @default(now())
-  updatedAt      DateTime                   @updatedAt
-  organization   Organization               @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  user           User                       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt      DateTime                     @default(now())
+  updatedAt      DateTime                     @updatedAt
+  organization   Organization                 @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user           User                         @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([organizationId, userId])
   @@index([organizationId, role, status])
@@ -153,11 +287,71 @@ model OrganizationMembership {
 }
 
 model Class {
-  id          String       @id @default(cuid())
-  name        String
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  enrollments Enrollment[]
+  id              String            @id @default(cuid())
+  name            String
+  // Tenant scope. Null during pilot bootstrap / legacy rows; for new
+  // rows created through the teacher-workflow router this is NOT null.
+  // We keep nullable so historical dev-mode Classes don't break.
+  organizationId  String?
+  createdByUserId String?
+  // The teacher who runs this class day-to-day. When the school admin
+  // creates a class and hands it to a teacher, this points at the
+  // teacher (and createdByUserId is the admin). When a teacher
+  // self-creates one these converge to the same user. Nullable so
+  // legacy pre-feature classes stay valid.
+  assignedTeacherId String?
+  // 6-char alphanumeric code a teacher shares verbally. Students
+  // self-enroll by entering it (validated within the same tenant).
+  joinCode        String?           @unique
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  organization    Organization?     @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdByUser   User?             @relation("ClassCreatedBy", fields: [createdByUserId], references: [id], onDelete: SetNull)
+  assignedTeacher User?             @relation("ClassAssignedTeacher", fields: [assignedTeacherId], references: [id], onDelete: SetNull)
+  enrollments     Enrollment[]
+  assignments     ClassAssignment[]
+
+  @@index([organizationId, createdAt])
+  @@index([createdByUserId, createdAt])
+  @@index([organizationId, assignedTeacherId])
+}
+
+/// One assignment = one ProblemSet given to one Class. Teachers create
+/// these; students see them as tasks in their dashboard. PracticeRuns
+/// made under an assignment link back here so per-class progress can be
+/// computed without scanning every run in the org.
+model ClassAssignment {
+  id              String        @id @default(cuid())
+  classId         String
+  problemSetId    String
+  createdByUserId String
+  // Teacher-facing title. Often mirrors ProblemSet.title ("AMC 10 2020
+  // #11-20") but teachers can override ("Week 3 Homework") without
+  // changing the underlying set.
+  title           String
+  instructions    String?
+  assignedAt      DateTime      @default(now())
+  // Optional gate: students can't start before openAt.
+  openAt          DateTime?
+  dueAt           DateTime?
+  // Per-assignment switch the teacher flips when posting homework.
+  // When false, the AI hint tutor panel is hidden for this assignment;
+  // when true, hints are available and ProblemHintUsage logs each
+  // request so the teacher report shows hint counts. Default false so
+  // historical assignments stay strictly graded until a teacher opts
+  // in.
+  hintTutorEnabled Boolean      @default(false)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  class           Class         @relation(fields: [classId], references: [id], onDelete: Cascade)
+  problemSet      ProblemSet    @relation(fields: [problemSetId], references: [id], onDelete: Cascade)
+  createdByUser   User          @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
+  practiceRuns    PracticeRun[]
+
+  @@unique([classId, problemSetId])
+  @@index([classId, dueAt])
+  @@index([problemSetId])
+  @@index([createdByUserId, createdAt])
 }
 
 model Enrollment {
@@ -174,42 +368,59 @@ model Enrollment {
 }
 
 model ProblemSet {
-  id        String           @id @default(cuid())
-  contest   Contest
-  year      Int
-  exam      String?
-  title     String
-  category  ProblemSetCategory       @default(REAL_EXAM)
-  diagnosticStage DiagnosticStage?
-  submissionMode ProblemSetSubmissionMode @default(WHOLE_SET_SUBMIT)
-  tutorEnabled Boolean               @default(false)
-  sourceUrl String?
-  verifiedPdfUrl String?
-  cachedPdfPath String?
-  cachedPdfSha256 String?
-  cachedPdfSize Int?
-  cachedPdfAt DateTime?
-  cachedPdfStatus String?
-  cachedPdfError String?
-  status    ProblemSetStatus @default(DRAFT)
-  problems  Problem[]
-  practiceRuns PracticeRun[]
-  resourceAccesses UserResourceAccess[]
-  createdAt DateTime         @default(now())
-  updatedAt DateTime         @updatedAt
+  id                  String                   @id @default(cuid())
+  contest             Contest
+  year                Int
+  exam                String?
+  title               String
+  category            ProblemSetCategory       @default(REAL_EXAM)
+  diagnosticStage     DiagnosticStage?
+  submissionMode      ProblemSetSubmissionMode @default(WHOLE_SET_SUBMIT)
+  tutorEnabled        Boolean                  @default(false)
+  // Who can see this set.
+  //   PUBLIC     → arcmath-curated global library (AoPS past papers, etc.)
+  //   ORG_ONLY   → only users in ownerOrganization (+ arcmath admins)
+  //   CLASS_ONLY → reserved; not enforced yet
+  visibility          ProblemSetVisibility     @default(PUBLIC)
+  // When a teacher uploads a teacher-v1 JSON, we stamp their user + org
+  // here. Null = arcmath-global content. A ProblemSet with visibility
+  // ORG_ONLY MUST have ownerOrganizationId set (enforced in commit code,
+  // not at DB level, because we bootstrap a few ORG_ONLY fixtures via
+  // seeds without a real user).
+  ownerOrganizationId String?
+  ownerUserId         String?
+  sourceUrl           String?
+  verifiedPdfUrl      String?
+  cachedPdfPath       String?
+  cachedPdfSha256     String?
+  cachedPdfSize       Int?
+  cachedPdfAt         DateTime?
+  cachedPdfStatus     String?
+  cachedPdfError      String?
+  status              ProblemSetStatus         @default(DRAFT)
+  problems            Problem[]
+  practiceRuns        PracticeRun[]
+  classAssignments    ClassAssignment[]
+  resourceAccesses    UserResourceAccess[]
+  ownerOrganization   Organization?            @relation("ProblemSetOwnerOrg", fields: [ownerOrganizationId], references: [id], onDelete: SetNull)
+  ownerUser           User?                    @relation("ProblemSetOwner", fields: [ownerUserId], references: [id], onDelete: SetNull)
+  createdAt           DateTime                 @default(now())
+  updatedAt           DateTime                 @updatedAt
 
   @@unique([contest, year, exam])
   @@index([contest, year])
   @@index([category, diagnosticStage])
   @@index([cachedPdfStatus])
+  @@index([visibility, ownerOrganizationId])
+  @@index([ownerUserId, createdAt])
 }
 
 model UserResourceAccess {
-  id           String   @id @default(cuid())
+  id           String     @id @default(cuid())
   userId       String
   problemSetId String
-  createdAt    DateTime @default(now())
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime   @default(now())
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   problemSet   ProblemSet @relation(fields: [problemSetId], references: [id], onDelete: Cascade)
 
   @@unique([userId, problemSetId])
@@ -218,69 +429,118 @@ model UserResourceAccess {
 }
 
 model Problem {
-  id              String          @id @default(cuid())
-  problemSetId    String
-  number          Int
-  statement       String?
-  diagramImageUrl String?
-  diagramImageAlt String?
-  choicesImageUrl String?
-  choicesImageAlt String?
-  statementFormat StatementFormat @default(MARKDOWN_LATEX)
-  choices         Json?
-  answer          String?
-  answerFormat    AnswerFormat    @default(MULTIPLE_CHOICE)
-  examTrack       ExamTrack?
-  sourceLabel     String?
-  topicKey        String?
-  techniqueTags   String[]        @default([])
-  diagnosticEligible Boolean      @default(false)
-  difficultyBand  String?
-  solutionSketch  String?
-  curatedHintLevel1 String?
-  curatedHintLevel2 String?
-  curatedHintLevel3 String?
-  generatedHintLevel1 String?
-  generatedHintLevel2 String?
-  generatedHintLevel3 String?
+  id                         String             @id @default(cuid())
+  problemSetId               String
+  number                     Int
+  statement                  String?
+  diagramImageUrl            String?
+  diagramImageAlt            String?
+  choicesImageUrl            String?
+  choicesImageAlt            String?
+  statementFormat            StatementFormat    @default(MARKDOWN_LATEX)
+  choices                    Json?
+  answer                     String?
+  answerFormat               AnswerFormat       @default(MULTIPLE_CHOICE)
+  examTrack                  ExamTrack?
+  sourceLabel                String?
+  topicKey                   String?
+  techniqueTags              String[]           @default([])
+  diagnosticEligible         Boolean            @default(false)
+  difficultyBand             String?
+  solutionSketch             String?
+  curatedHintLevel1          String?
+  curatedHintLevel2          String?
+  curatedHintLevel3          String?
+  generatedHintLevel1        String?
+  generatedHintLevel2        String?
+  generatedHintLevel3        String?
   generatedHintPromptVersion String?
-  generatedHintUpdatedAt DateTime?
-  sourceUrl       String?
-  tags            Json?
-  createdAt       DateTime        @default(now())
-  updatedAt       DateTime        @updatedAt
-  problemSet      ProblemSet      @relation(fields: [problemSetId], references: [id], onDelete: Cascade)
-  attempts        ProblemAttempt[]
-  hintUsages      ProblemHintUsage[]
-  tutorSessions   TutorSession[]
+  generatedHintUpdatedAt     DateTime?
+  sourceUrl                  String?
+  tags                       Json?
+  // Pre-processed formalization (see services/proof-verifier /prove pipeline).
+  // `formalizedStatement` is the canonical Lean 4 theorem signature (typed
+  // by the kernel). `solutionPaths` holds one or more machine-checked proof
+  // bodies so we can support multiple student approaches without re-calling
+  // an LLM on every attempt. `milestoneChecks` holds short sub-lemmas the
+  // grader wants to see along the way (e.g. "sq_nonneg (a-b)"). Versioned
+  // so we can invalidate stale rows when we bump prompts or the carrier lib.
+  formalizedStatement        String?
+  formalizedStatus           FormalizedStatus   @default(PENDING)
+  solutionPaths              Json?
+  milestoneChecks            Json?
+  formalizedReason           String?
+  formalizedAt               DateTime?
+  formalizedVersion          String?
+  createdAt                  DateTime           @default(now())
+  updatedAt                  DateTime           @updatedAt
+  problemSet                 ProblemSet         @relation(fields: [problemSetId], references: [id], onDelete: Cascade)
+  attempts                   ProblemAttempt[]
+  hintUsages                 ProblemHintUsage[]
+  tutorSessions              TutorSession[]
 
   @@unique([problemSetId, number])
   @@index([problemSetId])
   @@index([number])
+  @@index([formalizedStatus])
 }
 
 model ProblemAttempt {
-  id               String   @id @default(cuid())
-  userId           String
-  problemId        String
-  practiceRunId    String?
-  submittedAnswer  String
-  normalizedAnswer String?
-  isCorrect        Boolean
-  explanationText  String?
-  createdAt        DateTime @default(now())
-  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  problem          Problem  @relation(fields: [problemId], references: [id], onDelete: Cascade)
-  practiceRun      PracticeRun? @relation(fields: [practiceRunId], references: [id], onDelete: SetNull)
-  hintUsages       ProblemHintUsage[]
+  id                   String             @id @default(cuid())
+  userId               String
+  problemId            String
+  practiceRunId        String?
+  submittedAnswer      String?
+  normalizedAnswer     String?
+  isCorrect            Boolean            @default(false)
+  explanationText      String?
+  status               AttemptStatus      @default(SUBMITTED)
+  entryMode            AttemptEntryMode?
+  selfReport           AttemptSelfReport?
+  hintsUsedCount       Int                @default(0)
+  overallFeedback      String?
+  overallPromptVersion String?
+  submittedAt          DateTime?
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @default(now()) @updatedAt
+  user                 User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  problem              Problem            @relation(fields: [problemId], references: [id], onDelete: Cascade)
+  practiceRun          PracticeRun?       @relation(fields: [practiceRunId], references: [id], onDelete: SetNull)
+  hintUsages           ProblemHintUsage[]
+  steps                AttemptStep[]
 
   @@index([userId, createdAt])
   @@index([problemId, createdAt])
   @@index([practiceRunId, createdAt])
+  @@index([userId, problemId, status, updatedAt])
+}
+
+model AttemptStep {
+  id                    String                   @id @default(cuid())
+  attemptId             String
+  userId                String
+  stepIndex             Int
+  latexInput            String
+  classifiedStepType    ProofStepType            @default(UNKNOWN)
+  verificationBackend   ProofVerificationBackend @default(NONE)
+  verdict               ProofStepVerdict         @default(PENDING)
+  confidence            Float?
+  feedbackText          String?
+  verificationDetails   Json?
+  classifierVersion     String?
+  feedbackPromptVersion String?
+  createdAt             DateTime                 @default(now())
+  updatedAt             DateTime                 @updatedAt
+  attempt               ProblemAttempt           @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  user                  User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([attemptId, stepIndex])
+  @@index([attemptId, createdAt])
+  @@index([userId, createdAt])
 }
 
 model ProblemHintUsage {
-  id            String         @id @default(cuid())
+  id            String          @id @default(cuid())
   userId        String
   problemId     String
   attemptId     String?
@@ -288,11 +548,11 @@ model ProblemHintUsage {
   hintLevel     Int
   hintText      String
   promptVersion String
-  createdAt     DateTime       @default(now())
-  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  problem       Problem        @relation(fields: [problemId], references: [id], onDelete: Cascade)
+  createdAt     DateTime        @default(now())
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  problem       Problem         @relation(fields: [problemId], references: [id], onDelete: Cascade)
   attempt       ProblemAttempt? @relation(fields: [attemptId], references: [id], onDelete: SetNull)
-  practiceRun   PracticeRun?   @relation(fields: [practiceRunId], references: [id], onDelete: SetNull)
+  practiceRun   PracticeRun?    @relation(fields: [practiceRunId], references: [id], onDelete: SetNull)
 
   @@index([userId, createdAt])
   @@index([problemId, createdAt])
@@ -301,36 +561,43 @@ model ProblemHintUsage {
 }
 
 model PracticeRun {
-  id           String         @id @default(cuid())
-  userId       String
-  organizationId String?
-  problemSetId String
-  startedAt    DateTime       @default(now())
-  completedAt  DateTime?
-  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  organization Organization?  @relation(fields: [organizationId], references: [id], onDelete: SetNull)
-  problemSet   ProblemSet     @relation(fields: [problemSetId], references: [id], onDelete: Cascade)
-  attempts     ProblemAttempt[]
-  hintUsages   ProblemHintUsage[]
+  id                     String                  @id @default(cuid())
+  userId                 String
+  organizationId         String?
+  // When a student starts a run from a teacher assignment, link it back
+  // so the class dashboard can aggregate per-assignment progress without
+  // re-scanning every attempt in the org. Null for self-directed runs.
+  classAssignmentId      String?
+  problemSetId           String
+  reviewMode             PracticeRunReviewMode   @default(GRADE_ONLY)
+  startedAt              DateTime                @default(now())
+  completedAt            DateTime?
+  user                   User                    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization           Organization?           @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+  classAssignment        ClassAssignment?        @relation(fields: [classAssignmentId], references: [id], onDelete: SetNull)
+  problemSet             ProblemSet              @relation(fields: [problemSetId], references: [id], onDelete: Cascade)
+  attempts               ProblemAttempt[]
+  hintUsages             ProblemHintUsage[]
   learningReportSnapshot LearningReportSnapshot?
-  tutorSessions TutorSession[]
+  tutorSessions          TutorSession[]
 
   @@index([userId, startedAt])
   @@index([organizationId, startedAt])
+  @@index([classAssignmentId, startedAt])
   @@index([problemSetId, startedAt])
   @@index([userId, problemSetId, completedAt])
 }
 
 model LearningReportSnapshot {
-  id             String      @id @default(cuid())
-  practiceRunId  String      @unique
+  id             String        @id @default(cuid())
+  practiceRunId  String        @unique
   organizationId String?
   userId         String
   reportJson     Json
-  generatedAt    DateTime    @default(now())
-  practiceRun    PracticeRun @relation(fields: [practiceRunId], references: [id], onDelete: Cascade)
+  generatedAt    DateTime      @default(now())
+  practiceRun    PracticeRun   @relation(fields: [practiceRunId], references: [id], onDelete: Cascade)
   organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
-  user           User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([organizationId, generatedAt])
   @@index([userId, generatedAt])
@@ -365,7 +632,7 @@ model TutorTurn {
   intent         TutorIntent?
   rawText        String
   createdAt      DateTime       @default(now())
-  tutorSession   TutorSession    @relation(fields: [tutorSessionId], references: [id], onDelete: Cascade)
+  tutorSession   TutorSession   @relation(fields: [tutorSessionId], references: [id], onDelete: Cascade)
   user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([tutorSessionId, createdAt])
@@ -373,37 +640,37 @@ model TutorTurn {
 }
 
 model OrganizationResource {
-  id            String       @id @default(cuid())
-  organizationId String
-  createdByUserId String
-  title         String
-  description   String?
-  content       String
-  attachmentLocator String?
+  id                 String       @id @default(cuid())
+  organizationId     String
+  createdByUserId    String
+  title              String
+  description        String?
+  content            String
+  attachmentLocator  String?
   attachmentFilename String?
   attachmentMimeType String?
-  attachmentSize Int?
-  attachmentSha256 String?
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
-  organization  Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  createdByUser User         @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
+  attachmentSize     Int?
+  attachmentSha256   String?
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+  organization       Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdByUser      User         @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
 
   @@index([organizationId, createdAt])
   @@index([createdByUserId, createdAt])
 }
 
 model OrganizationAssignment {
-  id            String       @id @default(cuid())
-  organizationId String
+  id              String       @id @default(cuid())
+  organizationId  String
   createdByUserId String
-  title         String
-  instructions  String
-  dueAt         DateTime?
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
-  organization  Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  createdByUser User         @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
+  title           String
+  instructions    String
+  dueAt           DateTime?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdByUser   User         @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
 
   @@index([organizationId, createdAt])
   @@index([organizationId, dueAt])
@@ -422,4 +689,31 @@ model ImportJob {
 
   @@index([uploadedByUserId])
   @@index([sha256])
+}
+
+/// Append-only audit trail for sensitive school/admin actions. We don't
+/// try to record every read; this is the "who changed what, when" log
+/// a school admin or arcmath support rep needs when something goes
+/// sideways (teacher regenerates a join code and cuts off students,
+/// admin accidentally unpublishes a set, etc.). The payload is JSON so
+/// we can evolve action-specific fields without further migrations.
+///
+/// organizationId is set when the event is tenant-scoped (most
+/// teacher-side actions). Platform-admin actions (e.g. global review
+/// queue edits) leave it null and rely on actorUserId for attribution.
+model AuditLogEvent {
+  id             String        @id @default(cuid())
+  actorUserId    String?
+  organizationId String?
+  action         String
+  targetType     String?
+  targetId       String?
+  payload        Json?
+  createdAt      DateTime      @default(now())
+  actor          User?         @relation("AuditLogActor", fields: [actorUserId], references: [id], onDelete: SetNull)
+  organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+
+  @@index([organizationId, createdAt])
+  @@index([actorUserId, createdAt])
+  @@index([action, createdAt])
 }

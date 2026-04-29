@@ -3,16 +3,27 @@ import type { Session } from "next-auth";
 import { canAccessAdmin } from "@arcmath/shared";
 import { prisma } from "@arcmath/db";
 import { LogoutButton } from "@/components/logout-button";
-import { canManageOrganization, getActiveOrganizationMembership } from "@/lib/organizations";
+import { LanguageSwitcher } from "@/components/language-switcher";
+import {
+  canManageOrganization,
+  canTeach,
+  getActiveOrganizationMembership
+} from "@/lib/organizations";
+import { resolveLocale } from "@/i18n/server";
+import { translatorImpl as translator } from "@/i18n/dictionary";
 
 type TopNavProps = {
   session: Session | null;
 };
 
 export async function TopNav({ session }: TopNavProps) {
+  const locale = await resolveLocale();
+  const t = translator(locale);
   const isLoggedIn = Boolean(session?.user);
   const organizationMembership = session?.user ? await getActiveOrganizationMembership(prisma, session.user.id) : null;
   const isOrganizationManager = organizationMembership ? canManageOrganization(organizationMembership.role) : false;
+  const isTeacher = organizationMembership ? canTeach(organizationMembership.role) : false;
+  const isStudent = organizationMembership?.role === "STUDENT";
   const canSeePlatformAdmin = canAccessAdmin(session?.user?.role);
 
   return (
@@ -31,9 +42,9 @@ export async function TopNav({ session }: TopNavProps) {
               A
             </span>
             <span className="space-y-1 text-left">
-              <span className="block text-base font-semibold tracking-[-0.03em] text-slate-900">ArcMath</span>
+              <span className="block text-base font-semibold tracking-[-0.03em] text-slate-900">{t("common.app_name")}</span>
               <span className="block text-xs uppercase tracking-[0.24em] text-slate-500">
-                Focused math practice
+                {t("topnav.tagline")}
               </span>
             </span>
           </Link>
@@ -41,76 +52,103 @@ export async function TopNav({ session }: TopNavProps) {
 
         <div className="flex flex-wrap items-center justify-between gap-3">
           <nav className="flex flex-wrap gap-2">
-            {isLoggedIn ? (
-              <>
-                <Link href="/dashboard" className="route-chip">
-                  Dashboard
-                </Link>
-                {organizationMembership ? (
-                  <Link href="/org" className="route-chip">
-                    Organization
-                  </Link>
-                ) : null}
-                {isOrganizationManager ? (
-                  <>
-                    <Link href="/assignments" className="route-chip">
-                      Assignments
-                    </Link>
-                    <Link href="/resources" className="route-chip">
-                      Resources
-                    </Link>
-                  </>
-                ) : (
-                  <>
-                    <Link href="/problems" className="route-chip">
-                      Problems
-                    </Link>
-                    <Link href="/reports" className="route-chip">
-                      Reports
-                    </Link>
-                    {organizationMembership ? (
-                      <>
-                        <Link href="/assignments" className="route-chip">
-                          Assignments
-                        </Link>
-                        <Link href="/resources" className="route-chip">
-                          Resources
-                        </Link>
-                      </>
-                    ) : (
-                      <Link href="/membership" className="route-chip">
-                        Membership
-                      </Link>
-                    )}
-                  </>
-                )}
-                {canSeePlatformAdmin ? (
-                  <Link href="/admin" className="route-chip">
-                    Admin
-                  </Link>
-                ) : null}
-              </>
-            ) : (
+            {!isLoggedIn ? (
               <>
                 <Link href="/login" className="route-chip">
-                  Login
+                  {t("topnav.login")}
                 </Link>
                 <Link href="/register" className="route-chip">
-                  Register
+                  {t("topnav.register")}
+                </Link>
+              </>
+            ) : isOrganizationManager ? (
+              // School admin (OWNER / ADMIN of the organization). Strict
+              // separation per product policy: school admin oversees
+              // teachers + students and never does problems themselves,
+              // so no /problems chip.
+              <>
+                <Link href="/org" className="route-chip">
+                  {t("topnav.organization")}
+                </Link>
+                <Link href="/assignments" className="route-chip">
+                  {t("topnav.assignments")}
+                </Link>
+                <Link href="/resources" className="route-chip">
+                  {t("topnav.resources")}
+                </Link>
+                <Link href="/reports" className="route-chip">
+                  {t("topnav.reports")}
+                </Link>
+              </>
+            ) : isTeacher ? (
+              // Teacher: their own classroom workspace + the practice
+              // library (so they can preview problem sets before
+              // assigning them).
+              <>
+                <Link href="/teacher" className="route-chip">
+                  {t("topnav.teacher")}
+                </Link>
+                <Link href="/problems" className="route-chip">
+                  {t("topnav.problems")}
+                </Link>
+                <Link href="/assignments" className="route-chip">
+                  {t("topnav.assignments")}
+                </Link>
+                <Link href="/resources" className="route-chip">
+                  {t("topnav.resources")}
+                </Link>
+                <Link href="/reports" className="route-chip">
+                  {t("topnav.reports")}
+                </Link>
+              </>
+            ) : isStudent ? (
+              // Student: their assignments + the practice library.
+              <>
+                <Link href="/student" className="route-chip">
+                  {t("topnav.my_work")}
+                </Link>
+                <Link href="/problems" className="route-chip">
+                  {t("topnav.problems")}
+                </Link>
+                <Link href="/reports" className="route-chip">
+                  {t("topnav.reports")}
+                </Link>
+              </>
+            ) : (
+              // No org membership yet — minimal "evaluating the trial"
+              // surface.
+              <>
+                <Link href="/dashboard" className="route-chip">
+                  {t("topnav.dashboard")}
+                </Link>
+                <Link href="/problems" className="route-chip">
+                  {t("topnav.problems")}
+                </Link>
+                <Link href="/membership" className="route-chip">
+                  {t("topnav.membership")}
                 </Link>
               </>
             )}
+            {/* Platform-staff admin link is independent of org role. */}
+            {canSeePlatformAdmin ? (
+              <Link href="/admin" className="route-chip">
+                {t("topnav.admin")}
+              </Link>
+            ) : null}
           </nav>
 
-          {isLoggedIn ? (
-            <div className="flex flex-wrap items-center gap-3 rounded-[1.3rem] border border-white/60 bg-white/75 px-4 py-3 shadow-[0_16px_34px_rgba(16,35,60,0.06)]">
-              <div className="space-y-1">
-                <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">Account</div>
-                <p className="text-sm text-slate-600">{session?.user?.email}</p>
+          <div className="flex flex-wrap items-center gap-3">
+            <LanguageSwitcher />
+            {isLoggedIn ? (
+              <div className="flex flex-wrap items-center gap-3 rounded-[1.3rem] border border-white/60 bg-white/75 px-4 py-3 shadow-[0_16px_34px_rgba(16,35,60,0.06)]">
+                <div className="space-y-1">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">{t("topnav.account")}</div>
+                  <p className="text-sm text-slate-600">{session?.user?.email}</p>
+                </div>
+                <LogoutButton />
               </div>
-              <LogoutButton />
-            </div>
-          ) : null}
+            ) : null}
+          </div>
         </div>
       </div>
     </header>

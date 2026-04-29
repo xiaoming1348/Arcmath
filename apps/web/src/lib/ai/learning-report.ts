@@ -4,7 +4,7 @@ import { callOpenAIJson } from "@/lib/ai/openai-json";
 type LearningReportAttemptInput = {
   attemptId: string;
   problemId: string;
-  submittedAnswer: string;
+  submittedAnswer: string | null;
   normalizedAnswer: string | null;
   isCorrect: boolean;
   createdAt: string;
@@ -69,7 +69,7 @@ export type LearningReport = {
     problemId: string;
     problemNumber: number;
     statementSnippet: string;
-    submittedAnswer: string;
+    submittedAnswer: string | null;
     correctAnswer: string | null;
     isCorrect: boolean;
     usedHint: boolean;

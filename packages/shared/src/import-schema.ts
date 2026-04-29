@@ -1,9 +1,34 @@
 import { z } from "zod";
 
-export const CONTESTS = ["AMC8", "AMC10", "AMC12", "AIME"] as const;
+// Contests this import pipeline knows how to validate. The order matters
+// only for stable snapshot diffs — keep it roughly (US admissions →
+// olympiad → UK/Canada admissions).
+export const CONTESTS = [
+  "AMC8",
+  "AMC10",
+  "AMC12",
+  "AIME",
+  "USAMO",
+  "EUCLID",
+  "MAT",
+  "STEP"
+] as const;
+// Subset used for per-problem `examTrack` tagging on diagnostic sets.
+// MC/integer-graded contests only — a proof-heavy contest doesn't make
+// sense as a "diagnostic track" because you can't auto-grade it.
 export const DIAGNOSTIC_EXAMS = ["AMC8", "AMC10", "AMC12"] as const;
 export const STATEMENT_FORMATS = ["MARKDOWN_LATEX", "HTML", "PLAIN"] as const;
-export const ANSWER_FORMATS = ["MULTIPLE_CHOICE", "INTEGER", "EXPRESSION"] as const;
+// WORKED_SOLUTION: long-form question where we show the official solution
+// for self-check rather than auto-grading. Reserved for STEP full
+// questions, MAT long questions (Q2–Q7), and Euclid Part B/C. PROOF
+// (Lean-verified) is routed differently and currently out of scope for
+// the admissions track.
+export const ANSWER_FORMATS = [
+  "MULTIPLE_CHOICE",
+  "INTEGER",
+  "EXPRESSION",
+  "WORKED_SOLUTION"
+] as const;
 export const DIFFICULTY_BANDS = ["EASY", "MEDIUM", "HARD"] as const;
 export const PROBLEM_SET_CATEGORIES = ["DIAGNOSTIC", "REAL_EXAM", "TOPIC_PRACTICE"] as const;
 export const PROBLEM_SET_SUBMISSION_MODES = ["WHOLE_SET_SUBMIT", "PER_PROBLEM"] as const;
@@ -57,8 +82,38 @@ function optionalUrlOrRootRelativePathString(message: string) {
   );
 }
 
-function expectedProblemCount(contest: z.infer<typeof contestSchema>): number {
-  return contest === "AIME" ? 15 : 25;
+/**
+ * Number of problems we expect a full paper to contain. Used to enforce
+ * "you must upload a complete set" for contests with a fixed structure
+ * (AMC/AIME). Returns `null` for contests whose per-year structure varies
+ * or where we don't want to hard-gate on count yet (new admissions
+ * contests — see importer doc for their natural sizes):
+ *   - USAMO: 6 problems (2 days × 3)
+ *   - EUCLID: 10 questions (CEMC fixed)
+ *   - MAT: flattened to 16 (Q1 has 10 MC subparts, then Q2–Q7)
+ *   - STEP: 12 questions per paper (I/II/III), students pick 6
+ * Relaxing to `null` keeps the importer flexible while the per-contest
+ * preprocessors stabilize.
+ */
+function expectedProblemCount(contest: z.infer<typeof contestSchema>): number | null {
+  switch (contest) {
+    case "AMC8":
+    case "AMC10":
+    case "AMC12":
+      return 25;
+    case "AIME":
+      return 15;
+    case "USAMO":
+      return 6;
+    case "EUCLID":
+      return 10;
+    case "MAT":
+    case "STEP":
+      // Relaxed during initial ingestion — the per-contest importer
+      // decides the shape. Flip to a fixed count once coverage
+      // stabilizes.
+      return null;
+  }
 }
 
 const normalizedExamSchema = z
@@ -87,7 +142,12 @@ const importProblemSchema = z
     choicesImageAlt: optionalTrimmedNonEmptyString("choicesImageAlt must be trimmed and non-empty"),
     statementFormat: statementFormatSchema.optional(),
     choices: z.array(trimmedNonEmptyString("Choice text must be non-empty")).optional(),
-    answer: trimmedNonEmptyString("Problem answer is required"),
+    // Required for MULTIPLE_CHOICE/INTEGER/EXPRESSION (checked in
+    // superRefine). WORKED_SOLUTION problems may omit `answer` entirely
+    // — some STEP/MAT long questions are "show that…" with no single
+    // scalar to record. `solutionSketch` becomes the authoritative
+    // answer carrier in that case.
+    answer: optionalTrimmedNonEmptyString("Problem answer must be trimmed and non-empty"),
     answerFormat: answerFormatSchema,
     examTrack: z.preprocess(trimString, diagnosticExamSchema.optional()),
     sourceLabel: optionalTrimmedNonEmptyString("sourceLabel must be trimmed and non-empty"),
@@ -102,8 +162,19 @@ const importProblemSchema = z
     sourceUrl: optionalUrlString("Problem sourceUrl must be a valid URL")
   })
   .superRefine((problem, ctx) => {
+    // `answer` is required for every format EXCEPT WORKED_SOLUTION — see
+    // the comment on the `answer` field above. The top-level schema made
+    // it optional so we could branch here.
+    if (problem.answerFormat !== "WORKED_SOLUTION" && !problem.answer) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["answer"],
+        message: `Problem answer is required for ${problem.answerFormat}.`
+      });
+    }
+
     if (problem.answerFormat === "MULTIPLE_CHOICE") {
-      if (!/^[A-E]$/.test(problem.answer)) {
+      if (problem.answer && !/^[A-E]$/.test(problem.answer)) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           path: ["answer"],
@@ -129,7 +200,7 @@ const importProblemSchema = z
         });
       }
 
-      if (!normalizedIntegerPattern.test(problem.answer)) {
+      if (problem.answer && !normalizedIntegerPattern.test(problem.answer)) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           path: ["answer"],
@@ -144,6 +215,28 @@ const importProblemSchema = z
           code: z.ZodIssueCode.custom,
           path: ["choices"],
           message: "For EXPRESSION, choices must be absent."
+        });
+      }
+    }
+
+    if (problem.answerFormat === "WORKED_SOLUTION") {
+      if (problem.choices !== undefined) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["choices"],
+          message: "For WORKED_SOLUTION, choices must be absent."
+        });
+      }
+      // No auto-grading for this format — insist on an authoritative
+      // official solution so the student has something to compare
+      // against. Otherwise the problem is useless in the UI (just a
+      // statement with no check path).
+      if (!problem.solutionSketch) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["solutionSketch"],
+          message:
+            "For WORKED_SOLUTION, solutionSketch is required — it is the authoritative official solution shown to the student."
         });
       }
     }
@@ -189,6 +282,8 @@ export const importProblemSetSchema = z
     const contest = payload.problemSet.contest;
     const expectedCount = expectedProblemCount(contest);
 
+    // Per-contest exam validation. Contests with no exam variant must
+    // pass null; contests with variants must match their allowed set.
     if (contest === "AMC8" && exam !== null) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
@@ -213,6 +308,26 @@ export const importProblemSetSchema = z
       });
     }
 
+    // USAMO / EUCLID / MAT are one paper per year, no exam variants.
+    if ((contest === "USAMO" || contest === "EUCLID" || contest === "MAT") && exam !== null) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["problemSet", "exam"],
+        message: `${contest} does not use exam variants. Remove exam or set it to null.`
+      });
+    }
+
+    // STEP: papers are labelled I / II / III. STEP I was discontinued
+    // after the June 2020 session; we still accept it here for historical
+    // ingestion (2016–2020 archive).
+    if (contest === "STEP" && exam !== "I" && exam !== "II" && exam !== "III") {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["problemSet", "exam"],
+        message: 'STEP requires exam to be "I", "II", or "III".'
+      });
+    }
+
     for (const problem of payload.problems) {
       if (problem.examTrack && problem.examTrack !== contest) {
         ctx.addIssue({
@@ -231,7 +346,7 @@ export const importProblemSetSchema = z
       }
     }
 
-    if (payload.problems.length !== expectedCount) {
+    if (expectedCount !== null && payload.problems.length !== expectedCount) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         path: ["problems"],
@@ -252,13 +367,17 @@ export const importProblemSetSchema = z
       seen.add(problem.number);
     }
 
-    for (let index = 0; index < expectedCount; index += 1) {
+    // Contiguous-numbering check. For fixed-size contests we verify
+    // 1..expectedCount; for relaxed contests (MAT/STEP) we just verify
+    // 1..problems.length. Either way the rule is "no gaps".
+    const requiredLength = expectedCount ?? payload.problems.length;
+    for (let index = 0; index < requiredLength; index += 1) {
       const expectedNumber = index + 1;
       if (sortedNumbers[index] !== expectedNumber) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           path: ["problems"],
-          message: `${contest} problems must be numbered contiguously from 1 to ${expectedCount}.`
+          message: `${contest} problems must be numbered contiguously from 1 to ${requiredLength}.`
         });
         break;
       }

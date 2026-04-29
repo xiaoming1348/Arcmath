@@ -1,0 +1,123 @@
+{
+  "problemSet": {
+    "contest": "EUCLID",
+    "year": 2017,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://cemc.uwaterloo.ca/contests/past_contests.html",
+    "verifiedPdfUrl": "https://cemc.uwaterloo.ca/sites/default/files/documents/2017/2017EuclidContest.pdf"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "**(a)** There is one pair $(a, b)$ of positive integers for which $5a + 3b = 19$. What are the values of $a$ and $b$?\n\n**(b)** How many positive integers $n$ satisfy $5 < 2^n < 2017$?\n\n**(c)** Jimmy bought $600$ Euros at the rate of $1$ Euro equals \\$1.50. He then converted his $600$ Euros back into dollars at the rate of \\$1.00 equals $0.75$ Euros. How many fewer dollars did Jimmy have after these two transactions than he had before these two transactions?",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2017 Euclid Contest, Problem 1",
+      "topicKey": "algebra.linear_diophantine_and_arithmetic",
+      "techniqueTags": ["linear_diophantine", "power_counting", "currency_conversion"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** Try $a = 1$: $3b = 14$, no. $a = 2$: $3b = 9$, $b = 3$. So $(a, b) = (2, 3)$.\n\n**(b)** $2^3 = 8 > 5$ and $2^{10} = 1024 < 2017 < 2^{11} = 2048$. So $n \\in \\{3, 4, \\ldots, 10\\}$: $8$ values.\n\n**(c)** Buy: $600 \\times \\$1.50 = \\$900$. Sell: $600 / 0.75 = \\$800$. Loss: $\\$100$."
+    },
+    {
+      "number": 2,
+      "statement": "**(a)** What are all values of $x$ for which $x \\neq 0$ and $x \\neq 1$ and $\\dfrac{5}{x(x-1)} = \\dfrac{1}{x} + \\dfrac{1}{x-1}$?\n\n**(b)** In a magic square, the numbers in each row, each column, and each diagonal have the same sum. In the magic square shown, the first row is $0, 20, a$; the second row is $c, 4, \\_$; the third row is $\\_, -12, b$. What are the values of $a$, $b$, and $c$?\n\n**(c)** **(i)** For what positive integer $n$ is $100^2 - n^2 = 9559$? **(ii)** Determine one pair $(a, b)$ of positive integers for which $a > 1$ and $b > 1$ and $ab = 9559$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2017 Euclid Contest, Problem 2",
+      "topicKey": "algebra.rational_and_factoring",
+      "techniqueTags": ["rational_equation", "magic_square", "difference_of_squares"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** Multiply by $x(x-1)$: $5 = (x-1) + x = 2x - 1$, so $x = 3$.\n\n**(b)** Column 2 sum: $20 + 4 + (-12) = 12$. Row 1: $0 + 20 + a = 12 \\Rightarrow a = -8$. Main diagonal: $0 + 4 + b = 12 \\Rightarrow b = 8$. Row 2: $c + 4 + (12 - (-8) - 8) = c + 4 + 12 = 12 \\Rightarrow c = -4$.\n\n**(c)(i)** $n^2 = 10000 - 9559 = 441 \\Rightarrow n = 21$. **(ii)** $9559 = 100^2 - 21^2 = (100 + 21)(100 - 21) = 121 \\cdot 79$, so $(a, b) = (121, 79)$."
+    },
+    {
+      "number": 3,
+      "statement": "**(a)** $\\triangle ABC$ is right-angled at $B$ and $\\triangle ACD$ is right-angled at $A$. Also, $AB = 3$, $BC = 4$, and $CD = 13$. What is the area of quadrilateral $ABCD$?\n\n**(b)** Three identical rectangles $PQRS$, $WTUV$ and $XWVY$ are arranged so that $RS$ lies along $TX$. The perimeter of each of the three rectangles is $21$ cm. What is the perimeter of the whole shape?\n\n**(c)** One of the faces of a rectangular prism has area $27$ cm$^2$. Another face has area $32$ cm$^2$. If the volume of the prism is $144$ cm$^3$, determine the surface area of the prism in cm$^2$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2017 Euclid Contest, Problem 3",
+      "topicKey": "geometry.area_and_volume",
+      "techniqueTags": ["pythagorean_theorem", "composite_perimeter", "prism_surface_area"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** $AC = \\sqrt{3^2 + 4^2} = 5$. $AD = \\sqrt{13^2 - 5^2} = 12$. Area $= \\tfrac{1}{2}(3)(4) + \\tfrac{1}{2}(5)(12) = 6 + 30 = 36$.\n\n**(b)** Let each rectangle be $a \\times b$ with $2a + 2b = 21$. Careful segment bookkeeping shows the whole shape has perimeter $4a + 4b = 2(2a + 2b) = 42$ cm.\n\n**(c)** Let dimensions $a, b, c$ with $ab = 27$, $ac = 32$, $abc = 144$. Then $bc = \\dfrac{(abc)^2}{(ab)(ac)} = \\dfrac{144^2}{27 \\cdot 32} = 24$. Surface area $= 2(27 + 32 + 24) = 166$ cm$^2$."
+    },
+    {
+      "number": 4,
+      "statement": "**(a)** The equations $y = a(x - 2)(x + 4)$ and $y = 2(x - h)^2 + k$ represent the same parabola. What are the values of $a$, $h$, and $k$?\n\n**(b)** In an arithmetic sequence with $5$ terms, the sum of the squares of the first $3$ terms equals the sum of the squares of the last $2$ terms. If the first term is $5$, determine all possible values of the fifth term.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2017 Euclid Contest, Problem 4",
+      "topicKey": "algebra.parabola_and_arithmetic_sequences",
+      "techniqueTags": ["parabola_forms", "axis_of_symmetry", "arithmetic_sequence_quadratic"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** Axis of symmetry from roots $2, -4$: $x = -1$, so $h = -1$. Leading coefficient: $a = 2$. Vertex: $y(-1) = a(-3)(3) = -9a = -18$, so $k = -18$. Answer: $a = 2, h = -1, k = -18$.\n\n**(b)** Terms: $5, 5+d, 5+2d, 5+3d, 5+4d$. Equation: $25 + (5+d)^2 + (5+2d)^2 = (5+3d)^2 + (5+4d)^2$. Simplifies to $20d^2 + 40d - 25 = 0$, i.e. $(2d+5)(2d-1) = 0$: $d = -\\tfrac{5}{2}$ or $d = \\tfrac{1}{2}$. Fifth term $= 5 + 4d \\in \\{-5, 7\\}$."
+    },
+    {
+      "number": 5,
+      "statement": "**(a)** Dan was born in a year between $1300$ and $1400$. Steve was born in a year between $1400$ and $1500$. Each was born on April $6$ in a year that is a perfect square. Each lived for $110$ years. In what year while they were both alive were their ages both perfect squares on April $7$?\n\n**(b)** Determine all values of $k$ for which the points $A(1, 2)$, $B(11, 2)$ and $C(k, 6)$ form a right-angled triangle.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2017 Euclid Contest, Problem 5",
+      "topicKey": "mixed.number_theory_and_coordinate_geometry",
+      "techniqueTags": ["perfect_square_difference", "right_triangle_cases", "slope_perpendicularity"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** Dan born in $37^2 = 1369$; Steve born in $38^2 = 1444$. Need $m^2 - n^2 = 1444 - 1369 = 75$ with $m^2, n^2 \\leq 110$. Test $100 - 25 = 75$: yes. Dan is $100$, Steve is $25$ in year $1369 + 100 = 1469$.\n\n**(b)** $AB$ is horizontal. Right angle at $B$: $k = 11$. Right angle at $A$: $k = 1$. Right angle at $C$: slopes of $CA$ and $CB$ multiply to $-1$: $\\tfrac{4}{k-1} \\cdot \\tfrac{4}{k-11} = -1 \\Rightarrow (k-3)(k-9) = 0$. So $k \\in \\{1, 3, 9, 11\\}$."
+    },
+    {
+      "number": 6,
+      "statement": "**(a)** Two hills meet at $O$. One hill makes a $30^\\circ$ angle with the horizontal; the other hill makes a $45^\\circ$ angle. Points $A$ and $B$ are on the hills so that $OA = OB = 20$ m. Vertical poles $BD$ and $AC$ are connected by a straight cable $CD$. If $AC = 6$ m, what is the length of $BD$ for which $CD$ is as short as possible?\n\n**(b)** If $\\cos\\theta = \\tan\\theta$, determine all possible values of $\\sin\\theta$, giving your answer(s) as simplified exact numbers.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2017 Euclid Contest, Problem 6",
+      "topicKey": "mixed.trig_geometry_and_equations",
+      "techniqueTags": ["shortest_segment", "pythagorean_identity", "quadratic_in_sin"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Drop perpendiculars from $A, B$ to horizontal through $O$, meeting at $P, Q$. $AP = 20\\sin 30^\\circ = 10$ m; $BQ = 20\\sin 45^\\circ = 10\\sqrt{2}$ m. $CP = AC + AP = 16$ m. Shortest $CD$ occurs when $CD$ is horizontal, making $CDQP$ a rectangle so $DQ = CP = 16$ m. $BD = DQ - BQ = (16 - 10\\sqrt{2})$ m.\n\n**(b)** $\\cos\\theta = \\dfrac{\\sin\\theta}{\\cos\\theta} \\Rightarrow \\cos^2\\theta = \\sin\\theta \\Rightarrow 1 - \\sin^2\\theta = \\sin\\theta \\Rightarrow \\sin^2\\theta + \\sin\\theta - 1 = 0$. $\\sin\\theta = \\dfrac{-1 \\pm \\sqrt{5}}{2}$. Only $\\dfrac{-1 + \\sqrt{5}}{2}$ is in $[-1, 1]$."
+    },
+    {
+      "number": 7,
+      "statement": "**(a)** Linh is driving at $60$ km/h on a long straight highway parallel to a train track. Every $10$ minutes, she is passed by a train travelling in the same direction as she is. These trains depart from the station behind her every $3$ minutes and all travel at the same constant speed. What is the constant speed of the trains, in km/h?\n\n**(b)** Determine all pairs $(a, b)$ of real numbers that satisfy the following system of equations:\n\n$$\\sqrt{a} + \\sqrt{b} = 8$$\n\n$$\\log_{10} a + \\log_{10} b = 2$$\n\nGive your answer(s) as pairs of simplified exact numbers.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2017 Euclid Contest, Problem 7",
+      "topicKey": "mixed.relative_speed_and_radical_log_systems",
+      "techniqueTags": ["relative_motion", "radical_system", "logarithm_product"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Trains $3$ min apart at station; from first instant (Train A passes car) to second (Train B passes car), $10$ min elapse, car travels $10$ km. Train B was $3$ min behind Train A's position, so it needs to cover $3$ min of train-speed + $10$ km (car's displacement) in $10$ min: $\\tfrac{1}{6}v = \\tfrac{1}{20}v + 10$, giving $\\tfrac{7}{60}v = 10$, so $v = \\dfrac{600}{7}$ km/h.\n\n**(b)** $\\log_{10}(ab) = 2 \\Rightarrow ab = 100$. Squaring first equation: $a + 2\\sqrt{ab} + b = 64 \\Rightarrow a + b = 44$. Then $a(44 - a) = 100$: $a^2 - 44a + 100 = 0 \\Rightarrow a = 22 \\pm 8\\sqrt{6}$. Pairs: $(a, b) = (22 + 8\\sqrt{6}, 22 - 8\\sqrt{6})$ and $(22 - 8\\sqrt{6}, 22 + 8\\sqrt{6})$."
+    },
+    {
+      "number": 8,
+      "statement": "**(a)** Line segments $AC$ and $DF$ are tangent to a circle at $B$ and $E$, respectively. $AF$ intersects the circle at $P$ and $R$, and intersects $BE$ at $Q$. If $\\angle CAF = 35^\\circ$, $\\angle DFA = 30^\\circ$, and $\\angle FPE = 25^\\circ$, determine the measure of $\\angle PEQ$.\n\n**(b)** $ABCD$ and $PNCD$ are squares of side length $2$, and $PNCD$ is perpendicular to $ABCD$. Point $M$ is chosen on the same side of $PNCD$ as $AB$ so that $\\triangle PMN$ is parallel to $ABCD$, so that $\\angle PMN = 90^\\circ$, and so that $PM = MN$. Determine the volume of the convex solid $ABCDPMN$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2017 Euclid Contest, Problem 8",
+      "topicKey": "geometry.tangent_circle_and_3d_volume",
+      "techniqueTags": ["tangent_chord_angle", "angle_chase", "solid_decomposition"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Let $\\theta = \\angle PEQ$. Tangent-chord angle: $\\angle ABP = \\theta$ (chord $BP$, tangent at $B$); $\\angle DEP = \\angle PBE$. $\\angle DEP$ is exterior to $\\triangle FEP$, so $\\angle DEP = 25^\\circ + 30^\\circ = 55^\\circ$, giving $\\angle PBE = 55^\\circ$. $\\angle AQB$ is exterior to $\\triangle PQE$: $\\angle AQB = \\theta + 25^\\circ$. In $\\triangle ABQ$: $35^\\circ + (\\theta + 55^\\circ) + (\\theta + 25^\\circ) = 180^\\circ$, so $2\\theta = 65^\\circ$, $\\theta = 32.5^\\circ$.\n\n**(b)** Split into triangular prism $ABCDPN$ (volume $\\tfrac{1}{2}(2)(2)(2) = 4$) plus pyramid $ABNPM$. Pyramid: base is rectangle $ABNP$ with $AB = 2$, $BN = 2\\sqrt{2}$; height $h = \\sin 45^\\circ = \\tfrac{1}{\\sqrt{2}}$. Volume $= \\tfrac{1}{3} \\cdot 2 \\cdot 2\\sqrt{2} \\cdot \\tfrac{1}{\\sqrt{2}} = \\tfrac{4}{3}$. Total volume: $4 + \\tfrac{4}{3} = \\tfrac{16}{3}$."
+    },
+    {
+      "number": 9,
+      "statement": "A permutation of a list of numbers is an ordered arrangement of the numbers in that list.\n\n**(a)** Determine the average value of $|a_1 - a_2| + |a_3 - a_4|$ over all permutations $a_1, a_2, a_3, a_4$ of $1, 2, 3, 4$.\n\n**(b)** Determine the average value of $a_1 - a_2 + a_3 - a_4 + a_5 - a_6 + a_7$ over all permutations of $1, 2, 3, 4, 5, 6, 7$.\n\n**(c)** Determine the average value of $|a_1 - a_2| + |a_3 - a_4| + \\cdots + |a_{197} - a_{198}| + |a_{199} - a_{200}|$ over all permutations of $1, 2, 3, \\ldots, 199, 200$. (The sum contains $100$ terms.)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2017 Euclid Contest, Problem 9",
+      "topicKey": "combinatorics.permutation_averages",
+      "techniqueTags": ["linearity_of_expectation", "symmetry_sum", "closed_form_sum"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Enumerate the $8$ permutations giving each value of $|a_1 - a_2| + |a_3 - a_4|$: values are $\\{2, 4, 4\\}$ each appearing $8$ times out of $24$. Average $= \\tfrac{16 + 32 + 32}{24} = \\tfrac{80}{24} = \\tfrac{10}{3}$.\n\n**(b)** By symmetry $E[a_i]$ is the same for all $i$, equal to $\\tfrac{1 + 2 + \\cdots + 7}{7} = 4$. Expected value $= E[a_1] - E[a_2] + \\cdots + E[a_7] = 4(4) - 3(4) = 4$.\n\n**(c)** By linearity, average of (∗) $= 100 \\cdot E[|a_1 - a_2|]$. With $(a_1, a_2)$ uniform over ordered distinct pairs from $\\{1, \\ldots, 200\\}$, $E[|a_1 - a_2|] = \\dfrac{2}{200 \\cdot 199} \\sum_{i > j} (i - j) = \\dfrac{2}{200 \\cdot 199} \\cdot \\tfrac{1}{6}(200)(201)(199)/1 \\cdot \\tfrac{2}{1}$... computing $\\sum_{i > j}(i-j) = \\binom{201}{3} = \\tfrac{200 \\cdot 201 \\cdot 199}{6} = \\tfrac{199 \\cdot 200 \\cdot 67}{2}$, giving $E[|a_1 - a_2|] = 67$. Answer: $100 \\cdot 67 = 6700$."
+    },
+    {
+      "number": 10,
+      "statement": "Consider a set $S$ that contains $m \\geq 4$ elements, each of which is a positive integer and no two of which are equal. $S$ is called *boring* if it contains four distinct integers $a, b, c, d$ such that $a + b = c + d$, and *exciting* otherwise.\n\n**(a)** Find an exciting subset of $\\{1, 2, 3, 4, 5, 6, 7, 8\\}$ that contains exactly $5$ elements.\n\n**(b)** Prove that, if $S$ is an exciting set of $m \\geq 4$ positive integers, then $S$ contains an integer greater than or equal to $\\dfrac{m^2 - m}{4}$.\n\n**(c)** Define $\\operatorname{rem}(a, b)$ to be the remainder when $a$ is divided by $b$. Let $n$ be a positive integer with $n \\geq 10$. For each positive integer $k$ with $1 \\leq k \\leq n$, define $x_k = 2n \\cdot \\operatorname{rem}(k^2, n) + k$. Determine, with proof, all positive integers $n \\geq 10$ for which the set $\\{x_1, x_2, \\ldots, x_n\\}$ of $n$ integers is exciting.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2017 Euclid Contest, Problem 10",
+      "topicKey": "combinatorics.sidon_sets",
+      "techniqueTags": ["sidon_set", "pigeonhole_lower_bound", "modular_arithmetic_construction"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** $\\{1, 2, 3, 5, 8\\}$. Verify all $\\binom{5}{2} = 10$ pairwise sums: $3, 4, 5, 6, 7, 8, 9, 10, 11, 13$ — all distinct.\n\n**(b)** A Sidon set (exciting) of size $m$ has $\\binom{m}{2} = \\tfrac{m(m-1)}{2}$ distinct pairwise sums. Since the sums are distinct positive integers, the max sum is $\\geq \\tfrac{m(m-1)}{2}$. The max sum involves the largest element plus another, so the largest element is at least half of this, i.e., $\\geq \\tfrac{m^2 - m}{4}$.\n\n**(c)** Answer: $n$ is prime. Key observation: $x_a + x_b = x_c + x_d \\iff a + b = c + d$ AND $\\operatorname{rem}(a^2, n) + \\operatorname{rem}(b^2, n) = \\operatorname{rem}(c^2, n) + \\operatorname{rem}(d^2, n)$ (using that $2n$ dominates residues).\n\n- **$n$ composite $\\Rightarrow$ boring:** Case $n = p^2$ ($p \\geq 5$): $\\{p, 4p\\}$ and $\\{2p, 3p\\}$ sum to $5p$, with all squares $\\equiv 0 \\pmod{n}$. Case $n = 2t$ ($t \\geq 5$): $\\{1, t+2\\}$ and $\\{2, t+1\\}$ both sum to $t + 3$ and check residues. Case $n = MN$ with $M > N > 1$ odd: take $a = \\tfrac{M+N}{2}, c = \\tfrac{M-N}{2}$, $b = n - a$, $d = n - c$; $a^2 - c^2 = MN = n$ forces equal residues.\n\n- **$n$ prime $\\Rightarrow$ exciting:** From $a + b = c + d$ and residue equality, derive $-2(c-a)(c-b) = n(q_a + q_b - q_c - q_d)$ using $a^2 + b^2 - c^2 - d^2 = 2cd - 2ab$. Then $n \\mid (c-a)(c-b)$; as $n$ is prime, $n \\mid (c-a)$ or $n \\mid (c-b)$, forcing $c = a$ or $c = b$ (since $|c-a|, |c-b| < n$), contradicting distinctness.\n\nConclusion: the set is exciting iff $n$ is prime."
+    }
+  ]
+}

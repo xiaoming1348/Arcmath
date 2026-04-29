@@ -18,6 +18,8 @@
     "db:seed": "sh -c 'ORIG_DATABASE_URL=${DATABASE_URL:-}; set -a; . ./.env; set +a; if [ -n \"$ORIG_DATABASE_URL\" ]; then export DATABASE_URL=\"$ORIG_DATABASE_URL\"; fi; pnpm -C packages/db prisma db seed'",
     "seed:neon": "sh ./scripts/with-env-local.sh pnpm -C packages/db prisma db seed",
     "hint:precompute:neon": "sh ./scripts/with-env-local.sh pnpm -C apps/web hint:precompute",
+    "proof:seed-olympiad": "sh ./scripts/with-env-local.sh pnpm -C apps/web exec tsx src/scripts/seed-olympiad-problems.ts",
+    "proof:eval": "sh ./scripts/with-env-local.sh pnpm -C apps/web exec tsx src/scripts/proof-eval.ts",
     "db:studio": "sh -c 'ORIG_DATABASE_URL=${DATABASE_URL:-}; set -a; . ./.env; set +a; if [ -n \"$ORIG_DATABASE_URL\" ]; then export DATABASE_URL=\"$ORIG_DATABASE_URL\"; fi; pnpm -C packages/db prisma studio'",
     "test:e2e": "pnpm -C apps/web exec playwright test",
     "preflight:production": "node --import tsx scripts/preflight-production.ts",
@@ -41,7 +43,8 @@
     "ingest:warm-cache": "pnpm -F @arcmath/ingest-aops warm-cache",
     "ingest:fetch": "pnpm -F @arcmath/ingest-aops fetch",
     "ingest:fetch-pdf": "pnpm -F @arcmath/ingest-aops fetch-official-pdf",
-    "ingest:fetch-pdf-batch": "pnpm -F @arcmath/ingest-aops fetch-official-pdf-batch"
+    "ingest:fetch-pdf-batch": "pnpm -F @arcmath/ingest-aops fetch-official-pdf-batch",
+    "ingest:bulk": "sh -c 'ORIG_DATABASE_URL=${DATABASE_URL:-}; if [ -f ./.env ]; then set -a; . ./.env; set +a; fi; if [ -n \"$ORIG_DATABASE_URL\" ]; then export DATABASE_URL=\"$ORIG_DATABASE_URL\"; fi; node --import tsx scripts/bulk-ingest-aops.ts \"$@\"' --"
   },
   "devDependencies": {
     "tsx": "^4.21.0",

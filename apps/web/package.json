@@ -10,11 +10,19 @@
     "pdf:backfill:legacy-official": "node --import tsx src/scripts/backfill-official-pdfs.ts",
     "pdf:backfill-generated": "node --import tsx src/scripts/backfill-generated-pdfs.ts",
     "hint:precompute": "node --import tsx src/scripts/precompute-hint-artifacts.ts",
+    "preprocess:problems": "node --import tsx src/scripts/preprocess-problems.ts",
+    "demo:grade": "node --import tsx src/scripts/demo-grade.ts",
+    "benchmark:grader": "node --import tsx src/scripts/benchmark-grader.ts",
     "pdf:render-verify": "node --import tsx src/scripts/render-verify.ts",
-    "pdf:validate-searchable": "node --import tsx src/scripts/validate-searchable-downloads.ts"
+    "pdf:validate-searchable": "node --import tsx src/scripts/validate-searchable-downloads.ts",
+    "admissions:import": "node --import tsx src/scripts/import-admissions-manifests.ts"
   },
   "dependencies": {
     "@arcmath/db": "workspace:*",
+    "@arcmath/ingest-cambridge-step": "workspace:*",
+    "@arcmath/ingest-cemc": "workspace:*",
+    "@arcmath/ingest-maa-usamo": "workspace:*",
+    "@arcmath/ingest-oxford-mat": "workspace:*",
     "@arcmath/shared": "workspace:*",
     "@aws-sdk/client-s3": "^3.997.0",
     "@aws-sdk/s3-request-presigner": "^3.997.0",
@@ -24,6 +32,7 @@
     "@trpc/server": "^11.10.0",
     "bcryptjs": "^3.0.3",
     "katex": "^0.16.38",
+    "mathlive": "^0.105.3",
     "next": "16.1.6",
     "next-auth": "^4.24.13",
     "playwright": "^1.58.2",
@@ -39,9 +48,11 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/tough-cookie": "^4.0.5",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
+    "tough-cookie": "^4.1.4",
     "typescript": "^5"
   }
 }

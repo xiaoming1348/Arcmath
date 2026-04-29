@@ -192,16 +192,29 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
       notFound();
     }
 
-    const attemptRows = practiceSetData.problems.map((problem) => {
+    const attemptRows = practiceSetData.problems.flatMap((problem) => {
+      if (problem.answerFormat === "PROOF") {
+        // Proof problems use the per-problem ProofAttempt flow; skip whole-set grading.
+        return [];
+      }
+      if (problem.answerFormat === "WORKED_SOLUTION") {
+        // WORKED_SOLUTION problems (STEP full questions, MAT long
+        // questions, Euclid Part B/C) have no auto-grade path. They
+        // belong to per-problem mode sets today — whole-set submit
+        // simply skips them. A self-report "I solved it" toggle could
+        // be recorded here in a future PR.
+        return [];
+      }
+      const answerFormat = problem.answerFormat;
       const submittedAnswer = String(formData.get(`answer:${problem.id}`) ?? "").trim();
       const gradingResult = gradeAnswer({
-        answerFormat: problem.answerFormat,
+        answerFormat,
         submittedAnswer,
         canonicalAnswer: problem.answer,
         choices: problem.choices
       });
 
-      return {
+      return [{
         userId: currentSession.user.id,
         problemId: problem.id,
         practiceRunId: validatedRun.id,
@@ -209,7 +222,7 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
         normalizedAnswer: gradingResult.normalizedSubmittedAnswer,
         isCorrect: gradingResult.isCorrect,
         explanationText: null
-      };
+      }];
     });
 
     await prisma.$transaction([

@@ -52,5 +52,57 @@ export default defineWorkspace([
       environment: "node",
       passWithNoTests: true
     }
+  },
+  {
+    resolve: {
+      alias: {
+        "@arcmath/shared": sharedEntry
+      }
+    },
+    test: {
+      name: "ingest-cemc",
+      include: ["packages/ingest-cemc/**/*.test.ts"],
+      environment: "node",
+      passWithNoTests: true
+    }
+  },
+  {
+    resolve: {
+      alias: {
+        "@arcmath/shared": sharedEntry
+      }
+    },
+    test: {
+      name: "ingest-oxford-mat",
+      include: ["packages/ingest-oxford-mat/**/*.test.ts"],
+      environment: "node",
+      passWithNoTests: true
+    }
+  },
+  {
+    resolve: {
+      alias: {
+        "@arcmath/shared": sharedEntry
+      }
+    },
+    test: {
+      name: "ingest-cambridge-step",
+      include: ["packages/ingest-cambridge-step/**/*.test.ts"],
+      environment: "node",
+      passWithNoTests: true
+    }
+  },
+  {
+    resolve: {
+      alias: {
+        "@arcmath/shared": sharedEntry
+      }
+    },
+    test: {
+      name: "ingest-maa-usamo",
+      include: ["packages/ingest-maa-usamo/**/*.test.ts"],
+      environment: "node",
+      passWithNoTests: true
+    }
   }
 ]);

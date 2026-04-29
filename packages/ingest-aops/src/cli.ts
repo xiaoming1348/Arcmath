@@ -844,7 +844,11 @@ async function fetchToJson(flags: JsonCliFlags): Promise<void> {
   const answers = extractAnswerMap(answerKeyHtml, problemCount);
 
   const emptyStatementErrors: string[] = [];
-  const problems: ImportProblemSetInput["problems"] = [];
+  // Problems are built loosely during extraction — statements or answers may be
+  // empty if the source page is broken. The schema-validation step below
+  // catches those with a precise error. We widen the list type here to match
+  // that intent (rather than casting at every push site).
+  const problems: Array<ImportProblemSetInput["problems"][number] | Record<string, unknown>> = [];
 
   for (let number = 1; number <= problemCount; number += 1) {
     const pageUrl = urls.problemUrls[number - 1];
@@ -878,7 +882,7 @@ async function fetchToJson(flags: JsonCliFlags): Promise<void> {
     });
   }
 
-  const payload: ImportProblemSetInput = {
+  const payload = {
     problemSet: {
       contest: flags.contest,
       year: flags.year,
@@ -886,7 +890,7 @@ async function fetchToJson(flags: JsonCliFlags): Promise<void> {
       sourceUrl: urls.examUrl
     },
     problems
-  };
+  } as unknown as ImportProblemSetInput;
 
   const validated = importProblemSetSchema.safeParse(payload);
   if (!validated.success) {

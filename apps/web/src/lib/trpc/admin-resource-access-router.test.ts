@@ -422,6 +422,8 @@ describe("admin resource access router", () => {
     vi.mocked(runGeneratedPdfBackfill).mockResolvedValue({
       scanned: 12,
       generated_cached: 8,
+      generated_cached_problems: 0,
+      generated_cached_answers: 0,
       skipped_already_cached: 2,
       skipped_no_problems: 1,
       render_failed: 1,

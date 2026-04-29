@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "@arcmath/db";
 import { authOptions } from "@/lib/auth";
-import { canManageOrganization, getActiveOrganizationMembership } from "@/lib/organizations";
+import { canManageOrganization, canTeach, getActiveOrganizationMembership } from "@/lib/organizations";
 import { getOrganizationResourceStorage } from "@/lib/organization-resource-storage";
 
 type ResourcesPageProps = {
@@ -61,7 +61,13 @@ export default async function ResourcesPage({ searchParams }: ResourcesPageProps
     }
 
     const currentMembership = await getActiveOrganizationMembership(prisma, currentSession.user.id);
-    if (!currentMembership || !canManageOrganization(currentMembership.role)) {
+    // Batch-4: open the upload form to TEACHER role too. Course
+    // materials (PDFs, docs) and homework files are part of a teacher's
+    // day-to-day, so requiring an admin to upload would create
+    // unnecessary friction. Visibility is still ORG_ONLY (the
+    // OrganizationResource model is per-org), so a teacher can never
+    // leak materials to another school.
+    if (!currentMembership || !canTeach(currentMembership.role)) {
       redirect("/resources?error=forbidden");
     }
 
@@ -166,6 +172,14 @@ export default async function ResourcesPage({ searchParams }: ResourcesPageProps
   }
 
   const canManage = canManageOrganization(membership.role);
+  // Teacher (or above) can upload materials. Students see the list
+  // read-only.
+  const canUpload = canTeach(membership.role);
+  // Reference `canManage` from inside the file too — historical UI
+  // sections may key extra buttons off the admin-only branch (delete,
+  // make-public). Keeping the binding so future code can reuse without
+  // re-importing.
+  void canManage;
 
   return (
     <main className="motion-rise space-y-4">
@@ -187,12 +201,12 @@ export default async function ResourcesPage({ searchParams }: ResourcesPageProps
         {summarizeError(error) ? <p className="text-sm text-red-600">{summarizeError(error)}</p> : null}
       </section>
 
-      {canManage ? (
+      {canUpload ? (
         <section className="surface-card space-y-4">
           <div className="space-y-1">
             <h2 className="text-lg font-semibold text-slate-900">Publish resource</h2>
             <p className="text-sm text-slate-600">
-              Use this for lesson notes, study guides, links, or an attached worksheet/PDF. This is the minimal internal resource workflow for organization users.
+              Lesson notes, PDFs, study guides, links, or an attached worksheet. Visible to everyone in your school. (Teachers and admins can publish.)
             </p>
           </div>
 
@@ -233,9 +247,9 @@ export default async function ResourcesPage({ searchParams }: ResourcesPageProps
         <div className="space-y-1">
           <h2 className="text-lg font-semibold text-slate-900">Published resources</h2>
           <p className="text-sm text-slate-600">
-            {canManage
+            {canUpload
               ? "Everything posted here is visible to students in this organization."
-              : "These materials are shared by your organization admins."}
+              : "These materials are shared by your teachers and school admins."}
           </p>
         </div>
 

@@ -2,9 +2,8 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@arcmath/db";
-import { AnswerWorkspace } from "@/components/answer-workspace";
-import { HintTutorPanel } from "@/components/hint-tutor-panel";
 import { ProblemStatement } from "@/components/problem-statement";
+import { UnifiedPracticeWorkspace } from "@/components/unified-practice-workspace";
 import { authOptions } from "@/lib/auth";
 import { isPerProblemMode } from "@/lib/problem-set-modes";
 import { userCanAccessRealTutorProblemSet } from "@/lib/tutor-premium-access";
@@ -75,6 +74,10 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
       diagramImageAlt: true,
       choicesImageUrl: true,
       choicesImageAlt: true,
+      // solutionSketch is the authoritative official solution rendered
+      // for WORKED_SOLUTION problems (STEP/MAT/Euclid long questions).
+      // For other formats it's used as hint context, not shown directly.
+      solutionSketch: true,
       topicKey: true,
       difficultyBand: true,
       problemSet: {
@@ -129,6 +132,10 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
   }
 
   let practiceRunId: string | null = null;
+  // Default ON for self-directed practice (no class assignment context).
+  // For runs spawned from a teacher assignment, this gets overwritten
+  // below from the assignment's hintTutorEnabled flag.
+  let hintTutorEnabledForRun = true;
   if (runId) {
     const practiceRun = await prisma.practiceRun.findFirst({
       where: {
@@ -137,7 +144,12 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
         problemSetId: problem.problemSet.id
       },
       select: {
-        id: true
+        id: true,
+        classAssignment: {
+          select: {
+            hintTutorEnabled: true
+          }
+        }
       }
     });
 
@@ -146,6 +158,9 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
     }
 
     practiceRunId = practiceRun.id;
+    if (practiceRun.classAssignment) {
+      hintTutorEnabledForRun = practiceRun.classAssignment.hintTutorEnabled;
+    }
   }
 
   const currentIndex = problem.problemSet.problems.findIndex((entry) => entry.id === problem.id);
@@ -194,7 +209,7 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
         </div>
       </section>
 
-      <section className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_24rem]">
+      <section className="grid gap-4">
         <div className="surface-card space-y-4">
           <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-5">
             <ProblemStatement statement={problem.statement} statementFormat={problem.statementFormat} />
@@ -223,17 +238,33 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
             </div>
           ) : null}
 
-          <AnswerWorkspace
-            problemId={problem.id}
-            practiceRunId={practiceRunId}
-            answerFormat={problem.answerFormat}
-            choiceOptions={choiceOptions}
-            showChoiceText={!problem.choicesImageUrl}
-          />
-        </div>
-
-        <div className="xl:sticky xl:top-6 xl:self-start">
-          <HintTutorPanel problemId={problem.id} practiceRunId={practiceRunId} />
+          {problem.answerFormat === "WORKED_SOLUTION" ? (
+            // WORKED_SOLUTION problems (STEP full questions, MAT long
+            // questions, Euclid Part B/C) have no auto-grading path.
+            // We surface the statement above and the official solution
+            // in a collapsible reveal so the student can attempt before
+            // reading the walkthrough. A richer UX (attempt tracking,
+            // self-report correctness) is deferred to a follow-up PR.
+            <details className="rounded-2xl border border-slate-200 bg-white p-4">
+              <summary className="cursor-pointer text-sm font-semibold text-slate-700">
+                Reveal official solution
+              </summary>
+              <div className="mt-3">
+                <ProblemStatement
+                  statement={problem.solutionSketch ?? "Official solution not yet available for this problem."}
+                  statementFormat="MARKDOWN_LATEX"
+                />
+              </div>
+            </details>
+          ) : (
+            <UnifiedPracticeWorkspace
+              problemId={problem.id}
+              practiceRunId={practiceRunId}
+              answerFormat={problem.answerFormat}
+              choiceOptions={choiceOptions}
+              hintTutorEnabled={hintTutorEnabledForRun}
+            />
+          )}
         </div>
       </section>
     </main>

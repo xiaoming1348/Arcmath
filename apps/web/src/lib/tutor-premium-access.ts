@@ -10,6 +10,14 @@ function isAdmin(user: MinimalSessionUser): boolean {
   return user?.role === "ADMIN";
 }
 
+// When this env flag is truthy, premium/resource-access gating is short-circuited
+// and all authenticated users can access any real-exam / premium problem set.
+// Intended for local dev and QA; leave unset in production.
+function isAccessGatingDisabled(): boolean {
+  const flag = process.env.DISABLE_ACCESS_GATING?.trim().toLowerCase() ?? "";
+  return flag === "1" || flag === "true" || flag === "yes";
+}
+
 export async function listGrantedRealTutorProblemSetIds(prisma: PrismaClient, userId: string): Promise<string[]> {
   const rows = await prisma.userResourceAccess.findMany({
     where: {
@@ -31,6 +39,10 @@ export async function userCanAccessRealTutorProblemSet(params: {
 }): Promise<boolean> {
   if (!params.user) {
     return false;
+  }
+
+  if (isAccessGatingDisabled()) {
+    return true;
   }
 
   if (isAdmin(params.user)) {
