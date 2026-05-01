@@ -213,6 +213,27 @@ export function OrgAdminOverviewPanel({ locale }: { locale: Locale }) {
                   {t("org.overview.class_enrollments", { count: klass._count.enrollments })} ·{" "}
                   {t("org.overview.class_assignments", { count: klass._count.assignments })}
                 </p>
+                {klass.joinCode ? (
+                  <div className="mt-2 flex items-center gap-2">
+                    <span className="text-xs font-medium text-slate-700">
+                      {t("org.overview.class_join_code")}
+                    </span>
+                    <code className="rounded bg-white px-2 py-0.5 font-mono text-xs tracking-widest text-slate-900 border border-slate-200">
+                      {klass.joinCode}
+                    </code>
+                    <button
+                      type="button"
+                      className="text-xs text-[var(--accent)] hover:underline"
+                      onClick={() => {
+                        if (typeof navigator !== "undefined" && navigator.clipboard) {
+                          void navigator.clipboard.writeText(klass.joinCode!);
+                        }
+                      }}
+                    >
+                      {t("org.overview.class_join_code_copy")}
+                    </button>
+                  </div>
+                ) : null}
               </li>
             ))}
           </ul>

@@ -70,6 +70,8 @@ export type Messages = {
   "org.overview.class_unassigned": string;
   "org.overview.class_enrollments": string;
   "org.overview.class_assignments": string;
+  "org.overview.class_join_code": string;
+  "org.overview.class_join_code_copy": string;
   "org.overview.create_class_heading": string;
   "org.overview.create_class_name_label": string;
   "org.overview.create_class_teacher_label": string;
@@ -351,6 +353,8 @@ export const EN: Messages = {
   "org.overview.class_unassigned": "(no teacher assigned)",
   "org.overview.class_enrollments": "{count} enrolled",
   "org.overview.class_assignments": "{count} assignments",
+  "org.overview.class_join_code": "Join code:",
+  "org.overview.class_join_code_copy": "Copy",
   "org.overview.create_class_heading": "Create a class",
   "org.overview.create_class_name_label": "Class name",
   "org.overview.create_class_teacher_label": "Assign to teacher",
@@ -648,6 +652,8 @@ export const ZH: Messages = {
   "org.overview.class_unassigned": "（未指派老师）",
   "org.overview.class_enrollments": "{count} 名学生",
   "org.overview.class_assignments": "{count} 项作业",
+  "org.overview.class_join_code": "加入码：",
+  "org.overview.class_join_code_copy": "复制",
   "org.overview.create_class_heading": "新建班级",
   "org.overview.create_class_name_label": "班级名称",
   "org.overview.create_class_teacher_label": "指派给老师",

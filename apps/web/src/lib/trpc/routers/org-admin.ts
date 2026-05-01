@@ -93,6 +93,11 @@ export const orgAdminRouter = router({
           id: true,
           name: true,
           createdAt: true,
+          // joinCode is the 6-char code students enter on /student to
+          // self-enroll. Surfaced on the admin overview so a school
+          // admin can read it off to a class without bouncing through
+          // the teacher's class page.
+          joinCode: true,
           assignedTeacherId: true,
           assignedTeacher: {
             select: { id: true, email: true, name: true }
