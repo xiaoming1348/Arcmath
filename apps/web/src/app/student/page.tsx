@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
 import { resolveLocale } from "@/i18n/server";
-import { translator } from "@/i18n/client";
+import { translatorImpl as translator } from "@/i18n/dictionary";
 import { StudentHomePanel } from "./student-home-panel";
 
 /**

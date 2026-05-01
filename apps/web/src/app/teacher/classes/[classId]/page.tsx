@@ -5,7 +5,7 @@ import { prisma } from "@arcmath/db";
 import { authOptions } from "@/lib/auth";
 import { canTeach, getActiveOrganizationMembership } from "@/lib/organizations";
 import { resolveLocale } from "@/i18n/server";
-import { translator } from "@/i18n/client";
+import { translatorImpl as translator } from "@/i18n/dictionary";
 import { ClassDetail } from "./class-detail";
 
 type PageProps = {

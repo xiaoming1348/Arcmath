@@ -9,7 +9,7 @@ import {
   getActiveOrganizationMembership
 } from "@/lib/organizations";
 import { resolveLocale } from "@/i18n/server";
-import { translator } from "@/i18n/client";
+import { translatorImpl as translator } from "@/i18n/dictionary";
 import { TeacherHomePanel } from "./teacher-home-panel";
 
 /**
