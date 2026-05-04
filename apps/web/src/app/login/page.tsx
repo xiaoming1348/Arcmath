@@ -103,11 +103,22 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <div className="rounded-[1.4rem] border border-[rgba(16,35,60,0.08)] bg-[rgba(243,247,251,0.88)] px-4 py-4">
+          <div className="space-y-3 rounded-[1.4rem] border border-[rgba(16,35,60,0.08)] bg-[rgba(243,247,251,0.88)] px-4 py-4">
             <p className="text-sm text-slate-600">
-              Need an account?{" "}
-              <Link className="font-semibold text-[var(--accent-strong)]" href="/register">
-                Create one here
+              First time signing in? Your school admin gave you a username
+              ending in <code>@&lt;school&gt;.arcmath.local</code> —{" "}
+              <Link
+                className="font-semibold text-[var(--accent-strong)]"
+                href="/login/set-password"
+              >
+                set your password here
+              </Link>
+              .
+            </p>
+            <p className="text-xs text-slate-500">
+              School admins:{" "}
+              <Link className="text-[var(--accent-strong)] hover:underline" href="/register">
+                create your account
               </Link>
               .
             </p>

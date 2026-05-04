@@ -27,9 +27,21 @@ export function OrgAdminOverviewPanel({ locale }: { locale: Locale }) {
   const overviewQuery = trpc.orgAdmin.overview.useQuery();
   const utils = trpc.useContext();
 
-  const [newClassName, setNewClassName] = useState("");
-  const [newClassTeacherId, setNewClassTeacherId] = useState("");
+  const [rosterClassName, setRosterClassName] = useState("");
+  const [rosterTeacherName, setRosterTeacherName] = useState("");
+  const [rosterStudentNamesInput, setRosterStudentNamesInput] = useState("");
   const [createError, setCreateError] = useState<string | null>(null);
+
+  // Credential reveal: shown ONCE after a successful class+roster
+  // creation. The admin reads off the new email-style usernames to
+  // each user; once they navigate away the list is gone.
+  type CredentialRow = {
+    role: "teacher" | "student";
+    name: string;
+    email: string;
+    isNew: boolean;
+  };
+  const [credentialReveal, setCredentialReveal] = useState<CredentialRow[] | null>(null);
 
   // Older-than-cursor pages we've already loaded, in display order
   // (newest first within each page). The first page comes from the
@@ -42,11 +54,28 @@ export function OrgAdminOverviewPanel({ locale }: { locale: Locale }) {
 
   const activityFeedFetcher = trpc.useContext().orgAdmin.activityFeed;
 
-  const createClassMutation = trpc.orgAdmin.createClass.useMutation({
-    onSuccess: () => {
-      setNewClassName("");
-      setNewClassTeacherId("");
+  const createRosterMutation = trpc.orgAdmin.createClassWithRoster.useMutation({
+    onSuccess: (result) => {
+      setRosterClassName("");
+      setRosterTeacherName("");
+      setRosterStudentNamesInput("");
       setCreateError(null);
+      // Build the credentials reveal table.
+      const rows: CredentialRow[] = [
+        {
+          role: "teacher",
+          name: result.teacher.name,
+          email: result.teacher.email,
+          isNew: result.teacher.isNew
+        },
+        ...result.students.map((s) => ({
+          role: "student" as const,
+          name: s.name,
+          email: s.email,
+          isNew: s.isNew
+        }))
+      ];
+      setCredentialReveal(rows);
       void utils.orgAdmin.overview.invalidate();
       // Reset paginated activity so newly-logged class.create event
       // surfaces in the latest page when the user reloads the feed.
@@ -94,12 +123,23 @@ export function OrgAdminOverviewPanel({ locale }: { locale: Locale }) {
   const data = overviewQuery.data;
   if (!data) return null;
 
-  const handleCreateClass = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleCreateClassWithRoster = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!newClassName.trim() || !newClassTeacherId) return;
-    createClassMutation.mutate({
-      name: newClassName.trim(),
-      assignedTeacherId: newClassTeacherId
+    if (!rosterClassName.trim() || !rosterTeacherName.trim()) return;
+    // Split students by line OR comma; trim and drop blanks. Admins
+    // can paste either "Wang Wei\nLi Hua" or "Wang Wei, Li Hua".
+    const studentNames = rosterStudentNamesInput
+      .split(/[\n,]+/)
+      .map((s) => s.trim())
+      .filter((s) => s.length > 0);
+    if (studentNames.length === 0) {
+      setCreateError("Add at least one student name.");
+      return;
+    }
+    createRosterMutation.mutate({
+      className: rosterClassName.trim(),
+      teacherName: rosterTeacherName.trim(),
+      studentNames
     });
   };
 
@@ -240,58 +280,139 @@ export function OrgAdminOverviewPanel({ locale }: { locale: Locale }) {
         )}
       </section>
 
-      {/* Create-class form */}
+      {/* Roster-based create-class form. The admin enters the class
+          name, ONE teacher's real name, and a list of student real
+          names (one per line, or comma-separated). The server auto-
+          generates email-format usernames + creates accounts; matched
+          existing users (by name within this org) are reused. */}
       <section className="surface-card space-y-3">
         <h3 className="text-lg font-semibold text-slate-900">
           {t("org.overview.create_class_heading")}
         </h3>
-        {data.teachers.length === 0 ? (
-          <p className="text-sm text-slate-500">{t("org.overview.create_class_no_teachers")}</p>
-        ) : (
-          <form onSubmit={handleCreateClass} className="grid gap-3 md:grid-cols-3">
-            <label className="space-y-1 text-sm text-slate-700">
-              <span>{t("org.overview.create_class_name_label")}</span>
-              <input
-                type="text"
-                className="input-field"
-                value={newClassName}
-                onChange={(e) => setNewClassName(e.target.value)}
-                required
-                maxLength={120}
-              />
-            </label>
-            <label className="space-y-1 text-sm text-slate-700">
-              <span>{t("org.overview.create_class_teacher_label")}</span>
-              <select
-                className="input-field"
-                value={newClassTeacherId}
-                onChange={(e) => setNewClassTeacherId(e.target.value)}
-                required
-              >
-                <option value="" disabled>
-                  —
-                </option>
-                {data.teachers.map((teacher) => (
-                  <option key={teacher.userId} value={teacher.userId}>
-                    {teacher.name ?? teacher.email}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <div className="flex items-end">
+        <p className="text-xs text-slate-500">
+          {t("org.overview.create_class_roster_help", {
+            teachers: data.teachers.length,
+            maxTeachers: 5,
+            students: data.students.length,
+            maxStudents: 50
+          })}
+        </p>
+        <form onSubmit={handleCreateClassWithRoster} className="grid gap-3 md:grid-cols-2">
+          <label className="space-y-1 text-sm text-slate-700">
+            <span>{t("org.overview.create_class_name_label")}</span>
+            <input
+              type="text"
+              className="input-field"
+              value={rosterClassName}
+              onChange={(e) => setRosterClassName(e.target.value)}
+              required
+              maxLength={120}
+            />
+          </label>
+          <label className="space-y-1 text-sm text-slate-700">
+            <span>{t("org.overview.create_class_teacher_name_label")}</span>
+            <input
+              type="text"
+              className="input-field"
+              value={rosterTeacherName}
+              onChange={(e) => setRosterTeacherName(e.target.value)}
+              required
+              maxLength={120}
+              placeholder={t("org.overview.create_class_teacher_name_placeholder")}
+            />
+          </label>
+          <label className="space-y-1 text-sm text-slate-700 md:col-span-2">
+            <span>{t("org.overview.create_class_student_names_label")}</span>
+            <textarea
+              className="input-field min-h-32"
+              value={rosterStudentNamesInput}
+              onChange={(e) => setRosterStudentNamesInput(e.target.value)}
+              required
+              placeholder={t("org.overview.create_class_student_names_placeholder")}
+            />
+            <span className="block text-xs text-slate-500">
+              {t("org.overview.create_class_student_names_help")}
+            </span>
+          </label>
+          <div className="md:col-span-2 flex items-center gap-3">
+            <button
+              type="submit"
+              className="btn-primary"
+              disabled={createRosterMutation.isPending}
+            >
+              {t("org.overview.create_class_submit")}
+            </button>
+            {createError ? (
+              <p className="text-sm text-red-600">{createError}</p>
+            ) : null}
+          </div>
+        </form>
+
+        {/* One-time credential reveal panel. Visible only after a
+            successful roster creation; clears when admin clicks "Done". */}
+        {credentialReveal ? (
+          <div className="rounded-3xl border border-emerald-200 bg-emerald-50/70 p-4 space-y-3">
+            <div className="flex items-start justify-between gap-3">
+              <div className="space-y-1">
+                <p className="text-sm font-semibold text-emerald-900">
+                  {t("org.overview.credentials_heading")}
+                </p>
+                <p className="text-xs text-emerald-800">
+                  {t("org.overview.credentials_help")}
+                </p>
+              </div>
               <button
-                type="submit"
-                className="btn-primary"
-                disabled={createClassMutation.isPending}
+                type="button"
+                className="btn-secondary"
+                onClick={() => setCredentialReveal(null)}
               >
-                {t("org.overview.create_class_submit")}
+                {t("org.overview.credentials_done")}
               </button>
             </div>
-            {createError ? (
-              <p className="md:col-span-3 text-sm text-red-600">{createError}</p>
-            ) : null}
-          </form>
-        )}
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-left text-xs uppercase tracking-wide text-emerald-800">
+                  <th className="px-2 py-1">{t("org.overview.credentials_role")}</th>
+                  <th className="px-2 py-1">{t("org.overview.credentials_name")}</th>
+                  <th className="px-2 py-1">{t("org.overview.credentials_username")}</th>
+                  <th className="px-2 py-1">{t("org.overview.credentials_status")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {credentialReveal.map((row) => (
+                  <tr key={row.email} className="border-t border-emerald-200 align-top">
+                    <td className="px-2 py-1 text-xs">{row.role}</td>
+                    <td className="px-2 py-1 text-xs">{row.name}</td>
+                    <td className="px-2 py-1">
+                      <code className="rounded bg-white px-2 py-0.5 font-mono text-xs text-slate-900 border border-emerald-200">
+                        {row.email}
+                      </code>
+                    </td>
+                    <td className="px-2 py-1 text-xs">
+                      {row.isNew
+                        ? t("org.overview.credentials_status_new")
+                        : t("org.overview.credentials_status_existing")}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <button
+              type="button"
+              className="text-xs text-[var(--accent-strong)] hover:underline"
+              onClick={() => {
+                if (typeof navigator !== "undefined" && navigator.clipboard) {
+                  const text = credentialReveal
+                    .map((r) => `${r.name}\t${r.email}\t${r.role}`)
+                    .join("\n");
+                  void navigator.clipboard.writeText(text);
+                }
+              }}
+            >
+              {t("org.overview.credentials_copy_all")}
+            </button>
+          </div>
+        ) : null}
       </section>
 
       {/* Activity feed */}

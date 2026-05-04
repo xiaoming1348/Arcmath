@@ -77,6 +77,22 @@ export type Messages = {
   "org.overview.create_class_teacher_label": string;
   "org.overview.create_class_submit": string;
   "org.overview.create_class_no_teachers": string;
+  "org.overview.create_class_roster_help": string;
+  "org.overview.create_class_teacher_name_label": string;
+  "org.overview.create_class_teacher_name_placeholder": string;
+  "org.overview.create_class_student_names_label": string;
+  "org.overview.create_class_student_names_placeholder": string;
+  "org.overview.create_class_student_names_help": string;
+  "org.overview.credentials_heading": string;
+  "org.overview.credentials_help": string;
+  "org.overview.credentials_done": string;
+  "org.overview.credentials_role": string;
+  "org.overview.credentials_name": string;
+  "org.overview.credentials_username": string;
+  "org.overview.credentials_status": string;
+  "org.overview.credentials_status_new": string;
+  "org.overview.credentials_status_existing": string;
+  "org.overview.credentials_copy_all": string;
   "org.overview.feed_load_more": string;
   "org.overview.feed_no_more": string;
   "org.overview.action.class.create": string;
@@ -149,6 +165,7 @@ export type Messages = {
   "teacher.class.confirm_remove_student": string;
   "teacher.class.regenerate_join_code": string;
   "teacher.class.regenerate_join_code_confirm": string;
+  "teacher.class.roster_managed_by_admin": string;
   "teacher.class.progress_title": string;
   "teacher.class.progress_column_student": string;
   "teacher.class.progress_column_status": string;
@@ -360,6 +377,22 @@ export const EN: Messages = {
   "org.overview.create_class_teacher_label": "Assign to teacher",
   "org.overview.create_class_submit": "Create class",
   "org.overview.create_class_no_teachers": "Add a teacher account first, then create classes here.",
+  "org.overview.create_class_roster_help": "Caps: {teachers}/{maxTeachers} teachers · {students}/{maxStudents} students. Reuse a name to reuse the existing account.",
+  "org.overview.create_class_teacher_name_label": "Teacher name",
+  "org.overview.create_class_teacher_name_placeholder": "e.g. Wang Wei or Ms. Lin",
+  "org.overview.create_class_student_names_label": "Student names",
+  "org.overview.create_class_student_names_placeholder": "One name per line, or comma-separated",
+  "org.overview.create_class_student_names_help": "Each unique name spawns one student account. Re-using a name reuses the same account.",
+  "org.overview.credentials_heading": "New usernames — share these out of band",
+  "org.overview.credentials_help": "Send each user their username. They go to /login/set-password and choose their own password the first time.",
+  "org.overview.credentials_done": "Done",
+  "org.overview.credentials_role": "Role",
+  "org.overview.credentials_name": "Name",
+  "org.overview.credentials_username": "Username",
+  "org.overview.credentials_status": "Status",
+  "org.overview.credentials_status_new": "new",
+  "org.overview.credentials_status_existing": "existing",
+  "org.overview.credentials_copy_all": "Copy all (tab-separated)",
   "org.overview.feed_load_more": "Load more",
   "org.overview.feed_no_more": "No more activity",
   "org.overview.action.class.create": "{actor} created class \"{target}\"",
@@ -441,6 +474,8 @@ export const EN: Messages = {
   "teacher.class.regenerate_join_code": "Regenerate join code",
   "teacher.class.regenerate_join_code_confirm":
     "Regenerate the join code? The old code will stop working immediately.",
+  "teacher.class.roster_managed_by_admin":
+    "Roster managed by your school admin. To add or remove students, ask your admin to update the class roster.",
   "teacher.class.progress_title": "Assignment progress",
   "teacher.class.progress_column_student": "Student",
   "teacher.class.progress_column_status": "Status",
@@ -659,6 +694,22 @@ export const ZH: Messages = {
   "org.overview.create_class_teacher_label": "指派给老师",
   "org.overview.create_class_submit": "创建班级",
   "org.overview.create_class_no_teachers": "请先创建老师账号，再来这里建班级。",
+  "org.overview.create_class_roster_help": "上限：{teachers}/{maxTeachers} 老师 · {students}/{maxStudents} 学生。重复输入相同姓名会复用同一账号。",
+  "org.overview.create_class_teacher_name_label": "老师姓名",
+  "org.overview.create_class_teacher_name_placeholder": "例如：王伟 或 林老师",
+  "org.overview.create_class_student_names_label": "学生姓名列表",
+  "org.overview.create_class_student_names_placeholder": "每行一位，或用逗号分隔",
+  "org.overview.create_class_student_names_help": "同名只创建一个账号；想区分同名学生请加后缀（如\"王伟 A\"、\"王伟 B\"）。",
+  "org.overview.credentials_heading": "新用户名 — 请线下发给本人",
+  "org.overview.credentials_help": "把每位用户名告诉对应的人，他们到 /login/set-password 自行设置密码，老师/学生自己设的密码只有他们自己知道。",
+  "org.overview.credentials_done": "完成",
+  "org.overview.credentials_role": "角色",
+  "org.overview.credentials_name": "姓名",
+  "org.overview.credentials_username": "用户名",
+  "org.overview.credentials_status": "状态",
+  "org.overview.credentials_status_new": "新建",
+  "org.overview.credentials_status_existing": "已存在",
+  "org.overview.credentials_copy_all": "复制全部（Tab 分隔）",
   "org.overview.feed_load_more": "加载更多",
   "org.overview.feed_no_more": "无更多活动",
   "org.overview.action.class.create": "{actor} 创建了班级《{target}》",
@@ -732,6 +783,7 @@ export const ZH: Messages = {
   "teacher.class.confirm_remove_student": "确认将该学生移出班级？其历史作答记录仍会保留。",
   "teacher.class.regenerate_join_code": "重新生成加入码",
   "teacher.class.regenerate_join_code_confirm": "重新生成加入码后，旧加入码将立即失效，继续吗？",
+  "teacher.class.roster_managed_by_admin": "班级名册由学校 admin 维护。如需增减学生，请联系 admin 修改班级名册。",
   "teacher.class.progress_title": "作业进度",
   "teacher.class.progress_column_student": "学生",
   "teacher.class.progress_column_status": "状态",

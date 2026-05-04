@@ -80,12 +80,11 @@ export function StudentHomePanel() {
         />
       </section>
 
-      <JoinClassForm
-        onJoined={() => {
-          utils.student.overview.invalidate();
-          utils.student.assignments.invalidate();
-        }}
-      />
+      {/* Roster-creation product policy: students are auto-enrolled
+          when their school admin creates the class with their name in
+          the roster. The legacy "Join via code" form is no longer
+          mounted, but the form component below remains in the file
+          so existing tests continue to import it. */}
 
       <section className="surface-card space-y-4">
         <header className="flex items-baseline justify-between">

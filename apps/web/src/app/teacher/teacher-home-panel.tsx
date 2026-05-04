@@ -6,7 +6,12 @@ import { useRouter } from "next/navigation";
 import { trpc } from "@/lib/trpc/client";
 import { translator } from "@/i18n/client";
 import type { Locale } from "@/i18n/dictionary";
-import { InviteTeachersForm } from "./invite-teachers-form";
+// `InviteTeachersForm` was the legacy school-admin path to invite
+// teachers in. Under the roster-creation policy that flow lives on
+// /org instead, so we no longer mount it here. Keeping the file
+// around (commented import) for the moment in case the admin
+// convenience path comes back.
+// import { InviteTeachersForm } from "./invite-teachers-form";
 
 /**
  * Interactive chunk of the teacher home page:
@@ -177,14 +182,11 @@ export function TeacherHomePanel({
         )}
       </section>
 
-      {canInviteTeachers ? (
-        <InviteTeachersForm
-          locale={locale}
-          onInvited={() => {
-            utils.teacher.overview.invalidate();
-          }}
-        />
-      ) : null}
+      {/* Roster-creation product policy: teachers (and students) can
+          only be added by the school admin via the /org class-roster
+          form. The legacy "invite teachers" path is hidden but the
+          component still ships in the bundle for the admin
+          convenience flow if we ever bring it back. */}
     </div>
   );
 }

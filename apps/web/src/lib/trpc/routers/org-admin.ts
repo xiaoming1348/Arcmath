@@ -1,7 +1,54 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
+import { pinyin } from "pinyin-pro";
 import { router, schoolAdminProcedure } from "@/lib/trpc/server";
 import { logAudit } from "@/lib/audit";
+
+/**
+ * Convert a roster name to a stable email-username slug.
+ *
+ * Rules:
+ *   - Chinese characters → pinyin (lowercase, hyphen-separated). The
+ *     name "王伟" becomes `wang-wei`, "李小红" becomes `li-xiao-hong`.
+ *   - Anything already ASCII is lowercased and non-alphanumeric runs
+ *     are squashed to a single hyphen, so "Ms. Lin (Y3)" → `ms-lin-y3`.
+ *   - Trailing/leading hyphens are trimmed.
+ *
+ * The 4-char random suffix is added at the call site (so two students
+ * named "Wang Wei" can't collide on the unique-email constraint).
+ */
+function rosterNameToSlug(name: string): string {
+  // pinyin-pro: tone=none gives the 'wang wei' form (no diacritics).
+  const pinyinForm = pinyin(name, { toneType: "none", type: "string" });
+  const ascii = pinyinForm
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return ascii.length > 0 ? ascii : "user";
+}
+
+function randomSlugSuffix(length = 4): string {
+  const alphabet = "abcdefghijkmnpqrstuvwxyz23456789"; // no 0/o/1/l for legibility
+  let out = "";
+  for (let i = 0; i < length; i += 1) {
+    out += alphabet[Math.floor(Math.random() * alphabet.length)];
+  }
+  return out;
+}
+
+/**
+ * Build the auto-generated login email for a roster user. Format:
+ *   <name-slug>.<rand4>@<org-slug>.arcmath.local
+ *
+ * The "arcmath.local" suffix is intentionally non-deliverable — these
+ * accounts don't receive email; the admin tells the student "your
+ * username is X, go to /login/set-password to claim it" out of band.
+ */
+function buildRosterEmail(name: string, orgSlug: string): string {
+  const nameSlug = rosterNameToSlug(name);
+  const sanitizedOrg = orgSlug.toLowerCase().replace(/[^a-z0-9-]+/g, "");
+  return `${nameSlug}.${randomSlugSuffix()}@${sanitizedOrg}.arcmath.local`;
+}
 
 /**
  * School-admin-facing surface: cross-class overview, activity feed,
@@ -222,67 +269,231 @@ export const orgAdminRouter = router({
     }),
 
   /**
-   * Admin creates a class and immediately hands it to a teacher.
-   * The teacher must be an ACTIVE TEACHER in the same org. We block
-   * cross-tenant assignment + assignment to non-teacher users at this
-   * boundary so the UI doesn't have to.
+   * Roster-creation flow (the only way to create a class under the
+   * current product policy):
+   *
+   *   - Admin enters class name, ONE teacher name, and a list of
+   *     student names.
+   *   - For each name we look up an existing user in this org by
+   *     `User.name`. If found, we reuse the account (so a teacher who
+   *     teaches multiple classes doesn't get duplicate accounts; a
+   *     student transferring between classes doesn't either). If not
+   *     found, we mint a new User with a generated email + null
+   *     password (the user sets their own at /login/set-password).
+   *   - Seat caps (org-level): teacher count ≤ maxTeacherSeats,
+   *     student count ≤ maxStudentSeats. We count *post-merge* — i.e.
+   *     reused users don't bump the count.
+   *   - The whole thing runs in a transaction; on any seat overflow
+   *     or collision the entire roster is rejected.
+   *
+   * Returns the new class plus a "credentials reveal" array the UI
+   * shows once: { name, email, alreadyHadAccount } per roster user.
+   * The admin reads / copies that table and tells each user their
+   * email out of band.
    */
-  createClass: schoolAdminProcedure
+  createClassWithRoster: schoolAdminProcedure
     .input(
       z.object({
-        name: z.string().min(1).max(120),
-        assignedTeacherId: z.string().min(1)
+        className: z.string().min(1).max(120),
+        teacherName: z.string().min(1).max(120),
+        studentNames: z
+          .array(z.string().min(1).max(120))
+          .min(1)
+          .max(50)
       })
     )
     .mutation(async ({ ctx, input }) => {
       const orgId = ctx.membership.organizationId;
 
-      const teacherMembership = await ctx.prisma.organizationMembership.findFirst({
+      // Pull the org row so we know its slug + seat caps.
+      const org = await ctx.prisma.organization.findUnique({
+        where: { id: orgId },
+        select: {
+          slug: true,
+          maxTeacherSeats: true,
+          maxStudentSeats: true
+        }
+      });
+      if (!org) {
+        throw new TRPCError({ code: "NOT_FOUND", message: "Organization not found." });
+      }
+
+      // Dedup students by trimmed name so the admin can't accidentally
+      // add the same person twice. Same name → same account.
+      const teacherNameTrimmed = input.teacherName.trim();
+      const studentNamesTrimmed = Array.from(
+        new Set(input.studentNames.map((s) => s.trim()).filter((s) => s.length > 0))
+      );
+
+      // Snapshot existing teacher + student users in this org so we can
+      // (a) reuse accounts that match by name, and (b) compute net new
+      // count for the seat cap.
+      const existingMembers = await ctx.prisma.organizationMembership.findMany({
         where: {
           organizationId: orgId,
-          userId: input.assignedTeacherId,
           status: "ACTIVE",
-          role: "TEACHER"
-        },
-        select: { userId: true }
-      });
-
-      if (!teacherMembership) {
-        throw new TRPCError({
-          code: "BAD_REQUEST",
-          message: "Assigned user must be an active teacher in this school."
-        });
-      }
-
-      // 6-char join code, reroll on collision (cheap — collisions at this
-      // scale are vanishingly unlikely but the dev DB has a unique index).
-      const generateJoinCode = () =>
-        Math.random().toString(36).slice(2, 8).toUpperCase().padEnd(6, "X").slice(0, 6);
-
-      let joinCode = generateJoinCode();
-      for (let attempt = 0; attempt < 5; attempt += 1) {
-        const collision = await ctx.prisma.class.findFirst({
-          where: { joinCode },
-          select: { id: true }
-        });
-        if (!collision) break;
-        joinCode = generateJoinCode();
-      }
-
-      const klass = await ctx.prisma.class.create({
-        data: {
-          name: input.name,
-          organizationId: orgId,
-          createdByUserId: ctx.session.user.id,
-          assignedTeacherId: teacherMembership.userId,
-          joinCode
+          role: { in: ["TEACHER", "STUDENT"] }
         },
         select: {
-          id: true,
-          name: true,
-          joinCode: true,
-          assignedTeacherId: true
+          role: true,
+          user: { select: { id: true, name: true, email: true } }
         }
+      });
+
+      const existingTeachers = existingMembers.filter((m) => m.role === "TEACHER");
+      const existingStudents = existingMembers.filter((m) => m.role === "STUDENT");
+
+      // Find-or-mint plan. We don't actually create accounts yet — we
+      // just figure out which names map to existing users and which
+      // need new accounts, so we can validate seat caps in advance.
+      const teacherMatch = existingTeachers.find(
+        (m) => (m.user.name ?? "").trim() === teacherNameTrimmed
+      );
+      const newTeacherNeeded = !teacherMatch;
+
+      const studentPlan = studentNamesTrimmed.map((name) => {
+        const match = existingStudents.find((m) => (m.user.name ?? "").trim() === name);
+        return { name, existingUserId: match?.user.id ?? null };
+      });
+      const newStudentsNeeded = studentPlan.filter((s) => !s.existingUserId).length;
+
+      // Seat-cap enforcement: post-merge headcount must stay ≤ caps.
+      const projectedTeacherCount = existingTeachers.length + (newTeacherNeeded ? 1 : 0);
+      const projectedStudentCount = existingStudents.length + newStudentsNeeded;
+
+      if (projectedTeacherCount > org.maxTeacherSeats) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: `Teacher seat cap reached (${org.maxTeacherSeats}). This roster would need ${projectedTeacherCount}.`
+        });
+      }
+      if (projectedStudentCount > org.maxStudentSeats) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: `Student seat cap reached (${org.maxStudentSeats}). This roster would need ${projectedStudentCount}.`
+        });
+      }
+
+      // Single transaction so a partial-roster failure (e.g. unique-
+      // email collision after retries exhausted) leaves no orphans.
+      const result = await ctx.prisma.$transaction(async (tx) => {
+        // Helper: create User + OrganizationMembership for a name.
+        // Re-tries the email a few times on collision (cheap given the
+        // 4-char random suffix); after that we fail loudly.
+        async function mintRosterUser(args: {
+          name: string;
+          role: "TEACHER" | "STUDENT";
+        }): Promise<{ id: string; email: string }> {
+          let lastErr: unknown = null;
+          for (let attempt = 0; attempt < 6; attempt += 1) {
+            const email = buildRosterEmail(args.name, org!.slug);
+            try {
+              const user = await tx.user.create({
+                data: {
+                  email,
+                  name: args.name,
+                  // No password yet — user sets it via /login/set-password.
+                  passwordHash: null,
+                  role: "STUDENT" // platform-level role; org role is in the membership
+                },
+                select: { id: true, email: true }
+              });
+              await tx.organizationMembership.create({
+                data: {
+                  organizationId: orgId,
+                  userId: user.id,
+                  role: args.role,
+                  status: "ACTIVE"
+                }
+              });
+              return user;
+            } catch (err) {
+              lastErr = err;
+              // Continue retry loop on unique-email collision; surface
+              // any other error immediately.
+              const message = (err as { message?: string }).message ?? "";
+              if (!message.includes("Unique") && !message.includes("unique")) {
+                throw err;
+              }
+            }
+          }
+          throw lastErr ?? new Error("Failed to mint roster user after retries.");
+        }
+
+        // Resolve teacher: either reuse or create.
+        let teacherId: string;
+        let teacherEmail: string;
+        let teacherIsNew: boolean;
+        if (teacherMatch) {
+          teacherId = teacherMatch.user.id;
+          teacherEmail = teacherMatch.user.email;
+          teacherIsNew = false;
+        } else {
+          const minted = await mintRosterUser({ name: teacherNameTrimmed, role: "TEACHER" });
+          teacherId = minted.id;
+          teacherEmail = minted.email;
+          teacherIsNew = true;
+        }
+
+        // Resolve students.
+        const resolvedStudents: Array<{
+          userId: string;
+          name: string;
+          email: string;
+          isNew: boolean;
+        }> = [];
+        for (const sp of studentPlan) {
+          if (sp.existingUserId) {
+            const existing = existingStudents.find((m) => m.user.id === sp.existingUserId)!;
+            resolvedStudents.push({
+              userId: existing.user.id,
+              name: sp.name,
+              email: existing.user.email,
+              isNew: false
+            });
+          } else {
+            const minted = await mintRosterUser({ name: sp.name, role: "STUDENT" });
+            resolvedStudents.push({
+              userId: minted.id,
+              name: sp.name,
+              email: minted.email,
+              isNew: true
+            });
+          }
+        }
+
+        // Create the class itself. We do NOT generate a join code under
+        // the new flow — students are enrolled directly from the roster.
+        const klass = await tx.class.create({
+          data: {
+            name: input.className.trim(),
+            organizationId: orgId,
+            createdByUserId: ctx.session.user.id,
+            assignedTeacherId: teacherId
+          },
+          select: { id: true, name: true, assignedTeacherId: true }
+        });
+
+        // Enroll every resolved student. Skip duplicates from the
+        // unique constraint (a student already enrolled stays enrolled).
+        await tx.enrollment.createMany({
+          data: resolvedStudents.map((s) => ({
+            classId: klass.id,
+            userId: s.userId
+          })),
+          skipDuplicates: true
+        });
+
+        return {
+          klass,
+          teacher: {
+            userId: teacherId,
+            name: teacherNameTrimmed,
+            email: teacherEmail,
+            isNew: teacherIsNew
+          },
+          students: resolvedStudents
+        };
       });
 
       await logAudit(
@@ -291,16 +502,19 @@ export const orgAdminRouter = router({
         {
           action: "class.create",
           targetType: "Class",
-          targetId: klass.id,
+          targetId: result.klass.id,
           payload: {
-            name: klass.name,
-            assignedTeacherId: klass.assignedTeacherId,
-            createdBy: "school_admin"
+            name: result.klass.name,
+            assignedTeacherId: result.klass.assignedTeacherId,
+            teacherIsNew: result.teacher.isNew,
+            studentCount: result.students.length,
+            newStudentCount: result.students.filter((s) => s.isNew).length,
+            createdBy: "school_admin_roster"
           }
         }
       );
 
-      return klass;
+      return result;
     }),
 
   /**

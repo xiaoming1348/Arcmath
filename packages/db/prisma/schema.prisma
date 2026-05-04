@@ -214,7 +214,11 @@ model User {
   id                             String                   @id @default(cuid())
   email                          String                   @unique
   name                           String?
-  passwordHash                   String
+  // Nullable so admin-spawned accounts (created via
+  // orgAdmin.createClassWithRoster) start without a password — the
+  // student or teacher sets their own password on first login via
+  // /login/set-password. Existing accounts always have a hash.
+  passwordHash                   String?
   role                           Role                     @default(STUDENT)
   // Preferred UI language ("en" | "zh"). Null → fall back to browser
   // Accept-Language or org-default. Stored here so a student who logs
@@ -250,10 +254,13 @@ model Organization {
   trialStartedAt          DateTime                 @default(now())
   trialEndsAt             DateTime?
   // Seat quotas enforced at invite-time. Pilot defaults for an
-  // international-school trial tenant: 1 org admin, 3 teachers, 50
-  // students. maxAdminSeats kept for owner/principal accounts.
-  maxAdminSeats           Int                      @default(5)
-  maxTeacherSeats         Int                      @default(3)
+  // Per-org caps under the roster-creation product policy: every
+  // school has exactly 1 admin, up to 5 teachers, up to 50 students.
+  // Limits are enforced in the orgAdmin.createClassWithRoster mutation
+  // and at trial-creation time. Existing pilot orgs were migrated to
+  // these defaults via the 20260429210000 migration.
+  maxAdminSeats           Int                      @default(1)
+  maxTeacherSeats         Int                      @default(5)
   maxStudentSeats         Int                      @default(50)
   // Default UI language for this school. Individual users can override
   // via User.locale. Accepts "en" or "zh" for the pilot.

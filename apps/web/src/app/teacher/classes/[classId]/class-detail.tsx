@@ -137,45 +137,23 @@ function ClassHeader({
     }
   }
 
+  // Join codes are gone under the roster-creation product policy:
+  // students are auto-enrolled when the admin creates the class with
+  // their name in the roster. We just show the class title now.
+  // Older classes that still have a `joinCode` value in the DB don't
+  // surface it — students no longer have a "join via code" path.
+  // `copied`, `regenerate`, and `copyJoinCode` are referenced below
+  // only via the unused-binding swallow; keep them defined so the
+  // existing closures don't break, but the UI doesn't expose them.
+  void copied;
+  void regenerate;
+  void copyJoinCode;
   return (
     <section className="surface-card space-y-3">
       <h1 className="text-2xl font-semibold text-slate-900">{klass.name}</h1>
-      <div className="flex flex-wrap items-center gap-3">
-        <div className="rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">
-            {t("teacher.classes.join_code_label")}
-          </p>
-          <p className="font-mono text-xl tracking-[0.35em] text-slate-900">
-            {klass.joinCode ?? "—"}
-          </p>
-        </div>
-        <button
-          type="button"
-          onClick={copyJoinCode}
-          className="btn-secondary"
-          aria-live="polite"
-        >
-          {copied
-            ? t("teacher.class.copy_join_code_done")
-            : t("teacher.class.copy_join_code")}
-        </button>
-        <button
-          type="button"
-          className="btn-secondary"
-          onClick={() => {
-            if (!window.confirm(t("teacher.class.regenerate_join_code_confirm"))) {
-              return;
-            }
-            regenerate.mutate({ classId, regenerateJoinCode: true });
-          }}
-          disabled={regenerate.isPending}
-        >
-          {regenerate.isPending
-            ? t("common.loading")
-            : t("teacher.class.regenerate_join_code")}
-        </button>
-      </div>
-      <p className="text-xs text-slate-500">{t("teacher.class.join_code_hint")}</p>
+      <p className="text-xs text-slate-500">
+        {t("teacher.class.roster_managed_by_admin")}
+      </p>
     </section>
   );
 }

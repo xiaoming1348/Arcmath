@@ -399,45 +399,12 @@ export default async function OrganizationPage({ searchParams }: OrganizationPag
         </div>
       </section>
 
-      {canManage ? (
-        <section className="surface-card space-y-4">
-          <div className="space-y-1">
-            <h2 className="text-lg font-semibold text-slate-900">Create member account</h2>
-            <p className="text-sm text-slate-600">
-              This MVP creates new organization members directly. Existing site accounts are not linked here yet.
-            </p>
-          </div>
-
-          <form action={createOrganizationMember} className="grid gap-3 md:grid-cols-2">
-            <label className="space-y-2 text-sm text-slate-700">
-              <span>Name</span>
-              <input name="name" className="input-field" type="text" placeholder="Student or admin name" />
-            </label>
-            <label className="space-y-2 text-sm text-slate-700">
-              <span>Email</span>
-              <input name="email" className="input-field" type="email" placeholder="student@example.com" />
-            </label>
-            <label className="space-y-2 text-sm text-slate-700">
-              <span>Password</span>
-              <input name="password" className="input-field" type="password" placeholder="At least 8 characters" />
-            </label>
-            <label className="space-y-2 text-sm text-slate-700">
-              <span>Role</span>
-              <select name="memberRole" className="input-field">
-                <option value="STUDENT">Student</option>
-                <option value="TEACHER">Teacher</option>
-              </select>
-            </label>
-            <div className="md:col-span-2">
-              <button type="submit" className="btn-primary">
-                Create Member
-              </button>
-            </div>
-          </form>
-        </section>
-      ) : null}
-
-      {/* Batch-2 admin overview: teachers / students / classes / activity. */}
+      {/* Roster-based admin overview is now the only path to create
+          teacher/student accounts: admin creates a class with a roster
+          and the teacher + students get auto-spawned email-style
+          usernames. The standalone "Create member account" form has
+          been removed because it bypasses class enrollment, which the
+          current product policy doesn't support. */}
       {canManage ? <OrgAdminOverviewPanel locale={locale} /> : null}
 
       {canManage ? (
