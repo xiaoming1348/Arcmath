@@ -163,17 +163,23 @@ export const teacherRouter = router({
       const myUserId = ctx.session.user.id;
       const isSchoolAdmin = canManageOrganization(ctx.membership!.role);
 
+      // Under the roster-creation policy, the school admin is the
+      // `createdByUserId` of every class (they spawn it from the
+      // /org form) and the actual teacher is in `assignedTeacherId`.
+      // So a non-admin teacher must filter by `assignedTeacherId`,
+      // not `createdByUserId`, otherwise they'd see zero classes.
       const rows = await ctx.prisma.class.findMany({
         where: isSchoolAdmin
           ? { organizationId: orgId }
-          : { organizationId: orgId, createdByUserId: myUserId },
+          : { organizationId: orgId, assignedTeacherId: myUserId },
         select: {
           id: true,
           name: true,
           joinCode: true,
           createdAt: true,
           createdByUserId: true,
-          createdByUser: { select: { name: true, email: true } },
+          assignedTeacherId: true,
+          assignedTeacher: { select: { name: true, email: true } },
           _count: { select: { enrollments: true, assignments: true } }
         },
         orderBy: { createdAt: "desc" }
@@ -184,8 +190,8 @@ export const teacherRouter = router({
         name: row.name,
         joinCode: row.joinCode,
         createdAt: row.createdAt,
-        teacherName: row.createdByUser?.name ?? row.createdByUser?.email ?? null,
-        isMine: row.createdByUserId === myUserId,
+        teacherName: row.assignedTeacher?.name ?? row.assignedTeacher?.email ?? null,
+        isMine: row.assignedTeacherId === myUserId,
         studentCount: row._count.enrollments,
         assignmentCount: row._count.assignments
       }));

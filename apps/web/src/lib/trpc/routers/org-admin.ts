@@ -272,32 +272,47 @@ export const orgAdminRouter = router({
    * Roster-creation flow (the only way to create a class under the
    * current product policy):
    *
-   *   - Admin enters class name, ONE teacher name, and a list of
-   *     student names.
-   *   - For each name we look up an existing user in this org by
-   *     `User.name`. If found, we reuse the account (so a teacher who
-   *     teaches multiple classes doesn't get duplicate accounts; a
-   *     student transferring between classes doesn't either). If not
-   *     found, we mint a new User with a generated email + null
-   *     password (the user sets their own at /login/set-password).
+   *   - Admin enters class name, ONE teacher (either by typing a new
+   *     name OR picking an existing teacher account), and a list of
+   *     students (each entry is again either a new name or an
+   *     existing-account picker).
+   *   - "new" entries spawn a fresh User with no password; the user
+   *     sets their own at /login/set-password.
+   *   - "existing" entries validate that the userId belongs to an
+   *     active TEACHER (or STUDENT) membership in this org, then add
+   *     them to the class. The discriminated union makes the admin's
+   *     intent unambiguous in the UI; no name-match guessing.
    *   - Seat caps (org-level): teacher count ≤ maxTeacherSeats,
-   *     student count ≤ maxStudentSeats. We count *post-merge* — i.e.
-   *     reused users don't bump the count.
+   *     student count ≤ maxStudentSeats. Only "new" entries bump
+   *     the count; "existing" reuses an already-occupied seat.
    *   - The whole thing runs in a transaction; on any seat overflow
    *     or collision the entire roster is rejected.
    *
    * Returns the new class plus a "credentials reveal" array the UI
-   * shows once: { name, email, alreadyHadAccount } per roster user.
-   * The admin reads / copies that table and tells each user their
-   * email out of band.
+   * shows once: { name, email, isNew } per roster user. The admin
+   * reads / copies that table and tells each user their email out of
+   * band; new users go through /login/set-password to claim it.
    */
   createClassWithRoster: schoolAdminProcedure
     .input(
       z.object({
         className: z.string().min(1).max(120),
-        teacherName: z.string().min(1).max(120),
-        studentNames: z
-          .array(z.string().min(1).max(120))
+        // Discriminated union: type-safe "new vs existing" intent.
+        // Catches a class of admin-typing mistakes that a flat name
+        // string can't (e.g. typo'd name accidentally matching an
+        // existing user). The UI surfaces "new"/"existing" via two
+        // distinct controls.
+        teacher: z.discriminatedUnion("kind", [
+          z.object({ kind: z.literal("new"), name: z.string().min(1).max(120) }),
+          z.object({ kind: z.literal("existing"), userId: z.string().min(1) })
+        ]),
+        students: z
+          .array(
+            z.discriminatedUnion("kind", [
+              z.object({ kind: z.literal("new"), name: z.string().min(1).max(120) }),
+              z.object({ kind: z.literal("existing"), userId: z.string().min(1) })
+            ])
+          )
           .min(1)
           .max(50)
       })
@@ -318,16 +333,11 @@ export const orgAdminRouter = router({
         throw new TRPCError({ code: "NOT_FOUND", message: "Organization not found." });
       }
 
-      // Dedup students by trimmed name so the admin can't accidentally
-      // add the same person twice. Same name → same account.
-      const teacherNameTrimmed = input.teacherName.trim();
-      const studentNamesTrimmed = Array.from(
-        new Set(input.studentNames.map((s) => s.trim()).filter((s) => s.length > 0))
-      );
-
       // Snapshot existing teacher + student users in this org so we can
-      // (a) reuse accounts that match by name, and (b) compute net new
-      // count for the seat cap.
+      // validate "existing" picks AND project seat-cap usage. We
+      // intentionally don't *match by name* here — under the
+      // discriminated-union input the admin tells us exactly which
+      // existing-by-id picks to reuse.
       const existingMembers = await ctx.prisma.organizationMembership.findMany({
         where: {
           organizationId: orgId,
@@ -342,23 +352,40 @@ export const orgAdminRouter = router({
 
       const existingTeachers = existingMembers.filter((m) => m.role === "TEACHER");
       const existingStudents = existingMembers.filter((m) => m.role === "STUDENT");
+      const existingTeacherById = new Map(existingTeachers.map((m) => [m.user.id, m]));
+      const existingStudentById = new Map(existingStudents.map((m) => [m.user.id, m]));
 
-      // Find-or-mint plan. We don't actually create accounts yet — we
-      // just figure out which names map to existing users and which
-      // need new accounts, so we can validate seat caps in advance.
-      const teacherMatch = existingTeachers.find(
-        (m) => (m.user.name ?? "").trim() === teacherNameTrimmed
-      );
-      const newTeacherNeeded = !teacherMatch;
+      // Validate existing-by-id picks belong to this org with the
+      // right role. Anything malformed → 400 before we mutate.
+      if (input.teacher.kind === "existing" && !existingTeacherById.has(input.teacher.userId)) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "Selected teacher is not an active teacher in this school."
+        });
+      }
+      for (const s of input.students) {
+        if (s.kind === "existing" && !existingStudentById.has(s.userId)) {
+          throw new TRPCError({
+            code: "BAD_REQUEST",
+            message: "Selected student is not an active student in this school."
+          });
+        }
+      }
 
-      const studentPlan = studentNamesTrimmed.map((name) => {
-        const match = existingStudents.find((m) => (m.user.name ?? "").trim() === name);
-        return { name, existingUserId: match?.user.id ?? null };
-      });
-      const newStudentsNeeded = studentPlan.filter((s) => !s.existingUserId).length;
+      // Dedup new student names (trim + case-sensitive). Same name
+      // typed twice = one new account; same existing-id picked twice
+      // = one enrollment row (skipDuplicates handles the latter).
+      const newStudentNamesSet = new Set<string>();
+      for (const s of input.students) {
+        if (s.kind === "new") newStudentNamesSet.add(s.name.trim());
+      }
+      const newStudentNames = Array.from(newStudentNamesSet).filter((n) => n.length > 0);
+
+      const teacherIsNew = input.teacher.kind === "new";
+      const newStudentsNeeded = newStudentNames.length;
 
       // Seat-cap enforcement: post-merge headcount must stay ≤ caps.
-      const projectedTeacherCount = existingTeachers.length + (newTeacherNeeded ? 1 : 0);
+      const projectedTeacherCount = existingTeachers.length + (teacherIsNew ? 1 : 0);
       const projectedStudentCount = existingStudents.length + newStudentsNeeded;
 
       if (projectedTeacherCount > org.maxTeacherSeats) {
@@ -420,46 +447,61 @@ export const orgAdminRouter = router({
           throw lastErr ?? new Error("Failed to mint roster user after retries.");
         }
 
-        // Resolve teacher: either reuse or create.
+        // Resolve teacher: either reuse the existing-by-id pick or
+        // mint a brand-new account.
         let teacherId: string;
         let teacherEmail: string;
-        let teacherIsNew: boolean;
-        if (teacherMatch) {
-          teacherId = teacherMatch.user.id;
-          teacherEmail = teacherMatch.user.email;
-          teacherIsNew = false;
+        let teacherName: string;
+        let teacherIsNewFlag: boolean;
+        if (input.teacher.kind === "existing") {
+          const existing = existingTeacherById.get(input.teacher.userId)!;
+          teacherId = existing.user.id;
+          teacherEmail = existing.user.email;
+          teacherName = existing.user.name ?? existing.user.email;
+          teacherIsNewFlag = false;
         } else {
-          const minted = await mintRosterUser({ name: teacherNameTrimmed, role: "TEACHER" });
+          const minted = await mintRosterUser({
+            name: input.teacher.name.trim(),
+            role: "TEACHER"
+          });
           teacherId = minted.id;
           teacherEmail = minted.email;
-          teacherIsNew = true;
+          teacherName = input.teacher.name.trim();
+          teacherIsNewFlag = true;
         }
 
-        // Resolve students.
+        // Resolve students. Two passes: first the "existing" picks
+        // (no minting), then the new names (mint once per unique
+        // name even if the admin typed the same name twice).
         const resolvedStudents: Array<{
           userId: string;
           name: string;
           email: string;
           isNew: boolean;
         }> = [];
-        for (const sp of studentPlan) {
-          if (sp.existingUserId) {
-            const existing = existingStudents.find((m) => m.user.id === sp.existingUserId)!;
-            resolvedStudents.push({
-              userId: existing.user.id,
-              name: sp.name,
-              email: existing.user.email,
-              isNew: false
-            });
-          } else {
-            const minted = await mintRosterUser({ name: sp.name, role: "STUDENT" });
-            resolvedStudents.push({
-              userId: minted.id,
-              name: sp.name,
-              email: minted.email,
-              isNew: true
-            });
-          }
+        const seenStudentIds = new Set<string>();
+
+        for (const s of input.students) {
+          if (s.kind !== "existing") continue;
+          if (seenStudentIds.has(s.userId)) continue;
+          seenStudentIds.add(s.userId);
+          const existing = existingStudentById.get(s.userId)!;
+          resolvedStudents.push({
+            userId: existing.user.id,
+            name: existing.user.name ?? existing.user.email,
+            email: existing.user.email,
+            isNew: false
+          });
+        }
+
+        for (const name of newStudentNames) {
+          const minted = await mintRosterUser({ name, role: "STUDENT" });
+          resolvedStudents.push({
+            userId: minted.id,
+            name,
+            email: minted.email,
+            isNew: true
+          });
         }
 
         // Create the class itself. We do NOT generate a join code under
@@ -488,9 +530,9 @@ export const orgAdminRouter = router({
           klass,
           teacher: {
             userId: teacherId,
-            name: teacherNameTrimmed,
+            name: teacherName,
             email: teacherEmail,
-            isNew: teacherIsNew
+            isNew: teacherIsNewFlag
           },
           students: resolvedStudents
         };

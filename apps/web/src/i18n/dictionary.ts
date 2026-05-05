@@ -83,6 +83,13 @@ export type Messages = {
   "org.overview.create_class_student_names_label": string;
   "org.overview.create_class_student_names_placeholder": string;
   "org.overview.create_class_student_names_help": string;
+  "org.overview.create_class_student_row_placeholder": string;
+  "org.overview.create_class_student_rows_help": string;
+  "org.overview.roster_kind_new": string;
+  "org.overview.roster_kind_existing": string;
+  "org.overview.roster_no_existing_teachers": string;
+  "org.overview.roster_add_row": string;
+  "org.overview.roster_remove_row": string;
   "org.overview.credentials_heading": string;
   "org.overview.credentials_help": string;
   "org.overview.credentials_done": string;
@@ -123,6 +130,7 @@ export type Messages = {
   "teacher.classes.join_code_label": string;
   "teacher.classes.student_count_label": string;
   "teacher.classes.assignment_count_label": string;
+  "teacher.classes.created_by_admin_help": string;
 
   "teacher.class.title_tab_overview": string;
   "teacher.class.title_tab_students": string;
@@ -380,9 +388,16 @@ export const EN: Messages = {
   "org.overview.create_class_roster_help": "Caps: {teachers}/{maxTeachers} teachers · {students}/{maxStudents} students. Reuse a name to reuse the existing account.",
   "org.overview.create_class_teacher_name_label": "Teacher name",
   "org.overview.create_class_teacher_name_placeholder": "e.g. Wang Wei or Ms. Lin",
-  "org.overview.create_class_student_names_label": "Student names",
+  "org.overview.create_class_student_names_label": "Students",
   "org.overview.create_class_student_names_placeholder": "One name per line, or comma-separated",
   "org.overview.create_class_student_names_help": "Each unique name spawns one student account. Re-using a name reuses the same account.",
+  "org.overview.create_class_student_row_placeholder": "Student name",
+  "org.overview.create_class_student_rows_help": "One row per student. Pick \"New\" to spawn a fresh account, or \"Existing\" to add a student who's already in the school.",
+  "org.overview.roster_kind_new": "New",
+  "org.overview.roster_kind_existing": "Existing",
+  "org.overview.roster_no_existing_teachers": "no teachers in the school yet",
+  "org.overview.roster_add_row": "+ Add another student",
+  "org.overview.roster_remove_row": "Remove this student",
   "org.overview.credentials_heading": "New usernames — share these out of band",
   "org.overview.credentials_help": "Send each user their username. They go to /login/set-password and choose their own password the first time.",
   "org.overview.credentials_done": "Done",
@@ -425,6 +440,7 @@ export const EN: Messages = {
   "teacher.classes.join_code_label": "Join code",
   "teacher.classes.student_count_label": "Students",
   "teacher.classes.assignment_count_label": "Assignments",
+  "teacher.classes.created_by_admin_help": "Classes are created by your school admin. If a class you should see is missing, ask the admin to add you to its roster.",
 
   "teacher.class.title_tab_overview": "Overview",
   "teacher.class.title_tab_students": "Students",
@@ -697,9 +713,16 @@ export const ZH: Messages = {
   "org.overview.create_class_roster_help": "上限：{teachers}/{maxTeachers} 老师 · {students}/{maxStudents} 学生。重复输入相同姓名会复用同一账号。",
   "org.overview.create_class_teacher_name_label": "老师姓名",
   "org.overview.create_class_teacher_name_placeholder": "例如：王伟 或 林老师",
-  "org.overview.create_class_student_names_label": "学生姓名列表",
+  "org.overview.create_class_student_names_label": "学生名单",
   "org.overview.create_class_student_names_placeholder": "每行一位，或用逗号分隔",
   "org.overview.create_class_student_names_help": "同名只创建一个账号；想区分同名学生请加后缀（如\"王伟 A\"、\"王伟 B\"）。",
+  "org.overview.create_class_student_row_placeholder": "学生姓名",
+  "org.overview.create_class_student_rows_help": "每位学生占一行。选 \"新建\" 会创建新账号，选 \"已有\" 可把现有学生加入此班级。",
+  "org.overview.roster_kind_new": "新建",
+  "org.overview.roster_kind_existing": "已有",
+  "org.overview.roster_no_existing_teachers": "学校暂无老师账号",
+  "org.overview.roster_add_row": "+ 再加一位学生",
+  "org.overview.roster_remove_row": "移除该学生",
   "org.overview.credentials_heading": "新用户名 — 请线下发给本人",
   "org.overview.credentials_help": "把每位用户名告诉对应的人，他们到 /login/set-password 自行设置密码，老师/学生自己设的密码只有他们自己知道。",
   "org.overview.credentials_done": "完成",
@@ -740,6 +763,7 @@ export const ZH: Messages = {
   "teacher.classes.join_code_label": "加入码",
   "teacher.classes.student_count_label": "学生数",
   "teacher.classes.assignment_count_label": "作业数",
+  "teacher.classes.created_by_admin_help": "班级由学校 admin 统一创建。若你应当看到的班级未显示，请联系 admin 把你加入该班级名册。",
 
   "teacher.class.title_tab_overview": "概览",
   "teacher.class.title_tab_students": "学生",

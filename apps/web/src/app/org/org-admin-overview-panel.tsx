@@ -28,8 +28,17 @@ export function OrgAdminOverviewPanel({ locale }: { locale: Locale }) {
   const utils = trpc.useContext();
 
   const [rosterClassName, setRosterClassName] = useState("");
-  const [rosterTeacherName, setRosterTeacherName] = useState("");
-  const [rosterStudentNamesInput, setRosterStudentNamesInput] = useState("");
+  // Discriminated entry: either "new" (with a typed-in name) or
+  // "existing" (with the userId of an existing teacher/student picked
+  // from a dropdown). One row per student so a comma in a name can't
+  // be parsed as a delimiter.
+  type RosterEntry =
+    | { kind: "new"; name: string }
+    | { kind: "existing"; userId: string };
+  const [teacherEntry, setTeacherEntry] = useState<RosterEntry>({ kind: "new", name: "" });
+  const [studentEntries, setStudentEntries] = useState<RosterEntry[]>([
+    { kind: "new", name: "" }
+  ]);
   const [createError, setCreateError] = useState<string | null>(null);
 
   // Credential reveal: shown ONCE after a successful class+roster
@@ -57,8 +66,8 @@ export function OrgAdminOverviewPanel({ locale }: { locale: Locale }) {
   const createRosterMutation = trpc.orgAdmin.createClassWithRoster.useMutation({
     onSuccess: (result) => {
       setRosterClassName("");
-      setRosterTeacherName("");
-      setRosterStudentNamesInput("");
+      setTeacherEntry({ kind: "new", name: "" });
+      setStudentEntries([{ kind: "new", name: "" }]);
       setCreateError(null);
       // Build the credentials reveal table.
       const rows: CredentialRow[] = [
@@ -125,23 +134,67 @@ export function OrgAdminOverviewPanel({ locale }: { locale: Locale }) {
 
   const handleCreateClassWithRoster = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!rosterClassName.trim() || !rosterTeacherName.trim()) return;
-    // Split students by line OR comma; trim and drop blanks. Admins
-    // can paste either "Wang Wei\nLi Hua" or "Wang Wei, Li Hua".
-    const studentNames = rosterStudentNamesInput
-      .split(/[\n,]+/)
-      .map((s) => s.trim())
-      .filter((s) => s.length > 0);
-    if (studentNames.length === 0) {
-      setCreateError("Add at least one student name.");
+    setCreateError(null);
+
+    if (!rosterClassName.trim()) {
+      setCreateError("Class name is required.");
       return;
     }
+
+    // Validate teacher entry (server also validates, but a client-side
+    // check gives instant feedback before the network round-trip).
+    const teacherPayload =
+      teacherEntry.kind === "new"
+        ? { kind: "new" as const, name: teacherEntry.name.trim() }
+        : { kind: "existing" as const, userId: teacherEntry.userId };
+    if (teacherPayload.kind === "new" && teacherPayload.name.length === 0) {
+      setCreateError("Enter the teacher's name, or pick an existing teacher.");
+      return;
+    }
+    if (teacherPayload.kind === "existing" && teacherPayload.userId.length === 0) {
+      setCreateError("Pick an existing teacher from the list.");
+      return;
+    }
+
+    // Filter out blank "new" rows so the admin doesn't have to remove
+    // each placeholder row manually before submit.
+    const studentsPayload = studentEntries
+      .map((e) =>
+        e.kind === "new"
+          ? { kind: "new" as const, name: e.name.trim() }
+          : { kind: "existing" as const, userId: e.userId }
+      )
+      .filter(
+        (e) =>
+          (e.kind === "new" && e.name.length > 0) ||
+          (e.kind === "existing" && e.userId.length > 0)
+      );
+    if (studentsPayload.length === 0) {
+      setCreateError("Add at least one student.");
+      return;
+    }
+
     createRosterMutation.mutate({
       className: rosterClassName.trim(),
-      teacherName: rosterTeacherName.trim(),
-      studentNames
+      teacher: teacherPayload,
+      students: studentsPayload
     });
   };
+
+  // Helpers for the dynamic student-row table.
+  const addStudentRow = () =>
+    setStudentEntries((prev) => [...prev, { kind: "new", name: "" }]);
+  const removeStudentRow = (index: number) =>
+    setStudentEntries((prev) => prev.filter((_, i) => i !== index));
+  const updateStudentRow = (index: number, next: RosterEntry) =>
+    setStudentEntries((prev) => prev.map((e, i) => (i === index ? next : e)));
+
+  // Live count of "new" student names — drives the seat-cap hint
+  // shown below the form.
+  const newTeacherInRoster = teacherEntry.kind === "new" && teacherEntry.name.trim() ? 1 : 0;
+  const newStudentsInRoster = studentEntries.filter(
+    (e) => e.kind === "new" && e.name.trim()
+  ).length;
 
   const handleLoadMore = async () => {
     if (loadingMore) return;
@@ -291,14 +344,14 @@ export function OrgAdminOverviewPanel({ locale }: { locale: Locale }) {
         </h3>
         <p className="text-xs text-slate-500">
           {t("org.overview.create_class_roster_help", {
-            teachers: data.teachers.length,
+            teachers: data.teachers.length + newTeacherInRoster,
             maxTeachers: 5,
-            students: data.students.length,
+            students: data.students.length + newStudentsInRoster,
             maxStudents: 50
           })}
         </p>
-        <form onSubmit={handleCreateClassWithRoster} className="grid gap-3 md:grid-cols-2">
-          <label className="space-y-1 text-sm text-slate-700">
+        <form onSubmit={handleCreateClassWithRoster} className="space-y-4">
+          <label className="block space-y-1 text-sm text-slate-700">
             <span>{t("org.overview.create_class_name_label")}</span>
             <input
               type="text"
@@ -309,32 +362,150 @@ export function OrgAdminOverviewPanel({ locale }: { locale: Locale }) {
               maxLength={120}
             />
           </label>
-          <label className="space-y-1 text-sm text-slate-700">
-            <span>{t("org.overview.create_class_teacher_name_label")}</span>
-            <input
-              type="text"
-              className="input-field"
-              value={rosterTeacherName}
-              onChange={(e) => setRosterTeacherName(e.target.value)}
-              required
-              maxLength={120}
-              placeholder={t("org.overview.create_class_teacher_name_placeholder")}
-            />
-          </label>
-          <label className="space-y-1 text-sm text-slate-700 md:col-span-2">
-            <span>{t("org.overview.create_class_student_names_label")}</span>
-            <textarea
-              className="input-field min-h-32"
-              value={rosterStudentNamesInput}
-              onChange={(e) => setRosterStudentNamesInput(e.target.value)}
-              required
-              placeholder={t("org.overview.create_class_student_names_placeholder")}
-            />
-            <span className="block text-xs text-slate-500">
-              {t("org.overview.create_class_student_names_help")}
-            </span>
-          </label>
-          <div className="md:col-span-2 flex items-center gap-3">
+
+          {/* Teacher row — single-row "new vs existing" picker. */}
+          <fieldset className="space-y-2 rounded-2xl border border-slate-200 bg-slate-50/60 p-3">
+            <legend className="text-sm font-semibold text-slate-800 px-1">
+              {t("org.overview.create_class_teacher_name_label")}
+            </legend>
+            <div className="flex flex-wrap items-center gap-3 text-xs">
+              <label className="inline-flex items-center gap-1">
+                <input
+                  type="radio"
+                  name="teacher-kind"
+                  checked={teacherEntry.kind === "new"}
+                  onChange={() => setTeacherEntry({ kind: "new", name: "" })}
+                />
+                <span>{t("org.overview.roster_kind_new")}</span>
+              </label>
+              <label className="inline-flex items-center gap-1">
+                <input
+                  type="radio"
+                  name="teacher-kind"
+                  checked={teacherEntry.kind === "existing"}
+                  disabled={data.teachers.length === 0}
+                  onChange={() =>
+                    setTeacherEntry({
+                      kind: "existing",
+                      userId: data.teachers[0]?.userId ?? ""
+                    })
+                  }
+                />
+                <span>
+                  {t("org.overview.roster_kind_existing")}
+                  {data.teachers.length === 0 ? ` (${t("org.overview.roster_no_existing_teachers")})` : ""}
+                </span>
+              </label>
+            </div>
+            {teacherEntry.kind === "new" ? (
+              <input
+                type="text"
+                className="input-field"
+                value={teacherEntry.name}
+                onChange={(e) => setTeacherEntry({ kind: "new", name: e.target.value })}
+                maxLength={120}
+                placeholder={t("org.overview.create_class_teacher_name_placeholder")}
+              />
+            ) : (
+              <select
+                className="input-field"
+                value={teacherEntry.userId}
+                onChange={(e) => setTeacherEntry({ kind: "existing", userId: e.target.value })}
+              >
+                {data.teachers.map((teach) => (
+                  <option key={teach.userId} value={teach.userId}>
+                    {teach.name ?? teach.email} — {teach.email}
+                  </option>
+                ))}
+              </select>
+            )}
+          </fieldset>
+
+          {/* Students table — one row per student. Each row picks
+              between a "new name" text input and an "existing user"
+              dropdown. + Add another / × Remove keeps the list
+              malleable; the student count below the button shows the
+              live total against the cap. */}
+          <fieldset className="space-y-2 rounded-2xl border border-slate-200 bg-slate-50/60 p-3">
+            <legend className="text-sm font-semibold text-slate-800 px-1">
+              {t("org.overview.create_class_student_names_label")} (
+              {studentEntries.filter((e) => (e.kind === "new" ? e.name.trim() : e.userId)).length}
+              )
+            </legend>
+            <p className="text-xs text-slate-500">
+              {t("org.overview.create_class_student_rows_help")}
+            </p>
+            <ol className="space-y-2">
+              {studentEntries.map((entry, idx) => (
+                <li key={idx} className="flex flex-wrap items-center gap-2">
+                  <span className="w-6 text-xs font-mono text-slate-500">{idx + 1}.</span>
+                  <select
+                    className="input-field h-9 w-28 text-xs"
+                    value={entry.kind}
+                    onChange={(e) => {
+                      const next = e.target.value;
+                      if (next === "new") {
+                        updateStudentRow(idx, { kind: "new", name: "" });
+                      } else {
+                        updateStudentRow(idx, {
+                          kind: "existing",
+                          userId: data.students[0]?.userId ?? ""
+                        });
+                      }
+                    }}
+                  >
+                    <option value="new">{t("org.overview.roster_kind_new")}</option>
+                    <option value="existing" disabled={data.students.length === 0}>
+                      {t("org.overview.roster_kind_existing")}
+                    </option>
+                  </select>
+                  {entry.kind === "new" ? (
+                    <input
+                      type="text"
+                      className="input-field h-9 flex-1"
+                      value={entry.name}
+                      onChange={(e) => updateStudentRow(idx, { kind: "new", name: e.target.value })}
+                      maxLength={120}
+                      placeholder={t("org.overview.create_class_student_row_placeholder")}
+                    />
+                  ) : (
+                    <select
+                      className="input-field h-9 flex-1"
+                      value={entry.userId}
+                      onChange={(e) =>
+                        updateStudentRow(idx, { kind: "existing", userId: e.target.value })
+                      }
+                    >
+                      {data.students.map((stu) => (
+                        <option key={stu.userId} value={stu.userId}>
+                          {stu.name ?? stu.email} — {stu.email}
+                        </option>
+                      ))}
+                    </select>
+                  )}
+                  <button
+                    type="button"
+                    className="text-xs text-slate-500 hover:text-red-600"
+                    onClick={() => removeStudentRow(idx)}
+                    disabled={studentEntries.length === 1}
+                    title={t("org.overview.roster_remove_row")}
+                  >
+                    ×
+                  </button>
+                </li>
+              ))}
+            </ol>
+            <button
+              type="button"
+              className="btn-secondary text-xs"
+              onClick={addStudentRow}
+              disabled={studentEntries.length >= 50}
+            >
+              {t("org.overview.roster_add_row")}
+            </button>
+          </fieldset>
+
+          <div className="flex items-center gap-3">
             <button
               type="submit"
               className="btn-primary"
@@ -342,9 +513,7 @@ export function OrgAdminOverviewPanel({ locale }: { locale: Locale }) {
             >
               {t("org.overview.create_class_submit")}
             </button>
-            {createError ? (
-              <p className="text-sm text-red-600">{createError}</p>
-            ) : null}
+            {createError ? <p className="text-sm text-red-600">{createError}</p> : null}
           </div>
         </form>
 

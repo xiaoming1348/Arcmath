@@ -34,29 +34,17 @@ export function TeacherHomePanel({
   canInviteTeachers: boolean;
 }) {
   const t = translator(locale);
-  const router = useRouter();
-  const [newClassName, setNewClassName] = useState("");
-  const [createError, setCreateError] = useState<string | null>(null);
+  // `useRouter` and the create-class mutation were removed alongside
+  // the legacy "New class" form. The teacher home is read-only as
+  // far as class creation goes — that flow lives on /org now.
+  void useRouter;
 
   const overviewQuery = trpc.teacher.overview.useQuery();
   const classesQuery = trpc.teacher.classes.list.useQuery();
 
+  // utils kept (no-op) so existing imports don't break tests.
   const utils = trpc.useContext();
-  const createClassMutation = trpc.teacher.classes.create.useMutation({
-    onSuccess: async (created) => {
-      setNewClassName("");
-      setCreateError(null);
-      // Refresh list + overview so counters bump before the redirect.
-      await Promise.all([
-        utils.teacher.classes.list.invalidate(),
-        utils.teacher.overview.invalidate()
-      ]);
-      router.push(`/teacher/classes/${created.id}`);
-    },
-    onError: (err) => {
-      setCreateError(err.message);
-    }
-  });
+  void utils;
 
   const overview = overviewQuery.data;
   const classes = classesQuery.data ?? [];
@@ -97,39 +85,14 @@ export function TeacherHomePanel({
           </h2>
         </div>
 
-        <form
-          className="flex flex-wrap items-end gap-3"
-          onSubmit={(event) => {
-            event.preventDefault();
-            const trimmed = newClassName.trim();
-            if (!trimmed) return;
-            createClassMutation.mutate({ name: trimmed });
-          }}
-        >
-          <label className="flex-1 min-w-[220px] space-y-2 text-sm text-slate-700">
-            <span>{t("teacher.classes.name_label")}</span>
-            <input
-              type="text"
-              className="input-field"
-              value={newClassName}
-              onChange={(event) => setNewClassName(event.target.value)}
-              placeholder="AMC 10 · Fall 2026"
-              maxLength={120}
-            />
-          </label>
-          <button
-            type="submit"
-            className="btn-primary"
-            disabled={createClassMutation.isPending || !newClassName.trim()}
-          >
-            {createClassMutation.isPending
-              ? t("common.loading")
-              : t("teacher.home.new_class")}
-          </button>
-        </form>
-        {createError ? (
-          <p className="text-sm text-red-600">{createError}</p>
-        ) : null}
+        {/* Roster-creation product policy: only the school admin
+            creates classes (via /org), so this teacher home no longer
+            renders a "New class" form. Teachers see their assigned
+            classes below; the assignment of teacher → class is set
+            from the admin's roster form. */}
+        <p className="text-xs text-slate-500">
+          {t("teacher.classes.created_by_admin_help")}
+        </p>
 
         {classesQuery.isLoading ? (
           <p className="text-sm text-slate-500">{t("common.loading")}</p>
