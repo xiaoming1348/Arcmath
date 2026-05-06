@@ -241,14 +241,19 @@ export function OrgAdminOverviewPanel({ locale }: { locale: Locale }) {
                   key={teacher.userId}
                   className="rounded-2xl border border-slate-200 bg-slate-50 p-3"
                 >
-                  <p className="text-sm font-semibold text-slate-900">
-                    {teacher.name ?? teacher.email}
-                  </p>
-                  <p className="text-xs text-slate-600">{teacher.email}</p>
-                  <p className="mt-1 text-xs text-slate-500">
-                    {t("org.overview.teacher_class_count", { count: teacher.classCount })} ·{" "}
-                    {t("org.overview.teacher_assignment_count", { count: teacher.assignmentCount })}
-                  </p>
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">
+                        {teacher.name ?? teacher.email}
+                      </p>
+                      <p className="text-xs text-slate-600">{teacher.email}</p>
+                      <p className="mt-1 text-xs text-slate-500">
+                        {t("org.overview.teacher_class_count", { count: teacher.classCount })} ·{" "}
+                        {t("org.overview.teacher_assignment_count", { count: teacher.assignmentCount })}
+                      </p>
+                    </div>
+                    <ResetPasswordButton userId={teacher.userId} t={t} />
+                  </div>
                 </li>
               ))}
             </ul>
@@ -269,10 +274,15 @@ export function OrgAdminOverviewPanel({ locale }: { locale: Locale }) {
                   key={student.userId}
                   className="rounded-2xl border border-slate-200 bg-slate-50 p-3"
                 >
-                  <p className="text-sm font-semibold text-slate-900">
-                    {student.name ?? student.email}
-                  </p>
-                  <p className="text-xs text-slate-600">{student.email}</p>
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">
+                        {student.name ?? student.email}
+                      </p>
+                      <p className="text-xs text-slate-600">{student.email}</p>
+                    </div>
+                    <ResetPasswordButton userId={student.userId} t={t} />
+                  </div>
                 </li>
               ))}
             </ul>
@@ -288,46 +298,15 @@ export function OrgAdminOverviewPanel({ locale }: { locale: Locale }) {
         {data.classes.length === 0 ? (
           <p className="text-sm text-slate-500">{t("org.overview.no_classes")}</p>
         ) : (
-          <ul className="grid gap-2 md:grid-cols-2">
+          <ul className="space-y-2">
             {data.classes.map((klass) => (
-              <li
+              <ClassRosterCard
                 key={klass.id}
-                className="rounded-2xl border border-slate-200 bg-slate-50 p-3"
-              >
-                <p className="text-sm font-semibold text-slate-900">{klass.name}</p>
-                <p className="text-xs text-slate-600">
-                  {klass.assignedTeacher
-                    ? t("org.overview.class_taught_by", {
-                        name: klass.assignedTeacher.name ?? klass.assignedTeacher.email
-                      })
-                    : t("org.overview.class_unassigned")}
-                </p>
-                <p className="mt-1 text-xs text-slate-500">
-                  {t("org.overview.class_enrollments", { count: klass._count.enrollments })} ·{" "}
-                  {t("org.overview.class_assignments", { count: klass._count.assignments })}
-                </p>
-                {klass.joinCode ? (
-                  <div className="mt-2 flex items-center gap-2">
-                    <span className="text-xs font-medium text-slate-700">
-                      {t("org.overview.class_join_code")}
-                    </span>
-                    <code className="rounded bg-white px-2 py-0.5 font-mono text-xs tracking-widest text-slate-900 border border-slate-200">
-                      {klass.joinCode}
-                    </code>
-                    <button
-                      type="button"
-                      className="text-xs text-[var(--accent)] hover:underline"
-                      onClick={() => {
-                        if (typeof navigator !== "undefined" && navigator.clipboard) {
-                          void navigator.clipboard.writeText(klass.joinCode!);
-                        }
-                      }}
-                    >
-                      {t("org.overview.class_join_code_copy")}
-                    </button>
-                  </div>
-                ) : null}
-              </li>
+                klass={klass}
+                allStudents={data.students}
+                t={t}
+                onChanged={() => void utils.orgAdmin.overview.invalidate()}
+              />
             ))}
           </ul>
         )}
@@ -664,4 +643,271 @@ function renderActivityLine(
     return `${actor} · ${event.action}`;
   }
   return tried;
+}
+
+/**
+ * Small "Reset password" button next to a teacher / student row in
+ * the org overview. Calls `orgAdmin.resetUserPassword`, which clears
+ * the target's `passwordHash` so they go through /login/set-password
+ * again. Shows a one-shot inline status so admin knows it worked.
+ */
+function ResetPasswordButton({
+  userId,
+  t
+}: {
+  userId: string;
+  t: ReturnType<typeof translator>;
+}) {
+  const [status, setStatus] = useState<"idle" | "ok" | "error">("idle");
+  const mutation = trpc.orgAdmin.resetUserPassword.useMutation({
+    onSuccess: () => {
+      setStatus("ok");
+      window.setTimeout(() => setStatus("idle"), 3500);
+    },
+    onError: () => {
+      setStatus("error");
+      window.setTimeout(() => setStatus("idle"), 3500);
+    }
+  });
+  return (
+    <button
+      type="button"
+      className="text-xs text-slate-500 hover:text-[var(--accent-strong)] hover:underline whitespace-nowrap"
+      disabled={mutation.isPending}
+      onClick={() => {
+        if (
+          !window.confirm(t("org.overview.reset_password_confirm"))
+        ) {
+          return;
+        }
+        mutation.mutate({ userId });
+      }}
+      title={t("org.overview.reset_password_help")}
+    >
+      {status === "ok"
+        ? t("org.overview.reset_password_done")
+        : status === "error"
+          ? t("org.overview.reset_password_error")
+          : mutation.isPending
+            ? "…"
+            : t("org.overview.reset_password_label")}
+    </button>
+  );
+}
+
+/**
+ * Per-class card with collapsible roster management:
+ *   - Click the row title to expand.
+ *   - Expanded view lists enrolled students with [×] remove buttons,
+ *     plus a small "+ Add student" form (new name OR existing pick).
+ *   - Each student's row has its own "Reset password" button so the
+ *     admin can clear a forgotten password without leaving this card.
+ */
+function ClassRosterCard({
+  klass,
+  allStudents,
+  t,
+  onChanged
+}: {
+  klass: {
+    id: string;
+    name: string;
+    assignedTeacher: { id: string; email: string; name: string | null } | null;
+    enrollments: Array<{
+      userId: string;
+      user: { id: string; name: string | null; email: string };
+    }>;
+    _count: { enrollments: number; assignments: number };
+  };
+  allStudents: Array<{ userId: string; name: string | null; email: string }>;
+  t: ReturnType<typeof translator>;
+  onChanged: () => void;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const [addKind, setAddKind] = useState<"new" | "existing">("new");
+  const [addNewName, setAddNewName] = useState("");
+  const [addExistingId, setAddExistingId] = useState("");
+  const [addError, setAddError] = useState<string | null>(null);
+
+  const addMutation = trpc.orgAdmin.addStudentsToClass.useMutation({
+    onSuccess: () => {
+      setAddNewName("");
+      setAddExistingId("");
+      setAddError(null);
+      onChanged();
+    },
+    onError: (err) => setAddError(err.message)
+  });
+
+  const removeMutation = trpc.orgAdmin.removeStudentFromClass.useMutation({
+    onSuccess: onChanged
+  });
+
+  const enrolledIds = new Set(klass.enrollments.map((e) => e.userId));
+  const candidateExisting = allStudents.filter((s) => !enrolledIds.has(s.userId));
+
+  return (
+    <li className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+      <button
+        type="button"
+        onClick={() => setExpanded((v) => !v)}
+        className="flex w-full items-start justify-between gap-2 text-left"
+      >
+        <div>
+          <p className="text-sm font-semibold text-slate-900">
+            {klass.name}{" "}
+            <span className="text-xs font-normal text-slate-500">
+              {expanded ? "▾" : "▸"}
+            </span>
+          </p>
+          <p className="text-xs text-slate-600">
+            {klass.assignedTeacher
+              ? t("org.overview.class_taught_by", {
+                  name: klass.assignedTeacher.name ?? klass.assignedTeacher.email
+                })
+              : t("org.overview.class_unassigned")}
+          </p>
+          <p className="mt-1 text-xs text-slate-500">
+            {t("org.overview.class_enrollments", { count: klass._count.enrollments })} ·{" "}
+            {t("org.overview.class_assignments", { count: klass._count.assignments })}
+          </p>
+        </div>
+      </button>
+
+      {expanded ? (
+        <div className="mt-3 space-y-3 border-t border-slate-200 pt-3">
+          <div>
+            <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
+              {t("org.overview.class_enrolled_students_heading")}
+            </p>
+            {klass.enrollments.length === 0 ? (
+              <p className="text-xs text-slate-500">
+                {t("org.overview.class_no_enrollments")}
+              </p>
+            ) : (
+              <ul className="space-y-1">
+                {klass.enrollments.map((e) => (
+                  <li
+                    key={e.userId}
+                    className="flex items-center justify-between gap-2 rounded border border-slate-200 bg-white px-2 py-1"
+                  >
+                    <span className="text-xs text-slate-800">
+                      {e.user.name ?? e.user.email}
+                      <span className="text-slate-400"> · {e.user.email}</span>
+                    </span>
+                    <div className="flex items-center gap-2">
+                      <ResetPasswordButton userId={e.userId} t={t} />
+                      <button
+                        type="button"
+                        className="text-xs text-slate-400 hover:text-red-600"
+                        disabled={removeMutation.isPending}
+                        title={t("org.overview.class_remove_student_label")}
+                        onClick={() => {
+                          if (
+                            !window.confirm(
+                              t("org.overview.class_remove_student_confirm", {
+                                name: e.user.name ?? e.user.email
+                              })
+                            )
+                          ) {
+                            return;
+                          }
+                          removeMutation.mutate({ classId: klass.id, userId: e.userId });
+                        }}
+                      >
+                        ×
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+
+          {/* Add-student form: same new/existing affordance as create-class. */}
+          <div className="space-y-2 rounded-xl border border-slate-200 bg-white p-2">
+            <p className="text-xs font-semibold text-slate-700">
+              {t("org.overview.class_add_student_heading")}
+            </p>
+            <div className="flex flex-wrap items-center gap-2 text-xs">
+              <label className="inline-flex items-center gap-1">
+                <input
+                  type="radio"
+                  name={`add-kind-${klass.id}`}
+                  checked={addKind === "new"}
+                  onChange={() => setAddKind("new")}
+                />
+                <span>{t("org.overview.roster_kind_new")}</span>
+              </label>
+              <label className="inline-flex items-center gap-1">
+                <input
+                  type="radio"
+                  name={`add-kind-${klass.id}`}
+                  checked={addKind === "existing"}
+                  disabled={candidateExisting.length === 0}
+                  onChange={() => {
+                    setAddKind("existing");
+                    setAddExistingId(candidateExisting[0]?.userId ?? "");
+                  }}
+                />
+                <span>
+                  {t("org.overview.roster_kind_existing")}
+                  {candidateExisting.length === 0
+                    ? ` (${t("org.overview.class_no_more_existing")})`
+                    : ""}
+                </span>
+              </label>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              {addKind === "new" ? (
+                <input
+                  type="text"
+                  className="input-field h-9 flex-1 text-xs"
+                  value={addNewName}
+                  onChange={(e) => setAddNewName(e.target.value)}
+                  placeholder={t("org.overview.create_class_student_row_placeholder")}
+                  maxLength={120}
+                />
+              ) : (
+                <select
+                  className="input-field h-9 flex-1 text-xs"
+                  value={addExistingId}
+                  onChange={(e) => setAddExistingId(e.target.value)}
+                >
+                  {candidateExisting.map((s) => (
+                    <option key={s.userId} value={s.userId}>
+                      {s.name ?? s.email} — {s.email}
+                    </option>
+                  ))}
+                </select>
+              )}
+              <button
+                type="button"
+                className="btn-secondary text-xs"
+                disabled={
+                  addMutation.isPending ||
+                  (addKind === "new" && !addNewName.trim()) ||
+                  (addKind === "existing" && !addExistingId)
+                }
+                onClick={() => {
+                  setAddError(null);
+                  addMutation.mutate({
+                    classId: klass.id,
+                    students: [
+                      addKind === "new"
+                        ? { kind: "new", name: addNewName.trim() }
+                        : { kind: "existing", userId: addExistingId }
+                    ]
+                  });
+                }}
+              >
+                {t("org.overview.class_add_student_submit")}
+              </button>
+            </div>
+            {addError ? <p className="text-xs text-red-600">{addError}</p> : null}
+          </div>
+        </div>
+      ) : null}
+    </li>
+  );
 }

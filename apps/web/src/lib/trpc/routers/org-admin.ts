@@ -140,10 +140,8 @@ export const orgAdminRouter = router({
           id: true,
           name: true,
           createdAt: true,
-          // joinCode is the 6-char code students enter on /student to
-          // self-enroll. Surfaced on the admin overview so a school
-          // admin can read it off to a class without bouncing through
-          // the teacher's class page.
+          // joinCode kept for back-compat with old classes; UI doesn't
+          // surface it under the roster-creation policy.
           joinCode: true,
           assignedTeacherId: true,
           assignedTeacher: {
@@ -151,6 +149,15 @@ export const orgAdminRouter = router({
           },
           createdByUser: {
             select: { id: true, email: true, name: true }
+          },
+          enrollments: {
+            select: {
+              userId: true,
+              user: {
+                select: { id: true, name: true, email: true }
+              }
+            },
+            orderBy: { createdAt: "asc" }
           },
           _count: {
             select: { enrollments: true, assignments: true }
@@ -624,5 +631,288 @@ export const orgAdminRouter = router({
       );
 
       return updated;
+    }),
+
+  /**
+   * Add students to an existing class. Mirrors the student-handling
+   * piece of `createClassWithRoster`: each entry is either "new"
+   * (mint a fresh User) or "existing" (reuse a student already in
+   * the school). Seat-cap checks apply only to "new" entries; an
+   * existing student joining a second class is free. Already-enrolled
+   * students are silently skipped (idempotent).
+   */
+  addStudentsToClass: schoolAdminProcedure
+    .input(
+      z.object({
+        classId: z.string().min(1),
+        students: z
+          .array(
+            z.discriminatedUnion("kind", [
+              z.object({ kind: z.literal("new"), name: z.string().min(1).max(120) }),
+              z.object({ kind: z.literal("existing"), userId: z.string().min(1) })
+            ])
+          )
+          .min(1)
+          .max(50)
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const orgId = ctx.membership.organizationId;
+
+      const klass = await ctx.prisma.class.findUnique({
+        where: { id: input.classId },
+        select: { id: true, organizationId: true, name: true }
+      });
+      if (!klass || klass.organizationId !== orgId) {
+        throw new TRPCError({ code: "NOT_FOUND" });
+      }
+
+      const org = await ctx.prisma.organization.findUnique({
+        where: { id: orgId },
+        select: { slug: true, maxStudentSeats: true }
+      });
+      if (!org) {
+        throw new TRPCError({ code: "NOT_FOUND" });
+      }
+
+      const existingStudents = await ctx.prisma.organizationMembership.findMany({
+        where: {
+          organizationId: orgId,
+          status: "ACTIVE",
+          role: "STUDENT"
+        },
+        select: {
+          user: { select: { id: true, name: true, email: true } }
+        }
+      });
+      const existingStudentById = new Map(existingStudents.map((m) => [m.user.id, m]));
+
+      // Validate "existing" picks belong to this org.
+      for (const s of input.students) {
+        if (s.kind === "existing" && !existingStudentById.has(s.userId)) {
+          throw new TRPCError({
+            code: "BAD_REQUEST",
+            message: "Selected student is not an active student in this school."
+          });
+        }
+      }
+
+      // Dedup new names within this batch.
+      const newStudentNamesSet = new Set<string>();
+      for (const s of input.students) {
+        if (s.kind === "new") newStudentNamesSet.add(s.name.trim());
+      }
+      const newStudentNames = Array.from(newStudentNamesSet).filter((n) => n.length > 0);
+
+      // Seat cap: only the new spawns count.
+      const projectedStudentCount = existingStudents.length + newStudentNames.length;
+      if (projectedStudentCount > org.maxStudentSeats) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: `Student seat cap reached (${org.maxStudentSeats}). This roster would need ${projectedStudentCount}.`
+        });
+      }
+
+      const result = await ctx.prisma.$transaction(async (tx) => {
+        async function mintRosterUser(args: {
+          name: string;
+          role: "TEACHER" | "STUDENT";
+        }): Promise<{ id: string; email: string }> {
+          let lastErr: unknown = null;
+          for (let attempt = 0; attempt < 6; attempt += 1) {
+            const email = buildRosterEmail(args.name, org!.slug);
+            try {
+              const user = await tx.user.create({
+                data: {
+                  email,
+                  name: args.name,
+                  passwordHash: null,
+                  role: "STUDENT"
+                },
+                select: { id: true, email: true }
+              });
+              await tx.organizationMembership.create({
+                data: {
+                  organizationId: orgId,
+                  userId: user.id,
+                  role: args.role,
+                  status: "ACTIVE"
+                }
+              });
+              return user;
+            } catch (err) {
+              lastErr = err;
+              const message = (err as { message?: string }).message ?? "";
+              if (!message.includes("Unique") && !message.includes("unique")) {
+                throw err;
+              }
+            }
+          }
+          throw lastErr ?? new Error("Failed to mint roster user after retries.");
+        }
+
+        const resolved: Array<{
+          userId: string;
+          name: string;
+          email: string;
+          isNew: boolean;
+        }> = [];
+        const seenIds = new Set<string>();
+
+        for (const s of input.students) {
+          if (s.kind !== "existing") continue;
+          if (seenIds.has(s.userId)) continue;
+          seenIds.add(s.userId);
+          const ex = existingStudentById.get(s.userId)!;
+          resolved.push({
+            userId: ex.user.id,
+            name: ex.user.name ?? ex.user.email,
+            email: ex.user.email,
+            isNew: false
+          });
+        }
+
+        for (const name of newStudentNames) {
+          const minted = await mintRosterUser({ name, role: "STUDENT" });
+          resolved.push({
+            userId: minted.id,
+            name,
+            email: minted.email,
+            isNew: true
+          });
+        }
+
+        await tx.enrollment.createMany({
+          data: resolved.map((s) => ({
+            classId: klass.id,
+            userId: s.userId
+          })),
+          skipDuplicates: true
+        });
+
+        return resolved;
+      });
+
+      await logAudit(
+        ctx.prisma,
+        { userId: ctx.session.user.id, organizationId: orgId },
+        {
+          action: "class.invite_students",
+          targetType: "Class",
+          targetId: klass.id,
+          payload: {
+            className: klass.name,
+            addedCount: result.length,
+            newCount: result.filter((s) => s.isNew).length
+          }
+        }
+      );
+
+      return { classId: klass.id, students: result };
+    }),
+
+  /**
+   * Remove a single student from one class (delete the Enrollment).
+   * Their User account, past attempts, etc. are preserved — they
+   * just stop seeing this class's assignments.
+   */
+  removeStudentFromClass: schoolAdminProcedure
+    .input(
+      z.object({
+        classId: z.string().min(1),
+        userId: z.string().min(1)
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const orgId = ctx.membership.organizationId;
+
+      const klass = await ctx.prisma.class.findUnique({
+        where: { id: input.classId },
+        select: { id: true, organizationId: true, name: true }
+      });
+      if (!klass || klass.organizationId !== orgId) {
+        throw new TRPCError({ code: "NOT_FOUND" });
+      }
+
+      // Use deleteMany + same-tenant filter so a hostile classId
+      // can't delete an enrollment in another school.
+      const result = await ctx.prisma.enrollment.deleteMany({
+        where: { classId: klass.id, userId: input.userId }
+      });
+
+      if (result.count === 0) {
+        throw new TRPCError({ code: "NOT_FOUND", message: "Student is not enrolled in this class." });
+      }
+
+      await logAudit(
+        ctx.prisma,
+        { userId: ctx.session.user.id, organizationId: orgId },
+        {
+          action: "class.invite_students",
+          targetType: "Class",
+          targetId: klass.id,
+          payload: {
+            className: klass.name,
+            removedUserId: input.userId,
+            kind: "remove"
+          }
+        }
+      );
+
+      return { ok: true };
+    }),
+
+  /**
+   * Clear a user's passwordHash so they re-set it via
+   * /login/set-password. Useful when a student forgets their
+   * password — the admin can't read the existing one (only the
+   * student does), but they can clear it so the student claims a
+   * new one. The target user must belong to this org.
+   *
+   * Limited to TEACHER and STUDENT roles to avoid an admin locking
+   * out another admin / themselves.
+   */
+  resetUserPassword: schoolAdminProcedure
+    .input(z.object({ userId: z.string().min(1) }))
+    .mutation(async ({ ctx, input }) => {
+      const orgId = ctx.membership.organizationId;
+
+      const member = await ctx.prisma.organizationMembership.findFirst({
+        where: {
+          organizationId: orgId,
+          userId: input.userId,
+          status: "ACTIVE",
+          role: { in: ["TEACHER", "STUDENT"] }
+        },
+        select: { userId: true, user: { select: { email: true } } }
+      });
+
+      if (!member) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "User not found in this school, or has a role that can't be password-reset."
+        });
+      }
+
+      await ctx.prisma.user.update({
+        where: { id: member.userId },
+        data: { passwordHash: null }
+      });
+
+      await logAudit(
+        ctx.prisma,
+        { userId: ctx.session.user.id, organizationId: orgId },
+        {
+          action: "teacher.invite",
+          targetType: "User",
+          targetId: member.userId,
+          payload: {
+            kind: "password_reset",
+            email: member.user.email
+          }
+        }
+      );
+
+      return { ok: true, email: member.user.email };
     })
 });

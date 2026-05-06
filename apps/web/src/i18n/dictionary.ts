@@ -100,6 +100,18 @@ export type Messages = {
   "org.overview.credentials_status_new": string;
   "org.overview.credentials_status_existing": string;
   "org.overview.credentials_copy_all": string;
+  "org.overview.reset_password_label": string;
+  "org.overview.reset_password_confirm": string;
+  "org.overview.reset_password_help": string;
+  "org.overview.reset_password_done": string;
+  "org.overview.reset_password_error": string;
+  "org.overview.class_enrolled_students_heading": string;
+  "org.overview.class_no_enrollments": string;
+  "org.overview.class_remove_student_label": string;
+  "org.overview.class_remove_student_confirm": string;
+  "org.overview.class_add_student_heading": string;
+  "org.overview.class_add_student_submit": string;
+  "org.overview.class_no_more_existing": string;
   "org.overview.feed_load_more": string;
   "org.overview.feed_no_more": string;
   "org.overview.action.class.create": string;
@@ -408,6 +420,18 @@ export const EN: Messages = {
   "org.overview.credentials_status_new": "new",
   "org.overview.credentials_status_existing": "existing",
   "org.overview.credentials_copy_all": "Copy all (tab-separated)",
+  "org.overview.reset_password_label": "Reset password",
+  "org.overview.reset_password_confirm": "Reset this user's password? They'll need to set a new one at /login/set-password.",
+  "org.overview.reset_password_help": "Clears the user's password so they re-set it at /login/set-password.",
+  "org.overview.reset_password_done": "Reset ✓",
+  "org.overview.reset_password_error": "Reset failed",
+  "org.overview.class_enrolled_students_heading": "Enrolled",
+  "org.overview.class_no_enrollments": "No students enrolled yet.",
+  "org.overview.class_remove_student_label": "Remove from class",
+  "org.overview.class_remove_student_confirm": "Remove {name} from this class? Their account stays; they just stop seeing this class.",
+  "org.overview.class_add_student_heading": "Add a student",
+  "org.overview.class_add_student_submit": "Add",
+  "org.overview.class_no_more_existing": "no other students in school",
   "org.overview.feed_load_more": "Load more",
   "org.overview.feed_no_more": "No more activity",
   "org.overview.action.class.create": "{actor} created class \"{target}\"",
@@ -733,6 +757,18 @@ export const ZH: Messages = {
   "org.overview.credentials_status_new": "新建",
   "org.overview.credentials_status_existing": "已存在",
   "org.overview.credentials_copy_all": "复制全部（Tab 分隔）",
+  "org.overview.reset_password_label": "重置密码",
+  "org.overview.reset_password_confirm": "确认重置该用户密码？他们需要在 /login/set-password 重新设置。",
+  "org.overview.reset_password_help": "清空该用户密码，他们需要在 /login/set-password 重新设置。",
+  "org.overview.reset_password_done": "已重置 ✓",
+  "org.overview.reset_password_error": "重置失败",
+  "org.overview.class_enrolled_students_heading": "已加入",
+  "org.overview.class_no_enrollments": "班级暂无学生。",
+  "org.overview.class_remove_student_label": "从班级移除",
+  "org.overview.class_remove_student_confirm": "把 {name} 从该班级移除？账号保留，仅不再看到该班级。",
+  "org.overview.class_add_student_heading": "添加学生",
+  "org.overview.class_add_student_submit": "加入",
+  "org.overview.class_no_more_existing": "学校已无其他学生",
   "org.overview.feed_load_more": "加载更多",
   "org.overview.feed_no_more": "无更多活动",
   "org.overview.action.class.create": "{actor} 创建了班级《{target}》",
