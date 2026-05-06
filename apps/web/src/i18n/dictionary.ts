@@ -54,6 +54,91 @@ export type Messages = {
   "topnav.register": string;
   "topnav.account": string;
 
+  "login.kicker": string;
+  "login.headline": string;
+  "login.subhead": string;
+  "login.stat_student_label": string;
+  "login.stat_student_body": string;
+  "login.stat_parent_label": string;
+  "login.stat_parent_body": string;
+  "login.badge": string;
+  "login.title": string;
+  "login.subtitle": string;
+  "login.email_label": string;
+  "login.password_label": string;
+  "login.submit": string;
+  "login.submit_loading": string;
+  "login.error_invalid": string;
+  "login.first_time_help": string;
+  "login.first_time_link": string;
+  "login.first_time_suffix": string;
+  "login.admin_create_prefix": string;
+  "login.admin_create_link": string;
+
+  "set_password.badge": string;
+  "set_password.title": string;
+  "set_password.subtitle": string;
+  "set_password.username_label": string;
+  "set_password.username_placeholder": string;
+  "set_password.new_password_label": string;
+  "set_password.confirm_password_label": string;
+  "set_password.submit": string;
+  "set_password.submit_loading": string;
+  "set_password.error_short": string;
+  "set_password.error_mismatch": string;
+  "set_password.error_generic": string;
+  "set_password.error_network": string;
+  "set_password.already_set_prefix": string;
+  "set_password.already_set_link": string;
+
+  "register.title": string;
+  "register.subtitle": string;
+  "register.name_label": string;
+  "register.email_label": string;
+  "register.password_label": string;
+  "register.password_help": string;
+  "register.submit": string;
+  "register.submit_loading": string;
+  "register.error_email_in_use": string;
+  "register.error_generic": string;
+  "register.signin_prefix": string;
+  "register.signin_link": string;
+
+  "resources.title": string;
+  "resources.subtitle": string;
+  "resources.publish_heading": string;
+  "resources.publish_help": string;
+  "resources.title_label": string;
+  "resources.description_label": string;
+  "resources.content_label": string;
+  "resources.attachment_label": string;
+  "resources.publish_submit": string;
+  "resources.published_heading": string;
+  "resources.published_help_uploader": string;
+  "resources.published_help_viewer": string;
+  "resources.no_resources": string;
+  "resources.posted_by": string;
+  "resources.posted_at": string;
+  "resources.attachment_link": string;
+  "resources.created_success": string;
+
+  "problemset.problems_heading": string;
+  "problemset.solo_run_button": string;
+  "problemset.continue_run_button": string;
+  "problemset.review_run_button": string;
+  "problemset.problem_label": string;
+  "problemset.no_attempt_yet": string;
+  "problemset.attempt_correct": string;
+  "problemset.attempt_incorrect": string;
+  "problemset.attempt_pending": string;
+  "problemset.back_to_catalog": string;
+  "problemset.start_practice": string;
+  "problemset.problem_list_help": string;
+  "problemset.open_tutor": string;
+  "problemset.open_problem": string;
+  "problemset.total_problems": string;
+
+
   "org.overview.title": string;
   "org.overview.subtitle": string;
   "org.overview.teachers_heading": string;
@@ -373,6 +458,90 @@ export const EN: Messages = {
   "topnav.my_work": "My work",
   "topnav.register": "Register",
   "topnav.account": "Account",
+
+  "login.kicker": "Welcome Back",
+  "login.headline": "Sign in to continue your workflow.",
+  "login.subhead": "A cleaner interface makes it easier to move from login to practice, reports, and assignments without losing momentum.",
+  "login.stat_student_label": "Student Mode",
+  "login.stat_student_body": "Get back to problems quickly with less visual clutter.",
+  "login.stat_parent_label": "Parent View",
+  "login.stat_parent_body": "Check progress and assignments in a layout that feels organized and calm.",
+  "login.badge": "Account Access",
+  "login.title": "Sign in",
+  "login.subtitle": "Use your ArcMath email and password to continue.",
+  "login.email_label": "Email",
+  "login.password_label": "Password",
+  "login.submit": "Sign in",
+  "login.submit_loading": "Signing in...",
+  "login.error_invalid": "Invalid email or password.",
+  "login.first_time_help": "First time signing in? Your school admin gave you a username ending in @<school>.arcmath.local —",
+  "login.first_time_link": "set your password here",
+  "login.first_time_suffix": ".",
+  "login.admin_create_prefix": "School admins:",
+  "login.admin_create_link": "create your account",
+
+  "set_password.badge": "First-time setup",
+  "set_password.title": "Set your password",
+  "set_password.subtitle": "Enter the username your school admin gave you, then choose a password. After that you'll sign in with that password from now on.",
+  "set_password.username_label": "Username (email-format)",
+  "set_password.username_placeholder": "wang.wei.7f3a@northstar.arcmath.local",
+  "set_password.new_password_label": "New password (min 8 characters)",
+  "set_password.confirm_password_label": "Confirm password",
+  "set_password.submit": "Set password and sign in",
+  "set_password.submit_loading": "Setting password...",
+  "set_password.error_short": "Password must be at least 8 characters.",
+  "set_password.error_mismatch": "Passwords don't match.",
+  "set_password.error_generic": "Could not set password. Check your username with your admin.",
+  "set_password.error_network": "Network error. Try again.",
+  "set_password.already_set_prefix": "Already set a password?",
+  "set_password.already_set_link": "Sign in here",
+
+  "register.title": "Create your school admin account",
+  "register.subtitle": "Use this to bootstrap a new school. After creating your account you can set up your school and add teachers + students.",
+  "register.name_label": "Your name",
+  "register.email_label": "Email",
+  "register.password_label": "Password",
+  "register.password_help": "At least 8 characters.",
+  "register.submit": "Create account",
+  "register.submit_loading": "Creating...",
+  "register.error_email_in_use": "That email is already registered.",
+  "register.error_generic": "Could not create your account. Try again.",
+  "register.signin_prefix": "Already have an account?",
+  "register.signin_link": "Sign in",
+
+  "resources.title": "Course materials",
+  "resources.subtitle": "PDFs, lesson notes, and links shared across your school.",
+  "resources.publish_heading": "Publish resource",
+  "resources.publish_help": "Lesson notes, PDFs, study guides, links, or an attached worksheet. Visible to everyone in your school. (Teachers and admins can publish.)",
+  "resources.title_label": "Title",
+  "resources.description_label": "Description",
+  "resources.content_label": "Content",
+  "resources.attachment_label": "Attachment (max 15 MB)",
+  "resources.publish_submit": "Publish Resource",
+  "resources.published_heading": "Published resources",
+  "resources.published_help_uploader": "Everything posted here is visible to students in this organization.",
+  "resources.published_help_viewer": "These materials are shared by your teachers and school admins.",
+  "resources.no_resources": "No resources published yet.",
+  "resources.posted_by": "Posted by",
+  "resources.posted_at": "Posted",
+  "resources.attachment_link": "Open attachment",
+  "resources.created_success": "Resource published successfully.",
+
+  "problemset.problems_heading": "Problems",
+  "problemset.solo_run_button": "Start practice run",
+  "problemset.continue_run_button": "Continue",
+  "problemset.review_run_button": "Review",
+  "problemset.problem_label": "Problem {number}",
+  "problemset.no_attempt_yet": "Not attempted",
+  "problemset.attempt_correct": "Correct",
+  "problemset.attempt_incorrect": "Incorrect",
+  "problemset.attempt_pending": "In progress",
+  "problemset.back_to_catalog": "Back to Catalog",
+  "problemset.start_practice": "Start Practice",
+  "problemset.problem_list_help": "Open any problem below to use the hint tutor (when the teacher has enabled it), submit your answer, and move through the set.",
+  "problemset.open_tutor": "Open Tutor",
+  "problemset.open_problem": "Open Problem",
+  "problemset.total_problems": "{count} problems",
 
   "org.overview.title": "School overview",
   "org.overview.subtitle": "Teachers, students, classes, and recent activity across your school.",
@@ -710,6 +879,90 @@ export const ZH: Messages = {
   "topnav.my_work": "我的学习",
   "topnav.register": "注册",
   "topnav.account": "账号",
+
+  "login.kicker": "欢迎回来",
+  "login.headline": "登录后继续学习。",
+  "login.subhead": "清爽的界面让你从登录到练习、报告、作业一气呵成。",
+  "login.stat_student_label": "学生模式",
+  "login.stat_student_body": "用更简洁的界面快速回到题目。",
+  "login.stat_parent_label": "家长视图",
+  "login.stat_parent_body": "在一个井然有序、平静的界面里看到进度和作业。",
+  "login.badge": "账号登录",
+  "login.title": "登录",
+  "login.subtitle": "用你的 ArcMath 用户名和密码继续。",
+  "login.email_label": "邮箱 / 用户名",
+  "login.password_label": "密码",
+  "login.submit": "登录",
+  "login.submit_loading": "登录中...",
+  "login.error_invalid": "邮箱或密码错误。",
+  "login.first_time_help": "首次登录？学校 admin 给你的用户名是以 @<学校>.arcmath.local 结尾的格式 —",
+  "login.first_time_link": "在这里设置密码",
+  "login.first_time_suffix": "。",
+  "login.admin_create_prefix": "学校 admin：",
+  "login.admin_create_link": "创建你的账号",
+
+  "set_password.badge": "首次设置",
+  "set_password.title": "设置你的密码",
+  "set_password.subtitle": "输入学校 admin 给你的用户名，再设置一个密码。设置完成后以后用这个密码登录。",
+  "set_password.username_label": "用户名（邮箱格式）",
+  "set_password.username_placeholder": "wang.wei.7f3a@northstar.arcmath.local",
+  "set_password.new_password_label": "新密码（至少 8 位）",
+  "set_password.confirm_password_label": "再次输入密码",
+  "set_password.submit": "设置密码并登录",
+  "set_password.submit_loading": "设置中...",
+  "set_password.error_short": "密码至少 8 个字符。",
+  "set_password.error_mismatch": "两次密码不一致。",
+  "set_password.error_generic": "设置失败，请向 admin 核对你的用户名。",
+  "set_password.error_network": "网络出错，请重试。",
+  "set_password.already_set_prefix": "已经设过密码？",
+  "set_password.already_set_link": "在这里登录",
+
+  "register.title": "创建学校 admin 账号",
+  "register.subtitle": "用此页面注册学校管理员。注册后你可以创建学校并添加老师和学生。",
+  "register.name_label": "你的姓名",
+  "register.email_label": "邮箱",
+  "register.password_label": "密码",
+  "register.password_help": "至少 8 个字符。",
+  "register.submit": "创建账号",
+  "register.submit_loading": "创建中...",
+  "register.error_email_in_use": "该邮箱已注册。",
+  "register.error_generic": "创建失败，请重试。",
+  "register.signin_prefix": "已有账号？",
+  "register.signin_link": "登录",
+
+  "resources.title": "教学资源",
+  "resources.subtitle": "全校共享的 PDF、讲义和链接。",
+  "resources.publish_heading": "发布资源",
+  "resources.publish_help": "讲义、PDF、练习册、链接或学习资料附件，全校学生可见。老师和 admin 可发布。",
+  "resources.title_label": "标题",
+  "resources.description_label": "简介",
+  "resources.content_label": "正文",
+  "resources.attachment_label": "附件（最大 15 MB）",
+  "resources.publish_submit": "发布资源",
+  "resources.published_heading": "已发布资源",
+  "resources.published_help_uploader": "在此发布的内容全校学生可见。",
+  "resources.published_help_viewer": "这些材料由学校老师和 admin 共享。",
+  "resources.no_resources": "暂无已发布资源。",
+  "resources.posted_by": "发布者",
+  "resources.posted_at": "发布时间",
+  "resources.attachment_link": "打开附件",
+  "resources.created_success": "资源已成功发布。",
+
+  "problemset.problems_heading": "题目",
+  "problemset.solo_run_button": "开始练习",
+  "problemset.continue_run_button": "继续",
+  "problemset.review_run_button": "回看",
+  "problemset.problem_label": "第 {number} 题",
+  "problemset.no_attempt_yet": "未作答",
+  "problemset.attempt_correct": "正确",
+  "problemset.attempt_incorrect": "错误",
+  "problemset.attempt_pending": "进行中",
+  "problemset.back_to_catalog": "返回题库",
+  "problemset.start_practice": "开始练习",
+  "problemset.problem_list_help": "点击下面任何一道题作答；老师开了 hint 时会有提示导师，提交后自动批改。",
+  "problemset.open_tutor": "开始练习（带提示）",
+  "problemset.open_problem": "开始练习",
+  "problemset.total_problems": "共 {count} 题",
 
   "org.overview.title": "学校总览",
   "org.overview.subtitle": "学校内的老师、学生、班级和最近活动。",

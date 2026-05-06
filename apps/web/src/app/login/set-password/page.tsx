@@ -5,6 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import { useT } from "@/i18n/client";
 
 /**
  * First-time password setup for roster-spawned accounts.
@@ -28,6 +29,7 @@ import { signIn } from "next-auth/react";
  * regenerate (future feature).
  */
 export default function SetPasswordPage() {
+  const { t } = useT();
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,11 +42,11 @@ export default function SetPasswordPage() {
     setError(null);
 
     if (password.length < 8) {
-      setError("Password must be at least 8 characters.");
+      setError(t("set_password.error_short"));
       return;
     }
     if (password !== confirmPassword) {
-      setError("Passwords don't match.");
+      setError(t("set_password.error_mismatch"));
       return;
     }
 
@@ -57,7 +59,7 @@ export default function SetPasswordPage() {
       });
       if (!response.ok) {
         const body = (await response.json().catch(() => ({}))) as { error?: string };
-        setError(body.error ?? "Could not set password. Check your username with your admin.");
+        setError(body.error ?? t("set_password.error_generic"));
         setLoading(false);
         return;
       }
@@ -82,7 +84,7 @@ export default function SetPasswordPage() {
       router.push(signInResult?.url ?? "/");
       router.refresh();
     } catch {
-      setError("Network error. Try again.");
+      setError(t("set_password.error_network"));
       setLoading(false);
     }
   }
@@ -91,32 +93,29 @@ export default function SetPasswordPage() {
     <main className="motion-rise mx-auto w-full max-w-2xl">
       <section className="surface-card space-y-5">
         <div className="space-y-2">
-          <span className="badge">First-time setup</span>
+          <span className="badge">{t("set_password.badge")}</span>
           <h1 className="text-3xl font-semibold tracking-[-0.05em] text-slate-900">
-            Set your password
+            {t("set_password.title")}
           </h1>
-          <p className="text-sm text-slate-600">
-            Enter the username your school admin gave you, then choose a password.
-            After that you'll sign in with that password from now on.
-          </p>
+          <p className="text-sm text-slate-600">{t("set_password.subtitle")}</p>
         </div>
 
         <form className="space-y-4" onSubmit={onSubmit}>
           <label className="block text-sm font-medium text-slate-700">
-            Username (email-format)
+            {t("set_password.username_label")}
             <input
               className="input-field"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="wang.wei.7f3a@northstar.arcmath.local"
+              placeholder={t("set_password.username_placeholder")}
               required
               autoComplete="username"
             />
           </label>
 
           <label className="block text-sm font-medium text-slate-700">
-            New password (min 8 characters)
+            {t("set_password.new_password_label")}
             <input
               className="input-field"
               type="password"
@@ -129,7 +128,7 @@ export default function SetPasswordPage() {
           </label>
 
           <label className="block text-sm font-medium text-slate-700">
-            Confirm password
+            {t("set_password.confirm_password_label")}
             <input
               className="input-field"
               type="password"
@@ -146,14 +145,14 @@ export default function SetPasswordPage() {
           ) : null}
 
           <button className="btn-primary w-full" disabled={loading} type="submit">
-            {loading ? "Setting password..." : "Set password and sign in"}
+            {loading ? t("set_password.submit_loading") : t("set_password.submit")}
           </button>
         </form>
 
         <div className="rounded-[1.4rem] border border-[rgba(16,35,60,0.08)] bg-[rgba(243,247,251,0.88)] px-4 py-4 text-sm text-slate-600">
-          Already set a password?{" "}
+          {t("set_password.already_set_prefix")}{" "}
           <Link className="font-semibold text-[var(--accent-strong)]" href="/login">
-            Sign in here
+            {t("set_password.already_set_link")}
           </Link>
           .
         </div>

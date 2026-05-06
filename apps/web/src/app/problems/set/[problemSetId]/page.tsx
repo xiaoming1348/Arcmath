@@ -16,6 +16,8 @@ import {
 } from "@/lib/problem-set-modes";
 import { userCanAccessRealTutorProblemSet } from "@/lib/tutor-premium-access";
 import { getTutorUsableSetKind } from "@/lib/tutor-usable-sets";
+import { resolveLocale } from "@/i18n/server";
+import { translatorImpl as translator } from "@/i18n/dictionary";
 
 type PracticeSetPageProps = {
   params: Promise<{
@@ -68,6 +70,8 @@ function normalizeChoiceOptions(choices: unknown): Array<{ label: string; text: 
 export default async function PracticeSetPage({ params }: PracticeSetPageProps) {
   const { problemSetId } = await params;
   const session = await getServerSession(authOptions);
+  const locale = await resolveLocale();
+  const t = translator(locale);
 
   if (!session?.user) {
     redirect(`/login?callbackUrl=${encodeURIComponent(`/problems/set/${problemSetId}`)}`);
@@ -269,19 +273,20 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
               <h1 className="text-2xl font-semibold text-slate-900">{practiceSetData.title}</h1>
               <p className="text-sm text-slate-600">
                 {practiceSetData.contest} {practiceSetData.year}
-                {practiceSetData.exam ? ` ${practiceSetData.exam}` : ""} · {totalProblems} problems
+                {practiceSetData.exam ? ` ${practiceSetData.exam}` : ""} ·{" "}
+                {t("problemset.total_problems", { count: totalProblems })}
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
               <Link className="btn-secondary" href="/problems">
-                Back to Catalog
+                {t("problemset.back_to_catalog")}
               </Link>
               {practiceRun && practiceSetData.problems[0] ? (
                 <Link
                   className="btn-primary"
                   href={`/problems/${encodeURIComponent(practiceSetData.problems[0].id)}?runId=${encodeURIComponent(practiceRun.id)}`}
                 >
-                  Start Practice
+                  {t("problemset.start_practice")}
                 </Link>
               ) : null}
             </div>
@@ -290,10 +295,8 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
 
         <section className="surface-card space-y-4">
           <div className="space-y-2">
-            <h2 className="text-lg font-semibold text-slate-900">Problem list</h2>
-            <p className="text-sm text-slate-600">
-              Open any problem below to use the hint tutor, submit your answer, and move through the set with run-scoped reporting.
-            </p>
+            <h2 className="text-lg font-semibold text-slate-900">{t("problemset.problems_heading")}</h2>
+            <p className="text-sm text-slate-600">{t("problemset.problem_list_help")}</p>
           </div>
 
           <div className="space-y-3">
@@ -301,7 +304,9 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
               <article key={problem.id} className="rounded-3xl border border-slate-200 bg-slate-50/80 p-5">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="space-y-2">
-                    <h3 className="text-lg font-semibold text-slate-900">Problem {problem.number}</h3>
+                    <h3 className="text-lg font-semibold text-slate-900">
+                      {t("problemset.problem_label", { number: problem.number })}
+                    </h3>
                     <p className="text-sm text-slate-600">{makeStatementSnippet(problem.statement)}</p>
                     <div className="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
                       {problem.difficultyBand ? <span>{problem.difficultyBand}</span> : null}
@@ -314,7 +319,7 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
                       className="btn-primary"
                       href={`/problems/${encodeURIComponent(problem.id)}?runId=${encodeURIComponent(practiceRun.id)}`}
                     >
-                      {practiceSetData.tutorEnabled ? "Open Tutor" : "Open Problem"}
+                      {practiceSetData.tutorEnabled ? t("problemset.open_tutor") : t("problemset.open_problem")}
                     </Link>
                   ) : null}
                 </div>
