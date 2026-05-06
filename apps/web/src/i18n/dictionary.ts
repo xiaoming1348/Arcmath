@@ -138,6 +138,112 @@ export type Messages = {
   "problemset.open_problem": string;
   "problemset.total_problems": string;
 
+  "attempt.badge_real_set": string;
+  "attempt.problem_n_of": string;
+  "attempt.back_to_set": string;
+  "attempt.next_problem": string;
+  "attempt.view_report": string;
+  "attempt.choices_diagram_label": string;
+  "attempt.reveal_official_solution": string;
+  "attempt.no_official_solution": string;
+  "attempt.workspace_title_default": string;
+  "attempt.workspace_title_proof": string;
+  "attempt.workspace_subtitle_answer_only": string;
+  "attempt.workspace_subtitle_stuck": string;
+  "attempt.workspace_subtitle_hint_guided": string;
+  "attempt.workspace_subtitle_proof": string;
+  "attempt.add_step_label": string;
+  "attempt.add_step_button": string;
+  "attempt.show_hint_n": string;
+  "attempt.loading_hint": string;
+  "attempt.all_hints_used": string;
+  "attempt.try_writing_steps": string;
+  "attempt.got_an_answer": string;
+  "attempt.stuck_show_hint_n": string;
+  "attempt.final_answer_label_optional": string;
+  "attempt.final_answer_placeholder": string;
+  "attempt.submit_button": string;
+  "attempt.start_over": string;
+  "attempt.entry_choose_title": string;
+  "attempt.entry_choose_subtitle": string;
+  "attempt.entry_answer_only_title": string;
+  "attempt.entry_answer_only_body": string;
+  "attempt.entry_stuck_title": string;
+  "attempt.entry_stuck_body": string;
+  "attempt.entry_hint_guided_title": string;
+  "attempt.entry_hint_guided_body": string;
+  "attempt.entry_proof_title": string;
+  "attempt.entry_proof_body": string;
+  "attempt.entry_pick": string;
+  "attempt.review_correct": string;
+  "attempt.review_incorrect": string;
+  "attempt.review_correct_answer_was": string;
+  "attempt.hint_label": string;
+  "attempt.hint_used_count": string;
+  "attempt.step_n_label": string;
+  "attempt.step_edit": string;
+  "attempt.step_save": string;
+  "attempt.step_cancel": string;
+  "attempt.step_delete": string;
+  "attempt.step_confirm_delete": string;
+  "attempt.tutor_note": string;
+  "attempt.loading_state": string;
+  "attempt.submitting": string;
+  "attempt.submit_answer": string;
+  "attempt.select_your_answer": string;
+  "attempt.your_answer_label": string;
+  "attempt.your_answer_placeholder": string;
+  "attempt.integer_placeholder": string;
+  "attempt.starting": string;
+  "attempt.start_proof_attempt": string;
+  "attempt.proof_workspace_help": string;
+  "attempt.submit_for_review": string;
+  "attempt.grading": string;
+  "attempt.submit_row_proof": string;
+  "attempt.submit_row_default": string;
+  "attempt.mode_badge_answer_only": string;
+  "attempt.mode_badge_stuck": string;
+  "attempt.mode_badge_hint_guided": string;
+  "attempt.mode_badge_proof": string;
+  "attempt.mode_badge_submitted_suffix": string;
+  "attempt.verdict_verified": string;
+  "attempt.verdict_plausible": string;
+  "attempt.verdict_unknown": string;
+  "attempt.verdict_invalid": string;
+  "attempt.verdict_error": string;
+  "attempt.verdict_pending": string;
+  "attempt.verdict_checked_by": string;
+  "attempt.review_answer_label": string;
+  "attempt.review_correct_short": string;
+  "attempt.review_incorrect_short": string;
+  "attempt.review_your_answer": string;
+  "attempt.review_submitted_at": string;
+  "attempt.review_overall_label": string;
+  "attempt.review_hints_used": string;
+  "attempt.review_start_new": string;
+  "attempt.entry_intro": string;
+  "attempt.entry_card_solved_title": string;
+  "attempt.entry_card_solved_body": string;
+  "attempt.entry_card_stuck_title": string;
+  "attempt.entry_card_stuck_body": string;
+  "attempt.entry_card_no_idea_title": string;
+  "attempt.entry_card_no_idea_body": string;
+  "attempt.coverage_heading": string;
+  "attempt.coverage_status_established": string;
+  "attempt.coverage_status_replaced": string;
+  "attempt.coverage_status_partial": string;
+  "attempt.coverage_status_missing": string;
+  "attempt.coverage_status_invalid": string;
+  "attempt.coverage_milestone_label": string;
+  "attempt.error_failed_start_attempt": string;
+  "attempt.error_failed_change_mode": string;
+  "attempt.error_failed_add_step": string;
+  "attempt.error_failed_edit_step": string;
+  "attempt.error_failed_delete_step": string;
+  "attempt.error_failed_fetch_hint": string;
+  "attempt.error_failed_submit": string;
+  "attempt.error_failed_start_new": string;
+
 
   "org.overview.title": string;
   "org.overview.subtitle": string;
@@ -542,6 +648,112 @@ export const EN: Messages = {
   "problemset.open_tutor": "Open Tutor",
   "problemset.open_problem": "Open Problem",
   "problemset.total_problems": "{count} problems",
+
+  "attempt.badge_real_set": "Premium Real Set",
+  "attempt.problem_n_of": "Problem {current} of {total}",
+  "attempt.back_to_set": "Back to Set",
+  "attempt.next_problem": "Next Problem",
+  "attempt.view_report": "View Report",
+  "attempt.choices_diagram_label": "Choice diagram",
+  "attempt.reveal_official_solution": "Reveal official solution",
+  "attempt.no_official_solution": "Official solution not yet available for this problem.",
+  "attempt.workspace_title_default": "Answer Workspace",
+  "attempt.workspace_title_proof": "Proof Workspace",
+  "attempt.workspace_subtitle_answer_only": "You told us you've solved it — submit your answer below.",
+  "attempt.workspace_subtitle_stuck": "Write the steps you tried. Submit when you're ready — we'll check each one.",
+  "attempt.workspace_subtitle_hint_guided": "Take hints one at a time. Switch to writing steps or typing an answer whenever you're ready.",
+  "attempt.workspace_subtitle_proof": "Build your proof step by step. Everything gets verified on submit.",
+  "attempt.add_step_label": "Add step {n}",
+  "attempt.add_step_button": "Add step",
+  "attempt.show_hint_n": "Show hint {n}",
+  "attempt.loading_hint": "Loading hint…",
+  "attempt.all_hints_used": "All 3 hints used",
+  "attempt.try_writing_steps": "I'll try writing steps now",
+  "attempt.got_an_answer": "I've got an answer",
+  "attempt.stuck_show_hint_n": "Stuck — show hint {n}",
+  "attempt.final_answer_label_optional": "Final answer (optional — submit only if you're reasonably confident)",
+  "attempt.final_answer_placeholder": "Leave blank if you didn't reach a confident answer",
+  "attempt.submit_button": "Submit",
+  "attempt.start_over": "Start over",
+  "attempt.entry_choose_title": "How are you solving this?",
+  "attempt.entry_choose_subtitle": "Pick how you'd like to work — you can always switch later.",
+  "attempt.entry_answer_only_title": "I have the answer",
+  "attempt.entry_answer_only_body": "Type your final answer right away.",
+  "attempt.entry_stuck_title": "I have some work",
+  "attempt.entry_stuck_body": "Write down your steps; we'll check each one when you submit.",
+  "attempt.entry_hint_guided_title": "Walk me through it",
+  "attempt.entry_hint_guided_body": "Get up to 3 hints, then submit when you've got it.",
+  "attempt.entry_proof_title": "Write a proof",
+  "attempt.entry_proof_body": "Build a step-by-step proof; we verify on submit.",
+  "attempt.entry_pick": "Pick this",
+  "attempt.review_correct": "Correct ✓",
+  "attempt.review_incorrect": "Incorrect",
+  "attempt.review_correct_answer_was": "Correct answer: {answer}",
+  "attempt.hint_label": "Hint {level}",
+  "attempt.hint_used_count": "Hints used: {count}",
+  "attempt.step_n_label": "Step {n}",
+  "attempt.step_edit": "Edit",
+  "attempt.step_save": "Save",
+  "attempt.step_cancel": "Cancel",
+  "attempt.step_delete": "Delete",
+  "attempt.step_confirm_delete": "Delete this step? This cannot be undone.",
+  "attempt.tutor_note": "Tutor note",
+  "attempt.loading_state": "Loading…",
+  "attempt.submitting": "Submitting…",
+  "attempt.submit_answer": "Submit answer",
+  "attempt.select_your_answer": "Select your answer",
+  "attempt.your_answer_label": "Your answer",
+  "attempt.your_answer_placeholder": "Your answer",
+  "attempt.integer_placeholder": "Integer, e.g. 42",
+  "attempt.starting": "Starting…",
+  "attempt.start_proof_attempt": "Start proof attempt",
+  "attempt.proof_workspace_help": "Write your proof one step at a time. Nothing is verified until you submit.",
+  "attempt.submit_for_review": "Submit for review",
+  "attempt.grading": "Grading…",
+  "attempt.submit_row_proof": "Done writing? We'll verify each step and give you an overall review.",
+  "attempt.submit_row_default": "Submit when you're ready. We'll review every step and grade your answer if you wrote one.",
+  "attempt.mode_badge_answer_only": "Direct answer",
+  "attempt.mode_badge_stuck": "With work",
+  "attempt.mode_badge_hint_guided": "Hints",
+  "attempt.mode_badge_proof": "Proof",
+  "attempt.mode_badge_submitted_suffix": "submitted",
+  "attempt.verdict_verified": "Verified",
+  "attempt.verdict_plausible": "Plausible",
+  "attempt.verdict_unknown": "Unverified",
+  "attempt.verdict_invalid": "Invalid",
+  "attempt.verdict_error": "Parse error",
+  "attempt.verdict_pending": "Not yet checked",
+  "attempt.verdict_checked_by": "Checked by {backend}",
+  "attempt.review_answer_label": "Answer",
+  "attempt.review_correct_short": "✓ correct",
+  "attempt.review_incorrect_short": "✗ not correct",
+  "attempt.review_your_answer": "Your answer",
+  "attempt.review_submitted_at": "Submitted {time}",
+  "attempt.review_overall_label": "Overall review",
+  "attempt.review_hints_used": "Hints used in this attempt: {count}",
+  "attempt.review_start_new": "Start a new attempt",
+  "attempt.entry_intro": "Try the problem on paper first. Then tell us how it went — we'll tailor the feedback to match.",
+  "attempt.entry_card_solved_title": "I've solved it",
+  "attempt.entry_card_solved_body": "You're confident — submit your answer and get it graded.",
+  "attempt.entry_card_stuck_title": "I tried but got stuck",
+  "attempt.entry_card_stuck_body": "Write the steps you tried (LaTeX editor). We'll review each step and help you finish.",
+  "attempt.entry_card_no_idea_title": "I have no idea",
+  "attempt.entry_card_no_idea_body": "We'll give you progressive hints. You can switch to writing steps any time.",
+  "attempt.coverage_heading": "Milestone coverage",
+  "attempt.coverage_status_established": "Established",
+  "attempt.coverage_status_replaced": "Replaced (alt path)",
+  "attempt.coverage_status_partial": "Partial",
+  "attempt.coverage_status_missing": "Not reached",
+  "attempt.coverage_status_invalid": "Contradicted",
+  "attempt.coverage_milestone_label": "Milestone #{index}",
+  "attempt.error_failed_start_attempt": "Failed to start attempt.",
+  "attempt.error_failed_change_mode": "Failed to change mode.",
+  "attempt.error_failed_add_step": "Failed to add step.",
+  "attempt.error_failed_edit_step": "Failed to edit step.",
+  "attempt.error_failed_delete_step": "Failed to delete step.",
+  "attempt.error_failed_fetch_hint": "Failed to fetch hint.",
+  "attempt.error_failed_submit": "Failed to submit.",
+  "attempt.error_failed_start_new": "Failed to start new attempt.",
 
   "org.overview.title": "School overview",
   "org.overview.subtitle": "Teachers, students, classes, and recent activity across your school.",
@@ -963,6 +1175,112 @@ export const ZH: Messages = {
   "problemset.open_tutor": "开始练习（带提示）",
   "problemset.open_problem": "开始练习",
   "problemset.total_problems": "共 {count} 题",
+
+  "attempt.badge_real_set": "真题",
+  "attempt.problem_n_of": "第 {current} 题 / 共 {total} 题",
+  "attempt.back_to_set": "返回题集",
+  "attempt.next_problem": "下一题",
+  "attempt.view_report": "查看报告",
+  "attempt.choices_diagram_label": "选项图",
+  "attempt.reveal_official_solution": "查看官方解答",
+  "attempt.no_official_solution": "本题暂无官方解答。",
+  "attempt.workspace_title_default": "解题工作台",
+  "attempt.workspace_title_proof": "证明工作台",
+  "attempt.workspace_subtitle_answer_only": "你已经解出来了——直接提交答案。",
+  "attempt.workspace_subtitle_stuck": "写下你尝试过的步骤，提交时我们会逐步检查。",
+  "attempt.workspace_subtitle_hint_guided": "一次拿一个提示，准备好时切换到写步骤或填答案。",
+  "attempt.workspace_subtitle_proof": "一步步写出证明，提交时统一验证。",
+  "attempt.add_step_label": "添加第 {n} 步",
+  "attempt.add_step_button": "添加步骤",
+  "attempt.show_hint_n": "查看提示 {n}",
+  "attempt.loading_hint": "加载提示中…",
+  "attempt.all_hints_used": "三次提示已用完",
+  "attempt.try_writing_steps": "我来试试写步骤",
+  "attempt.got_an_answer": "我有答案了",
+  "attempt.stuck_show_hint_n": "卡住了——查看提示 {n}",
+  "attempt.final_answer_label_optional": "最终答案（可选——有把握再提交）",
+  "attempt.final_answer_placeholder": "若没把握请留空",
+  "attempt.submit_button": "提交",
+  "attempt.start_over": "重新开始",
+  "attempt.entry_choose_title": "你打算怎么解这道题？",
+  "attempt.entry_choose_subtitle": "选一种解题方式——之后可以随时切换。",
+  "attempt.entry_answer_only_title": "我有答案了",
+  "attempt.entry_answer_only_body": "直接填写最终答案。",
+  "attempt.entry_stuck_title": "我有些步骤",
+  "attempt.entry_stuck_body": "写下你的步骤，提交时逐步批改。",
+  "attempt.entry_hint_guided_title": "需要提示",
+  "attempt.entry_hint_guided_body": "最多三次提示，准备好后提交。",
+  "attempt.entry_proof_title": "写证明",
+  "attempt.entry_proof_body": "一步步写证明，提交时验证。",
+  "attempt.entry_pick": "选这个",
+  "attempt.review_correct": "正确 ✓",
+  "attempt.review_incorrect": "错误",
+  "attempt.review_correct_answer_was": "正确答案：{answer}",
+  "attempt.hint_label": "提示 {level}",
+  "attempt.hint_used_count": "已用提示 {count} 次",
+  "attempt.step_n_label": "第 {n} 步",
+  "attempt.step_edit": "编辑",
+  "attempt.step_save": "保存",
+  "attempt.step_cancel": "取消",
+  "attempt.step_delete": "删除",
+  "attempt.step_confirm_delete": "确认删除此步骤？无法撤销。",
+  "attempt.tutor_note": "导师批注",
+  "attempt.loading_state": "加载中…",
+  "attempt.submitting": "提交中…",
+  "attempt.submit_answer": "提交答案",
+  "attempt.select_your_answer": "选择你的答案",
+  "attempt.your_answer_label": "你的答案",
+  "attempt.your_answer_placeholder": "你的答案",
+  "attempt.integer_placeholder": "整数，例如 42",
+  "attempt.starting": "开始中…",
+  "attempt.start_proof_attempt": "开始书写证明",
+  "attempt.proof_workspace_help": "一步一步写下你的证明，提交后我们会逐步验证。",
+  "attempt.submit_for_review": "提交批改",
+  "attempt.grading": "批改中…",
+  "attempt.submit_row_proof": "写完了？我们会逐步验证并给出整体评语。",
+  "attempt.submit_row_default": "准备好就提交吧。我们会逐步检查，并对你的最终答案进行批改（如果有写）。",
+  "attempt.mode_badge_answer_only": "直接作答",
+  "attempt.mode_badge_stuck": "带过程",
+  "attempt.mode_badge_hint_guided": "提示模式",
+  "attempt.mode_badge_proof": "证明",
+  "attempt.mode_badge_submitted_suffix": "已提交",
+  "attempt.verdict_verified": "已验证",
+  "attempt.verdict_plausible": "可能正确",
+  "attempt.verdict_unknown": "未验证",
+  "attempt.verdict_invalid": "错误",
+  "attempt.verdict_error": "解析失败",
+  "attempt.verdict_pending": "尚未检查",
+  "attempt.verdict_checked_by": "由 {backend} 检查",
+  "attempt.review_answer_label": "答案",
+  "attempt.review_correct_short": "✓ 正确",
+  "attempt.review_incorrect_short": "✗ 不正确",
+  "attempt.review_your_answer": "你的答案",
+  "attempt.review_submitted_at": "提交于 {time}",
+  "attempt.review_overall_label": "整体评语",
+  "attempt.review_hints_used": "本次尝试使用的提示数：{count}",
+  "attempt.review_start_new": "再尝试一次",
+  "attempt.entry_intro": "先在草稿纸上试一下。然后告诉我们情况——我们会据此调整反馈方式。",
+  "attempt.entry_card_solved_title": "我已经做出来了",
+  "attempt.entry_card_solved_body": "对答案有信心——提交后立即批改。",
+  "attempt.entry_card_stuck_title": "试了但卡住了",
+  "attempt.entry_card_stuck_body": "用 LaTeX 编辑器写下你尝试的步骤，我们会逐步检查并帮你完成。",
+  "attempt.entry_card_no_idea_title": "完全没头绪",
+  "attempt.entry_card_no_idea_body": "我们会给你逐级提示，随时可以切换到写步骤。",
+  "attempt.coverage_heading": "关键节点覆盖",
+  "attempt.coverage_status_established": "已完成",
+  "attempt.coverage_status_replaced": "走了等价路径",
+  "attempt.coverage_status_partial": "部分完成",
+  "attempt.coverage_status_missing": "未到达",
+  "attempt.coverage_status_invalid": "出现矛盾",
+  "attempt.coverage_milestone_label": "节点 #{index}",
+  "attempt.error_failed_start_attempt": "无法开始作答。",
+  "attempt.error_failed_change_mode": "无法切换模式。",
+  "attempt.error_failed_add_step": "无法添加步骤。",
+  "attempt.error_failed_edit_step": "无法编辑步骤。",
+  "attempt.error_failed_delete_step": "无法删除步骤。",
+  "attempt.error_failed_fetch_hint": "无法获取提示。",
+  "attempt.error_failed_submit": "提交失败。",
+  "attempt.error_failed_start_new": "无法开始新一轮作答。",
 
   "org.overview.title": "学校总览",
   "org.overview.subtitle": "学校内的老师、学生、班级和最近活动。",

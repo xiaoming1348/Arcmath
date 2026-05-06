@@ -1,10 +1,9 @@
-import { cookies, headers } from "next/headers";
+import { cookies } from "next/headers";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@arcmath/db";
 import {
   DEFAULT_LOCALE,
-  SUPPORTED_LOCALES,
   isLocale,
   type Locale
 } from "./dictionary";
@@ -14,10 +13,16 @@ export const LOCALE_COOKIE = "arcmath.locale";
 /**
  * Server-side locale resolver. Precedence (first hit wins):
  *   1. Explicit cookie set via language switcher.
- *   2. User.locale preference from their DB row.
- *   3. Their school's Organization.defaultLocale.
- *   4. Accept-Language header (first supported match).
- *   5. DEFAULT_LOCALE.
+ *   2. User.locale preference from their DB row (set by user in profile).
+ *   3. Their school's Organization.defaultLocale (set by admin).
+ *   4. DEFAULT_LOCALE (English).
+ *
+ * Note: Accept-Language header is intentionally NOT consulted. Product
+ * decision: every user — domestic or international — gets English by
+ * default. Chinese is opt-in via the language switcher (cookie), the
+ * user's profile setting, or an org-level default. Auto-switching off the
+ * browser's Accept-Language was confusing for international schools in
+ * China where students have Chinese OSes but the curriculum is in English.
  *
  * Called once per request from the root layout. Child server components
  * should receive the resolved locale as a prop instead of re-resolving.
@@ -45,17 +50,6 @@ export async function resolveLocale(): Promise<Locale> {
     if (isLocale(user?.locale)) return user!.locale;
     const orgDefault = user?.organizationMemberships[0]?.organization.defaultLocale;
     if (isLocale(orgDefault)) return orgDefault;
-  }
-
-  const headerStore = await headers();
-  const accept = headerStore.get("accept-language") ?? "";
-  for (const part of accept.split(",")) {
-    const tag = part.trim().split(";")[0]?.toLowerCase() ?? "";
-    // "zh", "zh-CN", "zh-Hans" → zh. "en", "en-US" → en.
-    const prefix = tag.split("-")[0];
-    if ((SUPPORTED_LOCALES as readonly string[]).includes(prefix)) {
-      return prefix as Locale;
-    }
   }
 
   return DEFAULT_LOCALE;

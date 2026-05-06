@@ -6,6 +6,8 @@ import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import { trpc } from "@/lib/trpc/client";
 import { MathFieldEditor } from "@/components/math-field-editor";
+import { useT } from "@/i18n/client";
+import type { Messages } from "@/i18n/dictionary";
 
 type UnifiedPracticeWorkspaceProps = {
   problemId: string;
@@ -87,19 +89,18 @@ type ReviewExtras = {
   recipeSteps: RecipeStepMeta[];
 };
 
-const VERDICT_META: Record<
-  string,
-  { label: string; tone: "verified" | "plausible" | "unknown" | "invalid" | "error" | "pending"; icon: string }
-> = {
-  VERIFIED: { label: "Verified", tone: "verified", icon: "✓" },
-  PLAUSIBLE: { label: "Plausible", tone: "plausible", icon: "⚠" },
-  UNKNOWN: { label: "Unverified", tone: "unknown", icon: "?" },
-  INVALID: { label: "Invalid", tone: "invalid", icon: "✗" },
-  ERROR: { label: "Parse error", tone: "error", icon: "!" },
-  PENDING: { label: "Not yet checked", tone: "pending", icon: "…" }
+type VerdictTone = "verified" | "plausible" | "unknown" | "invalid" | "error" | "pending";
+
+const VERDICT_TONE: Record<string, { tone: VerdictTone; icon: string; labelKey: keyof Messages }> = {
+  VERIFIED: { tone: "verified", icon: "✓", labelKey: "attempt.verdict_verified" },
+  PLAUSIBLE: { tone: "plausible", icon: "⚠", labelKey: "attempt.verdict_plausible" },
+  UNKNOWN: { tone: "unknown", icon: "?", labelKey: "attempt.verdict_unknown" },
+  INVALID: { tone: "invalid", icon: "✗", labelKey: "attempt.verdict_invalid" },
+  ERROR: { tone: "error", icon: "!", labelKey: "attempt.verdict_error" },
+  PENDING: { tone: "pending", icon: "…", labelKey: "attempt.verdict_pending" }
 };
 
-const VERDICT_CLASSES: Record<"verified" | "plausible" | "unknown" | "invalid" | "error" | "pending", string> = {
+const VERDICT_CLASSES: Record<VerdictTone, string> = {
   verified: "border-emerald-200 bg-emerald-50 text-emerald-800",
   plausible: "border-amber-200 bg-amber-50 text-amber-800",
   unknown: "border-slate-200 bg-slate-50 text-slate-700",
@@ -109,14 +110,15 @@ const VERDICT_CLASSES: Record<"verified" | "plausible" | "unknown" | "invalid" |
 };
 
 function VerdictBadge({ verdict, backend }: { verdict: string; backend: string }) {
-  const meta = VERDICT_META[verdict] ?? VERDICT_META.PENDING;
+  const { t } = useT();
+  const meta = VERDICT_TONE[verdict] ?? VERDICT_TONE.PENDING;
   return (
     <span
       className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-semibold ${VERDICT_CLASSES[meta.tone]}`}
-      title={`Checked by ${backend}`}
+      title={t("attempt.verdict_checked_by", { backend })}
     >
       <span aria-hidden>{meta.icon}</span>
-      <span>{meta.label}</span>
+      <span>{t(meta.labelKey)}</span>
       {verdict !== "PENDING" ? (
         <span className="font-normal text-[10px] uppercase tracking-wide opacity-70">{backend}</span>
       ) : null}
@@ -161,12 +163,13 @@ function StepCard({
   onDelete: () => void;
   busy: boolean;
 }) {
+  const { t } = useT();
   const rendered = useMemo(() => renderLatexBlock(step.latexInput), [step.latexInput]);
   const showVerdict = step.verdict !== "PENDING";
   return (
     <li className="rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_4px_12px_rgba(15,23,42,0.04)]">
       <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
-        <span className="font-semibold text-slate-700">Step {step.stepIndex + 1}</span>
+        <span className="font-semibold text-slate-700">{t("attempt.step_n_label", { n: step.stepIndex + 1 })}</span>
         {showVerdict ? (
           <span className="opacity-60">{step.classifiedStepType.replaceAll("_", " ").toLowerCase()}</span>
         ) : null}
@@ -182,7 +185,7 @@ function StepCard({
             onSave={onSaveEdit}
             onCancel={onCancelEdit}
             onDelete={onDelete}
-            saveLabel="Save step"
+            saveLabel={t("attempt.step_save")}
             busy={busy}
             autoFocus
           />
@@ -199,7 +202,7 @@ function StepCard({
 
       {showVerdict && step.feedbackText ? (
         <div className="mt-3 rounded-xl border border-slate-100 bg-slate-50/60 p-3">
-          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Tutor note</p>
+          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{t("attempt.tutor_note")}</p>
           <div className="mt-1">
             <Markdown text={step.feedbackText} />
           </div>
@@ -209,10 +212,10 @@ function StepCard({
       {!isEditing && !locked ? (
         <div className="mt-3 flex flex-wrap gap-2 text-xs">
           <button type="button" className="btn-secondary" onClick={onStartEdit}>
-            Edit
+            {t("attempt.step_edit")}
           </button>
           <button type="button" className="text-slate-500 hover:text-red-600" onClick={onDelete}>
-            Delete
+            {t("attempt.step_delete")}
           </button>
         </div>
       ) : null}
@@ -227,41 +230,40 @@ function EntryChooser({
   onChoose: (params: { entryMode: EntryMode; selfReport: "SOLVED_CONFIDENT" | "ATTEMPTED_STUCK" | "NO_IDEA" }) => void;
   busy: boolean;
 }) {
+  const { t } = useT();
   const cards: Array<{
     entryMode: EntryMode;
     selfReport: "SOLVED_CONFIDENT" | "ATTEMPTED_STUCK" | "NO_IDEA";
-    title: string;
-    desc: string;
+    titleKey: keyof Messages;
+    descKey: keyof Messages;
     accent: string;
   }> = [
     {
       entryMode: "ANSWER_ONLY",
       selfReport: "SOLVED_CONFIDENT",
-      title: "I've solved it",
-      desc: "You're confident — submit your answer and get it graded.",
+      titleKey: "attempt.entry_card_solved_title",
+      descKey: "attempt.entry_card_solved_body",
       accent: "border-emerald-300 hover:bg-emerald-50"
     },
     {
       entryMode: "STUCK_WITH_WORK",
       selfReport: "ATTEMPTED_STUCK",
-      title: "I tried but got stuck",
-      desc: "Write the steps you tried (LaTeX editor). We'll review each step and help you finish.",
+      titleKey: "attempt.entry_card_stuck_title",
+      descKey: "attempt.entry_card_stuck_body",
       accent: "border-amber-300 hover:bg-amber-50"
     },
     {
       entryMode: "HINT_GUIDED",
       selfReport: "NO_IDEA",
-      title: "I have no idea",
-      desc: "We'll give you progressive hints. You can switch to writing steps any time.",
+      titleKey: "attempt.entry_card_no_idea_title",
+      descKey: "attempt.entry_card_no_idea_body",
       accent: "border-sky-300 hover:bg-sky-50"
     }
   ];
 
   return (
     <div className="space-y-3">
-      <p className="text-sm text-slate-600">
-        Try the problem on paper first. Then tell us how it went — we'll tailor the feedback to match.
-      </p>
+      <p className="text-sm text-slate-600">{t("attempt.entry_intro")}</p>
       <div className="grid gap-3 sm:grid-cols-3">
         {cards.map((c) => (
           <button
@@ -271,8 +273,8 @@ function EntryChooser({
             onClick={() => onChoose({ entryMode: c.entryMode, selfReport: c.selfReport })}
             className={`flex flex-col items-start gap-2 rounded-2xl border-2 bg-white p-4 text-left transition ${c.accent}`}
           >
-            <span className="font-semibold text-slate-900">{c.title}</span>
-            <span className="text-xs text-slate-600">{c.desc}</span>
+            <span className="font-semibold text-slate-900">{t(c.titleKey)}</span>
+            <span className="text-xs text-slate-600">{t(c.descKey)}</span>
           </button>
         ))}
       </div>
@@ -291,6 +293,7 @@ function AnswerOnlyInput({
   onSubmit: (answer: string) => void;
   busy: boolean;
 }) {
+  const { t } = useT();
   const [answer, setAnswer] = useState("");
   const trimmed = answer.trim();
 
@@ -298,7 +301,7 @@ function AnswerOnlyInput({
     return (
       <div className="space-y-3">
         <fieldset className="space-y-2">
-          <legend className="text-sm font-medium text-slate-700">Select your answer</legend>
+          <legend className="text-sm font-medium text-slate-700">{t("attempt.select_your_answer")}</legend>
           {choiceOptions.map((c) => (
             <label
               key={c.label}
@@ -328,7 +331,7 @@ function AnswerOnlyInput({
           disabled={trimmed.length === 0 || busy}
           onClick={() => onSubmit(trimmed)}
         >
-          {busy ? "Submitting…" : "Submit answer"}
+          {busy ? t("attempt.submitting") : t("attempt.submit_answer")}
         </button>
       </div>
     );
@@ -337,11 +340,11 @@ function AnswerOnlyInput({
   return (
     <div className="space-y-3">
       <label className="block text-sm text-slate-700">
-        Your answer
+        {t("attempt.your_answer_label")}
         <input
           className="input-field mt-2"
           type="text"
-          placeholder={answerFormat === "INTEGER" ? "Integer, e.g. 42" : "Your answer"}
+          placeholder={answerFormat === "INTEGER" ? t("attempt.integer_placeholder") : t("attempt.your_answer_placeholder")}
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
         />
@@ -352,7 +355,7 @@ function AnswerOnlyInput({
         disabled={trimmed.length === 0 || busy}
         onClick={() => onSubmit(trimmed)}
       >
-        {busy ? "Submitting…" : "Submit answer"}
+        {busy ? t("attempt.submitting") : t("attempt.submit_answer")}
       </button>
     </div>
   );
@@ -365,6 +368,7 @@ export function UnifiedPracticeWorkspace({
   choiceOptions,
   hintTutorEnabled = true
 }: UnifiedPracticeWorkspaceProps) {
+  const { t } = useT();
   const utils = trpc.useUtils();
   const stateQuery = trpc.unifiedAttempt.getState.useQuery(
     { problemId, practiceRunId: practiceRunId ?? undefined },
@@ -411,7 +415,7 @@ export function UnifiedPracticeWorkspace({
       });
       await refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to start attempt.");
+      setError(err instanceof Error ? err.message : t("attempt.error_failed_start_attempt"));
     }
   };
 
@@ -422,7 +426,7 @@ export function UnifiedPracticeWorkspace({
       await upgradeMode.mutateAsync({ attemptId: attempt.id, entryMode: newMode });
       await refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to change mode.");
+      setError(err instanceof Error ? err.message : t("attempt.error_failed_change_mode"));
     }
   };
 
@@ -434,7 +438,7 @@ export function UnifiedPracticeWorkspace({
       setComposerKey((k) => k + 1);
       await refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to add step.");
+      setError(err instanceof Error ? err.message : t("attempt.error_failed_add_step"));
     }
   };
 
@@ -446,7 +450,7 @@ export function UnifiedPracticeWorkspace({
       setEditingStepId(null);
       await refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to edit step.");
+      setError(err instanceof Error ? err.message : t("attempt.error_failed_edit_step"));
     }
   };
 
@@ -457,7 +461,7 @@ export function UnifiedPracticeWorkspace({
       if (editingStepId === stepId) setEditingStepId(null);
       await refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to delete step.");
+      setError(err instanceof Error ? err.message : t("attempt.error_failed_delete_step"));
     }
   };
 
@@ -468,7 +472,7 @@ export function UnifiedPracticeWorkspace({
       await requestHint.mutateAsync({ attemptId: attempt.id });
       await refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to fetch hint.");
+      setError(err instanceof Error ? err.message : t("attempt.error_failed_fetch_hint"));
     }
   };
 
@@ -487,7 +491,7 @@ export function UnifiedPracticeWorkspace({
       setFinalAnswer("");
       await refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to submit.");
+      setError(err instanceof Error ? err.message : t("attempt.error_failed_submit"));
     }
   };
 
@@ -501,7 +505,7 @@ export function UnifiedPracticeWorkspace({
       setReviewExtras(null);
       await refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to start new attempt.");
+      setError(err instanceof Error ? err.message : t("attempt.error_failed_start_new"));
     }
   };
 
@@ -510,10 +514,10 @@ export function UnifiedPracticeWorkspace({
     return (
       <section className="surface-card space-y-4">
         <div className="flex flex-wrap items-center gap-2">
-          <h2 className="text-lg font-semibold text-slate-900">Answer Workspace</h2>
+          <h2 className="text-lg font-semibold text-slate-900">{t("attempt.workspace_title_default")}</h2>
         </div>
         {stateQuery.isLoading ? (
-          <p className="text-sm text-slate-500">Loading…</p>
+          <p className="text-sm text-slate-500">{t("attempt.loading_state")}</p>
         ) : (
           <EntryChooser onChoose={handleChoose} busy={chooseEntry.isPending} />
         )}
@@ -529,10 +533,10 @@ export function UnifiedPracticeWorkspace({
     };
     return (
       <section className="surface-card space-y-4">
-        <h2 className="text-lg font-semibold text-slate-900">Proof Workspace</h2>
-        <p className="text-sm text-slate-600">Write your proof one step at a time. Nothing is verified until you submit.</p>
+        <h2 className="text-lg font-semibold text-slate-900">{t("attempt.workspace_title_proof")}</h2>
+        <p className="text-sm text-slate-600">{t("attempt.proof_workspace_help")}</p>
         <button type="button" className="btn-primary" onClick={autoInit} disabled={chooseEntry.isPending}>
-          {chooseEntry.isPending ? "Starting…" : "Start proof attempt"}
+          {chooseEntry.isPending ? t("attempt.starting") : t("attempt.start_proof_attempt")}
         </button>
         {error ? <p className="text-sm text-red-600">{error}</p> : null}
       </section>
@@ -560,19 +564,19 @@ export function UnifiedPracticeWorkspace({
       <div className="space-y-1">
         <div className="flex flex-wrap items-center gap-2">
           <h2 className="text-lg font-semibold text-slate-900">
-            {answerFormat === "PROOF" ? "Proof Workspace" : "Answer Workspace"}
+            {answerFormat === "PROOF" ? t("attempt.workspace_title_proof") : t("attempt.workspace_title_default")}
           </h2>
           <ModeBadge mode={mode} locked={locked} />
         </div>
         {!locked ? (
           <p className="text-sm text-slate-600">
             {mode === "ANSWER_ONLY"
-              ? "You told us you've solved it — submit your answer below."
+              ? t("attempt.workspace_subtitle_answer_only")
               : mode === "STUCK_WITH_WORK"
-                ? "Write the steps you tried. Submit when you're ready — we'll check each one."
+                ? t("attempt.workspace_subtitle_stuck")
                 : mode === "HINT_GUIDED"
-                  ? "Take hints one at a time. Switch to writing steps or typing an answer whenever you're ready."
-                  : "Build your proof step by step. Everything gets verified on submit."}
+                  ? t("attempt.workspace_subtitle_hint_guided")
+                  : t("attempt.workspace_subtitle_proof")}
           </p>
         ) : null}
       </div>
@@ -585,7 +589,7 @@ export function UnifiedPracticeWorkspace({
           {hintHistory.map((h) => (
             <div key={h.id} className="rounded-2xl border border-sky-200 bg-sky-50 p-3 text-sm text-slate-800">
               <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-sky-700">
-                Hint {h.hintLevel}
+                {t("attempt.hint_label", { level: h.hintLevel })}
               </p>
               <Markdown text={h.hintText} />
             </div>
@@ -615,12 +619,14 @@ export function UnifiedPracticeWorkspace({
       {/* Step composer */}
       {!locked && showSteps && editingStepId === null ? (
         <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4">
-          <p className="mb-2 text-sm font-semibold text-slate-700">Add step {steps.length + 1}</p>
+          <p className="mb-2 text-sm font-semibold text-slate-700">
+            {t("attempt.add_step_label", { n: steps.length + 1 })}
+          </p>
           <MathFieldEditor
             key={composerKey}
             initialValue=""
             onSave={handleAddStep}
-            saveLabel="Add step"
+            saveLabel={t("attempt.add_step_button")}
             busy={addStep.isPending}
           />
         </div>
@@ -653,11 +659,11 @@ export function UnifiedPracticeWorkspace({
         ) : (
           <div className="rounded-2xl border border-slate-200 bg-white p-3">
             <label className="block text-sm text-slate-700">
-              Final answer (optional — submit only if you're reasonably confident)
+              {t("attempt.final_answer_label_optional")}
               <input
                 className="input-field mt-2"
                 type="text"
-                placeholder="Leave blank if you didn't reach a confident answer"
+                placeholder={t("attempt.final_answer_placeholder")}
                 value={finalAnswer}
                 onChange={(e) => setFinalAnswer(e.target.value)}
               />
@@ -682,10 +688,10 @@ export function UnifiedPracticeWorkspace({
                   disabled={requestHint.isPending || hintsExhausted}
                 >
                   {requestHint.isPending
-                    ? "Loading hint…"
+                    ? t("attempt.loading_hint")
                     : hintsExhausted
-                      ? "All 3 hints used"
-                      : `Show hint ${hintHistory.length + 1}`}
+                      ? t("attempt.all_hints_used")
+                      : t("attempt.show_hint_n", { n: hintHistory.length + 1 })}
                 </button>
               ) : null}
               <button
@@ -694,7 +700,7 @@ export function UnifiedPracticeWorkspace({
                 onClick={() => handleUpgradeMode("STUCK_WITH_WORK")}
                 disabled={upgradeMode.isPending}
               >
-                I'll try writing steps now
+                {t("attempt.try_writing_steps")}
               </button>
               <button
                 type="button"
@@ -702,7 +708,7 @@ export function UnifiedPracticeWorkspace({
                 onClick={() => handleUpgradeMode("ANSWER_ONLY")}
                 disabled={upgradeMode.isPending}
               >
-                I've got an answer
+                {t("attempt.got_an_answer")}
               </button>
             </>
           ) : mode === "STUCK_WITH_WORK" ? (
@@ -714,7 +720,9 @@ export function UnifiedPracticeWorkspace({
                   onClick={handleRequestHint}
                   disabled={requestHint.isPending}
                 >
-                  {requestHint.isPending ? "Loading hint…" : `Stuck — show hint ${hintHistory.length + 1}`}
+                  {requestHint.isPending
+                    ? t("attempt.loading_hint")
+                    : t("attempt.stuck_show_hint_n", { n: hintHistory.length + 1 })}
                 </button>
               ) : null}
             </>
@@ -727,8 +735,8 @@ export function UnifiedPracticeWorkspace({
         <div className="flex items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-3">
           <p className="text-sm text-slate-600">
             {mode === "PROOF_STEPS"
-              ? "Done writing? We'll verify each step and give you an overall review."
-              : "Submit when you're ready. We'll review every step and grade your answer if you wrote one."}
+              ? t("attempt.submit_row_proof")
+              : t("attempt.submit_row_default")}
           </p>
           <button
             type="button"
@@ -736,7 +744,7 @@ export function UnifiedPracticeWorkspace({
             onClick={handleSubmit}
             disabled={submit.isPending}
           >
-            {submit.isPending ? "Grading…" : "Submit for review"}
+            {submit.isPending ? t("attempt.grading") : t("attempt.submit_for_review")}
           </button>
         </div>
       ) : null}
@@ -758,15 +766,16 @@ export function UnifiedPracticeWorkspace({
 }
 
 function ModeBadge({ mode, locked }: { mode: EntryMode; locked: boolean }) {
-  const labels: Record<EntryMode, string> = {
-    ANSWER_ONLY: "Direct answer",
-    STUCK_WITH_WORK: "With work",
-    HINT_GUIDED: "Hints",
-    PROOF_STEPS: "Proof"
+  const { t } = useT();
+  const labelKeys: Record<EntryMode, keyof Messages> = {
+    ANSWER_ONLY: "attempt.mode_badge_answer_only",
+    STUCK_WITH_WORK: "attempt.mode_badge_stuck",
+    HINT_GUIDED: "attempt.mode_badge_hint_guided",
+    PROOF_STEPS: "attempt.mode_badge_proof"
   };
   return (
     <span className="badge">
-      {labels[mode]} {locked ? "· submitted" : ""}
+      {t(labelKeys[mode])} {locked ? `· ${t("attempt.mode_badge_submitted_suffix")}` : ""}
     </span>
   );
 }
@@ -779,30 +788,30 @@ function ModeBadge({ mode, locked }: { mode: EntryMode; locked: boolean }) {
 // distinct from "matched the recipe exactly".
 const COVERAGE_META: Record<
   string,
-  { label: string; icon: string; classes: string }
+  { labelKey: keyof Messages; icon: string; classes: string }
 > = {
   ESTABLISHED: {
-    label: "Established",
+    labelKey: "attempt.coverage_status_established",
     icon: "✓",
     classes: "border-emerald-200 bg-emerald-50 text-emerald-800"
   },
   REPLACED: {
-    label: "Replaced (alt path)",
+    labelKey: "attempt.coverage_status_replaced",
     icon: "↻",
     classes: "border-sky-200 bg-sky-50 text-sky-800"
   },
   PARTIAL: {
-    label: "Partial",
+    labelKey: "attempt.coverage_status_partial",
     icon: "◐",
     classes: "border-amber-200 bg-amber-50 text-amber-800"
   },
   MISSING: {
-    label: "Not reached",
+    labelKey: "attempt.coverage_status_missing",
     icon: "○",
     classes: "border-slate-200 bg-slate-50 text-slate-600"
   },
   INVALID: {
-    label: "Contradicted",
+    labelKey: "attempt.coverage_status_invalid",
     icon: "✗",
     classes: "border-red-200 bg-red-50 text-red-800"
   }
@@ -815,6 +824,7 @@ function MilestoneCoverageChecklist({
   coverage: MilestoneCoverageEntry[];
   recipeSteps: RecipeStepMeta[];
 }) {
+  const { t } = useT();
   if (coverage.length === 0) return null;
   // Merge recipe title + technique tags with coverage entries by index.
   // If recipeSteps is empty (older server, or solutionRecipe unavailable)
@@ -824,7 +834,7 @@ function MilestoneCoverageChecklist({
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-4">
       <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
-        Milestone coverage
+        {t("attempt.coverage_heading")}
       </p>
       <ul className="space-y-2">
         {coverage
@@ -842,16 +852,16 @@ function MilestoneCoverageChecklist({
                   <span aria-hidden className="text-base leading-none">
                     {meta.icon}
                   </span>
-                  <span className="uppercase tracking-wide">{meta.label}</span>
-                  <span className="opacity-70">Milestone #{c.index}</span>
+                  <span className="uppercase tracking-wide">{t(meta.labelKey)}</span>
+                  <span className="opacity-70">{t("attempt.coverage_milestone_label", { index: c.index })}</span>
                   {step?.technique && step.technique.length > 0 ? (
                     <span className="ml-auto flex flex-wrap gap-1 text-[10px] font-medium opacity-70">
-                      {step.technique.map((t) => (
+                      {step.technique.map((tag) => (
                         <span
-                          key={t}
+                          key={tag}
                           className="rounded-full border border-current/30 bg-white/60 px-1.5 py-0.5"
                         >
-                          {t}
+                          {tag}
                         </span>
                       ))}
                     </span>
@@ -894,6 +904,7 @@ function SubmittedReview({
   onStartNew: () => void;
   startBusy: boolean;
 }) {
+  const { t } = useT();
   const verifiedCount = attempt.steps.filter((s) => s.verdict === "VERIFIED").length;
   const invalidCount = attempt.steps.filter((s) => s.verdict === "INVALID" || s.verdict === "ERROR").length;
   const softCount = attempt.steps.filter((s) => s.verdict === "PLAUSIBLE" || s.verdict === "UNKNOWN").length;
@@ -914,10 +925,10 @@ function SubmittedReview({
           }`}
         >
           <p className="text-xs font-semibold uppercase tracking-wide">
-            Answer: {attempt.isCorrect ? "✓ correct" : "✗ not correct"}
+            {t("attempt.review_answer_label")}: {attempt.isCorrect ? t("attempt.review_correct_short") : t("attempt.review_incorrect_short")}
           </p>
           <p className="mt-1 text-sm">
-            Your answer: <span className="font-semibold">{attempt.submittedAnswer}</span>
+            {t("attempt.review_your_answer")}: <span className="font-semibold">{attempt.submittedAnswer}</span>
           </p>
           {!attempt.isCorrect && attempt.explanationText ? (
             <div className="mt-2">
@@ -940,7 +951,7 @@ function SubmittedReview({
           </span>
           {attempt.submittedAt ? (
             <span className="ml-auto text-slate-500">
-              Submitted {new Date(attempt.submittedAt).toLocaleString()}
+              {t("attempt.review_submitted_at", { time: new Date(attempt.submittedAt).toLocaleString() })}
             </span>
           ) : null}
         </div>
@@ -955,19 +966,19 @@ function SubmittedReview({
 
       {feedbackForDisplay ? (
         <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-500">Overall review</p>
+          <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-500">{t("attempt.review_overall_label")}</p>
           <Markdown text={feedbackForDisplay} />
         </div>
       ) : null}
 
       {attempt.hintsUsedCount > 0 ? (
         <p className="text-xs text-slate-500">
-          Hints used in this attempt: {attempt.hintsUsedCount}
+          {t("attempt.review_hints_used", { count: attempt.hintsUsedCount })}
         </p>
       ) : null}
 
       <button type="button" className="btn-secondary w-full" onClick={onStartNew} disabled={startBusy}>
-        {startBusy ? "Starting…" : "Start a new attempt"}
+        {startBusy ? t("attempt.starting") : t("attempt.review_start_new")}
       </button>
     </div>
   );
