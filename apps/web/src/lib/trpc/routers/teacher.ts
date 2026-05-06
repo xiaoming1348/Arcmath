@@ -53,7 +53,7 @@ async function assertCanManageClass(
 ) {
   const klass = await prisma.class.findUnique({
     where: { id: args.classId },
-    select: { organizationId: true, createdByUserId: true }
+    select: { organizationId: true, createdByUserId: true, assignedTeacherId: true }
   });
   if (!klass) {
     throw new TRPCError({ code: "NOT_FOUND", message: "Class not found" });
@@ -62,10 +62,16 @@ async function assertCanManageClass(
     throw new TRPCError({ code: "FORBIDDEN", message: "Class is not in your school" });
   }
   if (canManageOrganization(args.actingRole)) return; // school-admin/owner
-  if (klass.createdByUserId === args.actingUserId) return; // creator teacher
+  // Under the roster-creation policy the school admin is `createdBy`
+  // and the teacher who runs the class is `assignedTeacher`, so the
+  // teacher gate is whether they're the assigned teacher. Legacy
+  // pre-pivot classes (createdByUser is the teacher themselves) still
+  // pass via the second branch.
+  if (klass.assignedTeacherId === args.actingUserId) return;
+  if (klass.createdByUserId === args.actingUserId) return;
   throw new TRPCError({
     code: "FORBIDDEN",
-    message: "Only the class owner or a school admin can modify this class"
+    message: "Only the assigned teacher or a school admin can modify this class"
   });
 }
 
