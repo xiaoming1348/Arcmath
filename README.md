@@ -62,6 +62,22 @@ For the planned exam placement / diagnostic flow, see [DIAGNOSTIC_BLUEPRINT.md](
 
 For the broader three-track content expansion plan, see [CONTENT_LIBRARY_PLAN.md](/Users/yimingsun/Desktop/Arcmath/CONTENT_LIBRARY_PLAN.md).
 
+## Pre-pilot smoke test
+
+Before flipping new content live or onboarding a new school, run the
+synthetic-student simulator:
+
+```bash
+pnpm -C apps/web smoke:student
+```
+
+It creates a throwaway org, walks 4 personas (`diligent`,
+`sloppy_format`, `confused`, `hint_addict`) through a fixture set of
+live problems, and asserts the grader + hint pipeline behave correctly.
+Cleans up after itself. ~30 seconds, ~200 assertions.
+
+Wiring this to GitHub Actions: see [`.github/workflows/student-smoke.yml`](/Users/yimingsun/Desktop/Arcmath/.github/workflows/student-smoke.yml). Required repo secrets: `SMOKE_DATABASE_URL`, `NEXTAUTH_SECRET`, `PASSWORD_PEPPER`, `OPENAI_API_KEY`.
+
 Why this matters:
 - newer tutor features depend on recent Prisma migrations (`topicKey`, `difficultyBand`, `solutionSketch`, curated hints, `PracticeRun`)
 - if your local Postgres has not been migrated up, `/problems` routes can fail with Prisma `P2022 column does not exist`

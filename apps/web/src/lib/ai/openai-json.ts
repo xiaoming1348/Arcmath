@@ -2,7 +2,44 @@ import { z } from "zod";
 
 const OPENAI_RESPONSES_URL = process.env.OPENAI_BASE_URL ?? "https://api.openai.com/v1/responses";
 const OPENAI_MODEL = process.env.OPENAI_MODEL ?? "gpt-4.1-mini";
+// Hard ceiling on the retry-bumped token budget. Even when the model
+// truncates, doubling forever can cost a lot if the prompt is poorly
+// formed. 2048 covers every legitimate Arcmath JSON schema we use today.
+const MAX_OUTPUT_TOKENS_CEILING = 2048;
 const missingApiKeyWarnings = new Set<string>();
+
+/** True if the OpenAI Responses API said the response was truncated by
+ *  max_output_tokens. The API can surface this two ways depending on
+ *  status: `status === "incomplete"` with `incomplete_details.reason
+ *  === "max_output_tokens"`, OR a per-output `finish_reason === "length"`.
+ *  We check both so this stays robust across response-shape changes. */
+function wasTruncatedByLength(payload: unknown): boolean {
+  if (!payload || typeof payload !== "object") return false;
+  const record = payload as {
+    status?: unknown;
+    incomplete_details?: unknown;
+    output?: Array<{ finish_reason?: unknown }>;
+  };
+  if (record.status === "incomplete") {
+    const details = record.incomplete_details;
+    if (
+      details &&
+      typeof details === "object" &&
+      "reason" in details &&
+      (details as { reason?: unknown }).reason === "max_output_tokens"
+    ) {
+      return true;
+    }
+  }
+  if (Array.isArray(record.output)) {
+    for (const item of record.output) {
+      if (item && (item.finish_reason === "length" || item.finish_reason === "max_output_tokens")) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
 
 function extractOutputText(payload: unknown): string | null {
   if (!payload || typeof payload !== "object") {
@@ -76,71 +113,143 @@ export async function callOpenAIJson<T>(params: {
     return null;
   }
 
-  try {
-    const response = await fetch(OPENAI_RESPONSES_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`
-      },
-      body: JSON.stringify({
-        model: OPENAI_MODEL,
-        input: params.prompt,
-        max_output_tokens: params.maxOutputTokens ?? 220,
-        text: {
-          format: {
-            type: "json_schema",
-            name: params.schemaName,
-            strict: true,
-            schema: params.jsonSchema
+  // Retry strategy. The two recoverable failure modes we see most often:
+  //   1. The model writes valid JSON but hits max_output_tokens before
+  //      closing the last string → JSON.parse throws "Unterminated string".
+  //   2. The model truncates within a string and the API marks the
+  //      response as `status: "incomplete"` (no parse error needed; we
+  //      can detect it before parsing).
+  // Both are fixed by retrying once with a doubled token budget. Cost
+  // impact is small because (a) it's per-call, not per-session, and (b)
+  // capped at MAX_OUTPUT_TOKENS_CEILING.
+  const initialBudget = params.maxOutputTokens ?? 220;
+  const retryBudget = Math.min(initialBudget * 2, MAX_OUTPUT_TOKENS_CEILING);
+
+  // First attempt, then optional retry with bumped tokens.
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    const isRetry = attempt === 1;
+    const tokenBudget = isRetry ? retryBudget : initialBudget;
+    // Skip the retry if we're already at the ceiling — no point spending
+    // more API calls when the budget can't grow.
+    if (isRetry && tokenBudget === initialBudget) break;
+
+    try {
+      const response = await fetch(OPENAI_RESPONSES_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          model: OPENAI_MODEL,
+          input: params.prompt,
+          max_output_tokens: tokenBudget,
+          text: {
+            format: {
+              type: "json_schema",
+              name: params.schemaName,
+              strict: true,
+              schema: params.jsonSchema
+            }
           }
+        })
+      });
+
+      if (!response.ok) {
+        console.error(`[${params.scope}] OpenAI request failed`, {
+          status: response.status,
+          statusText: response.statusText,
+          schemaName: params.schemaName,
+          model: OPENAI_MODEL,
+          attempt
+        });
+        // 5xx → worth retrying with the same budget; 4xx → no point.
+        // We're already in the retry loop, so let the outer loop decide.
+        if (response.status >= 500 && !isRetry) continue;
+        return null;
+      }
+
+      const payload = (await response.json()) as unknown;
+
+      // Detect API-reported truncation up front so we don't waste a
+      // JSON.parse on something we know is unparseable.
+      if (wasTruncatedByLength(payload) && !isRetry) {
+        console.warn(`[${params.scope}] OpenAI response truncated by max_output_tokens; retrying with bumped budget`, {
+          schemaName: params.schemaName,
+          initialBudget,
+          retryBudget
+        });
+        continue;
+      }
+
+      const outputText = extractOutputText(payload);
+
+      if (!outputText) {
+        console.error(`[${params.scope}] OpenAI response missing output text`, {
+          schemaName: params.schemaName,
+          model: OPENAI_MODEL,
+          attempt
+        });
+        return null;
+      }
+
+      let parsedJson: unknown;
+      try {
+        parsedJson = JSON.parse(outputText);
+      } catch (parseError) {
+        // JSON.parse usually fails on mid-string truncation. If we
+        // haven't retried yet, give it one more shot with more tokens.
+        // After the retry, surface as a real failure.
+        if (!isRetry) {
+          console.warn(`[${params.scope}] OpenAI JSON parse failed; retrying with bumped budget`, {
+            schemaName: params.schemaName,
+            initialBudget,
+            retryBudget,
+            error: parseError instanceof Error ? parseError.message : String(parseError)
+          });
+          continue;
         }
-      })
-    });
+        console.error(`[${params.scope}] OpenAI JSON parse failed after retry`, {
+          schemaName: params.schemaName,
+          model: OPENAI_MODEL,
+          error: parseError instanceof Error ? parseError.message : String(parseError),
+          // Help debugging: log just the tail (where truncation tends
+          // to land), capped to avoid filling logs with megabytes.
+          outputTextTail: outputText.slice(-200)
+        });
+        return null;
+      }
 
-    if (!response.ok) {
-      console.error(`[${params.scope}] OpenAI request failed`, {
-        status: response.status,
-        statusText: response.statusText,
-        schemaName: params.schemaName,
-        model: OPENAI_MODEL
-      });
-      return null;
-    }
+      const parsed = params.schema.safeParse(parsedJson);
 
-    const payload = (await response.json()) as unknown;
-    const outputText = extractOutputText(payload);
+      if (!parsed.success) {
+        console.error(`[${params.scope}] OpenAI response failed schema validation`, {
+          schemaName: params.schemaName,
+          model: OPENAI_MODEL,
+          attempt,
+          issues: parsed.error.issues.map((issue) => ({
+            path: issue.path.join("."),
+            code: issue.code
+          }))
+        });
+        return null;
+      }
 
-    if (!outputText) {
-      console.error(`[${params.scope}] OpenAI response missing output text`, {
-        schemaName: params.schemaName,
-        model: OPENAI_MODEL
-      });
-      return null;
-    }
-
-    const parsedJson = JSON.parse(outputText) as unknown;
-    const parsed = params.schema.safeParse(parsedJson);
-
-    if (!parsed.success) {
-      console.error(`[${params.scope}] OpenAI response failed schema validation`, {
+      return parsed.data;
+    } catch (error) {
+      console.error(`[${params.scope}] OpenAI request threw`, {
         schemaName: params.schemaName,
         model: OPENAI_MODEL,
-        issues: parsed.error.issues.map((issue) => ({
-          path: issue.path.join("."),
-          code: issue.code
-        }))
+        attempt,
+        error: error instanceof Error ? error.message : "Unknown error"
       });
+      // Network-level failure: only retry once, and only on the first
+      // attempt. (Network blips can resolve; deterministic failures
+      // won't.)
+      if (!isRetry) continue;
       return null;
     }
-
-    return parsed.data;
-  } catch (error) {
-    console.error(`[${params.scope}] OpenAI request threw`, {
-      schemaName: params.schemaName,
-      model: OPENAI_MODEL,
-      error: error instanceof Error ? error.message : "Unknown error"
-    });
-    return null;
   }
+
+  return null;
 }

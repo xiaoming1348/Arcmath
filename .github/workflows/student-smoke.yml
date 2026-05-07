@@ -1,0 +1,83 @@
+name: Student smoke test
+
+# Runs the synthetic-student smoke test
+# (apps/web/src/scripts/student-simulator.ts) against a real Neon DB
+# branch. Catches regressions in the grading + hint pipeline before
+# they reach pilot students.
+#
+# Trigger surface:
+#   - manual via the Actions tab (workflow_dispatch)
+#   - on every push to main
+#   - nightly at 09:00 UTC (= 17:00 Beijing)
+#
+# Why not on every PR? The simulator hits the real Neon DB and OpenAI;
+# a per-PR run would burn API quota and DB connections faster than we
+# need. main + nightly is the right cadence for a pilot. If we ever
+# wire up a CI-only Neon branch, flip this to PRs too.
+#
+# Required GitHub repo secrets (set in Settings → Secrets and variables
+# → Actions):
+#   - SMOKE_DATABASE_URL: a Neon connection string. Can be the same
+#     as prod (the simulator only writes to its own
+#     `student-simulator-smoke` org), but using a dedicated CI branch
+#     is cleaner if you have one.
+#   - NEXTAUTH_SECRET, PASSWORD_PEPPER: any reasonable values; the
+#     simulator never authenticates externally, but the app code
+#     reads these on import.
+#   - OPENAI_API_KEY: needed for hint-tutor + proof-tutor LLM paths.
+#     Without this, hints fall back to safe local strings; the smoke
+#     test will still pass but not exercise the full LLM path.
+#
+# Optional secrets:
+#   - PROOF_VERIFIER_URL: pointer at the SymPy/Lean step-verifier.
+#     If unset, step verification falls back to LLM-only (the
+#     simulator already tolerates this).
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  schedule:
+    # 09:00 UTC == 01:00 PT == 17:00 Beijing
+    - cron: "0 9 * * *"
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Prisma client
+        env:
+          DATABASE_URL: ${{ secrets.SMOKE_DATABASE_URL }}
+        run: pnpm -C packages/db prisma generate
+
+      - name: Run student simulator
+        env:
+          DATABASE_URL: ${{ secrets.SMOKE_DATABASE_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          NEXTAUTH_URL: http://localhost:3000
+          PASSWORD_PEPPER: ${{ secrets.PASSWORD_PEPPER }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          PROOF_VERIFIER_URL: ${{ secrets.PROOF_VERIFIER_URL }}
+          # The simulator's setup creates orgs/users in its own slug
+          # space; gating off avoids needing a real grant table for the
+          # synthetic student.
+          DISABLE_ACCESS_GATING: "1"
+        run: pnpm -C apps/web smoke:student
