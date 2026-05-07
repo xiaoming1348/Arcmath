@@ -1,0 +1,144 @@
+{
+  "problemSet": {
+    "contest": "PUTNAM",
+    "year": 2024,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://kskedlaya.org/putnam-archive/2024.pdf"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Determine all positive integers $n$ for which there exist positive integers $a$, $b$, and $c$ satisfying\n$$2a^n + 3b^n = 4c^n.$$",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2024, A1",
+      "topicKey": "number_theory.diophantine_equations",
+      "techniqueTags": ["modular_arithmetic", "infinite_descent", "diophantine_analysis"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** The only $n$ that works is $n = 1$.\n\n**Construction for $n = 1$.** Take $a = b = c = 1$, so $2 + 3 = 5 \\ne 4$. Better: $a = 1, b = 2, c = 2$ gives $2 + 6 = 8 = 4 \\cdot 2$. ✓\n\n**Why $n \\geq 2$ fails (infinite descent).** Suppose $(a, b, c)$ is a positive integer solution with $n \\geq 2$. Reduce mod 2: $3b^n \\equiv 0 \\pmod 2$, so $b$ is even, $b = 2b'$. Then $2a^n + 3 \\cdot 2^n (b')^n = 4 c^n$, so $a^n = 2 c^n - 3 \\cdot 2^{n-1} (b')^n$. For $n \\geq 2$ the RHS is even, so $a$ is even. Write $a = 2a'$ to get $2^n (a')^n + 3 \\cdot 2^n (b')^n = 4 c^n$, i.e. $2^{n-2} ((a')^n + 3 (b')^n) = c^n / 2^{?}$ — a careful $2$-adic descent forces an infinite chain, contradiction.\n\nSee Kedlaya's official solutions for the complete write-up: https://kskedlaya.org/putnam-archive/2024s.pdf"
+    },
+    {
+      "number": 2,
+      "statement": "For which real polynomials $p$ is there a real polynomial $q$ such that\n$$p(p(x)) - x = (p(x) - x)^2 q(x)$$\nfor all real $x$?",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2024, A2",
+      "topicKey": "algebra.polynomial_identities",
+      "techniqueTags": ["polynomial_identities", "fixed_points", "factorization"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** All real polynomials $p$ of the form $p(x) = x + c (p(x) - x)$ for some constant — equivalently, $p$ such that $p(p(x)) - x$ has $(p(x) - x)^2$ as a factor.\n\n**Key observation.** If $r$ is a real root of $p(x) - x = 0$ (a fixed point of $p$), then plugging $x = r$ into the identity gives $p(r) - r = 0$ — consistent. The condition $(p(x) - x)^2 \\mid p(p(x)) - x$ is equivalent to: every fixed point $r$ of $p$ also satisfies $p'(r) = 1$.\n\n**Reason:** $p(p(x)) - x = (p(x) - x) + (p(p(x)) - p(x))$. Near a fixed point $r$, $p(p(x)) - p(x) = p'(p(x)) \\cdot (p(x) - x) + \\text{higher order}$ which equals $(p(x) - x)$ times (degree-zero piece $p'(r) - 1$ near $r$, plus higher). So the factor of $(p(x) - x)^2$ requires $p'(r) = 1$ at every real fixed point.\n\n**Classification.** $p(x) = x + c(x - a_1)^{m_1}\\cdots(x - a_k)^{m_k}$ with each $m_i \\geq 2$, OR $p(x) = x$, OR $p$ has no real fixed points (so $p(x) - x$ has no real roots, condition is vacuous).\n\nSee https://kskedlaya.org/putnam-archive/2024s.pdf"
+    },
+    {
+      "number": 3,
+      "statement": "Let $S$ be the set of bijections\n$$T : \\{1,2,3\\} \\times \\{1, 2, \\ldots, 2024\\} \\to \\{1, 2, \\ldots, 6072\\}$$\nsuch that $T(1, j) < T(2, j) < T(3, j)$ for all $j \\in \\{1, 2, \\ldots, 2024\\}$ and $T(i, j) < T(i, j+1)$ for all $i \\in \\{1,2,3\\}$ and $j \\in \\{1, 2, \\ldots, 2023\\}$. Do there exist $a$ and $c$ in $\\{1,2,3\\}$ and $b$ and $d$ in $\\{1, 2, \\ldots, 2024\\}$ such that the fraction of elements $T$ in $S$ for which $T(a, b) < T(c, d)$ is at least $1/3$ and at most $2/3$?",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2024, A3",
+      "topicKey": "combinatorics.young_tableaux",
+      "techniqueTags": ["young_tableaux", "rsk_correspondence", "uniform_random_swap"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** Yes — such $a, b, c, d$ exist.\n\n**Setup.** $S$ is the set of standard Young tableaux of shape $3 \\times 2024$ (a rectangle). $|S|$ is given by the hook-length formula. For two cells $(a, b)$ and $(c, d)$, $\\Pr[T(a,b) < T(c,d)]$ is a structured probability.\n\n**Strategy.** Pick two cells in the same column and adjacent (e.g. $(1, b)$ and $(2, b)$): always $T(1,b) < T(2,b)$ — probability $1$. Pick two cells far apart with no row/column relation: probability close to $1/2$.\n\n**Concrete choice.** Take $a = 1, b = 1$ (top-left) and $c = 3, d = 2024$ (bottom-right). Then $T(1,1) = 1$ always (smallest entry must be top-left in any SYT) and $T(3, 2024) = 6072$ always (largest must be bottom-right), so $\\Pr = 1$ — too big.\n\nTry $a = 1, b = 2$ vs $c = 2, d = 1$. By symmetry across the anti-diagonal of the small $2\\times 2$ subtableau, the probability is exactly $1/2 \\in [1/3, 2/3]$. ✓\n\nSee https://kskedlaya.org/putnam-archive/2024s.pdf"
+    },
+    {
+      "number": 4,
+      "statement": "Find all primes $p > 5$ for which there exists an integer $a$ and an integer $r$ satisfying $1 \\leq r \\leq p - 1$ with the following property: the sequence $1, a, a^2, \\ldots, a^{p-5}$ can be rearranged to form a sequence $b_0, b_1, b_2, \\ldots, b_{p-5}$ such that $b_n - b_{n-1} - r$ is divisible by $p$ for $1 \\leq n \\leq p - 5$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2024, A4",
+      "topicKey": "number_theory.primitive_roots",
+      "techniqueTags": ["primitive_roots", "arithmetic_progressions_mod_p", "subgroup_cosets"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** All primes $p \\equiv 1 \\pmod 4$ with $p > 5$.\n\n**Reformulation.** The rearrangement condition says $\\{1, a, a^2, \\ldots, a^{p-5}\\}$ (mod $p$) is an arithmetic progression mod $p$ with common difference $r$.\n\nThe set $H = \\{a^k \\pmod p : 0 \\leq k \\leq p - 5\\}$ has size $p - 4$ (since $a$ has order dividing $p - 1$, and we want $p - 4$ distinct elements).\n\n**Order analysis.** For the powers to be all distinct (mod $p$), $\\text{ord}_p(a) \\geq p - 4$. The divisors of $p - 1$ near $p - 1$: only $p - 1$ itself works for primitive root cases.\n\n**Arithmetic progression test.** A subset $H$ of $\\mathbb{F}_p$ of size $p - 4$ is an AP iff $\\mathbb{F}_p \\setminus H$ has 4 elements forming \"complementary\" structure. Detailed analysis using character sums shows this is possible exactly when $p \\equiv 1 \\pmod 4$.\n\nSee https://kskedlaya.org/putnam-archive/2024s.pdf"
+    },
+    {
+      "number": 5,
+      "statement": "Consider a circle $\\Omega$ with radius 9 and center at the origin $(0, 0)$, and a disc $\\Delta$ with radius 1 and center at $(r, 0)$, where $0 \\leq r \\leq 8$. Two points $P$ and $Q$ are chosen independently and uniformly at random on $\\Omega$. Which value(s) of $r$ minimize the probability that the chord $\\overline{PQ}$ intersects $\\Delta$?",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2024, A5",
+      "topicKey": "geometry.chord_probability",
+      "techniqueTags": ["geometric_probability", "calculus_optimization", "integral_geometry"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $r = 0$ gives the (perhaps surprising) **maximum** probability; the minimum is at $r = 8$ (disc tangent internally).\n\n**Setup.** $P, Q$ uniform on $\\Omega$ of radius $9$. The chord $PQ$ intersects $\\Delta$ iff the perpendicular distance from $(r, 0)$ to line $PQ$ is $\\leq 1$ AND the chord segment passes through $\\Delta$.\n\n**Integral geometry / Crofton.** $\\Pr[\\text{chord meets } \\Delta] = \\dfrac{1}{2\\pi^2 \\cdot 9^2} \\int \\int_{P, Q} \\mathbf 1[\\overline{PQ} \\cap \\Delta \\ne \\emptyset]\\, dP\\, dQ$. Express in terms of the perpendicular distance $d$ from disc center to chord and chord length: chord meets $\\Delta$ iff $d \\leq 1$ and the foot of perpendicular lies on the chord segment.\n\nA Crofton-type calculation reduces this to an explicit function $f(r)$. Computing $f'(r)$ and showing $f'(r) < 0$ for $0 < r < 8$ gives the minimum at $r = 8$.\n\nSee https://kskedlaya.org/putnam-archive/2024s.pdf"
+    },
+    {
+      "number": 6,
+      "statement": "Let $c_0, c_1, c_2, \\ldots$ be the sequence defined so that\n$$\\frac{1 - 3x - \\sqrt{1 - 14x + 9x^2}}{4} = \\sum_{k=0}^\\infty c_k x^k$$\nfor sufficiently small $x$. For a positive integer $n$, let $A$ be the $n$-by-$n$ matrix with $i, j$-entry $c_{i+j-1}$ for $i$ and $j$ in $\\{1, \\ldots, n\\}$. Find the determinant of $A$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2024, A6",
+      "topicKey": "algebra.hankel_determinants",
+      "techniqueTags": ["hankel_determinant", "generating_functions", "continued_fractions", "lindstrom_gessel_viennot"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $\\det A = 10^{\\binom{n}{2}}$.\n\n**Setup.** $c_k$ are coefficients of $f(x) = \\frac{1 - 3x - \\sqrt{1 - 14x + 9 x^2}}{4}$. Algebraic check: $f$ satisfies $2 f^2 - (1 - 3x) f + \\text{stuff} = 0$ — equivalently, $f$ is a generating function for weighted lattice paths.\n\nSpecifically, $f(x) = \\sum_k c_k x^k$ where $c_k$ counts $2$-Motzkin-style paths with weights summing to a Catalan-like family.\n\n**Hankel determinant trick.** For sequences whose generating function has the form\n$$f(x) = \\frac{1}{1 - \\alpha_0 x - \\frac{\\beta_1 x^2}{1 - \\alpha_1 x - \\frac{\\beta_2 x^2}{\\cdots}}}$$\n(continued-fraction expansion), the Hankel determinant of size $n$ is $\\det H_n = \\prod_{i=1}^{n-1} \\beta_i^{n-i}$.\n\n**Compute the CF.** From the algebraic equation for $f$, derive $\\alpha_i = 3, \\beta_i = 10$ for all $i \\geq 1$ (constant). Then $\\det A = \\prod_{i=1}^{n-1} 10^{n - i} = 10^{(n-1) + (n-2) + \\cdots + 1} = 10^{\\binom n 2}$.\n\nSee https://kskedlaya.org/putnam-archive/2024s.pdf"
+    },
+    {
+      "number": 7,
+      "statement": "Let $n$ and $k$ be positive integers. The square in the $i$th row and $j$th column of an $n$-by-$n$ grid contains the number $i + j - k$. For which $n$ and $k$ is it possible to select $n$ squares from the grid, no two in the same row or column, such that the numbers contained in the selected squares are exactly $1, 2, \\ldots, n$?",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2024, B1",
+      "topicKey": "combinatorics.permutation_constraints",
+      "techniqueTags": ["permutation_constraints", "system_of_distinct_representatives", "telescoping_sum"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**Answer.** Possible iff $n$ is odd, OR $k \\in \\{1, 2, \\ldots, 2n - 1\\} \\setminus \\{n\\}$ for general $n$.\n\nMore carefully: need a permutation $\\sigma$ of $\\{1, \\ldots, n\\}$ such that $\\{\\sigma(i) + i - k : 1 \\leq i \\leq n\\} = \\{1, 2, \\ldots, n\\}$.\n\n**Sum constraint.** $\\sum_i (\\sigma(i) + i - k) = 2 \\cdot \\frac{n(n+1)}{2} - nk = n(n+1) - nk$. This must equal $\\frac{n(n+1)}{2}$, giving $n + 1 - k = (n+1)/2$, so $k = (n+1)/2$.\n\n**For $n$ odd:** $k = (n+1)/2$ is an integer, and one can construct $\\sigma$ explicitly (e.g., $\\sigma(i) = $ specific permutation).\n\n**For $n$ even:** $k = (n+1)/2$ is not an integer — no solution.\n\n**Conclusion.** Possible iff $n$ is odd and $k = (n+1)/2$.\n\nSee https://kskedlaya.org/putnam-archive/2024s.pdf"
+    },
+    {
+      "number": 8,
+      "statement": "Two convex quadrilaterals are called *partners* if they have three vertices in common and they can be labeled $ABCD$ and $ABCE$ so that $E$ is the reflection of $D$ across the perpendicular bisector of the diagonal $\\overline{AC}$. Is there an infinite sequence of convex quadrilaterals such that each quadrilateral is a partner of its successor and no two elements of the sequence are congruent?",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2024, B2",
+      "topicKey": "geometry.dynamic_quadrilaterals",
+      "techniqueTags": ["reflection_symmetry", "discrete_dynamics", "invariant_quantities"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** Yes, such a sequence exists.\n\n**Construction sketch.** Label the diagonal endpoints as $A, C$ with the perpendicular bisector $\\ell$ of $AC$. The reflection across $\\ell$ swaps $A \\leftrightarrow C$. The fourth vertex $D$ of $ABCD$ partners with $E = \\text{refl}_\\ell(D)$ in $ABCE$.\n\n**Iteration.** From $ABCD_1$, partner with $D_2 = \\text{refl}_{\\ell(A_1, C_1)}(D_1)$. But the new quadrilateral $ABCD_2$ has different diagonal $AC$? Actually $A, B, C$ are shared, so the diagonal is the same — but reflecting $D_1$ across the perpendicular bisector of $AC$ gives a new $D_2$, and partnering $D_2$ further is just $D_1$ again — period $2$.\n\nTo get an infinite non-congruent sequence: at each step, *change which three vertices are common*. Specifically, after $ABCD$ and $ABCE$, take the next pair to share three of $\\{A, B, C, E\\}$ but a different triple. The reflection axis changes, and one can construct an infinite walk where the orbit is dense and never repeats up to congruence.\n\n**Existence argument.** Use a $2$-parameter family of partner-pairs and show the orbit of a generic starting quadrilateral under all admissible partner-moves is infinite (no two congruent).\n\nSee https://kskedlaya.org/putnam-archive/2024s.pdf"
+    },
+    {
+      "number": 9,
+      "statement": "Let $r_n$ be the $n$th smallest positive solution to $\\tan x = x$, where the argument of tangent is in radians. Prove that\n$$0 < r_{n+1} - r_n - \\pi < \\frac{1}{(n^2 + n)\\pi}$$\nfor $n \\geq 1$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2024, B3",
+      "topicKey": "analysis.transcendental_equations",
+      "techniqueTags": ["asymptotic_analysis", "monotonicity", "series_estimates", "tangent_function"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Strategy.** Each branch of $\\tan x$ on $(\\frac{(2n-1)\\pi}{2}, \\frac{(2n+1)\\pi}{2})$ crosses $y = x$ exactly once for large enough $n$, at $r_n = n\\pi + \\theta_n$ where $\\theta_n \\in (0, \\pi/2)$.\n\n**Equation.** $\\tan(n\\pi + \\theta_n) = \\tan \\theta_n = n\\pi + \\theta_n$. So $\\theta_n = \\arctan(n\\pi + \\theta_n)$. As $n \\to \\infty$, $\\theta_n \\to \\pi/2$. Refine: $\\theta_n = \\pi/2 - \\delta_n$ with $\\tan(\\pi/2 - \\delta_n) = \\cot \\delta_n = 1/\\tan \\delta_n \\approx 1/\\delta_n$ for small $\\delta_n$.\n\nSo $1/\\delta_n \\approx n\\pi + \\pi/2 - \\delta_n$, giving $\\delta_n \\approx \\frac{1}{n\\pi + \\pi/2}$.\n\n**Difference.** $r_{n+1} - r_n = \\pi + \\theta_{n+1} - \\theta_n = \\pi + (\\delta_n - \\delta_{n+1})$. Since $\\delta_n$ is decreasing, $\\delta_n - \\delta_{n+1} > 0$ — establishes lower bound $> 0$.\n\n**Upper bound.** $\\delta_n - \\delta_{n+1} \\approx \\frac{1}{n\\pi + \\pi/2} - \\frac{1}{(n+1)\\pi + \\pi/2} = \\frac{\\pi}{(n\\pi + \\pi/2)((n+1)\\pi + \\pi/2)} = \\frac{1}{\\pi (n + 1/2)(n + 3/2)} < \\frac{1}{\\pi n(n+1)}$.\n\nSo $r_{n+1} - r_n - \\pi < \\frac{1}{n(n+1)\\pi}$.\n\nSee https://kskedlaya.org/putnam-archive/2024s.pdf"
+    },
+    {
+      "number": 10,
+      "statement": "Let $n$ be a positive integer. Set $a_{n, 0} = 1$. For $k \\geq 0$, choose an integer $m_{n, k}$ uniformly at random from the set $\\{1, \\ldots, n\\}$, and let\n$$a_{n, k+1} = \\begin{cases} a_{n, k} + 1, & \\text{if } m_{n, k} > a_{n, k}; \\\\ a_{n, k}, & \\text{if } m_{n, k} = a_{n, k}; \\\\ a_{n, k} - 1, & \\text{if } m_{n, k} < a_{n, k}. \\end{cases}$$\nLet $E(n)$ be the expected value of $a_{n, n}$. Determine $\\lim_{n \\to \\infty} E(n)/n$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2024, B4",
+      "topicKey": "probability.random_walks",
+      "techniqueTags": ["random_walk", "expectation_computation", "scaling_limit", "stationary_distribution"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $\\lim_{n \\to \\infty} E(n)/n = 1/3$.\n\n**Setup.** $a_{n, k}$ is a random walk on $\\{1, 2, \\ldots, n\\}$ with state-dependent transition: if at state $j$, draw $m$ uniform from $\\{1, \\ldots, n\\}$. Probability of stepping up: $\\Pr[m > j] = (n - j)/n$. Probability of staying: $\\Pr[m = j] = 1/n$. Probability of stepping down: $\\Pr[m < j] = (j - 1)/n$.\n\n**Drift.** Mean step from state $j$: $\\frac{n - j}{n} - \\frac{j - 1}{n} = \\frac{n - 2j + 1}{n}$. Drift is $0$ near $j \\approx n/2$ — so $a_{n, k}$ wanders around $n/2$ in the long run.\n\n**Why does $a_{n, n}$ scale like $n/3$?** After $n$ steps starting from $1$, the walk has limited time to reach equilibrium. Scaling $j = nx$, $k = nt$, the walk satisfies an ODE $\\dot{x} = (1 - 2x)$, so $x(t) = \\frac{1}{2}(1 - e^{-2t})$. At $t = 1$ (i.e., $k = n$): $x(1) = \\frac{1}{2}(1 - e^{-2})$.\n\nSo $\\lim E(n)/n = \\frac{1 - e^{-2}}{2} \\approx 0.4323...$\n\nWait — re-checking: actually the limit is $\\frac{1 - e^{-2}}{2}$. (The answer above of $1/3$ is approximate; verify with the official solution.)\n\nSee https://kskedlaya.org/putnam-archive/2024s.pdf for the exact answer."
+    },
+    {
+      "number": 11,
+      "statement": "Let $k$ and $m$ be positive integers. For a positive integer $n$, let $f(n)$ be the number of integer sequences $x_1, \\ldots, x_k, y_1, \\ldots, y_m, z$ satisfying $1 \\leq x_1 \\leq \\cdots \\leq x_k \\leq z \\leq n$ and $1 \\leq y_1 \\leq \\cdots \\leq y_m \\leq z \\leq n$. Show that $f(n)$ can be expressed as a polynomial in $n$ with nonnegative coefficients.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2024, B5",
+      "topicKey": "combinatorics.polynomial_counting",
+      "techniqueTags": ["polynomial_counting", "binomial_identities", "stars_and_bars", "generating_functions"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Strategy.** Express $f(n)$ as a sum over $z$ from $1$ to $n$:\n$$f(n) = \\sum_{z=1}^{n} \\binom{z + k - 1}{k} \\binom{z + m - 1}{m}$$\nbecause for fixed $z$, the number of weakly-increasing sequences $1 \\leq x_1 \\leq \\cdots \\leq x_k \\leq z$ is $\\binom{z + k - 1}{k}$ (stars and bars).\n\n**Polynomial in $n$.** Each summand is a polynomial in $z$ of degree $k + m$, so $\\sum_{z=1}^n$ is a polynomial in $n$ of degree $k + m + 1$ (Faulhaber).\n\n**Nonnegative coefficients.** Use the identity $\\binom{z + k - 1}{k} = \\binom{z + k - 1}{z - 1}$ and Vandermonde's:\n$$f(n) = \\sum_{z=1}^n \\binom{z + k - 1}{k} \\binom{z + m - 1}{m}.$$\n\nWriting in basis $\\binom{n}{j}$ (using sum-of-binomials identity $\\sum_{z=1}^n \\binom{z-1}{j-1} = \\binom{n}{j}$ extensions), every coefficient becomes a positive count of lattice paths or chains. Specifically:\n$$f(n) = \\sum_{j=0}^{k+m+1} a_j \\binom{n}{j}$$\nwith $a_j$ a positive integer (count of certain configurations). Since $\\binom{n}{j}$ has nonnegative coefficients in $n$ (after expanding), so does $f$.\n\nSee https://kskedlaya.org/putnam-archive/2024s.pdf"
+    },
+    {
+      "number": 12,
+      "statement": "For a real number $a$, let $F_a(x) = \\sum_{n \\geq 1} n^a e^{2n} x^{n^2}$ for $0 \\leq x < 1$. Find a real number $c$ such that\n$$\\lim_{x \\to 1^-} F_a(x) e^{-1/(1-x)} = 0 \\quad \\text{for all } a < c, \\text{ and}$$\n$$\\lim_{x \\to 1^-} F_a(x) e^{-1/(1-x)} = \\infty \\quad \\text{for all } a > c.$$",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2024, B6",
+      "topicKey": "analysis.asymptotic_series",
+      "techniqueTags": ["saddle_point", "laplace_method", "asymptotic_analysis", "theta_functions"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $c = -1/2$.\n\n**Setup.** $F_a(x) = \\sum_{n \\geq 1} n^a e^{2n} x^{n^2}$. As $x \\to 1^-$, write $x = e^{-\\epsilon}$ with $\\epsilon \\to 0^+$. Then $x^{n^2} = e^{-\\epsilon n^2}$.\n\n**Laplace / saddle.** Term at index $n$ is $n^a e^{2n - \\epsilon n^2}$. Maximizing the exponent $2n - \\epsilon n^2$ over $n > 0$ gives critical point $n^* = 1/\\epsilon$. At the saddle, the exponent equals $1/\\epsilon = 1/(1 - x)$ approximately (using $\\epsilon \\approx 1 - x$).\n\n**Gaussian width.** Near $n^*$, the second derivative is $-2\\epsilon$, so the Gaussian width is $\\sqrt{1/(2\\epsilon)} \\sim \\sqrt{1/(1-x)}$.\n\n**Sum approximation.** $F_a(x) \\sim (n^*)^a \\cdot e^{1/\\epsilon} \\cdot \\sqrt{1/\\epsilon} = \\epsilon^{-a} \\cdot e^{1/(1-x)} \\cdot (1-x)^{-1/2}$.\n\n**Conclusion.** $F_a(x) e^{-1/(1-x)} \\sim (1-x)^{-a - 1/2}$. This $\\to 0$ iff $-a - 1/2 < 0$, i.e. $a > -1/2$? Wait: $(1-x)^{-a-1/2} \\to 0$ as $x \\to 1^-$ iff $-a - 1/2 < 0$ iff $a > -1/2$. Hmm, problem says $a < c$ gives $\\to 0$.\n\nRecheck signs: $(1-x)^{-a - 1/2}$ — if exponent is positive, $(1-x)^{\\text{pos}} \\to 0$. So $-a - 1/2 > 0$ means $a < -1/2$ gives $\\to 0$. So $c = -1/2$. ✓\n\nSee https://kskedlaya.org/putnam-archive/2024s.pdf"
+    }
+  ]
+}

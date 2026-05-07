@@ -21,6 +21,7 @@
     "@arcmath/db": "workspace:*",
     "@arcmath/ingest-cambridge-step": "workspace:*",
     "@arcmath/ingest-cemc": "workspace:*",
+    "@arcmath/ingest-maa-putnam": "workspace:*",
     "@arcmath/ingest-maa-usamo": "workspace:*",
     "@arcmath/ingest-oxford-mat": "workspace:*",
     "@arcmath/shared": "workspace:*",

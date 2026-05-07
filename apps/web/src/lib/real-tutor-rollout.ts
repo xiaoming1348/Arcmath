@@ -102,14 +102,48 @@ export const REAL_TUTOR_SET_ROLLOUT: RealTutorSetRolloutEntry[] = [
   { contest: "AIME", year: 2025, exam: "II", status: "live" },
 
   // ---------------------------------------------------------------
-  // International / admissions tracks. Each entry is a single sample
-  // year that's been hand-reviewed; rest of each archive will be
-  // backfilled one batch at a time.
+  // International / admissions tracks.
+  //
+  // Euclid (CEMC, Waterloo): 6 most recent live; 4 earlier years
+  // available in DB stay as "planned" so we can curate hints/topic
+  // tags before flipping them on.
+  // MAT (Oxford / Imperial admissions): all 5 imported years live —
+  // no further years in the manifest archive yet.
+  // STEP II (Cambridge admissions): all 3 imported live.
+  // USAMO: all 3 imported live.
+  // Putnam: 5 most recent (2020 cancelled — skipped).
   // ---------------------------------------------------------------
+  // Euclid: live = 2024, 2023, 2022, 2021, 2020, 2019 (most recent six)
   { contest: "EUCLID", year: 2024, exam: null, status: "live" },
+  { contest: "EUCLID", year: 2023, exam: null, status: "live" },
+  { contest: "EUCLID", year: 2022, exam: null, status: "live" },
+  { contest: "EUCLID", year: 2021, exam: null, status: "live" },
+  { contest: "EUCLID", year: 2020, exam: null, status: "live" },
+  { contest: "EUCLID", year: 2019, exam: null, status: "live" },
+  { contest: "EUCLID", year: 2018, exam: null, status: "planned" },
+  { contest: "EUCLID", year: 2017, exam: null, status: "planned" },
+  { contest: "EUCLID", year: 2016, exam: null, status: "planned" },
+  { contest: "EUCLID", year: 2015, exam: null, status: "planned" },
+  // MAT: 5 manifests, all live
   { contest: "MAT", year: 2023, exam: null, status: "live" },
+  { contest: "MAT", year: 2022, exam: null, status: "live" },
+  { contest: "MAT", year: 2021, exam: null, status: "live" },
+  { contest: "MAT", year: 2020, exam: null, status: "live" },
+  { contest: "MAT", year: 2019, exam: null, status: "live" },
+  // STEP II: 3 manifests, all live
   { contest: "STEP", year: 2023, exam: "II", status: "live" },
-  { contest: "USAMO", year: 2020, exam: null, status: "live" }
+  { contest: "STEP", year: 2022, exam: "II", status: "live" },
+  { contest: "STEP", year: 2020, exam: "II", status: "live" },
+  // USAMO: 3 manifests, all live
+  { contest: "USAMO", year: 2020, exam: null, status: "live" },
+  { contest: "USAMO", year: 2019, exam: null, status: "live" },
+  { contest: "USAMO", year: 2017, exam: null, status: "live" },
+  // Putnam: 5 most recent (2020 cancelled due to COVID — skipped)
+  { contest: "PUTNAM", year: 2024, exam: null, status: "live" },
+  { contest: "PUTNAM", year: 2023, exam: null, status: "live" },
+  { contest: "PUTNAM", year: 2022, exam: null, status: "live" },
+  { contest: "PUTNAM", year: 2021, exam: null, status: "live" },
+  { contest: "PUTNAM", year: 2019, exam: null, status: "live" }
 ];
 
 export function getRealTutorRolloutEntries(status?: RealTutorSetStatus): RealTutorSetRolloutEntry[] {

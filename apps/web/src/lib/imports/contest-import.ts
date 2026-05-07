@@ -210,7 +210,11 @@ async function buildPreviewFromParsed(prisma: PrismaClient, data: ImportProblemS
       case "EUCLID":
       case "MAT":
       case "STEP":
+      case "PUTNAM":
         // Mixed-format by design — no single expected format.
+        // Putnam: INTEGER / EXPRESSION / WORKED_SOLUTION mixed within
+        // each year (some problems have closed-form answers, others
+        // are show-that proofs).
         return null;
     }
   })();

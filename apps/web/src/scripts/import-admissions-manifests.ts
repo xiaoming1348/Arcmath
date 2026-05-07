@@ -52,9 +52,13 @@ import {
   USAMO_MANIFEST_DIR,
   loadAllUsamoManifests
 } from "@arcmath/ingest-maa-usamo";
+import {
+  PUTNAM_MANIFEST_DIR,
+  loadAllPutnamManifests
+} from "@arcmath/ingest-maa-putnam";
 import { commitImportFromJson } from "../lib/imports/contest-import";
 
-type ContestKey = "euclid" | "mat" | "step" | "usamo";
+type ContestKey = "euclid" | "mat" | "step" | "usamo" | "putnam";
 
 type CliFlags = {
   contest: ContestKey;
@@ -90,8 +94,14 @@ function parseArgs(argv: string[]): CliFlags {
     const flag = argv[index];
     const value = argv[index + 1];
     if (flag === "--contest" && value) {
-      if (value !== "euclid" && value !== "mat" && value !== "step" && value !== "usamo") {
-        throw new Error(`--contest must be one of euclid|mat|step|usamo; got ${value}`);
+      if (
+        value !== "euclid" &&
+        value !== "mat" &&
+        value !== "step" &&
+        value !== "usamo" &&
+        value !== "putnam"
+      ) {
+        throw new Error(`--contest must be one of euclid|mat|step|usamo|putnam; got ${value}`);
       }
       flags.contest = value;
       index += 1;
@@ -136,6 +146,12 @@ function getContestAdapter(contest: ContestKey): ContestAdapter {
         label: "USAMO",
         defaultManifestDir: USAMO_MANIFEST_DIR,
         loadAll: (options) => loadAllUsamoManifests(options)
+      };
+    case "putnam":
+      return {
+        label: "PUTNAM",
+        defaultManifestDir: PUTNAM_MANIFEST_DIR,
+        loadAll: (options) => loadAllPutnamManifests(options)
       };
   }
 }

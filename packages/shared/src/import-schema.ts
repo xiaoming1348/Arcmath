@@ -11,7 +11,8 @@ export const CONTESTS = [
   "USAMO",
   "EUCLID",
   "MAT",
-  "STEP"
+  "STEP",
+  "PUTNAM"
 ] as const;
 // Subset used for per-problem `examTrack` tagging on diagnostic sets.
 // MC/integer-graded contests only — a proof-heavy contest doesn't make
@@ -107,6 +108,9 @@ function expectedProblemCount(contest: z.infer<typeof contestSchema>): number | 
       return 6;
     case "EUCLID":
       return 10;
+    case "PUTNAM":
+      // Putnam: A1–A6 (morning) + B1–B6 (afternoon) = 12 questions.
+      return 12;
     case "MAT":
     case "STEP":
       // Relaxed during initial ingestion — the per-contest importer
@@ -309,7 +313,7 @@ export const importProblemSetSchema = z
     }
 
     // USAMO / EUCLID / MAT are one paper per year, no exam variants.
-    if ((contest === "USAMO" || contest === "EUCLID" || contest === "MAT") && exam !== null) {
+    if ((contest === "USAMO" || contest === "EUCLID" || contest === "MAT" || contest === "PUTNAM") && exam !== null) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         path: ["problemSet", "exam"],
