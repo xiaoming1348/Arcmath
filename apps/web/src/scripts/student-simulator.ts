@@ -28,6 +28,8 @@
  * e2e-core-flow.ts so we can wire it into a future CI job).
  */
 import bcrypt from "bcryptjs";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
 import { prisma } from "@arcmath/db";
 import { withPepper } from "@/lib/password";
 import { appRouter } from "@/lib/trpc/router";
@@ -39,6 +41,26 @@ const SMOKE_STUDENT_EMAIL = "sim.student@student-simulator-smoke.arcmath.local";
 
 type CheckResult = { label: string; ok: boolean; detail?: string; persona?: string; problem?: string };
 const results: CheckResult[] = [];
+
+// Per-scenario row that ends up in the human-readable test table at
+// the end of the run. We push one row per (persona × fixture) combo.
+type ScenarioRow = {
+  contest: string;
+  problemNumber: number;
+  answerFormat: string;
+  persona: string;
+  mode: string;
+  submitted: string;
+  canonical: string;
+  normalized: string;
+  expectedCorrect: boolean | null;
+  actualCorrect: boolean | null;
+  passed: boolean;
+  feedbackPreview: string;
+  hintsCount: number;
+  notes: string;
+};
+const scenarioRows: ScenarioRow[] = [];
 
 function check(label: string, ok: boolean, opts?: { detail?: string; persona?: string; problem?: string }) {
   const entry = { label, ok, detail: opts?.detail, persona: opts?.persona, problem: opts?.problem };
@@ -283,6 +305,15 @@ function confusedAnswer(fixture: Fixture): string {
 // One persona × one fixture scenario.
 // ---------------------------------------------------------------
 
+/** Truncate + escape a string for inclusion in a markdown table cell. */
+function cellEscape(value: string | null | undefined, maxLen = 80): string {
+  if (value === null || value === undefined) return "—";
+  const oneLine = String(value).replace(/\s+/g, " ").trim();
+  const truncated = oneLine.length > maxLen ? oneLine.slice(0, maxLen - 1) + "…" : oneLine;
+  // Escape pipes so the markdown table doesn't break.
+  return truncated.replace(/\|/g, "\\|");
+}
+
 async function runScenario(params: {
   persona: Persona;
   fixture: Fixture;
@@ -291,24 +322,54 @@ async function runScenario(params: {
   const { persona, fixture, studentCaller } = params;
   const tag = { persona, problem: `${fixture.contestLabel} #${fixture.problemNumber}` };
 
+  // Per-scenario row that ends up in the report. Filled progressively
+  // so we can still emit a row when the scenario short-circuits.
+  const row: ScenarioRow = {
+    contest: fixture.contestLabel,
+    problemNumber: fixture.problemNumber,
+    answerFormat: fixture.answerFormat,
+    persona,
+    mode: "—",
+    submitted: "—",
+    canonical: fixture.canonicalAnswer ?? "—",
+    normalized: "—",
+    expectedCorrect: null,
+    actualCorrect: null,
+    passed: false,
+    feedbackPreview: "",
+    hintsCount: 0,
+    notes: ""
+  };
+  const recordRow = (scenarioPassed: boolean, extraNotes?: string) => {
+    row.passed = scenarioPassed;
+    if (extraNotes) row.notes = (row.notes ? row.notes + "; " : "") + extraNotes;
+    scenarioRows.push(row);
+  };
+
   // WORKED_SOLUTION problems short-circuit the grading path (the UI
   // hides the workspace and shows a reveal-solution panel). For the
   // simulator we just verify getState returns sensibly without 500.
   if (fixture.answerFormat === "WORKED_SOLUTION" || fixture.answerFormat === "PROOF") {
+    row.mode = "REVEAL_SOLUTION";
+    row.submitted = "(no auto-grade path)";
     try {
       await studentCaller.unifiedAttempt.getState({ problemId: fixture.problemId });
       check("getState OK on worked-solution problem", true, tag);
+      recordRow(true, "WORKED_SOLUTION: only verifies getState doesn't crash");
     } catch (err) {
       check("getState OK on worked-solution problem", false, {
         ...tag,
         detail: err instanceof Error ? err.message : String(err)
       });
+      recordRow(false, "getState threw");
     }
     return;
   }
 
   // ---- HINT_ADDICT path: HINT_GUIDED + 3 hints, then submit ----
   if (persona === "hint_addict") {
+    row.mode = "HINT_GUIDED";
+    let scenarioOk = true;
     let attemptId: string;
     try {
       const draft = (await studentCaller.unifiedAttempt.chooseEntry({
@@ -323,28 +384,39 @@ async function runScenario(params: {
         ...tag,
         detail: err instanceof Error ? err.message : String(err)
       });
+      recordRow(false, "draft creation threw");
       return;
     }
 
-    // Three hint requests in a row.
+    // Three hint requests in a row. Capture each hint's text into
+    // the report so the user can see what the tutor actually said.
+    const hintTexts: string[] = [];
     for (let level = 1; level <= 3; level += 1) {
       try {
         const result = (await studentCaller.unifiedAttempt.requestHint({
           attemptId
         })) as { hint: { hintLevel: number; hintText: string }; exhausted: boolean };
         const hint = result.hint;
-        check(`hint ${level} returns non-empty text`, typeof hint.hintText === "string" && hint.hintText.trim().length > 0, {
+        const nonEmpty = typeof hint.hintText === "string" && hint.hintText.trim().length > 0;
+        check(`hint ${level} returns non-empty text`, nonEmpty, {
           ...tag,
           detail: `len=${hint.hintText?.length ?? 0}`
         });
         check(`hint ${level} reports correct level`, hint.hintLevel === level, tag);
+        if (!nonEmpty || hint.hintLevel !== level) scenarioOk = false;
+        hintTexts.push(hint.hintText);
       } catch (err) {
         check(`hint ${level} returns`, false, {
           ...tag,
           detail: err instanceof Error ? err.message : String(err)
         });
+        scenarioOk = false;
       }
     }
+    row.hintsCount = hintTexts.length;
+    // Show the first hint as a preview (the most-likely-most-useful
+    // for a student).
+    if (hintTexts.length > 0) row.feedbackPreview = `hint1: ${hintTexts[0]}`;
 
     // 4th hint should NOT crash — it should either return the last
     // hint again or a "no more hints" signal. Either is acceptable;
@@ -353,33 +425,43 @@ async function runScenario(params: {
       await studentCaller.unifiedAttempt.requestHint({ attemptId });
       check("4th hint request does not throw", true, tag);
     } catch (err) {
-      // BAD_REQUEST / TOO_MANY_REQUESTS is acceptable; INTERNAL_SERVER_ERROR is not.
       const msg = err instanceof Error ? err.message : String(err);
       const isBadRequest = msg.includes("BAD_REQUEST") || msg.includes("TOO_MANY") || msg.toLowerCase().includes("max");
       check("4th hint request is gracefully refused (not 500)", isBadRequest, { ...tag, detail: msg });
+      if (!isBadRequest) scenarioOk = false;
     }
 
     // Then submit the right answer to confirm hint flow doesn't break submit.
+    row.submitted = diligentAnswer(fixture);
+    row.expectedCorrect = true;
     try {
       const result = (await studentCaller.unifiedAttempt.submit({
         attemptId,
         finalAnswer: diligentAnswer(fixture)
-      })) as { attempt?: { isCorrect: boolean } };
+      })) as { attempt?: { isCorrect: boolean; normalizedAnswer?: string | null } };
       check("post-hint submission graded", typeof result.attempt?.isCorrect === "boolean", tag);
-      check("post-hint correct answer accepted", result.attempt?.isCorrect === true, {
+      const correct = result.attempt?.isCorrect === true;
+      check("post-hint correct answer accepted", correct, {
         ...tag,
         detail: JSON.stringify(result).slice(0, 200)
       });
+      row.actualCorrect = result.attempt?.isCorrect ?? null;
+      row.normalized = result.attempt?.normalizedAnswer ?? "—";
+      if (!correct) scenarioOk = false;
     } catch (err) {
       check("post-hint submission did not throw", false, {
         ...tag,
         detail: err instanceof Error ? err.message : String(err)
       });
+      scenarioOk = false;
     }
+    recordRow(scenarioOk);
     return;
   }
 
   // ---- ANSWER_ONLY path for diligent / sloppy_format / confused ----
+  row.mode = "ANSWER_ONLY";
+  let scenarioOk = true;
   let attemptId: string;
   try {
     const draft = (await studentCaller.unifiedAttempt.chooseEntry({
@@ -394,6 +476,7 @@ async function runScenario(params: {
       ...tag,
       detail: err instanceof Error ? err.message : String(err)
     });
+    recordRow(false, "draft creation threw");
     return;
   }
 
@@ -403,8 +486,10 @@ async function runScenario(params: {
       : persona === "sloppy_format"
         ? sloppyAnswer(fixture)
         : confusedAnswer(fixture);
+  row.submitted = submission;
+  row.expectedCorrect = persona !== "confused";
 
-  let firstResult: { attempt?: { isCorrect: boolean; submittedAnswer?: string | null; normalizedAnswer?: string | null } };
+  let firstResult: { attempt?: { isCorrect: boolean; submittedAnswer?: string | null; normalizedAnswer?: string | null; explanationText?: string | null; overallFeedback?: string | null } };
   try {
     firstResult = (await studentCaller.unifiedAttempt.submit({
       attemptId,
@@ -416,51 +501,58 @@ async function runScenario(params: {
       ...tag,
       detail: err instanceof Error ? err.message : String(err)
     });
+    recordRow(false, "submit threw");
     return;
   }
 
+  row.actualCorrect = firstResult.attempt?.isCorrect ?? null;
+  row.normalized = firstResult.attempt?.normalizedAnswer ?? "—";
+  row.feedbackPreview = firstResult.attempt?.explanationText ?? firstResult.attempt?.overallFeedback ?? "";
+
   // Outcome assertions per persona.
   if (persona === "diligent") {
-    check("diligent: graded correct", firstResult.attempt?.isCorrect === true, {
+    const ok = firstResult.attempt?.isCorrect === true;
+    check("diligent: graded correct", ok, {
       ...tag,
       detail: `submitted="${submission}" canonical="${fixture.canonicalAnswer}" normalized="${firstResult.attempt?.normalizedAnswer}"`
     });
+    if (!ok) scenarioOk = false;
   } else if (persona === "sloppy_format") {
-    // Sloppy format SHOULD still grade correct — that's the whole
-    // point of the normalizer. If this fails, the normalizer has a
-    // bug or the canonical answer needs cleanup.
-    check("sloppy_format: graded correct (normalizer absorbs cosmetic noise)", firstResult.attempt?.isCorrect === true, {
+    const ok = firstResult.attempt?.isCorrect === true;
+    check("sloppy_format: graded correct (normalizer absorbs cosmetic noise)", ok, {
       ...tag,
       detail: `submitted="${submission}" canonical="${fixture.canonicalAnswer}" normalized="${firstResult.attempt?.normalizedAnswer}"`
     });
+    if (!ok) scenarioOk = false;
   } else if (persona === "confused") {
-    check("confused: graded incorrect", firstResult.attempt?.isCorrect === false, {
+    const ok = firstResult.attempt?.isCorrect === false;
+    check("confused: graded incorrect", ok, {
       ...tag,
       detail: `submitted="${submission}" canonical="${fixture.canonicalAnswer}"`
     });
+    if (!ok) scenarioOk = false;
   }
 
-  // Idempotence check: ask getState immediately after; the verdict
-  // surfaced should match what submit returned. Catches "the DB
-  // says one thing, submit returns another" desync bugs.
+  // Idempotence check: getState verdict must match submit verdict.
   try {
     const state = (await studentCaller.unifiedAttempt.getState({
       problemId: fixture.problemId
     })) as { attempt: { isCorrect: boolean | null; status: string } | null };
-    check(
-      "getState verdict matches submit verdict",
-      state.attempt?.isCorrect === firstResult.attempt?.isCorrect,
-      {
-        ...tag,
-        detail: `submit=${firstResult.attempt?.isCorrect} getState=${state.attempt?.isCorrect}`
-      }
-    );
+    const matches = state.attempt?.isCorrect === firstResult.attempt?.isCorrect;
+    check("getState verdict matches submit verdict", matches, {
+      ...tag,
+      detail: `submit=${firstResult.attempt?.isCorrect} getState=${state.attempt?.isCorrect}`
+    });
+    if (!matches) scenarioOk = false;
   } catch (err) {
     check("getState after submit did not throw", false, {
       ...tag,
       detail: err instanceof Error ? err.message : String(err)
     });
+    scenarioOk = false;
   }
+
+  recordRow(scenarioOk);
 }
 
 // ---------------------------------------------------------------
@@ -586,10 +678,79 @@ async function main(): Promise<void> {
   console.log("\n5. Cleanup");
   await cleanup();
 
-  // Report
+  // ---- Per-scenario test table ----
+  // The OK/FAIL list above is great for CI but useless for "show me
+  // what the student saw". This block emits a markdown table where
+  // each row is one (persona × problem) scenario with the actual
+  // input + verdict + feedback so a human (you) can scan it.
+  console.log("\n6. Per-scenario test table\n");
+  const tableHeader = "| Set | # | Format | Persona | Mode | Submitted | Canonical | Normalized | Expect | Actual | Hints | Feedback | ✓ |";
+  const tableSep = "|---|---|---|---|---|---|---|---|---|---|---|---|---|";
+  const tableRows = scenarioRows.map((row) => {
+    const expect =
+      row.expectedCorrect === null ? "—" : row.expectedCorrect ? "correct" : "incorrect";
+    const actual =
+      row.actualCorrect === null ? "—" : row.actualCorrect ? "correct" : "incorrect";
+    return [
+      cellEscape(row.contest, 24),
+      String(row.problemNumber),
+      cellEscape(row.answerFormat, 14),
+      cellEscape(row.persona, 14),
+      cellEscape(row.mode, 18),
+      cellEscape(row.submitted, 30),
+      cellEscape(row.canonical, 24),
+      cellEscape(row.normalized, 24),
+      expect,
+      actual,
+      row.hintsCount === 0 ? "—" : String(row.hintsCount),
+      cellEscape(row.feedbackPreview || "—", 80),
+      row.passed ? "✓" : "✗"
+    ].join(" | ");
+  });
+  const markdownTable = [tableHeader, tableSep, ...tableRows.map((r) => `| ${r} |`)].join("\n");
+  console.log(markdownTable);
+
+  // Write the report (markdown + JSON) to disk so you can scroll it
+  // independently of the terminal buffer.
+  const stamp = new Date().toISOString().replace(/[:.]/g, "-");
+  const reportDir = path.resolve(process.cwd(), "tmp");
+  await mkdir(reportDir, { recursive: true });
+  const reportPath = path.resolve(reportDir, `student-simulator-report-${stamp}.md`);
+  const jsonPath = path.resolve(reportDir, `student-simulator-report-${stamp}.json`);
+
+  // Compose the full markdown report.
   const passCount = results.filter((r) => r.ok).length;
   const failCount = results.filter((r) => !r.ok).length;
-  console.log(`\n== Result: ${passCount} OK / ${failCount} FAIL ==`);
+  const scenarioPass = scenarioRows.filter((r) => r.passed).length;
+  const scenarioFail = scenarioRows.filter((r) => !r.passed).length;
+  const reportLines: string[] = [];
+  reportLines.push(`# Student-Simulator Report — ${new Date().toISOString()}`);
+  reportLines.push("");
+  reportLines.push(`Assertion summary: **${passCount} OK / ${failCount} FAIL**`);
+  reportLines.push(`Scenario summary: **${scenarioPass} pass / ${scenarioFail} fail** (over ${scenarioRows.length} scenarios)`);
+  reportLines.push("");
+  reportLines.push("## Per-scenario table");
+  reportLines.push("");
+  reportLines.push(markdownTable);
+  if (failCount > 0) {
+    reportLines.push("");
+    reportLines.push("## Failures (assertion-level)");
+    reportLines.push("");
+    for (const r of results.filter((x) => !x.ok)) {
+      const tag = r.persona ? `[${r.persona} on ${r.problem ?? "?"}]` : "";
+      reportLines.push(`- ${tag} ${r.label}${r.detail ? ` — ${r.detail}` : ""}`);
+    }
+  }
+  await writeFile(reportPath, reportLines.join("\n") + "\n", "utf8");
+  await writeFile(
+    jsonPath,
+    JSON.stringify({ generatedAt: new Date().toISOString(), passCount, failCount, scenarios: scenarioRows, assertions: results }, null, 2) + "\n",
+    "utf8"
+  );
+
+  console.log(`\n== Result: ${passCount} OK / ${failCount} FAIL (${scenarioPass}/${scenarioRows.length} scenarios passed) ==`);
+  console.log(`Markdown report: ${reportPath}`);
+  console.log(`JSON report:     ${jsonPath}`);
   if (failCount > 0) {
     console.log("\nFailures:");
     for (const r of results.filter((x) => !x.ok)) {
