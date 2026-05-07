@@ -1,5 +1,15 @@
 # proof-verifier 部署决策（pilot 上线前）
 
+> **Status (2026-05-07)**: Deployed to Fly.io as
+> `https://arcmath-proof-verifier.fly.dev`. Two machines in `sjc`,
+> auto-stop when idle. Smoke test (`pnpm smoke:student`) confirmed
+> reachable end-to-end with `[proof-verifier] request failed`
+> warnings gone (207/207 OK, 40/40 scenarios). The remaining task
+> is to add `PROOF_VERIFIER_URL=https://arcmath-proof-verifier.fly.dev`
+> to Vercel prod env and trigger a redeploy.
+
+
+
 `services/proof-verifier` 是一个 Python (FastAPI) 微服务，负责把学生
 写的单步证明分类（CALCULATION / ALGEBRAIC_MANIPULATION / GEOMETRIC /
 …）然后路由到对应的验证后端：
