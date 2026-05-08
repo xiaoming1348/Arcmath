@@ -59,5 +59,7 @@ export_if_present S3_SECRET_ACCESS_KEY
 export_if_present S3_ENDPOINT
 export_if_present S3_KEY_PREFIX
 export_if_present S3_FORCE_PATH_STYLE
+export_if_present PROOF_VERIFIER_URL
+export_if_present DISABLE_ACCESS_GATING
 
 exec "$@"

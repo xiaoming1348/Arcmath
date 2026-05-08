@@ -138,9 +138,21 @@ async function buildStoredHint(problem: {
   diagramImageAlt: string | null;
   solutionSketch: string | null;
 }, level: HintLevel): Promise<string> {
+  if (problem.answerFormat === "PROOF") {
+    // Proof problems don't use precomputed hints — the proof tutor generates feedback per step.
+    return sanitizeStoredHintText(getSafeFallbackHint(level).hintText);
+  }
+  if (problem.answerFormat === "WORKED_SOLUTION") {
+    // WORKED_SOLUTION problems ship their official solution to the
+    // student directly; there is no hint ladder to precompute. Keep the
+    // fallback hint text so downstream code has something to store if
+    // the pipeline ever tries to populate these rows.
+    return sanitizeStoredHintText(getSafeFallbackHint(level).hintText);
+  }
+  const answerFormat = problem.answerFormat;
   const generated = await generateHint({
     problemStatement: problem.statement ?? "",
-    answerFormat: problem.answerFormat,
+    answerFormat,
     choices: problem.choices,
     diagramImageAlt: problem.diagramImageAlt,
     hintLevel: level,

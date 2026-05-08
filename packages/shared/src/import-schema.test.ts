@@ -181,4 +181,255 @@ describe("importProblemSetSchema", () => {
 
     expect(parsed.success).toBe(false);
   });
+
+  // ---------------------------------------------------------------------
+  // Admissions-track expansion: Euclid (CEMC), MAT (Oxford + Imperial),
+  // STEP (Cambridge), plus USAMO and the new WORKED_SOLUTION format.
+  // The 2026-Q2 pilot wiring added these — see schema.prisma comments
+  // and packages/db/prisma/migrations/20260424100000_*.
+  // ---------------------------------------------------------------------
+
+  it("accepts a well-formed USAMO payload (6 proof/worked-solution problems, no exam)", () => {
+    const parsed = importProblemSetSchema.safeParse({
+      problemSet: {
+        contest: "USAMO" as const,
+        year: 2024
+      },
+      problems: Array.from({ length: 6 }, (_, index) => ({
+        number: index + 1,
+        statement: `USAMO ${2024} problem ${index + 1} — show that…`,
+        answerFormat: "WORKED_SOLUTION" as const,
+        solutionSketch: `Official solution for problem ${index + 1}.`
+      }))
+    });
+
+    expect(parsed.success).toBe(true);
+    if (parsed.success) {
+      expect(parsed.data.problemSet.exam).toBeNull();
+    }
+  });
+
+  it("rejects USAMO payloads that set an exam variant", () => {
+    const parsed = importProblemSetSchema.safeParse({
+      problemSet: {
+        contest: "USAMO" as const,
+        year: 2024,
+        exam: "I"
+      },
+      problems: Array.from({ length: 6 }, (_, index) => ({
+        number: index + 1,
+        statement: `USAMO problem ${index + 1}`,
+        answerFormat: "WORKED_SOLUTION" as const,
+        solutionSketch: `Official solution ${index + 1}.`
+      }))
+    });
+
+    expect(parsed.success).toBe(false);
+  });
+
+  it("accepts a well-formed Euclid payload (10 integer/expression problems, no exam)", () => {
+    const parsed = importProblemSetSchema.safeParse({
+      problemSet: {
+        contest: "EUCLID" as const,
+        year: 2024
+      },
+      problems: Array.from({ length: 10 }, (_, index) => ({
+        number: index + 1,
+        statement: `Euclid 2024 problem ${index + 1}`,
+        answer: String(index + 7),
+        answerFormat: "INTEGER" as const
+      }))
+    });
+
+    expect(parsed.success).toBe(true);
+    if (parsed.success) {
+      expect(parsed.data.problemSet.exam).toBeNull();
+    }
+  });
+
+  it("rejects Euclid payloads with the wrong problem count", () => {
+    const parsed = importProblemSetSchema.safeParse({
+      problemSet: {
+        contest: "EUCLID" as const,
+        year: 2024
+      },
+      problems: Array.from({ length: 9 }, (_, index) => ({
+        number: index + 1,
+        statement: `Euclid problem ${index + 1}`,
+        answer: "1",
+        answerFormat: "INTEGER" as const
+      }))
+    });
+
+    expect(parsed.success).toBe(false);
+  });
+
+  it("accepts a MAT payload with a relaxed problem count and no exam variant", () => {
+    // MAT Q1 is 10 MC subparts (flattened to problems 1–10), then Q2–Q7
+    // are long worked-solution questions (11–16). Relaxed count path —
+    // no expectedCount check fires.
+    const mcSubparts = Array.from({ length: 10 }, (_, index) => ({
+      number: index + 1,
+      statement: `MAT Q1(${String.fromCharCode(97 + index)}) subpart statement`,
+      answer: "A",
+      answerFormat: "MULTIPLE_CHOICE" as const,
+      choices: ["A", "B", "C", "D", "E"]
+    }));
+    const longQuestions = Array.from({ length: 6 }, (_, index) => ({
+      number: 11 + index,
+      statement: `MAT Q${index + 2} long question statement`,
+      answerFormat: "WORKED_SOLUTION" as const,
+      solutionSketch: `Official solution to Q${index + 2}.`
+    }));
+    const parsed = importProblemSetSchema.safeParse({
+      problemSet: {
+        contest: "MAT" as const,
+        year: 2024
+      },
+      problems: [...mcSubparts, ...longQuestions]
+    });
+
+    expect(parsed.success).toBe(true);
+    if (parsed.success) {
+      expect(parsed.data.problemSet.exam).toBeNull();
+    }
+  });
+
+  it("rejects MAT payloads that set an exam variant", () => {
+    const parsed = importProblemSetSchema.safeParse({
+      problemSet: {
+        contest: "MAT" as const,
+        year: 2024,
+        exam: "A"
+      },
+      problems: [
+        {
+          number: 1,
+          statement: "MAT Q1",
+          answer: "A",
+          answerFormat: "MULTIPLE_CHOICE" as const,
+          choices: ["A", "B", "C", "D", "E"]
+        }
+      ]
+    });
+
+    expect(parsed.success).toBe(false);
+  });
+
+  it("accepts a well-formed STEP payload with exam I/II/III", () => {
+    // STEP papers each have 12 questions; students pick 6. Relaxed-count
+    // path means we don't enforce the 12 here, just that numbering is
+    // contiguous starting at 1.
+    const parsed = importProblemSetSchema.safeParse({
+      problemSet: {
+        contest: "STEP" as const,
+        year: 2024,
+        exam: "II"
+      },
+      problems: Array.from({ length: 12 }, (_, index) => ({
+        number: index + 1,
+        statement: `STEP II 2024 Q${index + 1} statement`,
+        answerFormat: "WORKED_SOLUTION" as const,
+        solutionSketch: `Official solution to Q${index + 1}.`
+      }))
+    });
+
+    expect(parsed.success).toBe(true);
+    if (parsed.success) {
+      expect(parsed.data.problemSet.exam).toBe("II");
+    }
+  });
+
+  it("rejects STEP payloads that omit the exam variant", () => {
+    const parsed = importProblemSetSchema.safeParse({
+      problemSet: {
+        contest: "STEP" as const,
+        year: 2024
+      },
+      problems: [
+        {
+          number: 1,
+          statement: "STEP Q1",
+          answerFormat: "WORKED_SOLUTION" as const,
+          solutionSketch: "Official solution."
+        }
+      ]
+    });
+
+    expect(parsed.success).toBe(false);
+  });
+
+  it("accepts STEP I (historical) for the 2016–2020 archive", () => {
+    const parsed = importProblemSetSchema.safeParse({
+      problemSet: {
+        contest: "STEP" as const,
+        year: 2019,
+        exam: "I"
+      },
+      problems: [
+        {
+          number: 1,
+          statement: "STEP I 2019 Q1",
+          answerFormat: "WORKED_SOLUTION" as const,
+          solutionSketch: "Official solution."
+        }
+      ]
+    });
+
+    expect(parsed.success).toBe(true);
+  });
+
+  it("rejects WORKED_SOLUTION problems missing solutionSketch", () => {
+    const parsed = importProblemSetSchema.safeParse({
+      problemSet: {
+        contest: "USAMO" as const,
+        year: 2024
+      },
+      problems: Array.from({ length: 6 }, (_, index) => ({
+        number: index + 1,
+        statement: `USAMO problem ${index + 1}`,
+        answerFormat: "WORKED_SOLUTION" as const
+        // intentionally omit solutionSketch
+      }))
+    });
+
+    expect(parsed.success).toBe(false);
+  });
+
+  it("rejects WORKED_SOLUTION problems that include MC choices", () => {
+    const parsed = importProblemSetSchema.safeParse({
+      problemSet: {
+        contest: "MAT" as const,
+        year: 2024
+      },
+      problems: [
+        {
+          number: 1,
+          statement: "MAT long question",
+          answerFormat: "WORKED_SOLUTION" as const,
+          solutionSketch: "Official solution",
+          choices: ["A", "B", "C", "D", "E"]
+        }
+      ]
+    });
+
+    expect(parsed.success).toBe(false);
+  });
+
+  it("rejects non-WORKED_SOLUTION problems that omit an answer", () => {
+    const parsed = importProblemSetSchema.safeParse({
+      problemSet: {
+        contest: "EUCLID" as const,
+        year: 2024
+      },
+      problems: Array.from({ length: 10 }, (_, index) => ({
+        number: index + 1,
+        statement: `Euclid problem ${index + 1}`,
+        // answer intentionally omitted on an INTEGER format
+        answerFormat: "INTEGER" as const
+      }))
+    });
+
+    expect(parsed.success).toBe(false);
+  });
 });

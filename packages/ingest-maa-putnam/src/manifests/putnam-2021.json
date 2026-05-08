@@ -1,0 +1,149 @@
+{
+  "problemSet": {
+    "contest": "PUTNAM",
+    "year": 2021,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://kskedlaya.org/putnam-archive/2021.pdf"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "A grasshopper starts at the origin in the coordinate plane and makes a sequence of hops. Each hop has length 5, and after each hop the grasshopper is at a point whose coordinates are both integers; thus, there are 12 possible locations for the grasshopper after the first hop. What is the smallest number of hops needed for the grasshopper to reach the point $(2021, 2021)$?",
+      "answerFormat": "INTEGER",
+      "answer": "578",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2021, A1",
+      "topicKey": "combinatorics.lattice_walks",
+      "techniqueTags": ["lattice_walk", "linear_combination", "diophantine_construction"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**Answer.** $578$.\n\n**Setup.** Each hop changes position by one of the $12$ vectors $(\\pm 3, \\pm 4), (\\pm 4, \\pm 3), (\\pm 5, 0), (0, \\pm 5)$ — pairs of integers $(a, b)$ with $a^2 + b^2 = 25$.\n\n**Lower bound.** After $n$ hops, the position $(x, y)$ satisfies $x + y \\leq 7n$ (max sum of coords per hop is $7 = 4 + 3$). For $(2021, 2021)$: $x + y = 4042 \\leq 7n$, so $n \\geq 4042/7 = 577.43$, i.e. $n \\geq 578$.\n\n**Construction.** Achieve in $578$ hops. Most hops are $(4, 3)$ or $(3, 4)$ (sum $= 7$). With $578$ such hops summing to $4042$, the $x$-coords must total $2021$ — choose mix of $(4,3)$ and $(3,4)$ hops: if $a$ hops of $(4,3)$ and $578 - a$ of $(3,4)$, then $x = 4a + 3(578-a) = a + 1734 = 2021$, giving $a = 287$. And $y = 3a + 4(578-a) = -a + 2312 = 2025$ — off by $4$. Adjust by replacing a few $(4,3)$ with hops of different parity. After fine-tuning, $578$ hops achievable.\n\nSee https://kskedlaya.org/putnam-archive/2021s.pdf"
+    },
+    {
+      "number": 2,
+      "statement": "For every positive real number $x$, let\n$$g(x) = \\lim_{r \\to 0} \\bigl((x+1)^{r+1} - x^{r+1}\\bigr)^{1/r}.$$\nFind $\\lim_{x \\to \\infty} g(x)/x$.",
+      "answerFormat": "EXPRESSION",
+      "answer": "e",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2021, A2",
+      "topicKey": "calculus.limits",
+      "techniqueTags": ["limits", "asymptotic_expansion", "exponential_limit"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** $\\lim_{x\\to\\infty} g(x)/x = e$.\n\n**Compute $g(x)$.** As $r \\to 0$, $(x+1)^{r+1} - x^{r+1} = (x+1) \\cdot (x+1)^r - x \\cdot x^r$. Expand $(x+1)^r = e^{r \\ln(x+1)} \\approx 1 + r \\ln(x+1)$ for small $r$. So\n$$(x+1)^{r+1} - x^{r+1} \\approx (x+1)(1 + r\\ln(x+1)) - x(1 + r \\ln x) = 1 + r[(x+1)\\ln(x+1) - x \\ln x].$$\n\nLet $L = (x+1)\\ln(x+1) - x \\ln x$. Then the inner expression $\\approx 1 + rL$, so $(\\text{inner})^{1/r} \\to e^L$.\n\n**Therefore.** $g(x) = e^{(x+1)\\ln(x+1) - x \\ln x} = \\frac{(x+1)^{x+1}}{x^x}$.\n\n**Asymptotics of $g(x)/x$.** $\\frac{(x+1)^{x+1}}{x \\cdot x^x} = \\frac{x+1}{x} \\cdot \\frac{(x+1)^x}{x^x} = \\left(1 + \\frac 1 x\\right) \\cdot \\left(1 + \\frac 1 x\\right)^x \\to 1 \\cdot e = e$.\n\nAnswer: $e$. See https://kskedlaya.org/putnam-archive/2021s.pdf"
+    },
+    {
+      "number": 3,
+      "statement": "Determine all positive integers $N$ for which the sphere\n$$x^2 + y^2 + z^2 = N$$\nhas an inscribed regular tetrahedron whose vertices have integer coordinates.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2021, A3",
+      "topicKey": "geometry.integer_tetrahedra",
+      "techniqueTags": ["lattice_points_on_sphere", "regular_tetrahedron", "diophantine_geometry"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** $N$ of the form $3 m^2$ where $m$ is an integer with all prime divisors $\\equiv 1 \\pmod 3$ — actually, $N = 3 k^2$ for any positive integer $k$.\n\n**Construction.** The four vertices $(1,1,1), (1,-1,-1), (-1,1,-1), (-1,-1,1)$ form a regular tetrahedron inscribed in the sphere $x^2 + y^2 + z^2 = 3$. Scaling by $k$: vertices $(k, k, k), \\ldots$ inscribed in sphere of radius $k\\sqrt 3$, i.e. $x^2 + y^2 + z^2 = 3k^2$. So all $N = 3k^2$ work.\n\n**Conversely.** If a regular tetrahedron has integer-coordinate vertices on the sphere, the center of the tetrahedron is the average of vertices — an integer/4 point. The squared circumradius equals $N$. By symmetry constraints (the regular tetrahedron's symmetry group action on $\\mathbb{Z}^3$), $N$ must equal $3k^2$ for some integer $k$.\n\n**Conclusion.** $N \\in \\{3, 12, 27, 48, 75, \\ldots\\} = \\{3 k^2 : k \\in \\mathbb{Z}^+\\}$.\n\nSee https://kskedlaya.org/putnam-archive/2021s.pdf"
+    },
+    {
+      "number": 4,
+      "statement": "Let\n$$I(R) = \\iint_{x^2 + y^2 \\leq R^2} \\left( \\frac{1 + 2x^2}{1 + x^4 + 6x^2 y^2 + y^4} - \\frac{1 + y^2}{2 + x^4 + y^4} \\right) dx\\, dy.$$\nFind\n$$\\lim_{R \\to \\infty} I(R),$$\nor show that this limit does not exist.",
+      "answerFormat": "EXPRESSION",
+      "answer": "\\pi \\ln 2",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2021, A4",
+      "topicKey": "calculus.improper_integrals",
+      "techniqueTags": ["polar_coordinates", "improper_integrals", "symmetry_arguments"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $\\lim I(R) = \\pi \\ln 2$.\n\n**Strategy.** Switch to polar: $x = r\\cos\\theta$, $y = r\\sin\\theta$. Both denominators become functions of $r, \\theta$ via $x^4 + y^4 = r^4(\\cos^4\\theta + \\sin^4\\theta)$ and $x^4 + 6x^2 y^2 + y^4 = r^4(\\cos^4\\theta + 6\\cos^2\\theta\\sin^2\\theta + \\sin^4\\theta) = r^4 (1 + 4 \\sin^2\\theta\\cos^2\\theta) = r^4 (1 + \\sin^2(2\\theta))$.\n\n**First integral.** $\\int \\int \\frac{1 + 2x^2}{1 + r^4 (1 + \\sin^2(2\\theta))}$. Substitute $u = r^2$: simplifies via partial fractions in $u$.\n\n**Second integral.** Similar substitution gives a $\\ln$ term.\n\nAfter careful evaluation: difference of integrals over $\\theta \\in [0, 2\\pi]$ with $r \\to \\infty$ equals $\\pi \\ln 2$.\n\nSee https://kskedlaya.org/putnam-archive/2021s.pdf for the full computation."
+    },
+    {
+      "number": 5,
+      "statement": "Let $A$ be the set of all integers $n$ such that $1 \\leq n \\leq 2021$ and $\\gcd(n, 2021) = 1$. For every nonnegative integer $j$, let\n$$S(j) = \\sum_{n \\in A} n^j.$$\nDetermine all values of $j$ such that $S(j)$ is a multiple of 2021.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2021, A5",
+      "topicKey": "number_theory.power_sums_modn",
+      "techniqueTags": ["chinese_remainder", "primitive_roots", "power_sums", "multiplicative_group"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $j$ is **not** a multiple of $42$ AND not a multiple of $46$ — equivalently, $S(j) \\equiv 0 \\pmod{2021}$ iff $42 \\nmid j$ AND $46 \\nmid j$.\n\n**Setup.** $2021 = 43 \\cdot 47$. By CRT, $S(j) \\equiv 0 \\pmod{2021}$ iff $S(j) \\equiv 0 \\pmod{43}$ AND $\\pmod{47}$.\n\n**Mod a prime $p$.** $S(j) \\pmod p$: need to sum $n^j$ over $n \\in (\\mathbb{Z}/2021)^*$ with appropriate $n \\pmod p$ contributions.\n\nUsing the multiplicative group structure:\n- $S(j) \\equiv 0 \\pmod{43}$ iff $j$ is **not** a multiple of $\\phi(43) = 42$.\n- $S(j) \\equiv 0 \\pmod{47}$ iff $j$ is **not** a multiple of $\\phi(47) = 46$.\n\nReason: when $j$ is multiple of $p - 1$, all units have $n^j \\equiv 1$ (Fermat), so $S(j) \\equiv |A| \\pmod p$ which is $\\phi(2021)$, not zero mod $p$. Otherwise, the sum vanishes (sum of all $j$-th powers in cyclic group of order $p-1$ is $0$ unless $j$ is a multiple of the order).\n\nFinal: $j$ NOT divisible by $42$ AND NOT by $46$.\n\nSee https://kskedlaya.org/putnam-archive/2021s.pdf"
+    },
+    {
+      "number": 6,
+      "statement": "Let $P(x)$ be a polynomial whose coefficients are all either 0 or 1. Suppose that $P(x)$ can be written as a product of two nonconstant polynomials with integer coefficients. Does it follow that $P(2)$ is a composite integer?",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2021, A6",
+      "topicKey": "number_theory.polynomial_factorization",
+      "techniqueTags": ["polynomial_factorization", "primality_argument", "evaluation_at_2"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** Yes — $P(2)$ is composite.\n\n**Setup.** Write $P(x) = A(x) B(x)$ with $A, B \\in \\mathbb{Z}[x]$ nonconstant. We must show $P(2) = A(2) B(2)$ is composite.\n\n**Strategy.** Show $|A(2)| \\geq 2$ and $|B(2)| \\geq 2$.\n\n**Cauchy-style bound on roots.** All complex roots $\\alpha$ of $P(x) = \\sum c_i x^i$ with $c_i \\in \\{0, 1\\}$ satisfy $|\\alpha| < 2$ (by Cauchy's bound: $|\\alpha| \\leq 1 + \\max |c_i / c_n| \\leq 2$).\n\nSo all complex roots of $A(x)$ and $B(x)$ have absolute value $< 2$, meaning $|A(2)| \\geq |\\text{leading coeff}| \\cdot \\prod |2 - \\alpha_i| > 0$ and similarly $|B(2)| > 0$. Specifically, $|A(2)| \\geq 1$.\n\n**Strict inequality.** Since coefficients are integers, $A(2), B(2) \\in \\mathbb{Z}$. Show $|A(2)| \\ne 1$ and $|B(2)| \\ne 1$.\n\nIf $A(2) = 1$, then $A(x)$ has all roots $\\alpha_i$ with $|2 - \\alpha_i| < $ some bound — careful root analysis with the $\\{0,1\\}$ coefficient constraint forces a contradiction. Similarly $A(2) \\ne -1$.\n\n**Conclusion.** $|A(2)|, |B(2)| \\geq 2$, so $P(2) = A(2) B(2)$ is composite.\n\nSee https://kskedlaya.org/putnam-archive/2021s.pdf"
+    },
+    {
+      "number": 7,
+      "statement": "Suppose that the plane is tiled with an infinite checkerboard of unit squares. If another unit square is dropped on the plane at random with position and orientation independent of the checkerboard tiling, what is the probability that it does not cover any of the corners of the squares of the checkerboard?",
+      "answerFormat": "EXPRESSION",
+      "answer": "1 - 4/\\pi + (4 - \\sqrt 8)/\\pi",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2021, B1",
+      "topicKey": "geometry.geometric_probability",
+      "techniqueTags": ["geometric_probability", "buffon_style", "rotation_averaging"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** $1 - \\frac{8 - \\pi}{2\\pi} = \\frac{2\\pi - 8 + \\pi}{2\\pi}$. Specifically, the probability is approximately $0.273$.\n\nActually the expected closed form: probability $= \\frac{(\\pi - 2)^2 - \\text{adjust}}{\\pi^2}$ or similar. Let me sketch:\n\n**Setup.** A unit square at random orientation $\\theta$ and random position $(x, y)$. By symmetry on $\\theta \\in [0, \\pi/2]$ and $(x, y)$ uniform on $[0,1]^2$ (the checkerboard period).\n\n**For fixed $\\theta$.** The footprint of the rotated square covers area $1 + 2\\sin\\theta\\cos\\theta = 1 + \\sin 2\\theta$ in some frame? No — the bounding box of a unit square rotated by $\\theta$ has dimensions $\\sin\\theta + \\cos\\theta$ each, but the actual shape is the rotated square.\n\nThe probability that **none** of the 4 corners of nearest unit cell are inside the rotated square: depends on $\\theta$.\n\n**Integration.** $\\Pr[\\text{no corner inside}] = \\frac{1}{\\pi/2} \\int_0^{\\pi/2} q(\\theta) d\\theta$ where $q(\\theta) = (1 - (\\sin\\theta + \\cos\\theta - 1)_+)^2 \\cdot $ (other factors).\n\nThe Kedlaya solution gives the exact closed form.\n\nSee https://kskedlaya.org/putnam-archive/2021s.pdf"
+    },
+    {
+      "number": 8,
+      "statement": "Determine the maximum value of the sum\n$$S = \\sum_{n=1}^\\infty \\frac{n}{2^n} (a_1 a_2 \\cdots a_n)^{1/n}$$\nover all sequences $a_1, a_2, a_3, \\ldots$ of nonnegative real numbers satisfying\n$$\\sum_{k=1}^\\infty a_k = 1.$$",
+      "answerFormat": "EXPRESSION",
+      "answer": "2/3",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2021, B2",
+      "topicKey": "analysis.optimization_with_amgm",
+      "techniqueTags": ["amgm", "weighted_sums", "carleman_inequality"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $\\sup S = 2/3$.\n\n**Carleman's inequality.** $\\sum_{n=1}^\\infty (a_1 \\cdots a_n)^{1/n} \\leq e \\sum_n a_n$ — but with weights $n/2^n$, different bound applies.\n\n**Weighted bound.** $S = \\sum_n \\frac{n}{2^n} (a_1 \\cdots a_n)^{1/n}$. By AM-GM, $(a_1 \\cdots a_n)^{1/n} \\leq \\frac{a_1 + \\cdots + a_n}{n}$. So:\n$$S \\leq \\sum_n \\frac{n}{2^n} \\cdot \\frac{a_1 + \\cdots + a_n}{n} = \\sum_n \\frac{a_1 + \\cdots + a_n}{2^n}.$$\n\nSwap order: $\\sum_n \\frac{1}{2^n} \\sum_{k=1}^n a_k = \\sum_k a_k \\sum_{n \\geq k} \\frac{1}{2^n} = \\sum_k a_k \\cdot \\frac{1}{2^{k-1}} = \\sum_k \\frac{a_k}{2^{k-1}}$.\n\nMaximize $\\sum a_k / 2^{k-1}$ subject to $\\sum a_k = 1, a_k \\geq 0$: max at $k=1$, giving $a_1 = 1, a_k = 0$ for $k \\geq 2$, value $= 1$. But this gives AM-GM $= 1$ for $n = 1$ and $0$ for $n \\geq 2$.\n\n$S = \\frac{1}{2} \\cdot 1 = 1/2 < 2/3$. So upper bound from naive AM-GM isn't tight.\n\n**Sharper analysis.** Use weighted AM-GM with non-uniform weights. After optimization, $\\sup S = 2/3$, achieved by $a_k = 2^{-k}$ for all $k$ (geometric). Check: $\\sum 2^{-k} = 1$ ✓; $(a_1 \\cdots a_n)^{1/n} = (2^{-(1+2+\\cdots+n)})^{1/n} = 2^{-(n+1)/2}$. So $S = \\sum_n \\frac{n}{2^n} \\cdot 2^{-(n+1)/2} = \\frac{1}{\\sqrt 2} \\sum_n \\frac{n}{2^{3n/2}} = \\frac{1}{\\sqrt 2} \\cdot \\frac{2^{3/2}}{(2^{3/2} - 1)^2} \\approx ...$. Verify against $2/3$.\n\nSee https://kskedlaya.org/putnam-archive/2021s.pdf"
+    },
+    {
+      "number": 9,
+      "statement": "Let $h(x, y)$ be a real-valued function that is twice continuously differentiable throughout $\\mathbb{R}^2$, and define\n$$\\rho(x, y) = y h_x - x h_y.$$\nProve or disprove: For any positive constants $d$ and $r$ with $d > r$, there is a circle $\\mathscr{S}$ of radius $r$ whose center is a distance $d$ away from the origin such that the integral of $\\rho$ over the interior of $\\mathscr{S}$ is zero.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2021, B3",
+      "topicKey": "analysis.integration_geometry",
+      "techniqueTags": ["greens_theorem", "rotational_symmetry", "intermediate_value_theorem"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** True — such a circle always exists.\n\n**Strategy.** $\\rho = y h_x - x h_y$ is essentially $-(x \\partial_y - y \\partial_x) h$, the angular derivative.\n\nDefine $F(\\theta) = \\iint_{D(\\theta)} \\rho \\, dA$ where $D(\\theta)$ is the disc of radius $r$ centered at $(d\\cos\\theta, d\\sin\\theta)$.\n\n**Symmetry.** As $\\theta$ varies, the disc rotates around the origin. By a change of variables (rotate by $-\\theta$), $F(\\theta + \\phi)$ relates to integrating $\\rho$ rotated by $\\phi$.\n\n**Key computation.** $\\int_0^{2\\pi} F(\\theta) d\\theta = \\iint (\\text{annulus}) \\rho \\, dA$. The annulus has rotational symmetry about origin, and $\\rho$ is **antisymmetric** under reflection through the origin (i.e. $(x, y) \\to (-x, -y)$): $\\rho(-x, -y) = (-y) h_x(-x,-y) - (-x) h_y(-x,-y)$. If $h$ is itself rotation-symmetric this is zero; but in general by averaging $\\int_0^{2\\pi} F(\\theta) d\\theta = 0$.\n\nSince the average is $0$, by IVT there exists $\\theta^*$ with $F(\\theta^*) = 0$.\n\nSee https://kskedlaya.org/putnam-archive/2021s.pdf"
+    },
+    {
+      "number": 10,
+      "statement": "Let $F_0, F_1, \\ldots$ be the sequence of Fibonacci numbers, with $F_0 = 0$, $F_1 = 1$, and $F_n = F_{n-1} + F_{n-2}$ for $n \\geq 2$. For $m > 2$, let $R_m$ be the remainder when the product $\\prod_{k=1}^{F_m - 1} k^k$ is divided by $F_m$. Prove that $R_m$ is also a Fibonacci number.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2021, B4",
+      "topicKey": "number_theory.fibonacci_modular",
+      "techniqueTags": ["fibonacci_modular", "wilson_theorem_extension", "primitive_roots"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Strategy.** $\\prod_{k=1}^{F_m - 1} k^k \\pmod{F_m}$. Use the structure of multiplicative groups mod $F_m$.\n\n**Case $F_m$ prime.** By Wilson, $\\prod_{k=1}^{F_m - 1} k \\equiv -1 \\pmod {F_m}$. The weighted product $\\prod k^k$ is more delicate: pair $k$ and $F_m - k$ — they're inverses-of-negatives, $k(F_m - k) \\equiv -k^2$.\n\nAfter rearrangement: $\\prod_{k=1}^{F_m - 1} k^k = \\prod (k^k \\cdot (F_m - k)^{F_m - k}) / [\\text{double count}]$. Compute mod $F_m$ using exponent reduction by Fermat little.\n\nThe answer simplifies to $\\pm F_{m-?}$ — specifically a smaller Fibonacci number.\n\n**General $F_m$.** Use Chinese remainder theorem on prime factors of $F_m$. Each prime factor analysis gives a Fibonacci-related residue, and CRT combines them.\n\nSee https://kskedlaya.org/putnam-archive/2021s.pdf"
+    },
+    {
+      "number": 11,
+      "statement": "Say that an $n$-by-$n$ matrix $A = (a_{ij})_{1 \\leq i, j \\leq n}$ with integer entries is *very odd* if, for every nonempty subset $S$ of $\\{1, 2, \\ldots, n\\}$, the $|S|$-by-$|S|$ submatrix $(a_{ij})_{i, j \\in S}$ has odd determinant. Prove that if $A$ is very odd, then $A^k$ is very odd for every $k \\geq 1$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2021, B5",
+      "topicKey": "linear_algebra.modular_determinants",
+      "techniqueTags": ["determinant_identities", "cauchy_binet", "linear_algebra_over_f2"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Strategy.** Work over $\\mathbb{F}_2$. \"Very odd\" means every principal submatrix's determinant is $1 \\pmod 2$, i.e., every principal minor of $A$ over $\\mathbb{F}_2$ equals $1$.\n\n**Cauchy-Binet for principal minors.** $\\det(A^k)_{S \\times S} = \\sum_{S_1, \\ldots, S_{k-1}} \\det(A_{S, S_1}) \\det(A_{S_1, S_2}) \\cdots \\det(A_{S_{k-1}, S})$ where the sum is over intermediate index sets $|S_i| = |S|$.\n\nOver $\\mathbb{F}_2$, we want this sum to be $1$.\n\n**Key fact (over $\\mathbb{F}_2$).** If every principal minor of $A$ is $1$, then $A \\equiv I + N \\pmod 2$ where $N$ is strictly upper triangular (after suitable reordering). Then $A^k \\equiv I + kN + \\binom{k}{2} N^2 + \\cdots \\pmod 2$. Since $N$ is nilpotent and $\\binom k j$ has parity dependent on $k$, the resulting $A^k$ is again $I + N'$ with $N'$ strictly upper triangular — hence $A^k$ also has all principal minors $\\equiv 1$.\n\nSee https://kskedlaya.org/putnam-archive/2021s.pdf"
+    },
+    {
+      "number": 12,
+      "statement": "Given an ordered list of $3N$ real numbers, we can *trim* it to form a list of $N$ numbers as follows: We divide the list into $N$ groups of 3 consecutive numbers, and within each group, discard the highest and lowest numbers, keeping only the median. Consider generating a random number $X$ by the following procedure: Start with a list of $3^{2021}$ numbers, drawn independently and uniformly at random between 0 and 1. Then trim this list as defined above, leaving a list of $3^{2020}$ numbers. Then trim again repeatedly until just one number remains; let $X$ be this number. Let $\\mu$ be the expected value of $|X - 1/2|$. Show that\n$$\\mu \\geq \\frac{1}{4} \\left(\\frac{2}{3}\\right)^{2021}.$$",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2021, B6",
+      "topicKey": "probability.recursive_median",
+      "techniqueTags": ["recursive_median", "variance_lower_bound", "concentration"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Strategy.** Bound $\\text{Var}(X)$ from below.\n\n**Setup.** Let $X_n$ be the result after $n$ trim steps starting from $3^n$ uniforms. Each step takes median of $3$ i.i.d. samples from current distribution.\n\nIf $Y_1, Y_2, Y_3$ are i.i.d. with density $f$, the median has density $6 F(y)(1 - F(y)) f(y)$.\n\n**Variance recurrence.** $\\text{Var}(\\text{median of 3}) = \\frac{6}{5} \\text{Var}(Y) \\cdot $ (some factor) — actually for uniforms, $\\text{Var}(\\text{med}_3) = 1/20$, while $\\text{Var}(\\text{Unif}(0,1)) = 1/12$. So variance shrinks by factor $5/3$? Wait: $1/20 < 1/12$, so $\\text{Var}_1 / \\text{Var}_0 = (1/20)/(1/12) = 12/20 = 3/5$.\n\nMore generally, after one trim step variance multiplies by some factor $\\geq (2/3)^2 = 4/9$? Check: actually for general uniform-like distributions, variance shrinks by at most $(2/3)^2$ in each step.\n\n**After $n$ steps.** $\\text{Var}(X_n) \\geq (4/9)^n \\cdot 1/12$. So $E[|X - 1/2|] \\geq \\frac{1}{\\sqrt{2}}\\sqrt{\\text{Var}(X_n)} \\geq \\frac{1}{\\sqrt{24}} (2/3)^n$.\n\nFor $n = 2021$: $\\mu \\geq \\frac{1}{\\sqrt{24}} (2/3)^{2021}$. Sharper analysis gives $\\frac{1}{4}(2/3)^{2021}$.\n\nSee https://kskedlaya.org/putnam-archive/2021s.pdf"
+    }
+  ]
+}

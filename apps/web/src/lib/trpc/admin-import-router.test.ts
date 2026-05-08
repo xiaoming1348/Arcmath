@@ -18,18 +18,24 @@ type MockProblem = {
   problemSetId: string;
   number: number;
   statement: string | null;
-  diagramImageUrl?: string | null;
-  diagramImageAlt?: string | null;
+  diagramImageUrl: string | null;
+  diagramImageAlt: string | null;
+  choicesImageUrl: string | null;
+  choicesImageAlt: string | null;
   statementFormat: "MARKDOWN_LATEX" | "HTML" | "PLAIN";
   choices: unknown;
   answer: string | null;
   answerFormat: "MULTIPLE_CHOICE" | "INTEGER" | "EXPRESSION";
-  topicKey?: string | null;
-  difficultyBand?: string | null;
-  solutionSketch?: string | null;
-  curatedHintLevel1?: string | null;
-  curatedHintLevel2?: string | null;
-  curatedHintLevel3?: string | null;
+  examTrack: string | null;
+  sourceLabel: string | null;
+  topicKey: string | null;
+  techniqueTags: string[];
+  diagnosticEligible: boolean;
+  difficultyBand: string | null;
+  solutionSketch: string | null;
+  curatedHintLevel1: string | null;
+  curatedHintLevel2: string | null;
+  curatedHintLevel3: string | null;
   sourceUrl: string | null;
 };
 
@@ -113,7 +119,38 @@ function createPrismaMock() {
           null
         );
       },
-      async create(args: { data: { problemSet: { connect: { id: string } }; number: number; statement?: string; diagramImageUrl?: string; diagramImageAlt?: string; statementFormat: MockProblem["statementFormat"]; choices?: unknown; answer?: string; answerFormat: MockProblem["answerFormat"]; topicKey?: string; difficultyBand?: string; solutionSketch?: string; curatedHintLevel1?: string; curatedHintLevel2?: string; curatedHintLevel3?: string; sourceUrl?: string } }) {
+      async create(args: {
+        data: {
+          problemSet: { connect: { id: string } };
+          number: number;
+          statement?: string;
+          diagramImageUrl?: string | null;
+          diagramImageAlt?: string | null;
+          choicesImageUrl?: string | null;
+          choicesImageAlt?: string | null;
+          statementFormat: MockProblem["statementFormat"];
+          choices?: unknown;
+          answer?: string;
+          answerFormat: MockProblem["answerFormat"];
+          examTrack?: string | null;
+          sourceLabel?: string | null;
+          topicKey?: string | null;
+          techniqueTags?: string[];
+          diagnosticEligible?: boolean;
+          difficultyBand?: string | null;
+          solutionSketch?: string | null;
+          curatedHintLevel1?: string | null;
+          curatedHintLevel2?: string | null;
+          curatedHintLevel3?: string | null;
+          sourceUrl?: string | null;
+        };
+      }) {
+        // Mirror what a fresh Prisma `problem.create` would return: string
+        // columns unset by the caller materialize as `null`, the scalar
+        // array defaults to `[]`, and the boolean defaults to `false`.
+        // Without this, `buildProblemUpdateData` on a second commit would
+        // see `undefined !== null` and falsely report every problem as
+        // updated on idempotent re-imports.
         const created: MockProblem = {
           id: `p_${problemCounter++}`,
           problemSetId: args.data.problemSet.connect.id,
@@ -121,11 +158,17 @@ function createPrismaMock() {
           statement: args.data.statement ?? null,
           diagramImageUrl: args.data.diagramImageUrl ?? null,
           diagramImageAlt: args.data.diagramImageAlt ?? null,
+          choicesImageUrl: args.data.choicesImageUrl ?? null,
+          choicesImageAlt: args.data.choicesImageAlt ?? null,
           statementFormat: args.data.statementFormat,
           choices: args.data.choices ?? null,
           answer: args.data.answer ?? null,
           answerFormat: args.data.answerFormat,
+          examTrack: args.data.examTrack ?? null,
+          sourceLabel: args.data.sourceLabel ?? null,
           topicKey: args.data.topicKey ?? null,
+          techniqueTags: args.data.techniqueTags ?? [],
+          diagnosticEligible: args.data.diagnosticEligible ?? false,
           difficultyBand: args.data.difficultyBand ?? null,
           solutionSketch: args.data.solutionSketch ?? null,
           curatedHintLevel1: args.data.curatedHintLevel1 ?? null,
@@ -184,14 +227,37 @@ function createPrismaMock() {
   };
 }
 
-function makeCanonicalProblem(number: number) {
+type CanonicalProblem = {
+  number: number;
+  statement: string;
+  statementFormat: "MARKDOWN_LATEX";
+  choices: string[];
+  answer: string;
+  answerFormat: "MULTIPLE_CHOICE";
+  diagramImageUrl?: string;
+  diagramImageAlt?: string;
+  choicesImageUrl?: string;
+  choicesImageAlt?: string;
+  sourceLabel?: string;
+  topicKey?: string;
+  techniqueTags?: string[];
+  diagnosticEligible?: boolean;
+  difficultyBand?: string;
+  solutionSketch?: string;
+  curatedHintLevel1?: string;
+  curatedHintLevel2?: string;
+  curatedHintLevel3?: string;
+  sourceUrl?: string;
+};
+
+function makeCanonicalProblem(number: number): CanonicalProblem {
   return {
     number,
     statement: `What is problem ${number}?`,
-    statementFormat: "MARKDOWN_LATEX" as const,
+    statementFormat: "MARKDOWN_LATEX",
     choices: ["1", "2", "3", "4", "5"],
     answer: "B",
-    answerFormat: "MULTIPLE_CHOICE" as const
+    answerFormat: "MULTIPLE_CHOICE"
   };
 }
 

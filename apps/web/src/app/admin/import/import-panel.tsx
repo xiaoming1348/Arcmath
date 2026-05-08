@@ -3,7 +3,7 @@
 import Link from "next/link";
 import type { inferRouterOutputs } from "@trpc/server";
 import type { ChangeEvent } from "react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { AppRouter } from "@/lib/trpc/router";
 import { trpc } from "@/lib/trpc/client";
 
@@ -26,9 +26,46 @@ export function ImportPanel() {
   const [localError, setLocalError] = useState<string | null>(null);
   const [preview, setPreview] = useState<PreviewOutput | null>(null);
   const [commitResult, setCommitResult] = useState<CommitOutput | null>(null);
+  // Poll active when a teacher-format commit produced PROOF rows that
+  // need preprocessing. We turn polling off once all rows leave PENDING.
+  const [pollActive, setPollActive] = useState(false);
 
   const previewMutation = trpc.admin.import.preview.useMutation();
   const commitMutation = trpc.admin.import.commit.useMutation();
+
+  const problemSetIdForPolling =
+    commitResult && "problemSetId" in commitResult ? commitResult.problemSetId : null;
+  const preprocessStatusQuery = trpc.admin.import.preprocessStatus.useQuery(
+    problemSetIdForPolling ? { problemSetId: problemSetIdForPolling } : { problemSetId: "" },
+    {
+      enabled: Boolean(problemSetIdForPolling) && pollActive,
+      // Poll every 3s — preprocess takes 15-30s per problem, so 3s gives
+      // decent responsiveness without hammering the DB.
+      refetchInterval: pollActive ? 3000 : false
+    }
+  );
+
+  // Stop polling once the backend reports 0 pending problems.
+  useEffect(() => {
+    if (!preprocessStatusQuery.data) return;
+    if (preprocessStatusQuery.data.pendingCount === 0 && pollActive) {
+      setPollActive(false);
+    }
+  }, [preprocessStatusQuery.data, pollActive]);
+
+  // Start polling whenever a fresh commit returns PROOF preprocess work.
+  useEffect(() => {
+    if (
+      commitResult &&
+      "preprocessQueuedCount" in commitResult &&
+      typeof commitResult.preprocessQueuedCount === "number" &&
+      commitResult.preprocessQueuedCount > 0
+    ) {
+      setPollActive(true);
+    } else {
+      setPollActive(false);
+    }
+  }, [commitResult]);
 
   const importLink = useMemo(() => {
     if (!preview?.problemSetKey) {
@@ -92,13 +129,24 @@ export function ImportPanel() {
   const previewErrors = preview?.errors ?? [];
   const previewWarnings = preview?.warnings ?? [];
   const canCommit = Boolean(preview?.isValid) && !commitMutation.isPending;
+  const previewFormat = preview && "format" in preview ? preview.format : null;
+  const previewProofCount =
+    preview && "proofProblemCount" in preview ? preview.proofProblemCount : 0;
+  const commitFormat = commitResult && "format" in commitResult ? commitResult.format : null;
+  const preprocessQueued =
+    commitResult && "preprocessQueuedCount" in commitResult
+      ? commitResult.preprocessQueuedCount
+      : 0;
 
   return (
     <div className="space-y-4">
       <section className="surface-card space-y-3">
-        <h1 className="text-2xl font-semibold text-slate-900">Contest Import</h1>
+        <h1 className="text-2xl font-semibold text-slate-900">Contest & Homework Import</h1>
         <p className="text-sm text-slate-600">
-          Upload AMC/AIME JSON, preview validation and DB impact, then commit idempotently.
+          Upload contest JSON (AMC/AIME) or a teacher-format homework set
+          (<code>schemaVersion: &quot;arcmath-problem-set-v1&quot;</code>). The
+          system auto-detects the format. PROOF problems are queued for
+          milestone-checklist generation after commit.
         </p>
 
         <label className="block text-sm text-slate-700">
@@ -130,8 +178,10 @@ export function ImportPanel() {
           <h2 className="text-lg font-semibold text-slate-900">Preview Report</h2>
           <div className="grid gap-2 text-sm text-slate-700 md:grid-cols-2">
             <p>Valid: {preview.isValid ? "Yes" : "No"}</p>
+            <p>Format: {previewFormat ?? "unknown"}</p>
             <p>Filename: {fileName ?? "inline.json"}</p>
             <p>Problem count: {preview.problemCount}</p>
+            <p>PROOF problems: {previewProofCount}</p>
             <p>Existing set: {preview.existingSet ? "Yes" : "No"}</p>
             <p>
               Key:{" "}
@@ -183,10 +233,16 @@ export function ImportPanel() {
       {commitResult ? (
         <section className="surface-card space-y-2">
           <h2 className="text-lg font-semibold text-emerald-900">Commit Successful</h2>
+          <p className="text-sm text-slate-700">Format: {commitFormat ?? "unknown"}</p>
           <p className="text-sm text-slate-700">Problem Set ID: {commitResult.problemSetId}</p>
           <p className="text-sm text-slate-700">Created: {commitResult.createdProblems}</p>
           <p className="text-sm text-slate-700">Updated: {commitResult.updatedProblems}</p>
           <p className="text-sm text-slate-700">Skipped: {commitResult.skippedProblems}</p>
+          {preprocessQueued > 0 ? (
+            <p className="text-sm text-emerald-800">
+              {preprocessQueued} PROOF problem(s) queued for milestone generation.
+            </p>
+          ) : null}
           {commitResult.warnings.length > 0 ? (
             <ul className="list-disc space-y-1 pl-5 text-sm text-amber-700">
               {commitResult.warnings.map((warning) => (
@@ -199,6 +255,99 @@ export function ImportPanel() {
           </Link>
         </section>
       ) : null}
+
+      {preprocessStatusQuery.data && problemSetIdForPolling ? (
+        <PreprocessProgress
+          data={preprocessStatusQuery.data}
+          stillPolling={pollActive}
+        />
+      ) : null}
     </div>
+  );
+}
+
+type PreprocessStatusData =
+  inferRouterOutputs<AppRouter>["admin"]["import"]["preprocessStatus"];
+
+function PreprocessProgress({
+  data,
+  stillPolling
+}: {
+  data: PreprocessStatusData;
+  stillPolling: boolean;
+}) {
+  const total = data.total;
+  if (total === 0) return null;
+  const done =
+    (data.counts.VERIFIED ?? 0) +
+    (data.counts.FAILED ?? 0) +
+    (data.counts.MANUAL_REVIEW ?? 0);
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+
+  return (
+    <section className="surface-card space-y-3">
+      <div className="flex items-center justify-between">
+        <h2 className="text-lg font-semibold text-slate-900">
+          Preprocessing Progress
+        </h2>
+        <span className="text-sm text-slate-600">
+          {done}/{total} done{stillPolling ? " — polling..." : ""}
+        </span>
+      </div>
+
+      <div className="h-2 w-full overflow-hidden rounded-full bg-slate-200">
+        <div
+          className="h-2 rounded-full bg-emerald-500 transition-all"
+          style={{ width: `${pct}%` }}
+        />
+      </div>
+
+      <div className="flex flex-wrap gap-2 text-xs">
+        {Object.entries(data.counts).map(([status, count]) => {
+          if (count === 0) return null;
+          const color =
+            status === "VERIFIED"
+              ? "bg-emerald-100 text-emerald-800"
+              : status === "FAILED"
+                ? "bg-red-100 text-red-800"
+                : status === "MANUAL_REVIEW"
+                  ? "bg-amber-100 text-amber-800"
+                  : status === "PENDING"
+                    ? "bg-sky-100 text-sky-800"
+                    : "bg-slate-100 text-slate-700";
+          return (
+            <span
+              key={status}
+              className={`rounded-full px-2 py-0.5 font-medium ${color}`}
+            >
+              {status.toLowerCase().replace(/_/g, " ")}: {count}
+            </span>
+          );
+        })}
+      </div>
+
+      <details className="text-sm text-slate-700">
+        <summary className="cursor-pointer">Per-problem detail</summary>
+        <ul className="mt-2 space-y-1">
+          {data.problems.map((p) => (
+            <li key={p.id} className="flex flex-wrap items-center gap-2">
+              <span className="font-medium">#{p.number}</span>
+              <span className="text-slate-500">{p.formalizedStatus}</span>
+              {p.hasRecipe ? (
+                <span className="text-emerald-700">✓ recipe</span>
+              ) : null}
+              {p.formalizedReason ? (
+                <span
+                  className="truncate text-slate-500"
+                  title={p.formalizedReason}
+                >
+                  — {p.formalizedReason.slice(0, 80)}
+                </span>
+              ) : null}
+            </li>
+          ))}
+        </ul>
+      </details>
+    </section>
   );
 }

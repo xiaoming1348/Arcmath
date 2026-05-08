@@ -1,10 +1,15 @@
 import type { PrismaClient } from "@arcmath/db";
 
+/** Mirrors Prisma's OrganizationMembershipRole enum. Kept as a hand-written
+ *  union so consumers can narrow without importing the Prisma generated
+ *  types directly. */
+export type OrgMembershipRole = "OWNER" | "ADMIN" | "TEACHER" | "STUDENT";
+
 export type OrganizationMembershipContext = {
   organizationId: string;
   organizationName: string;
   organizationSlug: string;
-  role: "OWNER" | "ADMIN" | "STUDENT";
+  role: OrgMembershipRole;
 };
 
 export async function getActiveOrganizationMembership(
@@ -44,6 +49,14 @@ export async function getActiveOrganizationMembership(
   };
 }
 
-export function canManageOrganization(role: OrganizationMembershipContext["role"]): boolean {
+export function canManageOrganization(role: OrgMembershipRole): boolean {
   return role === "OWNER" || role === "ADMIN";
+}
+
+/** Teachers (plus owners/admins) can create classes + assignments, see
+ *  class dashboards, and override grades for their students. Pure students
+ *  cannot. Kept as a single predicate so the tRPC middleware and the UI
+ *  gate agree on the same rule. */
+export function canTeach(role: OrgMembershipRole): boolean {
+  return role === "OWNER" || role === "ADMIN" || role === "TEACHER";
 }

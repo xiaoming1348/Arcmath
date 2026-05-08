@@ -88,7 +88,7 @@ describe("aops import cli run", () => {
   });
 
   it("reports matched/skipped counters with limit", async () => {
-    const importPayload = vi.fn(async () => undefined);
+    const importPayload = vi.fn(async (_payload: unknown) => undefined);
 
     const summary = await runImportCli(
       {

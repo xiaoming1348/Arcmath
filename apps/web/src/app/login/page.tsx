@@ -5,8 +5,10 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
+import { useT } from "@/i18n/client";
 
 export default function LoginPage() {
+  const { t } = useT();
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") ?? "/";
@@ -31,7 +33,7 @@ export default function LoginPage() {
     setLoading(false);
 
     if (result?.error) {
-      setError("Invalid email or password");
+      setError(t("login.error_invalid"));
       return;
     }
 
@@ -45,22 +47,23 @@ export default function LoginPage() {
         <div className="hero-panel">
           <div className="relative space-y-6">
             <div className="space-y-3">
-              <span className="kicker">Welcome Back</span>
-              <h1 className="text-4xl font-semibold tracking-[-0.05em] text-white">Sign in to continue your workflow.</h1>
-              <p className="max-w-lg text-sm md:text-base">
-                A cleaner interface makes it easier to move from login to practice, reports, and assignments without
-                losing momentum.
-              </p>
+              <span className="kicker">{t("login.kicker")}</span>
+              <h1 className="text-4xl font-semibold tracking-[-0.05em] text-white">{t("login.headline")}</h1>
+              <p className="max-w-lg text-sm md:text-base">{t("login.subhead")}</p>
             </div>
 
             <div className="grid gap-3">
               <div className="hero-stat">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-blue-100/70">Student Mode</p>
-                <p className="mt-2 text-sm">Get back to problems quickly with less visual clutter.</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-blue-100/70">
+                  {t("login.stat_student_label")}
+                </p>
+                <p className="mt-2 text-sm">{t("login.stat_student_body")}</p>
               </div>
               <div className="hero-stat">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-blue-100/70">Parent View</p>
-                <p className="mt-2 text-sm">Check progress and assignments in a layout that feels organized and calm.</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-blue-100/70">
+                  {t("login.stat_parent_label")}
+                </p>
+                <p className="mt-2 text-sm">{t("login.stat_parent_body")}</p>
               </div>
             </div>
           </div>
@@ -68,14 +71,14 @@ export default function LoginPage() {
 
         <section className="surface-card space-y-5">
           <div className="space-y-2">
-            <span className="badge">Account Access</span>
-            <h2 className="text-3xl font-semibold tracking-[-0.05em] text-slate-900">Sign in</h2>
-            <p className="text-sm text-slate-600">Use your ArcMath email and password to continue.</p>
+            <span className="badge">{t("login.badge")}</span>
+            <h2 className="text-3xl font-semibold tracking-[-0.05em] text-slate-900">{t("login.title")}</h2>
+            <p className="text-sm text-slate-600">{t("login.subtitle")}</p>
           </div>
 
           <form className="space-y-4" onSubmit={onSubmit}>
             <label className="block text-sm font-medium text-slate-700">
-              Email
+              {t("login.email_label")}
               <input
                 className="input-field"
                 type="email"
@@ -86,7 +89,7 @@ export default function LoginPage() {
             </label>
 
             <label className="block text-sm font-medium text-slate-700">
-              Password
+              {t("login.password_label")}
               <input
                 className="input-field"
                 type="password"
@@ -99,15 +102,25 @@ export default function LoginPage() {
             {error ? <p className="rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-600">{error}</p> : null}
 
             <button className="btn-primary w-full" disabled={loading} type="submit">
-              {loading ? "Signing in..." : "Sign in"}
+              {loading ? t("login.submit_loading") : t("login.submit")}
             </button>
           </form>
 
-          <div className="rounded-[1.4rem] border border-[rgba(16,35,60,0.08)] bg-[rgba(243,247,251,0.88)] px-4 py-4">
+          <div className="space-y-3 rounded-[1.4rem] border border-[rgba(16,35,60,0.08)] bg-[rgba(243,247,251,0.88)] px-4 py-4">
             <p className="text-sm text-slate-600">
-              Need an account?{" "}
-              <Link className="font-semibold text-[var(--accent-strong)]" href="/register">
-                Create one here
+              {t("login.first_time_help")}{" "}
+              <Link
+                className="font-semibold text-[var(--accent-strong)]"
+                href="/login/set-password"
+              >
+                {t("login.first_time_link")}
+              </Link>
+              {t("login.first_time_suffix")}
+            </p>
+            <p className="text-xs text-slate-500">
+              {t("login.admin_create_prefix")}{" "}
+              <Link className="text-[var(--accent-strong)] hover:underline" href="/register">
+                {t("login.admin_create_link")}
               </Link>
               .
             </p>

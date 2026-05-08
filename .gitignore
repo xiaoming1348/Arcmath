@@ -34,3 +34,8 @@ apps/web/tmp/
 tmp/official-pdfs/
 playwright-report/
 test-results/
+
+# Claude Code session state (per-worktree settings, transcripts, etc.)
+# Should never be committed: it's machine-local and may include local
+# user prefs that aren't meaningful in version control.
+.claude/

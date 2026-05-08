@@ -1,0 +1,79 @@
+{
+  "problemSet": {
+    "contest": "USAMO",
+    "year": 2020,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php/2020_USAMO_Problems",
+    "verifiedPdfUrl": "https://web.archive.org/web/2025/https://artofproblemsolving.com/wiki/index.php/2020_USAMO_Problems"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Let $ABC$ be a fixed acute triangle inscribed in a circle $\\omega$ with center $O$. A variable point $X$ is chosen on minor arc $AB$ of $\\omega$, and segments $CX$ and $AB$ meet at $D$. Denote by $O_1$ and $O_2$ the circumcenters of triangles $ADX$ and $BDX$, respectively. Determine all points $X$ for which the area of triangle $OO_1O_2$ is minimized.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2020, Problem 1",
+      "topicKey": "geometry.circumcenter_loci",
+      "techniqueTags": ["circumcenter", "perpendicular_bisector", "spiral_similarity"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Key observation.** $O_1$ and $O_2$ both lie on the perpendicular bisector of $DX$. So $O_1O_2 \\perp DX$ and $|O_1O_2|$ varies as $D$ and $X$ change.\n\n**Reduction.** Note $O_1 \\in $ perpendicular bisector of $AD$ and $O_2 \\in $ perpendicular bisector of $BD$. The midpoints of $AD$ and $BD$ both lie on $AB$, and the perpendicular bisectors are vertical (perpendicular to $AB$). So $O_1O_2$ are points such that triangle $OO_1O_2$ has $O$ fixed and $O_1, O_2$ on parallel vertical lines.\n\n**Computation.** Let $M$ be the midpoint of $AB$. The circumcenter $O$ has perpendicular distance $|OM|$ to line $AB$. $O_1$ is at horizontal position (midpoint of $AD$ along $AB$) and vertical at the perpendicular bisector of $DX$. Similarly $O_2$.\n\nUsing the chord configuration, $\\text{Area}(OO_1O_2) = \\dfrac{1}{2} \\cdot |O_1O_2| \\cdot d(O, O_1O_2) = \\dfrac{1}{2} \\cdot \\dfrac{|AB|}{2} \\cdot |OM| \\cdot \\sin\\theta$ where $\\theta$ is the angle of line $DX$ to a reference. After computation: $\\text{Area} = \\dfrac{|AB|}{4} |OD \\cdot \\sin\\angle ADX|$ or similar — varying with $X$.\n\n**Minimum.** The minimum is attained when $D$ lies at the foot of perpendicular from $O$ to $AB$, i.e., at the midpoint $M$ of $AB$. This corresponds to $X$ being the midpoint of arc $AB$ not containing $C$ (so $CX$ passes through $M$ perpendicular to $AB$, the diameter direction).\n\n**Answer.** $X$ is the midpoint of minor arc $AB$ (equivalently, $X$ is the point where the perpendicular bisector of $AB$ meets minor arc $AB$)."
+    },
+    {
+      "number": 2,
+      "statement": "An empty $2020 \\times 2020 \\times 2020$ cube is given, with a $2020 \\times 2020$ grid drawn on each of its six faces. A *beam* is a $1 \\times 1 \\times 2020$ rectangular prism. Several beams are placed inside the cube subject to:\n\n- The two $1 \\times 1$ faces of each beam coincide with unit cells lying on opposite faces of the cube (so there are $3 \\cdot 2020^2$ possible positions).\n- No two beams have intersecting interiors.\n- The interiors of each of the four $1 \\times 2020$ faces of each beam touch either a face of the cube or the interior of the face of another beam.\n\nWhat is the smallest positive number of beams that can be placed to satisfy these conditions?",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2020, Problem 2",
+      "topicKey": "combinatorics.cube_packing",
+      "techniqueTags": ["3d_combinatorics", "beam_packing", "lower_bound_argument"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer: $3030$.**\n\n**Lower bound.** Categorize beams by orientation: $x$-beams, $y$-beams, $z$-beams. By projection arguments and the contact requirement, each pair of opposite faces of the cube must have its $2020 \\times 2020$ grid covered by beam endpoints in specific configurations. A careful counting argument (e.g., considering 'connected components' of beam endpoints on each face, and using the constraint that each beam's lateral faces must be in contact with another beam or cube wall) gives a lower bound of $3030$.\n\nThe key inequality: if there are $a$ $x$-beams, $b$ $y$-beams, $c$ $z$-beams, then $a + b \\geq 2020$ (and analogous), because the contact constraint along (say) the $z$-direction lateral faces of $z$-beams requires sufficient $x$- or $y$-beams. Summing: $2(a + b + c) \\geq 3 \\cdot 2020$, so $a + b + c \\geq 3030$.\n\n**Construction.** Place $1010$ $x$-beams along one row of cells on a face, $1010$ $y$-beams along another row, and $1010$ $z$-beams in a corresponding configuration that creates mutual contact. Total: $3030$ beams, all constraints satisfied.\n\n**Conclusion.** The minimum positive number of beams is $\\boxed{3030}$."
+    },
+    {
+      "number": 3,
+      "statement": "Let $p$ be an odd prime. An integer $x$ is called a *quadratic non-residue* if $p$ does not divide $x - t^2$ for any integer $t$.\n\nDenote by $A$ the set of all integers $a$ such that $1 \\leq a < p$, and both $a$ and $4 - a$ are quadratic non-residues. Calculate the remainder when the product of the elements of $A$ is divided by $p$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2020, Problem 3",
+      "topicKey": "number_theory.quadratic_residues",
+      "techniqueTags": ["legendre_symbol", "quadratic_residues", "wilson_theorem", "involution"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer: $2 \\pmod{p}$ for all odd primes $p \\geq 5$. For $p = 3$, $A$ is empty (vacuous, product $= 1$).**\n\n**Setup.** Let $\\chi(x) = \\left(\\frac{x}{p}\\right)$ denote the Legendre symbol. $a$ is a QNR iff $\\chi(a) = -1$. So $A = \\{a : 1 \\leq a < p, \\chi(a) = \\chi(4 - a) = -1\\}$.\n\n**Key involution.** The map $a \\mapsto 4 - a$ is an involution on $\\{1, \\ldots, p-1\\} \\setminus \\{2\\}$ (since $4 - 2 = 2$). It preserves the set $A$ if both $a$ and $4 - a$ are QNRs (which is what defines $A$). Pair elements: $a \\cdot (4 - a) = 4a - a^2$.\n\n**Compute the product.** $\\prod_{a \\in A} a = \\prod_{\\text{pairs } \\{a, 4-a\\}} a(4-a) = \\prod (4 a - a^2)$ over half the pairs. Note $4 a - a^2 = -(a^2 - 4a) = -(a - 2)^2 + 4 = 4 - (a - 2)^2$.\n\n**Use Gauss-style counting.** Let $b = a - 2$, so $4 - (a - 2)^2 = 4 - b^2 = (2 - b)(2 + b)$. As $a$ ranges over $A$, $b$ ranges over a corresponding set; $\\chi(4 - b^2) = \\chi(2 - b)\\chi(2 + b)$. The product over pairs simplifies via:\n$$\\prod_{a \\in A} a = \\prod_{b \\in A'} (4 - b^2) = \\prod_{b} (2-b)(2+b) \\cdot [\\chi$ matches conditions$]$$\nA careful computation using the multiplicative structure of the Legendre symbol and Wilson's theorem $\\prod_{k=1}^{p-1} k \\equiv -1 \\pmod{p}$ yields the answer $\\equiv 2 \\pmod{p}$.\n\n**Conclusion.** The product of elements of $A$ is congruent to $\\boxed{2 \\pmod{p}}$."
+    },
+    {
+      "number": 4,
+      "statement": "Suppose that $(a_1, b_1), (a_2, b_2), \\ldots, (a_{100}, b_{100})$ are distinct ordered pairs of nonnegative integers. Let $N$ denote the number of pairs of integers $(i, j)$ satisfying $1 \\leq i < j \\leq 100$ and $|a_i b_j - a_j b_i| = 1$. Determine the largest possible value of $N$ over all possible choices of the $100$ ordered pairs.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2020, Problem 4",
+      "topicKey": "combinatorics.lattice_points",
+      "techniqueTags": ["stern_brocot", "fareyish_construction", "primitive_lattice_pairs"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer: $N_{\\max} = 197$.**\n\n**Equivalent formulation.** $|a_i b_j - a_j b_i| = 1$ iff $(a_i, b_i)$ and $(a_j, b_j)$ are *primitive neighbors* in the lattice $\\mathbb Z^2$ — i.e. they form a basis of $\\mathbb Z^2$ (with sign).\n\n**Graph interpretation.** Let $G$ be the graph on the $100$ pairs with edges between primitive-neighbor pairs. We want the maximum number of edges.\n\n**Upper bound $N \\leq 197$.** Each vertex has degree $\\leq 4$ in any 'primitive-neighbor' graph (a known fact: a single primitive vector has at most $4$ primitive neighbors with the unit determinant constraint, given by $\\pm$ continued fractions). With $100$ vertices and max degree $4$, the edge count is at most $\\lfloor 100 \\cdot 4/2 \\rfloor = 200$. Refined: the actual bound is $197$, established by considering that the graph is planar (Stern-Brocot-style structure).\n\n**Construction achieving $197$.** Use the Stern–Brocot tree (or Farey-like sequence). Take $100$ primitive lattice vectors arranged on a binary tree where each internal node and its two children have unit determinants pairwise. With $99$ internal-edges from the tree structure plus $98$ 'sibling' edges, plus carefully chosen 'leaf' edges, yields $197$ edges. The construction is explicit using ratios.\n\n**Conclusion.** $N_{\\max} = 197$."
+    },
+    {
+      "number": 5,
+      "statement": "A finite set $S$ of points in the coordinate plane is called *overdetermined* if $|S| \\geq 2$ and there exists a nonzero polynomial $P(t)$, with real coefficients and of degree at most $|S| - 2$, satisfying $P(x) = y$ for every point $(x, y) \\in S$.\n\nFor each integer $n \\geq 2$, find the largest integer $k$ (in terms of $n$) such that there exists a set of $n$ distinct points that is not overdetermined, but has $k$ overdetermined subsets.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2020, Problem 5",
+      "topicKey": "combinatorics.polynomial_interpolation_subsets",
+      "techniqueTags": ["polynomial_interpolation", "vandermonde", "subset_counting"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer: $k = 2^{n-1} - n$.**\n\n**Setup.** A set of $m$ points with distinct $x$-coordinates is overdetermined iff its unique interpolating polynomial (of degree $\\leq m - 1$) actually has degree $\\leq m - 2$, i.e. the leading coefficient vanishes. Equivalently, the $m$-th divided difference is zero.\n\nIf two points have the same $x$-coordinate (and different $y$), no polynomial passes through both, so such a subset is **not** overdetermined.\n\n**Construction.** Take $n$ points where the first $n - 1$ are on a line (not overdetermined as a whole if line is non-constant), and the last point is off the line. Subsets of the first $n - 1$ points of size $\\geq 2$ are overdetermined (they lie on the line, which has degree $1 \\leq m - 2$ when $m \\geq 3$). Number of such subsets: $\\binom{n-1}{2} + \\binom{n-1}{3} + \\cdots + \\binom{n-1}{n-1} = 2^{n-1} - n$.\n\n**Upper bound $k \\leq 2^{n-1} - n$.** Use a counting / linear algebra argument: each overdetermined subset corresponds to a polynomial of low degree fitting it, and the constraints force structure. Standard argument using linear independence of divided differences.\n\n**Conclusion.** $k = 2^{n-1} - n$."
+    },
+    {
+      "number": 6,
+      "statement": "Let $n \\geq 2$ be an integer. Let $x_1 \\geq x_2 \\geq \\cdots \\geq x_n$ and $y_1 \\geq y_2 \\geq \\cdots \\geq y_n$ be $2n$ real numbers such that\n$$0 = x_1 + x_2 + \\cdots + x_n = y_1 + y_2 + \\cdots + y_n$$\nand\n$$1 = x_1^2 + x_2^2 + \\cdots + x_n^2 = y_1^2 + y_2^2 + \\cdots + y_n^2.$$\nProve that\n$$\\sum_{i=1}^n \\bigl(x_i y_i - x_i y_{n+1-i}\\bigr) \\geq \\dfrac{2}{\\sqrt{n - 1}}.$$",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2020, Problem 6",
+      "topicKey": "algebra.rearrangement_inequality",
+      "techniqueTags": ["rearrangement_inequality", "cauchy_schwarz", "extremal_distribution"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Strategy.** The expression $\\sum (x_i y_i - x_i y_{n+1-i}) = \\sum x_i (y_i - y_{n+1-i})$ measures correlation between the sorted $x$ and sorted $y$ vs. anti-sorted.\n\n**Step 1: Reduce to extremal $y$.** Fix $\\{x_i\\}$. Among $y$'s satisfying $\\sum y = 0, \\sum y^2 = 1$, decreasing, the LHS is linear in $y$, so minimum is at extreme points of the constraint set. Extreme points are configurations where $y$ takes only two distinct values. So WLOG $y_1 = \\cdots = y_k = a > 0 > b = y_{k+1} = \\cdots = y_n$ with $k \\cdot a + (n - k) b = 0$ and $k a^2 + (n - k) b^2 = 1$.\n\n**Step 2: Solve for $a, b$.** From the constraints, $a = \\sqrt{(n-k)/(kn)}$ and $b = -\\sqrt{k/(n(n-k))}$.\n\n**Step 3: Same reduction for $x$.** By symmetry argument, the extremum of LHS over $\\{x\\}$ also occurs at two-value distributions.\n\n**Step 4: Reduce to single-parameter problem.** With $x$ taking two values (sizes $j$ and $n - j$) and $y$ similarly (sizes $k$ and $n - k$), compute LHS explicitly. Optimizing over $j, k$ yields the bound $\\dfrac{2}{\\sqrt{n - 1}}$, achieved at $j = k = 1$ (so one large $x$ and $y$, with the rest equal and small).\n\n**Step 5: Verify equality case.** With $x_1 = y_1 = \\sqrt{(n-1)/n}$ and $x_2 = \\cdots = x_n = -1/\\sqrt{n(n-1)}$ (similarly $y$): the LHS $= 2/\\sqrt{n-1}$ exactly.\n\n**Conclusion.** $\\sum (x_i y_i - x_i y_{n+1-i}) \\geq \\dfrac{2}{\\sqrt{n - 1}}$, with equality for the two-value extremal configuration. $\\blacksquare$"
+    }
+  ]
+}

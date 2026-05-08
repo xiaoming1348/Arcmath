@@ -3,6 +3,7 @@ import path from "node:path";
 import bcrypt from "bcryptjs";
 import { Prisma, ProblemSetCategory, ProblemSetStatus, ProblemSetSubmissionMode, Role } from "@prisma/client";
 import { diagnosticProblemSets, DIAGNOSTIC_TEST_SEED_SOURCE_URL } from "./diagnostic-problem-sets";
+import { ensureArcmathOpsSentinel } from "../src/ops-sentinel";
 
 function applyEnvFile(filePath: string) {
   if (!existsSync(filePath)) {
@@ -67,6 +68,18 @@ async function main() {
       passwordHash
     }
   });
+
+  // Seed the "ArcMath Ops" sentinel tenant + attach every ADMIN user to
+  // it. Platform admins use that membership as their default context
+  // before they attach a temporary TEACHER membership to a school for
+  // support work — see PILOT_SUPPORT_PLAYBOOK §8.
+  const sentinelSummary = await ensureArcmathOpsSentinel(prisma);
+  console.log(
+    `Ensured ArcMath Ops sentinel (${sentinelSummary.organizationId}): ` +
+      `admins=${sentinelSummary.totalActiveAdmins} ` +
+      `added=${sentinelSummary.addedAdminMemberships} ` +
+      `reactivated=${sentinelSummary.reactivatedAdminMemberships}`
+  );
 
   for (const problemSet of diagnosticProblemSets) {
     const existingProblemSet = await prisma.problemSet.findFirst({

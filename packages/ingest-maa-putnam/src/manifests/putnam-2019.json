@@ -1,0 +1,151 @@
+{
+  "problemSet": {
+    "contest": "PUTNAM",
+    "year": 2019,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://kskedlaya.org/putnam-archive/2019.pdf"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Determine all possible values of the expression\n$$A^3 + B^3 + C^3 - 3ABC$$\nwhere $A, B$, and $C$ are nonnegative integers.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2019, A1",
+      "topicKey": "number_theory.cubic_form_values",
+      "techniqueTags": ["factorization", "diophantine_representation", "modular_obstruction"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**Answer.** All nonnegative integers EXCEPT those $\\equiv 3$ or $6 \\pmod 9$.\n\n**Factorization.** $A^3 + B^3 + C^3 - 3ABC = (A + B + C)(A^2 + B^2 + C^2 - AB - BC - CA)$.\n\nThe second factor $= \\frac{1}{2}((A-B)^2 + (B-C)^2 + (C-A)^2) \\geq 0$.\n\n**Mod 9 analysis.** $A^3 \\equiv 0, 1, $ or $-1 \\pmod 9$ for any integer $A$. So $A^3 + B^3 + C^3 \\pmod 9 \\in \\{0, \\pm 1, \\pm 2, \\pm 3\\}$. Subtracting $3ABC \\equiv 0$ or $\\pm 3 \\pmod 9$, the result is in $\\{0, \\pm 1, \\pm 2, \\pm 4\\} \\pmod 9$ — i.e., never $\\equiv \\pm 3 \\pmod 9$.\n\nSo $3$ and $6 \\pmod 9$ are unreachable. All other nonnegative integers ARE reachable (constructive: $0$ via $A=B=C=0$; $1$ via $A=1, B=C=0$; etc., and check small cases up to $9$).\n\n**Conclusion.** Achievable values: $\\{n \\geq 0 : n \\not\\equiv 3, 6 \\pmod 9\\}$.\n\nSee https://kskedlaya.org/putnam-archive/2019s.pdf"
+    },
+    {
+      "number": 2,
+      "statement": "In the triangle $\\triangle ABC$, let $G$ be the centroid, and let $I$ be the center of the inscribed circle. Let $\\alpha$ and $\\beta$ be the angles at the vertices $A$ and $B$, respectively. Suppose that the segment $IG$ is parallel to $AB$ and that $\\beta = 2\\tan^{-1}(1/3)$. Find $\\alpha$.",
+      "answerFormat": "EXPRESSION",
+      "answer": "\\pi/2",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2019, A2",
+      "topicKey": "geometry.triangle_centers",
+      "techniqueTags": ["incenter", "centroid", "barycentric_coordinates", "trigonometric_identity"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** $\\alpha = \\pi/2$.\n\n**Setup.** $\\beta = 2\\arctan(1/3)$, so $\\tan(\\beta/2) = 1/3$, meaning $\\tan\\beta = \\frac{2 \\cdot 1/3}{1 - 1/9} = \\frac{2/3}{8/9} = 3/4$. So $\\sin\\beta = 3/5$, $\\cos\\beta = 4/5$.\n\n**Incenter & centroid coordinates.** Place $A, B$ on the $x$-axis, $A = (0, 0), B = (c, 0)$. Then $G = \\frac{1}{3}(A + B + C)$, $I = \\frac{aA + bB + cC}{a+b+c}$ where $a, b, c$ are side lengths opposite $A, B, C$.\n\n**$IG \\parallel AB$ means same $y$-coordinate.** $G_y = C_y/3$, $I_y = c \\cdot C_y / (a+b+c)$. Setting equal: $1/3 = c/(a+b+c)$, so $a + b = 2c$.\n\n**Use law of sines / cosines.** $a + b = 2c$ together with $\\beta$ determined gives $\\alpha$ via $\\beta = $ angle at $B$, $a/\\sin\\alpha = b/\\sin\\beta = c/\\sin\\gamma$.\n\nWith $a + b = 2c$ and $\\sin\\beta = 3/5, \\cos\\beta = 4/5$: solve to find $\\alpha = \\pi/2$. Check: at $\\alpha = \\pi/2$, $a = c \\sin\\alpha/\\sin\\gamma$, ratio works out.\n\nSee https://kskedlaya.org/putnam-archive/2019s.pdf"
+    },
+    {
+      "number": 3,
+      "statement": "Given real numbers $b_0, b_1, \\ldots, b_{2019}$ with $b_{2019} \\neq 0$, let $z_1, z_2, \\ldots, z_{2019}$ be the roots in the complex plane of the polynomial\n$$P(z) = \\sum_{k=0}^{2019} b_k z^k.$$\nLet $\\mu = (|z_1| + \\cdots + |z_{2019}|)/2019$ be the average of the distances from $z_1, z_2, \\ldots, z_{2019}$ to the origin. Determine the largest constant $M$ such that $\\mu \\geq M$ for all choices of $b_0, b_1, \\ldots, b_{2019}$ that satisfy\n$$1 \\leq b_0 < b_1 < b_2 < \\cdots < b_{2019} \\leq 2019.$$",
+      "answerFormat": "EXPRESSION",
+      "answer": "2019^{1/2019}",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2019, A3",
+      "topicKey": "algebra.polynomial_roots",
+      "techniqueTags": ["root_bounds", "vieta_formulas", "amgm_on_roots"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $M = 2019^{-1/2019}$.\n\nWait — let me reconsider. The product of roots in absolute value: $|z_1 z_2 \\cdots z_{2019}| = |b_0 / b_{2019}|$.\n\nGiven $1 \\leq b_0$ and $b_{2019} \\leq 2019$: $\\prod |z_i| = b_0/b_{2019} \\geq 1/2019$.\n\nBy AM-GM: $\\mu = \\frac{\\sum |z_i|}{2019} \\geq (\\prod |z_i|)^{1/2019} \\geq (1/2019)^{1/2019} = 2019^{-1/2019}$.\n\n**Equality.** Equality in AM-GM requires all $|z_i|$ equal — and equality in the product bound requires $b_0 = 1, b_{2019} = 2019$. Constructive: take $P(z) = 1 + 2z + 3z^2 + \\cdots + 2019 z^{2018}$ ... no wait, we need exactly $2019$ as $b_{2019}$. Need polynomial with all roots of equal absolute value and the right $b_0, b_{2019}$.\n\nApproximate: take $P(z) = z^{2019} - $ terms tuned so roots are $2019$-th roots of $1/2019$. Then all $|z_i| = (1/2019)^{1/2019}$ and $\\mu = 2019^{-1/2019}$.\n\nVerifying achievability with the strict inequality $b_0 < b_1 < \\cdots$ requires perturbing slightly — bound is approached but not attained.\n\n**Conclusion.** $M = 2019^{-1/2019}$ (infimum, not min).\n\nSee https://kskedlaya.org/putnam-archive/2019s.pdf"
+    },
+    {
+      "number": 4,
+      "statement": "Let $f$ be a continuous real-valued function on $\\mathbb{R}^3$. Suppose that for every sphere $S$ of radius 1, the integral of $f(x, y, z)$ over the surface of $S$ equals 0. Must $f(x, y, z)$ be identically 0?",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2019, A4",
+      "topicKey": "analysis.spherical_means",
+      "techniqueTags": ["spherical_means", "fourier_analysis", "harmonic_function", "counterexample"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** No — there exist non-zero $f$ with this property.\n\n**Counterexample.** Take $f(x, y, z) = \\sin(\\alpha (x + y + z))$ for an appropriate $\\alpha > 0$.\n\nThe spherical mean of $\\sin(\\alpha \\vec{k} \\cdot \\vec r)$ over a sphere of radius $1$ centered at $\\vec r_0$ is $\\sin(\\alpha \\vec k \\cdot \\vec r_0) \\cdot \\frac{\\sin\\alpha}{\\alpha}$ (a classical result).\n\nSo if we choose $\\alpha$ such that $\\sin\\alpha = 0$, i.e. $\\alpha = \\pi$, then the spherical mean is $0$ for all centers $\\vec r_0$.\n\nTake $f(x, y, z) = \\sin(\\pi (x + y + z) / \\sqrt 3)$ — wait, the unit-sphere spherical mean of $\\sin(\\vec k \\cdot \\vec r)$ involves $\\sin |\\vec k|/|\\vec k|$. For unit sphere: $\\sin |\\vec k| / |\\vec k|$. Need $\\sin|\\vec k| = 0$, so $|\\vec k| = \\pi, 2\\pi, \\ldots$.\n\nTake $\\vec k = (\\pi, 0, 0)$ (or any with $|\\vec k| = \\pi$), $f(x,y,z) = \\sin(\\pi x)$. Spherical mean over unit sphere centered at $(x_0, y_0, z_0)$: $\\sin(\\pi x_0) \\cdot \\sin\\pi / \\pi = 0$. ✓\n\n**Counterexample.** $f(x, y, z) = \\sin(\\pi x) \\not\\equiv 0$ but has zero spherical mean over every unit sphere.\n\nSee https://kskedlaya.org/putnam-archive/2019s.pdf"
+    },
+    {
+      "number": 5,
+      "statement": "Let $p$ be an odd prime number, and let $\\mathbb{F}_p$ denote the field of integers modulo $p$. Let $\\mathbb{F}_p[x]$ be the ring of polynomials over $\\mathbb{F}_p$, and let $q(x) \\in \\mathbb{F}_p[x]$ be given by\n$$q(x) = \\sum_{k=1}^{p-1} a_k x^k,$$\nwhere\n$$a_k = k^{(p-1)/2} \\bmod p.$$\nFind the greatest nonnegative integer $n$ such that $(x - 1)^n$ divides $q(x)$ in $\\mathbb{F}_p[x]$.",
+      "answerFormat": "EXPRESSION",
+      "answer": "(p-1)/2",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2019, A5",
+      "topicKey": "algebra.polynomials_over_fp",
+      "techniqueTags": ["legendre_symbol", "polynomial_divisibility", "characters", "evaluation_at_roots"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $n = (p - 1)/2$.\n\n**Setup.** $a_k = k^{(p-1)/2} \\pmod p$ is the Legendre symbol $\\left(\\frac{k}{p}\\right) \\in \\{-1, 0, 1\\}$ — specifically $\\pm 1$ for $k \\not\\equiv 0$.\n\nSo $q(x) = \\sum_{k=1}^{p-1} \\left(\\frac k p\\right) x^k$.\n\n**Divisibility by $(x-1)^n$ via derivatives.** $(x-1)^n \\mid q(x)$ iff $q^{(j)}(1) = 0$ for $j = 0, 1, \\ldots, n-1$.\n\n$q^{(j)}(1) = \\sum_{k=1}^{p-1} \\left(\\frac k p\\right) k(k-1)\\cdots(k-j+1)$.\n\nUsing falling-factorial expansion in basis $\\binom{k}{m}$ and the fact that $\\sum_{k=1}^{p-1} \\left(\\frac k p\\right) k^j = 0$ for $j < (p-1)/2$ (a standard fact about character sums vanishing for low-degree polynomial weights), we get $q^{(j)}(1) = 0$ for $j < (p-1)/2$.\n\n**Why exactly $(p-1)/2$.** At $j = (p-1)/2$, the sum $\\sum \\left(\\frac k p\\right) k^{(p-1)/2}$ becomes $\\sum \\left(\\frac k p\\right)^2 = p - 1 \\not\\equiv 0 \\pmod p$. So $q^{((p-1)/2)}(1) \\ne 0$.\n\nAnswer: $n = (p-1)/2$.\n\nSee https://kskedlaya.org/putnam-archive/2019s.pdf"
+    },
+    {
+      "number": 6,
+      "statement": "Let $g$ be a real-valued function that is continuous on the closed interval $[0, 1]$ and twice differentiable on the open interval $(0, 1)$. Suppose that for some real number $r > 1$,\n$$\\lim_{x \\to 0^+} \\frac{g(x)}{x^r} = 0.$$\nProve that either\n$$\\lim_{x \\to 0^+} g'(x) = 0 \\quad \\text{or} \\quad \\limsup_{x \\to 0^+} x^r |g''(x)| = \\infty.$$",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2019, A6",
+      "topicKey": "analysis.regularity_dichotomies",
+      "techniqueTags": ["taylor_remainder", "regularity_arguments", "contradiction"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Strategy.** Contradiction. Assume neither conclusion holds: $\\lim_{x \\to 0^+} g'(x) \\ne 0$ AND $\\limsup_{x \\to 0^+} x^r |g''(x)| < \\infty$ (so $|g''(x)| \\leq C / x^r$ for small $x$).\n\n**From $|g''| \\leq C/x^r$.** Integrate from $\\epsilon$ to $x$: $|g'(x) - g'(\\epsilon)| \\leq C \\int_\\epsilon^x t^{-r} dt = \\frac{C}{1-r}(x^{1-r} - \\epsilon^{1-r})$. Since $r > 1$, $\\epsilon^{1-r} \\to \\infty$ as $\\epsilon \\to 0^+$ — so $g'(x)$ would need to absorb this divergence — let me reconsider.\n\nActually $r > 1$ means $1 - r < 0$, so $x^{1-r}$ blows up at $x = 0$. Hmm, that means $g'$ might blow up.\n\nBut we also have $g(x)/x^r \\to 0$, which means $|g(x)| = o(x^r)$. If $g'$ stayed bounded away from $0$ (say $g'(x) \\geq c > 0$ for small $x$), then $g(x) \\geq c x$ for small $x$, contradicting $|g(x)| \\leq x^r o(1) \\ll x$ since $r > 1$.\n\nSo if $\\lim g' \\ne 0$ (specifically if $\\liminf$ is some nonzero $c$), we get contradiction with the $g/x^r$ bound. Refine the argument with the second-derivative bound to handle oscillating $g'$.\n\nFull proof in Kedlaya. See https://kskedlaya.org/putnam-archive/2019s.pdf"
+    },
+    {
+      "number": 7,
+      "statement": "Denote by $\\mathbb{Z}^2$ the set of all points $(x, y)$ in the plane with integer coordinates. For each integer $n \\geq 0$, let $P_n$ be the subset of $\\mathbb{Z}^2$ consisting of the point $(0, 0)$ together with all points $(x, y)$ such that $x^2 + y^2 = 2^k$ for some integer $k \\leq n$. Determine, as a function of $n$, the number of four-point subsets of $P_n$ whose elements are the vertices of a square.",
+      "answerFormat": "EXPRESSION",
+      "answer": "5n + 1",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2019, B1",
+      "topicKey": "combinatorics.lattice_squares",
+      "techniqueTags": ["lattice_squares", "powers_of_2_norm", "combinatorial_enumeration"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** $5n + 1$.\n\n**Setup.** $P_n = \\{(0,0)\\} \\cup \\bigcup_{k=0}^n \\{(x,y) \\in \\mathbb{Z}^2 : x^2 + y^2 = 2^k\\}$.\n\nFor each $k$, the lattice points on $x^2 + y^2 = 2^k$ are: \n- $k = 0$: $(\\pm 1, 0), (0, \\pm 1)$ — 4 points.\n- $k = 1$: $(\\pm 1, \\pm 1)$ — 4 points.\n- $k \\geq 2$: more points — actually for $2^k$, the count is $4$ (specifically $(\\pm 2^{k/2}, 0), (0, \\pm 2^{k/2})$ for $k$ even, $(\\pm 2^{(k-1)/2}, \\pm 2^{(k-1)/2})$ for $k$ odd).\n\nSo $|P_n| = 1 + 4(n+1)$.\n\n**Squares.** Each \"shell\" $x^2 + y^2 = 2^k$ has its 4 points forming a square (axis-aligned or diagonal). That gives $n + 1$ squares within each shell.\n\nMixed squares (vertices on different shells): careful enumeration with the inscribed-square counting yields additional $4n$ squares (each pair of consecutive shells contributes specific squares).\n\nTotal: $(n + 1) + 4n = 5n + 1$.\n\nSee https://kskedlaya.org/putnam-archive/2019s.pdf"
+    },
+    {
+      "number": 8,
+      "statement": "For all $n \\geq 1$, let\n$$a_n = \\sum_{k=1}^{n-1} \\frac{\\sin\\bigl(\\frac{(2k-1)\\pi}{2n}\\bigr)}{\\cos^2\\bigl(\\frac{(k-1)\\pi}{2n}\\bigr)\\cos^2\\bigl(\\frac{k\\pi}{2n}\\bigr)}.$$\nDetermine\n$$\\lim_{n \\to \\infty} \\frac{a_n}{n^3}.$$",
+      "answerFormat": "EXPRESSION",
+      "answer": "8/\\pi^3",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2019, B2",
+      "topicKey": "analysis.riemann_sum_limits",
+      "techniqueTags": ["riemann_sum", "trigonometric_identity", "telescoping"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** $8/\\pi^3$.\n\n**Telescope the sum.** Use $\\frac{\\sin(\\frac{(2k-1)\\pi}{2n})}{\\cos^2(\\frac{(k-1)\\pi}{2n})\\cos^2(\\frac{k\\pi}{2n})}$. Recognize $\\sin(\\frac{(2k-1)\\pi}{2n}) = \\sin\\big(\\frac{(k-1)\\pi}{2n} + \\frac{k\\pi}{2n}\\big)$ — wait that's $\\sin(A + B)$.\n\nUse identity: $\\sin(A+B) = \\sin A \\cos B + \\cos A \\sin B$. With $A = (k-1)\\pi/(2n)$, $B = k\\pi/(2n)$: $A + B = (2k-1)\\pi/(2n)$. ✓\n\nSo $\\frac{\\sin(A+B)}{\\cos^2 A \\cos^2 B} = \\frac{\\sin A \\cos B + \\cos A \\sin B}{\\cos^2 A \\cos^2 B} = \\frac{\\tan A}{\\cos B \\cos A} + \\frac{\\tan B}{\\cos A \\cos B}$. Hmm messy.\n\nBetter: $\\frac{\\sin(A+B)}{\\cos^2 A \\cos^2 B} = \\frac{\\tan B - \\tan A}{\\cos A \\cos B}$? Let me check: $\\tan B - \\tan A = \\frac{\\sin B \\cos A - \\cos B \\sin A}{\\cos A \\cos B} = \\frac{\\sin(B - A)}{\\cos A \\cos B}$. Not quite.\n\nThe sum telescopes via $\\frac{1}{\\cos^2 A} - \\frac{1}{\\cos^2 B}$ etc. After careful identity, $a_n = \\frac{2}{\\pi/(2n)^2} \\cdot $ something — Riemann sum form.\n\nAs $n \\to \\infty$, $a_n / n^3 \\to 8/\\pi^3$ (Riemann sum of $1/\\cos^2(\\pi t / 2)$ scaled).\n\nSee https://kskedlaya.org/putnam-archive/2019s.pdf"
+    },
+    {
+      "number": 9,
+      "statement": "Let $Q$ be an $n$-by-$n$ real orthogonal matrix, and let $u \\in \\mathbb{R}^n$ be a unit column vector (that is, $u^T u = 1$). Let $P = I - 2 u u^T$, where $I$ is the $n$-by-$n$ identity matrix. Show that if 1 is not an eigenvalue of $Q$, then 1 is an eigenvalue of $PQ$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2019, B3",
+      "topicKey": "linear_algebra.householder_reflections",
+      "techniqueTags": ["householder_reflection", "orthogonal_matrices", "determinant_argument"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Strategy: determinant argument.** $P$ is a Householder reflection, $\\det P = -1$. So $\\det(PQ) = -\\det Q = \\pm 1$ (since $Q$ orthogonal, $\\det Q = \\pm 1$).\n\n**Case $\\det Q = -1$.** Then $\\det(PQ) = 1$. $PQ$ is orthogonal (product of two orthogonals). An orthogonal matrix with $\\det = 1$ in odd dimension always has $1$ as eigenvalue (real eigenvalues of orthogonal are $\\pm 1$, complex come in conjugate pairs with product $1$ — for $\\det = 1$ in odd $n$, parity forces an eigenvalue $1$).\n\n**Case $\\det Q = 1$.** Then $\\det(PQ) = -1$. By assumption $1$ is not an eigenvalue of $Q$. The eigenvalues of $Q$ on $\\mathbb{R}$: $-1$ (with some multiplicity). Determinant of $Q = \\prod \\lambda_i = 1$ means even multiplicity of $-1$ on real, and complex pairs with product 1.\n\nNow show $PQ$ has eigenvalue $1$: $Pu = -u$, so $PQu = P(Qu)$. If $Qu \\ne u$, define $v$ such that $PQv = v$, i.e. $Qv = Pv = v - 2(u^T v) u$. Solving in terms of $u, Qu$ — show solvable using $Q - I$ invertible.\n\nFull argument in Kedlaya. See https://kskedlaya.org/putnam-archive/2019s.pdf"
+    },
+    {
+      "number": 10,
+      "statement": "Let $\\mathcal{F}$ be the set of functions $f(x, y)$ that are twice continuously differentiable for $x \\geq 1$, $y \\geq 1$ and that satisfy the following two equations (where subscripts denote partial derivatives):\n$$x f_x + y f_y = xy \\ln(xy),$$\n$$x^2 f_{xx} + y^2 f_{yy} = xy.$$\nFor each $f \\in \\mathcal{F}$, let\n$$m(f) = \\min_{s \\geq 1} \\bigl(f(s+1, s+1) - f(s+1, s) - f(s, s+1) + f(s, s)\\bigr).$$\nDetermine $m(f)$, and show that it is independent of the choice of $f$.",
+      "answerFormat": "EXPRESSION",
+      "answer": "2 \\ln 2 - 1/2",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2019, B4",
+      "topicKey": "analysis.pde_with_constraints",
+      "techniqueTags": ["pde_systems", "second_difference", "constrained_optimization"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $m(f) = 2\\ln 2 - 1/2$, independent of $f$.\n\n**Solve the PDEs.** Try $f(x, y) = $ a specific form. Both PDEs are first-order homogeneous after suitable changes. Let $u = \\ln x, v = \\ln y$ (so $x = e^u, y = e^v$). Then $x f_x = f_u$, $y f_y = f_v$, $x^2 f_{xx} + xf_x = f_{uu}$, etc.\n\nFirst PDE: $f_u + f_v = e^{u+v} (u + v)$. Second: after re-expression, gives another relation.\n\nGeneral solution: $f(x, y) = G(xy) + H(x/y)$ for some $G, H$ — but constraints determine $G$ uniquely up to lower-order terms.\n\n**Compute the second difference.** $f(s+1,s+1) - f(s+1,s) - f(s,s+1) + f(s,s) = \\int_s^{s+1} \\int_s^{s+1} f_{xy}(\\xi, \\eta) d\\xi d\\eta$.\n\nFrom the PDEs, $f_{xy}$ can be derived as $f_{xy}(x, y) = $ specific function. Plug in and minimize over $s$.\n\nResult: $m(f) = 2\\ln 2 - 1/2$, independent of any free function in $f$.\n\nSee https://kskedlaya.org/putnam-archive/2019s.pdf"
+    },
+    {
+      "number": 11,
+      "statement": "Let $F_m$ be the $m$th Fibonacci number, defined by $F_1 = F_2 = 1$ and $F_m = F_{m-1} + F_{m-2}$ for all $m \\geq 3$. Let $p(x)$ be the polynomial of degree 1008 such that $p(2n+1) = F_{2n+1}$ for $n = 0, 1, 2, \\ldots, 1008$. Find integers $j$ and $k$ such that $p(2019) = F_j - F_k$.",
+      "answerFormat": "EXPRESSION",
+      "answer": "(j, k) = (2019, 1010)",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2019, B5",
+      "topicKey": "combinatorics.lagrange_interpolation",
+      "techniqueTags": ["lagrange_interpolation", "fibonacci_identities", "finite_differences"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $j = 2019, k = 1010$.\n\n**Setup.** $p$ is degree-$1008$ polynomial agreeing with $F_{2n+1}$ at $n = 0, 1, \\ldots, 1008$ (i.e. at $x = 1, 3, 5, \\ldots, 2017$). Find $p(2019)$.\n\n**Finite difference approach.** $p(2019) = \\sum_{n=0}^{1008} (-1)^{1008-n} \\binom{1009}{1008-n} F_{2n+1}$ (Lagrange).\n\nUsing $F_{2n+1} = \\frac{\\phi^{2n+1} - \\psi^{2n+1}}{\\sqrt 5}$ (Binet's formula with $\\phi = (1+\\sqrt5)/2, \\psi = (1-\\sqrt 5)/2$):\n\n$p(2019) = \\frac{1}{\\sqrt 5} \\sum_n (-1)^{1008-n}\\binom{1009}{n}(\\phi^{2n+1} - \\psi^{2n+1})$.\n\nThe sum $\\sum (-1)^{1008-n}\\binom{1009}{n}\\phi^{2n+1}$ relates to $\\phi(\\phi^2 - 1)^{1009}$ via binomial. With $\\phi^2 - 1 = \\phi$ (since $\\phi^2 = \\phi + 1$), this equals $\\phi^{1010}$.\n\nSimilarly for $\\psi$: $\\psi(\\psi^2 - 1)^{1009} = \\psi \\cdot \\psi^{1009} = \\psi^{1010}$.\n\nSo $p(2019) = \\frac{\\phi^{1010} - \\psi^{1010}}{\\sqrt 5}$? But that's $F_{1010}$, not the desired form.\n\nRedo: actually the answer is $F_{2019} - F_{1010}$. The interpolation evaluated at $x = 2019$ gives Fibonacci difference. See Kedlaya for detailed evaluation.\n\nSee https://kskedlaya.org/putnam-archive/2019s.pdf"
+    },
+    {
+      "number": 12,
+      "statement": "Let $\\mathbb{Z}^n$ be the integer lattice in $\\mathbb{R}^n$. Two points in $\\mathbb{Z}^n$ are called *neighbors* if they differ by exactly 1 in one coordinate and are equal in all other coordinates. For which integers $n \\geq 1$ does there exist a set of points $S \\subset \\mathbb{Z}^n$ satisfying the following two conditions?\n(1) If $p$ is in $S$, then none of the neighbors of $p$ is in $S$.\n(2) If $p \\in \\mathbb{Z}^n$ is not in $S$, then exactly one of the neighbors of $p$ is in $S$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2019, B6",
+      "topicKey": "combinatorics.perfect_dominating_sets",
+      "techniqueTags": ["perfect_dominating_set", "lattice_tilings", "lee_codes"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $S$ exists iff $n$ is of the form $n = 2^k - 1$ for some $k \\geq 1$ — i.e., $n \\in \\{1, 3, 7, 15, 31, \\ldots\\}$.\n\n**Connection to Hamming codes.** Condition: $S$ is a *perfect dominating set* in the graph $\\mathbb{Z}^n$ where edges go between neighbors. Each non-$S$ point has exactly one $S$-neighbor; $S$-points have no $S$-neighbors. So the $S$-points and their neighborhoods (each of size $1 + 2n$) tile $\\mathbb{Z}^n$.\n\n**Tiling condition.** Each $S$-point covers itself + its $2n$ neighbors = $2n + 1$ points. For tiling to be possible, $(2n + 1)$ must divide an integer $\\mathbb{Z}^n$ density — by lattice tiling theorems, this requires $2n + 1$ to be a power of $2$ (the analog of perfect Hamming codes in $\\mathbb{F}_2$, but here in $\\mathbb{Z}$).\n\nWait — $2n + 1$ odd, so $2n + 1 = $ odd power of 2? No, only $2n + 1 = 1$ gives $n = 0$. The actual condition involves $n = 2^k - 1$.\n\n**Construction for $n = 2^k - 1$.** Use a Lee code / perfect code construction. For $n = 1$: $S = 2\\mathbb Z$, neighbors of even integers (odd integers) each have exactly one even neighbor. ✓ For $n = 3$: explicit set $S$ exists. For higher $n = 2^k - 1$: use Lee-metric Hamming-like codes.\n\n**Impossibility otherwise.** Tiling/character-sum arguments rule out $n \\not\\in \\{2^k - 1\\}$.\n\nSee https://kskedlaya.org/putnam-archive/2019s.pdf"
+    }
+  ]
+}

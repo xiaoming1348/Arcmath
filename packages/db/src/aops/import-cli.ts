@@ -1,8 +1,53 @@
 import { readFile, readdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import { Prisma } from "@prisma/client";
 import { prisma } from "../client";
-import { importProblemSetSchema, type Contest, type ImportProblemSetInput } from "@arcmath/shared";
+import type { Contest, ImportProblemSetInput } from "@arcmath/shared";
+
+const VALID_CONTEST_VALUES: Contest[] = ["AMC8", "AMC10", "AMC12", "AIME"];
+
+/**
+ * CLI shape check: the filter stage only needs enough to decide scope (contest,
+ * year, exam). Contest-specific problem counts, MCQ choice cardinality, and the
+ * other rules in the full schema belong to the commit layer (the `importPayload`
+ * callback). Zod isn't in this package's direct deps, so we validate by hand.
+ */
+function parseImportCliShape(raw: unknown): ImportProblemSetInput | null {
+  if (!raw || typeof raw !== "object") {
+    return null;
+  }
+  const candidate = raw as Record<string, unknown>;
+  const problemSet = candidate.problemSet as Record<string, unknown> | undefined;
+  const problems = candidate.problems;
+  if (!problemSet || !Array.isArray(problems)) {
+    return null;
+  }
+
+  const contest = problemSet.contest;
+  const year = problemSet.year;
+  const exam = problemSet.exam;
+  if (typeof contest !== "string" || !VALID_CONTEST_VALUES.includes(contest as Contest)) {
+    return null;
+  }
+  if (typeof year !== "number" || !Number.isInteger(year)) {
+    return null;
+  }
+  if (exam !== null && exam !== undefined && typeof exam !== "string") {
+    return null;
+  }
+
+  return {
+    ...candidate,
+    problemSet: {
+      ...problemSet,
+      contest: contest as Contest,
+      year,
+      exam: (exam as string | null | undefined) ?? null
+    },
+    problems
+  } as unknown as ImportProblemSetInput;
+}
 
 type ImportStats = {
   setsCreated: number;
@@ -126,10 +171,17 @@ async function importOne(payload: ImportProblemSetInput, stats: ImportStats) {
         continue;
       }
 
-      const updateData = {
+      // Prisma's generated `ProblemUpdateInput` for `choices` accepts
+      // `InputJsonValue | NullableJsonNullValueInput | undefined`, not
+      // `JsonValue` (which includes a raw `null`). When the incoming problem
+      // omits choices and the existing row stored `null`, we must skip the
+      // field instead of passing it through.
+      const existingChoices =
+        existingProblem.choices === null ? undefined : (existingProblem.choices as Prisma.InputJsonValue);
+      const updateData: Prisma.ProblemUpdateInput = {
         statement: problem.statement ?? existingProblem.statement,
         statementFormat: problem.statementFormat ?? existingProblem.statementFormat,
-        choices: problem.choices ?? existingProblem.choices,
+        choices: problem.choices ?? existingChoices,
         answer: problem.answer ?? existingProblem.answer,
         answerFormat: problem.answerFormat ?? existingProblem.answerFormat,
         sourceUrl: problem.sourceUrl ?? existingProblem.sourceUrl
@@ -326,21 +378,21 @@ export async function runImportCli(
         filesSkippedByFilter += 1;
         continue;
       }
-      const parsed = importProblemSetSchema.safeParse(parsedJson);
-      if (!parsed.success) {
+      const payload = parseImportCliShape(parsedJson);
+      if (!payload) {
         stats.failedFiles += 1;
         console.error(`invalid schema: ${fileName}`);
         continue;
       }
 
-      if (!matchesImportScope(parsed.data, options)) {
+      if (!matchesImportScope(payload, options)) {
         filesSkippedByFilter += 1;
         continue;
       }
 
       matchedFiles.push({
         fileName,
-        payload: parsed.data
+        payload
       });
     } catch (error) {
       stats.failedFiles += 1;

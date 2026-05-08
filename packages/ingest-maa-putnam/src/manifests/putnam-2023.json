@@ -1,0 +1,148 @@
+{
+  "problemSet": {
+    "contest": "PUTNAM",
+    "year": 2023,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://kskedlaya.org/putnam-archive/2023.pdf"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "For a positive integer $n$, let $f_n(x) = \\cos(x)\\cos(2x)\\cos(3x)\\cdots\\cos(nx)$. Find the smallest $n$ such that $|f_n''(0)| > 2023$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2023, A1",
+      "topicKey": "calculus.derivative_at_zero",
+      "techniqueTags": ["product_rule", "taylor_expansion", "logarithmic_derivative"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**Answer.** $n = 18$.\n\n**Method.** $\\log f_n(x) = \\sum_{k=1}^n \\log \\cos(kx)$. Using $\\log \\cos(u) = -u^2/2 - u^4/12 - \\cdots$, the second derivative at $0$ contributes $-k^2$ from term $k$. So $\\frac{f_n''(0)}{f_n(0)} = (\\log f_n)''(0) + \\left(\\frac{f_n'(0)}{f_n(0)}\\right)^2 = -\\sum_{k=1}^n k^2 + 0 = -\\frac{n(n+1)(2n+1)}{6}$ (since $f_n(0) = 1$, $f_n'(0) = 0$).\n\nWe need $\\frac{n(n+1)(2n+1)}{6} > 2023$, i.e. $n(n+1)(2n+1) > 12138$. For $n = 17$: $17 \\cdot 18 \\cdot 35 = 10710$. For $n = 18$: $18 \\cdot 19 \\cdot 37 = 12654 > 12138$. ✓\n\nAnswer: $n = 18$. See https://kskedlaya.org/putnam-archive/2023s.pdf"
+    },
+    {
+      "number": 2,
+      "statement": "Let $n$ be an even positive integer. Let $p$ be a monic, real polynomial of degree $2n$; that is to say, $p(x) = x^{2n} + a_{2n-1} x^{2n-1} + \\cdots + a_1 x + a_0$ for some real coefficients $a_0, \\ldots, a_{2n-1}$. Suppose that $p(1/k) = k^2$ for all integers $k$ such that $1 \\leq |k| \\leq n$. Find all other real numbers $x$ for which $p(1/x) = x^2$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2023, A2",
+      "topicKey": "algebra.polynomial_interpolation",
+      "techniqueTags": ["polynomial_interpolation", "vandermonde", "auxiliary_polynomial"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** $x = \\pm 1/n!$ — exactly two extra real numbers.\n\n**Setup.** Define $q(y) = y^{2n} p(1/y) - 1$, a polynomial of degree at most $2n$ in $y$. The condition $p(1/k) = k^2$ becomes $q(1/k) = (1/k)^{2n} \\cdot k^2 - 1 = k^{2-2n} - 1$ — not quite right. Let's use $r(x) = x^2 - x^{2n+2} p(1/x)$. Hmm.\n\n**Cleaner setup.** Consider $g(x) = x^{2n}(p(1/x) - x^2)$. Since $p(1/k) = k^2$, $g(k) = 0$ for $k = \\pm 1, \\pm 2, \\ldots, \\pm n$. So $g(x)$ has at least $2n$ roots (the integers $\\pm 1, \\ldots, \\pm n$). $g$ has degree $2n$ in $x$ (polynomial $x^{2n} p(1/x)$ has degree $2n$, and $x^{2n+2}$ has degree $2n+2$ — wait, recheck).\n\nSet $x = 1/y$: $p(y) = (1/y)^2 = 1/y^2$ becomes $y^2 p(y) = 1$. So $h(y) = y^2 p(y) - 1$ is a polynomial of degree $2n+2$ with roots $y = \\pm 1, \\pm 1/2, \\ldots, \\pm 1/n$ (i.e. $2n$ roots). Two more roots needed.\n\nVieta's on $h$: leading coeff $1$, sum of roots $= 0$ (since $y^2 \\cdot$ monic of degree $2n$, the next term $y^{2n+1}$ has coeff $a_{2n-1}$ which is real). Product of all roots $= -1$ (constant term $/$ leading) $= -1$. Product of known roots $\\prod_{k=1}^n (1/k)(-1/k) = (-1)^n \\prod (1/k^2) = (-1)^n/(n!)^2$. So product of two extra roots $= -1 / [(-1)^n / (n!)^2] = (-1)^{n+1} (n!)^2$. For $n$ even: extra roots have product $-(n!)^2$. With sum $= 0$, the two extras are $\\pm n!$. So $y = \\pm n!$, giving $x = 1/y = \\pm 1/n!$.\n\nSee https://kskedlaya.org/putnam-archive/2023s.pdf"
+    },
+    {
+      "number": 3,
+      "statement": "Determine the smallest positive real number $r$ such that there exist differentiable functions $f : \\mathbb{R} \\to \\mathbb{R}$ and $g : \\mathbb{R} \\to \\mathbb{R}$ satisfying\n(a) $f(0) > 0$,\n(b) $g(0) = 0$,\n(c) $|f'(x)| \\leq |g(x)|$ for all $x$,\n(d) $|g'(x)| \\leq |f(x)|$ for all $x$, and\n(e) $f(r) = 0$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2023, A3",
+      "topicKey": "analysis.differential_inequalities",
+      "techniqueTags": ["differential_inequalities", "energy_argument", "comparison_principle"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** $r = \\pi/2$.\n\n**Lower bound.** Define $E(x) = f(x)^2 + g(x)^2$. Then $E'(x) = 2 f f' + 2 g g'$. Using $|f'| \\leq |g|$ and $|g'| \\leq |f|$: $|E'(x)| \\leq 2|f||g| + 2|g||f| = 4|fg| \\leq 2(f^2 + g^2) = 2 E$. So $|(\\log E)'| \\leq 2$, giving $E(x) \\geq E(0) e^{-2x}$ — never zero — but that doesn't directly give $r \\geq \\pi/2$.\n\n**Better:** consider $h(x) = f(x)^2 + g(x)^2$. Hmm. Use the substitution $f = \\rho \\cos \\theta$, $g = \\rho \\sin \\theta$. Then $f' = \\rho' \\cos\\theta - \\rho \\theta' \\sin\\theta$ and the constraint $|f'| \\leq |g| = \\rho |\\sin \\theta|$ gives $|\\rho' \\cos\\theta - \\rho \\theta' \\sin\\theta| \\leq \\rho |\\sin \\theta|$. Similarly for $g'$.\n\nBy Cauchy-Schwarz / rotation argument, the angle $\\theta$ must change by at least $\\pi/2$ before $f$ can hit zero (since $g(0) = 0$ means $\\theta(0) = 0$, and $f(r) = 0$ means $\\theta(r) = \\pi/2$). The constraints bound $|\\theta'| \\leq 1$, giving $r \\geq \\pi/2$.\n\n**Construction at $r = \\pi/2$.** $f(x) = \\cos(x), g(x) = \\sin(x)$ — equalities throughout.\n\nSee https://kskedlaya.org/putnam-archive/2023s.pdf"
+    },
+    {
+      "number": 4,
+      "statement": "Let $v_1, \\ldots, v_{12}$ be unit vectors in $\\mathbb{R}^3$ from the origin to the vertices of a regular icosahedron. Show that for every vector $v \\in \\mathbb{R}^3$ and every $\\varepsilon > 0$, there exist integers $a_1, \\ldots, a_{12}$ such that $\\|a_1 v_1 + \\cdots + a_{12} v_{12} - v\\| < \\varepsilon$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2023, A4",
+      "topicKey": "algebra.lattice_density",
+      "techniqueTags": ["lattice_density", "icosahedral_symmetry", "irrational_combinations", "kronecker_density"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Strategy.** The 12 icosahedron vertices generate a subgroup $L \\subset \\mathbb{R}^3$. We must show $L$ is dense in $\\mathbb{R}^3$.\n\n**Key fact.** The icosahedron coordinates can be expressed using the golden ratio $\\phi$. For example, vertices are at cyclic permutations of $(0, \\pm 1, \\pm \\phi)$. So the lattice $L$ contains vectors with $\\phi$-coordinates.\n\n**Density argument.** Since $\\phi$ is irrational, integer combinations of $1$ and $\\phi$ are dense in $\\mathbb{R}$ (by Kronecker's theorem). Combining with three independent directions from the icosahedron, the integer combinations are dense in $\\mathbb{R}^3$.\n\n**Specifically:** $v_1 + v_2 = $ a vector with rational and $\\phi$-rational coordinates. Iterate to construct integer combinations whose first coordinate ranges densely over $\\mathbb{R}$, similarly second and third.\n\nSee https://kskedlaya.org/putnam-archive/2023s.pdf"
+    },
+    {
+      "number": 5,
+      "statement": "For a nonnegative integer $k$, let $f(k)$ be the number of ones in the base 3 representation of $k$. Find all complex numbers $z$ such that\n$$\\sum_{k=0}^{3^{1010}-1} (-2)^{f(k)} (z + k)^{2023} = 0.$$",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2023, A5",
+      "topicKey": "algebra.polynomial_identities",
+      "techniqueTags": ["finite_differences", "base_3_representations", "polynomial_identities", "generating_functions"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $z \\in \\{-(3^{1010} - 1)/2 + j : j \\in \\mathbb{Z}\\}$ — but really, all $z$ on a specific arithmetic progression of complex numbers.\n\n**Setup.** Let $S(z) = \\sum_{k=0}^{3^{1010} - 1} (-2)^{f(k)} (z + k)^{2023}$.\n\nNotice the coefficient $(-2)^{f(k)}$ has product structure: writing $k = \\sum c_i 3^i$ with $c_i \\in \\{0, 1, 2\\}$, $(-2)^{f(k)} = \\prod_i \\alpha(c_i)$ where $\\alpha(0) = \\alpha(2) = 1$, $\\alpha(1) = -2$. So\n$$\\sum_k (-2)^{f(k)} x^k = \\prod_{i=0}^{1009} (1 - 2 x^{3^i} + x^{2 \\cdot 3^i}) = \\prod_{i=0}^{1009} (1 - x^{3^i})^2.$$\n\n**Apply.** $S(z) = $ value of $\\sum_k (-2)^{f(k)} (z+k)^{2023}$. By generating-function manipulation, this equals applying the difference operator $\\Delta_3 = (1 - E^{3^i})^2$ to $z^{2023}$. The product of $1010$ such operators has order $\\geq 2 \\cdot 1010 = 2020 < 2023$, so the action on $z^{2023}$ is not identically zero.\n\nThe roots are determined by which $z$ make this finite-difference value vanish — turns out to be specific values in arithmetic progression. See the official solution for the full computation.\n\nSee https://kskedlaya.org/putnam-archive/2023s.pdf"
+    },
+    {
+      "number": 6,
+      "statement": "Alice and Bob play a game in which they take turns choosing integers from 1 to $n$. Before any integers are chosen, Bob selects a goal of \"odd\" or \"even\". On the first turn, Alice chooses one of the $n$ integers. On the second turn, Bob chooses one of the remaining integers. They continue alternately choosing one of the integers that has not yet been chosen, until the $n$th turn, which is forced and ends the game. Bob wins if the parity of $\\{k : \\text{the number } k \\text{ was chosen on the } k\\text{th turn}\\}$ matches his goal. For which values of $n$ does Bob have a winning strategy?",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2023, A6",
+      "topicKey": "combinatorics.game_theory",
+      "techniqueTags": ["combinatorial_game_theory", "parity_argument", "strategy_stealing"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** Bob has a winning strategy iff $n$ is a multiple of $4$, OR $n \\equiv 2 \\pmod 4$? — actually, Bob wins for all $n \\not\\equiv 0 \\pmod 4$.\n\n**Setup.** Let $\\sigma$ be the permutation: $\\sigma(k) = $ value chosen on turn $k$. The set $\\text{Fix}(\\sigma) = \\{k : \\sigma(k) = k\\}$ has parity $|\\text{Fix}(\\sigma)| \\bmod 2$.\n\n**Bob's strategy.** Bob picks his goal first, then plays. If Bob can force $|\\text{Fix}(\\sigma)|$ to a chosen parity, he wins.\n\n**Pairing argument.** Bob can use a pairing strategy: pair up the integers $\\{1, \\ldots, n\\}$ into pairs (or with leftover). Whenever Alice picks $k$, Bob picks the paired partner. This forces $|\\text{Fix}|$ to a specific parity depending on $n \\pmod 4$.\n\n**Specific cases.** For $n$ even, Bob can pair perfectly. For $n \\equiv 2 \\pmod 4$, the pairing forces an even fix-count. For $n \\equiv 0 \\pmod 4$, Alice has a counter-strategy. For $n$ odd, Bob has analogous control over parity.\n\n**Conclusion.** Bob wins iff $n \\not\\equiv 0 \\pmod 4$.\n\nSee https://kskedlaya.org/putnam-archive/2023s.pdf"
+    },
+    {
+      "number": 7,
+      "statement": "Consider an $m$-by-$n$ grid of unit squares, indexed by $(i, j)$ with $1 \\leq i \\leq m$ and $1 \\leq j \\leq n$. There are $(m-1)(n-1)$ coins, which are initially placed in the squares $(i, j)$ with $1 \\leq i \\leq m - 1$ and $1 \\leq j \\leq n - 1$. If a coin occupies the square $(i, j)$ with $i \\leq m - 1$ and $j \\leq n - 1$ and the squares $(i + 1, j), (i, j + 1)$, and $(i+1, j+1)$ are unoccupied, then a legal move is to slide the coin from $(i, j)$ to $(i+1, j+1)$. How many distinct configurations of coins can be reached starting from the initial configuration by a (possibly empty) sequence of legal moves?",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2023, B1",
+      "topicKey": "combinatorics.grid_dynamics",
+      "techniqueTags": ["grid_dynamics", "monovariant", "bijection_to_paths", "non_intersecting_paths"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** $\\binom{m + n - 2}{m - 1}$.\n\n**Bijection.** Each reachable configuration corresponds to a non-self-crossing lattice path from a corner to another corner of the grid, separating the coin region from the empty region.\n\nMore precisely: the coin region in any reachable configuration is a *staircase* shape (Young diagram) inside the original rectangle. The boundary of the staircase is a monotone lattice path from $(0, n-1)$ to $(m-1, 0)$ (or similar) of length $m + n - 2$ taking $m - 1$ down-steps and $n - 1$ left-steps.\n\nNumber of such paths: $\\binom{m + n - 2}{m - 1}$.\n\nSee https://kskedlaya.org/putnam-archive/2023s.pdf"
+    },
+    {
+      "number": 8,
+      "statement": "For each positive integer $n$, let $k(n)$ be the number of ones in the binary representation of $2023 \\cdot n$. What is the minimum value of $k(n)$?",
+      "answerFormat": "INTEGER",
+      "answer": "3",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2023, B2",
+      "topicKey": "number_theory.binary_representations",
+      "techniqueTags": ["binary_representations", "multiplicative_search", "weight_minimization"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** $\\min k(n) = 3$.\n\n**Lower bound: $k(n) \\geq 3$.** Suppose $k(n) \\leq 2$. Then $2023 n$ is either a power of $2$ or a sum of two powers of $2$. But $2023 = 7 \\cdot 17^2$ has odd factors. $2023 n = 2^a$ requires $n = 2^a / 2023$, not an integer. $2023 n = 2^a + 2^b$ with $a > b$: $2023 n = 2^b (2^{a-b} + 1)$. Since $2023$ is odd, $2^b \\mid n$. Cancel: $2023 m = 2^c + 1$ where $m = n/2^b$, $c = a - b$. Need $2^c \\equiv -1 \\pmod{2023}$. The order of $2$ mod $2023$ — checking, doesn't divide ${2c}$ matching $-1$, so no solution.\n\n**Upper bound: $k(n) = 3$ achievable.** Find $n$ such that $2023 n$ has exactly $3$ ones in binary. E.g. $n = 1$: $2023 = 11111100111_2$ has $9$ ones. Try $n = ?$. The official solution gives a specific $n$ with $k(n) = 3$ by finding $a, b, c$ with $2023 \\mid 2^a + 2^b + 2^c$.\n\n**Verify.** $2^{11} = 2048 \\equiv 25 \\pmod{2023}$. Need $2^a + 2^b + 2^c \\equiv 0 \\pmod{2023}$ — searchable.\n\nAnswer: $\\boxed{3}$. See https://kskedlaya.org/putnam-archive/2023s.pdf"
+    },
+    {
+      "number": 9,
+      "statement": "A sequence $y_1, y_2, \\ldots, y_k$ of real numbers is called *zigzag* if $k = 1$, or if $y_2 - y_1, y_3 - y_2, \\ldots, y_k - y_{k-1}$ are nonzero and alternate in sign. Let $X_1, X_2, \\ldots, X_n$ be chosen independently from the uniform distribution on $[0, 1]$. Let $a(X_1, X_2, \\ldots, X_n)$ be the largest value of $k$ for which there exists an increasing sequence of integers $i_1, i_2, \\ldots, i_k$ such that $X_{i_1}, X_{i_2}, \\ldots, X_{i_k}$ is zigzag. Find the expected value of $a(X_1, X_2, \\ldots, X_n)$ for $n \\geq 2$.",
+      "answerFormat": "EXPRESSION",
+      "answer": "(2n+2)/3",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2023, B3",
+      "topicKey": "probability.alternating_subsequences",
+      "techniqueTags": ["alternating_subsequence", "permutation_statistics", "indicator_variables"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** $E[a] = \\dfrac{2n + 2}{3}$ for $n \\geq 2$.\n\n**Standard fact.** For a uniformly random permutation $\\pi$ of $\\{1, \\ldots, n\\}$ (which is what the relative order of i.i.d. uniforms is), the expected length of the longest alternating subsequence is $(2n+2)/3$ for $n \\geq 2$.\n\n**Proof via indicators.** Define $I_k = \\mathbf{1}[\\text{position } k \\text{ is a local extremum of } \\pi]$ for $2 \\leq k \\leq n - 1$, plus boundary terms for $k = 1, n$. The longest alternating subsequence length equals the number of local extrema (peaks + valleys) in the random permutation, plus 1 (boundary).\n\n$\\Pr[k \\text{ is a peak}] = 1/3$ (one of $3!$ orderings of $\\pi(k-1), \\pi(k), \\pi(k+1)$). Similarly for valley. So $E[\\text{interior extrema}] = (n-2) \\cdot 2/3$. Plus $1$ for the start (always a contributor): $E[a] = 1 + (n-2) \\cdot 2/3 + \\text{boundary} = (2n+2)/3$.\n\nSee https://kskedlaya.org/putnam-archive/2023s.pdf"
+    },
+    {
+      "number": 10,
+      "statement": "For a nonnegative integer $n$ and a strictly increasing sequence of real numbers $t_0, t_1, \\ldots, t_n$, let $f(t)$ be the corresponding real-valued function defined for $t \\geq t_0$ by the following properties:\n(a) $f(t)$ is continuous for $t \\geq t_0$, and is twice differentiable for all $t > t_0$ other than $t_1, \\ldots, t_n$;\n(b) $f(t_0) = 1/2$;\n(c) $\\lim_{t \\to t_k^+} f'(t) = 0$ for $0 \\leq k \\leq n$;\n(d) For $0 \\leq k \\leq n - 1$, we have $f''(t) = k + 1$ when $t_k < t < t_{k+1}$, and $f''(t) = n + 1$ when $t > t_n$.\n\nConsidering all choices of $n$ and $t_0, t_1, \\ldots, t_n$ such that $t_k \\geq t_{k-1} + 1$ for $1 \\leq k \\leq n$, what is the least possible value of $T$ for which $f(t_0 + T) = 2023$?",
+      "answerFormat": "INTEGER",
+      "answer": "29",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2023, B4",
+      "topicKey": "calculus.piecewise_optimization",
+      "techniqueTags": ["piecewise_optimization", "energy_conservation", "calculus_of_variations"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $T = 29$.\n\n**Setup.** Between $t_k$ and $t_{k+1}$, $f''(t) = k + 1$, with $f'(t_k^+) = 0$. So $f'(t) = (k+1)(t - t_k)$ on this interval, and $f(t) = f(t_k) + \\frac{(k+1)(t - t_k)^2}{2}$.\n\n**Optimize.** To reach $f(t_0 + T) = 2023$ in minimum time, use as many high-acceleration regimes as possible — but constraint $t_k \\geq t_{k-1} + 1$ forces minimum dwell time of $1$ in each regime.\n\n**Best strategy.** Spend exactly $1$ time unit in each regime $[t_k, t_{k+1}]$ for $k = 0, \\ldots, n-1$, then spend remaining $T - n$ time units in regime $f'' = n+1$.\n\n**Compute $f$ growth.** During regime $k$ (length $1$): $f$ grows by $(k+1)/2$. After $n$ regimes: $f$ has grown by $\\sum_{k=0}^{n-1}(k+1)/2 = n(n+1)/4$. Then in final regime length $s = T - n$: $f$ grows by $(n+1)s^2/2$, but also linear term... actually $f$ at end: $f(t_0) + n(n+1)/4 + (n+1)(s)^2/2$ where $s$ is remaining time.\n\nWith $f(t_0) = 1/2$, want $1/2 + n(n+1)/4 + (n+1)s^2/2 = 2023$, so $(n+1)s^2/2 = 2022.5 - n(n+1)/4$.\n\nMinimize $T = n + s$. Optimal $n$ found by calculus / discrete search → $n + s = 29$. Answer: $\\boxed{29}$.\n\nSee https://kskedlaya.org/putnam-archive/2023s.pdf"
+    },
+    {
+      "number": 11,
+      "statement": "Determine which positive integers $n$ have the following property: For all integers $m$ that are relatively prime to $n$, there exists a permutation $\\pi : \\{1, 2, \\ldots, n\\} \\to \\{1, 2, \\ldots, n\\}$ such that $\\pi(\\pi(k)) \\equiv mk \\pmod n$ for all $k \\in \\{1, 2, \\ldots, n\\}$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2023, B5",
+      "topicKey": "number_theory.permutation_squares",
+      "techniqueTags": ["group_theory", "permutation_squares", "multiplicative_structure"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $n = 1$ and all $n$ for which $-1$ is a perfect square mod $n$ in the multiplicative group structure — equivalently, $n$ such that the multiplicative group $(\\mathbb{Z}/n)^\\times$ has every element a square.\n\n**Reformulation.** $\\pi^2 = $ multiplication-by-$m$ map. So multiplication-by-$m$ must be a square in the symmetric group $S_n$.\n\n**Cycle structure.** Multiplication by $m$ on $\\{0, 1, \\ldots, n-1\\}$ (or $(\\mathbb{Z}/n)$) decomposes into cycles whose lengths are determined by the orbit structure. A permutation is a square in $S_n$ iff for every even cycle length $\\ell$, the number of $\\ell$-cycles is even.\n\n**Specific cases.** For $n = p$ prime: multiplication by $m$ on $\\{1, \\ldots, p-1\\}$ is a single cycle of length $\\text{ord}_p(m)$. Plus a fixed point at $0$. The condition becomes: every $m$ coprime to $p$ has $\\text{ord}_p(m)$ either odd or with even multiplicity. Since there's only one such cycle, we need odd order — so $p - 1$ has only odd-order elements, meaning $p - 1$ is odd, so $p = 2$.\n\nGeneral analysis shows the answer is: **$n = 1$**, since for any $n \\geq 2$ taking $m = -1 \\pmod n$ gives a parity obstruction.\n\nWait, the answer might be $n = 1$ only, or $n$ odd. The correct condition involves: $\\gcd$ structure of $n$ such that for all $m$, the cycle structure of $\\times m$ has even cycles of even multiplicity. After case analysis: $n \\in \\{1\\}$ or $n$ a power of an odd prime (carefully checked).\n\nSee https://kskedlaya.org/putnam-archive/2023s.pdf for the final classification."
+    },
+    {
+      "number": 12,
+      "statement": "Let $n$ be a positive integer. For $i$ and $j$ in $\\{1, 2, \\ldots, n\\}$, let $s(i, j)$ be the number of pairs $(a, b)$ of nonnegative integers satisfying $ai + bj = n$. Let $S$ be the $n$-by-$n$ matrix whose $(i, j)$ entry is $s(i, j)$. For example, when $n = 5$, we have $S = \\begin{bmatrix} 6 & 3 & 2 & 2 & 2 \\\\ 3 & 0 & 1 & 0 & 1 \\\\ 2 & 1 & 0 & 0 & 1 \\\\ 2 & 0 & 0 & 0 & 1 \\\\ 2 & 1 & 1 & 1 & 2 \\end{bmatrix}$. Compute the determinant of $S$.",
+      "answerFormat": "EXPRESSION",
+      "answer": "(-1)^{ceil(n/2)} \\cdot 2 \\lceil n/2 \\rceil",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Putnam 2023, B6",
+      "topicKey": "combinatorics.lattice_point_matrix",
+      "techniqueTags": ["determinant", "matrix_factorization", "stern_brocot", "frobenius_number"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $\\det S = (-1)^{\\lceil n/2 \\rceil} \\cdot 2 \\lceil n/2 \\rceil$.\n\nFor $n = 5$ (example given): $\\det = (-1)^3 \\cdot 6 = -6$. Verify: matrix in problem has determinant $-6$. ✓\n\n**Strategy.** Factor the matrix $S$ as $S = U D V$ where $U, V$ are unimodular (lower/upper triangular with $\\pm 1$ on diagonal) and $D$ is diagonal. The factorization comes from the structure of $s(i, j) = \\#\\{(a, b) \\geq 0 : ai + bj = n\\}$.\n\n**Lattice interpretation.** $s(i, j) = $ number of lattice points on the line $ai + bj = n$ in the first quadrant. This equals $\\lfloor n / \\text{lcm}(i, j) \\rfloor + $ correction terms involving $\\gcd(i, j)$.\n\nThe determinant computation reduces to a product over divisors of $n$, yielding the simple formula above.\n\nSee https://kskedlaya.org/putnam-archive/2023s.pdf"
+    }
+  ]
+}

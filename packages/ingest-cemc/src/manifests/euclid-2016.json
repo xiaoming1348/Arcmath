@@ -1,0 +1,123 @@
+{
+  "problemSet": {
+    "contest": "EUCLID",
+    "year": 2016,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://cemc.uwaterloo.ca/contests/past_contests.html",
+    "verifiedPdfUrl": "https://cemc.uwaterloo.ca/sites/default/files/documents/2016/2016EuclidContest.pdf"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "**(a)** What is the average of the integers $5, 15, 25, 35, 45, 55$?\n\n**(b)** If $x^2 = 2016$, what is the value of $(x + 2)(x - 2)$?\n\n**(c)** In the diagram, points $P(7, 5)$, $Q(a, 2a)$, and $R(12, 30)$ lie on a straight line. Determine the value of $a$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2016 Euclid Contest, Problem 1",
+      "topicKey": "algebra.arithmetic_and_coordinate_geometry",
+      "techniqueTags": ["arithmetic_mean", "difference_of_squares", "collinearity_slope"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** Pair the six numbers: $(5+55)+(15+45)+(25+35)=60\\cdot 3=180$, average $=180/6=30$.\n\n**(b)** $(x+2)(x-2)=x^2-4=2016-4=2012$.\n\n**(c)** Slope $PR=(30-5)/(12-7)=5$. Slope $PQ=(2a-5)/(a-7)=5$ gives $2a-5=5a-35$, so $3a=30$ and $a=10$."
+    },
+    {
+      "number": 2,
+      "statement": "**(a)** What are all values of $n$ for which $\\dfrac{n}{9} = \\dfrac{25}{n}$?\n\n**(b)** What are all values of $x$ for which $(x - 3)(x - 2) = 6$?\n\n**(c)** At Willard's Grocery Store, the cost of $2$ apples is the same as the cost of $3$ bananas. Ross buys $6$ apples and $12$ bananas for a total cost of \\$6.30. Determine the cost of $1$ apple.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2016 Euclid Contest, Problem 2",
+      "topicKey": "algebra.equations_and_word_problems",
+      "techniqueTags": ["cross_multiplication", "quadratic_expansion", "linear_system"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** $n^2 = 225$, so $n = 15$ or $n = -15$.\n\n**(b)** Expand: $x^2 - 5x + 6 = 6$, so $x(x-5)=0$ giving $x = 0$ or $x = 5$.\n\n**(c)** Let $a, b$ dollars be the costs. $2a = 3b$ so $12b = 8a$. Then $6a + 8a = 6.30$, $14a = 6.30$, $a = \\$0.45$."
+    },
+    {
+      "number": 3,
+      "statement": "**(a)** In the diagram, point $B$ is on $AC$, point $F$ is on $DB$, and point $G$ is on $EB$. The six labelled angles at $A$, $D$, $F$, $G$, $E$, $C$ are $p^\\circ$, $q^\\circ$, $r^\\circ$, $s^\\circ$, $t^\\circ$, $u^\\circ$. What is the value of $p + q + r + s + t + u$?\n\n**(b)** Let $n$ be the integer equal to $10^{20} - 20$. What is the sum of the digits of $n$?\n\n**(c)** A parabola intersects the $x$-axis at $P(2, 0)$ and $Q(8, 0)$. The vertex of the parabola is at $V$, which is below the $x$-axis. If the area of $\\triangle VPQ$ is $12$, determine the coordinates of $V$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2016 Euclid Contest, Problem 3",
+      "topicKey": "geometry.angles_and_parabolas",
+      "techniqueTags": ["angle_sum_triangles", "digit_sum", "parabola_vertex"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** Sum of angles in $\\triangle ABD$, $\\triangle FBG$, $\\triangle CBE$ is $540^\\circ$. Angles $\\angle ABD + \\angle FBG + \\angle CBE = 180^\\circ$ (straight line). So $p+q+r+s+t+u = 540 - 180 = 360$.\n\n**(b)** $10^{20} - 1$ is twenty $9$s. $10^{20} - 20 = 10^{20} - 1 - 19$: eighteen $9$s followed by $80$. Digit sum $= 18 \\cdot 9 + 8 + 0 = 170$.\n\n**(c)** $PQ = 6$. Area $12 = \\tfrac{1}{2}(6)h \\Rightarrow h = 4$, so $V_y = -4$. Symmetry: $V_x = (2+8)/2 = 5$. So $V = (5, -4)$."
+    },
+    {
+      "number": 4,
+      "statement": "**(a)** Determine all angles $\\theta$ with $0^\\circ \\leq \\theta \\leq 180^\\circ$ and $\\sin^2\\theta + 2\\cos^2\\theta = \\tfrac{7}{4}$.\n\n**(b)** The sum of the radii of two circles is $10$ cm. The circumference of the larger circle is $3$ cm greater than the circumference of the smaller circle. Determine the difference between the area of the larger circle and the area of the smaller circle.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2016 Euclid Contest, Problem 4",
+      "topicKey": "geometry.trig_and_circles",
+      "techniqueTags": ["pythagorean_identity", "circle_area_difference", "factoring"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** $\\sin^2\\theta + 2\\cos^2\\theta = 1 + \\cos^2\\theta = 7/4$, so $\\cos^2\\theta = 3/4$, $\\cos\\theta = \\pm\\sqrt{3}/2$. On $[0^\\circ, 180^\\circ]$: $\\theta = 30^\\circ$ or $150^\\circ$.\n\n**(b)** Let radii $r, R$ with $r + R = 10$ and $2\\pi(R - r) = 3$. Difference $\\pi R^2 - \\pi r^2 = \\pi(R-r)(R+r) = \\tfrac{1}{2}\\cdot 3 \\cdot 10 = 15$ cm$^2$."
+    },
+    {
+      "number": 5,
+      "statement": "**(a)** Charlotte's Convenience Centre buys a calculator for \\$$p$ (where $p > 0$), raises its price by $n\\%$, then reduces this new price by $20\\%$. If the final price is $20\\%$ higher than \\$$p$, what is the value of $n$?\n\n**(b)** A function $f$ is defined so that if $n$ is an odd integer, then $f(n) = n - 1$ and if $n$ is an even integer, then $f(n) = n^2 - 1$. For example, if $n = 15$, then $f(n) = 14$ and if $n = -6$, then $f(n) = 35$. Determine all integers $n$ for which $f(f(n)) = 3$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2016 Euclid Contest, Problem 5",
+      "topicKey": "algebra.percentages_and_functional",
+      "techniqueTags": ["percent_change", "piecewise_function", "case_analysis"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** Final price $= p(1 + n/100)(0.8) = 1.2p$, so $1 + n/100 = 1.5$, giving $n = 50$.\n\n**(b)** Need $f(m) = 3$ with $m = f(n)$. If $m$ odd: $m - 1 = 3 \\Rightarrow m = 4$ (even, reject). If $m$ even: $m^2 - 1 = 3 \\Rightarrow m = \\pm 2$. So $f(n) \\in \\{2, -2\\}$. If $n$ odd: $n - 1 = \\pm 2 \\Rightarrow n = 3$ or $n = -1$ (both odd $\\checkmark$). If $n$ even: $n^2 - 1 = \\pm 2 \\Rightarrow n^2 \\in \\{3, -1\\}$ (no integer). Answer: $n = 3$ or $n = -1$."
+    },
+    {
+      "number": 6,
+      "statement": "**(a)** What is the smallest positive integer $x$ for which $\\dfrac{1}{32} = \\dfrac{x}{10^y}$ for some positive integer $y$?\n\n**(b)** Determine all possible values for the area of a right-angled triangle with one side length equal to $60$ and with the property that its side lengths form an arithmetic sequence.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2016 Euclid Contest, Problem 6",
+      "topicKey": "number_theory.powers_and_triangles",
+      "techniqueTags": ["prime_factorization", "arithmetic_sequence_right_triangle", "3_4_5_scaling"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** $10^y = 32x = 2^5 x$. For $10^y = 2^y 5^y$, need $x$ contain $5^5$ at minimum, and $y \\geq 5$. Smallest $x = 5^5 = 3125$ (then $y = 5$ and $32 \\cdot 3125 = 10^5$).\n\n**(b)** Arithmetic right triangle sides are $a - d, a, a + d$. Pythagoras: $(a-d)^2 + a^2 = (a+d)^2$ gives $a = 4d$, so sides are $3d, 4d, 5d$ (a $3$-$4$-$5$ scaling). Side $= 60$ gives $d \\in \\{20, 15, 12\\}$ with sides $(60, 80, 100)$, $(45, 60, 75)$, $(36, 48, 60)$. Areas: $\\tfrac{1}{2}(60)(80) = 2400$, $\\tfrac{1}{2}(45)(60) = 1350$, $\\tfrac{1}{2}(36)(48) = 864$."
+    },
+    {
+      "number": 7,
+      "statement": "**(a)** Amrita and Zhang cross a lake in a straight line with the help of a one-seat kayak. Each can paddle the kayak at $7$ km/h and swim at $2$ km/h. They start from the same point at the same time with Amrita paddling and Zhang swimming. After a while, Amrita stops the kayak and immediately starts swimming. Upon reaching the kayak (which has not moved since Amrita started swimming), Zhang gets in and immediately starts paddling. They arrive on the far side of the lake at the same time, $90$ minutes after they began. Determine the amount of time during these $90$ minutes that the kayak was not being paddled.\n\n**(b)** Determine all pairs $(x, y)$ of real numbers that satisfy the system of equations\n$$x\\left(\\tfrac{1}{2} + y - 2x^2\\right) = 0$$\n$$y\\left(\\tfrac{5}{2} + x - y\\right) = 0$$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2016 Euclid Contest, Problem 7",
+      "topicKey": "algebra.rate_problems_and_systems",
+      "techniqueTags": ["rate_word_problem", "symmetry_argument", "polynomial_system"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** By symmetry of total time $1.5$ h, Amrita paddles and Zhang swims the same distance $p$ km (since if not equal, one would finish faster). Then $p/7 + p/2 = 1.5$ gives $p = 7/3$. Paddling time $= (7/3)/7 = 20$ min; swimming that distance $= (7/3)/2 = 70$ min. Kayak idle $= 70 - 20 = 50$ minutes.\n\n**(b)** From factoring: ($x = 0$ or $1/2 + y - 2x^2 = 0$) AND ($y = 0$ or $5/2 + x - y = 0$). Cases: $x = 0, y = 0 \\Rightarrow (0, 0)$. $x = 0$ and $y = 5/2 \\Rightarrow (0, 5/2)$. $y = 0$ and $2x^2 = 1/2 \\Rightarrow x = \\pm 1/2$ giving $(\\pm 1/2, 0)$. Finally, both second factors zero: $y = x + 5/2$ and $1 + 2y - 4x^2 = 0$. Sub to get $2x^2 - x - 3 = 0 \\Rightarrow (2x-3)(x+1) = 0$: $(3/2, 4)$ and $(-1, 3/2)$. Six pairs total."
+    },
+    {
+      "number": 8,
+      "statement": "**(a)** In the diagram, $ABCD$ is a parallelogram. Point $E$ is on $DC$ with $AE$ perpendicular to $DC$, and point $F$ is on $CB$ with $AF$ perpendicular to $CB$. If $AE = 20$, $AF = 32$, and $\\cos(\\angle EAF) = \\tfrac{1}{3}$, determine the exact value of the area of quadrilateral $AECF$.\n\n**(b)** Determine all real numbers $x > 0$ for which $\\log_4 x - \\log_x 16 = \\tfrac{7}{6} - \\log_x 8$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2016 Euclid Contest, Problem 8",
+      "topicKey": "geometry.parallelogram_and_logarithms",
+      "techniqueTags": ["parallelogram_area", "right_triangle_trig", "logarithm_substitution"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Let $\\theta = \\angle EAF$. Then $\\angle DAE = \\angle FAB = 90^\\circ - \\theta$ with $\\cos\\theta = 1/3$, $\\sin\\theta = 2\\sqrt{2}/3$. In $\\triangle AFB$: $AB = AF/\\sin\\theta = 32 \\cdot 3/(2\\sqrt 2) = 24\\sqrt{2}$, $FB = AB\\cos\\theta = 8\\sqrt{2}$. In $\\triangle AED$: $AD = AE/\\sin\\theta = 15\\sqrt{2}$, $DE = AD\\cos\\theta = 5\\sqrt{2}$. Parallelogram area $= AB\\cdot AE = 480\\sqrt{2}$; $[AFB] = \\tfrac{1}{2}(32)(8\\sqrt 2) = 128\\sqrt 2$; $[AED] = \\tfrac{1}{2}(20)(5\\sqrt 2) = 50\\sqrt 2$. $[AECF] = 480\\sqrt 2 - 128\\sqrt 2 - 50\\sqrt 2 = 302\\sqrt{2}$.\n\n**(b)** Let $t = \\log_2 x$. Equation becomes $t/2 - 4/t = 7/6 - 3/t$, i.e. $t/2 = 7/6 + 1/t$, then $3t^2 = 7t + 6$, so $(3t+2)(t-3) = 0$: $t = -2/3$ or $t = 3$. Thus $x = 2^{-2/3}$ or $x = 8$."
+    },
+    {
+      "number": 9,
+      "statement": "**(a)** The string $AAABBBAABB$ is a string of ten letters, each $A$ or $B$, that does not include the consecutive letters $ABBA$. The string $AAABBAAABB$ does include $ABBA$. Determine, with justification, the total number of strings of ten letters (each $A$ or $B$) that do not include the consecutive letters $ABBA$.\n\n**(b)** In the diagram, $ABCD$ is a square. Points $E$ and $F$ are chosen on $AC$ so that $\\angle EDF = 45^\\circ$. If $AE = x$, $EF = y$, and $FC = z$, prove that $y^2 = x^2 + z^2$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2016 Euclid Contest, Problem 9",
+      "topicKey": "combinatorics.strings_and_geometry_proof",
+      "techniqueTags": ["inclusion_exclusion", "string_enumeration", "rotation_proof"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Total strings $= 2^{10} = 1024$. Count strings containing $ABBA$ via inclusion-exclusion. $7$ start positions; each gives $2^6 = 64$ strings. Raw count $= 7 \\cdot 64 = 448$ (multicounts). Overlapping $ABBABBA$ patterns: $4$ forms $\\times$ $2^3 = 32$; subtract double-count of $ABBABBABBA$: $32 - 2 = 30$. Non-overlapping pairs: $6 \\cdot 4 = 24$; subtract $1$ for triple-appearance: $23$. Single $ABBABBABBA$: $1$. Bad strings $= 448 - 30 - 23 - 2\\cdot 1 = 393$. Good strings $= 1024 - 393 = 631$.\n\n**(b)** Rotate $\\triangle DFC$ by $90^\\circ$ about $D$ so $C \\to A$ and $F \\to F'$. Then $\\angle F'AE = \\angle F'AD + \\angle DAE = 45^\\circ + 45^\\circ = 90^\\circ$ and $F'A = FC = z$, $AE = x$. By Pythagoras $F'E^2 = x^2 + z^2$. Also $\\angle F'DE = \\angle F'DA + \\angle ADE = \\angle FDC + \\angle ADE = 90^\\circ - 45^\\circ = 45^\\circ = \\angle FDE$, and $F'D = FD$, $DE = DE$, so $\\triangle F'DE \\cong \\triangle FDE$ (SAS). Thus $F'E = FE = y$, giving $y^2 = x^2 + z^2$. $\\blacksquare$"
+    },
+    {
+      "number": 10,
+      "statement": "Let $k$ be a positive integer with $k \\geq 2$. Two bags each contain $k$ balls, labelled with the positive integers from $1$ to $k$. André removes one ball from each bag (uniformly at random). Define $P(k)$ to be the probability that the product of the numbers on the two balls that he chooses is divisible by $k$.\n\n**(a)** Calculate $P(10)$.\n\n**(b)** Determine, with justification, a polynomial $f(n)$ for which $P(n) \\geq \\dfrac{f(n)}{n^2}$ for all positive integers $n$ with $n \\geq 2$, and $P(n) = \\dfrac{f(n)}{n^2}$ for infinitely many positive integers $n$ with $n \\geq 2$.\n\n**(c)** Prove there exists a positive integer $m$ for which $P(m) > \\dfrac{2016}{m}$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2016 Euclid Contest, Problem 10",
+      "topicKey": "number_theory.divisibility_probability",
+      "techniqueTags": ["counting_divisibility", "prime_characterisation", "power_of_two_construction"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Pairs with $a = 10$ or $b = 10$: $10 + 10 - 1 = 19$. Pairs with one of $\\{a, b\\} = 5$, the other even in $\\{2,4,6,8\\}$: $2 \\cdot 4 = 8$. Total $27/100$, so $P(10) = 27/100$.\n\n**(b)** Claim $f(n) = 2n - 1$. The pairs $(k, n)$ and $(n, k)$ for $k = 1, \\ldots, n$ give $2n - 1$ pairs with product divisible by $n$, so $P(n) \\geq (2n-1)/n^2$. When $n = p$ is prime, $p \\mid ab$ requires $p \\mid a$ or $p \\mid b$, forcing $a = p$ or $b = p$; thus equality $P(p) = (2p-1)/p^2$ holds for every prime. Infinitely many primes gives the second condition.\n\n**(c)** Take $N = 2^k$. For $j = 1, \\ldots, k-1$, pairs $(2^j x, 2^{k-j} y)$ with $x \\leq 2^{k-j}$ odd, $y \\leq 2^j$ odd have $ab = 2^k xy$ divisible by $N$. There are $2^{k-j-1}$ choices for $x$ and $2^{j-1}$ for $y$, giving $2^{k-2}$ pairs per $j$. Different $j$ give distinct pairs (distinguished by $v_2(a)$), so $P(N) \\geq (k-1)2^{k-2}/N^2 = \\dfrac{k-1}{4N}$. Setting $k = 8066$ gives $P(N) \\geq 8065/(4N) > 2016/N$. $\\blacksquare$"
+    }
+  ]
+}

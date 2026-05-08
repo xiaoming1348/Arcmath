@@ -41,7 +41,7 @@ vi.mock("@aws-sdk/client-s3", () => {
   }
 
   class NoSuchKey extends Error {
-    constructor() {
+    constructor(_opts?: unknown) {
       super("NoSuchKey");
       this.name = "NoSuchKey";
     }
@@ -132,7 +132,7 @@ describe("s3 official pdf storage", () => {
     const exists = await storage.exists("s3://test-bucket/official-pdfs/set_1.pdf");
     expect(exists).toBe(true);
 
-    sendMock.mockRejectedValueOnce(new NoSuchKey());
+    sendMock.mockRejectedValueOnce(new NoSuchKey({ $metadata: {}, message: "NoSuchKey" }));
     const missing = await storage.exists("s3://test-bucket/official-pdfs/set_2.pdf");
     expect(missing).toBe(false);
   });

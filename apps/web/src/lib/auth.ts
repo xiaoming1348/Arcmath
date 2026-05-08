@@ -51,6 +51,15 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
+        // passwordHash is nullable for accounts that were spawned by an
+        // admin's class-roster import and haven't yet set a password.
+        // Those users must go through /login/set-password before they
+        // can sign in normally; refuse to authenticate them through the
+        // password form until they do.
+        if (!user.passwordHash) {
+          return null;
+        }
+
         const valid = await bcrypt.compare(withPepper(parsed.data.password), user.passwordHash);
         if (!valid) {
           return null;

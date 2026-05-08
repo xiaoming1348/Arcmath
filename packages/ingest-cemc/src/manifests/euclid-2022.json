@@ -1,0 +1,123 @@
+{
+  "problemSet": {
+    "contest": "EUCLID",
+    "year": 2022,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://cemc.uwaterloo.ca/contests/past_contests.html",
+    "verifiedPdfUrl": "https://cemc.uwaterloo.ca/sites/default/files/documents/2022/2022EuclidContest.pdf"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "**(a)** What is the value of $\\dfrac{3^2 - 2^3}{2^3 - 3^2}$?\n\n**(b)** What is the value of $\\sqrt{\\sqrt{81} + \\sqrt{9} - \\sqrt{64}}$?\n\n**(c)** Determine all real numbers $x$ for which $\\dfrac{1}{\\sqrt{x^2 + 7}} = \\dfrac{1}{4}$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2022 Euclid Contest, Problem 1",
+      "topicKey": "algebra.arithmetic_and_radicals",
+      "techniqueTags": ["rational_simplification", "nested_radicals", "solving_radical_equations"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** $\\dfrac{9 - 8}{8 - 9} = \\dfrac{1}{-1} = -1$.\n\n**(b)** $\\sqrt{9 + 3 - 8} = \\sqrt{4} = 2$.\n\n**(c)** $\\sqrt{x^2 + 7} = 4$ so $x^2 + 7 = 16$ and $x^2 = 9$, giving $x = \\pm 3$."
+    },
+    {
+      "number": 2,
+      "statement": "**(a)** Find the three ordered pairs of integers $(a, b)$ with $1 < a < b$ and $ab = 2022$.\n\n**(b)** Suppose that $c$ and $d$ are integers with $c > 0$ and $d > 0$ and $\\dfrac{2c + 1}{2d + 1} = \\dfrac{1}{17}$. What is the smallest possible value of $d$?\n\n**(c)** Suppose that $p$, $r$ and $t$ are real numbers for which $(px + r)(x + 5) = x^2 + 3x + t$ is true for all real numbers $x$. Determine the value of $t$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2022 Euclid Contest, Problem 2",
+      "topicKey": "algebra.factoring_and_integer_equations",
+      "techniqueTags": ["prime_factorization", "linear_diophantine", "polynomial_identity"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** $2022 = 2 \\cdot 3 \\cdot 337$. Pairs with $1 < a < b$: $(2, 1011), (3, 674), (6, 337)$.\n\n**(b)** Cross-multiplying: $17(2c+1) = 2d+1$, giving $d = 17c + 8$. Smallest with $c \\ge 1$ is $d = 25$.\n\n**(c)** Expand: $(px + r)(x + 5) = px^2 + (r + 5p)x + 5r$. Matching $x^2 + 3x + t$ gives $p = 1$, $r + 5 = 3$ so $r = -2$, and $t = 5r = -10$."
+    },
+    {
+      "number": 3,
+      "statement": "**(a)** A large water jug is $\\dfrac{1}{4}$ full of water. After $24$ litres of water are added, the jug is $\\dfrac{5}{8}$ full. What is the volume of the jug, in litres?\n\n**(b)** Stephanie starts with a large number of soccer balls. She gives $\\dfrac{2}{5}$ of them to Alphonso and $\\dfrac{6}{11}$ of them to Christine. The number of balls that she is left with is a multiple of $9$. What is the smallest number of soccer balls with which Stephanie could have started?\n\n**(c)** Each student in a math club is in either the Junior section or the Senior section. No student is in both sections. Of the Junior students, $60\\%$ are left-handed and $40\\%$ are right-handed. Of the Senior students, $10\\%$ are left-handed and $90\\%$ are right-handed. No student in the math club is both left-handed and right-handed. The total number of left-handed students is equal to the total number of right-handed students in the math club. Determine the percentage of math club members that are in the Junior section.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2022 Euclid Contest, Problem 3",
+      "topicKey": "algebra.word_problems",
+      "techniqueTags": ["linear_equation", "divisibility_constraints", "percentage_balance"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** $\\tfrac{1}{4}V + 24 = \\tfrac{5}{8}V$, so $\\tfrac{3}{8}V = 24$ and $V = 64$ litres.\n\n**(b)** Denominators $5$ and $11$ force $n$ to be a multiple of $55$; write $n = 55k$. After giving $22k + 30k = 52k$ away, $3k$ remain. For $3k$ to be a multiple of $9$, $k$ must be a multiple of $3$. Smallest is $k = 3$, giving $n = 165$.\n\n**(c)** Let $j$ and $s$ be section sizes. $0.6j + 0.1s = 0.4j + 0.9s$ gives $0.2j = 0.8s$, so $j = 4s$. Junior fraction: $j/(j+s) = 4/5 = 80\\%$."
+    },
+    {
+      "number": 4,
+      "statement": "**(a)** Hexagon $ABCDEF$ has vertices $A(0, 0)$, $B(4, 0)$, $C(7, 2)$, $D(7, 5)$, $E(3, 5)$, $F(0, 3)$. What is the area of hexagon $ABCDEF$?\n\n**(b)** In the diagram, $\\triangle PQS$ is right-angled at $P$ and $\\triangle QRS$ is right-angled at $Q$. Also, $PQ = x$, $QR = 8$, $RS = x + 8$, and $SP = x + 3$ for some real number $x$. Determine all possible values of the perimeter of quadrilateral $PQRS$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2022 Euclid Contest, Problem 4",
+      "topicKey": "geometry.polygon_area_and_pythagoras",
+      "techniqueTags": ["shoelace_method", "pythagorean_theorem", "quadratic_equation"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** Enclose $ABCDEF$ in rectangle $AP DQ$ where $P = (7,0)$, $Q = (0,5)$. Rectangle area $= 35$. Subtract two right triangles $\\triangle BPC$ and $\\triangle EQF$, each with legs $3$ and $2$: combined area $= 6$. Hexagon area $= 35 - 6 = 29$.\n\n**(b)** In $\\triangle PQS$: $SQ^2 = (x+3)^2 + x^2$. In $\\triangle QRS$: $(x+8)^2 = SQ^2 + 64$. Substituting yields $x^2 - 10x + 9 = 0$, so $x = 1$ or $x = 9$. Perimeter $= 3x + 19$, giving $22$ or $46$."
+    },
+    {
+      "number": 5,
+      "statement": "**(a)** A list $a_1, a_2, a_3, a_4$ of rational numbers is defined so that if one term is equal to $r$, then the next term is equal to $1 + \\dfrac{1}{1 + r}$. For example, if $a_3 = \\dfrac{41}{29}$, then $a_4 = 1 + \\dfrac{1}{1 + (41/29)} = \\dfrac{99}{70}$. If $a_3 = \\dfrac{41}{29}$, what is the value of $a_1$?\n\n**(b)** A hollow cylindrical tube has a radius of $10$ mm and a height of $100$ mm. The tube sits flat on one of its circular faces on a horizontal table. The tube is filled with water to a depth of $h$ mm. A solid cylindrical rod has a radius of $2.5$ mm and a height of $150$ mm. The rod is inserted into the tube so that one of its circular faces sits flat on the bottom of the tube. The height of the water in the tube is now $64$ mm. Determine the value of $h$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2022 Euclid Contest, Problem 5",
+      "topicKey": "algebra.recurrence_and_volume",
+      "techniqueTags": ["recurrence_inversion", "cylindrical_volume", "displacement"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** Invert the recurrence: if $s$ is next after $r$, then $r = \\dfrac{1}{s - 1} - 1$. From $a_3 = 41/29$: $a_2 = \\dfrac{1}{12/29} - 1 = \\dfrac{29}{12} - 1 = \\dfrac{17}{12}$. Then $a_1 = \\dfrac{1}{5/12} - 1 = \\dfrac{12}{5} - 1 = \\dfrac{7}{5}$.\n\n**(b)** Water volume before $= 100\\pi h$. After rod insertion, the tube up to height $64$ contains water plus rod. Tube volume to height $64$: $\\pi(10)^2(64) = 6400\\pi$. Rod volume to height $64$: $\\pi(2.5)^2(64) = 400\\pi$. So $100\\pi h + 400\\pi = 6400\\pi$, giving $h = 60$."
+    },
+    {
+      "number": 6,
+      "statement": "**(a)** A function $f$ has the property that $f\\!\\left(\\dfrac{2x + 1}{x}\\right) = x + 6$ for all real values of $x \\ne 0$. What is the value of $f(4)$?\n\n**(b)** Determine all real numbers $a$, $b$ and $c$ for which the graph of the function $y = \\log_a(x + b) + c$ passes through the points $P(3, 5)$, $Q(5, 4)$ and $R(11, 3)$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2022 Euclid Contest, Problem 6",
+      "topicKey": "algebra.functions_and_logs",
+      "techniqueTags": ["functional_substitution", "logarithm_laws", "solve_log_equation"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** $\\dfrac{2x+1}{x} = 2 + \\dfrac{1}{x}$, so this equals $4$ when $x = 1/2$. Then $f(4) = 1/2 + 6 = 13/2$.\n\n**(b)** From the three points, subtract consecutive equations: $1 = \\log_a(3+b) - \\log_a(5+b)$ and $1 = \\log_a(5+b) - \\log_a(11+b)$. Equating: $(5+b)^2 = (3+b)(11+b)$, yielding $b = -2$. Then $\\log_a 3 = -1$ gives $a = 1/3$. Finally $c = 5$. So $(a,b,c) = (1/3, -2, 5)$."
+    },
+    {
+      "number": 7,
+      "statement": "**(a)** A computer is programmed to choose an integer between $1$ and $99$, inclusive, so that the probability that it selects the integer $x$ is equal to $\\log_{100}\\!\\left(1 + \\dfrac{1}{x}\\right)$. Suppose that the probability that $81 \\le x \\le 99$ is equal to $2$ times the probability that $x = n$ for some integer $n$. What is the value of $n$?\n\n**(b)** In the diagram, $\\triangle ABD$ has $C$ on $BD$. Also, $BC = 2$, $CD = 1$, $\\dfrac{AC}{AD} = \\dfrac{3}{4}$, and $\\cos(\\angle ACD) = -\\dfrac{3}{5}$. Determine the length of $AB$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2022 Euclid Contest, Problem 7",
+      "topicKey": "algebra.log_probability_and_cosine_law",
+      "techniqueTags": ["telescoping_log_sum", "law_of_cosines", "ratio_setup"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Using $\\log_{100}(1 + 1/k) = \\log_{100}\\!\\frac{k+1}{k}$, the sum telescopes: $\\sum_{k=81}^{99}\\log_{100}\\!\\frac{k+1}{k} = \\log_{100}\\!\\frac{100}{81}$. Setting this equal to $2\\log_{100}(1 + 1/n) = \\log_{100}(1 + 1/n)^2$ gives $(1 + 1/n)^2 = 100/81$, so $1 + 1/n = 10/9$ and $n = 9$.\n\n**(b)** Let $AC = 3t$, $AD = 4t$. Cosine law in $\\triangle ACD$: $16t^2 = 9t^2 + 1 + (18/5)t$, giving $35t^2 - 18t - 5 = 0$, so $t = 5/7$. Hence $AC = 15/7$. Cosine law in $\\triangle ACB$ with $\\cos(\\angle ACB) = 3/5$ (supplementary): $AB^2 = 225/49 + 4 - 36/7 = 169/49$, so $AB = 13/7$."
+    },
+    {
+      "number": 8,
+      "statement": "**(a)** Suppose that $a > \\dfrac{1}{2}$ and that the parabola with equation $y = ax^2 + 2$ has vertex $V$. The parabola intersects the line with equation $y = -x + 4a$ at points $B$ and $C$, as shown. If the area of $\\triangle VBC$ is $\\dfrac{72}{5}$, determine the value of $a$.\n\n**(b)** Consider the following statement:\n\n> There is a triangle that is not equilateral whose side lengths form a geometric sequence, and the measures of whose angles form an arithmetic sequence.\n\nShow that this statement is true by finding such a triangle or prove that it is false by demonstrating that there cannot be such a triangle.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2022 Euclid Contest, Problem 8",
+      "topicKey": "algebra.parabola_and_triangle_existence",
+      "techniqueTags": ["parabola_line_intersection", "triangle_area", "proof_by_contradiction"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Vertex $V = (0, 2)$. Solving $ax^2 + 2 = -x + 4a$ gives $x = -2$ or $x = 2 - 1/a$. So $B = (-2, 4a + 2)$, $C = (2 - 1/a, 4a - 2 + 1/a)$. Computing area of $\\triangle VBC$ via base-height decomposition and setting equal to $72/5$ yields $2a(20a - 1)(2a - 5) = 0$. With $a > 1/2$, only $a = 5/2$ works.\n\n**(b)** No such triangle exists. If sides are $a, ar, ar^2$ with $r > 1$ and angles form an arithmetic progression summing to $180^\\circ$, the middle angle must be $60^\\circ$. The law of cosines then yields $a^2(r^2 - 1)^2 = 0$, forcing $r = 1$ — contradiction. (Equivalently, via the law of sines: $\\sin^2\\delta = 0$.) Hence the triangle would have to be equilateral."
+    },
+    {
+      "number": 9,
+      "statement": "Suppose that $m$ and $n$ are positive integers with $m \\ge 2$. The $(m, n)$-sawtooth sequence is a sequence of consecutive integers that starts with $1$ and has $n$ teeth, where each tooth starts with $2$, goes up to $m$ and back down to $1$. For example, the $(3, 4)$-sawtooth sequence is $1, 2, 3, 2, 1, 2, 3, 2, 1, 2, 3, 2, 1, 2, 3, 2, 1$ (17 terms, average $33/17$).\n\n**(a)** Determine the sum of the terms in the $(4, 2)$-sawtooth sequence.\n\n**(b)** For each positive integer $m \\ge 2$, determine a simplified expression for the sum of the terms in the $(m, 3)$-sawtooth sequence.\n\n**(c)** Determine all pairs $(m, n)$ for which the sum of the terms in the $(m, n)$-sawtooth sequence is $145$.\n\n**(d)** Prove that, for all pairs of positive integers $(m, n)$ with $m \\ge 2$, the average of the terms in the $(m, n)$-sawtooth sequence is not an integer.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2022 Euclid Contest, Problem 9",
+      "topicKey": "combinatorics.sawtooth_sequences",
+      "techniqueTags": ["sum_of_sequences", "divisor_pairs", "proof_by_contradiction"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Sum of $1, (2,3,4,3,2,1), (2,3,4,3,2,1) = 1 + 15 + 15 = 31$.\n\n**(b)** Each tooth sums to $m^2 - 1$ (pair ascending with descending: $m - 1$ pairs summing to $m + 1$). With an initial $1$, the $(m, 3)$-sawtooth total is $1 + 3(m^2 - 1) = 3m^2 - 2$.\n\n**(c)** Total is $1 + n(m^2 - 1) = 145$, so $n(m^2 - 1) = 144$. For $m = 2, 3, 5, 7$, $m^2 - 1 = 3, 8, 24, 48$ divides $144$. Pairs: $(m, n) = (2, 48), (3, 18), (5, 6), (7, 3)$.\n\n**(d)** Terms: $n(2m-2) + 1$. Average $= \\dfrac{n(m^2 - 1) + 1}{n(2m - 2) + 1}$. Assume this equals integer $k$. Cross-multiply and simplify to obtain $n(m^2 - 1 - k(2m-2)) = k - 1$. Careful case analysis on whether $m^2 - 1 - k(2m-2)$ is positive, zero, or negative yields a contradiction (the numerator and denominator have different parities or the quotient fails bounds). Hence the average is never an integer."
+    },
+    {
+      "number": 10,
+      "statement": "At Pizza by Alex, toppings are put on circular pizzas in a random way. Every topping is placed on a randomly chosen semi-circular half of the pizza and each topping's semi-circle is chosen independently. For each topping, Alex starts by drawing a diameter whose angle with the horizontal is selected uniformly at random. This divides the pizza into two semi-circles. One of the two halves is then chosen at random to be covered by the topping.\n\n**(a)** For a $2$-topping pizza, determine the probability that at least $\\dfrac{1}{4}$ of the pizza is covered by both toppings.\n\n**(b)** For a $3$-topping pizza, determine the probability that some region of the pizza with non-zero area is covered by all $3$ toppings.\n\n**(c)** Suppose that $N$ is a positive integer. For an $N$-topping pizza, determine the probability, in terms of $N$, that some region of the pizza with non-zero area is covered by all $N$ toppings.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2022 Euclid Contest, Problem 10",
+      "topicKey": "combinatorics.geometric_probability",
+      "techniqueTags": ["continuous_probability", "circular_symmetry", "independent_uniform_angles"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Fix topping $1$ on the top half. Let $\\theta$ be the second topping's diameter angle. The overlap is $\\ge 1/4$ iff $\\theta \\in [0^\\circ, 90^\\circ] \\cup [270^\\circ, 360^\\circ]$, a measure of $180^\\circ$ out of $360^\\circ$. Probability $= 1/2$.\n\n**(b)** Fix topping $1$ on the top half; let $\\theta \\in [0^\\circ, 180^\\circ]$ be topping $2$'s angle, $\\alpha \\in [0^\\circ, 360^\\circ]$ topping $3$'s. Three-topping overlap occurs when $\\alpha \\in [0^\\circ, 180^\\circ] \\cup [180^\\circ + \\theta, 360^\\circ]$. Region in the $(\\theta, \\alpha)$ square has area $3/4$ of the total. Probability $= 3/4$.\n\n**(c)** Label starts $\\theta_1, \\ldots, \\theta_N$. A region covered by all $N$ toppings exists iff there is some topping $X$ such that all other $N - 1$ start angles lie in the semicircle $[\\theta_X, \\theta_X + 180^\\circ]$. For each $X$, this has probability $(1/2)^{N-1}$, and exactly one such $X$ can qualify. Summing over the $N$ choices of $X$: probability $= \\dfrac{N}{2^{N-1}}$."
+    }
+  ]
+}

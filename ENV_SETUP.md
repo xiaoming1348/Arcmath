@@ -36,6 +36,7 @@ Typical use cases:
 - `pnpm dev:neon`
 - `pnpm seed:neon`
 - `pnpm migrate:neon`
+- `pnpm -C apps/web smoke:student` (pre-pilot synthetic-student smoke test)
 - direct usage of [`scripts/with-env-local.sh`](/Users/yimingsun/Desktop/Arcmath/scripts/with-env-local.sh)
 
 Recommended source template:
@@ -69,6 +70,8 @@ These go through [`scripts/with-env-local.sh`](/Users/yimingsun/Desktop/Arcmath/
 - `S3_ENDPOINT`
 - `S3_KEY_PREFIX`
 - `S3_FORCE_PATH_STYLE`
+- `PROOF_VERIFIER_URL`
+- `DISABLE_ACCESS_GATING`
 
 ### Scripts that still use `.env`
 
@@ -97,6 +100,16 @@ Optional:
 - `OPENAI_API_KEY`
 - `OPENAI_MODEL`
 - `OPENAI_BASE_URL`
+- `PROOF_VERIFIER_URL` — pointer to the SymPy/Lean step-verification
+  service (Python). When **unset**, every proof/step verification call
+  short-circuits to LLM-only judging, which is noticeably noisier on
+  algebra-heavy proofs. Set this in any environment where students
+  will use STUCK_WITH_WORK or PROOF_STEPS modes (i.e., the pilot).
+- `DISABLE_ACCESS_GATING` — `"1"` / `"true"` / `"yes"` to bypass
+  per-user `UserResourceAccess` grants. Useful in dev and during the
+  closed pilot (every authenticated user sees every live set without
+  a per-set grant). Leave unset in any environment that needs
+  granular access control.
 
 ### Additional variables only if you use S3 storage
 
@@ -144,6 +157,36 @@ Steps:
 ## Production Template
 
 Use [env.production.example](/Users/yimingsun/Desktop/Arcmath/env.production.example) for deployment placeholders.
+
+## Pre-Launch Checklist
+
+Before opening the pilot to teachers and students, confirm these
+variables are set in the prod environment:
+
+Required:
+- `DATABASE_URL` — Neon prod branch
+- `NEXTAUTH_URL` — public app URL
+- `NEXTAUTH_SECRET` — distinct from dev
+- `PASSWORD_PEPPER` — distinct from dev (rotating this invalidates
+  all stored passwords, so set it once and don't change it)
+- `OPENAI_API_KEY` — needed by the hint tutor and proof-review
+  paths; without it those endpoints return safe local fallbacks
+  instead of LLM-generated text
+
+Strongly recommended for the pilot:
+- `PROOF_VERIFIER_URL` — pointing at a reachable SymPy/Lean
+  service. Without it the step-by-step proof workspace falls
+  back to LLM-only judging, which is noticeably less reliable on
+  algebraic identities. Run `pnpm -C apps/web smoke:student` and
+  watch the logs for `[proof-verifier] request failed` — that's
+  the signal this isn't reachable.
+- `DISABLE_ACCESS_GATING="1"` — for the closed pilot only. Flip to
+  unset (or `"0"`) once we onboard a second school and need to
+  enforce per-school catalog scoping.
+
+Optional (only if S3-backed PDF storage):
+- `S3_BUCKET`, `S3_REGION`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY`
+- and any of `S3_ENDPOINT`, `S3_KEY_PREFIX`, `S3_FORCE_PATH_STYLE`
 
 ## Small Recommended Cleanup Going Forward
 

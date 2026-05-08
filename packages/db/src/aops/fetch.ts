@@ -962,7 +962,10 @@ function buildImportPayloadFromTopic(topic: ContestTopic, postHtml: string): Imp
     throw new Error("No problems were extracted from topic content");
   }
 
-  const payload: ImportProblemSetInput = {
+  // Problems carry `statement`/`answer` that may be undefined when a page is
+  // malformed. The downstream schema parse is what rejects those — we only
+  // widen the type here so TS lets us hand the payload off to that validator.
+  const payload = {
     problemSet: {
       contest: topic.contest,
       year: topic.year,
@@ -970,7 +973,7 @@ function buildImportPayloadFromTopic(topic: ContestTopic, postHtml: string): Imp
       sourceUrl: topic.url
     },
     problems
-  };
+  } as unknown as ImportProblemSetInput;
 
   return payload;
 }
@@ -1313,6 +1316,26 @@ export function extractStatementFromProblemPage(problemHtml: string, problemNumb
   return fallback;
 }
 
+/**
+ * Best-effort parse of AMC-style `(A) ... (B) ... (C) ... (D) ... (E) ...`
+ * choices embedded in a statement. Returns undefined when we can't find a
+ * clean 5-up pattern so downstream schema validation surfaces the gap.
+ */
+export function extractChoicesFromStatement(statement: string): string[] | undefined {
+  const normalized = statement.replace(/\s+/g, " ").trim();
+  const pattern = /\(A\)\s*(.*?)\s*\(B\)\s*(.*?)\s*\(C\)\s*(.*?)\s*\(D\)\s*(.*?)\s*\(E\)\s*(.+?)(?:\s*\([F-Z]\)|\s*$)/s;
+  const match = normalized.match(pattern);
+  if (!match) {
+    return undefined;
+  }
+  const [, a, b, c, d, e] = match;
+  const choices = [a, b, c, d, e].map((value) => value.replace(/[\s,;.]+$/, "").trim());
+  if (choices.some((value) => value.length === 0)) {
+    return undefined;
+  }
+  return choices;
+}
+
 async function buildImportPayloadFromWikiExam(options: {
   examSet: WikiExamSet;
   includeStatements: boolean;
@@ -1355,7 +1378,9 @@ async function buildImportPayloadFromWikiExam(options: {
     problemLinks.set(number, toWikiAbsoluteUrl(link.href));
   }
 
-  const problems: ImportProblemSetInput["problems"] = [];
+  // Widened to tolerate per-problem undefineds during extraction; the schema
+  // parse below is where partial rows get rejected with a precise error.
+  const problems: Array<Record<string, unknown>> = [];
   const missingStatementProblems: number[] = [];
   for (let number = 1; number <= expected; number += 1) {
     let statement: string | undefined;
@@ -1377,17 +1402,22 @@ async function buildImportPayloadFromWikiExam(options: {
     }
 
     const answer = answerMap.get(number);
+    const answerFormat = answer?.format ?? "MULTIPLE_CHOICE";
+    const extractedChoices =
+      answerFormat === "MULTIPLE_CHOICE" && statement ? extractChoicesFromStatement(statement) : undefined;
+
     problems.push({
       number,
       statement,
       statementFormat: "MARKDOWN_LATEX",
       answer: answer?.value,
-      answerFormat: answer?.format ?? "MULTIPLE_CHOICE",
+      answerFormat,
+      choices: extractedChoices,
       sourceUrl: problemUrl ?? options.examSet.examUrl
     });
   }
 
-  const payload: ImportProblemSetInput = {
+  const payload = {
     problemSet: {
       contest: options.examSet.contest,
       year: options.examSet.year,
@@ -1395,9 +1425,13 @@ async function buildImportPayloadFromWikiExam(options: {
       sourceUrl: options.examSet.examUrl
     },
     problems
-  };
+  } as unknown as ImportProblemSetInput;
 
-  if (!isValidParsedPayload(payload)) {
+  // Skeleton mode (`includeStatements: false`) writes metadata+answers
+  // without per-problem statements, so the full import schema cannot hold.
+  // Validation is the commit layer's job in that case — we only enforce
+  // the schema when the payload is supposed to be complete.
+  if (options.includeStatements && !isValidParsedPayload(payload)) {
     throw new Error("Wiki payload failed schema validation");
   }
 

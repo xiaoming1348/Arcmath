@@ -70,13 +70,17 @@ export function isValidContestExamPair(contest: Contest, exam: string | null): b
   return getAllowedExamsForContest(contest).includes(normalized);
 }
 
+const ALL_CONTESTS: Contest[] = ["AMC8", "AMC10", "AMC12", "AIME", "USAMO", "USAJMO", "IMO", "CMO", "PUTNAM"];
+
+function emptyRecord<T>(factory: () => T): Record<Contest, T> {
+  return ALL_CONTESTS.reduce((acc, contest) => {
+    acc[contest] = factory();
+    return acc;
+  }, {} as Record<Contest, T>);
+}
+
 export function createExamOptionsByContest(rows: ResourceScopeRow[]): Record<Contest, string[]> {
-  const entries: Record<Contest, Set<string>> = {
-    AMC8: new Set<string>(),
-    AMC10: new Set<string>(),
-    AMC12: new Set<string>(),
-    AIME: new Set<string>()
-  };
+  const entries = emptyRecord<Set<string>>(() => new Set<string>());
 
   for (const row of rows) {
     const exam = normalizeExamInput(row.exam);
@@ -88,32 +92,26 @@ export function createExamOptionsByContest(rows: ResourceScopeRow[]): Record<Con
     }
   }
 
-  return {
-    AMC8: [],
-    AMC10: [...entries.AMC10].sort(),
-    AMC12: [...entries.AMC12].sort(),
-    AIME: [...entries.AIME].sort()
-  };
+  const result = emptyRecord<string[]>(() => []);
+  for (const contest of ALL_CONTESTS) {
+    result[contest] = [...entries[contest]].sort();
+  }
+  result.AMC8 = [];
+  return result;
 }
 
 export function createYearsByContest(rows: ResourceScopeRow[]): Record<Contest, number[]> {
-  const entries: Record<Contest, Set<number>> = {
-    AMC8: new Set<number>(),
-    AMC10: new Set<number>(),
-    AMC12: new Set<number>(),
-    AIME: new Set<number>()
-  };
+  const entries = emptyRecord<Set<number>>(() => new Set<number>());
 
   for (const row of rows) {
     entries[row.contest].add(row.year);
   }
 
-  return {
-    AMC8: [...entries.AMC8].sort((a, b) => b - a),
-    AMC10: [...entries.AMC10].sort((a, b) => b - a),
-    AMC12: [...entries.AMC12].sort((a, b) => b - a),
-    AIME: [...entries.AIME].sort((a, b) => b - a)
-  };
+  const result = emptyRecord<number[]>(() => []);
+  for (const contest of ALL_CONTESTS) {
+    result[contest] = [...entries[contest]].sort((a, b) => b - a);
+  }
+  return result;
 }
 
 function sortRows(rows: ResourceScopeRow[]): ResourceScopeRow[] {

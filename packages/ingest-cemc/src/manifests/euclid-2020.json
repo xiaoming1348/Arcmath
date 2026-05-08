@@ -1,0 +1,123 @@
+{
+  "problemSet": {
+    "contest": "EUCLID",
+    "year": 2020,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://cemc.uwaterloo.ca/contests/past_contests.html",
+    "verifiedPdfUrl": "https://cemc.uwaterloo.ca/sites/default/files/documents/2020/2020EuclidContest.pdf"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "**(a)** If $x = 11$, what is the value of $\\dfrac{3x + 6}{x + 2}$?\n\n**(b)** What is the $y$-intercept of the line that passes through $A(-1, 5)$ and $B(1, 7)$?\n\n**(c)** The lines with equations $y = 3x + 7$, $y = x + 9$, and $y = mx + 17$ intersect at a single point. Determine the value of $m$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2020 Euclid Contest, Problem 1",
+      "topicKey": "algebra.linear_equations_and_lines",
+      "techniqueTags": ["rational_simplification", "y_intercept", "line_intersection"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** $\\dfrac{3x+6}{x+2} = \\dfrac{3(x+2)}{x+2} = 3$ for $x \\neq -2$. Answer: $3$.\n\n**(b)** Slope $= (7-5)/(1-(-1)) = 1$; line is $y = x + 6$, so $y$-intercept is $6$.\n\n**(c)** Solve $3x + 7 = x + 9$: $x = 1$, $y = 10$. Substitute into $y = mx + 17$: $10 = m + 17$, so $m = -7$."
+    },
+    {
+      "number": 2,
+      "statement": "**(a)** The three-digit positive integer $m$ is odd and has three distinct digits. If the hundreds digit of $m$ equals the product of the tens digit and ones (units) digit of $m$, what is $m$?\n\n**(b)** Eleanor has $100$ marbles, each of which is black or gold. The ratio of the number of black marbles to the number of gold marbles is $1 : 4$. How many gold marbles should she add to change this ratio to $1 : 6$?\n\n**(c)** Suppose that $n$ is a positive integer and that the value of $\\dfrac{n^2 + n + 15}{n}$ is an integer. Determine all possible values of $n$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2020 Euclid Contest, Problem 2",
+      "topicKey": "number_theory.divisors_and_ratios",
+      "techniqueTags": ["digit_constraints", "ratio_problem", "divisor_enumeration"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** Let digits be $a, b, c$ with $a = bc$, $c$ odd, all distinct, $a < 10$. Testing $c \\in \\{3,5,7,9\\}$: only $c=3$ gives $a<10$ with $b \\geq 2$. Need $b = 2$ (distinct), $a = 6$. So $m = 623$.\n\n**(b)** $1:4$ ratio out of $100$ means $20$ black, $80$ gold. New ratio $1:6$ with $20$ black requires $120$ gold, so add $120 - 80 = 40$ gold marbles.\n\n**(c)** $\\dfrac{n^2+n+15}{n} = n + 1 + \\dfrac{15}{n}$, integer iff $n \\mid 15$. So $n \\in \\{1, 3, 5, 15\\}$."
+    },
+    {
+      "number": 3,
+      "statement": "**(a)** Donna has a laser at $C$. She points the laser beam at the point $E$. The beam reflects off of $DF$ at $E$ and then off of $FH$ at $G$, arriving at point $B$ on $AD$. Angles at $D$ and $F$ are right angles, and the reflection angles at $E$ and $G$ are each $45^\\circ$. If $DE = EF = 1$ m, what is the length of $BD$, in metres?\n\n**(b)** Ada starts with $x = 10$ and $y = 2$, and applies the following process:\n\n- Step 1: Add $x$ and $y$. Let $x$ equal the result. The value of $y$ does not change.\n- Step 2: Multiply $x$ and $y$. Let $x$ equal the result. The value of $y$ does not change.\n- Step 3: Add $y$ and $1$. Let $y$ equal the result. The value of $x$ does not change.\n\nAfter one application of the process starting from $(x, y) = (10, 2)$, Ada has $(x, y) = (24, 3)$. Continuing now with $x = 24$ and $y = 3$, Ada applies the process two more times. What is the final value of $x$?\n\n**(c)** Determine all integers $k$, with $k \\neq 0$, for which the parabola with equation $y = kx^2 + 6x + k$ has two distinct $x$-intercepts.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2020 Euclid Contest, Problem 3",
+      "topicKey": "mixed.geometry_and_algebra",
+      "techniqueTags": ["reflection_angles", "iterative_process", "discriminant"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** $\\triangle CDE$ and $\\triangle EFG$ are $45$–$45$–$90$ with $CD = FG = 1$. $CDFG$ is a rectangle so $CG = DF = 2$. Then $\\triangle BCG$ is also $45$–$45$–$90$ with $BC = CG = 2$. $BD = BC + CD = 2 + 1 = 3$ m.\n\n**(b)** Starting $(24, 3)$: Step 1 $\\to (27, 3)$; Step 2 $\\to (81, 3)$; Step 3 $\\to (81, 4)$. Next round: Step 1 $\\to (85, 4)$; Step 2 $\\to (340, 4)$; Step 3 $\\to (340, 5)$. Final $x = 340$.\n\n**(c)** Discriminant $\\Delta = 36 - 4k^2 > 0 \\iff k^2 < 9$. Integer $k \\neq 0$ satisfying: $k \\in \\{-2, -1, 1, 2\\}$."
+    },
+    {
+      "number": 4,
+      "statement": "**(a)** The positive integers $a$ and $b$ have no common divisor larger than $1$. If the difference between $b$ and $a$ is $15$ and $\\dfrac{5}{9} < \\dfrac{a}{b} < \\dfrac{4}{7}$, what is the value of $\\dfrac{a}{b}$?\n\n**(b)** A geometric sequence has first term $10$ and common ratio $\\dfrac{1}{2}$. An arithmetic sequence has first term $10$ and common difference $d$. The ratio of the $6$th term in the geometric sequence to the $4$th term in the geometric sequence equals the ratio of the $6$th term in the arithmetic sequence to the $4$th term in the arithmetic sequence. Determine all possible values of $d$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2020 Euclid Contest, Problem 4",
+      "topicKey": "algebra.sequences_and_fractions",
+      "techniqueTags": ["fraction_bounds", "geometric_sequence", "arithmetic_sequence"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** From $a < b$ and $b - a = 15$: $b = a + 15$. Left inequality: $5(a+15) < 9a \\Rightarrow a > 18.75$, so $a \\geq 19$. Right: $7a < 4(a+15) \\Rightarrow a < 20$. Thus $a = 19$, $b = 34$, $\\gcd(19,34) = 1$. Answer: $\\dfrac{a}{b} = \\dfrac{19}{34}$.\n\n**(b)** Geometric ratio of 6th to 4th term is $(1/2)^2 = 1/4$. Arithmetic: $\\dfrac{10 + 5d}{10 + 3d} = \\dfrac{1}{4}$, so $4(10+5d) = 10+3d$, giving $17d = -30$, $d = -\\dfrac{30}{17}$."
+    },
+    {
+      "number": 5,
+      "statement": "**(a)** For each positive real number $x$, define $f(x)$ to be the number of prime numbers $p$ that satisfy $x \\leq p \\leq x + 10$. What is the value of $f(f(20))$?\n\n**(b)** Determine all triples $(x, y, z)$ of real numbers that satisfy the following system of equations:\n\n$$(x - 1)(y - 2) = 0$$\n\n$$(x - 3)(z + 2) = 0$$\n\n$$x + yz = 9$$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2020 Euclid Contest, Problem 5",
+      "topicKey": "mixed.number_theory_and_systems",
+      "techniqueTags": ["prime_counting", "case_analysis", "polynomial_system"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** Primes in $[20, 30]$: $\\{23, 29\\}$, so $f(20) = 2$. Primes in $[2, 12]$: $\\{2,3,5,7,11\\}$, so $f(2) = 5$. Answer: $f(f(20)) = 5$.\n\n**(b)** Case $x = 1$: $(1-3)(z+2) = 0 \\Rightarrow z = -2$; then $1 + y(-2) = 9 \\Rightarrow y = -4$. Solution $(1, -4, -2)$.\n\nCase $y = 2$: $(x-3)(z+2) = 0$.\n- Sub-case $x = 3$: $3 + 2z = 9 \\Rightarrow z = 3$. Solution $(3, 2, 3)$.\n- Sub-case $z = -2$: $x - 4 = 9 \\Rightarrow x = 13$. Solution $(13, 2, -2)$.\n\nAll triples: $(1, -4, -2)$, $(3, 2, 3)$, $(13, 2, -2)$."
+    },
+    {
+      "number": 6,
+      "statement": "**(a)** Rectangle $ABCD$ has $AB = 4$ and $BC = 6$. The semi-circles with diameters $AE$ and $FC$ each have radius $r$, have centres $S$ and $T$, and touch at a single point $P$. ($A$, $S$, $E$ lie on side $AD$; $B$, $F$, $T$, $C$ lie on side $BC$.) What is the value of $r$?\n\n**(b)** In the diagram, $\\triangle ABE$ is right-angled at $A$, $\\triangle BCD$ is right-angled at $C$, $\\angle ABC = 135^\\circ$, and $AB = AE = 7\\sqrt{2}$. If $DC = 4x$, $DB = 8x$, and $DE = 8x - 6$ for some real number $x$, determine all possible values of $x$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2020 Euclid Contest, Problem 6",
+      "topicKey": "geometry.circles_and_law_of_cosines",
+      "techniqueTags": ["tangent_circles", "pythagorean_theorem", "law_of_cosines"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Drop perpendicular from $S$ to $V$ on $BC$. $SV = AB = 4$, $ST = 2r$ (tangent semi-circles), $VT = 6 - 2r$. Pythagoras: $4^2 + (6-2r)^2 = (2r)^2 \\Rightarrow 52 = 24r$, so $r = \\dfrac{13}{6}$.\n\n**(b)** $\\triangle ABE$ is $45$–$45$–$90$, $BE = 14$, $\\angle ABE = 45^\\circ$. $\\triangle BCD$: $DB/DC = 2$ so $30$–$60$–$90$, $\\angle DBC = 30^\\circ$. $\\angle EBD = 135^\\circ - 45^\\circ - 30^\\circ = 60^\\circ$. Law of cosines on $\\triangle EBD$: $(8x-6)^2 = 14^2 + (8x)^2 - 2(14)(8x)(1/2)$. Expanding: $-96x + 36 = 196 - 112x$, giving $16x = 160$, $x = 10$."
+    },
+    {
+      "number": 7,
+      "statement": "**(a)** Suppose that the function $g$ satisfies $g(x) = 2x - 4$ for all real numbers $x$ and that $g^{-1}$ is the inverse function of $g$. Suppose that the function $f$ satisfies $g(f(g^{-1}(x))) = 2x^2 + 16x + 26$ for all real numbers $x$. What is the value of $f(\\pi)$?\n\n**(b)** Determine all pairs of angles $(x, y)$ with $0^\\circ \\leq x < 180^\\circ$ and $0^\\circ \\leq y < 180^\\circ$ that satisfy the following system of equations:\n\n$$\\log_2(\\sin x \\cos y) = -\\dfrac{3}{2}$$\n\n$$\\log_2\\!\\left(\\dfrac{\\sin x}{\\cos y}\\right) = \\dfrac{1}{2}$$",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2020 Euclid Contest, Problem 7",
+      "topicKey": "algebra.functions_and_logs",
+      "techniqueTags": ["function_composition", "inverse_function", "logarithm_system"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** $g^{-1}(y) = (y+4)/2$. Apply $g^{-1}$ to both sides: $f(g^{-1}(x)) = x^2 + 8x + 15$. With substitution $u = (x+4)/2$, $x = 2u - 4$: $f(u) = (2u-4)^2 + 8(2u-4) + 15 = 4u^2 - 16u + 16 + 16u - 32 + 15 = 4u^2 - 1$. So $f(\\pi) = 4\\pi^2 - 1$.\n\n**(b)** Adding the two log equations: $2\\log_2(\\sin x) = -1$, so $\\sin x = 1/\\sqrt{2}$, giving $x = 45^\\circ$ or $x = 135^\\circ$. Subtracting: $2\\log_2(\\cos y) = -2$, so $\\cos y = 1/2$, $y = 60^\\circ$. Solutions: $(45^\\circ, 60^\\circ)$ and $(135^\\circ, 60^\\circ)$."
+    },
+    {
+      "number": 8,
+      "statement": "**(a)** Four tennis players Alain, Bianca, Chen, and Dave take part in a tournament in which a total of three matches are played. First, two players are chosen randomly to play each other. The other two players also play each other. The winners of the two matches then play to decide the tournament champion. Alain, Bianca and Chen are equally matched (that is, when a match is played between any two of them, the probability that each player wins is $\\dfrac{1}{2}$). When Dave plays each of Alain, Bianca and Chen, the probability that Dave wins is $p$, for some real number $p$. Determine the probability that Bianca wins the tournament, expressing your answer in the form $\\dfrac{ap^2 + bp + c}{d}$ where $a$, $b$, $c$, and $d$ are integers.\n\n**(b)** Three microphones $A$, $B$ and $C$ are placed on a line such that $A$ is $1$ km west of $B$ and $C$ is $2$ km east of $B$. A large explosion occurs at a point $P$ not on this line. Each of the three microphones receives the sound. The sound travels at $\\dfrac{1}{3}$ km/s. Microphone $B$ receives the sound first, microphone $A$ receives the sound $\\dfrac{1}{2}$ s later, and microphone $C$ receives it $1$ s after microphone $A$. Determine the distance from microphone $B$ to the explosion at $P$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2020 Euclid Contest, Problem 8",
+      "topicKey": "mixed.probability_and_geometry",
+      "techniqueTags": ["tournament_probability", "symmetry_argument", "distance_difference"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** By symmetry, $P(\\text{Alain wins}) = P(\\text{Bianca wins}) = P(\\text{Chen wins}) = x$. Dave needs two consecutive wins to win the tournament: $P(\\text{Dave wins}) = p^2$. Since $3x + p^2 = 1$: $x = \\dfrac{1 - p^2}{3} = \\dfrac{-p^2 + 0p + 1}{3}$.\n\n**(b)** Place $B = (0,0)$, $A = (-1,0)$, $C = (2,0)$. Let $|PB| = d$. Then $|PA| = d + \\dfrac{1}{2} \\cdot \\dfrac{1}{3} = d + \\dfrac{1}{6}$ and $|PC| = d + \\dfrac{1}{6} + \\dfrac{1}{3} = d + \\dfrac{1}{2}$. Squaring distances and subtracting from $x^2 + y^2 = d^2$: $2x + 1 = \\dfrac{d}{3} + \\dfrac{1}{36}$ and $-4x + 4 = d + \\dfrac{1}{4}$. Combining $2(2x+1) + (-4x+4) = \\dfrac{2d}{3} + \\dfrac{1}{18} + d + \\dfrac{1}{4}$: $6 = \\dfrac{5d}{3} + \\dfrac{11}{36}$. Multiplying by $36$: $216 - 11 = 60d$, so $d = \\dfrac{205}{60} = \\dfrac{41}{12}$ km."
+    },
+    {
+      "number": 9,
+      "statement": "An L shape is made by adjoining three congruent squares. The L is subdivided into four smaller L shapes. Each of the resulting L's is subdivided in this same way.\n\n**(a)** After the third round of subdivisions, how many L's of the smallest size are there?\n\n**(b)** After the third round of subdivisions, how many L's of the smallest size are in the same orientation as the original L?\n\n**(c)** Starting with the original L shape, $2020$ rounds of subdivisions are made. Determine the number of L's of the smallest size that are in the same orientation as the original L.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2020 Euclid Contest, Problem 9",
+      "topicKey": "combinatorics.fractal_recursion",
+      "techniqueTags": ["recursion", "linear_algebra_of_orientations", "induction"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Each round multiplies count by $4$, so after $3$ rounds there are $4^3 = 64$ small L's.\n\n**(b)** Track counts of the 4 orientations. Round 1: $(2, 0, 1, 1)$. Transition from each orientation produces $(2,0,1,1)$, $(0,2,1,1)$, $(1,1,2,0)$, $(1,1,0,2)$ respectively. Round 2: $(6, 2, 4, 4)$. Round 3: $(20, 12, 16, 16)$. Original orientation count: $20$.\n\n**(c)** Observing the pattern $(4^{n-1} + 2^{n-1}, 4^{n-1} - 2^{n-1}, 4^{n-1}, 4^{n-1})$ for round $n$, verify by induction: if true at round $k$, the four updated counts compute to $(4^k + 2^k, 4^k - 2^k, 4^k, 4^k)$ via the transition matrix. Therefore after $2020$ rounds, the count in the original orientation is $4^{2019} + 2^{2019}$."
+    },
+    {
+      "number": 10,
+      "statement": "Kerry has a list of $n$ integers $a_1, a_2, \\ldots, a_n$ satisfying $a_1 \\leq a_2 \\leq \\ldots \\leq a_n$. Kerry calculates the pairwise sums of all $m = \\dfrac{1}{2}n(n-1)$ possible pairs of integers in her list and orders these pairwise sums as $s_1 \\leq s_2 \\leq \\ldots \\leq s_m$. For example, if Kerry's list consists of the three integers $1, 2, 4$, the three pairwise sums are $3, 5, 6$.\n\n**(a)** Suppose that $n = 4$ and that the $6$ pairwise sums are $s_1 = 8$, $s_2 = 104$, $s_3 = 106$, $s_4 = 110$, $s_5 = 112$, and $s_6 = 208$. Determine two possible lists $a_1, a_2, a_3, a_4$ that Kerry could have.\n\n**(b)** Suppose that $n = 5$ and that the $10$ pairwise sums are $s_1, s_2, \\ldots, s_{10}$. Prove that there is only one possibility for Kerry's list $a_1, a_2, a_3, a_4, a_5$.\n\n**(c)** Suppose that $n = 16$. Prove that there are two different lists $a_1, a_2, \\ldots, a_{16}$ and $b_1, b_2, \\ldots, b_{16}$ that produce the same list of sums $s_1, s_2, \\ldots, s_{120}$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2020 Euclid Contest, Problem 10",
+      "topicKey": "combinatorics.pairwise_sums",
+      "techniqueTags": ["pairwise_sums", "invariant_via_total_sum", "construction_via_shifting"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Smallest sum $s_1 = a_1 + a_2 = 8$, largest $s_6 = a_3 + a_4 = 208$; $s_2 = a_1 + a_3 = 104$, $s_5 = a_2 + a_4 = 112$. Middle two $(s_3, s_4)$ are $\\{a_1 + a_4, a_2 + a_3\\}$ in either order.\n\n- Case $s_3 = a_1 + a_4 = 106$, $s_4 = a_2 + a_3 = 110$: Summing $(a_1+a_2) + (a_1+a_3) + (a_2+a_3) = 222$ gives $a_1 + a_2 + a_3 = 111$, so $a_1 = 1$, $a_2 = 7$, $a_3 = 103$, $a_4 = 105$.\n- Case $s_3 = a_2 + a_3 = 106$, $s_4 = a_1 + a_4 = 110$: similar computation gives $a_1 + a_2 + a_3 = 109$, yielding $(3, 5, 101, 107)$.\n\nTwo possible lists: $(1, 7, 103, 105)$ and $(3, 5, 101, 107)$.\n\n**(b)** Total $S = s_1 + \\cdots + s_{10} = 4(a_1 + a_2 + a_3 + a_4 + a_5)$ since each $a_i$ appears in $4$ pairs. So $a_1 + \\cdots + a_5 = S/4$. Since $s_1 = a_1 + a_2$ and $s_{10} = a_4 + a_5$, we get $a_3 = S/4 - s_1 - s_{10}$. Then $a_1 = s_2 - a_3$ (from $s_2 = a_1 + a_3$), $a_5 = s_9 - a_3$ (from $s_9 = a_3 + a_5$), $a_2 = s_1 - a_1$, $a_4 = s_{10} - a_5$. Every value is forced, so the list is unique.\n\n**(c)** If lists $(a_i)_{i=1}^{4}$ and $(b_i)_{i=1}^{4}$ give the same $6$ pairwise sums (e.g. from (a)), then for any $x$, the $8$-element lists $(a_1,\\ldots,a_4, b_1+x,\\ldots,b_4+x)$ and $(a_1+x,\\ldots,a_4+x, b_1,\\ldots,b_4)$ have identical $28$ pairwise sums (categories: within-$a$, within-shifted-$b$ shifted by $2x$, cross-terms coincide since each is of the form $a_i + b_j + x$). Applying this doubling again with shift $y$ produces two $16$-element lists with identical $120$ pairwise sums. Explicit example: take $(a_i) = (1,7,103,105)$, $(b_i) = (3,5,101,107)$, $x = 10000$, $y = 10^6$, yielding the two $16$-element lists listed in the official solution."
+    }
+  ]
+}

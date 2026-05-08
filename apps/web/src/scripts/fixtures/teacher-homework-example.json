@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "arcmath-problem-set-v1",
+  "set": {
+    "title": "Homework Week 5 — Inequalities",
+    "description": "Practice after covering AM-GM, Cauchy-Schwarz, and rearrangement.",
+    "topicKey": "algebra/inequalities",
+    "submissionMode": "PER_PROBLEM"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "If $a+b+c=6$ and $a,b,c\\ge 0$, what is the maximum possible value of $abc$?",
+      "answerFormat": "INTEGER",
+      "answer": "8",
+      "solutionSketch": "By AM-GM, $abc \\le \\left(\\frac{a+b+c}{3}\\right)^3 = 2^3 = 8$, with equality when $a=b=c=2$.",
+      "topicKey": "algebra/inequalities",
+      "difficultyBand": "EASY"
+    },
+    {
+      "number": 2,
+      "statement": "Which of the following is always true for positive reals $a, b$?",
+      "answerFormat": "MULTIPLE_CHOICE",
+      "choices": [
+        "$a + b \\ge 2\\sqrt{ab}$",
+        "$a + b \\le 2\\sqrt{ab}$",
+        "$a + b = 2\\sqrt{ab}$",
+        "$a - b \\ge 2\\sqrt{ab}$",
+        "None of the above"
+      ],
+      "answer": "A",
+      "solutionSketch": "AM-GM on two positive reals: $\\frac{a+b}{2} \\ge \\sqrt{ab}$.",
+      "difficultyBand": "EASY"
+    },
+    {
+      "number": 3,
+      "statement": "Prove that for all positive reals $a, b, c$ with $abc = 1$, $a^2 + b^2 + c^2 \\ge a + b + c$.",
+      "answerFormat": "PROOF",
+      "solutionSketch": "Step 1: By AM-GM on $a^2, b^2, c^2$ and the constraint $abc = 1$, we have $a^2 + b^2 + c^2 \\ge 3\\sqrt[3]{a^2 b^2 c^2} = 3$. Step 2: By AM-GM on $a, b, c$ and $abc = 1$, we have $a + b + c \\ge 3\\sqrt[3]{abc} = 3$. Step 3: Combine with the power-mean inequality — specifically, since $a^2 + b^2 + c^2 \\ge \\frac{(a+b+c)^2}{3}$ (Cauchy-Schwarz / QM-AM), setting $s = a+b+c \\ge 3$, it suffices to show $\\frac{s^2}{3} \\ge s$, i.e. $s \\ge 3$, which we already have. Equality iff $a=b=c=1$.",
+      "topicKey": "algebra/inequalities",
+      "difficultyBand": "MEDIUM",
+      "techniqueTags": ["am-gm", "cauchy-schwarz", "power-mean"]
+    },
+    {
+      "number": 4,
+      "statement": "Evaluate $\\min_{x>0} \\left(x + \\frac{9}{x}\\right)$. Give your answer as an integer.",
+      "answerFormat": "INTEGER",
+      "answer": "6",
+      "solutionSketch": "By AM-GM, $x + 9/x \\ge 2\\sqrt{x \\cdot 9/x} = 6$, with equality at $x=3$.",
+      "difficultyBand": "EASY"
+    },
+    {
+      "number": 5,
+      "statement": "Prove that for any real numbers $x_1, x_2, \\ldots, x_n$, $\\left(\\sum_{i=1}^{n} x_i\\right)^2 \\le n \\sum_{i=1}^{n} x_i^2$.",
+      "answerFormat": "PROOF",
+      "solutionSketch": "Apply Cauchy-Schwarz to the vectors $(x_1, \\ldots, x_n)$ and $(1, 1, \\ldots, 1)$: $\\left(\\sum x_i \\cdot 1\\right)^2 \\le \\left(\\sum x_i^2\\right) \\left(\\sum 1^2\\right) = n \\sum x_i^2$. Equality iff all $x_i$ are equal.",
+      "topicKey": "algebra/inequalities",
+      "difficultyBand": "MEDIUM",
+      "techniqueTags": ["cauchy-schwarz"]
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "problemSet": {
+    "contest": "EUCLID",
+    "year": 2019,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://cemc.uwaterloo.ca/contests/past_contests.html",
+    "verifiedPdfUrl": "https://cemc.uwaterloo.ca/sites/default/files/documents/2019/2019EuclidContest.pdf"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "**(a)** Joyce has two identical jars. The first jar is $\\tfrac{3}{4}$ full of water and contains $300$ mL of water. The second jar is $\\tfrac{1}{4}$ full of water. How much water, in mL, does the second jar contain?\n\n**(b)** What integer $a$ satisfies $3 < \\dfrac{24}{a} < 4$?\n\n**(c)** If $\\dfrac{1}{x^2} - \\dfrac{1}{x} = 2$, determine all possible values of $x$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2019 Euclid Contest, Problem 1",
+      "topicKey": "algebra.ratios_and_equations",
+      "techniqueTags": ["ratio_scaling", "integer_inequality", "rational_equation"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** $\\tfrac{1}{4}$ of a jar holds $300 \\div 3 = 100$ mL.\n\n**(b)** From $a > 0$: $a < 24/3 = 8$ and $a > 24/4 = 6$. Integer: $a = 7$.\n\n**(c)** Multiply by $x^2$: $1 - x = 2x^2$, so $2x^2 + x - 1 = 0 \\Rightarrow (2x-1)(x+1) = 0$. Thus $x = \\tfrac{1}{2}$ or $x = -1$."
+    },
+    {
+      "number": 2,
+      "statement": "**(a)** Two small circles of radius $1$ are tangent to each other and to a larger circle of radius $2$. What is the area of the shaded region (the part of the large circle outside the two small circles)?\n\n**(b)** Kari jogs at a constant speed of $8$ km/h. Mo jogs at a constant speed of $6$ km/h. Kari and Mo jog from the same starting point to the same finishing point along a straight road. Mo starts at 10:00 a.m. Kari and Mo both finish at 11:00 a.m. At what time did Kari start to jog?\n\n**(c)** The line with equation $x + 3y = 7$ is parallel to the line with equation $y = mx + b$. The line with equation $y = mx + b$ passes through the point $(9, 2)$. Determine the value of $b$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2019 Euclid Contest, Problem 2",
+      "topicKey": "mixed.geometry_and_coordinate",
+      "techniqueTags": ["circle_area", "rate_time_distance", "parallel_lines_slope"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** Large circle area $4\\pi$; two small circles area $\\pi + \\pi = 2\\pi$; shaded area $= 4\\pi - 2\\pi = 2\\pi$.\n\n**(b)** Mo runs $6 \\text{ km/h} \\cdot 1 \\text{ h} = 6$ km; Kari also runs $6$ km. At $8$ km/h, this takes $\\tfrac{6}{8} = \\tfrac{3}{4}$ h $= 45$ min. Kari started at 10:15 a.m.\n\n**(c)** Rewriting $x + 3y = 7$: slope $= -\\tfrac{1}{3}$, so $m = -\\tfrac{1}{3}$. Plugging $(9, 2)$: $2 = -3 + b$, so $b = 5$."
+    },
+    {
+      "number": 3,
+      "statement": "**(a)** Michelle calculates the average of the numbers $5, 10, 15, 16, 24, 28, 33, 37$. Daphne removes one number and calculates the average of the remaining numbers. The average that Daphne calculates is one less than the average that Michelle calculates. Which number does Daphne remove?\n\n**(b)** If $16^{15/x} = 32^{4/3}$, what is the value of $x$?\n\n**(c)** Suppose that $\\dfrac{2^{2022} + 2^a}{2^{2019}} = 72$. Determine the value of $a$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2019 Euclid Contest, Problem 3",
+      "topicKey": "algebra.averages_and_exponents",
+      "techniqueTags": ["average_invariant", "exponent_laws", "power_of_two"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** Sum $= 168$, average $= 21$. Daphne's sum $= 7 \\cdot 20 = 140$. Removed number $= 168 - 140 = 28$.\n\n**(b)** $16^{15/x} = 2^{60/x}$ and $32^{4/3} = 2^{20/3}$. Equating exponents: $60/x = 20/3$, so $x = 9$.\n\n**(c)** $\\dfrac{2^{2022}}{2^{2019}} + \\dfrac{2^a}{2^{2019}} = 8 + 2^{a-2019} = 72$, so $2^{a-2019} = 64 = 2^6$, giving $a = 2025$."
+    },
+    {
+      "number": 4,
+      "statement": "**(a)** In the diagram, $\\triangle ABC$ has a right angle at $B$ and point $D$ lies on $AB$. If $DB = 10$, $\\angle ACD = 30^\\circ$ and $\\angle CDB = 60^\\circ$, what is the length of $AD$?\n\n**(b)** The points $A(d, -d)$ and $B(-d + 12, 2d - 6)$ both lie on a circle centered at the origin. Determine the possible values of $d$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2019 Euclid Contest, Problem 4",
+      "topicKey": "mixed.triangle_and_circle",
+      "techniqueTags": ["30_60_90_triangle", "isosceles_triangle", "equal_distance_from_origin"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** $\\triangle CDB$ is right-angled at $B$ with $\\angle CDB = 60^\\circ$, so $\\angle DCB = 30^\\circ$, a $30$–$60$–$90$ triangle with $DB = 10$, $CD = 20$. Then $\\angle ADC = 180^\\circ - 60^\\circ = 120^\\circ$ and $\\angle ACD = 30^\\circ$ force $\\angle DAC = 30^\\circ$, so $\\triangle ADC$ is isosceles with $AD = CD = 20$.\n\n**(b)** $OA = OB$: $d^2 + d^2 = (-d+12)^2 + (2d-6)^2$, giving $2d^2 = 5d^2 - 48d + 180$, i.e. $d^2 - 16d + 60 = 0 \\Rightarrow (d-10)(d-6) = 0$. So $d = 10$ or $d = 6$."
+    },
+    {
+      "number": 5,
+      "statement": "**(a)** Determine the two pairs of positive integers $(a, b)$ with $a < b$ that satisfy the equation $\\sqrt{a} + \\sqrt{b} = \\sqrt{50}$.\n\n**(b)** Consider the system of equations:\n\n$$c + d = 2000$$\n\n$$\\dfrac{c}{d} = k$$\n\nDetermine the number of integers $k$ with $k \\geq 0$ for which there is at least one pair of integers $(c, d)$ that is a solution to the system.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2019 Euclid Contest, Problem 5",
+      "topicKey": "number_theory.radicals_and_divisors",
+      "techniqueTags": ["radical_decomposition", "divisor_count", "linear_diophantine"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** $\\sqrt{50} = 5\\sqrt{2}$. Decompose $5\\sqrt{2} = \\sqrt{2} + 4\\sqrt{2} = \\sqrt{2} + \\sqrt{32}$ giving $(a, b) = (2, 32)$, or $5\\sqrt{2} = 2\\sqrt{2} + 3\\sqrt{2} = \\sqrt{8} + \\sqrt{18}$ giving $(a, b) = (8, 18)$.\n\n**(b)** $c = kd$, $(k+1)d = 2000$. For integer $d$: $k+1$ must be a positive divisor of $2000 = 2^4 \\cdot 5^3$. Number of positive divisors $= 5 \\cdot 4 = 20$. So there are $20$ valid values of $k$."
+    },
+    {
+      "number": 6,
+      "statement": "**(a)** A regular pentagon covers part of another regular polygon. This regular polygon has $n$ sides, five of which are completely or partially visible. In the diagram, the sum of the measures of the angles marked $a^\\circ$ and $b^\\circ$ (formed by the pentagon's edges meeting the $n$-gon's edges) is $88^\\circ$. Determine the value of $n$.\n\n**(b)** In trapezoid $ABCD$, $BC$ is parallel to $AD$ and $BC$ is perpendicular to $AB$. Also, the lengths of $AD$, $AB$ and $BC$, in that order, form a geometric sequence. Prove that $AC$ is perpendicular to $BD$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2019 Euclid Contest, Problem 6",
+      "topicKey": "geometry.polygons_and_perpendicularity",
+      "techniqueTags": ["interior_angle_sum", "geometric_sequence", "coordinate_proof"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** Pentagon interior angle $= 108^\\circ$. Consider the $7$-sided polygon bounded by four $n$-gon angles (each $\\tfrac{n-2}{n} \\cdot 180^\\circ$), the two marked angles summing to $88^\\circ$, and the reflex angle $360^\\circ - 108^\\circ = 252^\\circ$ at the pentagon's corner. Sum of angles in $7$-gon $= 5 \\cdot 180^\\circ = 900^\\circ$: $4 \\cdot \\tfrac{n-2}{n} \\cdot 180^\\circ + 88^\\circ + 252^\\circ = 900^\\circ$, giving $n = 9$.\n\n**(b)** Let $AD = a$, $AB = ar$, $BC = ar^2$. Place $B = (0,0)$, $C = (ar^2, 0)$, $A = (0, ar)$, $D = (a, ar)$. Slope $BD = \\tfrac{ar - 0}{a - 0} = r$; slope $AC = \\tfrac{0 - ar}{ar^2 - 0} = -\\tfrac{1}{r}$. Product $= -1$, so $AC \\perp BD$."
+    },
+    {
+      "number": 7,
+      "statement": "**(a)** Determine all real numbers $x$ for which $2\\log_2(x - 1) = 1 - \\log_2(x + 2)$.\n\n**(b)** Consider the function $f(x) = x^2 - 2x$. Determine all real numbers $x$ that satisfy the equation $f(f(f(x))) = 3$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2019 Euclid Contest, Problem 7",
+      "topicKey": "algebra.logs_and_function_iteration",
+      "techniqueTags": ["logarithm_equation", "nested_quadratic", "domain_check"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Combine logs: $\\log_2[(x-1)^2(x+2)] = 1$, so $(x-1)^2(x+2) = 2$. Expanding: $x^3 - 3x + 2 = 2$, so $x(x^2 - 3) = 0$. Candidates $x \\in \\{0, \\sqrt{3}, -\\sqrt{3}\\}$. Only $x = \\sqrt{3}$ satisfies $x - 1 > 0$ (domain). Answer: $x = \\sqrt{3}$.\n\n**(b)** Let $a = f(f(x))$: $f(a) = 3 \\Rightarrow a^2 - 2a - 3 = 0 \\Rightarrow a \\in \\{3, -1\\}$. Then $f(f(x)) \\in \\{3, -1\\}$. Let $b = f(x)$: $f(b) = 3 \\Rightarrow b \\in \\{3, -1\\}$; $f(b) = -1 \\Rightarrow (b-1)^2 = 0 \\Rightarrow b = 1$. So $f(x) \\in \\{3, -1, 1\\}$. $f(x) = 3$: $x \\in \\{3, -1\\}$; $f(x) = -1$: $x = 1$; $f(x) = 1$: $x^2 - 2x - 1 = 0$, $x = 1 \\pm \\sqrt{2}$. All solutions: $\\{3, 1, -1, 1+\\sqrt{2}, 1-\\sqrt{2}\\}$."
+    },
+    {
+      "number": 8,
+      "statement": "**(a)** A circle has centre $O$ and radius $1$. Quadrilateral $ABCD$ has all $4$ sides tangent to the circle at points $P$, $Q$, $S$, and $T$. Also, $\\angle AOB = \\angle BOC = \\angle COD = \\angle DOA$. If $AO = 3$, determine the length of $DS$.\n\n**(b)** Suppose that $x$ satisfies $0 < x < \\dfrac{\\pi}{2}$ and $\\cos\\!\\left(\\dfrac{3}{2}\\cos x\\right) = \\sin\\!\\left(\\dfrac{3}{2}\\sin x\\right)$. Determine all possible values of $\\sin 2x$, expressing your answers in the form $\\dfrac{a\\pi^2 + b\\pi + c}{d}$ where $a, b, c, d$ are integers.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2019 Euclid Contest, Problem 8",
+      "topicKey": "mixed.tangent_circle_and_trig",
+      "techniqueTags": ["tangent_length_equality", "similar_triangles", "trigonometric_substitution"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** The four central angles each equal $90^\\circ$. $\\triangle OTA$ right-angled at $T$ with $OT = 1$, $OA = 3$ gives $AT = 2\\sqrt{2}$. Angle-chase $\\angle TAO = \\angle DOT$ shows $\\triangle ATO \\sim \\triangle OTD$: $\\dfrac{DT}{OT} = \\dfrac{OT}{AT}$, so $DT = \\dfrac{1}{2\\sqrt{2}}$. By equal tangent lengths from $D$: $DS = DT = \\dfrac{1}{2\\sqrt{2}} = \\dfrac{\\sqrt{2}}{4}$.\n\n**(b)** With $0 < x < \\pi/2$, both $\\tfrac{3}{2}\\cos x$ and $\\tfrac{3}{2}\\sin x$ lie in $(0, \\pi/2)$. $\\cos Y = \\sin Z \\iff Y + Z = \\pi/2$, so $\\tfrac{3}{2}\\cos x + \\tfrac{3}{2}\\sin x = \\pi/2$, giving $\\sin x + \\cos x = \\pi/3$. Square: $1 + \\sin 2x = \\pi^2/9$, so $\\sin 2x = \\dfrac{\\pi^2 - 9}{9}$."
+    },
+    {
+      "number": 9,
+      "statement": "For positive integers $a$ and $b$, define $f(a, b) = \\dfrac{a}{b} + \\dfrac{b}{a} + \\dfrac{1}{ab}$. For example, the value of $f(1, 2)$ is $3$.\n\n**(a)** Determine the value of $f(2, 5)$.\n\n**(b)** Determine all positive integers $a$ for which $f(a, a)$ is an integer.\n\n**(c)** If $a$ and $b$ are positive integers and $f(a, b)$ is an integer, prove that $f(a, b)$ must be a multiple of $3$.\n\n**(d)** Determine four pairs of positive integers $(a, b)$, with $2 < a < b$, for which $f(a, b)$ is an integer.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2019 Euclid Contest, Problem 9",
+      "topicKey": "number_theory.vieta_jumping",
+      "techniqueTags": ["vieta_jumping", "fibonacci_identity", "quadratic_in_one_variable"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** $f(2,5) = \\tfrac{2}{5} + \\tfrac{5}{2} + \\tfrac{1}{10} = \\tfrac{4 + 25 + 1}{10} = 3$.\n\n**(b)** $f(a,a) = 2 + 1/a^2$; integer iff $a^2 \\mid 1$, so $a = 1$.\n\n**(c)** Let $k = f(a,b)$. Clearing: $a^2 - kba + (b^2 + 1) = 0$. Viewing as quadratic in $a$, the discriminant $k^2b^2 - 4b^2 - 4 = b^2(k-2)(k+2) - 4$ must be a perfect square. If $3 \\nmid k$, then $3 \\mid (k-2)(k+2)$, so the discriminant is $\\equiv -4 \\equiv 2 \\pmod{3}$. But squares $\\pmod 3$ are $0$ or $1$, contradiction. Hence $3 \\mid k$.\n\n**(d)** Vieta jumping: if $f(a, b) = 3$, then $f(b, 3b - a) = 3$. Starting from $f(1, 2) = 3$: $f(2, 5)$, $f(5, 13)$, $f(13, 34)$, $f(34, 89)$, $f(89, 233)$. Four pairs with $2 < a < b$: $(5, 13), (13, 34), (34, 89), (89, 233)$. (These are consecutive odd-indexed Fibonacci numbers $F_{2k-1}, F_{2k+1}$.)"
+    },
+    {
+      "number": 10,
+      "statement": "**(a)** Amir and Brigitte play a card game. Amir starts with a hand of $6$ cards: $2$ red, $2$ yellow and $2$ green. Brigitte starts with a hand of $4$ cards: $2$ purple and $2$ white. Amir plays first. Amir and Brigitte alternate turns. On each turn, the current player chooses one of their own cards at random and places it on the table. The cards remain on the table for the rest of the game. A player wins and the game ends when they have placed two cards of the same colour on the table. Determine the probability that Amir wins the game.\n\n**(b)** Carlos has $14$ coins, numbered $1$ to $14$. Each coin has exactly one face called \"heads\". When flipped, coins $1, 2, 3, \\ldots, 13, 14$ land heads with probabilities $h_1, h_2, h_3, \\ldots, h_{13}, h_{14}$, respectively. When Carlos flips each of the $14$ coins exactly once, the probability that an even number of coins land heads is exactly $\\tfrac{1}{2}$. Must there be a $k$ between $1$ and $14$, inclusive, for which $h_k = \\tfrac{1}{2}$? Prove your answer.\n\n**(c)** Serge and Lis each have a machine that prints a digit from $1$ to $6$. Serge's machine prints digits $1, \\ldots, 6$ with probabilities $p_1, \\ldots, p_6$; Lis's machine prints with probabilities $q_1, \\ldots, q_6$. Each machine prints one digit. Let $S(i)$ be the probability that the sum of the two digits printed is $i$. If $S(2) = S(12) = \\tfrac{1}{2} S(7)$ and $S(7) > 0$, prove that $p_1 = p_6$ and $q_1 = q_6$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2019 Euclid Contest, Problem 10",
+      "topicKey": "combinatorics.probability_proofs",
+      "techniqueTags": ["case_analysis_probability", "parity_recursion", "algebraic_inequality"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Game ends by Brigitte's third turn. Amir wins on turn 2 or 3.\n- Turn 2 (match first card): probability $\\tfrac{1}{5}$.\n- Turn 3: needs (i) Amir's 2nd differs from 1st: $\\tfrac{4}{5}$; (ii) Brigitte's 2nd differs from 1st: $\\tfrac{2}{3}$; (iii) Amir's 3rd matches one of his first two: $\\tfrac{2}{4}$. Product: $\\tfrac{4}{5} \\cdot \\tfrac{2}{3} \\cdot \\tfrac{1}{2} = \\tfrac{4}{15}$.\n\nTotal: $\\tfrac{1}{5} + \\tfrac{4}{15} = \\tfrac{7}{15}$.\n\n**(b)** Let $p$ be the probability of an even number of heads in the first $13$ coins. After flipping coin 14: $p(1 - h_{14}) + (1 - p)h_{14} = \\tfrac{1}{2}$, which simplifies to $(2p - 1)(2h_{14} - 1) = 0$. So $h_{14} = \\tfrac{1}{2}$ or $p = \\tfrac{1}{2}$. If $p = \\tfrac{1}{2}$, recurse: either $h_{13} = \\tfrac{1}{2}$ or the parity probability for first 12 coins is $\\tfrac{1}{2}$. Repeating, eventually some $h_k = \\tfrac{1}{2}$, or $h_1 = \\tfrac{1}{2}$. Answer: yes, some $h_k = \\tfrac{1}{2}$.\n\n**(c)** $S(2) = p_1 q_1$, $S(12) = p_6 q_6$, $S(7) = p_1 q_6 + p_6 q_1 + (p_2 q_5 + p_3 q_4 + p_4 q_3 + p_5 q_2)$. From $S(2) = S(12)$: $p_1 q_1 = p_6 q_6$. From $S(7) - S(2) - S(12) = 0$: $(p_1 - p_6)(q_1 - q_6) = p_2 q_5 + p_3 q_4 + p_4 q_3 + p_5 q_2 \\geq 0$. If $p_1 > p_6$, then $q_1 \\geq q_6$, but $p_1 q_1 = p_6 q_6$ with $p_1 > p_6$ and $q_1 > q_6$ is impossible. Similarly $p_1 < p_6$ fails. Hence $p_1 = p_6$, and then $q_1 = q_6$."
+    }
+  ]
+}

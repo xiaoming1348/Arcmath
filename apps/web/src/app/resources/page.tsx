@@ -4,7 +4,9 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "@arcmath/db";
 import { authOptions } from "@/lib/auth";
-import { canManageOrganization, getActiveOrganizationMembership } from "@/lib/organizations";
+import { canManageOrganization, canTeach, getActiveOrganizationMembership } from "@/lib/organizations";
+import { resolveLocale } from "@/i18n/server";
+import { translatorImpl as translator } from "@/i18n/dictionary";
 import { getOrganizationResourceStorage } from "@/lib/organization-resource-storage";
 
 type ResourcesPageProps = {
@@ -61,7 +63,13 @@ export default async function ResourcesPage({ searchParams }: ResourcesPageProps
     }
 
     const currentMembership = await getActiveOrganizationMembership(prisma, currentSession.user.id);
-    if (!currentMembership || !canManageOrganization(currentMembership.role)) {
+    // Batch-4: open the upload form to TEACHER role too. Course
+    // materials (PDFs, docs) and homework files are part of a teacher's
+    // day-to-day, so requiring an admin to upload would create
+    // unnecessary friction. Visibility is still ORG_ONLY (the
+    // OrganizationResource model is per-org), so a teacher can never
+    // leak materials to another school.
+    if (!currentMembership || !canTeach(currentMembership.role)) {
       redirect("/resources?error=forbidden");
     }
 
@@ -166,64 +174,55 @@ export default async function ResourcesPage({ searchParams }: ResourcesPageProps
   }
 
   const canManage = canManageOrganization(membership.role);
+  // Teacher (or above) can upload materials. Students see the list
+  // read-only.
+  const canUpload = canTeach(membership.role);
+  void canManage;
+
+  const locale = await resolveLocale();
+  const t = translator(locale);
 
   return (
     <main className="motion-rise space-y-4">
       <section className="surface-card space-y-3">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="space-y-2">
-            <span className="badge">Organization Resources</span>
-            <h1 className="text-2xl font-semibold text-slate-900">{organization.name}</h1>
-            <p className="text-sm text-slate-600">
-              Internal study materials for this organization. Students can read them here; admins can publish and update them.
-            </p>
+            <h1 className="text-2xl font-semibold text-slate-900">{t("resources.title")}</h1>
+            <p className="text-sm text-slate-600">{t("resources.subtitle")}</p>
+            <p className="text-xs text-slate-500">{organization.name}</p>
           </div>
-          <Link href="/org" className="btn-secondary">
-            Back to Organization
-          </Link>
         </div>
 
-        {created ? <p className="text-sm text-emerald-700">Resource published successfully.</p> : null}
+        {created ? <p className="text-sm text-emerald-700">{t("resources.created_success")}</p> : null}
         {summarizeError(error) ? <p className="text-sm text-red-600">{summarizeError(error)}</p> : null}
       </section>
 
-      {canManage ? (
+      {canUpload ? (
         <section className="surface-card space-y-4">
           <div className="space-y-1">
-            <h2 className="text-lg font-semibold text-slate-900">Publish resource</h2>
-            <p className="text-sm text-slate-600">
-              Use this for lesson notes, study guides, links, or an attached worksheet/PDF. This is the minimal internal resource workflow for organization users.
-            </p>
+            <h2 className="text-lg font-semibold text-slate-900">{t("resources.publish_heading")}</h2>
+            <p className="text-sm text-slate-600">{t("resources.publish_help")}</p>
           </div>
 
           <form action={createOrganizationResource} className="grid gap-3">
             <label className="space-y-2 text-sm text-slate-700">
-              <span>Title</span>
-              <input name="title" className="input-field" type="text" placeholder="Example: AMC 10 Angle Chasing Notes" />
+              <span>{t("resources.title_label")}</span>
+              <input name="title" className="input-field" type="text" />
             </label>
             <label className="space-y-2 text-sm text-slate-700">
-              <span>Description</span>
-              <input
-                name="description"
-                className="input-field"
-                type="text"
-                placeholder="Short context for students"
-              />
+              <span>{t("resources.description_label")}</span>
+              <input name="description" className="input-field" type="text" />
             </label>
             <label className="space-y-2 text-sm text-slate-700">
-              <span>Content</span>
-              <textarea
-                name="content"
-                className="input-field min-h-48"
-                placeholder="Paste notes, links, lesson summaries, or assignment support materials here."
-              />
+              <span>{t("resources.content_label")}</span>
+              <textarea name="content" className="input-field min-h-48" />
             </label>
             <label className="space-y-2 text-sm text-slate-700 md:max-w-md">
-              <span>Attachment</span>
+              <span>{t("resources.attachment_label")}</span>
               <input name="attachment" className="input-field" type="file" />
             </label>
             <button type="submit" className="btn-primary w-fit">
-              Publish Resource
+              {t("resources.publish_submit")}
             </button>
           </form>
         </section>
@@ -231,11 +230,11 @@ export default async function ResourcesPage({ searchParams }: ResourcesPageProps
 
       <section className="surface-card space-y-4">
         <div className="space-y-1">
-          <h2 className="text-lg font-semibold text-slate-900">Published resources</h2>
+          <h2 className="text-lg font-semibold text-slate-900">{t("resources.published_heading")}</h2>
           <p className="text-sm text-slate-600">
-            {canManage
-              ? "Everything posted here is visible to students in this organization."
-              : "These materials are shared by your organization admins."}
+            {canUpload
+              ? t("resources.published_help_uploader")
+              : t("resources.published_help_viewer")}
           </p>
         </div>
 
@@ -259,18 +258,18 @@ export default async function ResourcesPage({ searchParams }: ResourcesPageProps
                       </p>
                     </div>
                     <Link className="btn-secondary" href={`/api/org-resources/${resource.id}/download`}>
-                      Download
+                      {t("resources.attachment_link")}
                     </Link>
                   </div>
                 ) : null}
                 <p className="text-xs text-slate-500">
-                  Published by {resource.createdByUser.name ?? resource.createdByUser.email} · updated {formatDate(resource.updatedAt)}
+                  {t("resources.posted_by")} {resource.createdByUser.name ?? resource.createdByUser.email} · {t("resources.posted_at")} {formatDate(resource.updatedAt)}
                 </p>
               </article>
             ))
           ) : (
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
-              No organization resources yet.
+              {t("resources.no_resources")}
             </div>
           )}
         </div>

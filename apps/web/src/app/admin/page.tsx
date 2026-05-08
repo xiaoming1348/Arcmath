@@ -11,9 +11,15 @@ export default async function AdminPage() {
       <section className="surface-card">
         <h1 className="text-2xl font-semibold text-slate-900">Admin</h1>
         <p className="mt-2 text-slate-600">This route is protected by middleware and only allows ADMIN users.</p>
-        <div className="mt-4">
+        <div className="mt-4 flex flex-wrap gap-2">
           <Link className="btn-primary" href="/admin/import">
-            Open Contest Import
+            Contest import
+          </Link>
+          <Link className="btn-secondary" href="/admin/review">
+            Review queue
+          </Link>
+          <Link className="btn-secondary" href="/admin/analytics">
+            Schools & audit
           </Link>
         </div>
       </section>

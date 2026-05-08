@@ -1,0 +1,123 @@
+{
+  "problemSet": {
+    "contest": "EUCLID",
+    "year": 2015,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://cemc.uwaterloo.ca/contests/past_contests.html",
+    "verifiedPdfUrl": "https://cemc.uwaterloo.ca/sites/default/files/documents/2015/2015EuclidContest.pdf"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "**(a)** What is the value of $\\dfrac{10^2 - 9^2}{10 + 9}$?\n\n**(b)** If $\\dfrac{x+1}{x+4} = 4$, what is the value of $3x + 8$?\n\n**(c)** If $f(x) = 2x - 1$, determine the value of $(f(3))^2 + 2(f(3)) + 1$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2015 Euclid Contest, Problem 1",
+      "topicKey": "algebra.arithmetic_and_functions",
+      "techniqueTags": ["difference_of_squares", "linear_equation", "function_evaluation"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** $(10-9)(10+9)/(10+9) = 10 - 9 = 1$.\n\n**(b)** $x + 1 = 4(x + 4) \\Rightarrow 3x = -15 \\Rightarrow 3x + 8 = -7$.\n\n**(c)** $f(3) = 5$. $(5)^2 + 2(5) + 1 = (5+1)^2 = 36$."
+    },
+    {
+      "number": 2,
+      "statement": "**(a)** If $\\sqrt{a} + \\sqrt{a} = 20$, what is the value of $a$?\n\n**(b)** Two circles have the same centre. The radius of the smaller circle is $1$. The area of the region between the circles is equal to the area of the smaller circle. What is the radius of the larger circle?\n\n**(c)** There were $30$ students in Dr. Brown's class. The average mark of the students in the class was $80$. After two students dropped the class, the average mark of the remaining students was $82$. Determine the average mark of the two students who dropped the class.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2015 Euclid Contest, Problem 2",
+      "topicKey": "algebra.radicals_and_averages",
+      "techniqueTags": ["square_roots", "annulus_area", "weighted_average"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** $2\\sqrt{a} = 20 \\Rightarrow \\sqrt{a} = 10 \\Rightarrow a = 100$.\n\n**(b)** Small area $= \\pi$; larger area $= 2\\pi$. $\\pi r^2 = 2\\pi \\Rightarrow r = \\sqrt{2}$.\n\n**(c)** Total of $30$: $30 \\cdot 80 = 2400$. Total of remaining $28$: $28 \\cdot 82 = 2296$. Two dropped sum $= 104$, average $= 52$."
+    },
+    {
+      "number": 3,
+      "statement": "**(a)** In the diagram, $BD = 4$ and point $C$ is the midpoint of $BD$. Point $A$ is placed so that $\\triangle ABC$ is equilateral. What is the length of $AD$?\n\n**(b)** $\\triangle MNP$ has vertices $M(1, 4)$, $N(5, 3)$, and $P(5, c)$. Determine the sum of the two values of $c$ for which the area of $\\triangle MNP$ is $14$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2015 Euclid Contest, Problem 3",
+      "topicKey": "geometry.triangles_and_coordinates",
+      "techniqueTags": ["equilateral_triangle", "law_of_cosines", "triangle_area_coordinates"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "**(a)** $BC = CD = 2$, $AB = AC = 2$. $\\angle ACD = 180^\\circ - 60^\\circ = 120^\\circ$. Law of cosines: $AD^2 = 4 + 4 - 8\\cos 120^\\circ = 4 + 4 + 4 = 12$, so $AD = 2\\sqrt{3}$. (Alternatively $\\triangle DBA$ is $30$-$60$-$90$.)\n\n**(b)** Base $NP$ vertical, height from $M$ is $|1 - 5| = 4$. Area $= \\tfrac{1}{2} \\cdot |NP| \\cdot 4 = 14 \\Rightarrow |NP| = 7$, so $c = 3 \\pm 7 \\in \\{-4, 10\\}$. Sum $= 6$."
+    },
+    {
+      "number": 4,
+      "statement": "**(a)** What are the $x$-intercepts and the $y$-intercept of the graph with equation $y = (x-1)(x-2)(x-3) - (x-2)(x-3)(x-4)$?\n\n**(b)** The graphs of the equations $y = x^3 - x^2 + 3x - 4$ and $y = ax^2 - x - 4$ intersect at exactly two points. Determine all possible values of $a$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2015 Euclid Contest, Problem 4",
+      "topicKey": "algebra.polynomials_and_intersections",
+      "techniqueTags": ["factoring_common", "discriminant", "polynomial_intersection"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** Factor: $y = (x-2)(x-3)[(x-1)-(x-4)] = 3(x-2)(x-3)$. $x$-intercepts: $x = 2, 3$. $y$-intercept: $3 \\cdot (-2) \\cdot (-3) = 18$.\n\n**(b)** Set equal: $x^3 - (a+1)x^2 + 4x = 0 \\Rightarrow x(x^2 - (a+1)x + 4) = 0$. One root is $x = 0$; for exactly two intersections, the quadratic needs a single double root (and nonzero). Discriminant $= (a+1)^2 - 16 = 0 \\Rightarrow a + 1 = \\pm 4 \\Rightarrow a = 3$ or $a = -5$."
+    },
+    {
+      "number": 5,
+      "statement": "**(a)** $\\angle CAB = 90^\\circ$. Point $D$ is on $AB$ and point $E$ is on $AC$ so that $AB = AC = DE$, $DB = 9$, and $EC = 8$. Determine the length of $DE$.\n\n**(b)** Ellie has two lists, each consisting of $6$ consecutive positive integers. The smallest integer in the first list is $a$, the smallest integer in the second list is $b$, and $a < b$. She makes a third list which consists of the $36$ integers formed by multiplying each number from the first list with each number from the second list. If\n- the integer $49$ appears in the third list,\n- there is no number in the third list that is a multiple of $64$, and\n- there is at least one number in the third list that is larger than $75$,\n\ndetermine all possible pairs $(a, b)$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2015 Euclid Contest, Problem 5",
+      "topicKey": "algebra.geometry_and_constraint_search",
+      "techniqueTags": ["pythagorean_theorem_quadratic", "prime_factor_hunting", "constraint_filtering"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Let $x = DE = AB = AC$. Then $AD = x - 9$, $AE = x - 8$. Pythagoras: $(x-9)^2 + (x-8)^2 = x^2 \\Rightarrow x^2 - 34x + 145 = 0 \\Rightarrow (x-5)(x-29) = 0$. Need $x \\geq 9$: $DE = 29$.\n\n**(b)** $49 = 7^2$: factors $(1, 49)$ or $(7, 7)$. Case $(1, 49)$: $a = 1$ and $b \\in \\{44, \\ldots, 49\\}$. Case $(7, 7)$: $a, b \\in \\{2, \\ldots, 7\\}$ with $a < b$ (15 pairs). Eliminate those producing multiples of $64$: removes $(1, 44), \\ldots, (1, 48)$ and $(3, 4), \\ldots, (6, 7)$. Keep those with product $> 75$: gives $(1, 49), (2, 6), (2, 7)$."
+    },
+    {
+      "number": 6,
+      "statement": "**(a)** A circular disc is divided into $36$ sectors. A number is written in each sector. When three consecutive sectors contain $a$, $b$, $c$ in that order, then $b = ac$. If the number $2$ is placed in one of the sectors and the number $3$ is placed in one of the adjacent sectors, what is the sum of the $36$ numbers on the disc?\n\n**(b)** Determine all values of $x$ for which $0 < \\dfrac{x^2 - 11}{x + 1} < 7$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2015 Euclid Contest, Problem 6",
+      "topicKey": "algebra.sequences_and_inequalities",
+      "techniqueTags": ["periodic_sequence", "rational_inequality", "case_analysis_sign"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** Each sector equals the previous divided by the one before that. From $2, 3$ we get $3/2, 1/2, 1/3, 2/3, 2, 3, \\ldots$ — period $6$. Sum per period $= 2 + 3 + 3/2 + 1/2 + 1/3 + 2/3 = 8$. Six periods: $6 \\cdot 8 = 48$.\n\n**(b)** Case $x > -1$: multiply by positive $x+1$ to get $0 < x^2 - 11 < 7x + 7$. First: $x > \\sqrt{11}$ (given $x > -1$). Second: $(x-9)(x+2) < 0 \\Rightarrow -2 < x < 9$. Intersection: $\\sqrt{11} < x < 9$. Case $x < -1$: inequalities reverse. First: $-\\sqrt{11} < x < \\sqrt{11}$, combined with $x < -1$: $-\\sqrt{11} < x < -1$. Second: $x < -2$ or $x > 9$. Combined: $-\\sqrt{11} < x < -2$. Answer: $-\\sqrt{11} < x < -2$ or $\\sqrt{11} < x < 9$."
+    },
+    {
+      "number": 7,
+      "statement": "**(a)** In the diagram, $ACDF$ is a rectangle with $AC = 200$ and $CD = 50$. Also, $\\triangle FBD$ and $\\triangle AEC$ are congruent triangles which are right-angled at $B$ and $E$, respectively. What is the area of the shaded region?\n\n**(b)** The numbers $a_1, a_2, a_3, \\ldots$ form an arithmetic sequence with $a_1 \\neq a_2$. The three numbers $a_1, a_2, a_6$ form a geometric sequence in that order. Determine all possible positive integers $k$ for which the three numbers $a_1, a_4, a_k$ also form a geometric sequence in that order.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2015 Euclid Contest, Problem 7",
+      "topicKey": "algebra.geometry_and_sequences",
+      "techniqueTags": ["rectangle_diagonals", "arithmetic_geometric_mixed", "ratio_matching"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**(a)** $BAFE$ and $BCDE$ are sub-rectangles; in each, the two drawn triangles occupy $1/4$ of area. So total shaded $= \\tfrac{1}{4}(ACDF) = \\tfrac{1}{4}(200 \\cdot 50) = 2500$.\n\n**(b)** $a_n = a + (n-1)d$ with $d \\neq 0$. $a_1 a_6 = a_2^2 \\Rightarrow a(a + 5d) = (a+d)^2 \\Rightarrow d^2 = 3ad \\Rightarrow d = 3a$ (since $d \\neq 0$, so $a \\neq 0$). Then $a_n = (3n-2)a$. Geom: $a_4^2 = a_1 a_k \\Rightarrow (10a)^2 = a \\cdot (3k-2)a \\Rightarrow 100 = 3k - 2 \\Rightarrow k = 34$."
+    },
+    {
+      "number": 8,
+      "statement": "**(a)** For some positive integers $k$, the parabola with equation $y = \\dfrac{x^2}{k} - 5$ intersects the circle with equation $x^2 + y^2 = 25$ at exactly three distinct points $A$, $B$ and $C$. Determine all such positive integers $k$ for which the area of $\\triangle ABC$ is an integer.\n\n**(b)** $\\triangle XYZ$ is isosceles with $XY = XZ = a$ and $YZ = b$ where $b < 2a$. A larger circle of radius $R$ is inscribed in the triangle (tangent to all three sides). A smaller circle of radius $r$ is drawn so that it touches $XY$, $XZ$ and the larger circle. Determine an expression for $\\dfrac{R}{r}$ in terms of $a$ and $b$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2015 Euclid Contest, Problem 8",
+      "topicKey": "geometry.conic_and_tangent_circles",
+      "techniqueTags": ["parabola_circle_intersection", "triangle_area_discrete", "similar_triangles_inradius"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Sub $x^2 = ky + 5k$ into circle: $y^2 + ky + (5k - 25) = 0 \\Rightarrow (y+5)(y+(k-5)) = 0$. Points: $(0, -5)$ (always) and $(\\pm\\sqrt{25-(5-k)^2}, 5-k)$ for $-5 \\leq 5-k \\leq 5$ i.e. $0 \\leq k \\leq 10$. Triangle area $= \\sqrt{25-(5-k)^2}\\cdot|(5-k)-(-5)| = |10-k|\\sqrt{25-(5-k)^2}$. Tabulating $k = 1, \\ldots, 9$: areas $27, 32, 7\\sqrt{21}, 6\\sqrt{24}, 25, 4\\sqrt{24}, 3\\sqrt{21}, 8, 3$. Integer-valued: $k \\in \\{1, 2, 5, 8, 9\\}$.\n\n**(b)** Centres $O, P$ lie on axis $XM$. Drop perpendicular from $O$ to $T$ on $PE$ so $OCET$ is a rectangle. $\\triangle XMY \\sim \\triangle OTP$ gives $XY/YM = OP/PT$, i.e. $a/(b/2) = (R+r)/(R-r)$. Solve: $2a(R-r) = b(R+r) \\Rightarrow R(2a - b) = r(2a + b) \\Rightarrow \\dfrac{R}{r} = \\dfrac{2a + b}{2a - b}$."
+    },
+    {
+      "number": 9,
+      "statement": "Consider the following system of equations in which all logarithms have base $10$:\n$$(\\log x)(\\log y) - 3\\log 5y - \\log 8x = a$$\n$$(\\log y)(\\log z) - 4\\log 5y - \\log 16z = b$$\n$$(\\log z)(\\log x) - 4\\log 8x - 3\\log 625z = c$$\n\n**(a)** If $a = -4$, $b = 4$, and $c = -18$, solve the system of equations.\n\n**(b)** Determine all triples $(a, b, c)$ of real numbers for which the system of equations has an infinite number of solutions $(x, y, z)$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2015 Euclid Contest, Problem 9",
+      "topicKey": "algebra.logarithmic_systems",
+      "techniqueTags": ["log_substitution", "factoring_system", "degenerate_cases"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "Let $X = \\log x, Y = \\log y, Z = \\log z$. Expand constants: $3\\log 5y + \\log 8x = 3Y + X + \\log(5^3 \\cdot 8) = 3Y + X + 3$, etc. System becomes $XY - X - 3Y - 3 = a$, $YZ - 4Y - Z - 4 = b$, $XZ - 4X - 3Z - 12 = c$. Factor: $(X-3)(Y-1) = a+6$, $(Y-1)(Z-4) = b+8$, $(X-3)(Z-4) = c+24$. Let $p = X-3, q = Y-1, r = Z-4$: $pq = a+6$, $qr = b+8$, $pr = c+24$.\n\n**(a)** $pq=2$, $qr=12$, $pr=6$. Multiply: $(pqr)^2 = 144 \\Rightarrow pqr = \\pm 12$. Solutions $(p,q,r) = (1,2,6)$ or $(-1,-2,-6)$. Back-substitute: $(x,y,z) = (10^4, 10^3, 10^{10})$ or $(10^2, 10^{-1}, 10^{-2})$.\n\n**(b)** $(pqr)^2 = (a+6)(b+8)(c+24)$. If $<0$: no solutions. If $>0$: exactly two solutions. If $=0$: analyze. Exactly one zero among $\\{a+6, b+8, c+24\\}$ is impossible. Two zeros (with third nonzero) gives a $1$-parameter family of solutions. All three zero also gives infinitely many. Therefore infinitely many $(x,y,z)$ iff exactly two (or all three) of $a+6, b+8, c+24$ are zero: $(a,b,c) \\in \\{(-6, -8, c) : c \\in \\mathbb R\\} \\cup \\{(-6, b, -24) : b \\in \\mathbb R\\} \\cup \\{(a, -8, -24) : a \\in \\mathbb R\\}$."
+    },
+    {
+      "number": 10,
+      "statement": "For each positive integer $n \\geq 1$, let $C_n = \\{1, 2, \\ldots, n\\}$. A set $\\mathcal{F}$ of subsets of $C_n$ is a **Furoni family** if no element of $\\mathcal{F}$ is a subset of another element of $\\mathcal{F}$.\n\n**(a)** Consider $\\mathcal{A} = \\{\\{1,2\\}, \\{1,3\\}, \\{1,4\\}\\}$, a Furoni family of $C_4$. Determine the two Furoni families of $C_4$ that contain all of the elements of $\\mathcal{A}$ and to which no other subsets of $C_4$ can be added to form a new (larger) Furoni family.\n\n**(b)** Suppose $\\mathcal{F}$ is a Furoni family of $C_n$. For each $0 \\leq k \\leq n$, let $a_k$ be the number of elements of $\\mathcal{F}$ that contain exactly $k$ integers. Prove that\n$$\\dfrac{a_0}{\\binom{n}{0}} + \\dfrac{a_1}{\\binom{n}{1}} + \\cdots + \\dfrac{a_n}{\\binom{n}{n}} \\leq 1.$$\n\n**(c)** For each positive integer $n$, determine, with proof, the number of elements in the largest Furoni family of $C_n$.",
+      "statementFormat": "MARKDOWN_LATEX",
+      "answerFormat": "WORKED_SOLUTION",
+      "sourceLabel": "2015 Euclid Contest, Problem 10",
+      "topicKey": "combinatorics.sperner_lym",
+      "techniqueTags": ["antichain", "lym_inequality", "sperner_theorem"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**(a)** Maximal extensions: $\\mathcal{A}' = \\{\\{1,2\\},\\{1,3\\},\\{1,4\\},\\{2,3,4\\}\\}$ and $\\mathcal{A}'' = \\{\\{1,2\\},\\{1,3\\},\\{1,4\\},\\{2,3\\},\\{2,4\\},\\{3,4\\}\\}$.\n\n**(b)** LYM via permutation count: each subset $E \\in \\mathcal{F}$ of size $k$ generates $k!(n-k)!$ permutations of $C_n$ of the form (permutation of $E$ | permutation of $C_n \\setminus E$). Different $E \\in \\mathcal{F}$ generate disjoint permutation sets (using the antichain property: if two such permutations coincide, the shorter prefix forces one set inside the other). Total $\\leq n!$ gives $\\sum_k a_k k!(n-k)! \\leq n!$, i.e. $\\sum_k a_k / \\binom{n}{k} \\leq 1$. $\\blacksquare$\n\n**(c)** By (b), $a_0 + \\cdots + a_n \\leq M := \\max_k \\binom{n}{k} = \\binom{n}{\\lfloor n/2\\rfloor}$ (attained at the middle). Equality: take $\\mathcal{F} = \\binom{C_n}{\\lfloor n/2 \\rfloor}$, all subsets of size $\\lfloor n/2 \\rfloor$. No two are comparable. So the maximum Furoni family has size $\\binom{n}{\\lfloor n/2 \\rfloor}$ (Sperner's theorem)."
+    }
+  ]
+}

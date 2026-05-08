@@ -2,13 +2,14 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@arcmath/db";
-import { AnswerWorkspace } from "@/components/answer-workspace";
-import { HintTutorPanel } from "@/components/hint-tutor-panel";
 import { ProblemStatement } from "@/components/problem-statement";
+import { UnifiedPracticeWorkspace } from "@/components/unified-practice-workspace";
 import { authOptions } from "@/lib/auth";
 import { isPerProblemMode } from "@/lib/problem-set-modes";
 import { userCanAccessRealTutorProblemSet } from "@/lib/tutor-premium-access";
 import { getTutorUsableSetKind } from "@/lib/tutor-usable-sets";
+import { resolveLocale } from "@/i18n/server";
+import { translatorImpl as translator } from "@/i18n/dictionary";
 
 type ProblemTutorPageProps = {
   params: Promise<{
@@ -57,6 +58,8 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
   const { problemId } = await params;
   const { runId } = await searchParams;
   const session = await getServerSession(authOptions);
+  const locale = await resolveLocale();
+  const t = translator(locale);
 
   if (!session?.user) {
     redirect(`/login?callbackUrl=${encodeURIComponent(`/problems/${problemId}${runId ? `?runId=${runId}` : ""}`)}`);
@@ -75,6 +78,10 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
       diagramImageAlt: true,
       choicesImageUrl: true,
       choicesImageAlt: true,
+      // solutionSketch is the authoritative official solution rendered
+      // for WORKED_SOLUTION problems (STEP/MAT/Euclid long questions).
+      // For other formats it's used as hint context, not shown directly.
+      solutionSketch: true,
       topicKey: true,
       difficultyBand: true,
       problemSet: {
@@ -129,6 +136,10 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
   }
 
   let practiceRunId: string | null = null;
+  // Default ON for self-directed practice (no class assignment context).
+  // For runs spawned from a teacher assignment, this gets overwritten
+  // below from the assignment's hintTutorEnabled flag.
+  let hintTutorEnabledForRun = true;
   if (runId) {
     const practiceRun = await prisma.practiceRun.findFirst({
       where: {
@@ -137,7 +148,12 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
         problemSetId: problem.problemSet.id
       },
       select: {
-        id: true
+        id: true,
+        classAssignment: {
+          select: {
+            hintTutorEnabled: true
+          }
+        }
       }
     });
 
@@ -146,6 +162,9 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
     }
 
     practiceRunId = practiceRun.id;
+    if (practiceRun.classAssignment) {
+      hintTutorEnabledForRun = practiceRun.classAssignment.hintTutorEnabled;
+    }
   }
 
   const currentIndex = problem.problemSet.problems.findIndex((entry) => entry.id === problem.id);
@@ -157,9 +176,9 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
       <section className="surface-card space-y-3">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="space-y-2">
-            <span className="badge">Premium Real Set</span>
+            <span className="badge">{t("attempt.badge_real_set")}</span>
             <h1 className="text-2xl font-semibold text-slate-900">
-              {problem.problemSet.title} · Problem {problem.number}
+              {problem.problemSet.title} · {t("problemset.problem_label", { number: problem.number })}
             </h1>
             <p className="text-sm text-slate-600">
               {problem.problemSet.contest} {problem.problemSet.year}
@@ -169,32 +188,35 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
               {problem.difficultyBand ? <span>{problem.difficultyBand}</span> : null}
               {formatTopicLabel(problem.topicKey) ? <span>{formatTopicLabel(problem.topicKey)}</span> : null}
               <span>
-                Problem {currentIndex + 1} of {problem.problemSet.problems.length}
+                {t("attempt.problem_n_of", {
+                  current: currentIndex + 1,
+                  total: problem.problemSet.problems.length
+                })}
               </span>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-2">
             <Link className="btn-secondary" href={`/problems/set/${encodeURIComponent(problem.problemSet.id)}`}>
-              Back to Set
+              {t("attempt.back_to_set")}
             </Link>
             {nextProblem ? (
               <Link
                 className="btn-primary"
                 href={`/problems/${encodeURIComponent(nextProblem.id)}${practiceRunId ? `?runId=${encodeURIComponent(practiceRunId)}` : ""}`}
               >
-                Next Problem
+                {t("attempt.next_problem")}
               </Link>
             ) : practiceRunId ? (
               <Link className="btn-primary" href={`/reports?runId=${encodeURIComponent(practiceRunId)}`}>
-                View Report
+                {t("attempt.view_report")}
               </Link>
             ) : null}
           </div>
         </div>
       </section>
 
-      <section className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_24rem]">
+      <section className="grid gap-4">
         <div className="surface-card space-y-4">
           <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-5">
             <ProblemStatement statement={problem.statement} statementFormat={problem.statementFormat} />
@@ -213,7 +235,7 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
 
           {problem.choicesImageUrl ? (
             <div className="rounded-2xl border border-slate-200 bg-white p-4">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">Choice diagram</p>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">{t("attempt.choices_diagram_label")}</p>
               <img
                 src={problem.choicesImageUrl}
                 alt={problem.choicesImageAlt ?? `Problem ${problem.number} answer choices`}
@@ -223,17 +245,33 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
             </div>
           ) : null}
 
-          <AnswerWorkspace
-            problemId={problem.id}
-            practiceRunId={practiceRunId}
-            answerFormat={problem.answerFormat}
-            choiceOptions={choiceOptions}
-            showChoiceText={!problem.choicesImageUrl}
-          />
-        </div>
-
-        <div className="xl:sticky xl:top-6 xl:self-start">
-          <HintTutorPanel problemId={problem.id} practiceRunId={practiceRunId} />
+          {problem.answerFormat === "WORKED_SOLUTION" ? (
+            // WORKED_SOLUTION problems (STEP full questions, MAT long
+            // questions, Euclid Part B/C) have no auto-grading path.
+            // We surface the statement above and the official solution
+            // in a collapsible reveal so the student can attempt before
+            // reading the walkthrough. A richer UX (attempt tracking,
+            // self-report correctness) is deferred to a follow-up PR.
+            <details className="rounded-2xl border border-slate-200 bg-white p-4">
+              <summary className="cursor-pointer text-sm font-semibold text-slate-700">
+                {t("attempt.reveal_official_solution")}
+              </summary>
+              <div className="mt-3">
+                <ProblemStatement
+                  statement={problem.solutionSketch ?? t("attempt.no_official_solution")}
+                  statementFormat="MARKDOWN_LATEX"
+                />
+              </div>
+            </details>
+          ) : (
+            <UnifiedPracticeWorkspace
+              problemId={problem.id}
+              practiceRunId={practiceRunId}
+              answerFormat={problem.answerFormat}
+              choiceOptions={choiceOptions}
+              hintTutorEnabled={hintTutorEnabledForRun}
+            />
+          )}
         </div>
       </section>
     </main>

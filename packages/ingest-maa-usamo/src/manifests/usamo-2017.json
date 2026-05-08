@@ -1,0 +1,79 @@
+{
+  "problemSet": {
+    "contest": "USAMO",
+    "year": 2017,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php/2017_USAMO_Problems",
+    "verifiedPdfUrl": "https://web.archive.org/web/2024/https://artofproblemsolving.com/wiki/index.php/2017_USAMO_Problems"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Prove that there are infinitely many distinct pairs $(a, b)$ of relatively prime positive integers $a > 1$ and $b > 1$ such that $a^b + b^a$ is divisible by $a + b$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2017, Problem 1",
+      "topicKey": "number_theory.divisibility_construction",
+      "techniqueTags": ["modular_arithmetic", "construction", "fermat_little_theorem"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Construction.** Take $a = 2 k + 1$ and $b = 2 k - 1$ for odd $k$... actually a cleaner construction: take $(a, b) = (2 n - 1, 2 n + 1)$ for odd $n \\geq 3$.\n\n**Verification.** With $a + b = 4 n$, want $4n \\mid a^b + b^a$.\n\nWork modulo $a + b$. Note $a \\equiv -b \\pmod{a + b}$, so $a^b \\equiv (-b)^b = -b^b \\pmod{a + b}$ (since $b$ is odd). Thus $a^b + b^a \\equiv b^a - b^b = b^b(b^{a - b} - 1) \\pmod{a + b}$.\n\nFor this to be divisible by $a + b$: need $b^{a - b} \\equiv 1 \\pmod{(a+b)/\\gcd(b^b, a+b)}$. With $\\gcd(a, b) = 1$ and $\\gcd(a+b, b) = \\gcd(a, b) = 1$, so $\\gcd(b^b, a+b) = 1$, hence need $b^{a - b} \\equiv 1 \\pmod{a + b}$.\n\n**Specific family.** $a = 2 \\cdot k + 1$, $b = 2 k - 1$ (consecutive odd integers), $a + b = 4 k$, $a - b = 2$. Need $b^2 \\equiv 1 \\pmod{4 k}$, i.e., $(2k-1)^2 \\equiv 1 \\pmod{4 k}$. Compute: $(2k-1)^2 = 4 k^2 - 4 k + 1 \\equiv 1 \\pmod{4 k}$ ✓ (since $4 k^2 - 4 k = 4k(k-1)$ is divisible by $4k$).\n\nSo $(a, b) = (2 k + 1, 2 k - 1)$ for any $k \\geq 2$ with $\\gcd(2k - 1, 2k + 1) = 1$ (always, since they differ by $2$ and both odd) gives infinitely many pairs."
+    },
+    {
+      "number": 2,
+      "statement": "Let $m_1, m_2, \\ldots, m_n$ be a collection of $n$ positive integers, not necessarily distinct. For any sequence of integers $A = (a_1, \\ldots, a_n)$ and any permutation $w = w_1, \\ldots, w_n$ of $m_1, \\ldots, m_n$, define an *$A$-inversion* of $w$ to be a pair of entries $w_i, w_j$ with $i < j$ for which one of the following conditions holds:\n\n- $a_i \\geq w_i > w_j$,\n- $w_j > a_i \\geq w_i$, or\n- $w_i > w_j > a_i$.\n\nShow that, for any two sequences of integers $A$ and $B$, and for any positive integer $k$, the number of permutations of $m_1, \\ldots, m_n$ having exactly $k$ $A$-inversions is equal to the number of permutations having exactly $k$ $B$-inversions.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2017, Problem 2",
+      "topicKey": "combinatorics.permutation_statistics",
+      "techniqueTags": ["bijection_construction", "permutation_inversions", "generating_function"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Key idea.** Construct a bijection between $A$-inversions of permutations of $m$ and $B$-inversions, that preserves the count $k$.\n\n**Step 1: Reformulate.** For fixed $i$, the condition '$w_j$ is an $A$-inversion partner of $w_i$' depends only on $w_i, w_j$ and $a_i$. Specifically, for fixed $w_i$ at position $i$, the set of $w_j$ values (at positions $j > i$) that count as inversions is determined.\n\n**Step 2: Reduce to single position.** It suffices to show: for any $A, B$ differing only in $a_i$ (fixed $i$), the inversion-count distribution is the same. Then by composing single-position changes, $A$ can be converted to $B$ in steps.\n\n**Step 3: Single-position bijection.** Suppose $A$ and $B$ agree everywhere except at position $i$. Define a swap of two specific entries in the permutation that flips an $A$-inversion at position $i$ to a $B$-inversion (or vice versa) without changing total count. The swap is determined by careful case analysis of the three inversion conditions.\n\nThis bijection establishes the equidistribution of $A$- and $B$-inversion counts, completing the proof."
+    },
+    {
+      "number": 3,
+      "statement": "Let $\\triangle ABC$ be a scalene triangle with circumcircle $\\Omega$ and incenter $I$. Ray $AI$ meets $\\overline{BC}$ at $D$ and meets $\\Omega$ again at $M$; the circle with diameter $\\overline{DM}$ cuts $\\Omega$ again at $K$. Lines $MK$ and $BC$ meet at $S$, and $N$ is the midpoint of $\\overline{IS}$. The circumcircles of $\\triangle KID$ and $\\triangle MAN$ intersect at points $L_1$ and $L_2$. Prove that $\\Omega$ passes through the midpoint of either $\\overline{IL_1}$ or $\\overline{IL_2}$.\n\n*This is a starred problem requiring an in-scale labeled diagram.*",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2017, Problem 3",
+      "topicKey": "geometry.advanced_circle_chasing",
+      "techniqueTags": ["incenter", "midpoint_of_arc", "radical_axis", "power_of_point"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Strategy.** This is a heavily synthetic problem requiring systematic chasing through multiple circles. Key facts used:\n\n**Fact 1.** $M$ is the midpoint of arc $BC$ not containing $A$, so $MB = MC = MI$ (incenter-excenter lemma).\n\n**Fact 2.** $K$ on $\\Omega$ with $\\angle DKM = 90^\\circ$ (since $DM$ is a diameter of the circle through $K$). So $KM \\perp KD$, and $K$ is the foot of the perpendicular from $M$ to a specific line.\n\n**Fact 3.** $S$ on line $BC$ at the intersection with $MK$ — by the power of point $S$ with respect to $\\Omega$, $SK \\cdot SM = SB \\cdot SC$.\n\n**Step 1: Identify $N$.** $N$ is the midpoint of $IS$. By the incenter-excenter lemma and $MI = MB = MC$, $N$ has special properties relative to the configuration.\n\n**Step 2: Radical axes.** The radical axis of the circumcircles of $\\triangle KID$ and $\\triangle MAN$ is the line $L_1 L_2$. Show this line has a specific relationship with $\\Omega$.\n\n**Step 3: Midpoint of $IL_i$ on $\\Omega$.** Use the fact that $M$ is on $\\Omega$ and $MI$ has special length. The midpoint of $I L_i$ lies on $\\Omega$ iff a specific power-of-point condition holds, which can be verified via the constructed circles.\n\nThe full proof involves careful tracking through all configurations; this is one of the hardest geometry problems on USAMO 2017 and the official solution runs several pages."
+    },
+    {
+      "number": 4,
+      "statement": "Let $P_1, P_2, \\ldots, P_{2 n}$ be $2 n$ distinct points on the unit circle $x^2 + y^2 = 1$, other than $(1, 0)$. Each point is colored either red or blue, with exactly $n$ red points and $n$ blue points. Let $R_1, R_2, \\ldots, R_n$ be any ordering of the red points. Let $B_1$ be the nearest blue point to $R_1$ traveling counterclockwise around the circle starting from $R_1$. Then let $B_2$ be the nearest of the remaining blue points to $R_2$ traveling counterclockwise around the circle from $R_2$, and so on, until we have labeled all of the blue points $B_1, \\ldots, B_n$.\n\nShow that the number of counterclockwise arcs of the form $R_i \\to B_i$ that contain the point $(1, 0)$ is independent of the ordering of the red points.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2017, Problem 4",
+      "topicKey": "combinatorics.cyclic_matching_invariant",
+      "techniqueTags": ["greedy_matching", "invariant", "cyclic_order"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Strategy.** Show the count is independent by exhibiting a bijection between arcs crossing $(1, 0)$ and a quantity computable from the unordered configuration.\n\n**Step 1: Linearize.** Cut the circle at $(1, 0)$ to get a sequence $P_1, P_2, \\ldots, P_{2n}$ in counterclockwise order. Each is R or B.\n\n**Step 2: Greedy matching.** The procedure pairs each $R_i$ with the nearest counterclockwise unmatched B. This is equivalent to a stack-based matching: scan left-to-right, push R's onto a stack; when a B is seen, pop the most recent unmatched R and pair them.\n\n**Step 3: Count crossings.** An arc $R_i \\to B_i$ crosses $(1, 0)$ iff $B_i$ comes 'before' $R_i$ in the cut sequence, meaning the matching wraps around. By the stack structure, this corresponds to R's at the *bottom* of the stack remaining unmatched at the end of the linear pass — which then wrap to early B's.\n\n**Step 4: Independence.** Show the number of wrapping arcs equals the number of red points whose 'level' in the prefix-sum sense (count of R's minus B's seen so far) is positive at the end. This count depends only on the cyclic configuration, not the ordering of $R$s. Hence the number of crossings of $(1, 0)$ is invariant."
+    },
+    {
+      "number": 5,
+      "statement": "Let $\\mathbb{Z}$ denote the set of all integers. Find all real numbers $c > 0$ such that there exists a labeling of the lattice points $(x, y) \\in \\mathbb{Z}^2$ with positive integers for which:\n\n- only finitely many distinct labels occur, and\n- for each label $i$, the distance between any two points labeled $i$ is at least $c^i$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2017, Problem 5",
+      "topicKey": "combinatorics.lattice_coloring_distance",
+      "techniqueTags": ["density_argument", "pigeonhole", "exponential_growth_constraint"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $c < \\sqrt 2$.\n\n**Strategy.**\n\n**Necessity ($c \\geq \\sqrt 2$ fails).** Suppose $c \\geq \\sqrt 2$ and there are $N$ distinct labels. Count points in a large square of side $L$: $L^2$ points. Points with label $i$ must be $\\geq c^i$ apart, so at most $(L/c^i + 1)^2 \\approx L^2/c^{2i}$ points can have label $i$.\n\nTotal: $L^2 \\leq \\sum_{i=1}^N L^2/c^{2i} \\approx L^2/(c^2 - 1)$ for $c > 1$. Need $1 \\leq 1/(c^2 - 1)$, i.e., $c^2 \\leq 2$. So for $c \\geq \\sqrt 2$, it fails.\n\n**Sufficiency ($c < \\sqrt 2$ works).** Construct a labeling using exponentially shrinking grids.\n\nLayer $i$ = points $(x, y)$ where $\\max(\\nu_2(x), \\nu_2(y)) = i - 1$ for some $2$-adic-style encoding. Or: tile $\\mathbb{Z}^2$ by a pattern where label $i$ appears on a sub-lattice of spacing $\\geq c^i$, with $\\sum 1/(\\text{spacing}_i^2) < 1$.\n\nFor $c < \\sqrt 2$: $\\sum_i 1/c^{2i}$ converges (geometric with ratio $< 1$), so finite labels suffice. Detailed construction uses dyadic squares of progressively larger sizes.\n\nThus the set of valid $c$ is $\\{c : 0 < c < \\sqrt 2\\}$."
+    },
+    {
+      "number": 6,
+      "statement": "Find the minimum possible value of $$\\dfrac{a}{b^3 + 4} + \\dfrac{b}{c^3 + 4} + \\dfrac{c}{d^3 + 4} + \\dfrac{d}{a^3 + 4}$$ given that $a, b, c, d$ are nonnegative real numbers such that $a + b + c + d = 4$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2017, Problem 6",
+      "topicKey": "algebra.inequality_optimization",
+      "techniqueTags": ["smoothing", "tangent_line_trick", "amgm"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** The minimum is $\\dfrac{2}{3}$, achieved at $(a, b, c, d) = (1, 1, 1, 1)$.\n\nWait — at $(1,1,1,1)$: each term is $1/(1 + 4) = 1/5$, sum $= 4/5$, not $2/3$.\n\nLet me reconsider. At $(1,1,1,1)$: each term $= 1/5$, total $4/5$.\n\nAt $(4, 0, 0, 0)$: $\\dfrac{4}{0 + 4} + 0 + 0 + 0 = 1$. Larger.\n\nAt $(2, 2, 0, 0)$: $\\dfrac{2}{2^3 + 4} + \\dfrac{2}{0 + 4} + 0 + 0 = 2/12 + 2/4 = 1/6 + 1/2 = 2/3$.\n\nAt $(2, 0, 2, 0)$: $\\dfrac{2}{0 + 4} + 0 + \\dfrac{2}{0 + 4} + 0 = 1/2 + 1/2 = 1$.\n\nSo $(2, 2, 0, 0)$ gives $2/3$, which is **less** than $4/5$ at $(1,1,1,1)$. So minimum candidate: $2/3$.\n\nCheck cyclic shifts of $(2, 2, 0, 0)$: $(2, 0, 0, 2)$: $\\dfrac{2}{0 + 4} + 0 + 0 + \\dfrac{2}{2^3 + 4} = 1/2 + 2/12 = 1/2 + 1/6 = 2/3$.\n\n$(0, 2, 2, 0)$: $0 + \\dfrac{2}{2^3 + 4} + \\dfrac{2}{0 + 4} + 0 = 1/6 + 1/2 = 2/3$.\n\nSo minimum is $\\boxed{\\dfrac{2}{3}}$, attained whenever two adjacent variables are $2$ and the other two are $0$.\n\n**Lower bound proof.** Use the convexity/AM-GM analysis or tangent line trick. Show $\\dfrac{x}{y^3 + 4} \\geq \\dfrac{x(2 - y^2)}{8}$ at appropriate boundary, leading to cyclic sum bound. Detailed inequality manipulation yields $\\sum \\geq 2/3$ with equality at the boundary configurations."
+    }
+  ]
+}
