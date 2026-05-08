@@ -116,16 +116,16 @@ export async function TopNav({ session }: TopNavProps) {
               </>
             ) : (
               // No org membership yet — minimal "evaluating the trial"
-              // surface.
+              // surface. The legacy /membership chip used to live here
+              // for the per-user premium-unlock flow; that flow is
+              // dead under the school-pilot roster model where every
+              // active member has catalog access via DISABLE_ACCESS_GATING.
               <>
                 <Link href="/dashboard" className="route-chip">
                   {t("topnav.dashboard")}
                 </Link>
                 <Link href="/problems" className="route-chip">
                   {t("topnav.problems")}
-                </Link>
-                <Link href="/membership" className="route-chip">
-                  {t("topnav.membership")}
                 </Link>
               </>
             )}

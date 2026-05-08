@@ -201,18 +201,15 @@ export function ContestBrowser({ sets }: ContestBrowserProps) {
                   </span>
                 </div>
               </div>
-              {set.unlocked ? (
-                <Link className="btn-primary" href={`/problems/set/${encodeURIComponent(set.id)}`}>
-                  {t("problems.browser.open")}
-                </Link>
-              ) : (
-                <Link
-                  className="btn-secondary"
-                  href={`/membership?callbackUrl=${encodeURIComponent(`/problems/set/${set.id}`)}`}
-                >
-                  {t("problems.browser.unlock")}
-                </Link>
-              )}
+              {/* `unlocked` is always true under the school-pilot model
+                  (DISABLE_ACCESS_GATING). Kept on the type because the
+                  legacy /membership unlock flow used to gate this; we
+                  no longer render the locked-state CTA. If a member
+                  somehow lands here without access, the per-page
+                  redirect to /unauthorized handles them. */}
+              <Link className="btn-primary" href={`/problems/set/${encodeURIComponent(set.id)}`}>
+                {t("problems.browser.open")}
+              </Link>
             </li>
           ))}
         </ul>

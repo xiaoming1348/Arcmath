@@ -216,6 +216,9 @@ export type Messages = {
   "attempt.review_answer_label": string;
   "attempt.review_correct_short": string;
   "attempt.review_incorrect_short": string;
+  "attempt.review_ungraded_short": string;
+  "attempt.review_ungraded_hint": string;
+  "attempt.reveal_official_solution_for_long_question": string;
   "attempt.review_your_answer": string;
   "attempt.review_submitted_at": string;
   "attempt.review_overall_label": string;
@@ -727,6 +730,9 @@ export const EN: Messages = {
   "attempt.review_answer_label": "Answer",
   "attempt.review_correct_short": "✓ correct",
   "attempt.review_incorrect_short": "✗ not correct",
+  "attempt.review_ungraded_short": "Recorded — not auto-graded",
+  "attempt.review_ungraded_hint": "Long-form competition problems (Putnam, USAMO, STEP, MAT) are graded on the proof, not the final answer alone. Compare your work against the official solution below.",
+  "attempt.reveal_official_solution_for_long_question": "Reveal official solution",
   "attempt.review_your_answer": "Your answer",
   "attempt.review_submitted_at": "Submitted {time}",
   "attempt.review_overall_label": "Overall review",
@@ -1254,6 +1260,9 @@ export const ZH: Messages = {
   "attempt.review_answer_label": "答案",
   "attempt.review_correct_short": "✓ 正确",
   "attempt.review_incorrect_short": "✗ 不正确",
+  "attempt.review_ungraded_short": "已记录 — 不自动判分",
+  "attempt.review_ungraded_hint": "Putnam / USAMO / STEP / MAT 等题以证明完整性而非最终数值评分。请对照下方的官方解答检查你的论证。",
+  "attempt.reveal_official_solution_for_long_question": "查看官方解答",
   "attempt.review_your_answer": "你的答案",
   "attempt.review_submitted_at": "提交于 {time}",
   "attempt.review_overall_label": "整体评语",

@@ -368,19 +368,13 @@ export default async function DashboardPage() {
                   : "Turn effort into something visible for students, parents, and coaches."}
               </p>
             </Link>
-            {!organizationMembership ? (
-              <Link className="stat-card transition hover:-translate-y-0.5" href="/membership">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Membership</p>
-                <p className="mt-2 text-base font-semibold text-slate-900">Unlock reviewed real contest sets</p>
-                <p className="mt-2 text-sm text-slate-600">Move from diagnostics into paid real-set practice when you are ready.</p>
-              </Link>
-            ) : (
+            {organizationMembership ? (
               <Link className="stat-card transition hover:-translate-y-0.5" href="/resources">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Resources</p>
                 <p className="mt-2 text-base font-semibold text-slate-900">Open organization study materials</p>
                 <p className="mt-2 text-sm text-slate-600">Use the shared notes, links, and lesson material posted inside your organization.</p>
               </Link>
-            )}
+            ) : null}
             {organizationMembership ? (
               <Link className="stat-card transition hover:-translate-y-0.5" href="/org">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Organization</p>
