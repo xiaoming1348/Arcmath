@@ -263,7 +263,13 @@ async function pickHintForAttempt(params: {
     return { level: params.level, hintText: precomputed.trim(), source: "precomputed" };
   }
 
-  if (supportedForGrading(params.problem.answerFormat)) {
+  // PROOF is the only format the AI hint flow can't help with — we
+  // don't have a stable answer to leak-check against, and the
+  // step-by-step proof tutor handles those problems through a
+  // different surface (generateProofReview, not generateHint).
+  // Everything else — MC / INTEGER / EXPRESSION / WORKED_SOLUTION —
+  // benefits from a level-1→3 nudge.
+  if (params.problem.answerFormat !== "PROOF") {
     const generated = await generateHint({
       problemStatement: params.problem.statement ?? "",
       answerFormat: params.problem.answerFormat,
@@ -630,15 +636,12 @@ export const unifiedAttemptRouter = router({
     if (attempt.problem.answerFormat === "PROOF") {
       throw new TRPCError({ code: "BAD_REQUEST", message: "Proof problems don't offer hints yet." });
     }
-    if (attempt.problem.answerFormat === "WORKED_SOLUTION") {
-      // WORKED_SOLUTION problems ship an authoritative official solution
-      // instead of incremental hints. The student-facing UI reveals the
-      // full solution on demand; there is no hint ladder to climb.
-      throw new TRPCError({
-        code: "BAD_REQUEST",
-        message: "Worked-solution problems show the full official solution instead of hints."
-      });
-    }
+    // WORKED_SOLUTION used to be blocked here on the theory that the
+    // official solution panel below the workspace is "the hint ladder".
+    // In practice students hitting a Putnam B6 want incremental nudges
+    // BEFORE seeing the full proof, and our manifests carry rich
+    // solutionSketch text the hint prompt can use as teacher context.
+    // pickHintForAttempt + generateHint are now both WORKED_SOLUTION-safe.
 
     const priorUsages = await ctx.prisma.problemHintUsage.findMany({
       where: { attemptId: attempt.id },

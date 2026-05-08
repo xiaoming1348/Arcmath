@@ -346,18 +346,21 @@ async function runScenario(params: {
     scenarioRows.push(row);
   };
 
-  // WORKED_SOLUTION problems short-circuit the grading path (the UI
-  // hides the workspace and shows a reveal-solution panel). For the
-  // simulator we just verify getState returns sensibly without 500.
-  if (fixture.answerFormat === "WORKED_SOLUTION" || fixture.answerFormat === "PROOF") {
+  // PROOF problems still short-circuit (proof-tutor is exercised by
+  // benchmark-grader.ts elsewhere). WORKED_SOLUTION USED to live in
+  // this branch too, but Putnam students DO want hints — and a prior
+  // regression had us throwing BAD_REQUEST on every hint click. The
+  // hint_addict persona below now exercises WORKED_SOLUTION end-to-
+  // end so we'd catch that again.
+  if (fixture.answerFormat === "PROOF") {
     row.mode = "REVEAL_SOLUTION";
     row.submitted = "(no auto-grade path)";
     try {
       await studentCaller.unifiedAttempt.getState({ problemId: fixture.problemId });
-      check("getState OK on worked-solution problem", true, tag);
-      recordRow(true, "WORKED_SOLUTION: only verifies getState doesn't crash");
+      check("getState OK on proof problem", true, tag);
+      recordRow(true, "PROOF: only verifies getState doesn't crash");
     } catch (err) {
-      check("getState OK on worked-solution problem", false, {
+      check("getState OK on proof problem", false, {
         ...tag,
         detail: err instanceof Error ? err.message : String(err)
       });
@@ -431,23 +434,40 @@ async function runScenario(params: {
       if (!isBadRequest) scenarioOk = false;
     }
 
-    // Then submit the right answer to confirm hint flow doesn't break submit.
-    row.submitted = diligentAnswer(fixture);
-    row.expectedCorrect = true;
+    // Then submit to confirm hint flow doesn't break submit. For
+    // WORKED_SOLUTION problems with no canonical scalar answer (Putnam
+    // proof problems), submit a placeholder string so the server
+    // accepts the request (ANSWER_ONLY mode requires SOMETHING) and
+    // then verify the attempt was recorded as ungraded — NOT as
+    // "correct", because the server doesn't auto-grade WORKED_SOLUTION.
+    const isUngraded = fixture.answerFormat === "WORKED_SOLUTION";
+    const hasScalarAnswer = (fixture.canonicalAnswer ?? "").length > 0;
+    const submission = hasScalarAnswer
+      ? diligentAnswer(fixture)
+      : "(placeholder; this problem has no scalar answer)";
+    row.submitted = submission;
+    row.expectedCorrect = isUngraded ? null : true;
     try {
       const result = (await studentCaller.unifiedAttempt.submit({
         attemptId,
-        finalAnswer: diligentAnswer(fixture)
+        finalAnswer: submission
       })) as { attempt?: { isCorrect: boolean; normalizedAnswer?: string | null } };
       check("post-hint submission graded", typeof result.attempt?.isCorrect === "boolean", tag);
-      const correct = result.attempt?.isCorrect === true;
-      check("post-hint correct answer accepted", correct, {
-        ...tag,
-        detail: JSON.stringify(result).slice(0, 200)
-      });
       row.actualCorrect = result.attempt?.isCorrect ?? null;
       row.normalized = result.attempt?.normalizedAnswer ?? "—";
-      if (!correct) scenarioOk = false;
+      if (isUngraded) {
+        // WORKED_SOLUTION: verdict is always `false` because the server
+        // skips gradeAnswer. We just confirm submit returned without
+        // throwing; the UI surfaces this as "ungraded".
+        if (typeof result.attempt?.isCorrect !== "boolean") scenarioOk = false;
+      } else {
+        const correct = result.attempt?.isCorrect === true;
+        check("post-hint correct answer accepted", correct, {
+          ...tag,
+          detail: JSON.stringify(result).slice(0, 200)
+        });
+        if (!correct) scenarioOk = false;
+      }
     } catch (err) {
       check("post-hint submission did not throw", false, {
         ...tag,
@@ -460,6 +480,20 @@ async function runScenario(params: {
   }
 
   // ---- ANSWER_ONLY path for diligent / sloppy_format / confused ----
+  // Skip diligent + sloppy_format on WORKED_SOLUTION fixtures with no
+  // canonical scalar answer — there's nothing to "correctly answer"
+  // against, so the assertions about grading verdict are meaningless.
+  // confused still runs (any non-empty wrong-looking answer should
+  // round-trip without crashing, even if not auto-graded).
+  const isUngraded = fixture.answerFormat === "WORKED_SOLUTION";
+  const hasScalarAnswer = (fixture.canonicalAnswer ?? "").length > 0;
+  if (isUngraded && !hasScalarAnswer && persona !== "confused") {
+    row.mode = "ANSWER_ONLY";
+    row.submitted = "(skipped: WORKED_SOLUTION with no scalar answer)";
+    recordRow(true, "diligent/sloppy_format skipped — no canonical answer to test against");
+    return;
+  }
+
   row.mode = "ANSWER_ONLY";
   let scenarioOk = true;
   let attemptId: string;
@@ -487,7 +521,9 @@ async function runScenario(params: {
         ? sloppyAnswer(fixture)
         : confusedAnswer(fixture);
   row.submitted = submission;
-  row.expectedCorrect = persona !== "confused";
+  // For WORKED_SOLUTION there's no auto-grade, so "expected correct"
+  // is unknowable.
+  row.expectedCorrect = isUngraded ? null : persona !== "confused";
 
   let firstResult: { attempt?: { isCorrect: boolean; submittedAnswer?: string | null; normalizedAnswer?: string | null; explanationText?: string | null; overallFeedback?: string | null } };
   try {
@@ -510,7 +546,12 @@ async function runScenario(params: {
   row.feedbackPreview = firstResult.attempt?.explanationText ?? firstResult.attempt?.overallFeedback ?? "";
 
   // Outcome assertions per persona.
-  if (persona === "diligent") {
+  if (isUngraded) {
+    // WORKED_SOLUTION: server doesn't auto-grade; we just assert the
+    // submit returned an attempt object. Verdict will always be
+    // false, normalizedAnswer will be null — that's correct behavior.
+    if (typeof firstResult.attempt?.isCorrect !== "boolean") scenarioOk = false;
+  } else if (persona === "diligent") {
     const ok = firstResult.attempt?.isCorrect === true;
     check("diligent: graded correct", ok, {
       ...tag,
