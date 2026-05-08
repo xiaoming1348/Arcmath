@@ -50,9 +50,10 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup pnpm
+        # Don't pin a version here — package.json has a `packageManager`
+        # field (`pnpm@10.18.2`) that pnpm/action-setup picks up. Pinning
+        # both produces "Multiple versions of pnpm specified" + fails.
         uses: pnpm/action-setup@v4
-        with:
-          version: 10
 
       - name: Setup Node
         uses: actions/setup-node@v4
