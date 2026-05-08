@@ -137,7 +137,11 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
       problemSetId: practiceSetData.id
     }))
   ) {
-    redirect(`/membership?callbackUrl=${encodeURIComponent(`/problems/set/${practiceSetData.id}`)}`);
+    // School-pilot has no per-user premium tier; previously this
+    // redirected to a /membership demo-unlock flow that's been
+    // removed. Send to /unauthorized so the school admin (not the
+    // student) is the one who notices.
+    redirect("/unauthorized");
   }
 
   const totalProblems = practiceSetData.problems.length;

@@ -12,7 +12,12 @@ import type { Messages } from "@/i18n/dictionary";
 type UnifiedPracticeWorkspaceProps = {
   problemId: string;
   practiceRunId?: string | null;
-  answerFormat: "MULTIPLE_CHOICE" | "INTEGER" | "EXPRESSION" | "PROOF";
+  // WORKED_SOLUTION ↔ Putnam / STEP / MAT long questions where the
+  // platform doesn't auto-grade. The workspace still surfaces the
+  // entry chooser + hint flow (so students can ATTEMPT the problem)
+  // and submit recording works; the page renders an "official
+  // solution" reveal alongside.
+  answerFormat: "MULTIPLE_CHOICE" | "INTEGER" | "EXPRESSION" | "PROOF" | "WORKED_SOLUTION";
   choiceOptions: Array<{ label: string; text: string }>;
   // Per-assignment hint-tutor gate. Defaults to `true` so the
   // self-directed practice flow (TOPIC_PRACTICE / contest browser)
@@ -632,12 +637,20 @@ export function UnifiedPracticeWorkspace({
         </div>
       ) : null}
 
-      {/* Final answer field (for non-proof, non-ANSWER_ONLY we show it pre-submit) */}
+      {/* Final answer field (for non-proof, non-ANSWER_ONLY we show it pre-submit).
+          WORKED_SOLUTION → AnswerOnlyInput renders the same free-text field as
+          EXPRESSION (we only have free-text vs choice-list anyway). The submit
+          path on the server doesn't auto-grade WORKED_SOLUTION; the page wraps
+          this workspace with a "reveal official solution" panel. */}
       {!locked && showAnswerField ? (
         mode === "ANSWER_ONLY" ? (
           <div className="rounded-2xl border border-emerald-200 bg-emerald-50/40 p-4">
             <AnswerOnlyInput
-              answerFormat={answerFormat as "MULTIPLE_CHOICE" | "INTEGER" | "EXPRESSION"}
+              answerFormat={
+                answerFormat === "WORKED_SOLUTION"
+                  ? "EXPRESSION"
+                  : (answerFormat as "MULTIPLE_CHOICE" | "INTEGER" | "EXPRESSION")
+              }
               choiceOptions={choiceOptions}
               onSubmit={(a) => {
                 setFinalAnswer(a);
@@ -899,7 +912,7 @@ function SubmittedReview({
   startBusy
 }: {
   attempt: AttemptState;
-  answerFormat: "MULTIPLE_CHOICE" | "INTEGER" | "EXPRESSION" | "PROOF";
+  answerFormat: "MULTIPLE_CHOICE" | "INTEGER" | "EXPRESSION" | "PROOF" | "WORKED_SOLUTION";
   reviewExtras: ReviewExtras | null;
   onStartNew: () => void;
   startBusy: boolean;
@@ -914,28 +927,45 @@ function SubmittedReview({
     ? stripFoldedCoverage(attempt.overallFeedback)
     : attempt.overallFeedback;
 
+  // WORKED_SOLUTION submissions aren't auto-graded — `isCorrect` is
+  // always false on the server, which would otherwise paint the
+  // student's answer red. Show their answer in a neutral
+  // "ungraded — see official solution below" box instead.
+  const autoGraded = answerFormat !== "PROOF" && answerFormat !== "WORKED_SOLUTION";
   return (
     <div className="space-y-3">
       {answerFormat !== "PROOF" && attempt.submittedAnswer !== null ? (
-        <div
-          className={`rounded-2xl border p-3 ${
-            attempt.isCorrect
-              ? "border-emerald-200 bg-emerald-50 text-emerald-800"
-              : "border-red-200 bg-red-50 text-red-800"
-          }`}
-        >
-          <p className="text-xs font-semibold uppercase tracking-wide">
-            {t("attempt.review_answer_label")}: {attempt.isCorrect ? t("attempt.review_correct_short") : t("attempt.review_incorrect_short")}
-          </p>
-          <p className="mt-1 text-sm">
-            {t("attempt.review_your_answer")}: <span className="font-semibold">{attempt.submittedAnswer}</span>
-          </p>
-          {!attempt.isCorrect && attempt.explanationText ? (
-            <div className="mt-2">
-              <Markdown text={attempt.explanationText} />
-            </div>
-          ) : null}
-        </div>
+        autoGraded ? (
+          <div
+            className={`rounded-2xl border p-3 ${
+              attempt.isCorrect
+                ? "border-emerald-200 bg-emerald-50 text-emerald-800"
+                : "border-red-200 bg-red-50 text-red-800"
+            }`}
+          >
+            <p className="text-xs font-semibold uppercase tracking-wide">
+              {t("attempt.review_answer_label")}: {attempt.isCorrect ? t("attempt.review_correct_short") : t("attempt.review_incorrect_short")}
+            </p>
+            <p className="mt-1 text-sm">
+              {t("attempt.review_your_answer")}: <span className="font-semibold">{attempt.submittedAnswer}</span>
+            </p>
+            {!attempt.isCorrect && attempt.explanationText ? (
+              <div className="mt-2">
+                <Markdown text={attempt.explanationText} />
+              </div>
+            ) : null}
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3 text-slate-700">
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+              {t("attempt.review_answer_label")}: {t("attempt.review_ungraded_short")}
+            </p>
+            <p className="mt-1 text-sm">
+              {t("attempt.review_your_answer")}: <span className="font-semibold">{attempt.submittedAnswer}</span>
+            </p>
+            <p className="mt-1 text-xs text-slate-500">{t("attempt.review_ungraded_hint")}</p>
+          </div>
+        )
       ) : null}
 
       {attempt.steps.length > 0 ? (

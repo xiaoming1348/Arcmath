@@ -132,7 +132,12 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
       problemSetId: problem.problemSet.id
     }))
   ) {
-    redirect(`/membership?callbackUrl=${encodeURIComponent(`/problems/${problem.id}${runId ? `?runId=${runId}` : ""}`)}`);
+    // Pre-pivot the answer was "redirect to /membership demo unlock";
+    // school-pilot has no per-user premium tier, so anyone landing here
+    // is either platform admin without an org membership OR has been
+    // explicitly disabled. Send them to /unauthorized — the school
+    // admin is the right person to fix this, not the student.
+    redirect("/unauthorized");
   }
 
   let practiceRunId: string | null = null;
@@ -245,16 +250,23 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
             </div>
           ) : null}
 
+          {/* Workspace renders for every format including WORKED_SOLUTION.
+              For WORKED_SOLUTION the server doesn't auto-grade — the
+              student gets a place to ATTEMPT the problem (entry chooser,
+              answer field, hint flow) and the reveal-solution panel
+              below shows the official answer once they're done. */}
+          <UnifiedPracticeWorkspace
+            problemId={problem.id}
+            practiceRunId={practiceRunId}
+            answerFormat={problem.answerFormat}
+            choiceOptions={choiceOptions}
+            hintTutorEnabled={hintTutorEnabledForRun}
+          />
+
           {problem.answerFormat === "WORKED_SOLUTION" ? (
-            // WORKED_SOLUTION problems (STEP full questions, MAT long
-            // questions, Euclid Part B/C) have no auto-grading path.
-            // We surface the statement above and the official solution
-            // in a collapsible reveal so the student can attempt before
-            // reading the walkthrough. A richer UX (attempt tracking,
-            // self-report correctness) is deferred to a follow-up PR.
             <details className="rounded-2xl border border-slate-200 bg-white p-4">
               <summary className="cursor-pointer text-sm font-semibold text-slate-700">
-                {t("attempt.reveal_official_solution")}
+                {t("attempt.reveal_official_solution_for_long_question")}
               </summary>
               <div className="mt-3">
                 <ProblemStatement
@@ -263,15 +275,7 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
                 />
               </div>
             </details>
-          ) : (
-            <UnifiedPracticeWorkspace
-              problemId={problem.id}
-              practiceRunId={practiceRunId}
-              answerFormat={problem.answerFormat}
-              choiceOptions={choiceOptions}
-              hintTutorEnabled={hintTutorEnabledForRun}
-            />
-          )}
+          ) : null}
         </div>
       </section>
     </main>

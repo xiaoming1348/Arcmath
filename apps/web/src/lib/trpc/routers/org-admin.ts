@@ -10,16 +10,24 @@ import { logAudit } from "@/lib/audit";
  * Rules:
  *   - Chinese characters → pinyin (lowercase, hyphen-separated). The
  *     name "王伟" becomes `wang-wei`, "李小红" becomes `li-xiao-hong`.
- *   - Anything already ASCII is lowercased and non-alphanumeric runs
- *     are squashed to a single hyphen, so "Ms. Lin (Y3)" → `ms-lin-y3`.
- *   - Trailing/leading hyphens are trimmed.
+ *   - ASCII runs pass through verbatim (then lowercased + sanitized),
+ *     so "Jenny Lin" → `jenny-lin`, NOT `j-e-n-n-y-l-i-n`. This is
+ *     why we pass `nonZh: "consecutive"` to pinyin-pro: the default
+ *     splits every ASCII character into its own pinyin token, which
+ *     produces hyphens between each letter.
+ *   - Mixed names ("王 Tom") work too: pinyin transcribes the CJK,
+ *     leaves "Tom" intact, joined with a single hyphen on sanitize.
+ *   - Trailing/leading hyphens are trimmed; non-alphanumeric runs
+ *     collapse to a single hyphen, so "Ms. Lin (Y3)" → `ms-lin-y3`.
  *
  * The 4-char random suffix is added at the call site (so two students
  * named "Wang Wei" can't collide on the unique-email constraint).
  */
-function rosterNameToSlug(name: string): string {
-  // pinyin-pro: tone=none gives the 'wang wei' form (no diacritics).
-  const pinyinForm = pinyin(name, { toneType: "none", type: "string" });
+export function rosterNameToSlug(name: string): string {
+  // toneType: "none" → 'wang wei' (no diacritics).
+  // nonZh: "consecutive" → keep non-Chinese substrings as one token
+  //        instead of splitting every ASCII char.
+  const pinyinForm = pinyin(name, { toneType: "none", type: "string", nonZh: "consecutive" });
   const ascii = pinyinForm
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
