@@ -9,7 +9,12 @@ const HINT_FALLBACKS = {
 
 export const HINT_TUTOR_PROMPT_VERSION = "hint-tutor-v1";
 
-export type HintTutorAnswerFormat = "MULTIPLE_CHOICE" | "INTEGER" | "EXPRESSION";
+// WORKED_SOLUTION = Putnam / USAMO / STEP / MAT long-form problems.
+// We don't auto-grade them, but the hint flow IS still useful (a
+// stuck student wants a nudge regardless of whether the platform
+// auto-grades). The LLM hint prompt uses solutionSketch as hidden
+// teacher context, which the manifests for these contests provide.
+export type HintTutorAnswerFormat = "MULTIPLE_CHOICE" | "INTEGER" | "EXPRESSION" | "WORKED_SOLUTION";
 export type InteractiveTutorIntent = "HELP_START" | "CHECK_STEP" | "CHECK_ANSWER_IDEA" | "SMALLER_HINT";
 
 export type GenerateHintParams = {
