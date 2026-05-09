@@ -7,7 +7,12 @@
   --background-warm: #f9f4ec;
   --foreground: #10233c;
   --font-sans-custom: "Avenir Next", "Segoe UI", "Trebuchet MS", "Helvetica Neue", sans-serif;
-  --font-display-custom: "Avenir Next", "Segoe UI", "Trebuchet MS", "Helvetica Neue", sans-serif;
+  /* Headlines + kickers + badges in monospace — the terminal-native
+     aesthetic from the redesign brief. We're a formal-verification
+     platform; the visual signature should evoke a kernel / REPL,
+     not a SaaS dashboard. Body text stays in the sans stack so
+     long math problem statements remain comfortable to read. */
+  --font-display-custom: "JetBrains Mono", "IBM Plex Mono", "SF Mono", "Menlo", "Consolas", monospace;
   --surface: rgba(255, 255, 255, 0.74);
   --surface-strong: rgba(255, 255, 255, 0.92);
   --surface-muted: rgba(244, 248, 252, 0.92);
@@ -20,6 +25,11 @@
   --accent-soft: #dbe8ff;
   --accent-secondary: #11a7a1;
   --accent-secondary-soft: #d8f5f0;
+  /* "Lean-green" for VERIFIED markers — pulled toward the green
+     Lean's official palette uses, slightly desaturated to sit nicely
+     next to the existing accent blue/teal without screaming. */
+  --accent-verified: #1a7f37;
+  --accent-verified-soft: #dcfce7;
   --highlight: #f0ba62;
   --grid: rgba(30, 56, 92, 0.08);
   --shadow-soft: 0 24px 60px rgba(16, 35, 60, 0.08);
@@ -181,9 +191,25 @@ body::after {
   }
 
   .badge {
-    @apply inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em];
+    @apply inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em];
+    /* Monospace for "code tag" feel — these badges live next to
+       headline numbers like "01 / SymPy" and they should read as
+       a label, not as cosmetic marketing fluff. */
+    font-family: var(--font-display-custom);
     background: linear-gradient(135deg, rgba(219, 232, 255, 0.94) 0%, rgba(216, 245, 240, 0.94) 100%);
     color: var(--accent-strong);
+  }
+
+  /* Verification badges — used inline next to a step or problem to
+     show which engine signed off. The student has to be able to
+     glance at a problem and tell "this is SymPy-checked" vs
+     "this is LLM-judged" without reading. */
+  .badge-verified {
+    @apply inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em];
+    font-family: var(--font-display-custom);
+    background: var(--accent-verified-soft);
+    color: var(--accent-verified);
+    border: 1px solid color-mix(in srgb, var(--accent-verified) 24%, transparent);
   }
 
   .stat-card {
@@ -201,7 +227,10 @@ body::after {
   }
 
   .kicker {
-    @apply inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em];
+    @apply inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em];
+    /* Mono kicker — same reasoning as .badge: this is a tag, not
+       a marketing flourish. */
+    font-family: var(--font-display-custom);
     border-color: rgba(30, 102, 245, 0.12);
     background: rgba(255, 255, 255, 0.72);
     color: rgba(19, 73, 200, 0.82);

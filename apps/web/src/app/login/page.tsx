@@ -61,9 +61,9 @@ export default function LoginPage() {
               </div>
               <div className="hero-stat">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-blue-100/70">
-                  {t("login.stat_parent_label")}
+                  {t("login.stat_verification_label")}
                 </p>
-                <p className="mt-2 text-sm">{t("login.stat_parent_body")}</p>
+                <p className="mt-2 text-sm">{t("login.stat_verification_body")}</p>
               </div>
             </div>
           </div>
