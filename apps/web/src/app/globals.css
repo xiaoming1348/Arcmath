@@ -6,13 +6,19 @@
   --background-accent: #edf6ff;
   --background-warm: #f9f4ec;
   --foreground: #10233c;
-  --font-sans-custom: "Avenir Next", "Segoe UI", "Trebuchet MS", "Helvetica Neue", sans-serif;
-  /* Headlines + kickers + badges in monospace — the terminal-native
-     aesthetic from the redesign brief. We're a formal-verification
-     platform; the visual signature should evoke a kernel / REPL,
-     not a SaaS dashboard. Body text stays in the sans stack so
-     long math problem statements remain comfortable to read. */
-  --font-display-custom: "JetBrains Mono", "IBM Plex Mono", "SF Mono", "Menlo", "Consolas", monospace;
+  /* Three-role font stack, populated by next/font in app/layout.tsx.
+     Fallback chain ensures the CSS still works in tests / SSR
+     before the font load resolves.
+       --font-sans-custom    → Inter, body + form fields
+       --font-display-custom → Space Grotesk, h1/h2/h3 + hero
+       --font-mono-custom    → JetBrains Mono, badges/kickers/code
+     The user feedback was "fonts feel too square" — Space Grotesk
+     is geometric but flowing, with curved descenders that read as
+     editorial rather than terminal. Mono now lives only on the
+     small "code-tag" elements where it actually belongs. */
+  --font-sans-custom: var(--next-font-sans), "Inter", "Avenir Next", "Segoe UI", sans-serif;
+  --font-display-custom: var(--next-font-display), "Space Grotesk", "Inter", "Segoe UI", sans-serif;
+  --font-mono-custom: var(--next-font-mono), "JetBrains Mono", "SF Mono", "Menlo", monospace;
   --surface: rgba(255, 255, 255, 0.74);
   --surface-strong: rgba(255, 255, 255, 0.92);
   --surface-muted: rgba(244, 248, 252, 0.92);
@@ -41,7 +47,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans-custom);
   --font-display: var(--font-display-custom);
-  --font-mono: "SFMono-Regular", Menlo, monospace;
+  --font-mono: var(--font-mono-custom);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -153,22 +159,52 @@ body::after {
 
 @layer components {
   .surface-card {
-    @apply rounded-[2rem] border p-6 backdrop-blur-xl;
+    /* Asymmetric corners — large radius on top-left + bottom-right,
+       small on top-right + bottom-left. Breaks the "every card is a
+       perfect square" feeling without breaking layout grids. */
+    @apply relative border p-6 backdrop-blur-xl transition;
+    border-radius: 1.6rem 0.4rem 1.6rem 0.4rem;
     border-color: var(--border);
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(248, 251, 255, 0.72) 100%);
     box-shadow: var(--shadow-soft);
   }
+  .surface-card:hover {
+    /* Subtle lift on hover — feels like a kernel "selecting" the card. */
+    transform: translateY(-2px);
+    box-shadow: 0 30px 70px rgba(16, 35, 60, 0.12), 0 2px 0 rgba(30, 102, 245, 0.18) inset;
+  }
+  /* The flipped variant — used to create alternating asymmetry across
+     a row of cards. Use `<div className="surface-card surface-card--flip">`. */
+  .surface-card--flip {
+    border-radius: 0.4rem 1.6rem 0.4rem 1.6rem;
+  }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2.5 text-sm font-semibold transition;
+    @apply relative inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold transition;
+    /* Asymmetric corners — same wedge motif as the cards. */
+    border-radius: 0.9rem 0.2rem 0.9rem 0.2rem;
     background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
     color: white;
     box-shadow: 0 14px 30px rgba(30, 102, 245, 0.24);
   }
+  .btn-primary::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.5), transparent 40%, rgba(255, 255, 255, 0.3));
+    -webkit-mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.8;
+  }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-2xl border px-4 py-2.5 text-sm font-semibold transition;
+    @apply inline-flex items-center justify-center gap-2 border px-5 py-2.5 text-sm font-semibold transition;
+    border-radius: 0.9rem 0.2rem 0.9rem 0.2rem;
     border-color: var(--border);
     background: rgba(255, 255, 255, 0.76);
     color: var(--foreground);
@@ -192,32 +228,45 @@ body::after {
 
   .badge {
     @apply inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em];
-    /* Monospace for "code tag" feel — these badges live next to
-       headline numbers like "01 / SymPy" and they should read as
-       a label, not as cosmetic marketing fluff. */
-    font-family: var(--font-display-custom);
+    /* Mono is the "code tag" feel — used here for the small label
+       chips. Display headlines (h1/h2/h3) get Space Grotesk
+       instead, which is geometric but not boxy. */
+    font-family: var(--font-mono-custom);
     background: linear-gradient(135deg, rgba(219, 232, 255, 0.94) 0%, rgba(216, 245, 240, 0.94) 100%);
     color: var(--accent-strong);
   }
 
   /* Verification badges — used inline next to a step or problem to
-     show which engine signed off. The student has to be able to
-     glance at a problem and tell "this is SymPy-checked" vs
-     "this is LLM-judged" without reading. */
+     show which engine signed off. Mono + Lean-green glow ring so a
+     student can spot "this is SymPy-checked" vs "this is LLM-judged"
+     at a glance. */
   .badge-verified {
     @apply inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em];
-    font-family: var(--font-display-custom);
+    font-family: var(--font-mono-custom);
     background: var(--accent-verified-soft);
     color: var(--accent-verified);
     border: 1px solid color-mix(in srgb, var(--accent-verified) 24%, transparent);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent-verified) 12%, transparent),
+      0 6px 16px color-mix(in srgb, var(--accent-verified) 14%, transparent);
   }
 
   .stat-card {
-    @apply rounded-[1.6rem] border px-4 py-4;
+    @apply relative border px-4 py-4 transition;
+    /* Same asymmetric-corners trick as surface-card, slightly tighter. */
+    border-radius: 1.2rem 0.3rem 1.2rem 0.3rem;
     border-color: rgba(16, 35, 60, 0.08);
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.86) 0%, rgba(237, 246, 255, 0.74) 100%);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+  .stat-card:hover {
+    /* Slim accent rail appears on hover — the kernel "highlighting"
+       the row. Combined with translateY for the lift. */
+    transform: translateY(-1px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.86),
+      inset 2px 0 0 var(--accent),
+      0 16px 36px rgba(16, 35, 60, 0.08);
   }
 
   .code-block {
@@ -230,15 +279,26 @@ body::after {
     @apply inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em];
     /* Mono kicker — same reasoning as .badge: this is a tag, not
        a marketing flourish. */
-    font-family: var(--font-display-custom);
+    font-family: var(--font-mono-custom);
     border-color: rgba(30, 102, 245, 0.12);
     background: rgba(255, 255, 255, 0.72);
     color: rgba(19, 73, 200, 0.82);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92);
   }
+  /* When a kicker is on a dark hero panel, brighten it so it's
+     readable on the navy gradient. Used by the marketing page. */
+  .hero-panel .kicker {
+    border-color: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(226, 237, 255, 0.92);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  }
 
   .hero-panel {
-    @apply relative overflow-hidden rounded-[2rem] border p-6;
+    @apply relative overflow-hidden border p-6;
+    /* Asymmetric corners on the hero too — bigger amplitude than
+       the surface cards so it reads as the "primary surface". */
+    border-radius: 2rem 0.4rem 2rem 0.4rem;
     border-color: rgba(16, 35, 60, 0.08);
     background:
       linear-gradient(160deg, rgba(16, 35, 60, 0.98) 0%, rgba(17, 40, 77, 0.92) 54%, rgba(19, 73, 200, 0.82) 100%);
@@ -270,6 +330,65 @@ body::after {
     opacity: 0.18;
     mask-image: linear-gradient(135deg, rgba(0, 0, 0, 0.8), transparent 80%);
     pointer-events: none;
+  }
+
+  /* Diagonal accent strip running across the top-right of the hero
+     — pulls the eye across the panel, signals "this is the primary
+     marketing slot". */
+  .hero-accent {
+    position: absolute;
+    top: -10%;
+    right: -8%;
+    width: 60%;
+    height: 200%;
+    background: linear-gradient(
+      105deg,
+      transparent 0%,
+      rgba(17, 167, 161, 0.0) 38%,
+      rgba(17, 167, 161, 0.18) 50%,
+      rgba(30, 102, 245, 0.24) 56%,
+      transparent 70%
+    );
+    transform: rotate(8deg);
+    pointer-events: none;
+    filter: blur(0.4px);
+    animation: hero-accent-drift 14s ease-in-out infinite;
+  }
+
+  @keyframes hero-accent-drift {
+    0%, 100% {
+      transform: rotate(8deg) translateY(0);
+      opacity: 0.92;
+    }
+    50% {
+      transform: rotate(7deg) translateY(-12px);
+      opacity: 1;
+    }
+  }
+
+  /* Animated gradient text — for the hero h1. The conic gradient
+     gives a subtle "aurora" sweep that signals tech without being
+     a 90s glow. Wrap headline text in <span class="gradient-text">. */
+  .gradient-text {
+    background: linear-gradient(
+      120deg,
+      #ffffff 0%,
+      #d8e8ff 28%,
+      #b9f3ee 52%,
+      #ffe4b3 78%,
+      #ffffff 100%
+    );
+    background-size: 240% 240%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: gradient-pan 11s ease-in-out infinite;
+  }
+
+  @keyframes gradient-pan {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 
   .hero-stat {
