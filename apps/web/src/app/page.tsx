@@ -45,9 +45,9 @@ export default async function Home() {
       description: t("home.stats.practice_desc")
     },
     {
-      label: t("home.stats.parent_label"),
-      value: t("home.stats.parent_value"),
-      description: t("home.stats.parent_desc")
+      label: t("home.stats.verification_label"),
+      value: t("home.stats.verification_value"),
+      description: t("home.stats.verification_desc")
     },
     {
       label: t("home.stats.library_label"),
@@ -56,10 +56,14 @@ export default async function Home() {
     }
   ];
 
+  // Three-engine card stack: SymPy (algebra) / Lean (kernel) / LLM (judge).
+  // Replaces the pre-pivot "for students / for parents / for coaches"
+  // breakdown — that framing made us look like every other tutor app.
+  // Naming the verification engines on the home page is the wedge.
   const featureCards = [
-    { title: t("home.cards.students_title"), body: t("home.cards.students_body") },
-    { title: t("home.cards.parents_title"), body: t("home.cards.parents_body") },
-    { title: t("home.cards.coaches_title"), body: t("home.cards.coaches_body") }
+    { title: t("home.cards.sympy_title"), body: t("home.cards.sympy_body") },
+    { title: t("home.cards.lean_title"), body: t("home.cards.lean_body") },
+    { title: t("home.cards.llm_title"), body: t("home.cards.llm_body") }
   ];
 
   const quickLinks = isLoggedIn
@@ -139,10 +143,12 @@ export default async function Home() {
       </section>
 
       <section className="section-grid">
-        {featureCards.map((card, index) => (
+        {featureCards.map((card) => (
           <div key={card.title} className="surface-card relative overflow-hidden space-y-3">
             <div className="pointer-events-none absolute right-0 top-0 h-24 w-24 rounded-full bg-[rgba(30,102,245,0.08)] blur-3xl" />
-            <span className="badge">0{index + 1}</span>
+            {/* Title already carries the "01 /" / "02 /" / "03 /" prefix
+                so we don't need a separate index badge — keeps the
+                terminal-style numbering flow without duplication. */}
             <h2 className="text-xl font-semibold tracking-[-0.04em] text-slate-900">{card.title}</h2>
             <p className="text-sm text-slate-600">{card.body}</p>
           </div>

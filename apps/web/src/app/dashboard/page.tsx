@@ -283,29 +283,28 @@ export default async function DashboardPage() {
 
       <section className="grid gap-4 md:grid-cols-3">
             <div className="stat-card">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Focused Practice</p>
-              <p className="mt-3 text-sm text-slate-700">Choose meaningful work instead of bouncing between disconnected tools.</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">SymPy verdicts</p>
+              <p className="mt-3 text-sm text-slate-700">Algebraic identities and equation manipulations are checked in milliseconds. No LLM round-trip needed for "2x = 4".</p>
             </div>
         <div className="stat-card">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Clear Progress</p>
-          <p className="mt-3 text-sm text-slate-700">See the next step quickly and keep learning sessions moving with confidence.</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Per-step trace</p>
+          <p className="mt-3 text-sm text-slate-700">Every step shows VERIFIED / PLAUSIBLE / INVALID and which engine signed off — SymPy, Lean kernel, or LLM judge.</p>
         </div>
             <div className="stat-card">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Family Visibility</p>
-              <p className="mt-3 text-sm text-slate-700">Parents and coaches can follow along without digging through noise.</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Pre-computed hints</p>
+              <p className="mt-3 text-sm text-slate-700">Three problem-specific hints are baked into the catalog at indexing time. The hint never reads as a generic placeholder.</p>
             </div>
           </section>
 
       <section className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
         <div className="surface-card space-y-5">
           <div>
-            <span className="kicker">Why Students Stay With It</span>
+            <span className="kicker">Why a kernel beats a chatbot</span>
             <h2 className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-slate-900">
-              Serious learning feels better when the path is clear.
+              An LLM grading math is just guessing. A kernel does not guess.
             </h2>
             <p className="mt-3 max-w-2xl text-sm text-slate-600">
-              ArcMath is meant to reduce friction around good study habits. Instead of wondering what to do next,
-              students can move straight into practice, and families can see how that work is building over time.
+              ChatGPT will tell a student their wrong proof is correct because it sounds plausible. ArcMath routes each step through SymPy or Lean first; the LLM only fills in where the formal tools cannot. The student always sees which engine signed off.
             </p>
           </div>
 
@@ -365,7 +364,7 @@ export default async function DashboardPage() {
               <p className="mt-2 text-sm text-slate-600">
                 {organizationMembership
                   ? "Open the internal assignment board and see what your organization expects next."
-                  : "Turn effort into something visible for students, parents, and coaches."}
+                  : "Track each step with the engine that verified it — SymPy, Lean, or LLM judge."}
               </p>
             </Link>
             {organizationMembership ? (

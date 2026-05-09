@@ -7,8 +7,9 @@ import { resolveLocale } from "@/i18n/server";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ArcMath",
-  description: "ArcMath web app bootstrap"
+  title: "ArcMath — Formally verified competition math",
+  description:
+    "Math competition practice where every step a student writes is checked by SymPy or Lean — not by an LLM guessing. AMC, AIME, Putnam, Euclid, MAT, STEP, USAMO."
 };
 
 export default async function RootLayout({

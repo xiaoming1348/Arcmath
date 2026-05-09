@@ -59,8 +59,8 @@ export type Messages = {
   "login.subhead": string;
   "login.stat_student_label": string;
   "login.stat_student_body": string;
-  "login.stat_parent_label": string;
-  "login.stat_parent_body": string;
+  "login.stat_verification_label": string;
+  "login.stat_verification_body": string;
   "login.badge": string;
   "login.title": string;
   "login.subtitle": string;
@@ -498,18 +498,18 @@ export type Messages = {
   "home.stats.practice_label": string;
   "home.stats.practice_value": string;
   "home.stats.practice_desc": string;
-  "home.stats.parent_label": string;
-  "home.stats.parent_value": string;
-  "home.stats.parent_desc": string;
+  "home.stats.verification_label": string;
+  "home.stats.verification_value": string;
+  "home.stats.verification_desc": string;
   "home.stats.library_label": string;
   "home.stats.library_value": string;
   "home.stats.library_desc": string;
-  "home.cards.students_title": string;
-  "home.cards.students_body": string;
-  "home.cards.parents_title": string;
-  "home.cards.parents_body": string;
-  "home.cards.coaches_title": string;
-  "home.cards.coaches_body": string;
+  "home.cards.sympy_title": string;
+  "home.cards.sympy_body": string;
+  "home.cards.lean_title": string;
+  "home.cards.lean_body": string;
+  "home.cards.llm_title": string;
+  "home.cards.llm_body": string;
   "home.helps.kicker": string;
   "home.helps.headline": string;
   "home.helps.subhead": string;
@@ -557,7 +557,7 @@ export const EN: Messages = {
   "topnav.language": "Language",
   "topnav.language.english": "English",
   "topnav.language.chinese": "中文",
-  "topnav.tagline": "Focused math practice",
+  "topnav.tagline": "Formally verified competition math",
   "topnav.dashboard": "Dashboard",
   "topnav.organization": "Organization",
   "topnav.assignments": "Assignments",
@@ -572,9 +572,9 @@ export const EN: Messages = {
   "login.headline": "Sign in to continue your workflow.",
   "login.subhead": "A cleaner interface makes it easier to move from login to practice, reports, and assignments without losing momentum.",
   "login.stat_student_label": "Student Mode",
-  "login.stat_student_body": "Get back to problems quickly with less visual clutter.",
-  "login.stat_parent_label": "Parent View",
-  "login.stat_parent_body": "Check progress and assignments in a layout that feels organized and calm.",
+  "login.stat_student_body": "Resume practice immediately. Per-step verdicts (SymPy ✓ / Lean ✓ / LLM judge) live alongside every problem.",
+  "login.stat_verification_label": "Three-Engine Stack",
+  "login.stat_verification_body": "SymPy + Lean + LLM judge. The engine that signed off on each step is shown — no black-box scoring.",
   "login.badge": "Account Access",
   "login.title": "Sign in",
   "login.subtitle": "Use your ArcMath email and password to continue.",
@@ -1015,42 +1015,42 @@ export const EN: Messages = {
   "problems.browser.contest.STEP.full": "STEP",
   "problems.browser.contest.STEP.short": "Cambridge Sixth Term · long-form papers I / II / III",
 
-  "home.hero.kicker": "ArcMath Learning Workspace",
-  "home.hero.headline": "Math practice that keeps students focused and families informed.",
-  "home.hero.subhead": "From contest problems to assignments and reports, ArcMath brings everything into one clear learning workspace that feels modern, calm, and easy to trust.",
-  "home.hero.pill_practice": "Structured practice",
-  "home.hero.pill_progress": "Readable progress tracking",
-  "home.hero.pill_aesthetic": "Subtle tech aesthetic",
+  "home.hero.kicker": "Formal Verification × Competition Math",
+  "home.hero.headline": "Math competition practice, formally verified.",
+  "home.hero.subhead": "Every step a student writes is checked by SymPy or Lean — not by an LLM guessing. 1,374 real-contest problems, three-engine verification, no hallucinated grades.",
+  "home.hero.pill_practice": "SymPy + Lean kernel",
+  "home.hero.pill_progress": "Per-step verdict trace",
+  "home.hero.pill_aesthetic": "AMC · AIME · Putnam · Euclid · MAT · STEP · USAMO",
   "home.hero.cta_dashboard": "Open Dashboard",
   "home.hero.cta_browse_problems": "Browse Problems",
   "home.hero.cta_create_account": "Create Account",
   "home.hero.cta_sign_in": "Sign In",
-  "home.stats.practice_label": "Practice Flow",
-  "home.stats.practice_value": "Guided",
-  "home.stats.practice_desc": "Move from curated sets to focused problem solving without losing momentum.",
-  "home.stats.parent_label": "Parent View",
-  "home.stats.parent_value": "Clear",
-  "home.stats.parent_desc": "Assignments and progress are easier to understand at a glance.",
-  "home.stats.library_label": "Contest Library",
-  "home.stats.library_value": "Organized",
-  "home.stats.library_desc": "Admissions and competition resources stay accessible without making the workspace feel crowded.",
-  "home.cards.students_title": "For Students",
-  "home.cards.students_body": "Settle into longer problem-solving sessions with a layout that stays calm and easy to read.",
-  "home.cards.parents_title": "For Parents",
-  "home.cards.parents_body": "See what was assigned, what was completed, and what to focus on next without digging.",
-  "home.cards.coaches_title": "For Coaches",
-  "home.cards.coaches_body": "Build and manage practice in a workspace that feels more intentional and easier to navigate.",
-  "home.helps.kicker": "What ArcMath Helps With",
-  "home.helps.headline": "Keep practice structured without making it feel heavy.",
-  "home.helps.subhead": "The platform is designed to support steady progress: meaningful practice, visible follow-through, and less time spent hunting for the next step.",
-  "home.helps.assignments_title": "Assignments",
-  "home.helps.assignments_body": "Turn large goals into manageable sessions with clear directions and expectations.",
-  "home.helps.resources_title": "Resources",
-  "home.helps.resources_body": "Keep official papers, curated sets, and support materials in one organized place.",
-  "home.helps.guided_title": "Guided Support",
-  "home.helps.guided_body": "Help students stay moving when they get stuck instead of losing confidence mid-session.",
-  "home.helps.reports_title": "Reports",
-  "home.helps.reports_body": "Give families and coaches a clearer view of growth, rhythm, and next priorities.",
+  "home.stats.practice_label": "Library",
+  "home.stats.practice_value": "1,374 problems",
+  "home.stats.practice_desc": "74 sets across AMC 8/10/12, AIME, Putnam 2019–2024, USAMO, Euclid, MAT, STEP II — every one with author-reviewed manifests.",
+  "home.stats.verification_label": "Verification",
+  "home.stats.verification_value": "3 engines",
+  "home.stats.verification_desc": "SymPy checks algebraic identities, Lean kernel handles formal logic, an LLM judge fills the gap. Each step shows which engine signed off.",
+  "home.stats.library_label": "Hints",
+  "home.stats.library_value": "Pre-computed",
+  "home.stats.library_desc": "1,374 × 3 hints baked into the catalog. Even when the LLM is unavailable, students get a problem-specific nudge — never a generic placeholder.",
+  "home.cards.sympy_title": "01 / SymPy",
+  "home.cards.sympy_body": "Algebraic identities, equation manipulation, simple inequalities. Student writes 2x = 4 → SymPy returns VERIFIED in milliseconds. No LLM round-trip.",
+  "home.cards.lean_title": "02 / Lean kernel",
+  "home.cards.lean_body": "Proof-level steps run through Lean's kernel. Geometry, number theory, induction — when a step type-checks, it really is correct. The LLM cannot bullshit the kernel.",
+  "home.cards.llm_title": "03 / LLM judge",
+  "home.cards.llm_body": "For everything Lean and SymPy don't cover yet (combinatorial arguments, geometric reasoning), an LLM judge gives a verdict — clearly tagged so the student knows which engine signed off.",
+  "home.helps.kicker": "Why Lean over plain LLM",
+  "home.helps.headline": "An LLM that grades math is just guessing. A kernel does not guess.",
+  "home.helps.subhead": "ChatGPT will tell a student their wrong proof is correct because it sounds plausible. Our kernel rejects it. That is the entire wedge.",
+  "home.helps.assignments_title": "Per-step verdicts",
+  "home.helps.assignments_body": "Each step gets VERIFIED / PLAUSIBLE / INVALID — and which engine produced the verdict. No black-box scores.",
+  "home.helps.resources_title": "Real contest catalog",
+  "home.helps.resources_body": "AMC, AIME, Putnam, Euclid, MAT, STEP, USAMO — hand-authored manifests with verified statements and official solution sketches.",
+  "home.helps.guided_title": "3-tier hints",
+  "home.helps.guided_body": "Pre-computed at indexing time. Hint 1 nudges direction, hint 2 sets up structure, hint 3 sketches the path — but never reveals the answer.",
+  "home.helps.reports_title": "Teacher visibility",
+  "home.helps.reports_body": "Teachers see exactly which engine verified which step, which hints a student used, and where the proof broke. Not a vibes-based progress bar.",
   "home.quickstart.badge_member": "Ready to continue",
   "home.quickstart.badge_guest": "Quick start",
   "home.quickstart.title_member": "Jump back into your workflow.",
@@ -1087,7 +1087,7 @@ export const ZH: Messages = {
   "topnav.language": "语言",
   "topnav.language.english": "English",
   "topnav.language.chinese": "中文",
-  "topnav.tagline": "专注的数学练习",
+  "topnav.tagline": "形式化验证的数学竞赛训练",
   "topnav.dashboard": "仪表板",
   "topnav.organization": "学校",
   "topnav.assignments": "作业",
@@ -1102,9 +1102,9 @@ export const ZH: Messages = {
   "login.headline": "登录后继续学习。",
   "login.subhead": "清爽的界面让你从登录到练习、报告、作业一气呵成。",
   "login.stat_student_label": "学生模式",
-  "login.stat_student_body": "用更简洁的界面快速回到题目。",
-  "login.stat_parent_label": "家长视图",
-  "login.stat_parent_body": "在一个井然有序、平静的界面里看到进度和作业。",
+  "login.stat_student_body": "立刻回到题目。每道题旁都标出每一步是 SymPy / Lean / LLM 哪一个引擎签的。",
+  "login.stat_verification_label": "三引擎验证栈",
+  "login.stat_verification_body": "SymPy + Lean + LLM judge。每一步签名透明可查，没有黑盒打分。",
   "login.badge": "账号登录",
   "login.title": "登录",
   "login.subtitle": "用你的 ArcMath 用户名和密码继续。",
@@ -1529,42 +1529,42 @@ export const ZH: Messages = {
   "problems.browser.contest.STEP.full": "STEP 剑桥数学考",
   "problems.browser.contest.STEP.short": "剑桥 Sixth Term · 长卷 I / II / III",
 
-  "home.hero.kicker": "ArcMath 学习工作台",
-  "home.hero.headline": "让学生专注、家长清晰的数学练习平台。",
-  "home.hero.subhead": "从竞赛题到作业和报告，ArcMath 把所有内容整合到一个清爽、现代、易信任的学习工作台中。",
-  "home.hero.pill_practice": "结构化练习",
-  "home.hero.pill_progress": "进度一目了然",
-  "home.hero.pill_aesthetic": "精致科技风",
+  "home.hero.kicker": "形式化验证 × 数学竞赛",
+  "home.hero.headline": "数学竞赛训练，逐步形式化验证。",
+  "home.hero.subhead": "学生写的每一步都由 SymPy 或 Lean 检查，而不是让 LLM 凭感觉打分。1374 道真题，三引擎验证，零幻觉评分。",
+  "home.hero.pill_practice": "SymPy + Lean kernel",
+  "home.hero.pill_progress": "逐步评判轨迹",
+  "home.hero.pill_aesthetic": "AMC · AIME · Putnam · Euclid · MAT · STEP · USAMO",
   "home.hero.cta_dashboard": "打开仪表板",
   "home.hero.cta_browse_problems": "浏览题库",
   "home.hero.cta_create_account": "注册账号",
   "home.hero.cta_sign_in": "登录",
-  "home.stats.practice_label": "练习流程",
-  "home.stats.practice_value": "引导式",
-  "home.stats.practice_desc": "从精选题集顺畅过渡到专注解题，不被打断节奏。",
-  "home.stats.parent_label": "家长视图",
-  "home.stats.parent_value": "清晰",
-  "home.stats.parent_desc": "作业与进度一眼看懂，无需多余翻找。",
-  "home.stats.library_label": "竞赛题库",
-  "home.stats.library_value": "井然有序",
-  "home.stats.library_desc": "升学考试与竞赛资源整齐归档，工作台不显拥挤。",
-  "home.cards.students_title": "面向学生",
-  "home.cards.students_body": "在持续阅读体验良好的界面里，安心进入更长时段的专注解题。",
-  "home.cards.parents_title": "面向家长",
-  "home.cards.parents_body": "随时查看已布置、已完成和下一步重点，无需额外询问。",
-  "home.cards.coaches_title": "面向教练",
-  "home.cards.coaches_body": "在更整洁、易导航的工作台里组织和管理练习内容。",
-  "home.helps.kicker": "ArcMath 解决什么问题",
-  "home.helps.headline": "结构化练习，但不让人感到沉重。",
-  "home.helps.subhead": "平台旨在支持稳步进步：让练习真正有意义，让追进度可视化，少花时间寻找下一步。",
-  "home.helps.assignments_title": "作业",
-  "home.helps.assignments_body": "把大目标拆成清晰可控的练习单元。",
-  "home.helps.resources_title": "资源",
-  "home.helps.resources_body": "把官方试卷、精选题集与辅导材料集中在一处。",
-  "home.helps.guided_title": "引导式辅助",
-  "home.helps.guided_body": "卡壳时帮学生继续推进，避免中途丧失信心。",
-  "home.helps.reports_title": "学情报告",
-  "home.helps.reports_body": "为家长和教练呈现成长、节奏与下阶段重点。",
+  "home.stats.practice_label": "题库",
+  "home.stats.practice_value": "1374 道",
+  "home.stats.practice_desc": "74 套覆盖 AMC 8/10/12、AIME、Putnam 2019–2024、USAMO、Euclid、MAT、STEP II——每道题的 manifest 都经作者审过。",
+  "home.stats.verification_label": "验证",
+  "home.stats.verification_value": "三引擎",
+  "home.stats.verification_desc": "SymPy 验证代数恒等，Lean kernel 处理形式化逻辑，LLM judge 兜底。每一步明确显示由哪个引擎签的。",
+  "home.stats.library_label": "提示",
+  "home.stats.library_value": "全部预生成",
+  "home.stats.library_desc": "1374 × 3 条提示已烤进题库。即使 LLM 不可用，学生也能看到与题目高度相关的提示，不会再是无意义的占位文本。",
+  "home.cards.sympy_title": "01 / SymPy",
+  "home.cards.sympy_body": "代数恒等、方程化简、简单不等式。学生写 2x = 4，SymPy 毫秒级返回 VERIFIED。无需 LLM 往返。",
+  "home.cards.lean_title": "02 / Lean kernel",
+  "home.cards.lean_body": "证明级步骤进入 Lean 内核做类型检查。几何、数论、归纳——只要 type-check 通过，就是真的对。LLM 没法骗过 kernel。",
+  "home.cards.llm_title": "03 / LLM judge",
+  "home.cards.llm_body": "Lean 和 SymPy 暂时还覆盖不到的（组合、几何直觉），由 LLM judge 给一个判断——并明确标记是哪个引擎打的，让学生看清来源。",
+  "home.helps.kicker": "为什么是 Lean 而不是普通 LLM",
+  "home.helps.headline": "让 LLM 给数学打分就是在猜。Kernel 不会猜。",
+  "home.helps.subhead": "ChatGPT 会因为一道错的证明听起来合理就告诉学生它对。我们的 kernel 直接拒绝。这就是整个 wedge。",
+  "home.helps.assignments_title": "逐步评判",
+  "home.helps.assignments_body": "每一步显示 VERIFIED / PLAUSIBLE / INVALID 以及哪个引擎给的判断。没有黑盒分数。",
+  "home.helps.resources_title": "真题题库",
+  "home.helps.resources_body": "AMC、AIME、Putnam、Euclid、MAT、STEP、USAMO——手工编写的 manifest，题干 + 官方解答梗概都经验证。",
+  "home.helps.guided_title": "三级提示",
+  "home.helps.guided_body": "建库时即预先生成。Hint 1 给方向，Hint 2 给结构，Hint 3 给路径轮廓——但绝不剧透答案。",
+  "home.helps.reports_title": "老师视图",
+  "home.helps.reports_body": "老师能看到每一步是哪个引擎验证的、学生用了哪些提示、证明在哪一步断了。不是凭感觉拉的进度条。",
   "home.quickstart.badge_member": "继续学习",
   "home.quickstart.badge_guest": "快速开始",
   "home.quickstart.title_member": "回到你的学习流程。",
