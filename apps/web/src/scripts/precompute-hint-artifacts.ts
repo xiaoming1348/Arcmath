@@ -142,13 +142,13 @@ async function buildStoredHint(problem: {
     // Proof problems don't use precomputed hints — the proof tutor generates feedback per step.
     return sanitizeStoredHintText(getSafeFallbackHint(level).hintText);
   }
-  if (problem.answerFormat === "WORKED_SOLUTION") {
-    // WORKED_SOLUTION problems ship their official solution to the
-    // student directly; there is no hint ladder to precompute. Keep the
-    // fallback hint text so downstream code has something to store if
-    // the pipeline ever tries to populate these rows.
-    return sanitizeStoredHintText(getSafeFallbackHint(level).hintText);
-  }
+  // WORKED_SOLUTION used to short-circuit here on the theory that the
+  // reveal-solution panel was "the hint ladder". As of PR #5 the
+  // workspace exposes the hint flow for Putnam / USAMO / STEP / MAT
+  // long questions, and Putnam manifests carry rich solutionSketch
+  // text that LLM hint generation can lean on. So now we precompute
+  // hints for WORKED_SOLUTION problems too — same path as
+  // INTEGER/EXPRESSION/MC.
   const answerFormat = problem.answerFormat;
   const generated = await generateHint({
     problemStatement: problem.statement ?? "",
@@ -221,9 +221,24 @@ export async function precomputeHintArtifacts(
   };
 
   for (const problem of problems) {
-    if (!problem.statement?.trim() || !problem.answer?.trim()) {
+    if (!problem.statement?.trim()) {
       summary.skippedIncomplete += 1;
-      console.log(`- skipped #${problem.number}: missing statement or answer`);
+      console.log(`- skipped #${problem.number}: missing statement`);
+      continue;
+    }
+    // Most formats need an explicit answer for hint generation +
+    // leak-checking. WORKED_SOLUTION (Putnam / USAMO long-form
+    // proofs) legitimately has `answer = null` because there's no
+    // single scalar to record — the official solution lives in
+    // solutionSketch instead. Don't skip those.
+    if (problem.answerFormat !== "WORKED_SOLUTION" && !problem.answer?.trim()) {
+      summary.skippedIncomplete += 1;
+      console.log(`- skipped #${problem.number}: missing answer`);
+      continue;
+    }
+    if (problem.answerFormat === "WORKED_SOLUTION" && !problem.solutionSketch?.trim()) {
+      summary.skippedIncomplete += 1;
+      console.log(`- skipped #${problem.number}: WORKED_SOLUTION with no solutionSketch (cannot generate problem-specific hints without context)`);
       continue;
     }
 
