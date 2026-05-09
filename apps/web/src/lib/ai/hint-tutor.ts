@@ -1,10 +1,25 @@
 import { z } from "zod";
 import { callOpenAIJson } from "@/lib/ai/openai-json";
 
+// Last-resort hint strings used when *both* of these fail:
+//   1. There's no curated/precomputed hint stored on the Problem row
+//   2. The LLM (callOpenAIJson) returned null — typically because
+//      OPENAI_API_KEY is unset OR the API call hit a parse/network
+//      error after retry
+//
+// We deliberately don't try to be "helpful" here — these strings
+// should NEVER be what a paying student sees. If you see them in
+// prod the real fix is "make sure OPENAI_API_KEY is set + valid";
+// these are just emergency padding so the UI doesn't render an
+// empty bubble.
+//
+// The unified-attempt router stamps `promptVersion: "fallback-vN"`
+// on usages that hit this branch so we can grep prod logs and
+// catch silent regressions.
 const HINT_FALLBACKS = {
-  1: "Think about the key concept.",
-  2: "Try setting up the equation.",
-  3: "Focus on the key transformation."
+  1: "Hint generation is temporarily unavailable. Re-read the problem and identify what's known vs. what's asked. (If you keep seeing this message, ping your teacher — the AI tutor isn't reachable right now.)",
+  2: "Hint generation is temporarily unavailable. Try rewriting the key relationship or quantity from the problem in your own notation.",
+  3: "Hint generation is temporarily unavailable. Compare the structure of this problem to one you've solved before — what changes, what stays the same?"
 } as const;
 
 export const HINT_TUTOR_PROMPT_VERSION = "hint-tutor-v1";
@@ -278,23 +293,109 @@ export function hintLeaksFinalAnswer(hintText: string, correctAnswer?: string | 
     return false;
   }
 
+  // For multiple-choice answers we only block patterns that
+  // specifically name the *correct* answer letter — "the answer is
+  // C", "choose option C", etc. The pre-existing patterns from
+  // buildMultipleChoiceLeakPatterns(answer) already cover these.
   if (/^[a-e]$/i.test(normalizedAnswer)) {
     const leakPatterns = buildMultipleChoiceLeakPatterns(normalizedAnswer.toUpperCase());
     if (leakPatterns.some((pattern) => pattern.test(hintText))) {
       return true;
     }
-  } else if (normalizedAnswer && normalizedHint.includes(normalizedAnswer)) {
+    // Don't fall through to the generic "answer is X" check below —
+    // for MC, the only thing that should leak is the actual answer
+    // letter. A hint that says "Notice the answer is symmetric" or
+    // "the option you pick must be even" is fine. The previous
+    // catch-all regex `/answer is|choose [a-e]/` was firing on these
+    // legitimate hints and shoving every MC hint into the safe
+    // fallback. That's why students were seeing "Think about the key
+    // concept" everywhere.
+    return false;
+  }
+
+  // For non-MC (INTEGER, EXPRESSION, WORKED_SOLUTION): block if the
+  // hint contains the actual answer string. Only run this when the
+  // answer is non-empty AND at least 2 chars (else we'd block
+  // hints whenever the integer "0" appears anywhere, e.g. "subscript 0").
+  if (normalizedAnswer.length >= 2 && normalizedHint.includes(normalizedAnswer)) {
     return true;
   }
 
-  return /final answer is|answer is|choose [a-e]\b|option [a-e]\b|choice [a-e]\b/i.test(hintText);
+  // Also catch obvious "the final answer is …" giveaways even when
+  // the answer string is empty (e.g. WORKED_SOLUTION with null
+  // canonicalAnswer): the LLM still shouldn't promise the conclusion.
+  return /\b(?:the\s+)?(?:final\s+)?answer\s+is\s+/i.test(hintText);
 }
 
-export function getSafeFallbackHint(level: number): HintModelOutput {
-  const safeLevel = clampHintLevel(level);
+/**
+ * Strip LaTeX delimiters / markdown decorations and split the sketch
+ * into clean sentences. Used by the fallback path to surface a
+ * problem-specific nudge when the LLM call fails or is unavailable.
+ *
+ * Why not just feed the raw sketch? Putnam / USAMO solution sketches
+ * often contain `$$...$$` math blocks, **bold** markers, and
+ * "Answer: X." giveaways. We want a clean, hint-shaped excerpt that
+ * (a) doesn't reveal the conclusion and (b) reads as a sentence.
+ */
+function extractSketchSentences(sketch: string): string[] {
+  // Strip the LaTeX/Markdown noise that would look weird as a hint.
+  const stripped = sketch
+    .replace(/\$\$[^$]+\$\$/g, "(equation)")
+    .replace(/\$[^$]+\$/g, "(expression)")
+    .replace(/\\[a-zA-Z]+(?:\{[^}]*\})?/g, "")
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/\*([^*]+)\*/g, "$1")
+    .replace(/^\s*-\s+/gm, "")
+    .replace(/^#+\s+/gm, "")
+    // Drop leading "Answer: ..." preambles entirely — those leak.
+    .replace(/^\s*\*?\*?Answer\*?\*?:[^\n]+\n?/gim, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  // Split on sentence boundaries; skip empties and very short fragments.
+  return stripped
+    .split(/(?<=[.!?])\s+(?=[A-Z\d])/)
+    .map((s) => s.trim())
+    .filter((s) => s.length >= 12);
+}
 
+/**
+ * Build a problem-specific fallback hint by excerpting the solution
+ * sketch. Level 1 takes the first sentence (broadest direction);
+ * level 2 takes the second sentence if available (a setup nudge);
+ * level 3 concatenates two sentences for more detail. If the sketch
+ * is empty or unusable, fall back to the generic strings.
+ *
+ * Even when this returns excerpted text, hintLeaksFinalAnswer is
+ * applied at the call site — so a sketch that says "Answer: 42"
+ * still gets caught by the leak filter and swapped for a safer
+ * version.
+ */
+function deriveHintFromSketch(sketch: string | null | undefined, level: 1 | 2 | 3): string | null {
+  const trimmed = sketch?.trim();
+  if (!trimmed) return null;
+  const sentences = extractSketchSentences(trimmed);
+  if (sentences.length === 0) return null;
+  if (level === 1) return sentences[0];
+  if (level === 2) return sentences[1] ?? sentences[0];
+  // level 3: as much as we can muster
+  return sentences.slice(0, 2).join(" ");
+}
+
+/**
+ * Safe fallback hint. Prefers a sketch-derived problem-specific
+ * sentence when available; otherwise the generic
+ * `HINT_FALLBACKS[level]` string. Generic strings are a last-resort
+ * — they're useless for hard problems, which is why every callsite
+ * that has a sketch should prefer the sketch path.
+ */
+export function getSafeFallbackHint(
+  level: number,
+  options?: { solutionSketch?: string | null }
+): HintModelOutput {
+  const safeLevel = clampHintLevel(level);
+  const sketchHint = deriveHintFromSketch(options?.solutionSketch, safeLevel);
   return {
-    hintText: HINT_FALLBACKS[safeLevel],
+    hintText: sketchHint ?? HINT_FALLBACKS[safeLevel],
     checkQuestion: "What is the next step you can try on your own?"
   };
 }
@@ -366,6 +467,25 @@ export async function generateHint(params: GenerateHintParams): Promise<HintMode
 
   if (generated) {
     return generated;
+  }
+
+  // LLM unavailable / failed → fall back to a sketch-derived hint.
+  // This is the path that fires when OPENAI_API_KEY is missing on a
+  // deployment, when OpenAI rate-limits, or when JSON parsing fails
+  // even after the in-callOpenAIJson retry. Without this branch every
+  // hint on every problem reads as the generic "Think about the key
+  // concept" string, which is what students reported.
+  const sketchHint = deriveHintFromSketch(params.solutionSketch, safeLevel);
+  if (sketchHint) {
+    // Mirror the generic fallback's check-questions per level so the
+    // surface contract stays consistent.
+    const checkQuestion =
+      safeLevel === 1
+        ? "Which idea or theorem seems most relevant here?"
+        : safeLevel === 2
+          ? "What equation or structure captures the problem?"
+          : "What detailed step or substitution moves you forward?";
+    return { hintText: sketchHint, checkQuestion };
   }
 
   if (safeLevel === 1) {

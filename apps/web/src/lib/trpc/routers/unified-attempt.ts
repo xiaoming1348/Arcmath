@@ -24,6 +24,12 @@ const MAX_STEPS_PER_ATTEMPT = 50;
 const HINT_CURATED_VERSION = "curated-hint-v1";
 const HINT_PRECOMPUTED_VERSION = "precomputed-hint-v1";
 const HINT_GENERATED_VERSION = "hint-tutor-v1";
+// Fallback path. Stamping a distinct promptVersion on the
+// ProblemHintUsage row lets us grep for it in prod and catch silent
+// regressions ("why are 30% of hints fallbacks today?"). Surfaced in
+// the API response too so the simulator + browser devtools can see
+// it without a DB query.
+const HINT_FALLBACK_VERSION = "fallback-v1";
 
 const attemptIdInput = z.object({ attemptId: z.string().min(1) });
 
@@ -278,13 +284,21 @@ async function pickHintForAttempt(params: {
       hintLevel: params.level,
       solutionSketch: params.problem.solutionSketch
     });
+    // If the LLM-generated hint accidentally reveals the answer, swap
+    // for a sketch-derived fallback (problem-specific, but uses the
+    // sentence-extraction path so the conclusion is unlikely to leak)
+    // rather than the generic "Think about the key concept" string.
     const text = hintLeaksFinalAnswer(generated.hintText, params.problem.answer)
-      ? getSafeFallbackHint(params.level).hintText
+      ? getSafeFallbackHint(params.level, { solutionSketch: params.problem.solutionSketch }).hintText
       : generated.hintText;
     return { level: params.level, hintText: text, source: "generated" };
   }
 
-  return { level: params.level, hintText: getSafeFallbackHint(params.level).hintText, source: "fallback" };
+  return {
+    level: params.level,
+    hintText: getSafeFallbackHint(params.level, { solutionSketch: params.problem.solutionSketch }).hintText,
+    source: "fallback"
+  };
 }
 
 const STEP_SELECT = {
@@ -652,6 +666,31 @@ export const unifiedAttemptRouter = router({
 
     const hint = await pickHintForAttempt({ problem: attempt.problem, level: nextLevel });
 
+    // Stamp a distinct promptVersion per source so the row in
+    // ProblemHintUsage records "where did this hint come from".
+    // `source` is also returned to the client so the simulator +
+    // browser devtools can flag fallbacks without a DB round-trip.
+    const promptVersion =
+      hint.source === "curated"
+        ? HINT_CURATED_VERSION
+        : hint.source === "precomputed"
+          ? HINT_PRECOMPUTED_VERSION
+          : hint.source === "fallback"
+            ? HINT_FALLBACK_VERSION
+            : HINT_GENERATED_VERSION;
+
+    if (hint.source === "fallback") {
+      // Loud server-side log so this shows up in Vercel function
+      // logs. Most-likely-causes for hitting this branch: missing
+      // OPENAI_API_KEY env var, OpenAI 5xx, or the leak-check
+      // tripping (rare after the leak detector was tightened).
+      console.warn("[hint-tutor] fallback hint served — no curated, no precomputed, LLM unavailable", {
+        problemId: attempt.problemId,
+        hintLevel: nextLevel,
+        attemptId: attempt.id
+      });
+    }
+
     const usage = await ctx.prisma.problemHintUsage.create({
       data: {
         userId,
@@ -660,12 +699,7 @@ export const unifiedAttemptRouter = router({
         practiceRunId: attempt.practiceRunId,
         hintLevel: nextLevel,
         hintText: hint.hintText,
-        promptVersion:
-          hint.source === "curated"
-            ? HINT_CURATED_VERSION
-            : hint.source === "precomputed"
-              ? HINT_PRECOMPUTED_VERSION
-              : HINT_GENERATED_VERSION
+        promptVersion
       },
       select: { id: true, hintLevel: true, hintText: true, createdAt: true }
     });
@@ -678,7 +712,7 @@ export const unifiedAttemptRouter = router({
       }
     });
 
-    return { hint: usage, exhausted: nextLevel >= 3 };
+    return { hint: usage, source: hint.source, exhausted: nextLevel >= 3 };
   }),
 
   submit: protectedProcedure.input(submitInput).mutation(async ({ ctx, input }) => {
