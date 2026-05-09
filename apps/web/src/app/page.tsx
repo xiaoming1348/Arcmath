@@ -81,11 +81,16 @@ export default async function Home() {
   return (
     <main className="motion-rise space-y-6 md:space-y-8">
       <section className="hero-panel">
+        {/* Diagonal accent stripe — see globals.css `.hero-accent`. */}
+        <span className="hero-accent" aria-hidden />
         <div className="relative grid gap-8 md:grid-cols-[1.15fr_0.85fr] md:items-center">
           <div>
             <span className="kicker">{t("home.hero.kicker")}</span>
             <h1 className="mt-5 max-w-3xl text-4xl font-semibold tracking-[-0.05em] text-white md:text-6xl">
-              {t("home.hero.headline")}
+              {/* gradient-text drives the slow aurora sweep on the
+                  headline. Hero is the place where motion buys you the
+                  most "tech feel" — every other surface stays calm. */}
+              <span className="gradient-text">{t("home.hero.headline")}</span>
             </h1>
             <p className="mt-5 max-w-2xl text-base md:text-lg">{t("home.hero.subhead")}</p>
 
@@ -143,12 +148,16 @@ export default async function Home() {
       </section>
 
       <section className="section-grid">
-        {featureCards.map((card) => (
-          <div key={card.title} className="surface-card relative overflow-hidden space-y-3">
+        {featureCards.map((card, index) => (
+          <div
+            key={card.title}
+            // Alternating asymmetric corners across the row — odd cards
+            // use the default "tab on top-left", even cards flip it
+            // to "tab on top-right" via the .surface-card--flip variant.
+            // Visual rhythm without anything moving on screen.
+            className={`surface-card overflow-hidden space-y-3 ${index % 2 === 1 ? "surface-card--flip" : ""}`}
+          >
             <div className="pointer-events-none absolute right-0 top-0 h-24 w-24 rounded-full bg-[rgba(30,102,245,0.08)] blur-3xl" />
-            {/* Title already carries the "01 /" / "02 /" / "03 /" prefix
-                so we don't need a separate index badge — keeps the
-                terminal-style numbering flow without duplication. */}
             <h2 className="text-xl font-semibold tracking-[-0.04em] text-slate-900">{card.title}</h2>
             <p className="text-sm text-slate-600">{card.body}</p>
           </div>
