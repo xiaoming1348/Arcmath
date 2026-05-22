@@ -65,6 +65,19 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
+        // Hard-block self-signup accounts that haven't verified their
+        // email yet. Admin-spawned accounts that went through
+        // /login/set-password already have emailVerifiedAt set by that
+        // endpoint, so they pass this check.
+        //
+        // We throw with a distinguishable error message rather than
+        // returning null so the login page can show the "resend
+        // verification email" affordance instead of the generic
+        // "invalid credentials" message.
+        if (!user.emailVerifiedAt) {
+          throw new Error("EMAIL_NOT_VERIFIED");
+        }
+
         return {
           id: user.id,
           email: user.email,

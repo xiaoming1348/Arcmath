@@ -3,8 +3,32 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@arcmath/db";
-import { canManageOrganization, getActiveOrganizationMembership } from "@/lib/organizations";
+import {
+  canManageOrganization,
+  getActiveOrganizationMembership
+} from "@/lib/organizations";
+import {
+  Card,
+  EmptyState,
+  Eyebrow,
+  Metric,
+  Section,
+  SectionHeader
+} from "@/components/ui";
 
+/**
+ * Dashboard — refreshed (2026-05-13) toward Apple/Stripe educational
+ * style. Two top-level views:
+ *
+ *   - Org manager: organization metrics + recent practice runs +
+ *     report snapshots. The "operations cockpit".
+ *   - Everyone else (rare — most users are redirected at /): a
+ *     welcome surface with the same metric tiles, calmer copy.
+ *
+ * Hierarchy is type-led: an eyebrow + display headline introduces
+ * each section, metrics are large but spare, lists use the standard
+ * Card primitive with hairline borders.
+ */
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
 
@@ -12,380 +36,443 @@ export default async function DashboardPage() {
     redirect("/login?callbackUrl=%2Fdashboard");
   }
 
-  const displayName = session.user.name ?? session.user.email?.split("@")[0] ?? "there";
-  const organizationMembership = await getActiveOrganizationMembership(prisma, session.user.id);
-  const isOrganizationManager = organizationMembership ? canManageOrganization(organizationMembership.role) : false;
+  const displayName =
+    session.user.name ?? session.user.email?.split("@")[0] ?? "there";
+  const organizationMembership = await getActiveOrganizationMembership(
+    prisma,
+    session.user.id
+  );
+  const isOrganizationManager = organizationMembership
+    ? canManageOrganization(organizationMembership.role)
+    : false;
 
+  // =====================================================================
+  // Org-manager view
+  // =====================================================================
   if (organizationMembership && isOrganizationManager) {
     const organization = await prisma.organization.findUnique({
-      where: {
-        id: organizationMembership.organizationId
-      },
+      where: { id: organizationMembership.organizationId },
       select: {
         name: true,
         trialEndsAt: true,
         maxAdminSeats: true,
         maxStudentSeats: true,
         memberships: {
-          where: {
-            status: "ACTIVE"
-          },
+          where: { status: "ACTIVE" },
           select: {
             role: true,
-            user: {
-              select: {
-                id: true,
-                name: true,
-                email: true
-              }
-            }
+            user: { select: { id: true, name: true, email: true } }
           }
         },
         practiceRuns: {
-          orderBy: {
-            startedAt: "desc"
-          },
+          orderBy: { startedAt: "desc" },
           take: 8,
           select: {
             id: true,
             startedAt: true,
             completedAt: true,
-            user: {
-              select: {
-                id: true,
-                name: true,
-                email: true
-              }
-            },
-            problemSet: {
-              select: {
-                title: true
-              }
-            },
-            learningReportSnapshot: {
-              select: {
-                id: true
-              }
-            }
+            user: { select: { id: true, name: true, email: true } },
+            problemSet: { select: { title: true } },
+            learningReportSnapshot: { select: { id: true } }
           }
         },
         learningReportSnapshots: {
-          orderBy: {
-            generatedAt: "desc"
-          },
+          orderBy: { generatedAt: "desc" },
           take: 8,
           select: {
             id: true,
             generatedAt: true,
-            user: {
-              select: {
-                id: true,
-                name: true,
-                email: true
-              }
-            },
+            user: { select: { id: true, name: true, email: true } },
             practiceRun: {
-              select: {
-                problemSet: {
-                  select: {
-                    title: true
-                  }
-                }
-              }
+              select: { problemSet: { select: { title: true } } }
             }
           }
         }
       }
     });
 
-    if (!organization) {
-      redirect("/org");
-    }
+    if (!organization) redirect("/org");
 
-    const activeAdminCount = organization.memberships.filter((item) => item.role === "OWNER" || item.role === "ADMIN").length;
-    const activeStudentCount = organization.memberships.filter((item) => item.role === "STUDENT").length;
+    const activeAdminCount = organization.memberships.filter(
+      (m) => m.role === "OWNER" || m.role === "ADMIN"
+    ).length;
+    const activeStudentCount = organization.memberships.filter(
+      (m) => m.role === "STUDENT"
+    ).length;
 
     return (
-      <main className="motion-rise space-y-4 md:space-y-6">
-        <section className="hero-panel">
-          <div className="relative grid gap-6 md:grid-cols-[1.1fr_0.9fr] md:items-end">
-            <div>
-              <span className="kicker">Organization Dashboard</span>
-              <h1 className="mt-4 text-4xl font-semibold tracking-[-0.05em] text-white">
-                {organization.name} is ready for review.
+      <main className="motion-rise">
+        {/* ===========================================================
+         *  HERO — wrapped in a soft-glow panel so the page opens
+         *  with a recognisable focal point rather than flat white.
+         * ========================================================= */}
+        <Section tight className="pt-6 md:pt-10">
+          <div className="hero-panel">
+            <div className="flex flex-col gap-6">
+              <Eyebrow>Organization Dashboard</Eyebrow>
+              <h1
+                className="display-headline"
+                style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+              >
+                <span className="gradient-text">{organization.name}</span>
               </h1>
-              <p className="mt-4 max-w-2xl text-sm md:text-base">
-                Use this workspace to monitor student practice, open saved reports, and keep the trial organization moving
-                without dropping into the student solving flow.
+              <p className="display-lede">
+                Monitor student practice, open saved reports, and keep the
+                trial moving without dropping into the student solving flow.
               </p>
-
-              <div className="mt-7 flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3 pt-1">
                 <Link className="btn-primary" href="/org">
                   Open Organization Workspace
                 </Link>
-                <Link className="btn-secondary border-white/20 bg-white/10 text-white hover:bg-white/20" href="/assignments">
+                <Link className="btn-secondary" href="/assignments">
                   Open Assignments
                 </Link>
               </div>
             </div>
+          </div>
+        </Section>
 
-            <div className="grid gap-3 sm:grid-cols-2">
-              <div className="hero-stat">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-blue-100/70">Admin Seats</p>
-                <p className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-white">
-                  {activeAdminCount}/{organization.maxAdminSeats}
-                </p>
-                <p className="mt-2 text-sm">Owner and admin seats are counted together in the current trial.</p>
-              </div>
-              <div className="hero-stat">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-blue-100/70">Student Seats</p>
-                <p className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-white">
-                  {activeStudentCount}/{organization.maxStudentSeats}
-                </p>
-                <p className="mt-2 text-sm">Watch seat usage as you add students to the trial.</p>
-              </div>
-            </div>
+        {/* ===========================================================
+         *  METRIC ROW — sits on a cool-tinted band so it reads as
+         *  the "operational stats" chapter, distinct from the hero.
+         * ========================================================= */}
+        <Section tight className="surface-section-cool">
+          <div className="grid gap-4 md:grid-cols-4">
+            <Metric
+              label="Admin seats"
+              value={`${activeAdminCount}/${organization.maxAdminSeats}`}
+              trend="Owner + admin combined"
+            />
+            <Metric
+              label="Student seats"
+              value={`${activeStudentCount}/${organization.maxStudentSeats}`}
+              trend="Active enrolments"
+            />
+            <Metric
+              label="Recent runs"
+              value={organization.practiceRuns.length}
+              trend="Last 8 student attempts"
+            />
+            <Metric
+              label="Saved reports"
+              value={organization.learningReportSnapshots.length}
+              trend="Pinned learning snapshots"
+            />
           </div>
-        </section>
+        </Section>
 
-        <section className="grid gap-4 md:grid-cols-3">
-          <div className="stat-card">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Recent Runs</p>
-            <p className="mt-3 text-2xl font-semibold text-slate-900">{organization.practiceRuns.length}</p>
-            <p className="mt-2 text-sm text-slate-700">Most recent student attempts linked to this organization.</p>
-          </div>
-          <div className="stat-card">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Saved Reports</p>
-            <p className="mt-3 text-2xl font-semibold text-slate-900">{organization.learningReportSnapshots.length}</p>
-            <p className="mt-2 text-sm text-slate-700">Run-scoped report snapshots available for admin review.</p>
-          </div>
-          <div className="stat-card">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Trial Status</p>
-            <p className="mt-3 text-2xl font-semibold text-slate-900">Active</p>
-            <p className="mt-2 text-sm text-slate-700">
-              Trial ends {organization.trialEndsAt ? organization.trialEndsAt.toLocaleDateString("en-US") : "later"}.
-            </p>
-          </div>
-        </section>
+        <hr className="divider-soft" />
 
-        <section className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="surface-card space-y-4">
-            <div>
-              <span className="badge">Student Activity</span>
-              <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-slate-900">Recent practice runs</h2>
-            </div>
-            <div className="space-y-3">
-              {organization.practiceRuns.length > 0 ? (
-                organization.practiceRuns.map((run) => (
-                  <div key={run.id} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                    <div className="flex flex-wrap items-start justify-between gap-3">
-                      <div>
-                        <p className="font-medium text-slate-900">{run.problemSet.title}</p>
-                        <p className="text-sm text-slate-600">{run.user.name ?? run.user.email}</p>
-                        <p className="text-xs text-slate-500">
-                          {run.completedAt ? "Completed" : "In progress"} · {run.startedAt.toLocaleString("en-US")}
-                        </p>
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        <Link className="btn-secondary" href={`/org/students/${encodeURIComponent(run.user.id)}`}>
-                          Student Detail
-                        </Link>
-                        {run.learningReportSnapshot ? (
-                          <Link className="btn-secondary" href={`/org/reports/${run.learningReportSnapshot.id}`}>
-                            Report
+        {/* ===========================================================
+         *  RECENT ACTIVITY — two-column
+         * ========================================================= */}
+        <Section>
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+            <div className="flex flex-col gap-6">
+              <SectionHeader
+                eyebrow="Student activity"
+                title="Recent practice runs"
+              />
+              <div className="flex flex-col gap-3">
+                {organization.practiceRuns.length > 0 ? (
+                  organization.practiceRuns.map((run) => (
+                    <Card key={run.id} tight>
+                      <div className="flex flex-wrap items-start justify-between gap-3">
+                        <div className="flex flex-col gap-1">
+                          <p className="font-medium" style={{ color: "var(--foreground)" }}>
+                            {run.problemSet.title}
+                          </p>
+                          <p className="text-sm" style={{ color: "var(--muted)" }}>
+                            {run.user.name ?? run.user.email}
+                          </p>
+                          <p className="text-xs" style={{ color: "var(--subtle)" }}>
+                            {run.completedAt ? "Completed" : "In progress"} ·{" "}
+                            {run.startedAt.toLocaleString("en-US")}
+                          </p>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          <Link
+                            className="btn-secondary"
+                            href={`/org/students/${encodeURIComponent(run.user.id)}`}
+                          >
+                            Student
                           </Link>
-                        ) : null}
+                          {run.learningReportSnapshot && (
+                            <Link
+                              className="btn-secondary"
+                              href={`/org/reports/${run.learningReportSnapshot.id}`}
+                            >
+                              Report
+                            </Link>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p className="text-sm text-slate-600">No organization-linked runs yet.</p>
-              )}
+                    </Card>
+                  ))
+                ) : (
+                  <Card>
+                    <EmptyState
+                      title="No runs yet"
+                      description="Student practice attempts linked to this organization will appear here."
+                    />
+                  </Card>
+                )}
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-6">
+              <SectionHeader
+                eyebrow="Review queue"
+                title="Report snapshots"
+              />
+              <div className="flex flex-col gap-3">
+                {organization.learningReportSnapshots.length > 0 ? (
+                  organization.learningReportSnapshots.map((snapshot) => (
+                    <Card key={snapshot.id} tight>
+                      <div className="flex flex-col gap-2">
+                        <p className="font-medium" style={{ color: "var(--foreground)" }}>
+                          {snapshot.practiceRun.problemSet.title}
+                        </p>
+                        <p className="text-sm" style={{ color: "var(--muted)" }}>
+                          {snapshot.user.name ?? snapshot.user.email}
+                        </p>
+                        <p className="text-xs" style={{ color: "var(--subtle)" }}>
+                          Generated {snapshot.generatedAt.toLocaleString("en-US")}
+                        </p>
+                        <div className="flex flex-wrap gap-2 pt-1">
+                          <Link
+                            className="btn-secondary"
+                            href={`/org/reports/${snapshot.id}`}
+                          >
+                            Open snapshot
+                          </Link>
+                          <Link
+                            className="btn-secondary"
+                            href={`/org/students/${encodeURIComponent(snapshot.user.id)}`}
+                          >
+                            Student
+                          </Link>
+                        </div>
+                      </div>
+                    </Card>
+                  ))
+                ) : (
+                  <Card>
+                    <EmptyState
+                      title="No snapshots saved"
+                      description="Saved report snapshots will surface here as runs complete."
+                    />
+                  </Card>
+                )}
+              </div>
             </div>
           </div>
-
-          <section className="surface-card space-y-4">
-            <div>
-              <span className="badge">Review Queue</span>
-              <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-slate-900">Recent report snapshots</h2>
-            </div>
-            <div className="space-y-3">
-              {organization.learningReportSnapshots.length > 0 ? (
-                organization.learningReportSnapshots.map((snapshot) => (
-                  <div key={snapshot.id} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                    <div className="space-y-2">
-                      <p className="font-medium text-slate-900">{snapshot.practiceRun.problemSet.title}</p>
-                      <p className="text-sm text-slate-600">{snapshot.user.name ?? snapshot.user.email}</p>
-                      <p className="text-xs text-slate-500">Generated {snapshot.generatedAt.toLocaleString("en-US")}</p>
-                      <div className="flex flex-wrap gap-2">
-                        <Link className="btn-secondary" href={`/org/reports/${snapshot.id}`}>
-                          Open Snapshot
-                        </Link>
-                        <Link className="btn-secondary" href={`/org/students/${encodeURIComponent(snapshot.user.id)}`}>
-                          Student Detail
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p className="text-sm text-slate-600">No saved report snapshots yet.</p>
-              )}
-            </div>
-          </section>
-        </section>
+        </Section>
       </main>
     );
   }
 
+  // =====================================================================
+  // Default / fallback view
+  // =====================================================================
   return (
-    <main className="motion-rise space-y-4 md:space-y-6">
-      <section className="hero-panel">
-        <div className="relative grid gap-6 md:grid-cols-[1.1fr_0.9fr] md:items-end">
-          <div>
-            <span className="kicker">Dashboard</span>
-            <h1 className="mt-4 text-4xl font-semibold tracking-[-0.05em] text-white">
-              Welcome back, {displayName}. Keep the momentum going.
-            </h1>
-            <p className="mt-4 max-w-2xl text-sm md:text-base">
-              ArcMath is built to make serious math practice feel more structured and less overwhelming. Everything here
-              is designed to help students stay consistent and help families see meaningful progress.
-            </p>
-
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Link className="btn-primary" href="/problems">
-                Start Practicing
-              </Link>
-              <Link
-                className="btn-secondary border-white/20 bg-white/10 text-white hover:bg-white/20"
-                href={organizationMembership ? "/assignments" : "/reports"}
-              >
-                {organizationMembership ? "View Assignments" : "View Reports"}
-              </Link>
-            </div>
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-2">
-            <div className="hero-stat">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-blue-100/70">Daily Rhythm</p>
-              <p className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-white">Steady</p>
-              <p className="mt-2 text-sm">Short, focused sessions build confidence faster than crowded study plans.</p>
-            </div>
-            <div className="hero-stat">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-blue-100/70">Long-Term Goal</p>
-              <p className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-white">Growth</p>
-              <p className="mt-2 text-sm">Better habits, clearer feedback, and stronger problem-solving over time.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="grid gap-4 md:grid-cols-3">
-            <div className="stat-card">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">SymPy verdicts</p>
-              <p className="mt-3 text-sm text-slate-700">Algebraic identities and equation manipulations are checked in milliseconds. No LLM round-trip needed for "2x = 4".</p>
-            </div>
-        <div className="stat-card">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Per-step trace</p>
-          <p className="mt-3 text-sm text-slate-700">Every step shows VERIFIED / PLAUSIBLE / INVALID and which engine signed off — SymPy, Lean kernel, or LLM judge.</p>
-        </div>
-            <div className="stat-card">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Pre-computed hints</p>
-              <p className="mt-3 text-sm text-slate-700">Three problem-specific hints are baked into the catalog at indexing time. The hint never reads as a generic placeholder.</p>
-            </div>
-          </section>
-
-      <section className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
-        <div className="surface-card space-y-5">
-          <div>
-            <span className="kicker">Why a kernel beats a chatbot</span>
-            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-slate-900">
-              An LLM grading math is just guessing. A kernel does not guess.
-            </h2>
-            <p className="mt-3 max-w-2xl text-sm text-slate-600">
-              ChatGPT will tell a student their wrong proof is correct because it sounds plausible. ArcMath routes each step through SymPy or Lean first; the LLM only fills in where the formal tools cannot. The student always sees which engine signed off.
-            </p>
-          </div>
-
-          <div className="grid gap-3 md:grid-cols-2">
-            <div className="stat-card">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Practice With Intent</p>
-              <p className="mt-3 text-sm text-slate-700">
-                Build confidence through curated problem sets rather than random question hunting.
-              </p>
-            </div>
-            <div className="stat-card">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Stay On Track</p>
-              <p className="mt-3 text-sm text-slate-700">
-                Clear next steps and clean reports keep the next action obvious.
-              </p>
-            </div>
-            <div className="stat-card">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Use Help Wisely</p>
-              <p className="mt-3 text-sm text-slate-700">
-                Guided support encourages persistence instead of handing over answers too quickly.
-              </p>
-            </div>
-            <div className="stat-card">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">See Real Progress</p>
-              <p className="mt-3 text-sm text-slate-700">
-                Reports and review pages make improvement feel visible, not abstract.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <section className="surface-card space-y-4">
-          <div>
-            <span className="badge">Start Here</span>
-            <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-slate-900">Choose your next move</h2>
-            <p className="mt-2 text-sm text-slate-600">
-              Whether today is for fresh practice, review, or planning, the main areas are ready to open.
-            </p>
-          </div>
-
-          <div className="grid gap-3">
-            <Link className="stat-card transition hover:-translate-y-0.5" href="/problems">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Problems</p>
-              <p className="mt-2 text-base font-semibold text-slate-900">Explore curated contest practice</p>
-              <p className="mt-2 text-sm text-slate-600">Browse sets, start a session, and keep your solving rhythm strong.</p>
+    <main className="motion-rise">
+      <Section tight className="pt-6 md:pt-10">
+        <div className="flex flex-col gap-6">
+          <Eyebrow>Dashboard</Eyebrow>
+          <h1
+            className="display-headline"
+            style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+          >
+            Welcome back, {displayName}.
+          </h1>
+          <p className="display-lede">
+            ArcMath is built to make serious math practice feel more
+            structured and less overwhelming. Everything here is designed
+            to help students stay consistent and help families see
+            meaningful progress.
+          </p>
+          <div className="flex flex-wrap gap-3 pt-1">
+            <Link className="btn-primary" href="/problems">
+              Start practicing
             </Link>
             <Link
-              className="stat-card transition hover:-translate-y-0.5"
+              className="btn-secondary"
               href={organizationMembership ? "/assignments" : "/reports"}
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+              {organizationMembership ? "View assignments" : "View reports"}
+            </Link>
+          </div>
+        </div>
+      </Section>
+
+      <hr className="divider-soft" />
+
+      {/* ===========================================================
+       *  ENGINE STACK
+       * ========================================================= */}
+      <Section>
+        <SectionHeader
+          eyebrow="Verification engines"
+          title="Three engines, one verdict"
+          lede="Every step you write is checked by deterministic math first. We only escalate to an LLM judge when the symbolic backends are unsure."
+        />
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <Card>
+            <h3 className="mb-2">SymPy</h3>
+            <p className="text-sm" style={{ color: "var(--muted)" }}>
+              Algebraic identities and equation manipulation are checked
+              in milliseconds. No LLM round-trip for &ldquo;2x = 4&rdquo;.
+            </p>
+          </Card>
+          <Card>
+            <h3 className="mb-2">Per-step trace</h3>
+            <p className="text-sm" style={{ color: "var(--muted)" }}>
+              Every step shows VERIFIED / INVALID / UNCERTAIN and which
+              engine signed off — SymPy, Lean kernel, or LLM judge.
+            </p>
+          </Card>
+          <Card>
+            <h3 className="mb-2">Pre-computed hints</h3>
+            <p className="text-sm" style={{ color: "var(--muted)" }}>
+              Three problem-specific hints are baked into the catalog so
+              students never see a generic placeholder when stuck.
+            </p>
+          </Card>
+        </div>
+      </Section>
+
+      <hr className="divider-soft" />
+
+      {/* ===========================================================
+       *  WHY KERNEL OVER CHATBOT  +  QUICK LINKS
+       * ========================================================= */}
+      <Section>
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
+          <div className="flex flex-col gap-6">
+            <SectionHeader
+              eyebrow="Why a kernel beats a chatbot"
+              title="An LLM grading math is guessing. A kernel does not guess."
+              lede="ChatGPT will tell a student their wrong proof is correct because it sounds plausible. ArcMath routes each step through SymPy or Lean first; the LLM only fills in where the formal tools cannot."
+            />
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                {
+                  title: "Practice with intent",
+                  body: "Build confidence through curated problem sets, not random question hunting."
+                },
+                {
+                  title: "Stay on track",
+                  body: "Clear next steps and clean reports keep the next action obvious."
+                },
+                {
+                  title: "Use help wisely",
+                  body: "Guided support encourages persistence instead of handing over answers too quickly."
+                },
+                {
+                  title: "See real progress",
+                  body: "Reports and review pages make improvement feel visible, not abstract."
+                }
+              ].map((item) => (
+                <Card key={item.title} tight>
+                  <p
+                    className="text-[11px] font-semibold uppercase mb-2"
+                    style={{ color: "var(--subtle)", letterSpacing: "0.12em" }}
+                  >
+                    {item.title}
+                  </p>
+                  <p className="text-sm" style={{ color: "var(--foreground)" }}>
+                    {item.body}
+                  </p>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <SectionHeader
+              eyebrow="Start here"
+              title="Choose your next move"
+            />
+            <Link
+              href="/problems"
+              className="surface-card transition"
+              style={{ textDecoration: "none" }}
+            >
+              <Eyebrow>Problems</Eyebrow>
+              <p
+                className="mt-2 text-base font-semibold"
+                style={{ color: "var(--foreground)" }}
+              >
+                Explore curated contest practice
+              </p>
+              <p className="mt-2 text-sm" style={{ color: "var(--muted)" }}>
+                Browse sets, start a session, and keep your rhythm strong.
+              </p>
+            </Link>
+            <Link
+              href={organizationMembership ? "/assignments" : "/reports"}
+              className="surface-card transition"
+              style={{ textDecoration: "none" }}
+            >
+              <Eyebrow>
                 {organizationMembership ? "Assignments" : "Reports"}
+              </Eyebrow>
+              <p
+                className="mt-2 text-base font-semibold"
+                style={{ color: "var(--foreground)" }}
+              >
+                {organizationMembership
+                  ? "Review organization work"
+                  : "Track learning with more clarity"}
               </p>
-              <p className="mt-2 text-base font-semibold text-slate-900">
-                {organizationMembership ? "Review organization work" : "Track learning with more clarity"}
-              </p>
-              <p className="mt-2 text-sm text-slate-600">
+              <p className="mt-2 text-sm" style={{ color: "var(--muted)" }}>
                 {organizationMembership
                   ? "Open the internal assignment board and see what your organization expects next."
                   : "Track each step with the engine that verified it — SymPy, Lean, or LLM judge."}
               </p>
             </Link>
-            {organizationMembership ? (
-              <Link className="stat-card transition hover:-translate-y-0.5" href="/resources">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Resources</p>
-                <p className="mt-2 text-base font-semibold text-slate-900">Open organization study materials</p>
-                <p className="mt-2 text-sm text-slate-600">Use the shared notes, links, and lesson material posted inside your organization.</p>
-              </Link>
-            ) : null}
-            {organizationMembership ? (
-              <Link className="stat-card transition hover:-translate-y-0.5" href="/org">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Organization</p>
-                <p className="mt-2 text-base font-semibold text-slate-900">{organizationMembership.organizationName}</p>
-                <p className="mt-2 text-sm text-slate-600">
-                  Open the organization workspace to review members, runs, and saved report snapshots.
-                </p>
-              </Link>
-            ) : null}
+            {organizationMembership && (
+              <>
+                <Link
+                  href="/resources"
+                  className="surface-card transition"
+                  style={{ textDecoration: "none" }}
+                >
+                  <Eyebrow>Resources</Eyebrow>
+                  <p
+                    className="mt-2 text-base font-semibold"
+                    style={{ color: "var(--foreground)" }}
+                  >
+                    Open organization study materials
+                  </p>
+                  <p className="mt-2 text-sm" style={{ color: "var(--muted)" }}>
+                    Use the shared notes, links, and lesson material posted
+                    inside your organization.
+                  </p>
+                </Link>
+                <Link
+                  href="/org"
+                  className="surface-card transition"
+                  style={{ textDecoration: "none" }}
+                >
+                  <Eyebrow>Organization</Eyebrow>
+                  <p
+                    className="mt-2 text-base font-semibold"
+                    style={{ color: "var(--foreground)" }}
+                  >
+                    {organizationMembership.organizationName}
+                  </p>
+                  <p className="mt-2 text-sm" style={{ color: "var(--muted)" }}>
+                    Open the organization workspace to review members, runs,
+                    and saved report snapshots.
+                  </p>
+                </Link>
+              </>
+            )}
           </div>
-        </section>
-      </section>
+        </div>
+      </Section>
     </main>
   );
 }

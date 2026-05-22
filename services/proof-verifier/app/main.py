@@ -39,13 +39,60 @@ def classify(req: ClassifyRequest) -> ClassifyResponse:
 
 @app.post("/verify", response_model=VerifyResponse)
 def verify(req: VerifyRequest) -> VerifyResponse:
-    """Dispatch by step_type. SymPy handles symbolic algebra; Lean requires
-    an already-formalized Lean source string (see /verify/lean)."""
-    if req.step_type in (StepType.EQUATION, StepType.ALGEBRAIC_EQUIVALENCE, StepType.INEQUALITY):
-        return sympy_verifier.verify(req.step_type, req.latex)
+    """Dispatch by step_type.
 
-    if req.step_type in (StepType.CLAIM,):
-        return lean_verifier.verify(req.step_type, req.latex)
+    - SymPy handles symbolic algebra (EQUATION / ALGEBRAIC_EQUIVALENCE /
+      INEQUALITY).
+    - For CLAIM steps we route to the Lean autoformalize+verify pipeline
+      (`/prove`) so the kernel actually checks the assertion. Previously
+      this branch called `lean_verifier.verify` which is a back-compat
+      stub that always returns UNKNOWN — making step-level Lean
+      verification effectively dead code.
+    - Anything else returns UNKNOWN with a clear note so the v2 grader's
+      escalation gate can flag it.
+
+    Callers who already have raw Lean 4 source should use POST /verify/lean
+    instead; that path bypasses autoformalization.
+    """
+    if req.step_type in (StepType.EQUATION, StepType.ALGEBRAIC_EQUIVALENCE, StepType.INEQUALITY):
+        return sympy_verifier.verify(req.step_type, req.latex, req.assumptions)
+
+    if req.step_type == StepType.CLAIM:
+        prove_resp = prove_pipeline.prove(
+            ProveRequest(
+                domain="math",
+                natural_language_statement=req.latex,
+                planner_assumptions=req.assumptions,
+                max_completion_retries=1,
+            )
+        )
+        verdict_map = {
+            "VERIFIED": Verdict.VERIFIED,
+            "INVALID": Verdict.INVALID,
+            "UNKNOWN": Verdict.UNKNOWN,
+            "LLM_FAIL": Verdict.UNKNOWN,
+            "NO_API_KEY": Verdict.UNKNOWN,
+        }
+        verdict = verdict_map.get(prove_resp.status, Verdict.UNKNOWN)
+        confidence = (
+            0.99
+            if verdict == Verdict.VERIFIED
+            else 0.92
+            if verdict == Verdict.INVALID
+            else 0.0
+        )
+        return VerifyResponse(
+            verdict=verdict,
+            backend=Backend.LEAN,
+            confidence=confidence,
+            details={
+                "stage": "claim_via_prove",
+                "prove_status": prove_resp.status,
+                "retries_used": prove_resp.retries_used,
+                "verifier_details": prove_resp.verifier_details,
+                "notes": prove_resp.notes,
+            },
+        )
 
     return VerifyResponse(
         verdict=Verdict.UNKNOWN,

@@ -6,6 +6,12 @@ type MathFieldElement = HTMLElement & {
   value: string;
   getValue?: () => string;
   setValue?: (value: string) => void;
+  // MathLive exposes these as JS properties on the element. We set
+  // them via useEffect because some React/web-component edge cases
+  // don't reliably forward boolean attributes from JSX. See the
+  // useEffect below.
+  smartMode?: boolean;
+  smartFence?: boolean;
 };
 
 declare module "react" {
@@ -69,6 +75,15 @@ export function MathFieldEditor({
       el.value = initialValue;
     }
     if (placeholder) el.setAttribute("placeholder", placeholder);
+    // Enable smart-mode imperatively. The JSX attribute is a backup;
+    // setting the JS property here is what MathLive actually reads at
+    // runtime in some versions. Without this, proof writers cannot
+    // type prose with spaces — "Suppose n is even" renders as
+    // "Supposenisven" because letters juxtapose in pure math mode.
+    el.smartMode = true;
+    // smart-fence keeps auto-closing of brackets, which we generally
+    // want for math typing. Same boolean property reset.
+    el.smartFence = true;
     setCurrentValue(initialValue);
     if (autoFocus) {
       setTimeout(() => el.focus?.(), 50);
@@ -95,16 +110,33 @@ export function MathFieldEditor({
     <div className="space-y-2">
       <div className="rounded-2xl border border-slate-200 bg-white p-3">
         {ready ? (
+          // smart-mode: MathLive auto-detects "word-like" letter
+          // sequences and switches to text mode for them, so a student
+          // can write "Suppose n=1 and a=2" with spaces between words
+          // and have it render properly. Without this attribute, the
+          // entire input stays in math mode — variables juxtapose
+          // (no rendered spaces) and prose becomes unreadable.
+          //
+          // text-mode escape: pressing Esc or quote-key explicitly
+          // toggles between math/text mode if smart detection misses.
+          // See https://cortexjs.io/mathlive/guides/interacting/
           <math-field
             ref={(node: HTMLElement | null) => {
               fieldRef.current = node as MathFieldElement | null;
             }}
+            smart-mode="true"
             style={{ width: "100%", minHeight, display: "block", fontSize: "1.05rem", outline: "none" }}
           />
         ) : (
           <div className="h-12 animate-pulse rounded-lg bg-slate-100" aria-label="Loading formula editor" />
         )}
       </div>
+      <p className="text-[11px]" style={{ color: "var(--subtle)" }}>
+        {/* Pilot guidance — tell students how to mix prose + math without
+            digging through MathLive docs. */}
+        Tip: words typed together (e.g. <code>Suppose</code>, <code>therefore</code>) auto-switch to text mode.
+        Single letters stay as math variables. Press <kbd>Esc</kbd> to force-toggle modes mid-step.
+      </p>
       <div className="flex flex-wrap items-center gap-2">
         <button type="button" className="btn-primary" disabled={!canSave} onClick={() => onSave(trimmed)}>
           {busy ? "Saving…" : saveLabel}

@@ -1,7 +1,10 @@
-# fly.toml app configuration file generated for arcmath-proof-verifier on 2026-05-07T20:55:31+08:00
+# Fly.io configuration for the proof-verifier (slim Python-only).
 #
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+# Memory bumped to 2 GB to give SymPy room on multi-variable inequality
+# probes; CPU stays shared since SymPy + the autoformalize OpenAI call
+# are not CPU-bound.
 #
+# Autostop on so the cost stays near-zero between sessions.
 
 app = 'arcmath-proof-verifier'
 primary_region = 'sjc'
@@ -17,7 +20,7 @@ primary_region = 'sjc'
   processes = ['app']
 
 [[vm]]
-  memory = '1gb'
+  memory = '2gb'
   cpu_kind = 'shared'
   cpus = 1
-  memory_mb = 1024
+  memory_mb = 2048

@@ -1,0 +1,3246 @@
+[
+  {
+    "key": "minif2f-test-aime_1983_p1",
+    "source": "MINIF2F",
+    "problemStatement": "(x y z w : natural number) (ht : 1 < x ∧ 1 < y ∧ 1 < z) (hw : 0 ≤ w) (h0 : Real.log w / Real.log x = 24) (h1 : Real.log w / Real.log y = 40) (h2 : Real.log w / Real.log (x * y * z) = 12) : Real.log w / Real.log z = 60",
+    "rubric": {
+      "problemId": "minif2f-test-aime_1983_p1",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.460Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(x y z w : natural number) (ht : 1 < x ∧ 1 < y ∧ 1 < z) (hw : 0 ≤ w) (h0 : Real.log w / Real.log x = 24) (h1 : Real.log w / Real.log y = 40) (h2 : Real.log w / Real.log (x * y * z) = 12) : Real.log w / Real.log z = 60",
+      "milestones": [
+        {
+          "id": "minif2f-test-aime_1983_p1::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(x y z w : natural number) (ht : 1 < x ∧ 1 < y ∧ 1 < z) (hw : 0 ≤ w) (h0 : Real.log w / Real.log x = 24) (h1 : Real.log w / Real.log y = 40) (h2 : Real.log w / Real.log (x * y * z) = 12) : Real.log w / Real.log z = 60",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem aime_1983_p1 (x y z w : ℕ) (ht : 1 < x ∧ 1 < y ∧ 1 < z) (hw : 0 ≤ w) (h0 : Real.log w / Real.log x = 24) (h1 : Real.log w / Real.log y = 40) (h2 : Real.log w / Real.log (x * y * z) = 12) : Real.log w / Real.log z = 60 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Rewrite given ratios in terms of logarithms to isolate variables and solve for the target ratio.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "\\frac{\\log w}{\\log x} = 24",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{\\log w}{\\log y} = 40",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{\\log w}{\\log (x y z)} = 12",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\log(x y z) = \\log x + \\log y + \\log z",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{\\log w}{\\log x + \\log y + \\log z} = 12",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\Rightarrow \\frac{\\log w}{\\log x + \\log y + \\log z} = 12",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Introduce an off-by-one error by miscalculating sum of logs as \\log x + \\log y - \\log z instead of plus log z.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "\\frac{\\log w}{\\log x} = 24",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{\\log w}{\\log y} = 40",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{\\log w}{\\log (x y z)} = 12",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\log(x y z) = \\log x + \\log y - \\log z",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\frac{\\log w}{\\log x + \\log y - \\log z} = 12",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\Rightarrow \\frac{\\log w}{\\log z} = 60",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrectly claim the target ratio is 12 directly from h2 without any work.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "\\frac{\\log w}{\\log z} = 12",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-aime_1983_p2",
+    "source": "MINIF2F",
+    "problemStatement": "(x p : real number) (f : real number → real number) (h₀ : 0 < p ∧ p < 15) (h₁ : p ≤ x ∧ x ≤ 15) (h₂ : f x = abs (x - p) + abs (x - 15) + abs (x - p - 15)) : 15 ≤ f x",
+    "rubric": {
+      "problemId": "minif2f-test-aime_1983_p2",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(x p : real number) (f : real number → real number) (h₀ : 0 < p ∧ p < 15) (h₁ : p ≤ x ∧ x ≤ 15) (h₂ : f x = abs (x - p) + abs (x - 15) + abs (x - p - 15)) : 15 ≤ f x",
+      "milestones": [
+        {
+          "id": "minif2f-test-aime_1983_p2::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(x p : real number) (f : real number → real number) (h₀ : 0 < p ∧ p < 15) (h₁ : p ≤ x ∧ x ≤ 15) (h₂ : f x = abs (x - p) + abs (x - 15) + abs (x - p - 15)) : 15 ≤ f x",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem aime_1983_p2 (x p : ℝ) (f : ℝ → ℝ) (h₀ : 0 < p ∧ p < 15) (h₁ : p ≤ x ∧ x ≤ 15) (h₂ : f x = abs (x - p) + abs (x - 15) + abs (x - p - 15)) : 15 ≤ f x := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Add and subtract (x-p) inside the last absolute value and simplify using given interval constraints to show f(x) >= 15.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "f x = |x - p| + |x - 15| + |x - p - 15|",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "= |x - p| + |x - 15| + |(x - p) - 15|",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "Since p ≤ x ≤ 15, (x - p) ≥ 0 and (15 - x) ≥ 0",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "Therefore, |x - p| = x - p and |x - 15| = 15 - x",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "Also, |(x - p) - 15| = 15 - (x - p) = 15 - x + p",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "Sum these: (x - p) + (15 - x) + (15 - x + p) = 15 + 15 - x = 30 - x",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "Since x ≤ 15, 30 - x ≥ 15",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "Hence, f x ≥ 15",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Similar proof but mistakenly assume |(x - p) - 15| = (x - p) - 15 instead of absolute value, leading to invalid conclusion.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "f x = |x - p| + |x - 15| + |x - p - 15|",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "= |x - p| + |x - 15| + ((x - p) - 15)",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "Since p ≤ x ≤ 15, (x - p) ≥ 0 and |x - p| = x - p and |x - 15| = 15 - x",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "Sum: (x - p) + (15 - x) + (x - p - 15) = (x - p) + (15 - x) + x - p - 15",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "Simplify: (x - p) + (15 - x) + x - p - 15 = (x - p - x + 15) + x - p - 15 = ( - p + 15 ) + x - p - 15",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "Further simplify: = - p + 15 + x - p - 15 = x - 2p",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "Since p>0 and x ≤ 15, no guarantee x - 2p ≥ 15",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "Therefore, cannot assert f x ≥ 15",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Assert f(x) ≤ 0 which contradicts the known absolute value sum structure.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "f x ≤ 0",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-aime_1983_p3",
+    "source": "MINIF2F",
+    "problemStatement": "(f : real number → real number) (h₀ : ∀ x, f x = (x^2 + (18 * x + 30) - 2 * Real.sqrt (x^2 + (18 * x + 45)))) (h₁ : Fintype (f⁻¹' {0})) : ∏ x ∈ (f⁻¹' {0}).toFinset, x = 20",
+    "rubric": {
+      "problemId": "minif2f-test-aime_1983_p3",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(f : real number → real number) (h₀ : ∀ x, f x = (x^2 + (18 * x + 30) - 2 * Real.sqrt (x^2 + (18 * x + 45)))) (h₁ : Fintype (f⁻¹' {0})) : ∏ x ∈ (f⁻¹' {0}).toFinset, x = 20",
+      "milestones": [
+        {
+          "id": "minif2f-test-aime_1983_p3::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(f : real number → real number) (h₀ : ∀ x, f x = (x^2 + (18 * x + 30) - 2 * Real.sqrt (x^2 + (18 * x + 45)))) (h₁ : Fintype (f⁻¹' {0})) : ∏ x ∈ (f⁻¹' {0}).toFinset, x = 20",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem aime_1983_p3 (f : ℝ → ℝ) (h₀ : ∀ x, f x = (x^2 + (18 * x + 30) - 2 * Real.sqrt (x^2 + (18 * x + 45)))) (h₁ : Fintype (f⁻¹' {0})) : ∏ x ∈ (f⁻¹' {0}).toFinset, x = 20 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Solve the equation exactly by isolating the square root, squaring both sides, simplifying, and identifying the roots to conclude the product is 20.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "f x = x^2 + 18 x + 30 - 2 \\sqrt{x^2 + 18 x + 45}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "f x = 0 \\implies x^2 + 18 x + 30 = 2 \\sqrt{x^2 + 18 x + 45}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(x^2 + 18 x + 30)^2 = 4 (x^2 + 18 x + 45)",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "x^4 + 36 x^3 + 396 x^2 + 1080 x + 900 = 4 x^2 + 72 x + 180",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "x^4 + 36 x^3 + 392 x^2 + 1008 x + 720 = 0",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Repeated the correct initial steps but made a sign error in expanding terms after squaring, leading to an incorrect quartic polynomial.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "f x = x^2 + 18 x + 30 - 2 \\sqrt{x^2 + 18 x + 45}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "f x = 0 \\implies x^2 + 18 x + 30 = 2 \\sqrt{x^2 + 18 x + 45}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(x^2 + 18 x + 30)^2 = 4 (x^2 + 18 x + 45)",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "x^4 + 36 x^3 + 392 x^2 - 1080 x + 900 = 0",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "x^4 + 36 x^3 + 392 x^2 - 1080 x + 900 = 0",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrectly concluding that the roots multiply to zero without any valid work.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "\\prod_{x \\in f^{-1} \\{0\\}} x = 0",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-aime_1984_p1",
+    "source": "MINIF2F",
+    "problemStatement": "(u : natural number → rational number) (h₀ : ∀ n, u (n + 1) = u n + 1) let h₁ : ∑ k ∈ Finset.range 98, u k.succ = 137 be ∑ k ∈ Finset.range 49; u (2 * k.succ) = 93",
+    "rubric": {
+      "problemId": "minif2f-test-aime_1984_p1",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(u : natural number → rational number) (h₀ : ∀ n, u (n + 1) = u n + 1) let h₁ : ∑ k ∈ Finset.range 98, u k.succ = 137 be ∑ k ∈ Finset.range 49; u (2 * k.succ) = 93",
+      "milestones": [
+        {
+          "id": "minif2f-test-aime_1984_p1::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(u : natural number → rational number) (h₀ : ∀ n, u (n + 1) = u n + 1) let h₁ : ∑ k ∈ Finset.range 98, u k.succ = 137 be ∑ k ∈ Finset.range 49; u (2 * k.succ) = 93",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem aime_1984_p1 (u : ℕ → ℚ) (h₀ : ∀ n, u (n + 1) = u n + 1) (h₁ : ∑ k ∈ Finset.range 98, u k.succ = 137) : ∑ k ∈ Finset.range 49, u (2 * k.succ) = 93 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Use arithmetic progression and split sums by odd/even indices correctly.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "u n = u 0 + n",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\sum_{k=0}^{97} u (k+1) = 137",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\sum_{k=0}^{97} u (k+1) = \\sum_{k=0}^{48} u (2k+1) + \\sum_{k=0}^{48} u (2k+2)",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\sum_{k=0}^{48} u (2k+2) = 93",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\sum_{k=0}^{48} u (2k+1) = 137 - 93 = 44",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Off-by-one error in summation limits when splitting even terms, causing incorrect total.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "u n = u 0 + n",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\sum_{k=0}^{97} u (k+1) = 137",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\sum_{k=0}^{97} u (k+1) = \\sum_{k=0}^{48} u (2k+1) + \\sum_{k=0}^{49} u (2k+2)",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\sum_{k=0}^{48} u (2k+1) = 44",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\sum_{k=0}^{49} u (2k+2) = 93",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrect claim that sum of evens equals the total sum, contradicting problem.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "\\sum_{k=0}^{48} u (2k+2) = 137",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-aime_1984_p7",
+    "source": "MINIF2F",
+    "problemStatement": "(f : integer → integer) (h₀ : ∀ n, 1000 ≤ n → f n = n - 3) (h₁ : ∀ n, n < 1000 → f n = f (f (n + 5))) : f 84 = 997",
+    "rubric": {
+      "problemId": "minif2f-test-aime_1984_p7",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(f : integer → integer) (h₀ : ∀ n, 1000 ≤ n → f n = n - 3) (h₁ : ∀ n, n < 1000 → f n = f (f (n + 5))) : f 84 = 997",
+      "milestones": [
+        {
+          "id": "minif2f-test-aime_1984_p7::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(f : integer → integer) (h₀ : ∀ n, 1000 ≤ n → f n = n - 3) (h₁ : ∀ n, n < 1000 → f n = f (f (n + 5))) : f 84 = 997",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem aime_1984_p7 (f : ℤ → ℤ) (h₀ : ∀ n, 1000 ≤ n → f n = n - 3) (h₁ : ∀ n, n < 1000 → f n = f (f (n + 5))) : f 84 = 997 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Use the conditions to repeatedly apply h1 to reduce from 84 to a value ≥ 1000, then apply h0.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "f 84 = f (f (84 + 5))",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "f 84 = f (f 89)",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "f 89 = f (f (89 + 5))",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "f 89 = f (f 94)",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "⋯",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "eventually, f n for some n ≥ 1000, so f n = n - 3 by h0",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "Compute stepwise that leads to f 84 = 997",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Similar to clean correct but one step has sign error in applying h0, causing incorrect downstream values.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "f 84 = f (f (84 + 5))",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "f 84 = f (f 89)",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "f 89 = f (f (89 + 5))",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "f 89 = f (f 94)",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "⋯",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "incorrectly compute f n = n + 3 instead of n - 3 for some n ≥ 1000",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "Final wrong value computed as f 84 = 1003",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrectly assert f 84 = 84 without justification, contradicting problem claim.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "f 84 = 84",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-aime_1987_p5",
+    "source": "MINIF2F",
+    "problemStatement": "(x y : integer) (h₀ : y^2 + 3 * (x^2 * y^2) = 30 * x^2 + 517): 3 * (x^2 * y^2) = 588",
+    "rubric": {
+      "problemId": "minif2f-test-aime_1987_p5",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(x y : integer) (h₀ : y^2 + 3 * (x^2 * y^2) = 30 * x^2 + 517): 3 * (x^2 * y^2) = 588",
+      "milestones": [
+        {
+          "id": "minif2f-test-aime_1987_p5::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(x y : integer) (h₀ : y^2 + 3 * (x^2 * y^2) = 30 * x^2 + 517): 3 * (x^2 * y^2) = 588",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem aime_1987_p5 (x y : ℤ) (h₀ : y^2 + 3 * (x^2 * y^2) = 30 * x^2 + 517): 3 * (x^2 * y^2) = 588 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Starting from the given equation, isolate y^2 and substitute to solve for 3(x^2 y^2).",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "y^2 + 3(x^2 y^2) = 30 x^2 + 517",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "y^2 = 30 x^2 + 517 - 3(x^2 y^2)",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "Substitute y^2 into the left side: (30 x^2 + 517 - 3(x^2 y^2)) + 3(x^2 y^2) = 30 x^2 + 517",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "Simplify the left side: 30 x^2 + 517 - 3(x^2 y^2) + 3(x^2 y^2) = 30 x^2 + 517",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "This indicates that 3(x^2 y^2) must be equal to 588 to satisfy the original equation when rearranged",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Incorrectly treated the 3(x^2 y^2) term by off-by-one mistake in simplification leading to an error.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "y^2 + 3(x^2 y^2) = 30 x^2 + 517",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "y^2 = 30 x^2 + 517 - 3(x^2 y^2)",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "Substitute y^2 into equation: (30 x^2 + 517 - 3(x^2 y^2)) + 3(x^2 y^2) = 30 x^2 + 516",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "Simplify the left side: 30 x^2 + 517 - 3(x^2 y^2) + 3(x^2 y^2) = 30 x^2 + 516",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "This incorrectly equates 30 x^2 + 517 = 30 x^2 + 516",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrectly claims the value 3(x^2 y^2) equals a wrong constant without justification.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "3(x^2 y^2) = 600",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "This contradicts the goal that 3(x^2 y^2) = 588",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-aime_1988_p8",
+    "source": "MINIF2F",
+    "problemStatement": "(f : natural number → natural number → real number) (h₀ : ∀ x, 0 < x → f x x = x) (h₁ : ∀ x y, (0 < x ∧ 0 < y) → f x y = f y x) (h₂ : ∀ x y, (0 < x ∧ 0 < y) → (↑x + ↑y) * f x y = y * (f x (x + y))) : f 14 52 = 364",
+    "rubric": {
+      "problemId": "minif2f-test-aime_1988_p8",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(f : natural number → natural number → real number) (h₀ : ∀ x, 0 < x → f x x = x) (h₁ : ∀ x y, (0 < x ∧ 0 < y) → f x y = f y x) (h₂ : ∀ x y, (0 < x ∧ 0 < y) → (↑x + ↑y) * f x y = y * (f x (x + y))) : f 14 52 = 364",
+      "milestones": [
+        {
+          "id": "minif2f-test-aime_1988_p8::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(f : natural number → natural number → real number) (h₀ : ∀ x, 0 < x → f x x = x) (h₁ : ∀ x y, (0 < x ∧ 0 < y) → f x y = f y x) (h₂ : ∀ x y, (0 < x ∧ 0 < y) → (↑x + ↑y) * f x y = y * (f x (x + y))) : f 14 52 = 364",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem aime_1988_p8 (f : ℕ → ℕ → ℝ) (h₀ : ∀ x, 0 < x → f x x = x) (h₁ : ∀ x y, (0 < x ∧ 0 < y) → f x y = f y x) (h₂ : ∀ x y, (0 < x ∧ 0 < y) → (↑x + ↑y) * f x y = y * (f x (x + y))) : f 14 52 = 364 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Use given properties to find f(14,52) by recursive application.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "f 14 52 = f 52 14",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(14 + 52) * f 14 52 = 52 * f 14 66",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(14 + 66) * f 14 66 = 66 * f 14 80",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(14 + 80) * f 14 80 = 80 * f 14 94",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(14 + 94) * f 14 94 = 94 * f 14 108",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(14 + 108) * f 14 108 = 108 * f 14 122",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(14 + 122) * f 14 122 = 122 * f 14 136",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(14 + 136) * f 14 136 = 136 * f 14 150",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Use the same reasoning as CLEAN_CORRECT but with a wrong factor in one step (sign error in multiplier).",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "f 14 52 = f 52 14",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(14 + 52) * f 14 52 = 52 * f 14 66",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(14 + 66) * f 14 66 = 67 * f 14 80",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "(14 + 80) * f 14 80 = 80 * f 14 94",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "(14 + 94) * f 14 94 = 94 * f 14 108",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "(14 + 108) * f 14 108 = 108 * f 14 122",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "(14 + 122) * f 14 122 = 122 * f 14 136",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "(14 + 136) * f 14 136 = 136 * f 14 150",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Wrong guess that f(14,52) is just 14.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "f 14 52 = 14",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-aime_1989_p8",
+    "source": "MINIF2F",
+    "problemStatement": "(a b c d e f g : real number) (h₀ : a + 4 * b + 9 * c + 16 * d + 25 * e + 36 * f + 49 * g = 1) (h₁ : 4 * a + 9 * b + 16 * c + 25 * d + 36 * e + 49 * f + 64 * g = 12) (h₂ : 9 * a + 16 * b + 25 * c + 36 * d + 49 * e + 64 * f + 81 * g = 123) : 16 * a + 25 * b + 36 * c + 49 * d + 64 * e + 81 * f + 100 * g = 334",
+    "rubric": {
+      "problemId": "minif2f-test-aime_1989_p8",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(a b c d e f g : real number) (h₀ : a + 4 * b + 9 * c + 16 * d + 25 * e + 36 * f + 49 * g = 1) (h₁ : 4 * a + 9 * b + 16 * c + 25 * d + 36 * e + 49 * f + 64 * g = 12) (h₂ : 9 * a + 16 * b + 25 * c + 36 * d + 49 * e + 64 * f + 81 * g = 123) : 16 * a + 25 * b + 36 * c + 49 * d + 64 * e + 81 * f + 100 * g = 334",
+      "milestones": [
+        {
+          "id": "minif2f-test-aime_1989_p8::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(a b c d e f g : real number) (h₀ : a + 4 * b + 9 * c + 16 * d + 25 * e + 36 * f + 49 * g = 1) (h₁ : 4 * a + 9 * b + 16 * c + 25 * d + 36 * e + 49 * f + 64 * g = 12) (h₂ : 9 * a + 16 * b + 25 * c + 36 * d + 49 * e + 64 * f + 81 * g = 123) : 16 * a + 25 * b + 36 * c + 49 * d + 64 * e + 81 * f + 100 * g = 334",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem aime_1989_p8 (a b c d e f g : ℝ) (h₀ : a + 4 * b + 9 * c + 16 * d + 25 * e + 36 * f + 49 * g = 1) (h₁ : 4 * a + 9 * b + 16 * c + 25 * d + 36 * e + 49 * f + 64 * g = 12) (h₂ : 9 * a + 16 * b + 25 * c + 36 * d + 49 * e + 64 * f + 81 * g = 123) : 16 * a + 25 * b + 36 * c + 49 * d + 64 * e + 81 * f + 100 * g = 334 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Use finite difference approach recognizing the given equations represent sums with quadratic terms and apply the third finite difference formula to find the missing value.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "h_0 = a + 4 b + 9 c + 16 d + 25 e + 36 f + 49 g = 1",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "h_1 = 4 a + 9 b + 16 c + 25 d + 36 e + 49 f + 64 g = 12",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "h_2 = 9 a + 16 b + 25 c + 36 d + 49 e + 64 f + 81 g = 123",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "16 a + 25 b + 36 c + 49 d + 64 e + 81 f + 100 g = 3 h_2 - 3 h_1 + h_0",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "= 3 * 123 - 3 * 12 + 1 = 369 - 36 + 1 = 334",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Use the same finite difference formula but introduce a sign error in the combination step leading to a wrong final value.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "h_0 = a + 4 b + 9 c + 16 d + 25 e + 36 f + 49 g = 1",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "h_1 = 4 a + 9 b + 16 c + 25 d + 36 e + 49 f + 64 g = 12",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "h_2 = 9 a + 16 b + 25 c + 36 d + 49 e + 64 f + 81 g = 123",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "16 a + 25 b + 36 c + 49 d + 64 e + 81 f + 100 g = 3 h_2 + 3 h_1 - h_0",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "= 3 * 123 + 3 * 12 - 1 = 369 + 36 - 1 = 404",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrect claim that the next value is simply h_2 plus 10, which ignores all algebraic relations and is false.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "16 a + 25 b + 36 c + 49 d + 64 e + 81 f + 100 g = h_2 + 10 = 123 + 10 = 133",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-aime_1990_p15",
+    "source": "MINIF2F",
+    "problemStatement": "(a b x y : real number) (h₀ : a * x + b * y = 3) (h₁ : a * x^2 + b * y^2 = 7) (h₂ : a * x^3 + b * y^3 = 16) (h₃ : a * x^4 + b * y^4 = 42) : a * x^5 + b * y^5 = 20",
+    "rubric": {
+      "problemId": "minif2f-test-aime_1990_p15",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(a b x y : real number) (h₀ : a * x + b * y = 3) (h₁ : a * x^2 + b * y^2 = 7) (h₂ : a * x^3 + b * y^3 = 16) (h₃ : a * x^4 + b * y^4 = 42) : a * x^5 + b * y^5 = 20",
+      "milestones": [
+        {
+          "id": "minif2f-test-aime_1990_p15::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(a b x y : real number) (h₀ : a * x + b * y = 3) (h₁ : a * x^2 + b * y^2 = 7) (h₂ : a * x^3 + b * y^3 = 16) (h₃ : a * x^4 + b * y^4 = 42) : a * x^5 + b * y^5 = 20",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem aime_1990_p15 (a b x y : ℝ) (h₀ : a * x + b * y = 3) (h₁ : a * x^2 + b * y^2 = 7) (h₂ : a * x^3 + b * y^3 = 16) (h₃ : a * x^4 + b * y^4 = 42) : a * x^5 + b * y^5 = 20 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Use the recurrence relation derived from x and y satisfying a quadratic equation, applying the relation for powers to express a*x^5 + b*y^5 in terms of previous sums.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "S_1 = 3",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "S_2 = 7",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "S_3 = 16",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "S_4 = 42",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "S_5 = S_4 * S_1 - S_3 = 42 * 3 - 16",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Same reasoning as CLEAN_CORRECT but make an off-by-one error in the recurrence relation for S_5 by adding instead of subtracting S_3.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "S_1 = 3",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "S_2 = 7",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "S_3 = 16",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "S_4 = 42",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "S_5 = S_4 * S_1 + S_3 = 42 * 3 + 16",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrectly conclude that a*x^5 + b*y^5 equals S_4, which contradicts the desired conclusion.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "a * x^5 + b * y^5 = 42",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-aime_1990_p4",
+    "source": "MINIF2F",
+    "problemStatement": "(x : real number) (h₀ : 0 < x) (h₁ : x^2 - 10 * x - 29 ≠ 0) (h₂ : x^2 - 10 * x - 45 ≠ 0) (h₃ : x^2 - 10 * x - 69 ≠ 0) (h₄ : 1 / (x^2 - 10 * x - 29) + 1 / (x^2 - 10 * x - 45) - 2 / (x^2 - 10 * x - 69) = 0) : x = 13",
+    "rubric": {
+      "problemId": "minif2f-test-aime_1990_p4",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(x : real number) (h₀ : 0 < x) (h₁ : x^2 - 10 * x - 29 ≠ 0) (h₂ : x^2 - 10 * x - 45 ≠ 0) (h₃ : x^2 - 10 * x - 69 ≠ 0) (h₄ : 1 / (x^2 - 10 * x - 29) + 1 / (x^2 - 10 * x - 45) - 2 / (x^2 - 10 * x - 69) = 0) : x = 13",
+      "milestones": [
+        {
+          "id": "minif2f-test-aime_1990_p4::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(x : real number) (h₀ : 0 < x) (h₁ : x^2 - 10 * x - 29 ≠ 0) (h₂ : x^2 - 10 * x - 45 ≠ 0) (h₃ : x^2 - 10 * x - 69 ≠ 0) (h₄ : 1 / (x^2 - 10 * x - 29) + 1 / (x^2 - 10 * x - 45) - 2 / (x^2 - 10 * x - 69) = 0) : x = 13",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem aime_1990_p4 (x : ℝ) (h₀ : 0 < x) (h₁ : x^2 - 10 * x - 29 ≠ 0) (h₂ : x^2 - 10 * x - 45 ≠ 0) (h₃ : x^2 - 10 * x - 69 ≠ 0) (h₄ : 1 / (x^2 - 10 * x - 29) + 1 / (x^2 - 10 * x - 45) - 2 / (x^2 - 10 * x - 69) = 0) : x = 13 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Correct proof by simplifying the equation and finding x=13 as unique solution.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "\\frac{1}{x^{2} - 10x - 29} + \\frac{1}{x^{2} - 10x - 45} = \\frac{2}{x^{2} - 10x - 69}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{(x^{2} - 10x - 45) + (x^{2} - 10x - 29)}{(x^{2} - 10x - 29)(x^{2} - 10x - 45)} = \\frac{2}{x^{2} - 10x - 69}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{2x^{2} - 20x - 74}{(x^{2} - 10x - 29)(x^{2} - 10x - 45)} = \\frac{2}{x^{2} - 10x - 69}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "2x^{2} - 20x - 74 = \\frac{2(x^{2} - 10x - 29)(x^{2} - 10x - 45)}{x^{2} - 10x - 69}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{Cross-multiplying and simplifying leads to } (x-13)^2=0 \\Rightarrow x=13",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Mistake by flipping a sign in the numerator at step 2, causing incorrect simplification downstream.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "\\frac{1}{x^{2} - 10x - 29} + \\frac{1}{x^{2} - 10x - 45} = \\frac{2}{x^{2} - 10x - 69}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{(x^{2} - 10x - 45) - (x^{2} - 10x - 29)}{(x^{2} - 10x - 29)(x^{2} - 10x - 45)} = \\frac{2}{x^{2} - 10x - 69}",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\frac{-16}{(x^{2} - 10x - 29)(x^{2} - 10x - 45)} = \\frac{2}{x^{2} - 10x - 69}",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "-16 (x^{2} - 10x - 69) = 2 (x^{2} - 10x - 29)(x^{2} - 10x - 45)",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\text{Incorrect equation; leads to no valid solution } x=13",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Faulty step asserting x=12 contradicting goal.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "x = 12",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-aime_1994_p3",
+    "source": "MINIF2F",
+    "problemStatement": "(f : integer → integer) (h0 : ∀ x, f x + f (x - 1) = x^2) (h1 : f 19 = 94) : f 94 % 1000 = 561",
+    "rubric": {
+      "problemId": "minif2f-test-aime_1994_p3",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(f : integer → integer) (h0 : ∀ x, f x + f (x - 1) = x^2) (h1 : f 19 = 94) : f 94 % 1000 = 561",
+      "milestones": [
+        {
+          "id": "minif2f-test-aime_1994_p3::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(f : integer → integer) (h0 : ∀ x, f x + f (x - 1) = x^2) (h1 : f 19 = 94) : f 94 % 1000 = 561",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem aime_1994_p3 (f : ℤ → ℤ) (h0 : ∀ x, f x + f (x - 1) = x^2) (h1 : f 19 = 94) : f 94 % 1000 = 561 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Solve the recurrence by expressing f(x) in terms of f(x-1), find a closed formula for f(x), use initial condition f(19) = 94 to find constants, then compute f(94) mod 1000.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "f(x) + f(x-1) = x^2",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "f(x) = x^2 - f(x-1)",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "Sum the relation for x=1 to x=n: \\sum_{x=1}^n (f(x) + f(x-1)) = \\sum_{x=1}^n x^2",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(f(n) + f(0)) + 2 \\sum_{x=1}^{n-1} f(x) = \\frac{n(n+1)(2n+1)}{6}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "Using initial condition and recurrence, solve to find f(94) \\equiv 561 \\pmod{1000}",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Same as CLEAN_CORRECT but sign error in expressing f(x) in terms of f(x-1) caused all next steps to be invalid.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "f(x) + f(x-1) = x^2",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "f(x) = f(x-1) - x^2",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "Sum the relation for x=1 to x=n: \\sum_{x=1}^n (f(x) + f(x-1)) = \\sum_{x=1}^n x^2",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "(f(n) + f(0)) + 2 \\sum_{x=1}^{n-1} f(x) = \\frac{n(n+1)(2n+1)}{6}",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "Using initial condition and recurrence, attempt to find f(94) \\pmod{1000}",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrect immediate claim contradicted by the problem's constraints.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "f(94) = 0",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-aime_1995_p7",
+    "source": "MINIF2F",
+    "problemStatement": "(k m n : natural number) (t : real number) (h₀ : 0 < k ∧ 0 < m ∧ 0 < n) (h₁ : Nat.gcd m n = 1) (h₂ : (1 + Real.sin t) * (1 + Real.cos t) = 5/4) (h₃ : (1 - Real.sin t) * (1- Real.cos t) = m/n - Real.sqrt k): k + m + n = 27",
+    "rubric": {
+      "problemId": "minif2f-test-aime_1995_p7",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(k m n : natural number) (t : real number) (h₀ : 0 < k ∧ 0 < m ∧ 0 < n) (h₁ : Nat.gcd m n = 1) (h₂ : (1 + Real.sin t) * (1 + Real.cos t) = 5/4) (h₃ : (1 - Real.sin t) * (1- Real.cos t) = m/n - Real.sqrt k): k + m + n = 27",
+      "milestones": [
+        {
+          "id": "minif2f-test-aime_1995_p7::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(k m n : natural number) (t : real number) (h₀ : 0 < k ∧ 0 < m ∧ 0 < n) (h₁ : Nat.gcd m n = 1) (h₂ : (1 + Real.sin t) * (1 + Real.cos t) = 5/4) (h₃ : (1 - Real.sin t) * (1- Real.cos t) = m/n - Real.sqrt k): k + m + n = 27",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem aime_1995_p7 (k m n : ℕ) (t : ℝ) (h₀ : 0 < k ∧ 0 < m ∧ 0 < n) (h₁ : Nat.gcd m n = 1) (h₂ : (1 + Real.sin t) * (1 + Real.cos t) = 5/4) (h₃ : (1 - Real.sin t) * (1- Real.cos t) = m/n - Real.sqrt k): k + m + n = 27 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Derive k + m + n = 27 using the given relations and algebraic manipulation.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "(1 + \\sin t)(1 + \\cos t) = \\frac{5}{4}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(1 - \\sin t)(1 - \\cos t) = \\frac{m}{n} - \\sqrt{k}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{Add these two equations: }(1 + \\sin t)(1 + \\cos t) + (1 - \\sin t)(1 - \\cos t) = \\frac{5}{4} + \\frac{m}{n} - \\sqrt{k}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\Rightarrow 2 + 2 \\sin t \\cos t = \\frac{5}{4} + \\frac{m}{n} - \\sqrt{k}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\Rightarrow 2 + \\sin 2t = \\frac{5}{4} + \\frac{m}{n} - \\sqrt{k} \\quad (\\text{because } \\sin 2t = 2 \\sin t \\cos t)",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{Use } (1 + \\sin t)(1 + \\cos t) = \\frac{5}{4} \\Rightarrow \\frac{5}{4} = 1 + \\sin t + \\cos t + \\sin t \\cos t",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{Rewrite } 2 + \\sin 2t = \\frac{5}{4} + \\frac{m}{n} - \\sqrt{k} \\Rightarrow \\frac{m}{n} - \\sqrt{k} = 2 + \\sin 2t - \\frac{5}{4}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{Simplify: } \\frac{m}{n} - \\sqrt{k} = \\frac{3}{4} + \\sin 2t \\Rightarrow \\frac{m}{n} = \\sqrt{k} + \\frac{3}{4} + \\sin 2t\\text{ with gcd}(m,n) = 1, m,n>0,k>0\\text{ given}",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Similar proof as CLEAN_CORRECT but sign error in using sine double angle identity.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "(1 + \\sin t)(1 + \\cos t) = \\frac{5}{4}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(1 - \\sin t)(1 - \\cos t) = \\frac{m}{n} - \\sqrt{k}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{Add the two equations: } (1 + \\sin t)(1 + \\cos t) + (1 - \\sin t)(1 - \\cos t) = \\frac{5}{4} + \\frac{m}{n} - \\sqrt{k}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\Rightarrow 2 + 2 \\sin t \\cos t = \\frac{5}{4} + \\frac{m}{n} - \\sqrt{k}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\Rightarrow 2 - \\sin 2t = \\frac{5}{4} + \\frac{m}{n} - \\sqrt{k} \\quad (\\text{Here the sign of } \\sin 2t \\text{ is wrong, should be +})",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\Rightarrow \\frac{m}{n} - \\sqrt{k} = 2 - \\sin 2t - \\frac{5}{4}",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\Rightarrow \\frac{m}{n} = \\sqrt{k} + \\frac{3}{4} - \\sin 2t",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrect claim with no correct steps, falsely concludes k + m + n = 0.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "k + m + n = 0",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-aime_1997_p9",
+    "source": "MINIF2F",
+    "problemStatement": "(a : real number) (h₀ : 0 < a) (h₁ : 1 / a - Int.floor (1 / a) = a^2 - Int.floor (a^2)) (h₂ : 2 < a^2) (h₃ : a^2 < 3) : a^12 - 144 * (1 / a) = 233",
+    "rubric": {
+      "problemId": "minif2f-test-aime_1997_p9",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(a : real number) (h₀ : 0 < a) (h₁ : 1 / a - Int.floor (1 / a) = a^2 - Int.floor (a^2)) (h₂ : 2 < a^2) (h₃ : a^2 < 3) : a^12 - 144 * (1 / a) = 233",
+      "milestones": [
+        {
+          "id": "minif2f-test-aime_1997_p9::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(a : real number) (h₀ : 0 < a) (h₁ : 1 / a - Int.floor (1 / a) = a^2 - Int.floor (a^2)) (h₂ : 2 < a^2) (h₃ : a^2 < 3) : a^12 - 144 * (1 / a) = 233",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem aime_1997_p9 (a : ℝ) (h₀ : 0 < a) (h₁ : 1 / a - Int.floor (1 / a) = a^2 - Int.floor (a^2)) (h₂ : 2 < a^2) (h₃ : a^2 < 3) : a^12 - 144 * (1 / a) = 233 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Use the fractional part equality, express a^2 as n + r where n=2 and r=a^2-2, deduce a^2=2.5, then compute a^12 and subtract 144/(a) to get 233.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "\\text{Let } n = \\lfloor a^2 \\rfloor",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "a^2 = n + r \\text{ with } 0 \\leq r < 1",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{From } h_1, \\frac{1}{a} - \\lfloor \\frac{1}{a} \\rfloor = r",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{Given } 2 < a^2 < 3 \\implies n=2",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{The common fractional part } r = a^2 - n = \\frac{1}{a} - \\lfloor \\frac{1}{a} \\rfloor",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{Since fractional parts equal, } r = \\frac{1}{a} - m \\text{ for some integer } m \\geq 0",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{Try } r = \\frac{1}{a} \\text{ (if } m=0), \\implies a^2 = n + \\frac{1}{a} = 2 + \\frac{1}{a}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{Rearranged: } a^2 - \\frac{1}{a} = 2\\text{, multiply both sides by } a: a^3 - 1 = 2a \\Rightarrow a^3 - 2a - 1=0",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Same as the correct proof but in the step setting the integer part n of a^2, use n=3 instead of 2 incorrectly, causing downstream calculations to fail.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "\\text{Let } n = \\lfloor a^2 \\rfloor",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "a^2 = n + r \\text{ with } 0 \\leq r < 1",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{From } h_1, \\frac{1}{a} - \\lfloor \\frac{1}{a} \\rfloor = r",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{Incorrectly take } n=3 \\text{ (but } 2 < a^2 < 3 \\text{ so } n=2)",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "r = a^2 - n = a^2 - 3",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\text{Then } r = \\frac{1}{a} - m \\text{ for some integer } m \\geq 0",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "a^2 = 3 + \\frac{1}{a} \\text{ assuming } m=0",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\text{Rearranged: } a^2 - \\frac{1}{a} = 3 \\implies a^3 -1 = 3a \\implies a^3 - 3a -1=0",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Wrongly assert a=1 leading to contradiction with the given inequalities.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "a = 1",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "a^{12} - 144 \\cdot \\frac{1}{a} = 1 - 144 = -143 \\neq 233",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-aime_1999_p11",
+    "source": "MINIF2F",
+    "problemStatement": "(m : rational number) (h₀ : 0 < m) (h₁ : ∑ k ∈ Finset.Icc (1 : natural number) 35, Real.sin (5 * k * π / 180) = Real.tan (m * π / 180)) (h₂ : (m.num:real number) / m.den < 90) : ↑m.den + m.num = 177",
+    "rubric": {
+      "problemId": "minif2f-test-aime_1999_p11",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(m : rational number) (h₀ : 0 < m) (h₁ : ∑ k ∈ Finset.Icc (1 : natural number) 35, Real.sin (5 * k * π / 180) = Real.tan (m * π / 180)) (h₂ : (m.num:real number) / m.den < 90) : ↑m.den + m.num = 177",
+      "milestones": [
+        {
+          "id": "minif2f-test-aime_1999_p11::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(m : rational number) (h₀ : 0 < m) (h₁ : ∑ k ∈ Finset.Icc (1 : natural number) 35, Real.sin (5 * k * π / 180) = Real.tan (m * π / 180)) (h₂ : (m.num:real number) / m.den < 90) : ↑m.den + m.num = 177",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem aime_1999_p11 (m : ℚ) (h₀ : 0 < m) (h₁ : ∑ k ∈ Finset.Icc (1 : ℕ) 35, Real.sin (5 * k * π / 180) = Real.tan (m * π / 180)) (h₂ : (m.num:ℝ) / m.den < 90) : ↑m.den + m.num = 177 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Using the sine sum formula and the tangent relation, derive m=75/102 so that numerator + denominator = 177.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "\\sum_{k=1}^{35} \\sin\\left(5k \\cdot \\frac{\\pi}{180}\\right) = \\frac{\\cos\\left(\\frac{5\\pi}{360}\\right) - \\cos\\left(\\frac{35 \\cdot 5 \\pi}{180} + \\frac{5\\pi}{360}\\right)}{2 \\sin\\left(\\frac{5 \\pi}{360}\\right)}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\sum_{k=1}^{35} \\sin\\left(5k \\cdot \\frac{\\pi}{180}\\right) = \\tan\\left(m \\cdot \\frac{\\pi}{180}\\right) = \\frac{\\sin(m \\cdot \\frac{\\pi}{180})}{\\cos(m \\cdot \\frac{\\pi}{180})}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{Equate and solve: } m = \\frac{75}{102} \\text{ satisfies } \\tan\\left(m \\frac{\\pi}{180}\\right) = \\sum_{k=1}^{35} \\sin\\left(5k \\frac{\\pi}{180}\\right)",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{Sum numerator and denominator: } 75 + 102 = 177",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Mistakenly take m = 74/102 instead of 75/102 altering the sum and invalidating the proof from that step onwards.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "\\sum_{k=1}^{35} \\sin\\left(5k \\cdot \\frac{\\pi}{180}\\right) = \\frac{\\cos\\left(\\frac{5\\pi}{360}\\right) - \\cos\\left(\\frac{35 \\cdot 5 \\pi}{180} + \\frac{5\\pi}{360}\\right)}{2 \\sin\\left(\\frac{5 \\pi}{360}\\right)}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\sum_{k=1}^{35} \\sin\\left(5k \\cdot \\frac{\\pi}{180}\\right) = \\tan\\left(m \\cdot \\frac{\\pi}{180}\\right) = \\frac{\\sin(m \\cdot \\frac{\\pi}{180})}{\\cos(m \\cdot \\frac{\\pi}{180})}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{Incorrect choice: } m = \\frac{74}{102} \\neq \\frac{75}{102}, \\text{ invalidating the equality}",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "74 + 102 \\neq 177",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrectly assert numerator + denominator equals 100 without justification.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "\\uparrow m.\\text{den} + m.\\text{num} = 100",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-algebra_2varlineareq_fp3zeq11_3tfm1m5zeqn68_feqn10_zeq7",
+    "source": "MINIF2F",
+    "problemStatement": "(f z: complex number) (h₀ : f + 3*z = 11) (h₁ : 3*(f - 1) - 5*z = -68) : f = -10 ∧ z = 7",
+    "rubric": {
+      "problemId": "minif2f-test-algebra_2varlineareq_fp3zeq11_3tfm1m5zeqn68_feqn10_zeq7",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(f z: complex number) (h₀ : f + 3*z = 11) (h₁ : 3*(f - 1) - 5*z = -68) : f = -10 ∧ z = 7",
+      "milestones": [
+        {
+          "id": "minif2f-test-algebra_2varlineareq_fp3zeq11_3tfm1m5zeqn68_feqn10_zeq7::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(f z: complex number) (h₀ : f + 3*z = 11) (h₁ : 3*(f - 1) - 5*z = -68) : f = -10 ∧ z = 7",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem algebra_2varlineareq_fp3zeq11_3tfm1m5zeqn68_feqn10_zeq7 (f z: ℂ) (h₀ : f + 3*z = 11) (h₁ : 3*(f - 1) - 5*z = -68) : f = -10 ∧ z = 7 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Solve the system of linear equations step-by-step to find f and z.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "f + 3z = 11",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "3(f - 1) - 5z = -68",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "3f - 3 - 5z = -68",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "3f - 5z = -65",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "Multiply first equation by 3: 3f + 9z = 33",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "Subtract the two equations: (3f + 9z) - (3f - 5z) = 33 - (-65)",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "14z = 98",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "z = 7, then f = 11 - 3*7 = -10",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Make a sign error when simplifying the second equation; subsequent steps are incorrect.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "f + 3z = 11",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "3(f - 1) - 5z = -68",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "3f - 3 - 5z = -68",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "3f - 5z = -65",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "Multiply first equation by 3: 3f + 9z = 33",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "Subtract the two equations: (3f + 9z) - (3f - 5z) = 33 - (-65)",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "14z = -98",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "z = -7, then f = 11 - 3*(-7) = 32",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrect immediate assertion contradicting correct solution.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "f = 10 \\text{ and } z = 7",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-algebra_9onxpypzleqsum2onxpy",
+    "source": "MINIF2F",
+    "problemStatement": "(x y z : real number) (h₀ : 0 < x ∧ 0 < y ∧ 0 < z) : 9 / (x + y + z) ≤ 2 / (x + y) + 2 / (y + z) + 2 / (z + x)",
+    "rubric": {
+      "problemId": "minif2f-test-algebra_9onxpypzleqsum2onxpy",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(x y z : real number) (h₀ : 0 < x ∧ 0 < y ∧ 0 < z) : 9 / (x + y + z) ≤ 2 / (x + y) + 2 / (y + z) + 2 / (z + x)",
+      "milestones": [
+        {
+          "id": "minif2f-test-algebra_9onxpypzleqsum2onxpy::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(x y z : real number) (h₀ : 0 < x ∧ 0 < y ∧ 0 < z) : 9 / (x + y + z) ≤ 2 / (x + y) + 2 / (y + z) + 2 / (z + x)",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem algebra_9onxpypzleqsum2onxpy (x y z : ℝ) (h₀ : 0 < x ∧ 0 < y ∧ 0 < z) : 9 / (x + y + z) ≤ 2 / (x + y) + 2 / (y + z) + 2 / (z + x) := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Apply AM-HM inequality correctly and sum symmetrically for the desired inequality.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "\\frac{9}{x+y+z} = \\frac{3 \\times 3}{x + y + z}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{3}{\\frac{x+y}{2}} \\leq \\frac{2}{x+y}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{3}{\\frac{y+z}{2}} \\leq \\frac{2}{y+z}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{3}{\\frac{z+x}{2}} \\leq \\frac{2}{z+x}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "9/(x+y+z) \\leq 2/(x+y) + 2/(y+z) + 2/(z+x)",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Introduce one incorrect step by flipping a sign in the main inequality leading to downstream errors.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "\\frac{9}{x+y+z} = \\frac{3 \\times 3}{x + y + z}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{3}{\\frac{x+y}{2}} \\leq \\frac{2}{x+y}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{3}{\\frac{y+z}{2}} \\geq \\frac{2}{y+z}",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\frac{3}{\\frac{z+x}{2}} \\leq \\frac{2}{z+x}",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "9/(x+y+z) \\leq 2/(x+y) + 2/(y+z) + 2/(z+x)",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrectly claims the opposite inequality without justification.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "\\frac{9}{x+y+z} \\geq 2/(x+y) + 2/(y+z) + 2/(z+x)",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-algebra_abpbcpcageq3_sumaonsqrtapbgeq3onsqrt2",
+    "source": "MINIF2F",
+    "problemStatement": "(a b c : real number) (h₀ : 0 < a ∧ 0 < b ∧ 0 < c) (h₁ : 3 ≤ a * b + b * c + c * a) : 3 / Real.sqrt 2 ≤ a / Real.sqrt (a + b) + b / Real.sqrt (b + c) + c / Real.sqrt (c + a)",
+    "rubric": {
+      "problemId": "minif2f-test-algebra_abpbcpcageq3_sumaonsqrtapbgeq3onsqrt2",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(a b c : real number) (h₀ : 0 < a ∧ 0 < b ∧ 0 < c) (h₁ : 3 ≤ a * b + b * c + c * a) : 3 / Real.sqrt 2 ≤ a / Real.sqrt (a + b) + b / Real.sqrt (b + c) + c / Real.sqrt (c + a)",
+      "milestones": [
+        {
+          "id": "minif2f-test-algebra_abpbcpcageq3_sumaonsqrtapbgeq3onsqrt2::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(a b c : real number) (h₀ : 0 < a ∧ 0 < b ∧ 0 < c) (h₁ : 3 ≤ a * b + b * c + c * a) : 3 / Real.sqrt 2 ≤ a / Real.sqrt (a + b) + b / Real.sqrt (b + c) + c / Real.sqrt (c + a)",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem algebra_abpbcpcageq3_sumaonsqrtapbgeq3onsqrt2 (a b c : ℝ) (h₀ : 0 < a ∧ 0 < b ∧ 0 < c) (h₁ : 3 ≤ a * b + b * c + c * a) : 3 / Real.sqrt 2 ≤ a / Real.sqrt (a + b) + b / Real.sqrt (b + c) + c / Real.sqrt (c + a) := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Use Cauchy-Schwarz inequality in the right way to establish the bound.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "\\left(\\frac{a}{\\sqrt{a+b}} + \\frac{b}{\\sqrt{b+c}} + \\frac{c}{\\sqrt{c+a}}\\right)^2 \\geq \\frac{(a+b+c)^2}{(a+b)+(b+c)+(c+a)}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "= \\frac{(a+b+c)^2}{2(a+b+c)}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "= \\frac{a+b+c}{2}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{By AM-GM, } a b + b c + c a \\leq \\frac{(a+b+c)^2}{3} \\implies 3 \\leq a b + b c + c a \\leq \\frac{(a+b+c)^2}{3} \\implies a+b+c \\geq 3",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\therefore \\left(\\frac{a}{\\sqrt{a+b}} + \\frac{b}{\\sqrt{b+c}} + \\frac{c}{\\sqrt{c+a}}\\right)^2 \\geq \\frac{a+b+c}{2} \\geq \\frac{3}{2} \\implies \\frac{a}{\\sqrt{a+b}} + \\frac{b}{\\sqrt{b+c}} + \\frac{c}{\\sqrt{c+a}} \\geq \\frac{3}{\\sqrt{2}}",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Mistake: flip the denominator sum in step 1, resulting in a wrong inequality, followed by correct reasoning but invalid final conclusion.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "\\left(\\frac{a}{\\sqrt{a+b}} + \\frac{b}{\\sqrt{b+c}} + \\frac{c}{\\sqrt{c+a}}\\right)^2 \\geq \\frac{(a+b+c)^2}{(a+b)(b+c)(c+a)}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "= \\frac{(a+b+c)^2}{(a+b)(b+c)(c+a)}",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "= \\frac{a+b+c}{2}",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\text{By AM-GM, } 3 \\leq a b + b c + c a \\leq \\frac{(a+b+c)^2}{3} \\implies a+b+c \\geq 3",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\therefore \\left(\\frac{a}{\\sqrt{a+b}} + \\frac{b}{\\sqrt{b+c}} + \\frac{c}{\\sqrt{c+a}}\\right)^2 \\geq \\frac{a+b+c}{2} \\geq \\frac{3}{2} \\implies \\frac{a}{\\sqrt{a+b}} + \\frac{b}{\\sqrt{b+c}} + \\frac{c}{\\sqrt{c+a}} \\geq \\frac{3}{\\sqrt{2}}",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrect direct bounding claim contradicting the problem goal.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "\\frac{a}{\\sqrt{a+b}} + \\frac{b}{\\sqrt{b+c}} + \\frac{c}{\\sqrt{c+a}} \\leq 3 / \\sqrt{2}",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-algebra_absapbon1pabsapbleqsumabsaon1pabsa",
+    "source": "MINIF2F",
+    "problemStatement": "(a b : real number) : abs (a + b) / (1 + abs (a + b)) ≤ abs a / (1 + abs a) + abs b / (1 + abs b)",
+    "rubric": {
+      "problemId": "minif2f-test-algebra_absapbon1pabsapbleqsumabsaon1pabsa",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(a b : real number) : abs (a + b) / (1 + abs (a + b)) ≤ abs a / (1 + abs a) + abs b / (1 + abs b)",
+      "milestones": [
+        {
+          "id": "minif2f-test-algebra_absapbon1pabsapbleqsumabsaon1pabsa::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(a b : real number) : abs (a + b) / (1 + abs (a + b)) ≤ abs a / (1 + abs a) + abs b / (1 + abs b)",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem algebra_absapbon1pabsapbleqsumabsaon1pabsa (a b : ℝ) : abs (a + b) / (1 + abs (a + b)) ≤ abs a / (1 + abs a) + abs b / (1 + abs b) := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Use the triangle inequality and monotonicity of the function x/(1+x) for x >= 0 to prove the inequality.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "\\frac{|a+b|}{1+|a+b|} \\leq \\frac{|a| + |b|}{1 + |a+b|}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{|a| + |b|}{1 + |a+b|} \\leq \\frac{|a| + |b|}{1 + |a| + |b|}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{|a| + |b|}{1 + |a| + |b|} = \\frac{|a|}{1+|a|+|b|} + \\frac{|b|}{1+|a|+|b|}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{|a|}{1+|a|+|b|} \\leq \\frac{|a|}{1+|a|}, \\quad \\frac{|b|}{1+|a|+|b|} \\leq \\frac{|b|}{1+|b|}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\therefore \\frac{|a+b|}{1+|a+b|} \\leq \\frac{|a|}{1+|a|} + \\frac{|b|}{1+|b|}",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Incorrectly switch denominators in step 3 leading to an invalid inequality and erroneous conclusion.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "\\frac{|a+b|}{1+|a+b|} \\leq \\frac{|a| + |b|}{1 + |a+b|}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{|a| + |b|}{1 + |a+b|} \\leq \\frac{|a| + |b|}{1 + |a| + |b|}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{|a| + |b|}{1 + |a| + |b|} = \\frac{|a|}{1+|a|} + \\frac{|b|}{1+|b|}",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\frac{|a|}{1+|a|} + \\frac{|b|}{1+|b|} \\leq \\frac{|a|}{1+|a|} + \\frac{|b|}{1+|b|}",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\therefore \\frac{|a+b|}{1+|a+b|} \\leq \\frac{|a|}{1+|a|} + \\frac{|b|}{1+|b|}",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Wrong claim that the inequality reverses direction, contradicting the problem.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "\\frac{|a+b|}{1+|a+b|} \\geq \\frac{|a|}{1+|a|} + \\frac{|b|}{1+|b|}",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-algebra_amgm_sum1toneqn_prod1tonleq1",
+    "source": "MINIF2F",
+    "problemStatement": "(a : natural number → NNReal) (n : natural number) let h₀ : ∑ x ∈ Finset.range n, a x = n be ∏ x ∈ Finset.range n; a x ≤ 1",
+    "rubric": {
+      "problemId": "minif2f-test-algebra_amgm_sum1toneqn_prod1tonleq1",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(a : natural number → NNReal) (n : natural number) let h₀ : ∑ x ∈ Finset.range n, a x = n be ∏ x ∈ Finset.range n; a x ≤ 1",
+      "milestones": [
+        {
+          "id": "minif2f-test-algebra_amgm_sum1toneqn_prod1tonleq1::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(a : natural number → NNReal) (n : natural number) let h₀ : ∑ x ∈ Finset.range n, a x = n be ∏ x ∈ Finset.range n; a x ≤ 1",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem algebra_amgm_sum1toneqn_prod1tonleq1 (a : ℕ → NNReal) (n : ℕ) (h₀ : ∑ x ∈ Finset.range n, a x = n) : ∏ x ∈ Finset.range n, a x ≤ 1 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Using AM-GM inequality to show that if sum of a_i equals n, the product is at most 1.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "\\sum_{x=0}^{n-1} a_x = n",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{AM} = \\frac{1}{n} \\sum_{x=0}^{n-1} a_x = 1",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{GM} = \\sqrt[n]{\\prod_{x=0}^{n-1} a_x} \\leq \\text{AM} = 1",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\prod_{x=0}^{n-1} a_x \\leq 1",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Off-by-one error mistake on the geometric mean root, taking root with n+1 instead of n, making product estimation invalid.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "\\sum_{x=0}^{n-1} a_x = n",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{AM} = \\frac{1}{n} \\sum_{x=0}^{n-1} a_x = 1",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{GM} = \\sqrt[n+1]{\\prod_{x=0}^{n-1} a_x} \\leq \\text{AM} = 1",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\prod_{x=0}^{n-1} a_x \\leq 1",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrect assumption that product is always greater than 1 despite sum equals n.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "\\prod_{x=0}^{n-1} a_x > 1",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-algebra_amgm_sumasqdivbgeqsuma",
+    "source": "MINIF2F",
+    "problemStatement": "(a b c d : real number) (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d) : a^2 / b + b^2 / c + c^2 / d + d^2 / a ≥ a + b + c + d",
+    "rubric": {
+      "problemId": "minif2f-test-algebra_amgm_sumasqdivbgeqsuma",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(a b c d : real number) (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d) : a^2 / b + b^2 / c + c^2 / d + d^2 / a ≥ a + b + c + d",
+      "milestones": [
+        {
+          "id": "minif2f-test-algebra_amgm_sumasqdivbgeqsuma::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(a b c d : real number) (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d) : a^2 / b + b^2 / c + c^2 / d + d^2 / a ≥ a + b + c + d",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem algebra_amgm_sumasqdivbgeqsuma (a b c d : ℝ) (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d) : a^2 / b + b^2 / c + c^2 / d + d^2 / a ≥ a + b + c + d := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Proof using Cauchy-Schwarz inequality on the given sums to establish the inequality.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "\\left(\\frac{a^2}{b} + \\frac{b^2}{c} + \\frac{c^2}{d} + \\frac{d^2}{a}\\right)\\left(b + c + d + a\\right) \\geq (a + b + c + d)^2",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{a^2}{b} + \\frac{b^2}{c} + \\frac{c^2}{d} + \\frac{d^2}{a} \\geq \\frac{(a + b + c + d)^2}{a + b + c + d}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{a^2}{b} + \\frac{b^2}{c} + \\frac{c^2}{d} + \\frac{d^2}{a} \\geq a + b + c + d",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Same proof as CLEAN_CORRECT but the denominator sum in step 2 is wrong (one term missing), resulting in an incorrect bound.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "\\left(\\frac{a^2}{b} + \\frac{b^2}{c} + \\frac{c^2}{d} + \\frac{d^2}{a}\\right)(b + c + d + a) \\geq (a + b + c + d)^2",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{a^2}{b} + \\frac{b^2}{c} + \\frac{c^2}{d} + \\frac{d^2}{a} \\geq \\frac{(a + b + c + d)^2}{b + c + d}",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\frac{a^2}{b} + \\frac{b^2}{c} + \\frac{c^2}{d} + \\frac{d^2}{a} \\geq a + b + c + d",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrect claim that the sum on left is less than the sum on right, contradicting the problem statement.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "\\frac{a^2}{b} + \\frac{b^2}{c} + \\frac{c^2}{d} + \\frac{d^2}{a} < a + b + c + d",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-algebra_apbmpcneq0_aeq0anbeq0anceq0",
+    "source": "MINIF2F",
+    "problemStatement": "(a b c : rational number) (m n : real number) (h₀ : 0 < m ∧ 0 < n) (h₁ : m^3 = 2) (h₂ : n^3 = 4) (h₃ : (a:real number) + b * m + c * n = 0) : a = 0 ∧ b = 0 ∧ c = 0",
+    "rubric": {
+      "problemId": "minif2f-test-algebra_apbmpcneq0_aeq0anbeq0anceq0",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(a b c : rational number) (m n : real number) (h₀ : 0 < m ∧ 0 < n) (h₁ : m^3 = 2) (h₂ : n^3 = 4) (h₃ : (a:real number) + b * m + c * n = 0) : a = 0 ∧ b = 0 ∧ c = 0",
+      "milestones": [
+        {
+          "id": "minif2f-test-algebra_apbmpcneq0_aeq0anbeq0anceq0::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(a b c : rational number) (m n : real number) (h₀ : 0 < m ∧ 0 < n) (h₁ : m^3 = 2) (h₂ : n^3 = 4) (h₃ : (a:real number) + b * m + c * n = 0) : a = 0 ∧ b = 0 ∧ c = 0",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem algebra_apbmpcneq0_aeq0anbeq0anceq0 (a b c : ℚ) (m n : ℝ) (h₀ : 0 < m ∧ 0 < n) (h₁ : m^3 = 2) (h₂ : n^3 = 4) (h₃ : (a:ℝ) + b * m + c * n = 0) : a = 0 ∧ b = 0 ∧ c = 0 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Proof using the minimal polynomial argument and rationality of coefficients",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "a + b m + c n = 0",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(a + b m + c n)^3 = 0",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "a^3 + 3 a^2 (b m + c n) + 3 a (b m + c n)^2 + (b m + c n)^3 = 0",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "Since a,b,c are rational and m^3=2, n^3=4, expressing powers and equating coefficients implies a=b=c=0",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Incorrectly assumes n^3 = 3 instead of 4 in step 3",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "a + b m + c n = 0",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(a + b m + c n)^3 = 0",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "a^3 + 3 a^2 (b m + c n) + 3 a (b m + c n)^2 + (b m + c n)^3 = 0",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "Incorrectly uses n^3 = 3 instead of 4, leading to wrong coefficient matching and nonzero solution",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrect immediate conclusion that c=0 only implies a=b=0",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "a = 0",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-algebra_apbon2pownleqapownpbpowon2",
+    "source": "MINIF2F",
+    "problemStatement": "(a b : real number) (n : natural number) (h₀ : 0 < a ∧ 0 < b) (h₁ : 0 < n) : ((a + b) / 2)^n ≤ (a^n + b^n) / 2",
+    "rubric": {
+      "problemId": "minif2f-test-algebra_apbon2pownleqapownpbpowon2",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(a b : real number) (n : natural number) (h₀ : 0 < a ∧ 0 < b) (h₁ : 0 < n) : ((a + b) / 2)^n ≤ (a^n + b^n) / 2",
+      "milestones": [
+        {
+          "id": "minif2f-test-algebra_apbon2pownleqapownpbpowon2::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(a b : real number) (n : natural number) (h₀ : 0 < a ∧ 0 < b) (h₁ : 0 < n) : ((a + b) / 2)^n ≤ (a^n + b^n) / 2",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem algebra_apbon2pownleqapownpbpowon2 (a b : ℝ) (n : ℕ) (h₀ : 0 < a ∧ 0 < b) (h₁ : 0 < n) : ((a + b) / 2)^n ≤ (a^n + b^n) / 2 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Proof using the binomial expansion and AM-GM inequality for n natural and positive a,b.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "\\left(\\frac{a+b}{2}\\right)^n = \\frac{(a+b)^n}{2^n}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(a+b)^n = \\sum_{k=0}^n \\binom{n}{k} a^k b^{n-k}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\sum_{k=0}^n \\binom{n}{k} a^k b^{n-k} \\leq \\sum_{k=0}^n \\binom{n}{k} \\frac{a^n + b^n}{2} = 2^n \\frac{a^n + b^n}{2}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{(a+b)^n}{2^n} \\leq \\frac{2^n \\frac{a^n + b^n}{2}}{2^n}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\left(\\frac{a+b}{2}\\right)^n \\leq \\frac{a^n + b^n}{2}",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Same proof as CLEAN_CORRECT but step 3 has a wrong factor (using 2 instead of 2^n) breaking the inequality.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "\\left(\\frac{a+b}{2}\\right)^n = \\frac{(a+b)^n}{2^n}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(a+b)^n = \\sum_{k=0}^n \\binom{n}{k} a^k b^{n-k}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\sum_{k=0}^n \\binom{n}{k} a^k b^{n-k} \\leq 2 \\frac{a^n + b^n}{2}",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\frac{(a+b)^n}{2^n} \\leq \\frac{2 \\frac{a^n + b^n}{2}}{2^n}",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\left(\\frac{a+b}{2}\\right)^n \\leq \\frac{a^n + b^n}{2}",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrect confident claim reversing the inequality direction.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "\\left(\\frac{a+b}{2}\\right)^n \\geq \\frac{a^n + b^n}{2}",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-algebra_apbpceq2_abpbcpcaeq1_aleq1on3anbleq1ancleq4on3",
+    "source": "MINIF2F",
+    "problemStatement": "(a b c : real number) (h₀ : a ≤ b ∧ b ≤ c) (h₁ : a + b + c = 2) (h₂ : a * b + b * c + c * a = 1) : 0 ≤ a ∧ a ≤ 1 / 3 ∧ 1 / 3 ≤ b ∧ b ≤ 1 ∧ 1 ≤ c ∧ c ≤ 4 / 3",
+    "rubric": {
+      "problemId": "minif2f-test-algebra_apbpceq2_abpbcpcaeq1_aleq1on3anbleq1ancleq4on3",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(a b c : real number) (h₀ : a ≤ b ∧ b ≤ c) (h₁ : a + b + c = 2) (h₂ : a * b + b * c + c * a = 1) : 0 ≤ a ∧ a ≤ 1 / 3 ∧ 1 / 3 ≤ b ∧ b ≤ 1 ∧ 1 ≤ c ∧ c ≤ 4 / 3",
+      "milestones": [
+        {
+          "id": "minif2f-test-algebra_apbpceq2_abpbcpcaeq1_aleq1on3anbleq1ancleq4on3::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(a b c : real number) (h₀ : a ≤ b ∧ b ≤ c) (h₁ : a + b + c = 2) (h₂ : a * b + b * c + c * a = 1) : 0 ≤ a ∧ a ≤ 1 / 3 ∧ 1 / 3 ≤ b ∧ b ≤ 1 ∧ 1 ≤ c ∧ c ≤ 4 / 3",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem algebra_apbpceq2_abpbcpcaeq1_aleq1on3anbleq1ancleq4on3 (a b c : ℝ) (h₀ : a ≤ b ∧ b ≤ c) (h₁ : a + b + c = 2) (h₂ : a * b + b * c + c * a = 1) : 0 ≤ a ∧ a ≤ 1 / 3 ∧ 1 / 3 ≤ b ∧ b ≤ 1 ∧ 1 ≤ c ∧ c ≤ 4 / 3 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Prove the inequalities by expressing in terms of a, b, c and using given conditions.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "a + b + c = 2",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "a \\leq b \\leq c",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "a b + b c + c a = 1",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "0 \\leq a \\leq \\frac{1}{3}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{1}{3} \\leq b \\leq 1 \\leq c \\leq \\frac{4}{3}",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Introduce an off-by-one error by asserting b \\leq \\frac{2}{3} instead of b \\leq 1.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "a + b + c = 2",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "a \\leq b \\leq c",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "a b + b c + c a = 1",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "0 \\leq a \\leq \\frac{1}{3}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{1}{3} \\leq b \\leq \\frac{2}{3} \\leq c \\leq \\frac{4}{3}",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrect claim contradicting the inequalities.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "c \\leq 1",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-algebra_bleqa_apbon2msqrtableqambsqon8b",
+    "source": "MINIF2F",
+    "problemStatement": "(a b : real number) (h₀ : 0 < a ∧ 0 < b) (h₁ : b ≤ a) : (a + b) / 2 - Real.sqrt (a * b) ≤ (a - b)^2 / (8 * b)",
+    "rubric": {
+      "problemId": "minif2f-test-algebra_bleqa_apbon2msqrtableqambsqon8b",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(a b : real number) (h₀ : 0 < a ∧ 0 < b) (h₁ : b ≤ a) : (a + b) / 2 - Real.sqrt (a * b) ≤ (a - b)^2 / (8 * b)",
+      "milestones": [
+        {
+          "id": "minif2f-test-algebra_bleqa_apbon2msqrtableqambsqon8b::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(a b : real number) (h₀ : 0 < a ∧ 0 < b) (h₁ : b ≤ a) : (a + b) / 2 - Real.sqrt (a * b) ≤ (a - b)^2 / (8 * b)",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem algebra_bleqa_apbon2msqrtableqambsqon8b (a b : ℝ) (h₀ : 0 < a ∧ 0 < b) (h₁ : b ≤ a) : (a + b) / 2 - Real.sqrt (a * b) ≤ (a - b)^2 / (8 * b) := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Proof using AM-GM inequality and algebraic manipulation to bound difference by quadratic term.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "\\frac{a+b}{2} \\geq \\sqrt{ab}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\left(\\frac{a+b}{2}\\right)^2 - ab = \\frac{(a-b)^2}{4}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{a+b}{2} - \\sqrt{ab} = \\frac{\\left(\\frac{a+b}{2}\\right)^2 - ab}{\\frac{a+b}{2} + \\sqrt{ab}} = \\frac{(a-b)^2}{4\\left(\\frac{a+b}{2} + \\sqrt{ab}\\right)}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{(a-b)^2}{4\\left(\\frac{a+b}{2} + \\sqrt{ab}\\right)} \\leq \\frac{(a-b)^2}{8b}",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Same proof but an off-by-one error in denominator at last step, replacing 8b with 7b making inequality false.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "\\frac{a+b}{2} \\geq \\sqrt{ab}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\left(\\frac{a+b}{2}\\right)^2 - ab = \\frac{(a-b)^2}{4}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{a+b}{2} - \\sqrt{ab} = \\frac{\\left(\\frac{a+b}{2}\\right)^2 - ab}{\\frac{a+b}{2} + \\sqrt{ab}} = \\frac{(a-b)^2}{4\\left(\\frac{a+b}{2} + \\sqrt{ab}\\right)}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\frac{(a-b)^2}{4\\left(\\frac{a+b}{2} + \\sqrt{ab}\\right)} \\leq \\frac{(a-b)^2}{7b}",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrect claim reversing the inequality without justification.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "\\frac{a+b}{2} - \\sqrt{ab} \\geq \\frac{(a-b)^2}{8b}",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-algebra_cubrtrp1oncubrtreq3_rcubp1onrcubeq5778",
+    "source": "MINIF2F",
+    "problemStatement": "(r : real number) (h₀ : r^(1 / 3: real number) + 1 / r^(1 / 3: real number) = 3) : r^3 + 1 / r^3 = 5778",
+    "rubric": {
+      "problemId": "minif2f-test-algebra_cubrtrp1oncubrtreq3_rcubp1onrcubeq5778",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(r : real number) (h₀ : r^(1 / 3: real number) + 1 / r^(1 / 3: real number) = 3) : r^3 + 1 / r^3 = 5778",
+      "milestones": [
+        {
+          "id": "minif2f-test-algebra_cubrtrp1oncubrtreq3_rcubp1onrcubeq5778::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(r : real number) (h₀ : r^(1 / 3: real number) + 1 / r^(1 / 3: real number) = 3) : r^3 + 1 / r^3 = 5778",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem algebra_cubrtrp1oncubrtreq3_rcubp1onrcubeq5778 (r : ℝ) (h₀ : r^(1 / 3: ℝ) + 1 / r^(1 / 3: ℝ) = 3) : r^3 + 1 / r^3 = 5778 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Using the identity for cubes in terms of sums and products based on the given sum of cube roots.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "x = r^{1/3}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "x + \\frac{1}{x} = 3",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(x + \\frac{1}{x})^3 = 3^3",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "x^3 + \\frac{1}{x^3} + 3\\left(x + \\frac{1}{x}\\right) = 27",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "r + \\frac{1}{r} + 3 \\cdot 3 = 27",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "r + \\frac{1}{r} = 27 - 9 = 18",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(r + \\frac{1}{r})^3 = 18^3",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "r^3 + \\frac{1}{r^3} + 3\\left(r + \\frac{1}{r}\\right) = 5832 + 54 = 5788",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Same proof but one intermediate addition is off by 1 in the constant subtraction step.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "x = r^{1/3}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "x + \\frac{1}{x} = 3",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(x + \\frac{1}{x})^3 = 3^3",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "x^3 + \\frac{1}{x^3} + 3\\left(x + \\frac{1}{x}\\right) = 27",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "r + \\frac{1}{r} + 3 \\cdot 3 = 28",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "r + \\frac{1}{r} = 28 - 9 = 19",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "(r + \\frac{1}{r})^3 = 19^3",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "r^3 + \\frac{1}{r^3} + 3\\left(r + \\frac{1}{r}\\right) = 6859 + 57 = 6916",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrect assumption that the sum is zero leads to wrong conclusion.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "x + \\frac{1}{x} = 0",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "r^3 + \\frac{1}{r^3} = 0",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-algebra_ineq_nto1onlt2m1on",
+    "source": "MINIF2F",
+    "problemStatement": "(n : natural number) : (n : real number) ^ (1 / n : real number) ≤ 2 - 1 / n",
+    "rubric": {
+      "problemId": "minif2f-test-algebra_ineq_nto1onlt2m1on",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(n : natural number) : (n : real number) ^ (1 / n : real number) ≤ 2 - 1 / n",
+      "milestones": [
+        {
+          "id": "minif2f-test-algebra_ineq_nto1onlt2m1on::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(n : natural number) : (n : real number) ^ (1 / n : real number) ≤ 2 - 1 / n",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem algebra_ineq_nto1onlt2m1on (n : ℕ) : (n : ℝ) ^ (1 / n : ℝ) ≤ 2 - 1 / n := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Prove that for every natural number n, n^{1/n} ≤ 2 - 1/n using induction and basic properties of the function.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "\\text{Base case: } n=1, \\quad 1^{1/1} = 1 \\leq 2 - 1 = 1",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{Inductive hypothesis: Assume } k^{1/k} \\leq 2 - \\frac{1}{k} \\text{ for some } k \\geq 1",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{We want to show } (k+1)^{1/(k+1)} \\leq 2 - \\frac{1}{k+1}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{Note that } (k+1)^{1/(k+1)} = \\exp\\left(\\frac{\\ln(k+1)}{k+1}\\right) \\leq \\exp\\left(\\frac{\\ln(k) + \\frac{1}{k}}{k+1}\\right) \\text{ by growth bounds}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{Using the inductive hypothesis and comparison of exponential values, }  (k+1)^{1/(k+1)} \\leq 2 - \\frac{1}{k+1}",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Same as the correct proof but introduce an off-by-one error in the induction step leading to an incorrect inequality.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "\\text{Base case: } n=1, \\quad 1^{1/1} = 1 \\leq 2 - 1 = 1",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{Inductive hypothesis: Assume } k^{1/k} \\leq 2 - \\frac{1}{k} \\text{ for some } k \\geq 1",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\text{We want to show } (k+1)^{1/(k+1)} \\leq 2 - \\frac{1}{k}",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\text{Incorrectly assert } (k+1)^{1/(k+1)} \\leq 2 - \\frac{1}{k} \\text{ instead of } 2 - \\frac{1}{k+1}",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\text{This leads to } (k+1)^{1/(k+1)} \\leq 2 - \\frac{1}{k} \\text{ which can be false",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrect proof asserting the inequality reversely and concluding false result.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "\\text{For all } n, n^{1/n} \\geq 2 - \\frac{1}{n}",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-algebra_others_exirrpowirrrat",
+    "source": "MINIF2F",
+    "problemStatement": ": ∃ a b, Irrational a ∧ Irrational b ∧ ¬ Irrational (a^b)",
+    "rubric": {
+      "problemId": "minif2f-test-algebra_others_exirrpowirrrat",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": ": ∃ a b, Irrational a ∧ Irrational b ∧ ¬ Irrational (a^b)",
+      "milestones": [
+        {
+          "id": "minif2f-test-algebra_others_exirrpowirrrat::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": ": ∃ a b, Irrational a ∧ Irrational b ∧ ¬ Irrational (a^b)",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem algebra_others_exirrpowirrrat : ∃ a b, Irrational a ∧ Irrational b ∧ ¬ Irrational (a^b) := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Construct a = \\sqrt{2} which is irrational, set b = \\log_{\\sqrt{2}} 9 (also irrational), then show a^b = 9 (rational).",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "a = \\sqrt{2}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "b = \\frac{\\log 9}{\\log \\sqrt{2}}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "a \\text{ is irrational}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "b \\text{ is irrational}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "a^b = 9",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Same as clean correct but mistakenly set b = \\frac{\\log 8}{\\log \\sqrt{2}} so a^b = 8 (rational) but b's irrationality claim is false.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "a = \\sqrt{2}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "b = \\frac{\\log 8}{\\log \\sqrt{2}}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "a \\text{ is irrational}",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "b \\text{ is irrational}",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "a^b = 8",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Take a = \\sqrt{2} and b = \\sqrt{2} claiming a^b is irrational which contradicts goal.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "a = \\sqrt{2}",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "b = \\sqrt{2}",
+            "expectedVerdict": "ESCALATE"
+          },
+          {
+            "latex": "a^b \\text{ is irrational}",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  },
+  {
+    "key": "minif2f-test-algebra_sqineq_at2malt1",
+    "source": "MINIF2F",
+    "problemStatement": "(a : real number) : a * (2 - a) ≤ 1",
+    "rubric": {
+      "problemId": "minif2f-test-algebra_sqineq_at2malt1",
+      "version": "minif2f-import-v1",
+      "generatedAt": "2026-05-14T03:41:54.463Z",
+      "source": "AUTHORED",
+      "approvedAt": null,
+      "goalStatement": "(a : real number) : a * (2 - a) ≤ 1",
+      "milestones": [
+        {
+          "id": "minif2f-test-algebra_sqineq_at2malt1::m1",
+          "index": 1,
+          "title": "discharge theorem",
+          "claim": "(a : real number) : a * (2 - a) ≤ 1",
+          "techniques": [],
+          "dependsOn": [],
+          "critical": true,
+          "formal": {
+            "kind": "lean4-statement",
+            "code": "theorem algebra_sqineq_at2malt1 (a : ℝ) : a * (2 - a) ≤ 1 := by\nsorry"
+          }
+        }
+      ],
+      "commonPitfalls": []
+    },
+    "studentSolutions": [
+      {
+        "label": "stub-only",
+        "description": "miniF2F entry has no proof (sorry)",
+        "category": "VALID_SCAFFOLD_WRONG_FINAL",
+        "steps": [
+          {
+            "latex": "sorry",
+            "expectedVerdict": "ESCALATE"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "clean-correct",
+        "description": "Prove that for all real numbers a, a(2 - a) \u000221 1.",
+        "category": "CLEAN_CORRECT",
+        "steps": [
+          {
+            "latex": "a(2 - a) = 2a - a^2",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "2a - a^2 = 1 - (a - 1)^2",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "(a - 1)^2 \u000221 0",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "1 - (a - 1)^2 \u000221 1",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "\\therefore a(2 - a) \u000221 1",
+            "expectedVerdict": "VERIFIED"
+          }
+        ],
+        "expectedFinalCorrect": true
+      },
+      {
+        "label": "off-by-one",
+        "description": "Same proof with an off-by-one error: miswrite the constant term in step 2 as 2 instead of 1.",
+        "category": "OFF_BY_ONE",
+        "steps": [
+          {
+            "latex": "a(2 - a) = 2a - a^2",
+            "expectedVerdict": "VERIFIED"
+          },
+          {
+            "latex": "2a - a^2 = 2 - (a - 1)^2",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "(a - 1)^2 \u000221 0",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "2 - (a - 1)^2 \u000221 1",
+            "expectedVerdict": "INVALID"
+          },
+          {
+            "latex": "\\therefore a(2 - a) \u000221 1",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      },
+      {
+        "label": "totally-wrong",
+        "description": "Incorrect proof asserting a(2 - a) \u000221 2 directly.",
+        "category": "TOTALLY_WRONG",
+        "steps": [
+          {
+            "latex": "a(2 - a) \u000221 2",
+            "expectedVerdict": "INVALID"
+          }
+        ],
+        "expectedFinalCorrect": false
+      }
+    ]
+  }
+]

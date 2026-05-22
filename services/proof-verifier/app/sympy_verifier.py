@@ -17,7 +17,12 @@ from sympy.parsing.latex import parse_latex  # type: ignore[attr-defined]
 
 from .schemas import Backend, StepType, Verdict, VerifyResponse
 
-_NUMERIC_PROBE_SAMPLES = 12
+# Bumped 12 → 60 after observing a false-VERIFIED slip past 24 samples
+# on a deliberately-wrong off-by-one student attempt. Larger sample
+# count compresses the probability of a "lucky" probe-pass on a
+# subtly-broken inequality. Cost: each probe is one .evalf() call,
+# ~100µs, so 60 vs 12 samples = ~6 ms extra latency per step.
+_NUMERIC_PROBE_SAMPLES = 60
 _NUMERIC_TOLERANCE = 1e-9
 
 
@@ -134,8 +139,125 @@ def _verify_equivalence(latex: str) -> VerifyResponse:
     )
 
 
-def _verify_equation(latex: str) -> VerifyResponse:
+def _parse_assumption_equation(latex: str) -> tuple[sp.Expr, sp.Expr] | None:
+    """Parse an `LHS = RHS` LaTeX string into a (lhs, rhs) SymPy pair.
+    Returns None if parsing fails — assumption is then ignored, not fatal.
+    """
+    split = _split_on_top_level_operator(latex, ("=",))
+    if split is None:
+        return None
+    lhs_s, _, rhs_s = split
+    lhs, _ = _try_parse(lhs_s)
+    rhs, _ = _try_parse(rhs_s)
+    if lhs is None or rhs is None:
+        return None
+    return (lhs, rhs)
+
+
+def _is_tautology(lhs: sp.Expr, rhs: sp.Expr) -> bool:
+    """An assumption `lhs = rhs` is a tautology when lhs - rhs simplifies
+    to 0. Tautologies are always-true so they impose NO constraint —
+    feeding them to sp.solve produces a trivial empty solution that
+    must not be treated as a "counterexample" against the target.
+    """
+    try:
+        return sp.simplify(lhs - rhs) == 0
+    except Exception:  # noqa: BLE001
+        return False
+
+
+def _try_solve_for_target(
+    target: sp.Expr,
+    assumption_pairs: list[tuple[sp.Expr, sp.Expr]],
+) -> tuple[bool, str]:
+    """Return (entails_zero, evidence). If every solution of the
+    assumptions makes `target == 0`, returns (True, ""). If at least
+    one solution makes it non-zero AND the solutions are non-trivial,
+    returns (False, counterexample). Returns (False, "") when
+    undecidable so the caller can fall back to the numeric probe.
+    """
+    if not assumption_pairs:
+        return (False, "")
+    # Drop tautologies — they impose no constraint.
+    constraints = [
+        (lhs, rhs) for (lhs, rhs) in assumption_pairs if not _is_tautology(lhs, rhs)
+    ]
+    if not constraints:
+        return (False, "")
+    syms = _free_symbols(target, *(e for pair in constraints for e in pair))
+    if not syms:
+        return (False, "")
+    eqs = [sp.Eq(lhs, rhs) for (lhs, rhs) in constraints]
+    try:
+        sols = sp.solve(eqs, syms, dict=True)
+    except Exception:  # noqa: BLE001
+        return (False, "")
+    if not sols:
+        return (False, "")
+    # Filter trivial empty-dict solutions — they mean "any value works",
+    # i.e. the constraints did not actually constrain anything.
+    real_sols = [sol for sol in sols if len(sol) > 0]
+    if not real_sols:
+        return (False, "")
+    counter: dict[str, sp.Expr] | None = None
+    for sol in real_sols:
+        try:
+            evaluated = sp.simplify(target.subs(sol))
+        except Exception:  # noqa: BLE001
+            return (False, "")
+        if evaluated != 0:
+            counter = {str(k): str(v) for k, v in sol.items()}
+            break
+    if counter is not None:
+        return (False, f"counterexample under assumptions: {counter}")
+    return (True, f"target vanishes on all {len(real_sols)} solution(s) of the assumptions")
+
+
+def _looks_like_substitution_declaration(latex: str) -> bool:
+    """True when the input is a list of variable assignments
+    (`n=1, a=1, b=2, c=2`) rather than a single algebraic identity.
+
+    Heuristic: count top-level `=` signs that are separated by `,`.
+    Two or more separated by commas → treat as substitution declaration.
+
+    Why this matters: SymPy's `parse_latex("1, a=1, b=2, c=2.")` will
+    silently truncate at the first comma and return `1`, so a step like
+    "n=1, a=1, b=2, c=2" gets misverified as "n = 1" and rejected as
+    INVALID under the numeric probe. We need to skip the equation check
+    entirely for these inputs and let an LLM judge handle them.
+    """
+    # Strip a single trailing period, common when students write "n=1."
+    s = latex.strip().rstrip(".")
+    parts = [p.strip() for p in s.split(",")]
+    # At least two parts AND every part contains an `=` outside of braces
+    if len(parts) < 2:
+        return False
+    eq_count = 0
+    for part in parts:
+        split = _split_on_top_level_operator(part, ("=",))
+        if split is not None:
+            eq_count += 1
+    return eq_count >= 2
+
+
+def _verify_equation(latex: str, assumptions: list[str] | None = None) -> VerifyResponse:
     """Check whether LHS = RHS is an identity (holds for all symbols)."""
+    # Bail out early on substitution-style declarations like
+    # "n=1, a=1, b=2, c=2". These aren't algebraic identities and the
+    # parser truncates them. We return PLAUSIBLE so the merge layer
+    # routes to ABSTAIN → escalation → LLM judge, which is the right
+    # backend for "is this a valid candidate solution".
+    if _looks_like_substitution_declaration(latex):
+        return VerifyResponse(
+            verdict=Verdict.PLAUSIBLE,
+            backend=Backend.SYMPY,
+            confidence=0.0,
+            details={
+                "stage": "substitution_declaration_skip",
+                "note": "Input looks like a multi-variable substitution declaration; SymPy cannot judge identity here.",
+            },
+        )
+
     split = _split_on_top_level_operator(latex, ("=",))
     if split is None:
         return VerifyResponse(
@@ -163,8 +285,74 @@ def _verify_equation(latex: str) -> VerifyResponse:
             details={"stage": "symbolic", "lhs": str(lhs), "rhs": str(rhs), "diff": "0"},
         )
 
+    # === Use assumptions when the surface check failed. ===
+    parsed_assumptions: list[tuple[sp.Expr, sp.Expr]] = []
+    for a in (assumptions or []):
+        pair = _parse_assumption_equation(a)
+        if pair is not None:
+            parsed_assumptions.append(pair)
+    if parsed_assumptions:
+        entails, evidence = _try_solve_for_target(diff, parsed_assumptions)
+        if entails:
+            return VerifyResponse(
+                verdict=Verdict.VERIFIED,
+                backend=Backend.SYMPY,
+                confidence=0.95,
+                details={
+                    "stage": "symbolic_with_assumptions",
+                    "lhs": str(lhs),
+                    "rhs": str(rhs),
+                    "assumptions": [f"{l} = {r}" for (l, r) in parsed_assumptions],
+                    "note": evidence,
+                },
+            )
+        if evidence:
+            return VerifyResponse(
+                verdict=Verdict.INVALID,
+                backend=Backend.SYMPY,
+                confidence=0.9,
+                details={
+                    "stage": "symbolic_with_assumptions_counterexample",
+                    "lhs": str(lhs),
+                    "rhs": str(rhs),
+                    "assumptions": [f"{l} = {r}" for (l, r) in parsed_assumptions],
+                    "note": evidence,
+                },
+            )
+
     numeric_ok, failures = _numeric_probe_equal(lhs, rhs)
     if not numeric_ok:
+        # Conservative carve-out: we downgrade to PLAUSIBLE (→ ABSTAIN
+        # at the merge layer) when the step has 2+ free variables.
+        # Real-world step equations almost always carry an unstated
+        # domain constraint (positivity, integer-ness, etc.). Without
+        # an assumption-aware sampler we cannot confidently call
+        # INVALID on a uniform-real counterexample. 1-variable
+        # equations stay strict.
+        n_free = len(_free_symbols(lhs, rhs))
+        has_assumptions = bool(assumptions or [])
+        if n_free >= 2:
+            return VerifyResponse(
+                verdict=Verdict.PLAUSIBLE,
+                backend=Backend.SYMPY,
+                confidence=0.4,
+                details={
+                    "stage": "numeric_probe_unconstrained_multivar"
+                    if not has_assumptions
+                    else "numeric_probe_assumption_unaware",
+                    "lhs": str(lhs),
+                    "rhs": str(rhs),
+                    "free_var_count": n_free,
+                    "has_assumptions": has_assumptions,
+                    "counterexamples_in_random_reals": failures[:3],
+                    "note": (
+                        "counterexamples found via uniform-real sampling; "
+                        "either the step has 3+ free vars without "
+                        "constraints, or hypotheses were provided that "
+                        "our sampler cannot respect. Escalating."
+                    ),
+                },
+            )
         return VerifyResponse(
             verdict=Verdict.INVALID,
             backend=Backend.SYMPY,
@@ -264,6 +452,37 @@ def _verify_inequality(latex: str) -> VerifyResponse:
                 break
 
     if counterexamples:
+        # Conservative carve-out: counterexamples found by uniform-real
+        # sampling are unreliable when the step has 2+ free variables.
+        # Real-world step inequalities almost always carry an unstated
+        # domain constraint (positivity, ordering like b≤a, integer-
+        # ness, or bounded range). Without an assumption-aware sampler
+        # — which we don't have yet — any random counterexample might
+        # simply be a point violating those constraints. We downgrade
+        # to PLAUSIBLE so the merge layer escalates rather than
+        # committing a false INVALID.
+        #
+        # 1-variable inequalities are kept strict: a counterexample in
+        # one variable usually IS dispositive (e.g. n^{1/n} < 2 - 1/n
+        # for some specific n).
+        n_free = len(_free_symbols(lhs, rhs))
+        if n_free >= 2:
+            return VerifyResponse(
+                verdict=Verdict.PLAUSIBLE,
+                backend=Backend.SYMPY,
+                confidence=0.4,
+                details={
+                    "stage": "numeric_probe_unconstrained_multivar",
+                    "operator": op,
+                    "free_var_count": n_free,
+                    "counterexamples_in_random_reals": counterexamples,
+                    "note": (
+                        "counterexamples found in unconstrained reals; "
+                        "step may still hold under problem-stated "
+                        "domain constraints. Escalating."
+                    ),
+                },
+            )
         return VerifyResponse(
             verdict=Verdict.INVALID,
             backend=Backend.SYMPY,
@@ -296,10 +515,20 @@ def _verify_inequality(latex: str) -> VerifyResponse:
     )
 
 
-def verify(step_type: StepType, latex: str) -> VerifyResponse:
-    """Dispatch to the appropriate SymPy checker by step type."""
+def verify(
+    step_type: StepType,
+    latex: str,
+    assumptions: list[str] | None = None,
+) -> VerifyResponse:
+    """Dispatch to the appropriate SymPy checker by step type.
+
+    `assumptions` is a list of LaTeX strings (typically prior proof
+    steps). The equation path uses them to verify steps that only
+    follow from the given hypotheses (e.g. substituting x+y=5 and
+    xy=6 to verify x^2+y^2=13).
+    """
     if step_type == StepType.EQUATION or step_type == StepType.ALGEBRAIC_EQUIVALENCE:
-        return _verify_equation(latex) if "=" in latex else _verify_equivalence(latex)
+        return _verify_equation(latex, assumptions) if "=" in latex else _verify_equivalence(latex)
     if step_type == StepType.INEQUALITY:
         return _verify_inequality(latex)
     return VerifyResponse(

@@ -145,6 +145,37 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
   }
 
   const totalProblems = practiceSetData.problems.length;
+
+  // Per-problem attempt status for the badge UI on the list. We pull
+  // the latest non-ABANDONED ProblemAttempt for each problem in this
+  // set and roll it up into a Map<problemId, "not_started" | "in_progress" | "submitted">.
+  // ABANDONED rows are intentionally treated as "not_started" so the
+  // student sees a clean slate after they hit Restart.
+  const allProblemIds = practiceSetData.problems.map((p) => p.id);
+  const userAttempts =
+    allProblemIds.length > 0
+      ? await prisma.problemAttempt.findMany({
+          where: {
+            userId: session.user.id,
+            problemId: { in: allProblemIds },
+            status: { in: ["DRAFT", "SUBMITTED"] }
+          },
+          orderBy: [{ updatedAt: "desc" }],
+          select: { problemId: true, status: true, updatedAt: true }
+        })
+      : [];
+  // First occurrence wins because we sorted by updatedAt desc.
+  const attemptStatusByProblemId = new Map<string, "in_progress" | "submitted">();
+  for (const a of userAttempts) {
+    if (attemptStatusByProblemId.has(a.problemId)) continue;
+    if (a.status === "DRAFT") {
+      attemptStatusByProblemId.set(a.problemId, "in_progress");
+    } else if (a.status === "SUBMITTED") {
+      attemptStatusByProblemId.set(a.problemId, "submitted");
+    }
+  }
+  const attemptedCount = attemptStatusByProblemId.size;
+
   const practiceRun =
     totalProblems > 0
       ? ((await prisma.practiceRun.findFirst({
@@ -279,6 +310,17 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
                 {practiceSetData.contest} {practiceSetData.year}
                 {practiceSetData.exam ? ` ${practiceSetData.exam}` : ""} ·{" "}
                 {t("problemset.total_problems", { count: totalProblems })}
+                {attemptedCount > 0 ? (
+                  <>
+                    {" · "}
+                    <span style={{ color: "var(--accent-strong)", fontWeight: 600 }}>
+                      {t("problemset.progress_summary", {
+                        attempted: attemptedCount,
+                        total: totalProblems
+                      })}
+                    </span>
+                  </>
+                ) : null}
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -304,31 +346,79 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
           </div>
 
           <div className="space-y-3">
-            {practiceSetData.problems.map((problem) => (
-              <article key={problem.id} className="rounded-3xl border border-slate-200 bg-slate-50/80 p-5">
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div className="space-y-2">
-                    <h3 className="text-lg font-semibold text-slate-900">
-                      {t("problemset.problem_label", { number: problem.number })}
-                    </h3>
-                    <p className="text-sm text-slate-600">{makeStatementSnippet(problem.statement)}</p>
-                    <div className="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                      {problem.difficultyBand ? <span>{problem.difficultyBand}</span> : null}
-                      {formatTopicLabel(problem.topicKey) ? <span>{formatTopicLabel(problem.topicKey)}</span> : null}
+            {practiceSetData.problems.map((problem) => {
+              const status = attemptStatusByProblemId.get(problem.id);
+              // statusMeta drives the badge color + label key. We keep
+              // "not_started" implicit (no badge) — student doesn't need
+              // to see a badge on every untouched problem.
+              const statusMeta =
+                status === "submitted"
+                  ? {
+                      label: t("problemset.status_submitted"),
+                      bg: "var(--success-soft)",
+                      color: "var(--success)",
+                      borderColor:
+                        "color-mix(in srgb, var(--success) 28%, transparent)"
+                    }
+                  : status === "in_progress"
+                    ? {
+                        label: t("problemset.status_in_progress"),
+                        bg: "var(--surface-2)",
+                        color: "var(--accent-strong)",
+                        borderColor: "var(--border)"
+                      }
+                    : null;
+              const ctaLabelKey =
+                status === "submitted"
+                  ? "problemset.cta_review"
+                  : status === "in_progress"
+                    ? "problemset.cta_continue"
+                    : (practiceSetData.tutorEnabled
+                        ? "problemset.open_tutor"
+                        : "problemset.open_problem");
+              return (
+                <article key={problem.id} className="rounded-3xl border border-slate-200 bg-slate-50/80 p-5">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div className="space-y-2">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="text-lg font-semibold text-slate-900">
+                          {t("problemset.problem_label", { number: problem.number })}
+                        </h3>
+                        {statusMeta ? (
+                          <span
+                            className="text-[10px] font-semibold uppercase"
+                            style={{
+                              padding: "2px 8px",
+                              borderRadius: 999,
+                              background: statusMeta.bg,
+                              color: statusMeta.color,
+                              border: `1px solid ${statusMeta.borderColor}`,
+                              letterSpacing: "0.08em"
+                            }}
+                          >
+                            {statusMeta.label}
+                          </span>
+                        ) : null}
+                      </div>
+                      <p className="text-sm text-slate-600">{makeStatementSnippet(problem.statement)}</p>
+                      <div className="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                        {problem.difficultyBand ? <span>{problem.difficultyBand}</span> : null}
+                        {formatTopicLabel(problem.topicKey) ? <span>{formatTopicLabel(problem.topicKey)}</span> : null}
+                      </div>
                     </div>
-                  </div>
 
-                  {practiceRun ? (
-                    <Link
-                      className="btn-primary"
-                      href={`/problems/${encodeURIComponent(problem.id)}?runId=${encodeURIComponent(practiceRun.id)}`}
-                    >
-                      {practiceSetData.tutorEnabled ? t("problemset.open_tutor") : t("problemset.open_problem")}
-                    </Link>
-                  ) : null}
-                </div>
-              </article>
-            ))}
+                    {practiceRun ? (
+                      <Link
+                        className="btn-primary"
+                        href={`/problems/${encodeURIComponent(problem.id)}?runId=${encodeURIComponent(practiceRun.id)}`}
+                      >
+                        {t(ctaLabelKey as Parameters<typeof t>[0])}
+                      </Link>
+                    ) : null}
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </section>
       </main>

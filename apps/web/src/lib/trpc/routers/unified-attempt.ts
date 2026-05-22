@@ -4,11 +4,14 @@ import { z } from "zod";
 import {
   PROOF_CLASSIFIER_FALLBACK_VERSION,
   PROOF_LLM_JUDGE_VERSION,
+  PROOF_NEXT_STEP_HINT_VERSION,
   PROOF_OVERALL_REVIEW_VERSION,
   PROOF_TUTOR_PROMPT_VERSION,
   classifyStepWithLlm,
+  generateNextStepHint,
   generateProofReview,
   generateStepFeedback,
+  getFallbackNextStepHint,
   judgeStepWithLlm,
   type ProofStepType,
   type ProofStepVerdict
@@ -17,6 +20,10 @@ import { isStructuredSolution, type StructuredSolution } from "@/lib/ai/solution
 import { classifyStep, verifyStep, type ProofVerifyResult } from "@/lib/proof-verifier-client";
 import { generateExplanation, generateHint, getSafeFallbackHint, hintLeaksFinalAnswer } from "@/lib/ai/hint-tutor";
 import { gradeAnswer, type SupportedAnswerFormat } from "@/lib/answer-grading";
+import {
+  isV2Enabled,
+  runStepVerificationV2
+} from "@/lib/grading/adapters/unified-attempt-v2";
 import { protectedProcedure, router } from "@/lib/trpc/server";
 
 const MAX_STEP_LENGTH = 4000;
@@ -66,6 +73,8 @@ const editStepInput = z.object({
 const deleteStepInput = z.object({ stepId: z.string().min(1) });
 
 const requestHintInput = z.object({ attemptId: z.string().min(1) });
+
+const nextStepHintInput = z.object({ attemptId: z.string().min(1) });
 
 const submitInput = z.object({
   attemptId: z.string().min(1),
@@ -123,6 +132,11 @@ async function runStepVerification(params: {
   problemStatement: string;
   latexInput: string;
   previousSteps: string[];
+  /**
+   * UI locale of the student. Forwarded to the LLM mentor prompt so
+   * Chinese-UI users get Chinese feedback. Defaults to "en".
+   */
+  locale?: "en" | "zh";
 }): Promise<{
   stepType: ProofStepType;
   verdict: ProofStepVerdict;
@@ -133,6 +147,12 @@ async function runStepVerification(params: {
   promptVersion: string;
   classifierVersion: string;
 }> {
+  // Feature flag: when GRADING_ENGINE_VERSION=v2 we route to the v2
+  // grading engine. v1 stays as the safe fallback while we collect
+  // baseline accuracy on real student data.
+  if (isV2Enabled()) {
+    return runStepVerificationV2(params);
+  }
   // Classify: try rule-based Python classifier first, fall back to LLM when unsure.
   let stepType: ProofStepType = "UNKNOWN";
   let classifierVersion = "proof-verifier-rules-v1";
@@ -163,7 +183,27 @@ async function runStepVerification(params: {
   let details: Record<string, unknown> = {};
   let reason: string | undefined;
 
-  if (stepType !== "UNKNOWN") {
+  // Pre-flight guard: skip SymPy for multi-variable substitution
+  // declarations like "n=1, a=1, b=2, c=2". SymPy's latex parser
+  // silently truncates at the first comma, so calling /verify on this
+  // input ends in a spurious INVALID. The LLM judge below can actually
+  // reason about substitution candidates, so we route there directly.
+  // Matches the same guard in the v2 SymPy backend
+  // (lib/grading/backends/proof-verifier-http.ts).
+  const isSubstitutionDeclaration = (() => {
+    const trimmed = params.latexInput.trim().replace(/\.$/, "");
+    const parts = trimmed.split(",").map((s) => s.trim());
+    if (parts.length < 2) return false;
+    let eqCount = 0;
+    for (const part of parts) {
+      if (/^[\s]*[A-Za-z_]\w*\s*=\s*[^=]/.test(part)) {
+        eqCount += 1;
+      }
+    }
+    return eqCount >= 2;
+  })();
+
+  if (stepType !== "UNKNOWN" && !isSubstitutionDeclaration) {
     verifyResult = await verifyStep({
       stepType,
       latex: params.latexInput,
@@ -171,7 +211,17 @@ async function runStepVerification(params: {
     });
   }
 
-  if (verifyResult && verifyResult.verdict !== "UNKNOWN") {
+  // ERROR from the Python verifier means "couldn't run" (typically a
+  // SymPy parse failure on weird student input), NOT "is mathematically
+  // wrong". Treat it like UNKNOWN — fall through to the LLM judge so a
+  // correct-but-oddly-formatted step (e.g. "n=1, a=1, b=2, c=2") still
+  // has a chance to be recognized. Pre-2026-05-20 we'd commit ERROR
+  // directly, which caused a false ✗ INVALID display on valid work.
+  if (
+    verifyResult &&
+    verifyResult.verdict !== "UNKNOWN" &&
+    verifyResult.verdict !== "ERROR"
+  ) {
     verdict = verifyResult.verdict;
     backend = verifyResult.backend;
     confidence = verifyResult.confidence;
@@ -218,7 +268,8 @@ async function runStepVerification(params: {
     verdict,
     verificationBackend: backend,
     verificationReason: reason,
-    previousSteps: params.previousSteps
+    previousSteps: params.previousSteps,
+    locale: params.locale
   });
 
   return {
@@ -487,7 +538,16 @@ export const unifiedAttemptRouter = router({
 
     const attempt = await ctx.prisma.problemAttempt.findFirst({
       where: { id: input.attemptId, userId },
-      select: { id: true, status: true }
+      // We pull problem.statement up-front so we can run real-time
+      // step verification on this single step inline. Before the
+      // per-step feedback feature (2026-05-21), this mutation just
+      // wrote a PENDING row and the verification ran at final submit
+      // time — now we give the student feedback as they go.
+      select: {
+        id: true,
+        status: true,
+        problem: { select: { statement: true } }
+      }
     });
     if (!attempt) throw new TRPCError({ code: "NOT_FOUND", message: "Attempt not found." });
     if (attempt.status !== "DRAFT") {
@@ -499,15 +559,51 @@ export const unifiedAttemptRouter = router({
       throw new TRPCError({ code: "BAD_REQUEST", message: "Step limit reached for this attempt." });
     }
 
+    // Pull all prior steps so the classifier / judge has context. We
+    // order by stepIndex so previousSteps[] is the same shape that the
+    // final-submit path passes — keeps prompts consistent.
+    const priorSteps = await ctx.prisma.attemptStep.findMany({
+      where: { attemptId: attempt.id },
+      orderBy: { stepIndex: "asc" },
+      select: { latexInput: true }
+    });
+
+    // Resolve the student's preferred feedback locale once. Same
+    // resolution path as the submit mutation uses.
+    const userLocale = await (async (): Promise<"en" | "zh"> => {
+      const row = await ctx.prisma.user.findUnique({
+        where: { id: userId },
+        select: { feedbackLocale: true }
+      });
+      return row?.feedbackLocale === "zh" ? "zh" : "en";
+    })();
+
+    // Run the same verification pipeline used at final-submit time, on
+    // just this one step. Latency is dominated by the LLM mentor call
+    // (~2-4 s), which is acceptable for the inline "as you go" flow —
+    // the client shows a spinner on the composer while it runs.
+    const pipeline = await runStepVerification({
+      problemStatement: attempt.problem.statement ?? "",
+      latexInput: input.latexInput,
+      previousSteps: priorSteps.map((s) => s.latexInput),
+      locale: userLocale
+    });
+
     const step = await ctx.prisma.attemptStep.create({
       data: {
         attemptId: attempt.id,
         userId,
         stepIndex: count,
         latexInput: input.latexInput,
-        classifiedStepType: "UNKNOWN",
-        verificationBackend: "NONE",
-        verdict: "PENDING"
+        classifiedStepType: pipeline.stepType,
+        verificationBackend: pipeline.backend,
+        verdict: pipeline.verdict,
+        confidence: pipeline.confidence,
+        feedbackText: pipeline.feedbackText,
+        verificationDetails:
+          pipeline.details as Parameters<typeof ctx.prisma.attemptStep.create>[0]["data"]["verificationDetails"],
+        classifierVersion: pipeline.classifierVersion,
+        feedbackPromptVersion: pipeline.promptVersion
       },
       select: STEP_SELECT
     });
@@ -526,25 +622,60 @@ export const unifiedAttemptRouter = router({
 
     const step = await ctx.prisma.attemptStep.findFirst({
       where: { id: input.stepId, userId },
-      select: { id: true, attemptId: true, attempt: { select: { status: true } } }
+      select: {
+        id: true,
+        attemptId: true,
+        stepIndex: true,
+        attempt: {
+          select: {
+            status: true,
+            problem: { select: { statement: true } }
+          }
+        }
+      }
     });
     if (!step) throw new TRPCError({ code: "NOT_FOUND", message: "Step not found." });
     if (step.attempt.status !== "DRAFT") {
       throw new TRPCError({ code: "BAD_REQUEST", message: "Attempt is not active." });
     }
 
+    // Re-run verification on the edited step (mirrors addStep). Steps
+    // are 0-indexed so `stepIndex` is the count of steps that come
+    // BEFORE this one — pull those as context.
+    const priorSteps = await ctx.prisma.attemptStep.findMany({
+      where: { attemptId: step.attemptId, stepIndex: { lt: step.stepIndex } },
+      orderBy: { stepIndex: "asc" },
+      select: { latexInput: true }
+    });
+
+    const userLocale = await (async (): Promise<"en" | "zh"> => {
+      const row = await ctx.prisma.user.findUnique({
+        where: { id: userId },
+        select: { feedbackLocale: true }
+      });
+      return row?.feedbackLocale === "zh" ? "zh" : "en";
+    })();
+
+    const pipeline = await runStepVerification({
+      problemStatement: step.attempt.problem.statement ?? "",
+      latexInput: input.latexInput,
+      previousSteps: priorSteps.map((s) => s.latexInput),
+      locale: userLocale
+    });
+
     const updated = await ctx.prisma.attemptStep.update({
       where: { id: step.id },
       data: {
         latexInput: input.latexInput,
-        classifiedStepType: "UNKNOWN",
-        verificationBackend: "NONE",
-        verdict: "PENDING",
-        confidence: null,
-        feedbackText: null,
-        verificationDetails: null as unknown as Parameters<typeof ctx.prisma.attemptStep.update>[0]["data"]["verificationDetails"],
-        classifierVersion: null,
-        feedbackPromptVersion: null
+        classifiedStepType: pipeline.stepType,
+        verificationBackend: pipeline.backend,
+        verdict: pipeline.verdict,
+        confidence: pipeline.confidence,
+        feedbackText: pipeline.feedbackText,
+        verificationDetails:
+          pipeline.details as Parameters<typeof ctx.prisma.attemptStep.update>[0]["data"]["verificationDetails"],
+        classifierVersion: pipeline.classifierVersion,
+        feedbackPromptVersion: pipeline.promptVersion
       },
       select: STEP_SELECT
     });
@@ -590,6 +721,67 @@ export const unifiedAttemptRouter = router({
 
     return { ok: true as const };
   }),
+
+  /**
+   * Next-step hint: dynamic, per-attempt forward-looking nudge based
+   * on the steps the student has written so far. Distinct from
+   * `requestHint` (the level-1/2/3 curated ladder) — that one is
+   * problem-overall and gated by the per-assignment hint-tutor toggle.
+   * This one is the inline "what should I try next?" companion to
+   * the per-step real-time feedback flow, surfaced on the workspace
+   * composer as a transient suggestion. No DB persistence today; if
+   * we want a history later, add a ProblemNextStepHint table.
+   */
+  nextStepHint: protectedProcedure
+    .input(nextStepHintInput)
+    .mutation(async ({ ctx, input }) => {
+      const userId = ctx.session.user.id;
+      if (!userId) throw new TRPCError({ code: "UNAUTHORIZED" });
+
+      const attempt = await ctx.prisma.problemAttempt.findFirst({
+        where: { id: input.attemptId, userId },
+        select: {
+          id: true,
+          status: true,
+          problem: { select: { statement: true } }
+        }
+      });
+      if (!attempt) {
+        throw new TRPCError({ code: "NOT_FOUND", message: "Attempt not found." });
+      }
+      if (attempt.status !== "DRAFT") {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "Attempt is not active."
+        });
+      }
+
+      const priorSteps = await ctx.prisma.attemptStep.findMany({
+        where: { attemptId: attempt.id },
+        orderBy: { stepIndex: "asc" },
+        select: { latexInput: true }
+      });
+
+      const userLocale = await (async (): Promise<"en" | "zh"> => {
+        const row = await ctx.prisma.user.findUnique({
+          where: { id: userId },
+          select: { feedbackLocale: true }
+        });
+        return row?.feedbackLocale === "zh" ? "zh" : "en";
+      })();
+
+      const hint = await generateNextStepHint({
+        problemStatement: attempt.problem.statement ?? "",
+        previousSteps: priorSteps.map((s) => s.latexInput),
+        locale: userLocale
+      });
+
+      return {
+        hintText: hint?.hintText ?? getFallbackNextStepHint(userLocale),
+        source: hint ? ("llm" as const) : ("fallback" as const),
+        promptVersion: PROOF_NEXT_STEP_HINT_VERSION
+      };
+    }),
 
   requestHint: protectedProcedure.input(requestHintInput).mutation(async ({ ctx, input }) => {
     // Used by HINT_GUIDED mode (also available in STUCK_WITH_WORK as a
@@ -779,6 +971,21 @@ export const unifiedAttemptRouter = router({
 
     // Verify each step sequentially so classifier/judge sees prior context.
     const problemStatement = attempt.problem.statement ?? "";
+
+    // Resolve the user's preferred *feedback* locale once, up front.
+    // This is DISTINCT from the UI locale (User.locale, set via the
+    // top-nav switcher). Feedback language defaults to English because
+    // the competition exams themselves are in English; a Chinese-UI
+    // student can opt into Chinese feedback from /account.
+    // See: resolveFeedbackLocaleForUser in apps/web/src/i18n/server.ts
+    const userLocale = await (async (): Promise<"en" | "zh"> => {
+      const row = await ctx.prisma.user.findUnique({
+        where: { id: userId },
+        select: { feedbackLocale: true }
+      });
+      return row?.feedbackLocale === "zh" ? "zh" : "en";
+    })();
+
     const verifiedRows: Array<{
       id: string;
       stepIndex: number;
@@ -794,7 +1001,8 @@ export const unifiedAttemptRouter = router({
       const pipeline = await runStepVerification({
         problemStatement,
         latexInput: step.latexInput,
-        previousSteps
+        previousSteps,
+        locale: userLocale
       });
       await ctx.prisma.attemptStep.update({
         where: { id: step.id },
@@ -903,7 +1111,8 @@ export const unifiedAttemptRouter = router({
               referenceProof
             }
           : undefined,
-        solutionRecipe: isProof ? solutionRecipe : null
+        solutionRecipe: isProof ? solutionRecipe : null,
+        locale: userLocale
       });
       overallFeedback = review.overallFeedback;
       // When milestoneCoverage came back, fold it into the feedback
@@ -912,10 +1121,12 @@ export const unifiedAttemptRouter = router({
       // coverage array too once we add a column; for now, text is a
       // lossless-for-humans representation.
       if (review.milestoneCoverage.length > 0) {
+        const heading =
+          userLocale === "zh" ? "里程碑覆盖：" : "Milestone coverage:";
         const covLines = review.milestoneCoverage
           .map((c) => `  #${c.index} ${c.status}: ${c.evidence}`)
           .join("\n");
-        overallFeedback = `${overallFeedback}\n\nMilestone coverage:\n${covLines}`;
+        overallFeedback = `${overallFeedback}\n\n${heading}\n${covLines}`;
       }
       overallPromptVersion = PROOF_OVERALL_REVIEW_VERSION;
       // Expose the structured coverage + recipe step metadata to the
@@ -977,8 +1188,27 @@ export const unifiedAttemptRouter = router({
       problemSetId: problem.problemSetId
     });
 
+    // Mark BOTH active DRAFTs and prior SUBMITTED attempts as
+    // ABANDONED so the next getState() call returns no current
+    // attempt — that's what triggers the EntryChooser to re-show
+    // and gives the student a truly fresh "try again" experience.
+    //
+    // We don't hard-delete rows here so the audit trail and any
+    // attached reports stay intact; ABANDONED is the "soft-archived"
+    // state. The getState query filters by DRAFT/SUBMITTED only and
+    // will skip ABANDONED rows.
+    //
+    // Pre-2026-05-21 we only flipped DRAFTs, which meant clicking
+    // "再尝试一次" on an already-submitted attempt did nothing visible
+    // — the SUBMITTED row survived and the UI kept rendering the
+    // old submission view.
     await ctx.prisma.problemAttempt.updateMany({
-      where: { userId, problemId: input.problemId, practiceRunId, status: "DRAFT" },
+      where: {
+        userId,
+        problemId: input.problemId,
+        practiceRunId,
+        status: { in: ["DRAFT", "SUBMITTED"] }
+      },
       data: { status: "ABANDONED" }
     });
 

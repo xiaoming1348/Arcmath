@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { useT } from "@/i18n/client";
+import { Eyebrow, Section } from "@/components/ui";
 
 /**
  * First-time password setup for roster-spawned accounts.
@@ -91,72 +92,120 @@ export default function SetPasswordPage() {
 
   return (
     <main className="motion-rise mx-auto w-full max-w-2xl">
-      <section className="surface-card space-y-5">
-        <div className="space-y-2">
-          <span className="badge">{t("set_password.badge")}</span>
-          <h1 className="text-3xl font-semibold tracking-[-0.05em] text-slate-900">
-            {t("set_password.title")}
-          </h1>
-          <p className="text-sm text-slate-600">{t("set_password.subtitle")}</p>
+      <Section tight className="pt-4 md:pt-6">
+        <div className="hero-panel">
+          <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-3">
+              <Eyebrow>{t("set_password.badge")}</Eyebrow>
+              <h1
+                className="display-headline"
+                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)" }}
+              >
+                <span className="florid florid-gradient">
+                  {t("set_password.title")}
+                </span>
+              </h1>
+              <p className="display-lede">{t("set_password.subtitle")}</p>
+            </div>
+
+            <form className="flex flex-col gap-4" onSubmit={onSubmit}>
+              <label
+                className="block text-sm font-medium"
+                style={{ color: "var(--foreground)" }}
+              >
+                {t("set_password.username_label")}
+                <input
+                  className="input-field"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder={t("set_password.username_placeholder")}
+                  required
+                  autoComplete="username"
+                />
+              </label>
+
+              <label
+                className="block text-sm font-medium"
+                style={{ color: "var(--foreground)" }}
+              >
+                {t("set_password.new_password_label")}
+                <input
+                  className="input-field"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  minLength={8}
+                  autoComplete="new-password"
+                />
+              </label>
+
+              <label
+                className="block text-sm font-medium"
+                style={{ color: "var(--foreground)" }}
+              >
+                {t("set_password.confirm_password_label")}
+                <input
+                  className="input-field"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                  minLength={8}
+                  autoComplete="new-password"
+                />
+              </label>
+
+              {error ? (
+                <div
+                  role="alert"
+                  className="px-4 py-3 text-sm"
+                  style={{
+                    background: "var(--danger-soft)",
+                    color: "var(--danger)",
+                    border:
+                      "1px solid color-mix(in srgb, var(--danger) 28%, transparent)",
+                    borderRadius: "var(--radius-md)"
+                  }}
+                >
+                  {error}
+                </div>
+              ) : null}
+
+              <button
+                className="btn-primary w-full"
+                disabled={loading}
+                type="submit"
+              >
+                {loading
+                  ? t("set_password.submit_loading")
+                  : t("set_password.submit")}
+              </button>
+            </form>
+
+            <div
+              className="px-4 py-3 text-sm"
+              style={{
+                background: "var(--surface-2)",
+                border: "1px solid var(--border)",
+                borderRadius: "var(--radius-md)",
+                color: "var(--muted)"
+              }}
+            >
+              {t("set_password.already_set_prefix")}{" "}
+              <Link
+                className="font-semibold"
+                style={{ color: "var(--accent-strong)" }}
+                href="/login"
+              >
+                {t("set_password.already_set_link")}
+              </Link>
+              .
+            </div>
+          </div>
         </div>
-
-        <form className="space-y-4" onSubmit={onSubmit}>
-          <label className="block text-sm font-medium text-slate-700">
-            {t("set_password.username_label")}
-            <input
-              className="input-field"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder={t("set_password.username_placeholder")}
-              required
-              autoComplete="username"
-            />
-          </label>
-
-          <label className="block text-sm font-medium text-slate-700">
-            {t("set_password.new_password_label")}
-            <input
-              className="input-field"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              minLength={8}
-              autoComplete="new-password"
-            />
-          </label>
-
-          <label className="block text-sm font-medium text-slate-700">
-            {t("set_password.confirm_password_label")}
-            <input
-              className="input-field"
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-              minLength={8}
-              autoComplete="new-password"
-            />
-          </label>
-
-          {error ? (
-            <p className="rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-600">{error}</p>
-          ) : null}
-
-          <button className="btn-primary w-full" disabled={loading} type="submit">
-            {loading ? t("set_password.submit_loading") : t("set_password.submit")}
-          </button>
-        </form>
-
-        <div className="rounded-[1.4rem] border border-[rgba(16,35,60,0.08)] bg-[rgba(243,247,251,0.88)] px-4 py-4 text-sm text-slate-600">
-          {t("set_password.already_set_prefix")}{" "}
-          <Link className="font-semibold text-[var(--accent-strong)]" href="/login">
-            {t("set_password.already_set_link")}
-          </Link>
-          .
-        </div>
-      </section>
+      </Section>
     </main>
   );
 }

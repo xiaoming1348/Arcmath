@@ -210,6 +210,17 @@ enum FormalizedStatus {
   SKIPPED
 }
 
+// v2 grading engine: where did the rubric come from?
+//   AUTHORED — teacher wrote it directly in the upload form
+//   AUTO_GENERATED — produced offline by solution-generator.ts and never
+//     reviewed; grader treats critical milestones leniently
+//   HYBRID_APPROVED — auto-generated then teacher-approved (locked)
+enum RubricSource {
+  AUTHORED
+  AUTO_GENERATED
+  HYBRID_APPROVED
+}
+
 model User {
   id                             String                   @id @default(cuid())
   email                          String                   @unique
@@ -219,11 +230,25 @@ model User {
   // student or teacher sets their own password on first login via
   // /login/set-password. Existing accounts always have a hash.
   passwordHash                   String?
+  // Email verification — set when the user clicks the verification
+  // link emailed at registration. Login is hard-blocked while this is
+  // null for self-signup accounts (admin-spawned accounts skip this
+  // because the admin already verified the student/teacher out-of-band
+  // by distributing the credentials directly).
+  emailVerifiedAt                DateTime?
+  emailVerificationTokens        EmailVerificationToken[]
   role                           Role                     @default(STUDENT)
   // Preferred UI language ("en" | "zh"). Null → fall back to browser
   // Accept-Language or org-default. Stored here so a student who logs
   // in from a shared device still sees their preferred language.
   locale                         String?
+  // Preferred language for AI feedback / hints / step mentor output.
+  // Intentionally separate from `locale` (the UI language) because the
+  // competition exams (AMC/AIME/Putnam) are themselves in English; a
+  // Chinese-UI student may still prefer English-language feedback so
+  // the vocabulary lines up with the actual exam. Null → defaults to
+  // "en". Opt-in to Chinese via /account.
+  feedbackLocale                 String?
   createdAt                      DateTime                 @default(now())
   updatedAt                      DateTime                 @updatedAt
   enrollments                    Enrollment[]
@@ -244,6 +269,27 @@ model User {
   tutorTurns                     TutorTurn[]
   attemptSteps                   AttemptStep[]
   auditLogEvents                 AuditLogEvent[]  @relation("AuditLogActor")
+}
+
+// One-shot email verification token. A new row is created at
+// registration (and on resend). When the user clicks the link in
+// the email we look up the token by `token` column (random 32-byte
+// hex), check `expiresAt > now`, mark the user verified, then
+// consume by setting `consumedAt`. Expired / consumed tokens stay
+// for audit but can't be re-used. We also keep `purpose` so the
+// same table can later carry password-reset tokens etc.
+model EmailVerificationToken {
+  id          String   @id @default(cuid())
+  token       String   @unique
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  purpose     String   @default("EMAIL_VERIFICATION") // EMAIL_VERIFICATION | PASSWORD_RESET (future)
+  expiresAt   DateTime
+  consumedAt  DateTime?
+  createdAt   DateTime @default(now())
+
+  @@index([userId, purpose])
+  @@index([expiresAt])
 }
 
 model Organization {
@@ -479,6 +525,14 @@ model Problem {
   formalizedReason           String?
   formalizedAt               DateTime?
   formalizedVersion          String?
+  // v2 grading engine rubric approval state. When `rubricApprovedAt`
+  // is non-null, the rubric stored in `milestoneChecks` has been
+  // teacher-reviewed and is the source of truth for grading. When it
+  // is null, the rubric is auto-generated and the grader treats
+  // critical milestones less strictly. See GRADING_ENGINE_V2.md §6.
+  rubricApprovedAt           DateTime?
+  rubricApprovedByUserId     String?
+  rubricSource               RubricSource?
   createdAt                  DateTime           @default(now())
   updatedAt                  DateTime           @updatedAt
   problemSet                 ProblemSet         @relation(fields: [problemSetId], references: [id], onDelete: Cascade)
@@ -490,6 +544,7 @@ model Problem {
   @@index([problemSetId])
   @@index([number])
   @@index([formalizedStatus])
+  @@index([rubricApprovedAt])
 }
 
 model ProblemAttempt {
