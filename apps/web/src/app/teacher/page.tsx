@@ -10,22 +10,20 @@ import {
 } from "@/lib/organizations";
 import { resolveLocale } from "@/i18n/server";
 import { translatorImpl as translator } from "@/i18n/dictionary";
+import { Eyebrow, Section } from "@/components/ui";
+import { MathGlyphs } from "@/components/marketing/math-glyphs";
 import { TeacherHomePanel } from "./teacher-home-panel";
 
 /**
  * Teacher dashboard home.
  *
- * This page is mostly a thin server shell: it checks auth, resolves the
- * teacher's school membership once (so the page 404s early if they don't
- * have one), and hands the actual interactive surface (create class,
- * invite teachers, live seat counters) to the client panel via tRPC.
+ * Server-side gates filter out logged-out / non-teacher users early.
+ * The interactive class-roster + invites surface is in TeacherHomePanel
+ * which talks to tRPC.
  *
- * Why split this way?
- *   - Server-side gates catch logged-out / non-teacher users without a
- *     client-round-trip flash.
- *   - Everything that mutates (classes, invites) lives in tRPC so it
- *     reuses the same tenant-scoped middleware we wired up in Phase 1,
- *     instead of duplicating that logic in server actions.
+ * UI v3 (2026-05-13): hero updated to the same "italic-name → headline"
+ * pattern the student page uses, plus a primary CTA ("upload work")
+ * that lands directly on the most common teacher action.
  */
 export default async function TeacherHomePage() {
   const session = await getServerSession(authOptions);
@@ -33,10 +31,11 @@ export default async function TeacherHomePage() {
     redirect("/login?callbackUrl=%2Fteacher");
   }
 
-  const membership = await getActiveOrganizationMembership(prisma, session.user.id);
+  const membership = await getActiveOrganizationMembership(
+    prisma,
+    session.user.id
+  );
   if (!membership || !canTeach(membership.role)) {
-    // Non-teachers don't get an obscure 403 — we bounce them to /dashboard
-    // which is their normal home.
     redirect("/dashboard");
   }
 
@@ -45,24 +44,39 @@ export default async function TeacherHomePage() {
   const canInviteTeachers = canManageOrganization(membership.role);
 
   return (
-    <main className="motion-rise space-y-4">
-      <section className="surface-card space-y-2">
-        <span className="badge">{membership.organizationName}</span>
-        <h1 className="text-2xl font-semibold text-slate-900">
-          {t("teacher.home.title")}
-        </h1>
-        <p className="text-sm text-slate-600">{t("teacher.home.subtitle")}</p>
-        <div className="flex flex-wrap gap-2 pt-2">
-          <Link href="/teacher/upload" className="btn-secondary">
-            {t("teacher.upload.cta_from_home")}
-          </Link>
+    <main className="motion-rise">
+      <Section tight className="pt-4 md:pt-6">
+        <div className="hero-panel">
+          <MathGlyphs />
+          <div className="relative flex flex-col gap-5">
+            <Eyebrow>{membership.organizationName}</Eyebrow>
+            <h1
+              className="display-headline"
+              style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+            >
+              <span className="florid florid-gradient">
+                {t("teacher.home.title")}
+              </span>
+            </h1>
+            <p className="display-lede">{t("teacher.home.subtitle")}</p>
+            <div className="flex flex-wrap gap-3 pt-1">
+              <Link href="/teacher/upload" className="btn-primary">
+                {t("teacher.upload.cta_from_home")}
+              </Link>
+              <Link href="/problems" className="btn-secondary">
+                {t("topnav.problems")}
+              </Link>
+            </div>
+          </div>
         </div>
-      </section>
+      </Section>
 
-      <TeacherHomePanel
-        locale={locale}
-        canInviteTeachers={canInviteTeachers}
-      />
+      <Section tight>
+        <TeacherHomePanel
+          locale={locale}
+          canInviteTeachers={canInviteTeachers}
+        />
+      </Section>
     </main>
   );
 }

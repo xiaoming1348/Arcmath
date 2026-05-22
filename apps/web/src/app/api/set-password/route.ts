@@ -59,7 +59,15 @@ export async function POST(request: Request) {
   const passwordHash = await bcrypt.hash(withPepper(parsed.data.password), 10);
   await prisma.user.update({
     where: { id: user.id },
-    data: { passwordHash }
+    data: {
+      passwordHash,
+      // Admin-spawned accounts are implicitly verified the moment the
+      // student/teacher proves possession of the auto-generated email
+      // by setting a password through this endpoint. We don't require
+      // them to do the email-verification round-trip separately because
+      // the admin already verified their identity out of band.
+      emailVerifiedAt: new Date()
+    }
   });
 
   return NextResponse.json({ ok: true });

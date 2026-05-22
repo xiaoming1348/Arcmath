@@ -6,6 +6,14 @@ import { authOptions } from "@/lib/auth";
 import { generateLearningReport } from "@/lib/ai/learning-report";
 import { appRouter } from "@/lib/trpc/router";
 import { createTRPCContext } from "@/lib/trpc/server";
+import {
+  Card,
+  Eyebrow,
+  Metric,
+  Section,
+  SectionHeader,
+  Tag
+} from "@/components/ui";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -29,6 +37,13 @@ type ReportsPageProps = {
   }>;
 };
 
+/**
+ * Learning report page — refreshed (2026-05-13) to the v3 design
+ * system. Big hero metric (accuracy %) leads, outcome breakdown laid
+ * out as Brilliant-style colored tiles, question review cards reuse
+ * the tag data-status styling so VERIFIED/INVALID matches the rest
+ * of the app.
+ */
 export default async function ReportsPage({ searchParams }: ReportsPageProps) {
   noStore();
   const { runId } = await searchParams;
@@ -57,23 +72,34 @@ export default async function ReportsPage({ searchParams }: ReportsPageProps) {
     runId: runId ?? undefined
   });
   const isRunScoped = reportInput.reportScope.type === "practice-run";
-  const reportHeading = isRunScoped ? "Set Report" : "Your latest report";
+  const reportHeading = isRunScoped
+    ? "Set Report"
+    : "Your latest report";
   const reportDescription = isRunScoped
     ? `Based on your completed run for ${reportInput.reportScope.problemSetTitle ?? "this practice set"}${reportInput.reportScope.problemSetLabel ? ` · ${reportInput.reportScope.problemSetLabel}` : ""}.`
     : "Based on your most recent Hint Tutor attempts and hint usage.";
 
   if (reportInput.attempts.length === 0) {
     return (
-      <main className="motion-rise space-y-4">
-        <section className="surface-card space-y-3">
-          <span className="badge">AI Learning Report</span>
-          <h1 className="text-2xl font-semibold text-slate-900">{reportHeading}</h1>
-          <p className="text-sm text-slate-600">
-            {isRunScoped
-              ? "This practice run does not have any recorded attempts yet."
-              : "Complete a few Hint Tutor attempts and request hints when you need them. This page will turn that activity into a simple study report."}
-          </p>
-        </section>
+      <main className="motion-rise">
+        <Section tight className="pt-4 md:pt-6">
+          <div className="hero-panel">
+            <div className="flex flex-col gap-4">
+              <Eyebrow>AI Learning Report</Eyebrow>
+              <h1
+                className="display-headline"
+                style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+              >
+                <span className="florid florid-gradient">{reportHeading}</span>
+              </h1>
+              <p className="display-lede">
+                {isRunScoped
+                  ? "This practice run does not have any recorded attempts yet."
+                  : "Complete a few Hint Tutor attempts and request hints when you need them. This page will turn that activity into a simple study report."}
+              </p>
+            </div>
+          </div>
+        </Section>
       </main>
     );
   }
@@ -100,175 +126,498 @@ export default async function ReportsPage({ searchParams }: ReportsPageProps) {
     });
   }
 
+  // Derived headline accuracy. Sits as the visual anchor on the hero
+  // so a student or parent gets the bottom-line answer immediately.
+  const accuracyPct =
+    report.totalProblemsAttempted > 0
+      ? Math.round((report.totalCorrect / report.totalProblemsAttempted) * 100)
+      : 0;
+
   return (
-    <main className="motion-rise space-y-4">
-      <section className="surface-card space-y-3">
-        <div className="space-y-2">
-          <span className="badge">AI Learning Report</span>
-          <h1 className="text-2xl font-semibold text-slate-900">{reportHeading}</h1>
-          <p className="text-sm text-slate-600">{reportDescription}</p>
-        </div>
-        <div className="grid gap-3 md:grid-cols-2">
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Problems attempted</p>
-            <p className="mt-2 text-2xl font-semibold text-slate-900">{report.totalProblemsAttempted}</p>
-          </div>
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Correct</p>
-            <p className="mt-2 text-2xl font-semibold text-slate-900">{report.totalCorrect}</p>
-          </div>
-        </div>
-      </section>
+    <main className="motion-rise">
+      {/* ===========================================================
+       *  HERO — big accuracy metric + headline
+       * ========================================================= */}
+      <Section tight className="pt-4 md:pt-6">
+        <div className="hero-panel">
+          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+            <div className="flex flex-col gap-4">
+              <Eyebrow>AI Learning Report</Eyebrow>
+              <h1
+                className="display-headline"
+                style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+              >
+                <span className="florid florid-gradient">{reportHeading}</span>
+              </h1>
+              <p className="display-lede">{reportDescription}</p>
+            </div>
 
-      <section className="surface-card space-y-3">
-        <div className="space-y-1">
-          <h2 className="text-lg font-semibold text-slate-900">Answer outcome breakdown</h2>
-          <p className="text-sm text-slate-600">
-            This separates direct solving from hinted solving, so the report reflects independence as well as accuracy.
-          </p>
+            <div
+              className="flex flex-col gap-2 p-6"
+              style={{
+                background: "var(--surface-2)",
+                border: "1px solid var(--border)",
+                borderRadius: "var(--radius-lg)"
+              }}
+            >
+              <span
+                className="text-[11px] font-semibold uppercase"
+                style={{
+                  color: "var(--subtle)",
+                  letterSpacing: "0.14em",
+                  fontFamily: "var(--font-mono-custom)"
+                }}
+              >
+                Accuracy
+              </span>
+              <div
+                className="flex items-baseline gap-2"
+                style={{
+                  fontFamily: "var(--font-display-custom)",
+                  fontWeight: 800,
+                  letterSpacing: "-0.03em",
+                  color: "var(--foreground-strong)"
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "clamp(3.5rem, 7vw, 5rem)",
+                    lineHeight: 1
+                  }}
+                >
+                  {accuracyPct}
+                </span>
+                <span
+                  style={{
+                    fontSize: "2rem",
+                    color: "var(--muted)",
+                    fontWeight: 600
+                  }}
+                >
+                  %
+                </span>
+              </div>
+              <p className="text-sm" style={{ color: "var(--muted)" }}>
+                {report.totalCorrect} of {report.totalProblemsAttempted} problems
+                correct.
+              </p>
+            </div>
+          </div>
         </div>
-        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">No hint · correct</p>
-            <p className="mt-2 text-2xl font-semibold text-emerald-700">{report.answerOutcomeBreakdown.withoutHintCorrect}</p>
-          </div>
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">No hint · incorrect</p>
-            <p className="mt-2 text-2xl font-semibold text-rose-700">{report.answerOutcomeBreakdown.withoutHintIncorrect}</p>
-          </div>
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Used hint · correct</p>
-            <p className="mt-2 text-2xl font-semibold text-amber-700">{report.answerOutcomeBreakdown.withHintCorrect}</p>
-          </div>
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Used hint · incorrect</p>
-            <p className="mt-2 text-2xl font-semibold text-slate-900">{report.answerOutcomeBreakdown.withHintIncorrect}</p>
-          </div>
-        </div>
-      </section>
+      </Section>
 
-      <section className="surface-card space-y-3">
-        <h2 className="text-lg font-semibold text-slate-900">Summary</h2>
-        <p className="text-sm leading-7 text-slate-700">{report.summary}</p>
-      </section>
-
-      {report.primaryReinforcementTopic ? (
-        <section className="surface-card space-y-3">
-          <div className="space-y-1">
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-              Primary reinforcement focus
+      {/* ===========================================================
+       *  OUTCOME BREAKDOWN — four Brilliant-style colored tiles
+       * ========================================================= */}
+      <Section tight className="surface-section-cool">
+        <SectionHeader
+          eyebrow="Outcome breakdown"
+          title="Independence vs. accuracy"
+          lede="This separates direct solving from hinted solving — so the report reflects independence as well as accuracy."
+        />
+        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="tile tile-teal">
+            <p
+              className="text-[11px] font-semibold uppercase"
+              style={{
+                letterSpacing: "0.12em",
+                fontFamily: "var(--font-mono-custom)",
+                color: "rgba(15, 17, 21, 0.7)"
+              }}
+            >
+              No hint · correct
             </p>
-            <h2 className="text-lg font-semibold text-slate-900">
+            <p
+              className="mt-3"
+              style={{
+                fontFamily: "var(--font-display-custom)",
+                fontSize: "2.25rem",
+                fontWeight: 700,
+                color: "var(--foreground-strong)",
+                lineHeight: 1
+              }}
+            >
+              {report.answerOutcomeBreakdown.withoutHintCorrect}
+            </p>
+          </div>
+          <div className="tile tile-coral">
+            <p
+              className="text-[11px] font-semibold uppercase"
+              style={{
+                letterSpacing: "0.12em",
+                fontFamily: "var(--font-mono-custom)",
+                color: "rgba(15, 17, 21, 0.7)"
+              }}
+            >
+              No hint · incorrect
+            </p>
+            <p
+              className="mt-3"
+              style={{
+                fontFamily: "var(--font-display-custom)",
+                fontSize: "2.25rem",
+                fontWeight: 700,
+                color: "var(--foreground-strong)",
+                lineHeight: 1
+              }}
+            >
+              {report.answerOutcomeBreakdown.withoutHintIncorrect}
+            </p>
+          </div>
+          <div className="tile tile-amber">
+            <p
+              className="text-[11px] font-semibold uppercase"
+              style={{
+                letterSpacing: "0.12em",
+                fontFamily: "var(--font-mono-custom)",
+                color: "rgba(15, 17, 21, 0.7)"
+              }}
+            >
+              Used hint · correct
+            </p>
+            <p
+              className="mt-3"
+              style={{
+                fontFamily: "var(--font-display-custom)",
+                fontSize: "2.25rem",
+                fontWeight: 700,
+                color: "var(--foreground-strong)",
+                lineHeight: 1
+              }}
+            >
+              {report.answerOutcomeBreakdown.withHintCorrect}
+            </p>
+          </div>
+          <div className="tile tile-lavender">
+            <p
+              className="text-[11px] font-semibold uppercase"
+              style={{
+                letterSpacing: "0.12em",
+                fontFamily: "var(--font-mono-custom)",
+                color: "rgba(15, 17, 21, 0.7)"
+              }}
+            >
+              Used hint · incorrect
+            </p>
+            <p
+              className="mt-3"
+              style={{
+                fontFamily: "var(--font-display-custom)",
+                fontSize: "2.25rem",
+                fontWeight: 700,
+                color: "var(--foreground-strong)",
+                lineHeight: 1
+              }}
+            >
+              {report.answerOutcomeBreakdown.withHintIncorrect}
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      {/* ===========================================================
+       *  SUMMARY + LEARNING PATTERN — narrative blocks
+       * ========================================================= */}
+      <Section tight>
+        <div className="grid gap-6 lg:grid-cols-2">
+          <Card>
+            <h2 className="mb-3">Summary</h2>
+            <p
+              className="text-sm leading-7"
+              style={{ color: "var(--foreground)" }}
+            >
+              {report.summary}
+            </p>
+          </Card>
+          <Card>
+            <h2 className="mb-3">Learning pattern</h2>
+            <p
+              className="text-sm leading-7"
+              style={{ color: "var(--foreground)" }}
+            >
+              {report.learningPattern}
+            </p>
+          </Card>
+        </div>
+      </Section>
+
+      {/* ===========================================================
+       *  PRIMARY REINFORCEMENT FOCUS
+       * ========================================================= */}
+      {report.primaryReinforcementTopic ? (
+        <Section tight>
+          <Card>
+            <Eyebrow>Primary reinforcement focus</Eyebrow>
+            <h2
+              className="mt-2 mb-3"
+              style={{ fontSize: "clamp(1.5rem, 2.4vw, 1.875rem)" }}
+            >
               {formatTopicLabel(report.primaryReinforcementTopic)}
             </h2>
-          </div>
-          <p className="text-sm text-slate-700">
-            This is the clearest weak area in your recent work. Stay with easier follow-up problems here until you can solve them with less hint support.
-          </p>
-        </section>
+            <p
+              className="text-sm"
+              style={{ color: "var(--muted)", maxWidth: "60ch" }}
+            >
+              This is the clearest weak area in your recent work. Stay with
+              easier follow-up problems here until you can solve them with less
+              hint support.
+            </p>
+          </Card>
+        </Section>
       ) : null}
 
-      <section className="surface-card space-y-3">
-        <h2 className="text-lg font-semibold text-slate-900">Learning pattern</h2>
-        <p className="text-sm leading-7 text-slate-700">{report.learningPattern}</p>
-      </section>
+      {/* ===========================================================
+       *  TOPICS NEEDING REINFORCEMENT + HIGH-HINT PROBLEMS
+       * ========================================================= */}
+      <Section tight>
+        <div className="grid gap-6 lg:grid-cols-2">
+          <Card>
+            <h2 className="mb-3">Topics needing reinforcement</h2>
+            {report.topicsNeedingReinforcement.length > 0 ? (
+              <ul className="flex flex-col gap-2 text-sm">
+                {report.topicsNeedingReinforcement.map((topicKey, idx) => (
+                  <li
+                    key={topicKey}
+                    style={{
+                      padding: "12px 16px",
+                      background: "var(--surface-2)",
+                      border: "1px solid var(--border)",
+                      borderRadius: "var(--radius-md)",
+                      color: "var(--foreground)",
+                      animation: `rise-in 320ms cubic-bezier(0.2, 0.7, 0.2, 1) ${idx * 60}ms both`
+                    }}
+                  >
+                    {formatTopicLabel(topicKey)}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-sm" style={{ color: "var(--muted)" }}>
+                No clear weak topic has emerged yet from your recent attempts.
+              </p>
+            )}
+          </Card>
 
-      <section className="grid gap-4 lg:grid-cols-2">
-        <div className="surface-card space-y-3">
-          <h2 className="text-lg font-semibold text-slate-900">Topics needing reinforcement</h2>
-          {report.topicsNeedingReinforcement.length > 0 ? (
-            <ul className="space-y-2 text-sm text-slate-700">
-              {report.topicsNeedingReinforcement.map((topicKey) => (
-                <li key={topicKey} className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-                  {formatTopicLabel(topicKey)}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="text-sm text-slate-600">No clear weak topic has emerged yet from your recent attempts.</p>
-          )}
+          <Card>
+            <h2 className="mb-3">Problems with high hint usage</h2>
+            {report.highHintProblems.length > 0 ? (
+              <ul className="flex flex-col gap-2 text-sm">
+                {report.highHintProblems.map((problem, idx) => (
+                  <li
+                    key={problem.problemId}
+                    style={{
+                      padding: "12px 16px",
+                      background: "var(--surface-2)",
+                      border: "1px solid var(--border)",
+                      borderRadius: "var(--radius-md)",
+                      color: "var(--foreground)",
+                      animation: `rise-in 320ms cubic-bezier(0.2, 0.7, 0.2, 1) ${idx * 60}ms both`
+                    }}
+                  >
+                    <p
+                      className="font-medium"
+                      style={{ color: "var(--foreground-strong)" }}
+                    >
+                      {problem.statementSnippet}
+                    </p>
+                    <p
+                      className="mt-1 text-[11px] font-semibold uppercase"
+                      style={{
+                        color: "var(--subtle)",
+                        letterSpacing: "0.1em",
+                        fontFamily: "var(--font-mono-custom)"
+                      }}
+                    >
+                      Hint requests: {problem.hintUsageCount} · Highest level:{" "}
+                      {problem.highestHintLevel}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-sm" style={{ color: "var(--muted)" }}>
+                No recent problems required heavy hint support.
+              </p>
+            )}
+          </Card>
         </div>
+      </Section>
 
-        <div className="surface-card space-y-3">
-          <h2 className="text-lg font-semibold text-slate-900">Problems with high hint usage</h2>
-          {report.highHintProblems.length > 0 ? (
-            <ul className="space-y-2 text-sm text-slate-700">
-              {report.highHintProblems.map((problem) => (
-                <li key={problem.problemId} className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-                  <p className="font-medium text-slate-900">{problem.statementSnippet}</p>
-                  <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                    Hint requests: {problem.hintUsageCount} · Highest level: {problem.highestHintLevel}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="text-sm text-slate-600">No recent problems required heavy hint support.</p>
-          )}
-        </div>
-      </section>
-
-      <section className="surface-card space-y-3">
-        <h2 className="text-lg font-semibold text-slate-900">Next practice suggestions</h2>
-        <ul className="space-y-2 text-sm text-slate-700">
+      {/* ===========================================================
+       *  NEXT PRACTICE SUGGESTIONS
+       * ========================================================= */}
+      <Section tight className="surface-section-warm">
+        <SectionHeader
+          eyebrow="What to do next"
+          title="Next practice suggestions"
+        />
+        <ul className="mt-8 flex flex-col gap-3">
           {report.nextPracticeSuggestions.map((suggestion, index) => (
-            <li key={`${index}-${suggestion}`} className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-              {suggestion}
+            <li
+              key={`${index}-${suggestion}`}
+              style={{
+                padding: 16,
+                background: "var(--surface-card)",
+                border: "1px solid var(--border)",
+                borderRadius: "var(--radius-md)",
+                color: "var(--foreground)",
+                animation: `rise-in 320ms cubic-bezier(0.2, 0.7, 0.2, 1) ${index * 80}ms both`
+              }}
+              className="flex items-start gap-3"
+            >
+              <span
+                style={{
+                  fontFamily: "var(--font-mono-custom)",
+                  background: "var(--accent-soft)",
+                  color: "var(--accent-strong)",
+                  padding: "2px 8px",
+                  borderRadius: "var(--radius-sm)",
+                  fontSize: 11,
+                  fontWeight: 700,
+                  flexShrink: 0,
+                  marginTop: 2
+                }}
+              >
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span className="text-sm leading-6">{suggestion}</span>
             </li>
           ))}
         </ul>
-      </section>
+      </Section>
 
-      <section className="surface-card space-y-3">
-        <div className="space-y-1">
-          <h2 className="text-lg font-semibold text-slate-900">Question review</h2>
-          <p className="text-sm text-slate-600">
-            Compare your submitted answers with the correct answers. Incorrect problems include a short solution sketch.
-          </p>
-        </div>
-
-        <div className="space-y-3">
-          {report.questionResults.map((result) => (
-            <article key={result.problemId} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 space-y-3">
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <div className="space-y-1">
-                  <h3 className="text-base font-semibold text-slate-900">Problem {result.problemNumber}</h3>
-                  <p className="text-sm text-slate-700">{result.statementSnippet}</p>
+      {/* ===========================================================
+       *  QUESTION REVIEW — per-problem cards
+       * ========================================================= */}
+      <Section tight>
+        <SectionHeader
+          eyebrow="Question review"
+          title="Per-problem breakdown"
+          lede="Compare your submitted answers with the correct answers. Incorrect problems include a short solution sketch."
+        />
+        <div className="mt-8 flex flex-col gap-3">
+          {report.questionResults.map((result, idx) => (
+            <Card key={result.problemId} className="stagger-parent">
+              <div
+                style={{
+                  animation: `rise-in 320ms cubic-bezier(0.2, 0.7, 0.2, 1) ${idx * 60}ms both`
+                }}
+              >
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div className="space-y-1">
+                    <h3
+                      className="text-base font-semibold"
+                      style={{ color: "var(--foreground-strong)" }}
+                    >
+                      Problem {result.problemNumber}
+                    </h3>
+                    <p className="text-sm" style={{ color: "var(--muted)" }}>
+                      {result.statementSnippet}
+                    </p>
+                  </div>
+                  <Tag status={result.isCorrect ? "verified" : "invalid"}>
+                    {result.isCorrect ? "✓ Correct" : "✗ Incorrect"}
+                  </Tag>
                 </div>
-                <span
-                  className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                    result.isCorrect ? "bg-emerald-100 text-emerald-700" : "bg-rose-100 text-rose-700"
-                  }`}
+
+                <p
+                  className="mt-3 text-[11px] font-semibold uppercase"
+                  style={{
+                    color: "var(--subtle)",
+                    letterSpacing: "0.12em",
+                    fontFamily: "var(--font-mono-custom)"
+                  }}
                 >
-                  {result.isCorrect ? "Correct" : "Incorrect"}
-                </span>
+                  {result.usedHint ? "Used hint before answering" : "Answered without hint"}
+                </p>
+
+                <div className="mt-4 grid gap-3 md:grid-cols-2">
+                  <div
+                    style={{
+                      padding: 14,
+                      background: "var(--surface-2)",
+                      border: "1px solid var(--border)",
+                      borderRadius: "var(--radius-md)"
+                    }}
+                  >
+                    <p
+                      className="text-[11px] font-semibold uppercase"
+                      style={{
+                        color: "var(--subtle)",
+                        letterSpacing: "0.12em",
+                        fontFamily: "var(--font-mono-custom)"
+                      }}
+                    >
+                      Your answer
+                    </p>
+                    <p
+                      className="mt-2 text-sm"
+                      style={{ color: "var(--foreground)" }}
+                    >
+                      {formatAnswerDisplay(result.submittedAnswer)}
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      padding: 14,
+                      background: "var(--surface-2)",
+                      border: "1px solid var(--border)",
+                      borderRadius: "var(--radius-md)"
+                    }}
+                  >
+                    <p
+                      className="text-[11px] font-semibold uppercase"
+                      style={{
+                        color: "var(--subtle)",
+                        letterSpacing: "0.12em",
+                        fontFamily: "var(--font-mono-custom)"
+                      }}
+                    >
+                      Correct answer
+                    </p>
+                    <p
+                      className="mt-2 text-sm"
+                      style={{ color: "var(--foreground)" }}
+                    >
+                      {formatAnswerDisplay(result.correctAnswer)}
+                    </p>
+                  </div>
+                </div>
+
+                {!result.isCorrect && result.solutionSketch ? (
+                  <div
+                    className="mt-4"
+                    style={{
+                      padding: 16,
+                      background: "var(--warning-soft)",
+                      border:
+                        "1px solid color-mix(in srgb, var(--warning) 30%, transparent)",
+                      borderRadius: "var(--radius-md)"
+                    }}
+                  >
+                    <p
+                      className="text-[11px] font-semibold uppercase"
+                      style={{
+                        color: "var(--warning)",
+                        letterSpacing: "0.12em",
+                        fontFamily: "var(--font-mono-custom)"
+                      }}
+                    >
+                      Solution sketch
+                    </p>
+                    <p
+                      className="mt-2 text-sm leading-7"
+                      style={{ color: "var(--foreground)" }}
+                    >
+                      {result.solutionSketch}
+                    </p>
+                  </div>
+                ) : null}
               </div>
-
-              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                {result.usedHint ? "Used hint before answering" : "Answered without hint"}
-              </p>
-
-              <div className="grid gap-3 md:grid-cols-2">
-                <div className="rounded-2xl border border-slate-200 bg-white p-3">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Your answer</p>
-                  <p className="mt-2 text-sm text-slate-900">{formatAnswerDisplay(result.submittedAnswer)}</p>
-                </div>
-                <div className="rounded-2xl border border-slate-200 bg-white p-3">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Correct answer</p>
-                  <p className="mt-2 text-sm text-slate-900">{formatAnswerDisplay(result.correctAnswer)}</p>
-                </div>
-              </div>
-
-              {!result.isCorrect && result.solutionSketch ? (
-                <div className="rounded-2xl border border-amber-200 bg-amber-50 p-3">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-amber-700">Solution sketch</p>
-                  <p className="mt-2 text-sm leading-7 text-slate-800">{result.solutionSketch}</p>
-                </div>
-              ) : null}
-            </article>
+            </Card>
           ))}
         </div>
-      </section>
+      </Section>
     </main>
   );
 }

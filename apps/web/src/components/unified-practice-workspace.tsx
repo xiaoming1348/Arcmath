@@ -101,31 +101,71 @@ const VERDICT_TONE: Record<string, { tone: VerdictTone; icon: string; labelKey: 
   PLAUSIBLE: { tone: "plausible", icon: "⚠", labelKey: "attempt.verdict_plausible" },
   UNKNOWN: { tone: "unknown", icon: "?", labelKey: "attempt.verdict_unknown" },
   INVALID: { tone: "invalid", icon: "✗", labelKey: "attempt.verdict_invalid" },
-  ERROR: { tone: "error", icon: "!", labelKey: "attempt.verdict_error" },
+  // ERROR = "verifier could not run on this step" (e.g. SymPy parse
+  // failure). Visually we treat it as a softer "needs review" yellow
+  // rather than red, because the student may well be correct — we just
+  // couldn't prove it automatically. The mentor feedback should also be
+  // teaching-toned, not "the system failed". See proof-tutor.ts.
+  ERROR: { tone: "error", icon: "?", labelKey: "attempt.verdict_error" },
   PENDING: { tone: "pending", icon: "…", labelKey: "attempt.verdict_pending" }
 };
 
-const VERDICT_CLASSES: Record<VerdictTone, string> = {
-  verified: "border-emerald-200 bg-emerald-50 text-emerald-800",
-  plausible: "border-amber-200 bg-amber-50 text-amber-800",
-  unknown: "border-slate-200 bg-slate-50 text-slate-700",
-  invalid: "border-red-200 bg-red-50 text-red-800",
-  error: "border-red-200 bg-red-50 text-red-800",
-  pending: "border-slate-200 bg-slate-50 text-slate-500"
+// VerdictBadge styles route through the v3 design system's `tag`
+// data-status protocol (see globals.css `.tag[data-status=...]`)
+// so verdict chips inherit the same coloring as the rest of the app.
+const VERDICT_TAG_STATUS: Record<VerdictTone, string | undefined> = {
+  verified: "verified",
+  plausible: "pending",
+  unknown: undefined,
+  invalid: "invalid",
+  // ERROR no longer maps to "invalid" red — see the ERROR comment in
+  // VERDICT_TONE for why. Stays neutral so the student isn't told
+  // "you got it wrong" when in fact only the parser tripped.
+  error: "pending",
+  pending: undefined
 };
 
 function VerdictBadge({ verdict, backend }: { verdict: string; backend: string }) {
   const { t } = useT();
   const meta = VERDICT_TONE[verdict] ?? VERDICT_TONE.PENDING;
+  const status = VERDICT_TAG_STATUS[meta.tone];
+  // Trigger the stamp-land animation when a verdict transitions out of
+  // PENDING. `key={verdict}` forces React to re-mount the element so
+  // the CSS animation replays on every change.
+  const animated = verdict === "VERIFIED" || verdict === "INVALID";
   return (
     <span
-      className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-semibold ${VERDICT_CLASSES[meta.tone]}`}
+      key={verdict}
+      className="tag"
+      data-status={status}
       title={t("attempt.verdict_checked_by", { backend })}
+      style={
+        animated
+          ? {
+              animation:
+                "stamp-land 480ms cubic-bezier(0.34, 1.56, 0.64, 1) both"
+            }
+          : undefined
+      }
     >
-      <span aria-hidden>{meta.icon}</span>
+      <span aria-hidden style={{ marginRight: 4 }}>
+        {meta.icon}
+      </span>
       <span>{t(meta.labelKey)}</span>
       {verdict !== "PENDING" ? (
-        <span className="font-normal text-[10px] uppercase tracking-wide opacity-70">{backend}</span>
+        <span
+          style={{
+            fontFamily: "var(--font-mono-custom)",
+            fontWeight: 400,
+            fontSize: 10,
+            opacity: 0.7,
+            marginLeft: 4,
+            letterSpacing: "0.06em",
+            textTransform: "uppercase"
+          }}
+        >
+          {backend}
+        </span>
       ) : null}
     </span>
   );
@@ -172,11 +212,32 @@ function StepCard({
   const rendered = useMemo(() => renderLatexBlock(step.latexInput), [step.latexInput]);
   const showVerdict = step.verdict !== "PENDING";
   return (
-    <li className="rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_4px_12px_rgba(15,23,42,0.04)]">
-      <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
-        <span className="font-semibold text-slate-700">{t("attempt.step_n_label", { n: step.stepIndex + 1 })}</span>
+    <li
+      className="surface-card"
+      style={{
+        padding: 18,
+        // Subtle entrance animation each time a step appears.
+        animation: "rise-in 320ms cubic-bezier(0.2, 0.7, 0.2, 1) both"
+      }}
+    >
+      <div
+        className="flex flex-wrap items-center gap-2 text-xs"
+        style={{ color: "var(--subtle)" }}
+      >
+        <span
+          className="font-semibold"
+          style={{
+            color: "var(--foreground)",
+            fontFamily: "var(--font-mono-custom)",
+            letterSpacing: "0.04em"
+          }}
+        >
+          {t("attempt.step_n_label", { n: step.stepIndex + 1 })}
+        </span>
         {showVerdict ? (
-          <span className="opacity-60">{step.classifiedStepType.replaceAll("_", " ").toLowerCase()}</span>
+          <span style={{ opacity: 0.7 }}>
+            {step.classifiedStepType.replaceAll("_", " ").toLowerCase()}
+          </span>
         ) : null}
         <span className="ml-auto">
           <VerdictBadge verdict={step.verdict} backend={step.verificationBackend} />
@@ -196,8 +257,18 @@ function StepCard({
           />
         </div>
       ) : (
-        <div className="mt-3 rounded-xl border border-slate-100 bg-slate-50 p-3">
-          <div className="problem-statement text-sm leading-7 text-slate-800">
+        <div
+          className="mt-3 p-4"
+          style={{
+            background: "var(--surface-2)",
+            border: "1px solid var(--border)",
+            borderRadius: "var(--radius-md)"
+          }}
+        >
+          <div
+            className="problem-statement text-sm leading-7"
+            style={{ color: "var(--foreground)" }}
+          >
             <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
               {rendered}
             </ReactMarkdown>
@@ -206,20 +277,55 @@ function StepCard({
       )}
 
       {showVerdict && step.feedbackText ? (
-        <div className="mt-3 rounded-xl border border-slate-100 bg-slate-50/60 p-3">
-          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">{t("attempt.tutor_note")}</p>
-          <div className="mt-1">
+        <div
+          className="mt-3 p-4"
+          style={{
+            background: "var(--surface-2)",
+            border: "1px solid var(--border)",
+            borderRadius: "var(--radius-md)",
+            animation: "rise-in 480ms cubic-bezier(0.2, 0.7, 0.2, 1) both"
+          }}
+        >
+          <p
+            className="text-[11px] font-semibold uppercase"
+            style={{
+              color: "var(--subtle)",
+              letterSpacing: "0.14em",
+              fontFamily: "var(--font-mono-custom)"
+            }}
+          >
+            {t("attempt.tutor_note")}
+          </p>
+          <div className="mt-2">
             <Markdown text={step.feedbackText} />
           </div>
         </div>
       ) : null}
 
       {!isEditing && !locked ? (
-        <div className="mt-3 flex flex-wrap gap-2 text-xs">
+        <div className="mt-4 flex flex-wrap gap-2 text-xs">
           <button type="button" className="btn-secondary" onClick={onStartEdit}>
             {t("attempt.step_edit")}
           </button>
-          <button type="button" className="text-slate-500 hover:text-red-600" onClick={onDelete}>
+          <button
+            type="button"
+            style={{
+              color: "var(--subtle)",
+              fontWeight: 500,
+              padding: "8px 12px",
+              borderRadius: "var(--radius-md)",
+              transition: "color 160ms ease, background 160ms ease"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = "var(--danger)";
+              e.currentTarget.style.background = "var(--danger-soft)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = "var(--subtle)";
+              e.currentTarget.style.background = "transparent";
+            }}
+            onClick={onDelete}
+          >
             {t("attempt.step_delete")}
           </button>
         </div>
@@ -386,6 +492,7 @@ export function UnifiedPracticeWorkspace({
   const editStep = trpc.unifiedAttempt.editStep.useMutation();
   const deleteStep = trpc.unifiedAttempt.deleteStep.useMutation();
   const requestHint = trpc.unifiedAttempt.requestHint.useMutation();
+  const nextStepHint = trpc.unifiedAttempt.nextStepHint.useMutation();
   const submit = trpc.unifiedAttempt.submit.useMutation();
   const startNew = trpc.unifiedAttempt.startNewAttempt.useMutation();
 
@@ -396,6 +503,22 @@ export function UnifiedPracticeWorkspace({
   // Held only for the *most recent* submission from this page load.
   // getState does NOT return this today — it's not persisted.
   const [reviewExtras, setReviewExtras] = useState<ReviewExtras | null>(null);
+  // When a student reopens an already-submitted attempt, we block the
+  // page behind a full-window modal asking whether they want to
+  // continue viewing their submission or restart from scratch (clears
+  // the prior attempt). This flag flips true when the student picks
+  // one option, when they just submitted in this session (so the modal
+  // doesn't pop instantly after they tap Submit), or when there is no
+  // submitted attempt to gate on.
+  const [resumeDecided, setResumeDecided] = useState(false);
+  // Inline next-step hint suggested by the AI tutor when the student
+  // clicks "Hint for next step" above the composer. Lives only in
+  // component state — no DB persistence for v1 of this feature. We
+  // auto-clear it when the student commits the next step (so it
+  // doesn't linger after the action it was suggesting).
+  const [latestNextStepHint, setLatestNextStepHint] = useState<
+    string | null
+  >(null);
 
   const attempt = (stateQuery.data?.attempt ?? null) as AttemptState | null;
 
@@ -441,9 +564,27 @@ export function UnifiedPracticeWorkspace({
     try {
       await addStep.mutateAsync({ attemptId: attempt.id, latexInput: latex });
       setComposerKey((k) => k + 1);
+      // The hint was for *that* step — it's no longer useful now that
+      // the student committed something.
+      setLatestNextStepHint(null);
       await refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : t("attempt.error_failed_add_step"));
+    }
+  };
+
+  const handleRequestNextStepHint = async () => {
+    if (!attempt) return;
+    setError(null);
+    try {
+      const result = await nextStepHint.mutateAsync({ attemptId: attempt.id });
+      setLatestNextStepHint(result.hintText);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : t("attempt.error_failed_next_step_hint")
+      );
     }
   };
 
@@ -494,6 +635,10 @@ export function UnifiedPracticeWorkspace({
         recipeSteps: result.recipeSteps ?? []
       });
       setFinalAnswer("");
+      // The attempt's status will flip to SUBMITTED on the next refresh.
+      // Pre-flip resumeDecided so the gate-modal doesn't pop on top of
+      // the student's freshly-rendered grading view.
+      setResumeDecided(true);
       await refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : t("attempt.error_failed_submit"));
@@ -508,6 +653,9 @@ export function UnifiedPracticeWorkspace({
       setEditingStepId(null);
       setComposerKey((k) => k + 1);
       setReviewExtras(null);
+      // A fresh DRAFT replaces the SUBMITTED row; close the resume gate
+      // so it doesn't pop again when the user submits and reloads.
+      setResumeDecided(true);
       await refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : t("attempt.error_failed_start_new"));
@@ -551,6 +699,12 @@ export function UnifiedPracticeWorkspace({
   if (!attempt) return null;
 
   const locked = attempt.status !== "DRAFT";
+  // Full-window modal that gates a re-entered SUBMITTED attempt with
+  // "继续作答 / 重新作答". Rendered outside the section so it visually
+  // covers the whole viewport. We hide it once the student chooses, or
+  // immediately after a fresh submit (so the modal doesn't pop on top
+  // of their just-graded result).
+  const showResumeModal = locked && !resumeDecided;
   const mode: EntryMode = attempt.entryMode ?? (answerFormat === "PROOF" ? "PROOF_STEPS" : "ANSWER_ONLY");
   const steps = attempt.steps;
   const hintHistory = attempt.hintHistory;
@@ -565,6 +719,22 @@ export function UnifiedPracticeWorkspace({
     (mode === "ANSWER_ONLY" || mode === "STUCK_WITH_WORK" || mode === "HINT_GUIDED");
 
   return (
+    <>
+      {showResumeModal ? (
+        <ResumeDecisionModal
+          onContinue={() => setResumeDecided(true)}
+          onRestart={() => {
+            if (
+              typeof window !== "undefined" &&
+              !window.confirm(t("attempt.continue_or_restart_confirm"))
+            ) {
+              return;
+            }
+            void handleStartNew();
+          }}
+          busy={startNew.isPending}
+        />
+      ) : null}
     <section className="surface-card space-y-4">
       <div className="space-y-1">
         <div className="flex flex-wrap items-center gap-2">
@@ -586,19 +756,45 @@ export function UnifiedPracticeWorkspace({
         ) : null}
       </div>
 
-      {/* Hint history (for HINT_GUIDED, or if stuck-mode student also asked for hints).
-          Suppressed when the parent assignment turned hints off — historical
-          hints from prior runs would otherwise leak through. */}
+      {/* Hint history (HINT_GUIDED, or if stuck-mode student asked for hints).
+          Each hint is rendered as a color-coded tile (level 1/2/3 = amber/
+          teal/lavender) so successive hints feel distinct.
+          Suppressed when the parent assignment turned hints off. */}
       {hintTutorEnabled && hintHistory.length > 0 ? (
-        <div className="space-y-2">
-          {hintHistory.map((h) => (
-            <div key={h.id} className="rounded-2xl border border-sky-200 bg-sky-50 p-3 text-sm text-slate-800">
-              <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-sky-700">
-                {t("attempt.hint_label", { level: h.hintLevel })}
-              </p>
-              <Markdown text={h.hintText} />
-            </div>
-          ))}
+        <div className="space-y-3">
+          {hintHistory.map((h, idx) => {
+            const tone =
+              h.hintLevel === 1
+                ? "tile-amber"
+                : h.hintLevel === 2
+                  ? "tile-teal"
+                  : "tile-lavender";
+            return (
+              <div
+                key={h.id}
+                className={`tile ${tone}`}
+                style={{
+                  padding: 18,
+                  animation:
+                    idx === hintHistory.length - 1
+                      ? "hint-reveal 480ms cubic-bezier(0.34, 1.56, 0.64, 1) both"
+                      : undefined
+                }}
+              >
+                <p
+                  className="mb-2 text-[11px] font-semibold uppercase"
+                  style={{
+                    letterSpacing: "0.14em",
+                    fontFamily: "var(--font-mono-custom)",
+                    color: "rgba(15, 17, 21, 0.7)"
+                  }}
+                >
+                  {t("attempt.hint_label", { level: h.hintLevel })}
+                </p>
+                <Markdown text={h.hintText} />
+              </div>
+            );
+          })}
         </div>
       ) : null}
 
@@ -621,19 +817,106 @@ export function UnifiedPracticeWorkspace({
         </ol>
       ) : null}
 
-      {/* Step composer */}
+      {/* Step composer — dashed border in muted tone so it reads as
+          "empty slot waiting for input" rather than another card.
+          Above it sits the "Hint for next step" button + banner which
+          drives the per-step real-time feedback loop: write a step,
+          see inline verdict + tutor note in the StepCard, optionally
+          ask for a forward-looking hint before writing the next one. */}
       {!locked && showSteps && editingStepId === null ? (
-        <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4">
-          <p className="mb-2 text-sm font-semibold text-slate-700">
-            {t("attempt.add_step_label", { n: steps.length + 1 })}
-          </p>
-          <MathFieldEditor
-            key={composerKey}
-            initialValue=""
-            onSave={handleAddStep}
-            saveLabel={t("attempt.add_step_button")}
-            busy={addStep.isPending}
-          />
+        <div className="space-y-3">
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              className="btn-secondary"
+              onClick={handleRequestNextStepHint}
+              disabled={nextStepHint.isPending}
+            >
+              {nextStepHint.isPending
+                ? t("attempt.next_step_hint_pending")
+                : t("attempt.next_step_hint_button")}
+            </button>
+            <p className="text-xs" style={{ color: "var(--subtle)" }}>
+              {t("attempt.next_step_hint_help")}
+            </p>
+          </div>
+
+          {latestNextStepHint ? (
+            <div
+              style={{
+                padding: 14,
+                borderRadius: "var(--radius-md)",
+                background: "var(--accent-soft)",
+                border:
+                  "1px solid color-mix(in srgb, var(--accent) 30%, transparent)",
+                animation:
+                  "rise-in 320ms cubic-bezier(0.2, 0.7, 0.2, 1) both"
+              }}
+            >
+              <div className="flex items-start gap-2">
+                <span
+                  className="text-[11px] font-semibold uppercase"
+                  style={{
+                    color: "var(--accent-strong)",
+                    letterSpacing: "0.14em",
+                    fontFamily: "var(--font-mono-custom)"
+                  }}
+                >
+                  {t("attempt.next_step_hint_label")}
+                </span>
+                <button
+                  type="button"
+                  className="ml-auto text-xs"
+                  style={{ color: "var(--subtle)" }}
+                  onClick={() => setLatestNextStepHint(null)}
+                  aria-label={t("attempt.next_step_hint_dismiss")}
+                >
+                  ✕
+                </button>
+              </div>
+              <p
+                className="mt-2 text-sm leading-6"
+                style={{ color: "var(--foreground)" }}
+              >
+                {latestNextStepHint}
+              </p>
+            </div>
+          ) : null}
+
+          <div
+            style={{
+              padding: 18,
+              background: "var(--surface-2)",
+              border: "1.5px dashed var(--border-strong)",
+              borderRadius: "var(--radius-lg)"
+            }}
+          >
+            <p
+              className="mb-3 text-[12px] font-semibold uppercase"
+              style={{
+                color: "var(--subtle)",
+                letterSpacing: "0.14em",
+                fontFamily: "var(--font-mono-custom)"
+              }}
+            >
+              {t("attempt.add_step_label", { n: steps.length + 1 })}
+            </p>
+            <MathFieldEditor
+              key={composerKey}
+              initialValue=""
+              onSave={handleAddStep}
+              saveLabel={t("attempt.add_step_button")}
+              busy={addStep.isPending}
+            />
+            {addStep.isPending ? (
+              <p
+                className="mt-2 text-xs"
+                style={{ color: "var(--subtle)" }}
+              >
+                {t("attempt.add_step_grading_inline")}
+              </p>
+            ) : null}
+          </div>
         </div>
       ) : null}
 
@@ -644,7 +927,15 @@ export function UnifiedPracticeWorkspace({
           this workspace with a "reveal official solution" panel. */}
       {!locked && showAnswerField ? (
         mode === "ANSWER_ONLY" ? (
-          <div className="rounded-2xl border border-emerald-200 bg-emerald-50/40 p-4">
+          <div
+            style={{
+              padding: 20,
+              background: "var(--success-soft)",
+              border:
+                "1px solid color-mix(in srgb, var(--success) 22%, transparent)",
+              borderRadius: "var(--radius-lg)"
+            }}
+          >
             <AnswerOnlyInput
               answerFormat={
                 answerFormat === "WORKED_SOLUTION"
@@ -670,8 +961,18 @@ export function UnifiedPracticeWorkspace({
             />
           </div>
         ) : (
-          <div className="rounded-2xl border border-slate-200 bg-white p-3">
-            <label className="block text-sm text-slate-700">
+          <div
+            style={{
+              padding: 14,
+              background: "var(--surface-card)",
+              border: "1px solid var(--border)",
+              borderRadius: "var(--radius-md)"
+            }}
+          >
+            <label
+              className="block text-sm"
+              style={{ color: "var(--foreground)" }}
+            >
               {t("attempt.final_answer_label_optional")}
               <input
                 className="input-field mt-2"
@@ -743,10 +1044,19 @@ export function UnifiedPracticeWorkspace({
         </div>
       ) : null}
 
-      {/* Submit row (for modes that aren't already using inline submit) */}
+      {/* Submit row — emphasized as the page's primary CTA. Uses the
+          warm cream sub-surface so the dark pill button is the focal
+          point. */}
       {!locked && mode !== "ANSWER_ONLY" ? (
-        <div className="flex items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-3">
-          <p className="text-sm text-slate-600">
+        <div
+          className="flex items-center justify-between gap-3 p-4"
+          style={{
+            background: "var(--surface-2)",
+            border: "1px solid var(--border)",
+            borderRadius: "var(--radius-lg)"
+          }}
+        >
+          <p className="text-sm" style={{ color: "var(--muted)" }}>
             {mode === "PROOF_STEPS"
               ? t("attempt.submit_row_proof")
               : t("attempt.submit_row_default")}
@@ -757,7 +1067,18 @@ export function UnifiedPracticeWorkspace({
             onClick={handleSubmit}
             disabled={submit.isPending}
           >
-            {submit.isPending ? t("attempt.grading") : t("attempt.submit_for_review")}
+            {submit.isPending ? (
+              <>
+                <span
+                  className="engine-dot"
+                  aria-hidden
+                  style={{ background: "var(--action-foreground)" }}
+                />
+                {t("attempt.grading")}
+              </>
+            ) : (
+              t("attempt.submit_for_review")
+            )}
           </button>
         </div>
       ) : null}
@@ -775,6 +1096,112 @@ export function UnifiedPracticeWorkspace({
 
       {error ? <p className="text-sm text-red-600">{error}</p> : null}
     </section>
+    </>
+  );
+}
+
+/**
+ * Full-window modal shown when a student reopens a previously SUBMITTED
+ * attempt. Forces an explicit choice (continue viewing or restart from
+ * scratch) before they can see the graded view underneath. Used to live
+ * as an inline panel on top of SubmittedReview, but pilot students kept
+ * missing the Restart affordance — making it a blocking gate puts the
+ * choice front-and-center.
+ *
+ * The Restart path delegates to the same handleStartNew handler used
+ * elsewhere; that mutation abandons both DRAFT and SUBMITTED rows so
+ * the next /getState returns a fresh DRAFT.
+ */
+function ResumeDecisionModal({
+  onContinue,
+  onRestart,
+  busy
+}: {
+  onContinue: () => void;
+  onRestart: () => void;
+  busy: boolean;
+}) {
+  const { t } = useT();
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="resume-decision-title"
+      style={{
+        position: "fixed",
+        inset: 0,
+        // Slightly translucent so the page underneath is hinted at but
+        // unreachable. The dialog itself sits on var(--surface-card).
+        background: "color-mix(in srgb, var(--background) 78%, transparent)",
+        backdropFilter: "blur(6px)",
+        WebkitBackdropFilter: "blur(6px)",
+        zIndex: 50,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 24
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          maxWidth: 480,
+          background: "var(--surface-card)",
+          border: "1px solid var(--border)",
+          borderRadius: "var(--radius-lg)",
+          padding: 28,
+          boxShadow: "var(--shadow-lg)"
+        }}
+        className="space-y-4"
+      >
+        <p
+          className="text-[11px] font-semibold uppercase"
+          style={{
+            color: "var(--subtle)",
+            letterSpacing: "0.14em",
+            fontFamily: "var(--font-mono-custom)"
+          }}
+        >
+          {t("attempt.continue_or_restart_label")}
+        </p>
+        <h2
+          id="resume-decision-title"
+          style={{
+            fontSize: "1.4rem",
+            fontWeight: 700,
+            color: "var(--foreground)"
+          }}
+        >
+          {t("attempt.continue_or_restart_modal_title")}
+        </h2>
+        <p
+          className="text-sm"
+          style={{ color: "var(--muted)", lineHeight: 1.55 }}
+        >
+          {t("attempt.continue_or_restart_body")}
+        </p>
+        <div className="flex flex-col gap-2 pt-2 sm:flex-row sm:justify-end">
+          <button
+            type="button"
+            className="btn-secondary"
+            onClick={onContinue}
+            disabled={busy}
+          >
+            {t("attempt.continue_view_submission")}
+          </button>
+          <button
+            type="button"
+            className="btn-primary"
+            onClick={onRestart}
+            disabled={busy}
+          >
+            {busy
+              ? t("attempt.starting")
+              : t("attempt.continue_or_restart_restart")}
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -793,40 +1220,63 @@ function ModeBadge({ mode, locked }: { mode: EntryMode; locked: boolean }) {
   );
 }
 
-// Styling for milestone-coverage statuses. Mirrors the step-verdict
-// palette (emerald = good, amber = partial credit, red = wrong path,
-// slate = didn't reach it) so the two views feel consistent. REPLACED
-// gets its own sky/blue tone — student found a valid alternate path the
-// recipe didn't anticipate, which is worth highlighting as a positive
-// distinct from "matched the recipe exactly".
+// Milestone-coverage status styling. Each status maps to an inline
+// `style` block that draws from the design-system tokens so colors
+// match the rest of the app (and bilingual/Chinese gloss reads
+// correctly on the cream page).
+type CoverageStatusStyle = {
+  bg: string;
+  border: string;
+  color: string;
+};
 const COVERAGE_META: Record<
   string,
-  { labelKey: keyof Messages; icon: string; classes: string }
+  { labelKey: keyof Messages; icon: string; style: CoverageStatusStyle }
 > = {
   ESTABLISHED: {
     labelKey: "attempt.coverage_status_established",
     icon: "✓",
-    classes: "border-emerald-200 bg-emerald-50 text-emerald-800"
+    style: {
+      bg: "var(--success-soft)",
+      border: "color-mix(in srgb, var(--success) 28%, transparent)",
+      color: "var(--success)"
+    }
   },
   REPLACED: {
     labelKey: "attempt.coverage_status_replaced",
     icon: "↻",
-    classes: "border-sky-200 bg-sky-50 text-sky-800"
+    style: {
+      bg: "var(--accent-soft)",
+      border: "color-mix(in srgb, var(--accent) 30%, transparent)",
+      color: "var(--accent-strong)"
+    }
   },
   PARTIAL: {
     labelKey: "attempt.coverage_status_partial",
     icon: "◐",
-    classes: "border-amber-200 bg-amber-50 text-amber-800"
+    style: {
+      bg: "var(--warning-soft)",
+      border: "color-mix(in srgb, var(--warning) 30%, transparent)",
+      color: "var(--warning)"
+    }
   },
   MISSING: {
     labelKey: "attempt.coverage_status_missing",
     icon: "○",
-    classes: "border-slate-200 bg-slate-50 text-slate-600"
+    style: {
+      bg: "var(--surface-2)",
+      border: "var(--border)",
+      color: "var(--muted)"
+    }
   },
   INVALID: {
     labelKey: "attempt.coverage_status_invalid",
     icon: "✗",
-    classes: "border-red-200 bg-red-50 text-red-800"
+    style: {
+      bg: "var(--danger-soft)",
+      border: "color-mix(in srgb, var(--danger) 30%, transparent)",
+      color: "var(--danger)"
+    }
   }
 };
 
@@ -845,28 +1295,48 @@ function MilestoneCoverageChecklist({
   const byIndex = new Map<number, RecipeStepMeta>();
   for (const s of recipeSteps) byIndex.set(s.index, s);
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-4">
-      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
+    <div className="surface-card" style={{ padding: 20 }}>
+      <p
+        className="mb-3 text-[11px] font-semibold uppercase"
+        style={{
+          color: "var(--subtle)",
+          letterSpacing: "0.14em",
+          fontFamily: "var(--font-mono-custom)"
+        }}
+      >
         {t("attempt.coverage_heading")}
       </p>
-      <ul className="space-y-2">
+      <ul className="flex flex-col gap-2">
         {coverage
           .slice()
           .sort((a, b) => a.index - b.index)
-          .map((c) => {
+          .map((c, idx) => {
             const meta = COVERAGE_META[c.status] ?? COVERAGE_META.MISSING;
             const step = byIndex.get(c.index);
             return (
               <li
                 key={c.index}
-                className={`rounded-xl border p-3 ${meta.classes}`}
+                style={{
+                  padding: 14,
+                  background: meta.style.bg,
+                  border: `1px solid ${meta.style.border}`,
+                  color: meta.style.color,
+                  borderRadius: "var(--radius-md)",
+                  animation: `rise-in 320ms cubic-bezier(0.2, 0.7, 0.2, 1) ${
+                    idx * 60
+                  }ms both`
+                }}
               >
                 <div className="flex flex-wrap items-center gap-2 text-xs font-semibold">
                   <span aria-hidden className="text-base leading-none">
                     {meta.icon}
                   </span>
-                  <span className="uppercase tracking-wide">{t(meta.labelKey)}</span>
-                  <span className="opacity-70">{t("attempt.coverage_milestone_label", { index: c.index })}</span>
+                  <span className="uppercase" style={{ letterSpacing: "0.08em" }}>
+                    {t(meta.labelKey)}
+                  </span>
+                  <span style={{ opacity: 0.7 }}>
+                    {t("attempt.coverage_milestone_label", { index: c.index })}
+                  </span>
                   {step?.technique && step.technique.length > 0 ? (
                     <span className="ml-auto flex flex-wrap gap-1 text-[10px] font-medium opacity-70">
                       {step.technique.map((tag) => (
@@ -919,8 +1389,17 @@ function SubmittedReview({
 }) {
   const { t } = useT();
   const verifiedCount = attempt.steps.filter((s) => s.verdict === "VERIFIED").length;
-  const invalidCount = attempt.steps.filter((s) => s.verdict === "INVALID" || s.verdict === "ERROR").length;
-  const softCount = attempt.steps.filter((s) => s.verdict === "PLAUSIBLE" || s.verdict === "UNKNOWN").length;
+  // Note: ERROR means "we couldn't run the verifier on this step" (e.g.
+  // SymPy parse failure) — NOT that the step is mathematically wrong.
+  // Lumping ERROR into invalidCount produces false-INVALID badges like
+  // the "n=1, a=1, b=2, c=2" substitution incident — the student's
+  // values were correct but we displayed ✗ because the parser choked.
+  // We now route ERROR into softCount (rendered as "needs review") and
+  // reserve invalidCount for verdicts we have actual evidence of error.
+  const invalidCount = attempt.steps.filter((s) => s.verdict === "INVALID").length;
+  const softCount = attempt.steps.filter(
+    (s) => s.verdict === "PLAUSIBLE" || s.verdict === "UNKNOWN" || s.verdict === "ERROR"
+  ).length;
 
   const hasStructuredCoverage = (reviewExtras?.milestoneCoverage?.length ?? 0) > 0;
   const feedbackForDisplay = hasStructuredCoverage
@@ -934,20 +1413,48 @@ function SubmittedReview({
   const autoGraded = answerFormat !== "PROOF" && answerFormat !== "WORKED_SOLUTION";
   return (
     <div className="space-y-3">
+      {/* The Continue / Restart choice used to be an inline panel at the
+          top of SubmittedReview, but pilot testers regularly missed
+          the Restart button. It's now a full-window blocking modal
+          rendered by the parent UnifiedPracticeWorkspace before this
+          component mounts. SubmittedReview itself just shows the graded
+          view below. */}
+      <div data-submitted-review-body className="space-y-3">
+
       {answerFormat !== "PROOF" && attempt.submittedAnswer !== null ? (
         autoGraded ? (
           <div
-            className={`rounded-2xl border p-3 ${
-              attempt.isCorrect
-                ? "border-emerald-200 bg-emerald-50 text-emerald-800"
-                : "border-red-200 bg-red-50 text-red-800"
-            }`}
+            style={{
+              padding: 18,
+              borderRadius: "var(--radius-lg)",
+              border: `1px solid ${
+                attempt.isCorrect
+                  ? "color-mix(in srgb, var(--success) 28%, transparent)"
+                  : "color-mix(in srgb, var(--danger) 28%, transparent)"
+              }`,
+              background: attempt.isCorrect
+                ? "var(--success-soft)"
+                : "var(--danger-soft)",
+              color: attempt.isCorrect ? "var(--success)" : "var(--danger)",
+              animation:
+                "stamp-land 520ms cubic-bezier(0.34, 1.56, 0.64, 1) both"
+            }}
           >
-            <p className="text-xs font-semibold uppercase tracking-wide">
-              {t("attempt.review_answer_label")}: {attempt.isCorrect ? t("attempt.review_correct_short") : t("attempt.review_incorrect_short")}
+            <p
+              className="text-[11px] font-semibold uppercase"
+              style={{
+                letterSpacing: "0.14em",
+                fontFamily: "var(--font-mono-custom)"
+              }}
+            >
+              {t("attempt.review_answer_label")}:{" "}
+              {attempt.isCorrect
+                ? t("attempt.review_correct_short")
+                : t("attempt.review_incorrect_short")}
             </p>
-            <p className="mt-1 text-sm">
-              {t("attempt.review_your_answer")}: <span className="font-semibold">{attempt.submittedAnswer}</span>
+            <p className="mt-2 text-sm">
+              {t("attempt.review_your_answer")}:{" "}
+              <span className="font-semibold">{attempt.submittedAnswer}</span>
             </p>
             {!attempt.isCorrect && attempt.explanationText ? (
               <div className="mt-2">
@@ -956,32 +1463,56 @@ function SubmittedReview({
             ) : null}
           </div>
         ) : (
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3 text-slate-700">
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-              {t("attempt.review_answer_label")}: {t("attempt.review_ungraded_short")}
+          <div
+            style={{
+              padding: 18,
+              borderRadius: "var(--radius-lg)",
+              border: "1px solid var(--border)",
+              background: "var(--surface-2)",
+              color: "var(--foreground)"
+            }}
+          >
+            <p
+              className="text-[11px] font-semibold uppercase"
+              style={{
+                color: "var(--subtle)",
+                letterSpacing: "0.14em",
+                fontFamily: "var(--font-mono-custom)"
+              }}
+            >
+              {t("attempt.review_answer_label")}:{" "}
+              {t("attempt.review_ungraded_short")}
             </p>
-            <p className="mt-1 text-sm">
-              {t("attempt.review_your_answer")}: <span className="font-semibold">{attempt.submittedAnswer}</span>
+            <p className="mt-2 text-sm">
+              {t("attempt.review_your_answer")}:{" "}
+              <span className="font-semibold">{attempt.submittedAnswer}</span>
             </p>
-            <p className="mt-1 text-xs text-slate-500">{t("attempt.review_ungraded_hint")}</p>
+            <p className="mt-1 text-xs" style={{ color: "var(--subtle)" }}>
+              {t("attempt.review_ungraded_hint")}
+            </p>
           </div>
         )
       ) : null}
 
       {attempt.steps.length > 0 ? (
-        <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600">
-          <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 font-medium text-emerald-700">
+        <div
+          className="flex flex-wrap items-center gap-2 text-xs"
+          style={{ color: "var(--muted)" }}
+        >
+          <span className="tag" data-status="verified">
             ✓ {verifiedCount}
           </span>
-          <span className="rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 font-medium text-amber-700">
+          <span className="tag" data-status="pending">
             ⚠ {softCount}
           </span>
-          <span className="rounded-full border border-red-200 bg-red-50 px-2 py-0.5 font-medium text-red-700">
+          <span className="tag" data-status="invalid">
             ✗ {invalidCount}
           </span>
           {attempt.submittedAt ? (
-            <span className="ml-auto text-slate-500">
-              {t("attempt.review_submitted_at", { time: new Date(attempt.submittedAt).toLocaleString() })}
+            <span className="ml-auto" style={{ color: "var(--subtle)" }}>
+              {t("attempt.review_submitted_at", {
+                time: new Date(attempt.submittedAt).toLocaleString()
+              })}
             </span>
           ) : null}
         </div>
@@ -1010,6 +1541,7 @@ function SubmittedReview({
       <button type="button" className="btn-secondary w-full" onClick={onStartNew} disabled={startBusy}>
         {startBusy ? t("attempt.starting") : t("attempt.review_start_new")}
       </button>
+      </div>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { adminReviewRouter } from "@/lib/trpc/routers/admin-review";
 import { learningReportRouter } from "@/lib/trpc/routers/learning-report";
 import { orgAdminRouter } from "@/lib/trpc/routers/org-admin";
 import { problemsRouter, problemSetsRouter, resourcesRouter, resourceSetsRouter } from "@/lib/trpc/routers/problems";
+import { rubricRouter } from "@/lib/trpc/routers/rubric";
 import { studentRouter } from "@/lib/trpc/routers/student";
 import { teacherRouter } from "@/lib/trpc/routers/teacher";
 import { unifiedAttemptRouter } from "@/lib/trpc/routers/unified-attempt";
@@ -37,6 +38,7 @@ export const appRouter = router({
   problemSets: problemSetsRouter,
   student: studentRouter,
   teacher: teacherRouter,
+  rubric: rubricRouter,
   orgAdmin: orgAdminRouter
 });
 

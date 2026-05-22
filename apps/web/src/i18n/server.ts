@@ -54,3 +54,43 @@ export async function resolveLocale(): Promise<Locale> {
 
   return DEFAULT_LOCALE;
 }
+
+/**
+ * Resolve the user's preferred *feedback* locale (the language used for
+ * AI step mentor + final review + hint text). This is INTENTIONALLY
+ * decoupled from `resolveLocale()` (which decides the UI language):
+ *
+ *   - UI language: top-nav switcher cookie → User.locale → org default
+ *   - Feedback language: User.feedbackLocale only; defaults to "en"
+ *
+ * Why split: competition exams are written in English, so we want
+ * students (even those reading a Chinese UI) to default to English
+ * feedback so the vocabulary lines up with their exam. They can still
+ * opt into Chinese feedback explicitly from /account.
+ *
+ * Returns DEFAULT_LOCALE ("en") for unauthenticated requests or when
+ * the user has no explicit preference.
+ */
+export async function resolveFeedbackLocale(): Promise<Locale> {
+  const session = await getServerSession(authOptions);
+  if (!session?.user?.id) return DEFAULT_LOCALE;
+  const user = await prisma.user.findUnique({
+    where: { id: session.user.id },
+    select: { feedbackLocale: true }
+  });
+  if (isLocale(user?.feedbackLocale)) return user!.feedbackLocale as Locale;
+  return DEFAULT_LOCALE;
+}
+
+/** Same as `resolveFeedbackLocale` but takes an explicit userId — used
+ *  by tRPC mutations that already have `ctx.session.user.id`. */
+export async function resolveFeedbackLocaleForUser(
+  userId: string
+): Promise<Locale> {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { feedbackLocale: true }
+  });
+  if (isLocale(user?.feedbackLocale)) return user!.feedbackLocale as Locale;
+  return DEFAULT_LOCALE;
+}

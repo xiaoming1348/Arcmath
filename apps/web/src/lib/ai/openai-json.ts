@@ -237,16 +237,112 @@ export async function callOpenAIJson<T>(params: {
 
       return parsed.data;
     } catch (error) {
-      console.error(`[${params.scope}] OpenAI request threw`, {
-        schemaName: params.schemaName,
-        model: OPENAI_MODEL,
-        attempt,
-        error: error instanceof Error ? error.message : "Unknown error"
-      });
-      // Network-level failure: only retry once, and only on the first
-      // attempt. (Network blips can resolve; deterministic failures
-      // won't.)
-      if (!isRetry) continue;
+      // Network-level failure (fetch failed / DNS / RST / TLS) — these
+      // are common on flaky local networks AND when OpenAI rate-limits
+      // by closing the TCP socket. We do a small bounded exponential
+      // backoff with jitter so parallel callers (e.g. our two LLM
+      // judges firing simultaneously) don't pile back into a
+      // synchronized retry storm.
+      const msg = error instanceof Error ? error.message : "Unknown error";
+      const NETWORK_MAX_ATTEMPTS = 4;
+      // Base delays per attempt: 0 (the initial call already failed)
+      // then 200ms / 800ms / 2000ms, with ±30% jitter.
+      const BASE_DELAYS = [200, 800, 2000];
+
+      let networkAttempt = 0;
+      let recovered: { ok: true; value: T } | { ok: false } | null = null;
+      while (networkAttempt < NETWORK_MAX_ATTEMPTS - 1) {
+        networkAttempt += 1;
+        const baseDelay = BASE_DELAYS[networkAttempt - 1] ?? 2000;
+        const jitter = baseDelay * (0.7 + Math.random() * 0.6); // 0.7x..1.3x
+        await new Promise((r) => setTimeout(r, jitter));
+        console.warn(`[${params.scope}] OpenAI request threw; retrying`, {
+          schemaName: params.schemaName,
+          tokenAttempt: attempt,
+          networkAttempt,
+          delayMs: Math.round(jitter),
+          error: msg
+        });
+        try {
+          const retryResponse = await fetch(OPENAI_RESPONSES_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+              model: OPENAI_MODEL,
+              input: params.prompt,
+              max_output_tokens: tokenBudget,
+              text: {
+                format: {
+                  type: "json_schema",
+                  name: params.schemaName,
+                  strict: true,
+                  schema: params.jsonSchema
+                }
+              }
+            })
+          });
+          if (!retryResponse.ok) {
+            if (retryResponse.status >= 500) continue; // keep trying on 5xx
+            recovered = { ok: false };
+            break;
+          }
+          const retryPayload = (await retryResponse.json()) as unknown;
+          if (wasTruncatedByLength(retryPayload) && !isRetry) {
+            // Stop the network retry loop; let the outer token-budget
+            // retry pick this up by `continue`-ing the outer for loop.
+            recovered = null;
+            break;
+          }
+          const retryText = extractOutputText(retryPayload);
+          if (!retryText) {
+            recovered = { ok: false };
+            break;
+          }
+          let retryParsedJson: unknown;
+          try {
+            retryParsedJson = JSON.parse(retryText);
+          } catch {
+            if (!isRetry) {
+              recovered = null;
+              break;
+            }
+            recovered = { ok: false };
+            break;
+          }
+          const retryParsed = params.schema.safeParse(retryParsedJson);
+          if (!retryParsed.success) {
+            recovered = { ok: false };
+            break;
+          }
+          recovered = { ok: true, value: retryParsed.data };
+          break;
+        } catch (retryError) {
+          // Stay in the loop — try again with longer backoff.
+          if (networkAttempt >= NETWORK_MAX_ATTEMPTS - 1) {
+            console.error(
+              `[${params.scope}] OpenAI request gave up after ${networkAttempt} network retries`,
+              {
+                schemaName: params.schemaName,
+                error:
+                  retryError instanceof Error ? retryError.message : "Unknown"
+              }
+            );
+          }
+        }
+      }
+
+      if (recovered === null) {
+        // Either we never recovered, or the response was truncated and
+        // we want the outer token-budget retry to take over. If we did
+        // exhaust the inner loop and never set `recovered`, treat as
+        // hard failure.
+        if (!isRetry) continue;
+        return null;
+      }
+      if (recovered.ok) return recovered.value;
       return null;
     }
   }

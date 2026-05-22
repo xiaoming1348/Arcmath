@@ -54,6 +54,23 @@ export type Messages = {
   "topnav.register": string;
   "topnav.account": string;
 
+  "account.eyebrow": string;
+  "account.title": string;
+  "account.subtitle": string;
+  "account.email_label": string;
+  "account.name_label": string;
+  "account.language_label": string;
+  "account.language_heading": string;
+  "account.language_help": string;
+  // Split UI vs feedback language (since 2026-05-21). The two prefs
+  // are independent — UI in Chinese can still have English feedback,
+  // and vice versa.
+  "account.ui_language_heading": string;
+  "account.ui_language_help": string;
+  "account.feedback_language_label": string;
+  "account.feedback_language_heading": string;
+  "account.feedback_language_help": string;
+
   "login.kicker": string;
   "login.headline": string;
   "login.subhead": string;
@@ -74,6 +91,10 @@ export type Messages = {
   "login.first_time_suffix": string;
   "login.admin_create_prefix": string;
   "login.admin_create_link": string;
+  "login.error_unverified": string;
+  "login.resend_cta": string;
+  "login.resend_loading": string;
+  "login.resend_info": string;
 
   "set_password.badge": string;
   "set_password.title": string;
@@ -103,6 +124,54 @@ export type Messages = {
   "register.error_generic": string;
   "register.signin_prefix": string;
   "register.signin_link": string;
+  "register.eyebrow_student": string;
+  "register.success_eyebrow": string;
+  "register.success_title": string;
+  "register.success_body_prefix": string;
+  "register.success_body_suffix": string;
+  "register.success_hint": string;
+  "register.success_cta_login": string;
+  "register.success_change_email": string;
+  "register.school_prompt_prefix": string;
+  "register.school_prompt_link": string;
+
+  "register_school.eyebrow": string;
+  "register_school.title": string;
+  "register_school.subtitle": string;
+  "register_school.org_name_label": string;
+  "register_school.org_name_placeholder": string;
+  "register_school.org_name_help": string;
+  "register_school.name_label": string;
+  "register_school.email_label": string;
+  "register_school.password_label": string;
+  "register_school.password_help": string;
+  "register_school.submit": string;
+  "register_school.submit_loading": string;
+  "register_school.error_generic": string;
+  "register_school.success_eyebrow": string;
+  "register_school.success_title": string;
+  "register_school.success_body_prefix": string;
+  "register_school.success_body_suffix": string;
+  "register_school.success_hint": string;
+  "register_school.success_cta_login": string;
+  "register_school.student_prompt_prefix": string;
+  "register_school.student_prompt_link": string;
+  "register_school.signin_prefix": string;
+  "register_school.signin_link": string;
+
+  "verify_email.eyebrow": string;
+  "verify_email.title_success": string;
+  "verify_email.title_expired": string;
+  "verify_email.title_invalid": string;
+  "verify_email.lede_success": string;
+  "verify_email.lede_already_used": string;
+  "verify_email.lede_expired": string;
+  "verify_email.lede_invalid": string;
+  "verify_email.lede_missing": string;
+  "verify_email.cta_login": string;
+  "verify_email.cta_resend": string;
+  "verify_email.help_or": string;
+  "verify_email.help_signup": string;
 
   "resources.title": string;
   "resources.subtitle": string;
@@ -137,6 +206,11 @@ export type Messages = {
   "problemset.open_tutor": string;
   "problemset.open_problem": string;
   "problemset.total_problems": string;
+  "problemset.progress_summary": string;
+  "problemset.status_submitted": string;
+  "problemset.status_in_progress": string;
+  "problemset.cta_review": string;
+  "problemset.cta_continue": string;
 
   "attempt.badge_real_set": string;
   "attempt.problem_n_of": string;
@@ -154,6 +228,13 @@ export type Messages = {
   "attempt.workspace_subtitle_proof": string;
   "attempt.add_step_label": string;
   "attempt.add_step_button": string;
+  "attempt.add_step_grading_inline": string;
+  "attempt.next_step_hint_button": string;
+  "attempt.next_step_hint_pending": string;
+  "attempt.next_step_hint_label": string;
+  "attempt.next_step_hint_help": string;
+  "attempt.next_step_hint_dismiss": string;
+  "attempt.error_failed_next_step_hint": string;
   "attempt.show_hint_n": string;
   "attempt.loading_hint": string;
   "attempt.all_hints_used": string;
@@ -164,6 +245,12 @@ export type Messages = {
   "attempt.final_answer_placeholder": string;
   "attempt.submit_button": string;
   "attempt.start_over": string;
+  "attempt.continue_or_restart_label": string;
+  "attempt.continue_or_restart_body": string;
+  "attempt.continue_or_restart_modal_title": string;
+  "attempt.continue_view_submission": string;
+  "attempt.continue_or_restart_restart": string;
+  "attempt.continue_or_restart_confirm": string;
   "attempt.entry_choose_title": string;
   "attempt.entry_choose_subtitle": string;
   "attempt.entry_answer_only_title": string;
@@ -445,6 +532,23 @@ export type Messages = {
   "problems.diagnostic.tag": string;
   "problems.competitions.heading": string;
   "problems.competitions.subtitle": string;
+  "problems.placement.heading": string;
+  "problems.placement.subtitle": string;
+  "problems.placement.tier_foundation": string;
+  "problems.placement.tier_intermediate": string;
+  "problems.placement.tier_advanced": string;
+  "problems.placement.level_i_desc": string;
+  "problems.placement.level_ii_desc": string;
+  "problems.placement.level_iii_desc": string;
+  "problems.placement.contest_amc8": string;
+  "problems.placement.contest_amc10": string;
+  "problems.placement.contest_amc12": string;
+  "problems.placement.contest_subtitle": string;
+  "problems.placement.problems_word": string;
+  "problems.amc.heading": string;
+  "problems.amc.subtitle": string;
+  "problems.other.heading": string;
+  "problems.other.subtitle": string;
   "problems.browser.search_placeholder": string;
   "problems.browser.no_results": string;
   "problems.browser.problem_count": string;
@@ -495,6 +599,14 @@ export type Messages = {
   "home.hero.cta_browse_problems": string;
   "home.hero.cta_create_account": string;
   "home.hero.cta_sign_in": string;
+  "home.hero.cta_student": string;
+  "home.hero.cta_school": string;
+  "home.hero.student_label": string;
+  "home.hero.student_tagline": string;
+  "home.hero.school_label": string;
+  "home.hero.school_tagline": string;
+  "home.hero.signin_prompt": string;
+  "home.hero.signin_link": string;
   "home.stats.practice_label": string;
   "home.stats.practice_value": string;
   "home.stats.practice_desc": string;
@@ -504,6 +616,16 @@ export type Messages = {
   "home.stats.library_label": string;
   "home.stats.library_value": string;
   "home.stats.library_desc": string;
+  "home.cards.eyebrow": string;
+  "home.cards.headline": string;
+  "home.cards.lede": string;
+  "home.demo.grading_eyebrow": string;
+  "home.demo.grading_title": string;
+  "home.demo.hint_eyebrow": string;
+  "home.demo.hint_title": string;
+  "home.demo.report_eyebrow": string;
+  "home.demo.report_title": string;
+  "home.hero.florid_word": string;
   "home.cards.sympy_title": string;
   "home.cards.sympy_body": string;
   "home.cards.lean_title": string;
@@ -568,6 +690,20 @@ export const EN: Messages = {
   "topnav.register": "Register",
   "topnav.account": "Account",
 
+  "account.eyebrow": "Settings",
+  "account.title": "Account",
+  "account.subtitle": "Update how Arcmath looks and feels for you. More options coming soon.",
+  "account.email_label": "Email",
+  "account.name_label": "Name",
+  "account.language_label": "Interface language",
+  "account.language_heading": "Display language",
+  "account.language_help": "Controls the language of navigation, page headings, and problem-set chrome. Doesn't change problem text or mentor feedback — those are set separately below.",
+  "account.ui_language_heading": "Interface language",
+  "account.ui_language_help": "Controls the language of navigation, page headings, and problem-set chrome. Doesn't change problem text or mentor feedback — those are set separately below.",
+  "account.feedback_language_label": "Feedback language",
+  "account.feedback_language_heading": "Mentor feedback & hints",
+  "account.feedback_language_help": "Language used by the AI tutor for step-by-step feedback, hints, and the final review. Defaults to English because the competition exams themselves are in English; switch to Chinese if you'd prefer reading explanations in 中文.",
+
   "login.kicker": "Welcome Back",
   "login.headline": "Sign in to continue your workflow.",
   "login.subhead": "A cleaner interface makes it easier to move from login to practice, reports, and assignments without losing momentum.",
@@ -588,6 +724,10 @@ export const EN: Messages = {
   "login.first_time_suffix": ".",
   "login.admin_create_prefix": "School admins:",
   "login.admin_create_link": "create your account",
+  "login.error_unverified": "Please verify your email before signing in. Check your inbox for the verification link we sent.",
+  "login.resend_cta": "Resend verification email",
+  "login.resend_loading": "Sending...",
+  "login.resend_info": "If an account with that email exists and hasn't been verified yet, a new verification link is on its way.",
 
   "set_password.badge": "First-time setup",
   "set_password.title": "Set your password",
@@ -605,18 +745,66 @@ export const EN: Messages = {
   "set_password.already_set_prefix": "Already set a password?",
   "set_password.already_set_link": "Sign in here",
 
-  "register.title": "Create your school admin account",
-  "register.subtitle": "Use this to bootstrap a new school. After creating your account you can set up your school and add teachers + students.",
+  "register.title": "Start practicing in minutes",
+  "register.subtitle": "Create a personal Arcmath account to unlock the full AMC / AIME / Putnam libraries, step-by-step grading, and progress reports. Always free for individual learners during pilot.",
   "register.name_label": "Your name",
   "register.email_label": "Email",
   "register.password_label": "Password",
   "register.password_help": "At least 8 characters.",
-  "register.submit": "Create account",
+  "register.submit": "Create my account",
   "register.submit_loading": "Creating...",
   "register.error_email_in_use": "That email is already registered.",
   "register.error_generic": "Could not create your account. Try again.",
   "register.signin_prefix": "Already have an account?",
   "register.signin_link": "Sign in",
+  "register.eyebrow_student": "Students · self-signup",
+  "register.success_eyebrow": "Almost there",
+  "register.success_title": "Check your email",
+  "register.success_body_prefix": "We sent a verification link to",
+  "register.success_body_suffix": ". Click it within 24 hours to finish setting up your Arcmath account.",
+  "register.success_hint": "Didn't get it? Check your spam folder. The email comes from a noreply@ address — mark it as not-spam so future Arcmath messages land in your inbox.",
+  "register.success_cta_login": "I've verified — sign in",
+  "register.success_change_email": "Used the wrong email? Go back",
+  "register.school_prompt_prefix": "Setting up a class for a school or program?",
+  "register.school_prompt_link": "Create a school account",
+
+  "register_school.eyebrow": "Schools · admin signup",
+  "register_school.title": "Set up your school on Arcmath",
+  "register_school.subtitle": "Create the admin account that owns your school's classes, rosters, and reports. You can invite teachers and roster students after you verify your email.",
+  "register_school.org_name_label": "School or program name",
+  "register_school.org_name_placeholder": "e.g. North Star Math Academy",
+  "register_school.org_name_help": "Shown to your teachers and students inside Arcmath. You can rename it later in school settings.",
+  "register_school.name_label": "Your name",
+  "register_school.email_label": "Email (admin)",
+  "register_school.password_label": "Password",
+  "register_school.password_help": "At least 8 characters.",
+  "register_school.submit": "Create school account",
+  "register_school.submit_loading": "Creating...",
+  "register_school.error_generic": "Could not create your school account. Try again.",
+  "register_school.success_eyebrow": "Almost there",
+  "register_school.success_title": "Check your email",
+  "register_school.success_body_prefix": "We sent a verification link to",
+  "register_school.success_body_suffix": ". Click it within 24 hours, then sign in to set up your school.",
+  "register_school.success_hint": "Once verified, you'll land on your school admin home where you can create classes, roster students, and invite teachers.",
+  "register_school.success_cta_login": "I've verified — sign in",
+  "register_school.student_prompt_prefix": "Are you a student here on your own?",
+  "register_school.student_prompt_link": "Use the personal signup",
+  "register_school.signin_prefix": "Already have an account?",
+  "register_school.signin_link": "Sign in",
+
+  "verify_email.eyebrow": "Email verification",
+  "verify_email.title_success": "You're verified",
+  "verify_email.title_expired": "This link has expired",
+  "verify_email.title_invalid": "This link isn't valid",
+  "verify_email.lede_success": "Your email is now verified. Sign in to start practicing.",
+  "verify_email.lede_already_used": "Looks like this verification link was already used. Your email is verified — sign in to continue.",
+  "verify_email.lede_expired": "Verification links expire 24 hours after we send them. Sign in below and we'll send you a fresh one.",
+  "verify_email.lede_invalid": "We couldn't find that verification token. It may have been mistyped or never existed.",
+  "verify_email.lede_missing": "This page expects a verification link from your email. Sign in to request a fresh one.",
+  "verify_email.cta_login": "Continue to sign in",
+  "verify_email.cta_resend": "Sign in to request a new link",
+  "verify_email.help_or": "Or",
+  "verify_email.help_signup": "create a new account",
 
   "resources.title": "Course materials",
   "resources.subtitle": "PDFs, lesson notes, and links shared across your school.",
@@ -651,6 +839,11 @@ export const EN: Messages = {
   "problemset.open_tutor": "Open Tutor",
   "problemset.open_problem": "Open Problem",
   "problemset.total_problems": "{count} problems",
+  "problemset.progress_summary": "{attempted}/{total} attempted",
+  "problemset.status_submitted": "Submitted",
+  "problemset.status_in_progress": "In progress",
+  "problemset.cta_review": "Review",
+  "problemset.cta_continue": "Continue",
 
   "attempt.badge_real_set": "Premium Real Set",
   "attempt.problem_n_of": "Problem {current} of {total}",
@@ -668,6 +861,13 @@ export const EN: Messages = {
   "attempt.workspace_subtitle_proof": "Build your proof step by step. Everything gets verified on submit.",
   "attempt.add_step_label": "Add step {n}",
   "attempt.add_step_button": "Add step",
+  "attempt.add_step_grading_inline": "Checking this step with your tutor… (~3–5s)",
+  "attempt.next_step_hint_button": "Hint for next step",
+  "attempt.next_step_hint_pending": "Asking your tutor…",
+  "attempt.next_step_hint_label": "Tutor suggestion",
+  "attempt.next_step_hint_help": "Get a quick nudge about what to try next based on the work you've shown so far.",
+  "attempt.next_step_hint_dismiss": "Dismiss hint",
+  "attempt.error_failed_next_step_hint": "Couldn't fetch a hint right now — try again in a moment.",
   "attempt.show_hint_n": "Show hint {n}",
   "attempt.loading_hint": "Loading hint…",
   "attempt.all_hints_used": "All 3 hints used",
@@ -678,6 +878,12 @@ export const EN: Messages = {
   "attempt.final_answer_placeholder": "Leave blank if you didn't reach a confident answer",
   "attempt.submit_button": "Submit",
   "attempt.start_over": "Start over",
+  "attempt.continue_or_restart_label": "You've worked on this problem before",
+  "attempt.continue_or_restart_body": "Pick up where you left off, or wipe the slate and try again from scratch.",
+  "attempt.continue_or_restart_modal_title": "Continue or restart this problem?",
+  "attempt.continue_view_submission": "Continue · review my submission",
+  "attempt.continue_or_restart_restart": "Restart from scratch",
+  "attempt.continue_or_restart_confirm": "This will clear your previous attempt for this problem (steps, hints, and feedback) and start a fresh one. Continue?",
   "attempt.entry_choose_title": "How are you solving this?",
   "attempt.entry_choose_subtitle": "Pick how you'd like to work — you can always switch later.",
   "attempt.entry_answer_only_title": "I have the answer",
@@ -975,6 +1181,23 @@ export const EN: Messages = {
   "problems.diagnostic.tag": "Diagnostic test",
   "problems.competitions.heading": "Competitions",
   "problems.competitions.subtitle": "Pick a competition to browse its practice sets. Use the search box inside to filter by year or exam.",
+  "problems.placement.heading": "Find your level — free placement tests",
+  "problems.placement.subtitle": "Three difficulty tiers per contest. Pick a level that matches where you are; each test is real AMC problems curated by difficulty so the result actually tells you where to start practicing.",
+  "problems.placement.tier_foundation": "Foundation",
+  "problems.placement.tier_intermediate": "Intermediate",
+  "problems.placement.tier_advanced": "Advanced",
+  "problems.placement.level_i_desc": "Easy entry-level problems, similar to AMC questions #1–10. Start here if you're new to competition math.",
+  "problems.placement.level_ii_desc": "Medium-difficulty, similar to AMC questions #11–20. Start here if early-paper problems feel comfortable.",
+  "problems.placement.level_iii_desc": "Hard contest-level problems, similar to AMC questions #21–25. Start here if you can already finish the easy half consistently.",
+  "problems.placement.contest_amc8": "AMC 8",
+  "problems.placement.contest_amc10": "AMC 10",
+  "problems.placement.contest_amc12": "AMC 12",
+  "problems.placement.contest_subtitle": "Three placement tests",
+  "problems.placement.problems_word": "problems",
+  "problems.amc.heading": "AMC competitions",
+  "problems.amc.subtitle": "AMC 8, 10, and 12 past papers and topic-focused practice sets. Drawn directly from the official released contests.",
+  "problems.other.heading": "Other competitions",
+  "problems.other.subtitle": "AIME, USAMO/USAJMO, Putnam, Euclid, MAT, STEP, and more. Browse by contest and year.",
   "problems.browser.search_placeholder": "Search by year or exam…",
   "problems.browser.no_results": "No matching sets.",
   "problems.browser.problem_count": "{count} problems",
@@ -1025,6 +1248,14 @@ export const EN: Messages = {
   "home.hero.cta_browse_problems": "Browse Problems",
   "home.hero.cta_create_account": "Create Account",
   "home.hero.cta_sign_in": "Sign In",
+  "home.hero.cta_student": "Students · Start free",
+  "home.hero.cta_school": "I'm a teacher · Set up school",
+  "home.hero.student_label": "For learners",
+  "home.hero.student_tagline": "Unlock the full AMC 8 / 10 / 12, AIME, and Putnam libraries. Every step is graded with SymPy + Lean — no LLM hallucinations.",
+  "home.hero.school_label": "For schools",
+  "home.hero.school_tagline": "Roster students in minutes, assign problem sets, and grade multi-step proofs automatically. Per-student progress reports included.",
+  "home.hero.signin_prompt": "Already have an account?",
+  "home.hero.signin_link": "Sign in",
   "home.stats.practice_label": "Library",
   "home.stats.practice_value": "1,374 problems",
   "home.stats.practice_desc": "74 sets across AMC 8/10/12, AIME, Putnam 2019–2024, USAMO, Euclid, MAT, STEP II — every one with author-reviewed manifests.",
@@ -1034,6 +1265,16 @@ export const EN: Messages = {
   "home.stats.library_label": "Hints",
   "home.stats.library_value": "Pre-computed",
   "home.stats.library_desc": "1,374 × 3 hints baked into the catalog. Even when the LLM is unavailable, students get a problem-specific nudge — never a generic placeholder.",
+  "home.cards.eyebrow": "Verification stack",
+  "home.cards.headline": "Three engines, one verdict",
+  "home.cards.lede": "Every step a student writes is checked by deterministic math first. We only escalate to an LLM judge — or to the teacher — when the symbolic backends are unsure.",
+  "home.demo.grading_eyebrow": "01 / Grading",
+  "home.demo.grading_title": "Watch one step get verified, live.",
+  "home.demo.hint_eyebrow": "02 / Hints",
+  "home.demo.hint_title": "Progressive nudges — direction first, answer last.",
+  "home.demo.report_eyebrow": "03 / Report",
+  "home.demo.report_title": "A clear picture after every session.",
+  "home.hero.florid_word": "verifiable",
   "home.cards.sympy_title": "01 / SymPy",
   "home.cards.sympy_body": "Algebraic identities, equation manipulation, simple inequalities. Student writes 2x = 4 → SymPy returns VERIFIED in milliseconds. No LLM round-trip.",
   "home.cards.lean_title": "02 / Lean kernel",
@@ -1088,7 +1329,7 @@ export const ZH: Messages = {
   "topnav.language.english": "English",
   "topnav.language.chinese": "中文",
   "topnav.tagline": "形式化验证的数学竞赛训练",
-  "topnav.dashboard": "仪表板",
+  "topnav.dashboard": "我的主页",
   "topnav.organization": "学校",
   "topnav.assignments": "作业",
   "topnav.resources": "资源",
@@ -1097,6 +1338,20 @@ export const ZH: Messages = {
   "topnav.my_work": "我的学习",
   "topnav.register": "注册",
   "topnav.account": "账号",
+
+  "account.eyebrow": "设置",
+  "account.title": "账号设置",
+  "account.subtitle": "调整 Arcmath 的界面与体验。更多选项陆续上线。",
+  "account.email_label": "邮箱",
+  "account.name_label": "姓名",
+  "account.language_label": "界面语言",
+  "account.language_heading": "界面语言",
+  "account.language_help": "影响导航、按钮、页面标题等界面文本的语言。题目原文和导师批注的语言在下方单独设置。",
+  "account.ui_language_heading": "界面语言",
+  "account.ui_language_help": "影响导航、按钮、页面标题等界面文本的语言。题目原文和导师批注的语言在下方单独设置。",
+  "account.feedback_language_label": "批注语言",
+  "account.feedback_language_heading": "导师批注 & 提示",
+  "account.feedback_language_help": "AI 导师在分步批改、提示和最终点评中使用的语言。默认英文，因为比赛真题本身就是英文出题；如果你更习惯读中文讲解，可切换为中文。",
 
   "login.kicker": "欢迎回来",
   "login.headline": "登录后继续学习。",
@@ -1118,6 +1373,10 @@ export const ZH: Messages = {
   "login.first_time_suffix": "。",
   "login.admin_create_prefix": "学校 admin：",
   "login.admin_create_link": "创建你的账号",
+  "login.error_unverified": "请先验证你的邮箱再登录。注册时我们已发送验证链接，请到邮箱里点击。",
+  "login.resend_cta": "重新发送验证邮件",
+  "login.resend_loading": "发送中…",
+  "login.resend_info": "如果该邮箱对应的账号存在且未验证，新的验证链接将很快送达。",
 
   "set_password.badge": "首次设置",
   "set_password.title": "设置你的密码",
@@ -1135,18 +1394,66 @@ export const ZH: Messages = {
   "set_password.already_set_prefix": "已经设过密码？",
   "set_password.already_set_link": "在这里登录",
 
-  "register.title": "创建学校 admin 账号",
-  "register.subtitle": "用此页面注册学校管理员。注册后你可以创建学校并添加老师和学生。",
+  "register.title": "几分钟后开始刷题",
+  "register.subtitle": "注册一个 Arcmath 个人账号，解锁 AMC、AIME、Putnam 全套题库，享受逐步批改和个人学习报告。Pilot 阶段对个人用户永久免费。",
   "register.name_label": "你的姓名",
   "register.email_label": "邮箱",
   "register.password_label": "密码",
   "register.password_help": "至少 8 个字符。",
-  "register.submit": "创建账号",
+  "register.submit": "创建我的账号",
   "register.submit_loading": "创建中...",
   "register.error_email_in_use": "该邮箱已注册。",
   "register.error_generic": "创建失败，请重试。",
   "register.signin_prefix": "已有账号？",
   "register.signin_link": "登录",
+  "register.eyebrow_student": "学生 · 自助注册",
+  "register.success_eyebrow": "马上就好",
+  "register.success_title": "请查收邮件",
+  "register.success_body_prefix": "我们刚刚把验证链接发到了",
+  "register.success_body_suffix": "。请在 24 小时内点击链接完成注册。",
+  "register.success_hint": "没收到？检查一下垃圾邮件。邮件来自 noreply@ 地址——记得标记为非垃圾邮件，以后 Arcmath 的消息才会进收件箱。",
+  "register.success_cta_login": "已验证 · 去登录",
+  "register.success_change_email": "邮箱填错了？返回修改",
+  "register.school_prompt_prefix": "要给学校或培训机构开账号？",
+  "register.school_prompt_link": "创建学校账号",
+
+  "register_school.eyebrow": "学校 · 管理员注册",
+  "register_school.title": "在 Arcmath 上开通你的学校",
+  "register_school.subtitle": "创建管理员账号，掌握全校的班级、学生名册和报告。验证邮箱后可以邀请老师、添加学生。",
+  "register_school.org_name_label": "学校或机构名称",
+  "register_school.org_name_placeholder": "例如：北辰数学学院",
+  "register_school.org_name_help": "全校老师和学生在 Arcmath 内会看到这个名字，后续可在学校设置里修改。",
+  "register_school.name_label": "你的姓名",
+  "register_school.email_label": "邮箱（管理员）",
+  "register_school.password_label": "密码",
+  "register_school.password_help": "至少 8 位。",
+  "register_school.submit": "创建学校账号",
+  "register_school.submit_loading": "创建中…",
+  "register_school.error_generic": "创建失败，请重试。",
+  "register_school.success_eyebrow": "马上就好",
+  "register_school.success_title": "请查收邮件",
+  "register_school.success_body_prefix": "我们刚刚把验证链接发到了",
+  "register_school.success_body_suffix": "。24 小时内点击链接，然后登录即可开始配置学校。",
+  "register_school.success_hint": "验证后会自动进入学校管理员主页，你可以在那里创建班级、导入学生、邀请老师。",
+  "register_school.success_cta_login": "已验证 · 去登录",
+  "register_school.student_prompt_prefix": "你是个人用户来体验？",
+  "register_school.student_prompt_link": "用学生入口注册",
+  "register_school.signin_prefix": "已有账号？",
+  "register_school.signin_link": "登录",
+
+  "verify_email.eyebrow": "邮箱验证",
+  "verify_email.title_success": "验证成功",
+  "verify_email.title_expired": "链接已过期",
+  "verify_email.title_invalid": "链接无效",
+  "verify_email.lede_success": "邮箱验证完成。登录即可开始刷题。",
+  "verify_email.lede_already_used": "这个链接已经被使用过了——你的邮箱已验证，请直接登录。",
+  "verify_email.lede_expired": "验证链接 24 小时后失效。先登录，我们会重新发一份。",
+  "verify_email.lede_invalid": "找不到这个验证 token——可能输错了或本来就不存在。",
+  "verify_email.lede_missing": "这个页面需要从邮件里点过来的验证链接。先登录，我们会重新发一份。",
+  "verify_email.cta_login": "继续登录",
+  "verify_email.cta_resend": "登录并重新发送",
+  "verify_email.help_or": "或者",
+  "verify_email.help_signup": "重新注册一个",
 
   "resources.title": "教学资源",
   "resources.subtitle": "全校共享的 PDF、讲义和链接。",
@@ -1181,6 +1488,11 @@ export const ZH: Messages = {
   "problemset.open_tutor": "开始练习（带提示）",
   "problemset.open_problem": "开始练习",
   "problemset.total_problems": "共 {count} 题",
+  "problemset.progress_summary": "已做 {attempted}/{total}",
+  "problemset.status_submitted": "已提交",
+  "problemset.status_in_progress": "进行中",
+  "problemset.cta_review": "查看",
+  "problemset.cta_continue": "继续",
 
   "attempt.badge_real_set": "真题",
   "attempt.problem_n_of": "第 {current} 题 / 共 {total} 题",
@@ -1198,6 +1510,13 @@ export const ZH: Messages = {
   "attempt.workspace_subtitle_proof": "一步步写出证明，提交时统一验证。",
   "attempt.add_step_label": "添加第 {n} 步",
   "attempt.add_step_button": "添加步骤",
+  "attempt.add_step_grading_inline": "正在为你批改这一步…（约 3–5 秒）",
+  "attempt.next_step_hint_button": "下一步提示",
+  "attempt.next_step_hint_pending": "正在请教导师…",
+  "attempt.next_step_hint_label": "导师提示",
+  "attempt.next_step_hint_help": "根据你已经写出的步骤，给一个下一步可以怎么想的小提示。",
+  "attempt.next_step_hint_dismiss": "关闭提示",
+  "attempt.error_failed_next_step_hint": "没能拿到提示，稍后再试一次。",
   "attempt.show_hint_n": "查看提示 {n}",
   "attempt.loading_hint": "加载提示中…",
   "attempt.all_hints_used": "三次提示已用完",
@@ -1208,6 +1527,12 @@ export const ZH: Messages = {
   "attempt.final_answer_placeholder": "若没把握请留空",
   "attempt.submit_button": "提交",
   "attempt.start_over": "重新开始",
+  "attempt.continue_or_restart_label": "你之前做过这道题",
+  "attempt.continue_or_restart_body": "可以继续查看上次的提交，也可以清空重来。",
+  "attempt.continue_or_restart_modal_title": "继续作答 还是 重新作答？",
+  "attempt.continue_view_submission": "继续 · 查看上次提交",
+  "attempt.continue_or_restart_restart": "清空重来",
+  "attempt.continue_or_restart_confirm": "这会清掉你上次的步骤、提示和反馈，从零开始。确定要重新做吗？",
   "attempt.entry_choose_title": "你打算怎么解这道题？",
   "attempt.entry_choose_subtitle": "选一种解题方式——之后可以随时切换。",
   "attempt.entry_answer_only_title": "我有答案了",
@@ -1489,6 +1814,23 @@ export const ZH: Messages = {
   "problems.diagnostic.tag": "诊断测试",
   "problems.competitions.heading": "竞赛",
   "problems.competitions.subtitle": "选择竞赛浏览相应练习题集。可在搜索框按年份或试卷过滤。",
+  "problems.placement.heading": "找到你的难度档 · 免费分级测试",
+  "problems.placement.subtitle": "每个赛事三个难度档，选一个最贴近你现状的开始。每套测试都是从真实 AMC 题库按难度精选的，做完结果会清晰告诉你应该从哪一档开始练。",
+  "problems.placement.tier_foundation": "基础",
+  "problems.placement.tier_intermediate": "中等",
+  "problems.placement.tier_advanced": "进阶",
+  "problems.placement.level_i_desc": "入门难度题目，对标 AMC 前 10 题。如果你是刚接触竞赛数学的新手，从这里开始。",
+  "problems.placement.level_ii_desc": "中等难度，对标 AMC 第 11–20 题。如果前几道题你做起来比较轻松，从这里开始。",
+  "problems.placement.level_iii_desc": "竞赛级硬题，对标 AMC 第 21–25 题。如果前一半你都能稳定做对，从这里开始。",
+  "problems.placement.contest_amc8": "AMC 8",
+  "problems.placement.contest_amc10": "AMC 10",
+  "problems.placement.contest_amc12": "AMC 12",
+  "problems.placement.contest_subtitle": "三档分级测试",
+  "problems.placement.problems_word": "题",
+  "problems.amc.heading": "AMC 竞赛题库",
+  "problems.amc.subtitle": "AMC 8、10、12 历年真题和按知识点分类的练习题集，全部来自官方公开的真题。",
+  "problems.other.heading": "其他竞赛题库",
+  "problems.other.subtitle": "AIME、USAMO/USAJMO、Putnam、Euclid、MAT、STEP 等。按赛事和年份浏览。",
   "problems.browser.search_placeholder": "按年份或试卷搜索…",
   "problems.browser.no_results": "没有匹配的题集。",
   "problems.browser.problem_count": "{count} 题",
@@ -1535,10 +1877,18 @@ export const ZH: Messages = {
   "home.hero.pill_practice": "SymPy + Lean kernel",
   "home.hero.pill_progress": "逐步评判轨迹",
   "home.hero.pill_aesthetic": "AMC · AIME · Putnam · Euclid · MAT · STEP · USAMO",
-  "home.hero.cta_dashboard": "打开仪表板",
+  "home.hero.cta_dashboard": "进入我的主页",
   "home.hero.cta_browse_problems": "浏览题库",
   "home.hero.cta_create_account": "注册账号",
   "home.hero.cta_sign_in": "登录",
+  "home.hero.cta_student": "学生 · 免费开始",
+  "home.hero.cta_school": "我是老师 · 创建学校",
+  "home.hero.student_label": "面向学生",
+  "home.hero.student_tagline": "AMC 8/10/12、AIME、Putnam 全套题库免费练。每一步都用 SymPy + Lean 真批改，绝无 LLM 胡判。",
+  "home.hero.school_label": "面向学校",
+  "home.hero.school_tagline": "几分钟批量建班，派发题集，多步证明自动批改。每个学生都有进度报告。",
+  "home.hero.signin_prompt": "已有账号？",
+  "home.hero.signin_link": "登录",
   "home.stats.practice_label": "题库",
   "home.stats.practice_value": "1374 道",
   "home.stats.practice_desc": "74 套覆盖 AMC 8/10/12、AIME、Putnam 2019–2024、USAMO、Euclid、MAT、STEP II——每道题的 manifest 都经作者审过。",
@@ -1548,6 +1898,16 @@ export const ZH: Messages = {
   "home.stats.library_label": "提示",
   "home.stats.library_value": "全部预生成",
   "home.stats.library_desc": "1374 × 3 条提示已烤进题库。即使 LLM 不可用，学生也能看到与题目高度相关的提示，不会再是无意义的占位文本。",
+  "home.cards.eyebrow": "验证引擎栈",
+  "home.cards.headline": "三个引擎、一个裁决",
+  "home.cards.lede": "学生写下的每一步先用确定性数学引擎检查；只有当符号化后端拿不准时，我们才升级给 LLM judge — 或者直接转给老师。",
+  "home.demo.grading_eyebrow": "01 / 批改",
+  "home.demo.grading_title": "实时看一步推导被验证的全过程。",
+  "home.demo.hint_eyebrow": "02 / 提示",
+  "home.demo.hint_title": "渐进式提示——先方向，最后才是答案。",
+  "home.demo.report_eyebrow": "03 / 报告",
+  "home.demo.report_title": "每次刷题后都有清晰画像。",
+  "home.hero.florid_word": "可验证",
   "home.cards.sympy_title": "01 / SymPy",
   "home.cards.sympy_body": "代数恒等、方程化简、简单不等式。学生写 2x = 4，SymPy 毫秒级返回 VERIFIED。无需 LLM 往返。",
   "home.cards.lean_title": "02 / Lean kernel",
@@ -1573,7 +1933,7 @@ export const ZH: Messages = {
   "home.quickstart.body_guest": "注册学生账号或登录，以个性化你的仪表板、作业与报告。",
   "home.quickstart.role_member": "会员",
   "home.quickstart.role_guest": "访客",
-  "home.quickstart.link_dashboard": "打开仪表板",
+  "home.quickstart.link_dashboard": "进入我的主页",
   "home.quickstart.link_browse_problems": "浏览题库",
   "home.quickstart.link_assignments": "查看作业",
   "home.quickstart.link_resources": "查看资源",

@@ -185,6 +185,12 @@ export type GenerateStepFeedbackParams = {
   verificationBackend: "SYMPY" | "LEAN" | "LLM_JUDGE" | "GEOGEBRA" | "CLASSIFIER_ONLY" | "NONE";
   verificationReason?: string;
   previousSteps: string[];
+  /**
+   * User-facing locale (en | zh). The LLM is instructed to respond in
+   * this language so a Chinese-UI user doesn't get an English mentor
+   * note. Defaults to "en" for backward compatibility.
+   */
+  locale?: "en" | "zh";
 };
 
 export async function generateStepFeedback(
@@ -198,18 +204,27 @@ export async function generateStepFeedback(
   // Describe the verification outcome honestly so the LLM can't over-claim.
   const verificationSummary = describeVerification(params.verdict, params.verificationBackend, params.verificationReason);
 
+  const locale = params.locale ?? "en";
+  const localeRule =
+    locale === "zh"
+      ? "Reply in Mandarin Chinese (Simplified). Use natural tutorial phrasing — not stiff translations."
+      : "Reply in English.";
+
   const prompt = [
-    "You are an AI tutor giving ONE short piece of feedback on a single proof step.",
+    "You are a one-on-one math coach giving ONE short, supportive note about a single proof step.",
     "Rules:",
     "- Return valid JSON only.",
-    "- Keep feedback to 1-3 short sentences.",
+    "- Keep the note to 1–3 short sentences. No filler.",
     "- Do NOT reveal the full final solution.",
-    "- If verified: confirm briefly and suggest the next concrete direction (without solving it).",
-    "- If invalid: point at the specific mistake using the verification details. Never invent a counterexample that wasn't supplied.",
-    "- If plausible/unknown: be transparent — say the step looks reasonable but was not formally verified, and offer one concrete check the student can do.",
-    "- Never tell the student their step is CORRECT unless the verdict is VERIFIED.",
+    "- Do NOT mention 'parse error', 'verifier', 'system', 'SymPy', 'Lean', 'automated check', or anything that sounds like internal tooling. The student does not need to know our infrastructure.",
+    "- If verified: confirm briefly and point toward the NEXT concrete move (don't solve it).",
+    "- If invalid: name the specific mathematical mistake in plain language; if you can, ask the student a leading question that surfaces the error.",
+    "- If plausible/unknown/error (we could not auto-confirm): treat it as 'help me check this together'. Ask the student to verify by substituting back, by trying a small case, by re-deriving the right-hand side, or by stating the rule they used. Pick the most concrete check available.",
+    "- Never tell the student 'CORRECT' unless the verdict is VERIFIED.",
+    "- Tone: friendly, second-person ('you'), curious. Avoid hedging like 'maybe', 'seems'.",
+    `- ${localeRule}`,
     '- Output schema: {"feedbackText":"..."}',
-    `Verification outcome: ${verificationSummary}`,
+    `Verification outcome (for your own context only — do NOT mention it verbatim): ${verificationSummary}`,
     `Step type: ${params.stepType}`,
     `Problem:\n${params.problemStatement}`,
     `Previous steps:\n${priorBlock}`,
@@ -229,7 +244,7 @@ export async function generateStepFeedback(
     return generated;
   }
 
-  return { feedbackText: getFallbackFeedback(params.verdict) };
+  return { feedbackText: getFallbackFeedback(params.verdict, locale) };
 }
 
 function describeVerification(
@@ -287,6 +302,11 @@ export type ProofReviewInput = {
   // When present, the reviewer will map student steps onto this recipe's
   // milestones and emit per-milestone coverage.
   solutionRecipe?: StructuredSolution | null;
+  /**
+   * User-facing locale for the overall feedback text. Milestone coverage
+   * `evidence` field also flips to this language. Defaults to "en".
+   */
+  locale?: "en" | "zh";
 };
 
 // Per-reference-milestone coverage output. `index` matches the recipe
@@ -456,14 +476,22 @@ export async function generateProofReview(
     );
   }
 
+  const locale = params.locale ?? "en";
+  const localeRule =
+    locale === "zh"
+      ? "Write `overallFeedback` AND every `evidence` string in Mandarin Chinese (Simplified). Use natural coaching phrasing — not stiff word-for-word translation."
+      : "Write `overallFeedback` and `evidence` in English.";
+
   const prompt = [
-    "You are reviewing a student's complete competition-math proof, step by step.",
-    "The per-step verdicts were produced by a formal verifier (SymPy/Lean) or an LLM judge; treat VERIFIED as reliable and INVALID as confirmed wrong.",
+    "You are a math coach reviewing a student's complete competition-math proof.",
+    "Treat VERIFIED steps as solid and INVALID steps as confirmed wrong. UNKNOWN/PLAUSIBLE/ERROR steps just mean we could not auto-confirm — they may well be correct.",
     "Rules:",
     "- Return valid JSON only.",
-    "- `overallFeedback`: 4–8 short sentences. Call out the strongest part of the reasoning first, then the main gap or error. Comment on logical flow between steps. If the proof is incomplete, name the missing link concretely. If an INVALID step is present, explain which step breaks the chain.",
-    "- Do NOT reveal the full solution — but you may say which pitfall was triggered or which reference milestone is missing.",
+    "- `overallFeedback`: 4–8 short sentences. Lead with what the student got right (specifics, not 'good effort'); then the main gap or error; then what to try next. Comment on logical flow when relevant.",
+    "- Do NOT mention 'parse error', 'verifier', 'SymPy', 'Lean', 'system', 'automated check', or any internal tooling. The student does not need our infrastructure exposed.",
+    "- Do NOT reveal the full solution — but you may point at which pitfall was triggered or which reference milestone is missing.",
     "- Do NOT tell the student their proof is CORRECT unless every reference milestone is ESTABLISHED or REPLACED AND no INVALID claims appear.",
+    `- ${localeRule}`,
     `- Output schema: {"overallFeedback":"...", "milestoneCoverage":[{"index":N, "status":"...", "evidence":"..."}]}`,
     `Problem:\n${params.problemStatement}`,
     ...formalLines,
@@ -513,18 +541,118 @@ export async function generateProofReview(
   };
 }
 
-export function getFallbackFeedback(verdict: ProofStepVerdict): string {
+/**
+ * Generate a *next step* hint — used by the per-step real-time
+ * feedback flow. After a student commits one or more steps, they can
+ * tap "Hint for next step" to get a short forward-looking nudge:
+ * "what should I think about next?" without revealing the final
+ * answer. This is intentionally separate from `generateHint` (which
+ * serves the level-1/2/3 ladder for the entry-mode HINT_GUIDED flow)
+ * — that ladder is curated/precomputed per problem and biases toward
+ * problem-overall hints, whereas this one is dynamic against
+ * whatever the student has written so far.
+ *
+ * Returns null if the LLM call fails — the workspace surfaces a
+ * generic fallback line in that case.
+ */
+export const PROOF_NEXT_STEP_HINT_VERSION = "proof-next-step-hint-v1";
+
+export type GenerateNextStepHintParams = {
+  problemStatement: string;
+  previousSteps: string[];
+  locale?: "en" | "zh";
+};
+
+const nextStepHintSchema = z.object({ hintText: z.string().min(1) });
+const nextStepHintJsonSchema = {
+  type: "object",
+  additionalProperties: false,
+  properties: { hintText: { type: "string" } },
+  required: ["hintText"]
+} as const;
+
+export type ProofNextStepHintOutput = z.infer<typeof nextStepHintSchema>;
+
+export async function generateNextStepHint(
+  params: GenerateNextStepHintParams
+): Promise<ProofNextStepHintOutput | null> {
+  const priorBlock =
+    params.previousSteps.length > 0
+      ? params.previousSteps.map((step, i) => `${i + 1}. ${step}`).join("\n")
+      : "(student has not written any steps yet)";
+
+  const locale = params.locale ?? "en";
+  const localeRule =
+    locale === "zh"
+      ? "Reply in Mandarin Chinese (Simplified). Natural tutorial phrasing — not stiff translations."
+      : "Reply in English.";
+
+  const prompt = [
+    "You are a one-on-one math coach. Suggest ONE short, forward-looking nudge about what the student should TRY next.",
+    "Rules:",
+    "- Return valid JSON only.",
+    "- 1–2 short sentences total. No filler.",
+    "- Do NOT reveal the full final answer or skip ahead to it. Hint at the next concrete move only.",
+    "- Frame it as a question or a suggestion the student can act on immediately.",
+    "- Reference what they have written so far. If they have nothing, suggest a first step (e.g. what to introduce or notice).",
+    "- Do NOT mention 'parse error', 'verifier', 'system', 'SymPy', 'Lean', or any internal tooling.",
+    "- Tone: friendly, second-person ('you'), curious. Avoid hedging.",
+    `- ${localeRule}`,
+    '- Output schema: {"hintText":"..."}',
+    `Problem:\n${params.problemStatement}`,
+    `Student's work so far:\n${priorBlock}`
+  ].join("\n");
+
+  return callOpenAIJson({
+    scope: "proof-tutor-next-step-hint",
+    schemaName: "proof_next_step_hint",
+    prompt,
+    schema: nextStepHintSchema,
+    jsonSchema: nextStepHintJsonSchema,
+    maxOutputTokens: 220
+  });
+}
+
+export function getFallbackNextStepHint(locale: "en" | "zh" = "en"): string {
+  return locale === "zh"
+    ? "想一下：你下一步要建立的关键事实是什么？能不能从已知关系里推出来？"
+    : "Think: what's the key fact you need to establish next? Can you derive it from what you already have?";
+}
+
+export function getFallbackFeedback(
+  verdict: ProofStepVerdict,
+  locale: "en" | "zh" = "en"
+): string {
+  // Used when the LLM call returns null (e.g. no API key or timeout).
+  // Keep the language student-facing and never mention "parse" / "verifier".
+  if (locale === "zh") {
+    switch (verdict) {
+      case "VERIFIED":
+        return "这一步是对的，下一步打算从哪里入手？";
+      case "INVALID":
+        return "这一步不成立——再回头看一下你用的变换，举个小例子代进去验证。";
+      case "PLAUSIBLE":
+        return "思路合理，但还没被严格确认。试着用一个已知的恒等式或定理把它撑起来再往下走。";
+      case "UNKNOWN":
+        return "我没法直接判断这一步对错。要不你把它代回原式算一下，或者拿一个具体小例子试试，看结果对不对？";
+      case "ERROR":
+        return "我没完全看懂你这一步的写法。换个方式表达——比如把它写成一个等式，或者代一组具体数值验算一下，告诉我你得到什么。";
+      case "PENDING":
+      default:
+        return "等待验证中。";
+    }
+  }
   switch (verdict) {
     case "VERIFIED":
       return "This step checks out. What is the next concrete move from here?";
     case "INVALID":
-      return "This step does not hold in general — re-examine the transformation you applied and try a smaller example.";
+      return "This step does not hold — re-examine the transformation you applied and try a smaller example.";
     case "PLAUSIBLE":
-      return "The step looks reasonable, but it was not formally verified. Try justifying it with a known identity or theorem before moving on.";
+      return "The reasoning is plausible, but not yet airtight. Try anchoring it to a known identity or theorem before moving on.";
     case "UNKNOWN":
-      return "I could not verify this step either way. Try rewriting it as a clear equality or inequality between two expressions.";
+      return "I can't tell from this alone — try plugging your values back into the original equation, or pick a small concrete case and walk through it.";
     case "ERROR":
-      return "I could not parse this step. Double-check the LaTeX, especially braces and operators.";
+      return "I'm not quite following your notation here. Try restating this as an equation, or plug a small specific case in and tell me what you get.";
     case "PENDING":
     default:
       return "Verification pending.";

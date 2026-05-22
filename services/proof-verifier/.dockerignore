@@ -1,0 +1,21 @@
+# The entire .lake/ tree is host-arch- and host-state-specific:
+#   - .lake/build is darwin-arm64 olean output (wrong arch for the
+#     linux container)
+#   - .lake/packages/* contains Mathlib + dependency source code which
+#     stage 1 will `lake update` + `lake exe cache get` to re-fetch
+#     inside Docker
+# Uploading it costs ~200 MB and stalls Depot's session token. The
+# Docker build does NOT need any of it — it re-fetches sources and
+# linux oleans from the Lean cache server during stage 1.
+lean-workspace/.lake/
+
+# Python venv / pyc
+.venv/
+__pycache__/
+*.pyc
+
+# Local-only files
+*.log
+.env*
+benchmark_prove.py
+try.py
