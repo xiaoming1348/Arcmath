@@ -1,0 +1,86 @@
+{
+  "problemSet": {
+    "contest": "PRACTICE",
+    "year": 2026,
+    "exam": "topic-number-theory-v1",
+    "title": "Topic Practice — Number Theory (Modular Arithmetic, Primes, Diophantine)",
+    "category": "TOPIC_PRACTICE",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": null
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "What is the remainder when $2^{10}$ is divided by $7$?",
+      "answer": "2",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Number Theory practice #1",
+      "topicKey": "number_theory.modular_arithmetic",
+      "techniqueTags": ["modular_exponentiation", "fermat_little_theorem"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "$2^{10} = 1024$. Divide by $7$: $1024 = 7 \\cdot 146 + 2$, so the remainder is $2$.\n\nAlternative via Fermat's Little Theorem: $2^6 \\equiv 1 \\pmod 7$, so $2^{10} = 2^6 \\cdot 2^4 \\equiv 16 \\equiv 2 \\pmod 7$."
+    },
+    {
+      "number": 2,
+      "statement": "How many positive integer divisors does $360$ have?",
+      "answer": "24",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Number Theory practice #2",
+      "topicKey": "number_theory.divisor_counting",
+      "techniqueTags": ["prime_factorization", "divisor_function"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "Factorize: $360 = 2^3 \\cdot 3^2 \\cdot 5$.\n\nNumber of divisors $= (3 + 1)(2 + 1)(1 + 1) = 4 \\cdot 3 \\cdot 2 = 24$."
+    },
+    {
+      "number": 3,
+      "statement": "Find the smallest positive integer $N$ such that $N \\equiv 2 \\pmod 3$, $N \\equiv 3 \\pmod 5$, and $N \\equiv 2 \\pmod 7$.",
+      "answer": "23",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Number Theory practice #3",
+      "topicKey": "number_theory.chinese_remainder_theorem",
+      "techniqueTags": ["chinese_remainder_theorem", "modular_intersection"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Combine $N \\equiv 2 \\pmod 3$ and $N \\equiv 2 \\pmod 7$: both give $N \\equiv 2 \\pmod{21}$.\n\nList candidates: $N = 2, 23, 44, \\ldots$\n\nApply $N \\equiv 3 \\pmod 5$: $2 \\not\\equiv 3 \\pmod 5$, $23 \\equiv 3 \\pmod 5$ ✓.\n\nSmallest such $N$ is $23$."
+    },
+    {
+      "number": 4,
+      "statement": "What is the units digit of $7^{2026}$?",
+      "answer": "9",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Number Theory practice #4",
+      "topicKey": "number_theory.units_digit_cycles",
+      "techniqueTags": ["units_digit_cycle", "modular_exponentiation_mod_10"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Units digits of powers of $7$ cycle with period $4$: $7^1 \\to 7$, $7^2 \\to 9$, $7^3 \\to 3$, $7^4 \\to 1$, then repeat.\n\n$2026 \\bmod 4 = 2$ (since $2024$ is divisible by $4$), so the units digit of $7^{2026}$ matches that of $7^2$, which is $9$."
+    },
+    {
+      "number": 5,
+      "statement": "Find the greatest common divisor of $84$ and $126$.",
+      "answer": "42",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Number Theory practice #5",
+      "topicKey": "number_theory.gcd_euclidean",
+      "techniqueTags": ["euclidean_algorithm", "prime_factorization_gcd"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "Euclidean algorithm: $\\gcd(126, 84) = \\gcd(84, 42) = \\gcd(42, 0) = 42$.\n\nAlternative: $84 = 2^2 \\cdot 3 \\cdot 7$, $126 = 2 \\cdot 3^2 \\cdot 7$. Take minimum exponents: $2^1 \\cdot 3^1 \\cdot 7^1 = 42$."
+    },
+    {
+      "number": 6,
+      "statement": "How many positive integer solutions $(x, y)$ are there to the equation $3x + 5y = 100$?",
+      "answer": "6",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Number Theory practice #6",
+      "topicKey": "number_theory.linear_diophantine",
+      "techniqueTags": ["linear_diophantine_equation", "positive_integer_solutions_count"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "From $3x + 5y = 100$: $x = (100 - 5y)/3$. For $x$ to be a positive integer, $5y \\equiv 100 \\pmod 3$, i.e. $2y \\equiv 1 \\pmod 3$, so $y \\equiv 2 \\pmod 3$.\n\nAlso $y \\geq 1$ and $5y < 100$ (so $x > 0$), giving $1 \\leq y \\leq 19$.\n\nValues of $y$ in $[1, 19]$ with $y \\equiv 2 \\pmod 3$: $2, 5, 8, 11, 14, 17$ — that's $6$ values.\n\nEach gives a positive integer $x$ (e.g. $y = 2 \\to x = 30$; $y = 17 \\to x = 5$). So $6$ solutions."
+    }
+  ]
+}

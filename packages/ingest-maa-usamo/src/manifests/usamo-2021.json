@@ -1,0 +1,79 @@
+{
+  "problemSet": {
+    "contest": "USAMO",
+    "year": 2021,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php/2021_USAMO_Problems",
+    "verifiedPdfUrl": "https://web.evanchen.cc/exams/USAMO-2021-notes.pdf"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Rectangles $BCC_1B_2$, $CAA_1C_2$, and $ABB_1A_2$ are erected outside an acute triangle $ABC$. Suppose that\n$$\\angle BC_1C + \\angle CA_1A + \\angle AB_1B = 180^\\circ.$$\nProve that lines $B_1C_2$, $C_1A_2$, and $A_1B_2$ are concurrent.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2021, Problem 1 (proposed by Ankan Bhattacharya)",
+      "topicKey": "geometry.concurrency",
+      "techniqueTags": ["rectangles_on_triangle", "concyclic_circumcircles", "concurrency_via_common_point"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Key idea.** The angle condition implies the three circumcircles of the rectangles concur at a single point $P$ (each rectangle has a unique circumcircle through its 4 vertices; the angle condition forces these three circles to share a common point).\n\n**Concurrence at $P$.** Since $P$ lies on the circumcircle of rectangle $BCC_1B_2$, we have $\\angle CPB_2 = \\angle CC_1B_2 = 90^\\circ$ (angle subtended by diameter $CB_2$ in the rectangle's circumcircle). Similarly $\\angle CPA_1 = 90^\\circ$ from the other rectangle. So $B_2, P, A_1$ are collinear — i.e., $P$ lies on line $A_1B_2$.\n\nApplying the same argument cyclically, $P$ also lies on $B_1C_2$ and $C_1A_2$.\n\n**Conclusion.** The three lines all pass through $P$, hence concurrent. $\\blacksquare$\n\nSource: https://web.evanchen.cc/exams/USAMO-2021-notes.pdf"
+    },
+    {
+      "number": 2,
+      "statement": "The Planar National Park is an undirected $3$-regular planar graph (i.e. all vertices have degree $3$). A visitor walks through the park as follows: she begins at a vertex and starts walking along an edge. When she reaches the other endpoint, she turns left. On the next vertex she turns right, and so on, alternating left and right turns at each vertex. She does this until she gets back to the vertex where she started. What is the largest possible number of times she could have entered any vertex during her walk, over all possible layouts of the park?",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2021, Problem 2 (proposed by Zoran Sunic)",
+      "topicKey": "combinatorics.planar_graphs",
+      "techniqueTags": ["alternating_traversal", "periodic_walk", "turn_reversal_contradiction"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer: $3$.**\n\n**Upper bound.** Define a *turn* as a triple (vertex, incoming edge, outgoing edge). A vertex of degree $3$ has $3 \\cdot 2 = 6$ possible turns. Given one turn, the next and previous turns are fully determined by the alternating left-right rule, so the trajectory is totally periodic. Naïvely each vertex could host all $6$ turns, giving an entry count of $6$.\n\n**Sharper bound via reversal.** It is impossible for both turns $a \\to b \\to c$ and $c \\to b \\to a$ to appear in the same trajectory. If both appeared, extending in both directions gives two paths $a \\to b \\to c \\to d \\to e \\to \\ldots$ and $\\ldots \\to e \\to d \\to c \\to b \\to a$, which contradict the alternating rule (they would have to meet). This restricts the turns at any vertex to at most $3$.\n\n**Construction achieving $3$.** Danielle Wang's construction: a small $3$-regular planar graph with explicit walk $C A H I F G D B A H E F G J B A C$, which visits vertex $A$ exactly $3$ times.\n\n**Conclusion.** The answer is $\\boxed{3}$.\n\nSource: https://web.evanchen.cc/exams/USAMO-2021-notes.pdf"
+    },
+    {
+      "number": 3,
+      "statement": "Let $n \\geq 2$ be an integer. An $n \\times n$ board is initially empty. Each minute, you may perform one of three moves:\n\n- If there is an L-shaped tromino region of three cells without stones on the board (see figure; rotations not allowed), you may place a stone in each of those cells.\n- If all cells in a column have a stone, you may remove all stones from that column.\n- If all cells in a row have a stone, you may remove all stones from that row.\n\nFor which $n$ is it possible that, after some non-zero number of moves, the board has no stones?",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2021, Problem 3 (proposed by Alex Zhai, Shaunak Kishore)",
+      "topicKey": "combinatorics.invariant_arguments",
+      "techniqueTags": ["tromino_tilings", "polynomial_invariant", "roots_of_unity_filter"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer: $3 \\mid n$.**\n\n**Construction for $3 \\mid n$.** For $n = 3$ an explicit small sequence of L-tromino placements followed by row/column clears empties the board. Tile larger $n = 3k$ by repeating the $n = 3$ block.\n\n**Impossibility for $3 \\nmid n$ (polynomial method).** Assign to each cell $(i, j)$ the monomial $x^i y^j$. The condition for a valid clear corresponds to finding $P(x, y) \\in \\mathbb{R}[x, y]$ with $\\deg_x P \\leq n - 2$, $\\deg_y P \\leq n - 2$, satisfying $(1 + x + y) P(x, y) \\in \\langle 1 + x + \\cdots + x^{n-1}, 1 + y + \\cdots + y^{n-1}\\rangle$.\n\nLet $S = \\{\\text{nth roots of unity except } 1\\}$. For $z_1, z_2 \\in S$ we need $(1 + z_1 + z_2) P(z_1, z_2) = 0$. When $3 \\nmid n$, $1 + z_1 + z_2 \\neq 0$ for any $z_1, z_2 \\in S$. So $P$ vanishes on $S \\times S$, contradicting the degree bounds (combinatorial nullstellensatz).\n\n**Conclusion.** The board can be cleared iff $\\boxed{3 \\mid n}$. $\\blacksquare$\n\nSource: https://web.evanchen.cc/exams/USAMO-2021-notes.pdf"
+    },
+    {
+      "number": 4,
+      "statement": "A finite set $S$ of positive integers has the property that, for each $s \\in S$, and each positive integer divisor $d$ of $s$, there exists a unique element $t \\in S$ satisfying $\\gcd(s, t) = d$. (The elements $s$ and $t$ could be equal.)\n\nGiven this information, find all possible values for the number of elements of $S$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2021, Problem 4 (proposed by Carl Schildkraut)",
+      "topicKey": "number_theory.divisor_structure",
+      "techniqueTags": ["gcd_uniqueness", "valuation_argument", "powers_of_two_size"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer: $|S|$ must be a power of $2$ (including $|S| = 1$).**\n\n**Construction.** For $|S| = 2^k$: pick $2k$ distinct primes $p_1, \\ldots, p_k, q_1, \\ldots, q_k$ and take\n$$S = \\{(p_1 \\text{ or } q_1) \\cdot (p_2 \\text{ or } q_2) \\cdots (p_k \\text{ or } q_k)\\}.$$\nEvery element has exactly $2^k$ divisors and the gcd-uniqueness condition holds.\n\n**Converse — every element is squarefree.** Suppose $\\nu_p(x) = e \\geq 2$ for some $x \\in S$ and prime $p$.\n- Apply the condition with $s = x$: varying $t$ across $S$, $\\gcd(x, t)$ takes each divisor of $x$ exactly once. Of the divisors of $x$, the fraction divisible by $p$ is $e/(e+1)$. So that fraction of elements $t \\in S$ have $p \\mid \\gcd(x, t)$, hence $p \\mid t$.\n- Take $y \\in S$ with $\\nu_p(y) = 1$ (exists, e.g. by picking $\\gcd = p$). By the same argument applied to $y$: exactly $1/2$ of elements of $S$ are divisible by $p$.\n\nSo $e/(e+1) = 1/2$, giving $e = 1$, contradicting $e \\geq 2$. Hence every element is squarefree.\n\n**Conclude.** Every element of $S$ is a product of distinct primes, so its number of divisors is $2^{\\omega(x)}$. But all elements have the same number of divisors ($= |S|$), so $|S|$ is a power of $2$. $\\blacksquare$\n\nSource: https://web.evanchen.cc/exams/USAMO-2021-notes.pdf"
+    },
+    {
+      "number": 5,
+      "statement": "Let $n \\geq 4$ be an integer. Find all positive real solutions to the following system of $2n$ equations:\n$$a_1 = \\frac{1}{a_{2n}} + \\frac{1}{a_2}, \\quad a_2 = a_1 + a_3,$$\n$$a_3 = \\frac{1}{a_2} + \\frac{1}{a_4}, \\quad a_4 = a_3 + a_5,$$\n$$a_5 = \\frac{1}{a_4} + \\frac{1}{a_6}, \\quad a_6 = a_5 + a_7,$$\n$$\\vdots$$\n$$a_{2n-1} = \\frac{1}{a_{2n-2}} + \\frac{1}{a_{2n}}, \\quad a_{2n} = a_{2n-1} + a_1.$$",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2021, Problem 5 (proposed by Mohsen Jamaali)",
+      "topicKey": "algebra.cyclic_systems",
+      "techniqueTags": ["extremal_principle", "cauchy_schwarz", "cyclic_substitution"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer: $(a_1, a_2, \\ldots, a_{2n}) = (1, 2, 1, 2, \\ldots, 1, 2)$, the only solution.**\n\n**Reduction.** Substituting the second equation in each pair into the first eliminates odd-indexed terms:\n$$a_{2k} = \\frac{1}{a_{2k-2}} + \\frac{2}{a_{2k}} + \\frac{1}{a_{2k+2}}, \\quad \\text{indices mod } 2n.$$\nIt suffices to show $a_{2k}$ is constant in $k$.\n\n**Approach 1: Extremal principle (Andrew Gu).** Let $m = \\min_k a_{2k}$ and $M = \\max_k a_{2k}$. Take the index $i$ achieving the min and $j$ achieving the max. Then\n$$m \\geq \\frac{2}{m} + \\frac{1}{M} + \\frac{1}{M} = \\frac{2}{m} + \\frac{2}{M}, \\quad M \\leq \\frac{2}{M} + \\frac{2}{m}.$$\nCombining gives $m \\geq M$, so $m = M$ and the sequence is constant.\n\n**Approach 2: Cauchy-Schwarz (author).** Let $S = \\sum a_{2k}$ and $T = \\sum 1/a_{2k}$. Summing the equations gives $S = 4T$. Cauchy-Schwarz: $S \\cdot T \\geq n^2$, so $T \\geq n/2$. Another rearrangement gives $T \\leq n/2$. Equality forces constant.\n\n**Solve.** If $a_{2k} = c$ constant, then $c = 2/c + 2/c \\cdot (\\text{coefficient})$... in fact substituting back yields $c = 2$ and $a_{2k-1} = 1$.\n\n**Conclusion.** The unique solution is $(1, 2, 1, 2, \\ldots, 1, 2)$. $\\blacksquare$\n\nSource: https://web.evanchen.cc/exams/USAMO-2021-notes.pdf"
+    },
+    {
+      "number": 6,
+      "statement": "Let $ABCDEF$ be a convex hexagon satisfying $AB \\parallel DE$, $BC \\parallel EF$, $CD \\parallel FA$, and\n$$AB \\cdot DE = BC \\cdot EF = CD \\cdot FA.$$\nLet $X$, $Y$, and $Z$ be the midpoints of $AD$, $BE$, and $CF$. Prove that the circumcenter of $\\triangle ACE$, the circumcenter of $\\triangle BDF$, and the orthocenter of $\\triangle XYZ$ are collinear.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2021, Problem 6 (proposed by Ankan Bhattacharya)",
+      "topicKey": "geometry.hexagon_collinearity",
+      "techniqueTags": ["parallelogram_construction", "vector_midpoint_identity", "circumcenter_orthocenter_duality"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Parallelogram approach.** Construct auxiliary parallelograms: $ABCE'$, $BCDF'$, $CDEA'$ etc. The product condition $AB \\cdot DE = BC \\cdot EF = CD \\cdot FA$ implies the powers of $A, C, E$ with respect to circle $(A'C'E')$ are all equal, so the circumcenters of $\\triangle ACE$ and $\\triangle A'C'E'$ coincide. Similarly for $BDF$ and $B'D'F'$.\n\n**Midpoint identity.** By a direct vector computation, $X$ (midpoint of $AD$) equals the midpoint of the midpoint of $C'E'$ and the midpoint of $B'F'$:\n$$X = \\frac{1}{2}\\left( \\frac{C' + E'}{2} + \\frac{B' + F'}{2} \\right) = \\frac{A + D}{2}.$$\n(Using $C' = A + E - F$, etc.)\n\nThis means $\\triangle XYZ$ is the *vector average* of the medial triangles of $\\triangle A'C'E'$ and $\\triangle B'D'F'$.\n\n**Orthocenter conclusion.** The orthocenter of the average of two congruent triangles equals the midpoint of their individual orthocenters. The orthocenter of the medial triangle of a triangle is its circumcenter. So:\n$$\\text{Orthocenter}(XYZ) = \\frac{1}{2}\\left(\\text{Circumcenter}(\\triangle ACE) + \\text{Circumcenter}(\\triangle BDF)\\right).$$\nHence the three centers are collinear — in fact the orthocenter of $XYZ$ is the **midpoint** of the other two. $\\blacksquare$\n\nSource: https://web.evanchen.cc/exams/USAMO-2021-notes.pdf"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "problemSet": {
+    "contest": "PRACTICE",
+    "year": 2026,
+    "exam": "topic-algebra-v1",
+    "title": "Topic Practice — Algebra (Polynomials, Inequalities, Functional Equations)",
+    "category": "TOPIC_PRACTICE",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": null
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "If $x^2 + 5x + 6 = 0$, what is the sum of all real solutions of $x$?",
+      "answer": "-5",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Algebra practice #1",
+      "topicKey": "algebra.vieta_formulas",
+      "techniqueTags": ["vieta_formulas", "quadratic_roots_sum"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "By Vieta's formulas, for $x^2 + bx + c = 0$ the sum of roots is $-b$. Here $b = 5$, so the sum is $-5$.\n\nDouble-check by factoring: $x^2 + 5x + 6 = (x+2)(x+3) = 0$, so roots are $x = -2, -3$ with sum $-5$. ✓"
+    },
+    {
+      "number": 2,
+      "statement": "Compute the value of $(1 + 2 + 3 + \\cdots + 10)^2 - (1^2 + 2^2 + 3^2 + \\cdots + 10^2)$.",
+      "answer": "2640",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Algebra practice #2",
+      "topicKey": "algebra.summation_identities",
+      "techniqueTags": ["sum_of_first_n_integers", "sum_of_squares", "telescoping_identity"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "$\\sum_{k=1}^{10} k = \\frac{10 \\cdot 11}{2} = 55$, so $(\\sum k)^2 = 55^2 = 3025$.\n\n$\\sum_{k=1}^{10} k^2 = \\frac{10 \\cdot 11 \\cdot 21}{6} = 385$.\n\nDifference: $3025 - 385 = 2640$.\n\n(Equivalent identity: $(\\sum k)^2 - \\sum k^2 = 2 \\sum_{i < j} ij$, which equals $2 \\cdot \\binom{55}{2}$-style counting — but direct subtraction is fastest here.)"
+    },
+    {
+      "number": 3,
+      "statement": "Let $a + b = 5$ and $a^2 + b^2 = 13$. Compute $a^3 + b^3$.",
+      "answer": "35",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Algebra practice #3",
+      "topicKey": "algebra.symmetric_polynomials",
+      "techniqueTags": ["symmetric_polynomials", "newton_identities", "elementary_to_power_sum"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "First, find $ab$. From $(a + b)^2 = a^2 + 2ab + b^2$:\n$$25 = 13 + 2ab \\implies ab = 6.$$\n\nThen use the identity $a^3 + b^3 = (a + b)^3 - 3ab(a + b)$:\n$$a^3 + b^3 = 125 - 3 \\cdot 6 \\cdot 5 = 125 - 90 = 35.$$"
+    },
+    {
+      "number": 4,
+      "statement": "For $x > 0$, find the minimum value of $f(x) = x + \\dfrac{4}{x}$.",
+      "answer": "4",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Algebra practice #4",
+      "topicKey": "algebra.amgm_inequality",
+      "techniqueTags": ["am_gm_inequality", "minimum_of_sum_with_reciprocal"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "By AM-GM applied to $x$ and $\\frac{4}{x}$ (both positive):\n$$\\frac{x + \\frac{4}{x}}{2} \\geq \\sqrt{x \\cdot \\frac{4}{x}} = \\sqrt{4} = 2,$$\nso $x + \\frac{4}{x} \\geq 4$. Equality when $x = \\frac{4}{x}$, i.e. $x = 2$. Minimum value: $4$."
+    },
+    {
+      "number": 5,
+      "statement": "Find the real value of $x$ satisfying $\\sqrt{x + 7} + \\sqrt{x} = 7$.",
+      "answer": "9",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Algebra practice #5",
+      "topicKey": "algebra.radical_equations",
+      "techniqueTags": ["radical_equation", "isolate_and_square", "extraneous_root_check"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Isolate one radical: $\\sqrt{x + 7} = 7 - \\sqrt{x}$.\n\nSquare both sides: $x + 7 = 49 - 14\\sqrt{x} + x$, so $14\\sqrt{x} = 42$, i.e. $\\sqrt{x} = 3$, so $x = 9$.\n\nVerify: $\\sqrt{16} + \\sqrt{9} = 4 + 3 = 7$. ✓ (No extraneous root.)"
+    },
+    {
+      "number": 6,
+      "statement": "Compute the value of $\\displaystyle\\sum_{k=1}^{10} k \\cdot k!$.",
+      "answer": "39916799",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Algebra practice #6",
+      "topicKey": "algebra.telescoping_sums",
+      "techniqueTags": ["telescoping_sum", "factorial_identity", "k_factorial_telescope"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "Use the telescoping identity $k \\cdot k! = (k+1)! - k!$.\n\n$$\\sum_{k=1}^{10} k \\cdot k! = \\sum_{k=1}^{10} \\left((k+1)! - k!\\right) = 11! - 1! = 39{,}916{,}800 - 1 = 39{,}916{,}799.$$"
+    }
+  ]
+}

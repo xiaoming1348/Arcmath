@@ -1,0 +1,86 @@
+{
+  "problemSet": {
+    "contest": "PRACTICE",
+    "year": 2026,
+    "exam": "topic-combinatorics-v1",
+    "title": "Topic Practice — Combinatorics (Counting, Probability, Pigeonhole)",
+    "category": "TOPIC_PRACTICE",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": null
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "How many ways are there to arrange the letters of the word $\\text{ARCMATH}$?",
+      "answer": "2520",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Combinatorics practice #1",
+      "topicKey": "combinatorics.permutations_with_repetition",
+      "techniqueTags": ["permutations_with_repetition", "multinomial_coefficient"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "$\\text{ARCMATH}$ has $7$ letters with $A$ appearing twice and all others distinct.\n\nNumber of arrangements $= \\dfrac{7!}{2!} = \\dfrac{5040}{2} = 2520$."
+    },
+    {
+      "number": 2,
+      "statement": "A fair $6$-sided die is rolled twice. What is the probability that the sum of the two rolls equals $7$? Express your answer as a fraction in simplest form.",
+      "answer": "1/6",
+      "answerFormat": "EXPRESSION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Combinatorics practice #2",
+      "topicKey": "combinatorics.probability_dice",
+      "techniqueTags": ["dice_sum_distribution", "favorable_over_total"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "Total outcomes: $6 \\times 6 = 36$.\n\nFavorable (sum $= 7$): $(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)$ — that's $6$ outcomes.\n\nProbability $= 6/36 = 1/6$."
+    },
+    {
+      "number": 3,
+      "statement": "How many subsets of $\\{1, 2, 3, 4, 5\\}$ contain at least one odd number?",
+      "answer": "28",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Combinatorics practice #3",
+      "topicKey": "combinatorics.complementary_counting",
+      "techniqueTags": ["complementary_counting", "subset_counting"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Total subsets of a $5$-element set: $2^5 = 32$.\n\nSubsets containing NO odd number = subsets of $\\{2, 4\\}$ = $2^2 = 4$ subsets.\n\nSubsets containing at least one odd: $32 - 4 = 28$."
+    },
+    {
+      "number": 4,
+      "statement": "In how many ways can $6$ identical balls be distributed into $3$ distinct boxes? (Boxes may be empty.)",
+      "answer": "28",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Combinatorics practice #4",
+      "topicKey": "combinatorics.stars_and_bars",
+      "techniqueTags": ["stars_and_bars", "weak_composition_count"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Use stars-and-bars: distributing $n$ identical objects into $k$ distinct boxes is $\\binom{n + k - 1}{k - 1}$ ways.\n\nHere $n = 6$, $k = 3$: $\\binom{6 + 2}{2} = \\binom{8}{2} = 28$."
+    },
+    {
+      "number": 5,
+      "statement": "If $20$ socks are in a drawer in $4$ colors ($5$ of each color), what is the minimum number you must take (without looking) to guarantee at least $2$ socks of the same color?",
+      "answer": "5",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Combinatorics practice #5",
+      "topicKey": "combinatorics.pigeonhole",
+      "techniqueTags": ["pigeonhole_principle", "extremal_worst_case"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "By the Pigeonhole Principle: with $4$ colors, after picking $4$ socks the worst case is one of each color. The $5$th sock MUST match an earlier one. Answer: $5$."
+    },
+    {
+      "number": 6,
+      "statement": "How many paths are there from $(0, 0)$ to $(4, 3)$ on the integer lattice, moving only right (one unit at a time) or up (one unit at a time)?",
+      "answer": "35",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Combinatorics practice #6",
+      "topicKey": "combinatorics.lattice_paths",
+      "techniqueTags": ["lattice_paths", "binomial_coefficient_paths"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Any path from $(0,0)$ to $(4, 3)$ uses exactly $4$ Right moves and $3$ Up moves, in some order.\n\nTotal sequences: choose positions of the $3$ Up moves among $7$ steps: $\\binom{7}{3} = 35$."
+    }
+  ]
+}
