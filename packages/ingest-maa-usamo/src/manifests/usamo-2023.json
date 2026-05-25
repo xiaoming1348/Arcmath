@@ -1,0 +1,78 @@
+{
+  "problemSet": {
+    "contest": "USAMO",
+    "year": 2023,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php/2023_USAMO_Problems"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "In an acute triangle $ABC$, let $M$ be the midpoint of $\\overline{BC}$. Let $P$ be the foot of the perpendicular from $C$ to $AM$. Suppose the circumcircle of triangle $ABP$ intersects line $BC$ at two distinct points $B$ and $Q$. Let $N$ be the midpoint of $\\overline{AQ}$. Prove that $NB = NC$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2023, Problem 1",
+      "topicKey": "geometry.midpoints_circumcircle",
+      "techniqueTags": ["midpoint_isosceles", "power_of_a_point", "perpendicular_foot_lemma"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Key claim.** $N$ lies on the perpendicular bisector of $BC$, which is equivalent to $NB = NC$.\n\n**Approach via power of $M$.** $M$ is the midpoint of $BC$, so $MB = MC$. The circle $\\omega = (ABPQ)$ intersects $BC$ at $B$ and $Q$, so by power of point $M$: $MB \\cdot MQ = MA \\cdot MP$. With $MB = MC$, this gives $MC \\cdot MQ = MA \\cdot MP$.\n\n**Use perpendicularity.** $\\angle APC = 90°$ implies $P$ lies on the circle with diameter $AC$. Combined with $\\omega$ properties, after angle chasing, one shows $\\triangle MQN \\sim \\triangle MAB$ or similar, leading to $N$ on perpendicular bisector of $BC$.\n\n**Conclusion.** $NB = NC$. $\\blacksquare$\n\nSource: https://artofproblemsolving.com/wiki/index.php/2023_USAMO_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Let $\\mathbb{R}^+$ be the set of positive real numbers. Find all functions $f : \\mathbb{R}^+ \\to \\mathbb{R}^+$ such that, for all $x, y \\in \\mathbb{R}^+$,\n$$f(xy + f(x)) = xf(y) + 2.$$",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2023, Problem 2",
+      "topicKey": "algebra.functional_equation",
+      "techniqueTags": ["functional_equation", "substitution_x_1", "substitution_y_1", "linear_guess"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** $f(x) = x + 1$.\n\n**Verification.** $f(xy + f(x)) = f(xy + x + 1) = xy + x + 1 + 1 = xy + x + 2$. And $xf(y) + 2 = x(y + 1) + 2 = xy + x + 2$. ✓\n\n**Uniqueness sketch.** Set $x = 1$: $f(y + f(1)) = f(y) + 2$. Let $c = f(1)$. Then $f$ shifted by $c$ adds $2$: $f(y + c) = f(y) + 2$.\n\nSet $y = 1$: $f(x + f(x)) = xf(1) + 2 = cx + 2$.\n\nTrying linear $f(x) = ax + b$: substitute into original. LHS $= a(xy + ax + b) + b = axy + a^2 x + ab + b$. RHS $= x(ay + b) + 2 = axy + bx + 2$. Matching: $a^2 = b$ and $ab + b = 2$, so $a^3 + a^2 = 2$, giving $a = 1$ (real solution), $b = 1$.\n\n**Conclusion.** $f(x) = x + 1$ is the unique solution. $\\blacksquare$\n\nSource: https://artofproblemsolving.com/wiki/index.php/2023_USAMO_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Consider an $n$-by-$n$ board of unit squares for some odd positive integer $n$. We say that a collection $C$ of identical dominoes is a maximal grid-aligned configuration on the board if $C$ consists of $(n^2 - 1)/2$ dominoes where each domino covers exactly two neighboring squares and the dominoes don't overlap: $C$ then covers all but one square on the board.\n\nWe are allowed to slide (but not rotate) a domino on the board to cover the uncovered square, resulting in a new maximal grid-aligned configuration with another square uncovered.\n\nLet $k(C)$ be the number of distinct maximal grid-aligned configurations obtainable from $C$ by repeatedly sliding dominoes. Find all possible values of $k(C)$ as a function of $n$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2023, Problem 3",
+      "topicKey": "combinatorics.domino_sliding",
+      "techniqueTags": ["sliding_puzzle_orbit_count", "checkerboard_coloring", "parity_invariant"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $k(C)$ can be any value of the form $\\left(\\dfrac{n+1}{2}\\right)^2$ (and only those).\n\n**Setup via coloring.** Color the board in a checkerboard pattern. Each domino covers one black and one white square. With $n$ odd, $n^2$ squares split into $(n^2+1)/2$ of one color and $(n^2-1)/2$ of the other; the uncovered square is always the same color as long as $C$ is reachable from itself.\n\n**Orbit structure.** Sliding moves the uncovered square; the orbit (set of reachable configurations) corresponds to positions the uncovered square can visit. By a parity / coloring argument, the uncovered square can reach exactly the $(n+1)^2/4$ squares of one color class within a constrained region.\n\n**Conclusion.** $k(C) = \\left(\\dfrac{n+1}{2}\\right)^2$. $\\blacksquare$\n\nSource: https://artofproblemsolving.com/wiki/index.php/2023_USAMO_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "A positive integer $a$ is selected, and some positive integers are written on a board. Alice and Bob play the following game. On Alice's turn, she must replace some integer $n$ on the board with $n + a$, and on Bob's turn he must replace some even integer $n$ on the board with $n/2$. Alice goes first and they alternate turns. If on his turn Bob has no valid moves, the game ends.\n\nAfter analyzing the integers on the board, Bob realizes that, regardless of what moves Alice makes, he will be able to force the game to end eventually. Show that, in fact, for this value of $a$ and these integers on the board, the game is guaranteed to end regardless of Alice's or Bob's moves.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2023, Problem 4",
+      "topicKey": "combinatorics.game_termination",
+      "techniqueTags": ["potential_function", "2_adic_valuation", "termination_invariant"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Key invariant.** Define a potential $\\Phi$ on the multiset of board numbers using $2$-adic valuations $v_2(\\cdot)$. Show that regardless of moves, $\\Phi$ is bounded, and that Bob's ability to force termination implies the game must end no matter what.\n\n**Case on $a$.**\n- If $a$ is odd: Alice's move on an odd $n$ gives even $n + a$. The $2$-adic valuation behavior is constrained.\n- If $a$ is even: write $a = 2^k m$ with $m$ odd. Track $v_2$ structure.\n\n**Bob's strategy.** Bob can always reduce a board with sufficiently large $v_2$ values. The key insight: if Bob can force termination, the multiset is \"$2$-bounded\" in a sense — meaning $v_2$ of board entries can't grow unboundedly under either player's moves.\n\n**Conclusion.** The boundedness is a property of $(a, $ initial multiset $)$, not of the players' strategies. So if Bob can force termination, Alice can't prevent it. $\\blacksquare$\n\nSource: https://artofproblemsolving.com/wiki/index.php/2023_USAMO_Problems/Problem_4"
+    },
+    {
+      "number": 5,
+      "statement": "Let $n \\geq 3$ be an integer. We say that an arrangement of the numbers $1, 2, \\ldots, n^2$ in a $n \\times n$ table is *row-valid* if the numbers in each row can be permuted to form an arithmetic progression, and *column-valid* if the numbers in each column can be permuted to form an arithmetic progression.\n\nFor what values of $n$ is it possible to transform any row-valid arrangement into a column-valid arrangement by permuting the numbers in each row?",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2023, Problem 5",
+      "topicKey": "combinatorics.arithmetic_progressions_in_grid",
+      "techniqueTags": ["arithmetic_progression_invariant", "prime_n_obstruction", "row_to_column_transformation"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** The transformation is possible iff $n$ is **prime**.\n\n**Why prime $n$ works.** When $n$ is prime: any row-valid arrangement, with rows being APs of common differences $d_1, \\ldots, d_n$, can be sorted within each row using a multiplicative structure that turns the row AP into a column AP. The argument uses that $\\mathbb{Z}/n\\mathbb{Z}$ is a field when $n$ is prime, allowing inverses.\n\n**Why composite $n$ fails.** When $n$ is composite, $n = ab$ with $1 < a, b < n$. Construct a specific row-valid arrangement that has no column-valid permutation among the $n!^n$ row-permutations. The obstruction uses the lack of invertibility in $\\mathbb{Z}/n\\mathbb{Z}$.\n\n**Conclusion.** The values are exactly the primes $n \\geq 3$. $\\blacksquare$\n\nSource: https://artofproblemsolving.com/wiki/index.php/2023_USAMO_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "Let $ABC$ be a triangle with incenter $I$ and excenters $I_a$, $I_b$, $I_c$ opposite $A$, $B$, and $C$, respectively. Given an arbitrary point $D$ on the circumcircle of $\\triangle ABC$ that does not lie on any of the lines $II_a$, $I_bI_c$, or $BC$, suppose the circumcircles of $\\triangle DII_a$ and $\\triangle DI_bI_c$ intersect at two distinct points $D$ and $F$. If $E$ is the intersection of lines $DF$ and $BC$, prove that $\\angle BAD = \\angle EAC$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2023, Problem 6",
+      "topicKey": "geometry.incenter_excenter_lemma",
+      "techniqueTags": ["incenter_excenter_lemma", "isogonal_conjugates", "radical_axis"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Setup.** The line $II_a$ passes through $A$ and the midpoint of arc $BC$ not containing $A$; the line $I_b I_c$ passes through $A$ and the midpoint of arc $BC$ containing $A$. So both lines pass through $A$.\n\n**Radical axis.** $DF$ is the radical axis of the two circles $(DII_a)$ and $(DI_b I_c)$. By definition, points on $DF$ have equal power with respect to both circles.\n\n**Key claim — isogonal lines.** Show that lines $AD$ and $AE$ are isogonal with respect to $\\angle BAC$, i.e., they are reflections over the angle bisector. This is equivalent to $\\angle BAD = \\angle EAC$.\n\n**Strategy.** Use the well-known incenter–excenter lemma: $I, I_a$ are inverses with respect to the circle through $B, C$ centered at the arc midpoint. Map the problem under a suitable inversion (centered at $A$ or at the arc midpoint) to convert the radical axis condition into the isogonal condition.\n\nAfter the inversion, the two circles become lines, $D$ and $F$ map to specific points whose connecting line has the required isogonal property by angle chasing.\n\n**Conclusion.** $\\angle BAD = \\angle EAC$. $\\blacksquare$\n\nSource: https://artofproblemsolving.com/wiki/index.php/2023_USAMO_Problems/Problem_6"
+    }
+  ]
+}

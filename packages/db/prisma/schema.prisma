@@ -249,6 +249,7 @@ model User {
   // the vocabulary lines up with the actual exam. Null → defaults to
   // "en". Opt-in to Chinese via /account.
   feedbackLocale                 String?
+  studentProgressSnapshots       StudentProgressSnapshot[]
   createdAt                      DateTime                 @default(now())
   updatedAt                      DateTime                 @updatedAt
   enrollments                    Enrollment[]
@@ -648,6 +649,31 @@ model PracticeRun {
   @@index([classAssignmentId, startedAt])
   @@index([problemSetId, startedAt])
   @@index([userId, problemSetId, completedAt])
+}
+
+// Weekly cumulative snapshot of a single student's lifetime progress.
+// Written on-demand by /me/progress when stale (> 6 days since last
+// snapshot for the user). Used to render trend charts and
+// week-over-week deltas without re-aggregating every visit.
+model StudentProgressSnapshot {
+  id                  String   @id @default(cuid())
+  userId              String
+  snapshotAt          DateTime @default(now())
+  windowStart         DateTime
+  windowEnd           DateTime
+  totalAttempts       Int      @default(0)
+  totalCorrect        Int      @default(0)
+  accuracy            Float    @default(0)
+  timeSpentSeconds    Int      @default(0)
+  hintsUsed           Int      @default(0)
+  topicBreakdown      Json     @default("[]")
+  difficultyBreakdown Json     @default("[]")
+  reportJson          Json     @default("{}")
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, windowStart])
+  @@index([userId, snapshotAt])
+  @@index([userId, windowEnd])
 }
 
 model LearningReportSnapshot {

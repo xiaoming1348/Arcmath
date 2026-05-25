@@ -1,0 +1,86 @@
+{
+  "problemSet": {
+    "contest": "PRACTICE",
+    "year": 2026,
+    "exam": "topic-geometry-v1",
+    "title": "Topic Practice — Geometry (Plane, Coordinate, Trigonometry, Circles)",
+    "category": "TOPIC_PRACTICE",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": null
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "A right triangle has legs of length $3$ and $4$. What is the length of its hypotenuse?",
+      "answer": "5",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Geometry practice #1",
+      "topicKey": "geometry.pythagorean_theorem",
+      "techniqueTags": ["pythagorean_theorem", "right_triangle"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "By the Pythagorean theorem, hypotenuse $= \\sqrt{3^2 + 4^2} = \\sqrt{25} = 5$. (This is the classic 3-4-5 right triangle.)"
+    },
+    {
+      "number": 2,
+      "statement": "A square has perimeter $36$. What is the length of its diagonal? Express your answer in simplest radical form.",
+      "answer": "9\\sqrt{2}",
+      "answerFormat": "EXPRESSION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Geometry practice #2",
+      "topicKey": "geometry.square_diagonal",
+      "techniqueTags": ["square_diagonal_formula", "pythagorean_theorem"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "Side length $= 36/4 = 9$. The diagonal of a square with side $s$ is $s\\sqrt{2}$ (by Pythagoras on a right isoceles triangle).\n\nSo diagonal $= 9\\sqrt{2}$."
+    },
+    {
+      "number": 3,
+      "statement": "Triangle $ABC$ has $AB = 13$, $BC = 14$, $CA = 15$. What is its area?",
+      "answer": "84",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Geometry practice #3",
+      "topicKey": "geometry.heron_formula",
+      "techniqueTags": ["heron_formula", "13_14_15_triangle"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "By Heron's formula, the semi-perimeter is $s = (13 + 14 + 15)/2 = 21$.\n\nArea $= \\sqrt{s(s-a)(s-b)(s-c)} = \\sqrt{21 \\cdot 8 \\cdot 7 \\cdot 6} = \\sqrt{7056} = 84$.\n\n(This is the famous '13-14-15 triangle' with integer area — worth memorizing.)"
+    },
+    {
+      "number": 4,
+      "statement": "A circle has area $36\\pi$. What is its circumference?",
+      "answer": "12\\pi",
+      "answerFormat": "EXPRESSION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Geometry practice #4",
+      "topicKey": "geometry.circle_area_circumference",
+      "techniqueTags": ["circle_area_formula", "circle_circumference_formula"],
+      "difficultyBand": "EASY",
+      "solutionSketch": "Area $= \\pi r^2 = 36\\pi$, so $r^2 = 36$, $r = 6$.\n\nCircumference $= 2\\pi r = 12\\pi$."
+    },
+    {
+      "number": 5,
+      "statement": "In triangle $ABC$, $\\angle A = 60^\\circ$, $AB = 8$, $AC = 5$. Find $BC^2$.",
+      "answer": "49",
+      "answerFormat": "INTEGER",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Geometry practice #5",
+      "topicKey": "geometry.law_of_cosines",
+      "techniqueTags": ["law_of_cosines", "60_degree_angle"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "By the Law of Cosines:\n$$BC^2 = AB^2 + AC^2 - 2 \\cdot AB \\cdot AC \\cdot \\cos(\\angle A).$$\n\nWith $\\cos 60^\\circ = 1/2$:\n$$BC^2 = 64 + 25 - 2 \\cdot 8 \\cdot 5 \\cdot \\frac{1}{2} = 89 - 40 = 49.$$\n\n(So $BC = 7$.)"
+    },
+    {
+      "number": 6,
+      "statement": "Two circles with radii $5$ and $3$ are externally tangent. Their centers are connected by a segment. A common external tangent line touches both circles. What is the length of this tangent segment between the two points of tangency? Express your answer in simplest radical form.",
+      "answer": "2\\sqrt{15}",
+      "answerFormat": "EXPRESSION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "Arcmath — Geometry practice #6",
+      "topicKey": "geometry.tangent_to_circles",
+      "techniqueTags": ["external_tangent_length", "right_triangle_in_tangent_configuration"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "The distance between the centers is $5 + 3 = 8$ (externally tangent).\n\nFor a common external tangent: the tangent segment, the segment joining centers, and the radial offset $|r_1 - r_2|$ form a right triangle (the radii to the tangent points are parallel and perpendicular to the tangent).\n\nSo tangent length $= \\sqrt{d^2 - (r_1 - r_2)^2} = \\sqrt{8^2 - 2^2} = \\sqrt{60} = 2\\sqrt{15}$."
+    }
+  ]
+}

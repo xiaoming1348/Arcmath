@@ -71,6 +71,112 @@ export type Messages = {
   "account.feedback_language_heading": string;
   "account.feedback_language_help": string;
 
+  // /for-schools landing page (school-outreach funnel).
+  "for_schools.eyebrow": string;
+  "for_schools.hero_title": string;
+  "for_schools.hero_lede": string;
+  "for_schools.cta_email": string;
+  "for_schools.cta_register_school": string;
+  "for_schools.pilot_badge": string;
+  "for_schools.why_eyebrow": string;
+  "for_schools.why_title": string;
+  "for_schools.why_body_1": string;
+  "for_schools.why_body_2": string;
+  "for_schools.why_callout_label": string;
+  "for_schools.why_callout_body": string;
+  "for_schools.pillars_eyebrow": string;
+  "for_schools.pillars_title": string;
+  "for_schools.pillar_1_title": string;
+  "for_schools.pillar_1_body": string;
+  "for_schools.pillar_2_title": string;
+  "for_schools.pillar_2_body": string;
+  "for_schools.pillar_3_title": string;
+  "for_schools.pillar_3_body": string;
+  "for_schools.flow_eyebrow": string;
+  "for_schools.flow_title": string;
+  "for_schools.flow_1_title": string;
+  "for_schools.flow_1_body": string;
+  "for_schools.flow_2_title": string;
+  "for_schools.flow_2_body": string;
+  "for_schools.flow_3_title": string;
+  "for_schools.flow_3_body": string;
+  "for_schools.flow_4_title": string;
+  "for_schools.flow_4_body": string;
+  "for_schools.diff_eyebrow": string;
+  "for_schools.diff_title": string;
+  "for_schools.diff_tutors_title": string;
+  "for_schools.diff_tutors_body": string;
+  "for_schools.diff_apps_title": string;
+  "for_schools.diff_apps_body": string;
+  "for_schools.diff_chatbots_title": string;
+  "for_schools.diff_chatbots_body": string;
+  "for_schools.pilot_eyebrow": string;
+  "for_schools.pilot_title": string;
+  "for_schools.pilot_body": string;
+  "for_schools.pilot_get_title": string;
+  "for_schools.pilot_get_1": string;
+  "for_schools.pilot_get_2": string;
+  "for_schools.pilot_get_3": string;
+  "for_schools.pilot_get_4": string;
+  "for_schools.pilot_get_5": string;
+  "for_schools.pilot_ask_title": string;
+  "for_schools.pilot_ask_1": string;
+  "for_schools.pilot_ask_2": string;
+  "for_schools.pilot_ask_3": string;
+  "for_schools.cta_panel_title": string;
+  "for_schools.cta_panel_body": string;
+  "for_schools.contact_wechat": string;
+  "for_schools.contact_email": string;
+  "for_schools.contact_founder": string;
+  "for_schools.contact_founder_name": string;
+
+  // /me/progress — lifetime student progress report (Phase A).
+  "progress.nav_label": string;
+  "progress.eyebrow": string;
+  "progress.title": string;
+  "progress.empty_lede": string;
+  "progress.empty_cta": string;
+  "progress.hero_lede": string;
+  "progress.metric_attempts": string;
+  "progress.metric_accuracy": string;
+  "progress.metric_time": string;
+  "progress.metric_streak": string;
+  "progress.plan_eyebrow": string;
+  "progress.plan_strength": string;
+  "progress.plan_weakness": string;
+  "progress.plan_next_moves": string;
+  "progress.plan_milestone": string;
+  "progress.time_eyebrow": string;
+  "progress.time_help": string;
+  "progress.hint_eyebrow": string;
+  "progress.hint_help": string;
+  "progress.cadence_eyebrow": string;
+  "progress.cadence_help": string;
+  "progress.strengths_eyebrow": string;
+  "progress.strengths_empty": string;
+  "progress.weaknesses_eyebrow": string;
+  "progress.weaknesses_empty": string;
+  "progress.attempts_word": string;
+  "progress.hints_per_attempt": string;
+  "progress.difficulty_eyebrow": string;
+  "progress.contest_eyebrow": string;
+  "progress.col_contest": string;
+  "progress.col_attempts": string;
+  "progress.col_accuracy": string;
+  "progress.footer_hint": string;
+  "progress.footer_link": string;
+  // Phase B
+  "progress.trend_eyebrow": string;
+  "progress.trend_title": string;
+  "progress.trend_y_axis": string;
+  "progress.trend_empty": string;
+  "progress.trend_caption": string;
+  "progress.wow_label": string;
+  "progress.wow_attempts": string;
+  "progress.topic_bars_eyebrow": string;
+  "progress.topic_bars_title": string;
+  "progress.topic_bars_target": string;
+
   "login.kicker": string;
   "login.headline": string;
   "login.subhead": string;
@@ -703,6 +809,109 @@ export const EN: Messages = {
   "account.feedback_language_label": "Feedback language",
   "account.feedback_language_heading": "Mentor feedback & hints",
   "account.feedback_language_help": "Language used by the AI tutor for step-by-step feedback, hints, and the final review. Defaults to English because the competition exams themselves are in English; switch to Chinese if you'd prefer reading explanations in 中文.",
+
+  "for_schools.eyebrow": "For international schools",
+  "for_schools.hero_title": "AI-powered competition math, step by step.",
+  "for_schools.hero_lede": "Arcmath is the competition-math platform international schools use to give every student step-by-step feedback on every step — without burning out the teaching team. 2026–2027 free pilot now open for five schools.",
+  "for_schools.cta_email": "Email us about the pilot",
+  "for_schools.cta_register_school": "Create a school account",
+  "for_schools.pilot_badge": "5 free school slots — full academic year, full feature access, your students keep their accounts.",
+  "for_schools.why_eyebrow": "Why this matters",
+  "for_schools.why_title": "Strong math results need teacher hours teachers don't have.",
+  "for_schools.why_body_1": "International schools with strong math programs increasingly compete on AMC, AIME, and Olympiad results — and rightly so. Those credentials open doors at the most selective universities. But the bottleneck is rarely student talent. It is teacher time.",
+  "for_schools.why_body_2": "Step-by-step feedback on a proof, on a wrong-by-one-sign answer — that is the kind of feedback that actually moves a student from 80 on the AMC10 to 130. A single teacher with thirty students cannot read thirty proofs, line by line, three times a week.",
+  "for_schools.why_callout_label": "The realistic ratio today",
+  "for_schools.why_callout_body": "1 math coach : 30 students ≈ 6 minutes of feedback per student per week. Arcmath gives every student step-by-step feedback on every step they write, without any teacher in the loop.",
+  "for_schools.pillars_eyebrow": "What Arcmath is",
+  "for_schools.pillars_title": "Three pillars that work together.",
+  "for_schools.pillar_1_title": "AI step-by-step grading",
+  "for_schools.pillar_1_body": "Students type each step in a math-aware editor. The grading engine (SymPy + Lean + an LLM judge) reads every step and returns VERIFIED / NEEDS REVIEW / INCORRECT, plus one short tutor note in plain English (or Chinese).",
+  "for_schools.pillar_2_title": "Real exam library",
+  "for_schools.pillar_2_body": "AMC 8/10/12, AIME, Putnam, USAMO, Euclid, MAT, STEP — sourced from official archives, typeset in LaTeX, tagged by topic and difficulty. Multiple years per contest so students can take a fresh paper end-to-end.",
+  "for_schools.pillar_3_title": "Teacher dashboard + auto reports",
+  "for_schools.pillar_3_body": "Each student's mistake pattern surfaced by topic, by difficulty, by hint-usage. Weekly auto-generated learning reports — the conversation you'd want at parent-teacher night, written for you.",
+  "for_schools.flow_eyebrow": "How a session looks",
+  "for_schools.flow_title": "From opening a problem to receiving the report — four moves.",
+  "for_schools.flow_1_title": "Pick a problem.",
+  "for_schools.flow_1_body": "Student opens AMC10 2022 problem 18 (or any real paper in the library) from the problem browser.",
+  "for_schools.flow_2_title": "Write a step. See feedback immediately.",
+  "for_schools.flow_2_body": "Each line of working triggers the grader. Inside ~3 seconds the student sees a verdict and a one-line tutor note. Stuck? Tap 'Hint for next step' for a forward-looking nudge.",
+  "for_schools.flow_3_title": "Submit when done.",
+  "for_schools.flow_3_body": "Overall review covers the whole solution path, flags which milestones were established, and notes the strongest and weakest steps.",
+  "for_schools.flow_4_title": "Teacher sees the dashboard.",
+  "for_schools.flow_4_body": "Aggregate view per student, per class. Weekly auto-report lands in the teacher's email Monday morning — ready to read before first period.",
+  "for_schools.diff_eyebrow": "Why Arcmath, not the alternatives",
+  "for_schools.diff_title": "Compared with the obvious choices.",
+  "for_schools.diff_tutors_title": "vs hiring 1:1 tutors",
+  "for_schools.diff_tutors_body": "AMC/AIME tutors in tier-1 Chinese cities run ¥400–800/hour. A class of 20 students at 2 hours/week crosses ¥600,000 annually. Arcmath provides unlimited tutor time at a fraction of that cost — and the tutor is consistent.",
+  "for_schools.diff_apps_title": "vs answer-key practice apps",
+  "for_schools.diff_apps_body": "Most competition apps grade only the final answer. That tells the student where they ended up wrong; not where the reasoning broke. Arcmath grades each step, so feedback hits the actual mistake.",
+  "for_schools.diff_chatbots_title": "vs general AI chatbots",
+  "for_schools.diff_chatbots_body": "Generic chat models hallucinate proofs. Arcmath's grading is grounded by a real computer algebra system (SymPy) and a Lean kernel check — false positives drop from ~25% (LLM-only) to <2% in our internal evaluations.",
+  "for_schools.pilot_eyebrow": "The 2026–2027 free pilot",
+  "for_schools.pilot_title": "Five international schools, one academic year, zero cost.",
+  "for_schools.pilot_body": "We're opening five pilot slots for international schools to integrate Arcmath into their math enrichment or competition prep program for the 2026–2027 academic year.",
+  "for_schools.pilot_get_title": "What you get",
+  "for_schools.pilot_get_1": "Full platform access for one academic year (Sept 2026 – Jun 2027), no fee.",
+  "for_schools.pilot_get_2": "Unlimited student accounts on the school plan.",
+  "for_schools.pilot_get_3": "Full teacher dashboard, classes, assignments, weekly auto reports.",
+  "for_schools.pilot_get_4": "Direct line to the founding team for setup and feedback.",
+  "for_schools.pilot_get_5": "Your students keep their accounts after the pilot ends.",
+  "for_schools.pilot_ask_title": "What we ask",
+  "for_schools.pilot_ask_1": "A point-of-contact teacher who'll champion the rollout.",
+  "for_schools.pilot_ask_2": "A 15-minute check-in once a month so we can iterate.",
+  "for_schools.pilot_ask_3": "Permission to (anonymously) reference your school as a pilot partner.",
+  "for_schools.cta_panel_title": "Ready to be one of the five?",
+  "for_schools.cta_panel_body": "Reply to the email or use the details below — we'll schedule a 15-min walkthrough this week.",
+  "for_schools.contact_wechat": "WeChat",
+  "for_schools.contact_email": "Email",
+  "for_schools.contact_founder": "Founder",
+  "for_schools.contact_founder_name": "Yiming Sun",
+
+  "progress.nav_label": "My progress",
+  "progress.eyebrow": "Your progress",
+  "progress.title": "Your personalized growth report",
+  "progress.empty_lede": "Once you finish your first problem, this page will fill in with a multi-dimensional breakdown — accuracy by topic, time spent, hint reliance, and a study plan written for you.",
+  "progress.empty_cta": "Pick a problem to start",
+  "progress.hero_lede": "You've been on Arcmath {days} days and worked through {attempts} problems. Here is what the data says about how to push further.",
+  "progress.metric_attempts": "Problems attempted",
+  "progress.metric_accuracy": "Lifetime accuracy",
+  "progress.metric_time": "Total time on task",
+  "progress.metric_streak": "Active days last 14",
+  "progress.plan_eyebrow": "Your study plan",
+  "progress.plan_strength": "Strength",
+  "progress.plan_weakness": "Focus area",
+  "progress.plan_next_moves": "Next moves",
+  "progress.plan_milestone": "4-week milestone",
+  "progress.time_eyebrow": "Average time per problem",
+  "progress.time_help": "Median across every problem you've submitted.",
+  "progress.hint_eyebrow": "Hint reliance",
+  "progress.hint_help": "Share of problems where you took at least one hint (avg {avg} hints/problem).",
+  "progress.cadence_eyebrow": "Practice cadence",
+  "progress.cadence_help": "Days in the last two weeks where you logged in and worked on a problem.",
+  "progress.strengths_eyebrow": "Strengths",
+  "progress.strengths_empty": "Not enough volume yet — keep going and your strongest topics will surface here.",
+  "progress.weaknesses_eyebrow": "Focus areas",
+  "progress.weaknesses_empty": "No clear weakness yet — your accuracy is fairly balanced across topics.",
+  "progress.attempts_word": "attempts",
+  "progress.hints_per_attempt": "{n} hints/attempt",
+  "progress.difficulty_eyebrow": "By difficulty",
+  "progress.contest_eyebrow": "By contest",
+  "progress.col_contest": "Contest",
+  "progress.col_attempts": "Attempts",
+  "progress.col_accuracy": "Accuracy",
+  "progress.footer_hint": "Want to see the report for a single problem set?",
+  "progress.footer_link": "View per-set reports →",
+  "progress.trend_eyebrow": "Accuracy over time",
+  "progress.trend_title": "Your accuracy trend, week by week",
+  "progress.trend_y_axis": "Accuracy",
+  "progress.trend_empty": "Trend will appear after your second week of practice.",
+  "progress.trend_caption": "Each point is your cumulative accuracy on Arcmath, snapshotted at the end of an ISO week. The rightmost point is today.",
+  "progress.wow_label": "This week vs last",
+  "progress.wow_attempts": "{curr} attempts this week · {prev} last week",
+  "progress.topic_bars_eyebrow": "Topic mastery",
+  "progress.topic_bars_title": "Accuracy by topic",
+  "progress.topic_bars_target": "Vertical line marks the 70% mastery target.",
 
   "login.kicker": "Welcome Back",
   "login.headline": "Sign in to continue your workflow.",
@@ -1352,6 +1561,109 @@ export const ZH: Messages = {
   "account.feedback_language_label": "批注语言",
   "account.feedback_language_heading": "导师批注 & 提示",
   "account.feedback_language_help": "AI 导师在分步批改、提示和最终点评中使用的语言。默认英文，因为比赛真题本身就是英文出题；如果你更习惯读中文讲解，可切换为中文。",
+
+  "for_schools.eyebrow": "为国际学校而设",
+  "for_schools.hero_title": "以 AI 逐步批改，贴近学生真实做题过程的竞赛数学平台。",
+  "for_schools.hero_lede": "Arcmath 让学校能为每个学生在每一步推导上提供逐步反馈——不会把教师团队累垮。2026–2027 学年免费内测已面向 5 所学校开放。",
+  "for_schools.cta_email": "邮件联系内测",
+  "for_schools.cta_register_school": "创建学校账号",
+  "for_schools.pilot_badge": "5 个免费名额——整学年完整功能，学生账号永久保留。",
+  "for_schools.why_eyebrow": "为什么这件事值得做",
+  "for_schools.why_title": "好成绩需要的教师时间，老师其实给不出来。",
+  "for_schools.why_body_1": "国际学校的数学项目越来越倚重 AMC、AIME、奥数等真题成绩——这是合理的，因为这些含金量高的标签是顶尖大学申请的敲门砖。但真正卡住学生的，往往不是天赋，而是教师时间。",
+  "for_schools.why_body_2": "一道证明题的推导思路、一处差一个符号的失误——只有这种逐步批改才能把学生从 AMC10 的 80 分推到 130 分。然而一位老师面对三十名学生，不可能每周三次逐行读完三十份证明。",
+  "for_schools.why_callout_label": "今天行业的真实师生比",
+  "for_schools.why_callout_body": "1 位竞赛教练 ：30 名学生 ≈ 每周每个学生 6 分钟批改时间。Arcmath 让每个学生的每一步都能得到逐步反馈，不需要教师在场。",
+  "for_schools.pillars_eyebrow": "Arcmath 是什么",
+  "for_schools.pillars_title": "三个模块协同工作。",
+  "for_schools.pillar_1_title": "AI 分步批改",
+  "for_schools.pillar_1_body": "学生在数学公式编辑器里逐步输入推导。批改引擎（SymPy + Lean + 大模型 judge）读懂每一步，给出 已验证 / 待复核 / 错误 三档结论，并配一句中文（或英文）导师批注。",
+  "for_schools.pillar_2_title": "真题库",
+  "for_schools.pillar_2_body": "AMC 8/10/12、AIME、Putnam、USAMO、Euclid、MAT、STEP——全部源自官方档案，LaTeX 排版，按知识点和难度打标。每个考试都有多年份，学生可以从头到尾刷一整套真题卷。",
+  "for_schools.pillar_3_title": "教师端 + 自动报告",
+  "for_schools.pillar_3_body": "每位学生的错题模式按知识点、难度、提示使用频率分类呈现。系统每周自动生成学习报告——就像家长会上您本想说的那些话，由系统替您写好。",
+  "for_schools.flow_eyebrow": "一次做题的流程",
+  "for_schools.flow_title": "从打开一道题到拿到报告——全程四步。",
+  "for_schools.flow_1_title": "选一道题。",
+  "for_schools.flow_1_body": "学生从题库里打开 AMC10 2022 第 18 题（或者任何一份真题卷里的题目）。",
+  "for_schools.flow_2_title": "写一步。立刻看到反馈。",
+  "for_schools.flow_2_body": "学生每写一步，系统就跑一次批改。约 3 秒内显示判定结果和一句导师批注。卡住？点击“下一步提示”拿到一句指向性的提醒。",
+  "for_schools.flow_3_title": "提交答案。",
+  "for_schools.flow_3_body": "整体批改贯穿全部步骤，标出关键里程碑覆盖情况，指出最稳和最弱的步骤。",
+  "for_schools.flow_4_title": "教师查看仪表板。",
+  "for_schools.flow_4_body": "按学生、按班级聚合查看。每周一早上系统把自动周报发到教师邮箱——上第一节课前就能读完。",
+  "for_schools.diff_eyebrow": "为什么选 Arcmath，而不是其他方案",
+  "for_schools.diff_title": "与几种常见替代方案的对比。",
+  "for_schools.diff_tutors_title": "相比 1:1 家教",
+  "for_schools.diff_tutors_body": "一线城市能带 AMC/AIME 的家教时薪 ¥400–800。一个 20 人班每周两小时，全年开销超过 ¥60 万。Arcmath 用一小部分预算就能给每个学生几乎无限的导师时间——而且这位导师稳定，不会离职。",
+  "for_schools.diff_apps_title": "相比只对答案的刷题 App",
+  "for_schools.diff_apps_body": "大多数刷题 App 只判最终答案。学生只知道结果错了，不知道推理在哪一步偏了。Arcmath 逐步批改，反馈直接指向真正的错误。",
+  "for_schools.diff_chatbots_title": "相比通用 AI 聊天工具",
+  "for_schools.diff_chatbots_body": "通用大模型会把证明编出来。Arcmath 的批改底座是真正的计算代数系统（SymPy）+ Lean 内核验证——内部评测中的误判率从 LLM 单独使用的 25% 降到 2% 以下。",
+  "for_schools.pilot_eyebrow": "2026–2027 学年免费内测",
+  "for_schools.pilot_title": "五所国际学校，整学年，零费用。",
+  "for_schools.pilot_body": "我们面向国际学校开放 5 个内测名额，在 2026–2027 学年把 Arcmath 接入贵校的数学竞赛或拔尖培养项目。",
+  "for_schools.pilot_get_title": "您将获得",
+  "for_schools.pilot_get_1": "整个学年（2026 年 9 月 – 2027 年 6 月）完整平台权限，免费。",
+  "for_schools.pilot_get_2": "学校套餐下不限学生账号数。",
+  "for_schools.pilot_get_3": "完整教师端：班级、作业、自动周报。",
+  "for_schools.pilot_get_4": "直接对接创始团队，部署 + 反馈无中间环节。",
+  "for_schools.pilot_get_5": "内测结束后，学生账号永久保留。",
+  "for_schools.pilot_ask_title": "我们希望您能",
+  "for_schools.pilot_ask_1": "指派一位牵头教师推动落地。",
+  "for_schools.pilot_ask_2": "每月一次 15 分钟反馈通话，便于我们持续优化。",
+  "for_schools.pilot_ask_3": "允许我们（匿名）将贵校作为内测合作方简短引用。",
+  "for_schools.cta_panel_title": "想成为这五所中的一所？",
+  "for_schools.cta_panel_body": "请回复邮件，或通过下方联系方式与我们联系——本周内安排 15 分钟演示。",
+  "for_schools.contact_wechat": "微信",
+  "for_schools.contact_email": "邮箱",
+  "for_schools.contact_founder": "创始人",
+  "for_schools.contact_founder_name": "孙翼鸣",
+
+  "progress.nav_label": "我的成长报告",
+  "progress.eyebrow": "你的成长",
+  "progress.title": "你的个性化成长报告",
+  "progress.empty_lede": "做完第一道题之后，这里会显示一份多维度分析——按知识点的正确率、用时、提示依赖度，外加一份为你量身写的学习方案。",
+  "progress.empty_cta": "去做第一道题",
+  "progress.hero_lede": "你在 Arcmath 上已经有 {days} 天，刷了 {attempts} 道题。下面是数据告诉我们：你下一步应该怎么往前推。",
+  "progress.metric_attempts": "总做题数",
+  "progress.metric_accuracy": "终身正确率",
+  "progress.metric_time": "总耗时",
+  "progress.metric_streak": "近 14 天活跃天数",
+  "progress.plan_eyebrow": "你的学习方案",
+  "progress.plan_strength": "强项",
+  "progress.plan_weakness": "需要补的方向",
+  "progress.plan_next_moves": "下一步动作",
+  "progress.plan_milestone": "4 周里程碑",
+  "progress.time_eyebrow": "每道题平均用时",
+  "progress.time_help": "基于你提交过的所有题。",
+  "progress.hint_eyebrow": "提示依赖度",
+  "progress.hint_help": "用了至少一次提示的题占比（平均 {avg} 次提示/题）。",
+  "progress.cadence_eyebrow": "练习节奏",
+  "progress.cadence_help": "近两周中有几天登录并做题。",
+  "progress.strengths_eyebrow": "你的强项",
+  "progress.strengths_empty": "样本还不够多——再多刷几道，强项会浮出来。",
+  "progress.weaknesses_eyebrow": "重点补的方向",
+  "progress.weaknesses_empty": "暂时没有明显薄弱点——你的正确率分布比较均衡。",
+  "progress.attempts_word": "次",
+  "progress.hints_per_attempt": "每题用 {n} 次提示",
+  "progress.difficulty_eyebrow": "按难度",
+  "progress.contest_eyebrow": "按考试",
+  "progress.col_contest": "考试",
+  "progress.col_attempts": "做题数",
+  "progress.col_accuracy": "正确率",
+  "progress.footer_hint": "想看某一套题的单独报告？",
+  "progress.footer_link": "查看单次报告 →",
+  "progress.trend_eyebrow": "正确率随时间变化",
+  "progress.trend_title": "你的每周正确率曲线",
+  "progress.trend_y_axis": "正确率",
+  "progress.trend_empty": "刷题进入第二周后，这里会显示趋势曲线。",
+  "progress.trend_caption": "每个数据点是你在 Arcmath 累计正确率，按 ISO 周末快照。最右侧的点是今天。",
+  "progress.wow_label": "本周 vs 上周",
+  "progress.wow_attempts": "本周做 {curr} 道 · 上周 {prev} 道",
+  "progress.topic_bars_eyebrow": "知识点掌握度",
+  "progress.topic_bars_title": "按知识点的正确率",
+  "progress.topic_bars_target": "竖线标记 70% 的掌握目标线。",
 
   "login.kicker": "欢迎回来",
   "login.headline": "登录后继续学习。",

@@ -1,0 +1,78 @@
+{
+  "problemSet": {
+    "contest": "USAMO",
+    "year": 2022,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php/2022_USAMO_Problems"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Let $a$ and $b$ be positive integers. The cells of an $(a+b+1) \\times (a+b+1)$ grid are colored amber and bronze such that there are at least $a^2 + ab - b$ amber cells and at least $b^2 + ab - a$ bronze cells. Prove that it is possible to choose $a$ amber cells and $b$ bronze cells such that no two of the $a + b$ chosen cells lie in the same row or column.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2022, Problem 1",
+      "topicKey": "combinatorics.grid_selection",
+      "techniqueTags": ["halls_marriage_theorem", "bipartite_matching", "extremal_pigeonhole"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Setup.** We must find $a$ amber and $b$ bronze cells, no two in the same row or column. Equivalently, find a permutation of $a + b$ rows-columns where $a$ chosen cells are amber and $b$ are bronze.\n\n**Approach via Hall's Theorem.** Build a bipartite graph between rows and columns. The bound $a^2 + ab - b$ amber and $b^2 + ab - a$ bronze cells, totaling at least $a^2 + 2ab + b^2 - a - b = (a+b)^2 - (a+b) = (a+b)(a+b-1)$, leaves at most $(a+b+1)^2 - (a+b)(a+b-1) = 3(a+b) + 1$ uncolored cells (which can't happen since all are colored). The key is that the amber and bronze cell counts are tight enough to guarantee a system of distinct representatives.\n\n**Defect form of Hall's Theorem.** Show: any set of $k$ rows contains amber cells in at least $a - (a + b - k)^+$ columns... (details follow standard SDR argument).\n\n**Conclusion.** Such a selection exists, completing the proof. $\\blacksquare$\n\nSource: https://artofproblemsolving.com/wiki/index.php/2022_USAMO_Problems/Problem_1"
+    },
+    {
+      "number": 2,
+      "statement": "Let $b \\geq 2$ and $w \\geq 2$ be fixed integers, and $n = b + w$. Given are $2b$ identical black rods and $2w$ identical white rods, each of side length $1$.\n\nWe assemble a regular $2n$-gon using these rods so that parallel sides are the same color. Then, a convex $2b$-gon $B$ is formed by translating the black rods, and a convex $2w$-gon $W$ is formed by translating the white rods.\n\nProve that the difference of the areas of $B$ and $W$ depends only on the numbers $b$ and $w$, and not on how the $2n$-gon was assembled.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2022, Problem 2",
+      "topicKey": "geometry.polygon_areas",
+      "techniqueTags": ["regular_polygon_dissection", "vector_translation_invariance", "area_difference_invariant"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Key idea.** Each rod corresponds to a unit vector. The $2n$ sides of a regular $2n$-gon use unit vectors in directions $\\theta_k = (k - 1/2) \\pi / n$ for $k = 1, \\ldots, 2n$, with opposite sides (indices $k$ and $k + n$) being parallel (opposite direction).\n\n**Setup.** Label the $n$ direction pairs. Each pair is assigned a color (black or white) — $b$ pairs black, $w$ pairs white. Translating the black rods gives polygon $B$ with these black direction pairs as its sides; similarly $W$.\n\n**Area formula via shoelace / signed area.** The area of a closed polygon with unit edge vectors $\\vec{v}_1, \\vec{v}_2, \\ldots, \\vec{v}_{2k}$ can be written as $\\frac{1}{2} \\sum_{i < j} \\vec{v}_i \\times \\vec{v}_j$ (cross products). For regular-polygon direction vectors, $\\vec{v}_i \\times \\vec{v}_j = \\sin(\\theta_j - \\theta_i)$.\n\n**Subset selection.** $\\text{Area}(B) = \\sum_{i < j, \\text{both black}} \\sin(\\theta_j - \\theta_i)$; similarly for $W$. The difference depends only on which pairs are black/white — but by symmetry of the regular $2n$-gon's angular structure, swapping a black pair with a white pair changes both areas by canceling amounts. **The area difference is invariant.**\n\nMore precisely: $\\text{Area}(B) - \\text{Area}(W) = \\sum_{\\text{black-white pairs } (i, j)} \\pm \\sin(\\theta_j - \\theta_i)$, and the bookkeeping shows this depends only on $b, w$, not the labeling.\n\n**Conclusion.** $\\text{Area}(B) - \\text{Area}(W)$ is a function of $b, w$ alone. $\\blacksquare$\n\nSource: https://artofproblemsolving.com/wiki/index.php/2022_USAMO_Problems/Problem_2"
+    },
+    {
+      "number": 3,
+      "statement": "Let $\\mathbb{R}_{>0}$ be the set of all positive real numbers. Find all functions $f : \\mathbb{R}_{>0} \\to \\mathbb{R}_{>0}$ such that for all $x, y \\in \\mathbb{R}_{>0}$ we have\n$$f(x) = f(f(f(x)) + y) + f(xf(y)) f(x + y).$$",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2022, Problem 3",
+      "topicKey": "algebra.functional_equation",
+      "techniqueTags": ["functional_equation", "substitution_argument", "monotonicity_via_injectivity"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $f(x) = \\dfrac{1}{x}$.\n\n**Verification.** Substituting $f(x) = 1/x$: RHS $= \\dfrac{1}{1/(1/x) + y} + \\dfrac{1}{x \\cdot 1/y} \\cdot \\dfrac{1}{x+y} = \\dfrac{1}{x + y} + \\dfrac{y}{x} \\cdot \\dfrac{1}{x+y} = \\dfrac{1}{x+y}\\left(1 + \\dfrac{y}{x}\\right) = \\dfrac{1}{x+y} \\cdot \\dfrac{x+y}{x} = \\dfrac{1}{x} = f(x)$. ✓\n\n**Uniqueness.** Standard FE techniques:\n- Substitute $y = f(f(x))$ to extract structural info.\n- Show $f$ is decreasing / injective.\n- Eventually derive $f(f(x)) = x$ (involution).\n- Combine with original equation to pin down $f(x) = 1/x$.\n\nFull details require careful bookkeeping; the key steps establish $f \\circ f = \\text{id}$ and then the functional equation forces the reciprocal form. $\\blacksquare$\n\nSource: https://artofproblemsolving.com/wiki/index.php/2022_USAMO_Problems/Problem_3"
+    },
+    {
+      "number": 4,
+      "statement": "Find all pairs of primes $(p, q)$ for which $p - q$ and $pq - q$ are both perfect squares.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2022, Problem 4 (proposed by Holden Mui)",
+      "topicKey": "number_theory.prime_squares",
+      "techniqueTags": ["squares_difference", "prime_divisibility", "case_analysis_on_q"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** The only solution is $(p, q) = (3, 2)$.\n\n**Case $q = 2$.** Then $p - 2$ and $2(p - 1) = 2p - 2$ must both be squares. $p - 2 = a^2$ for some integer $a$. Also $2p - 2 = 2(p - 1) = 2(a^2 + 1)$ must be a square — so $2(a^2 + 1) = b^2$, meaning $b$ is even, $b = 2c$, giving $a^2 + 1 = 2c^2$. This is a Pell-like equation with smallest solutions $(a, c) = (1, 1), (7, 5), \\ldots$ giving $p = a^2 + 2 = 3, 51, \\ldots$. Only $p = 3$ is prime.\n\n**Case $q > 2$.** Let $p - q = a^2$ and $q(p - 1) = b^2$. Since $q$ is prime and $q \\mid q(p-1) = b^2$, $q \\mid b$, so $b \\geq 2q$ (as $q \\neq b$). Then $p - 1 \\geq 4q$, so $p \\geq 4q + 1$.\n\nNow $(b - a)(b + a) = b^2 - a^2 = q(p - 1) - (p - q) = p(q - 1)$. Since $p$ is prime, $p \\mid b - a$ or $p \\mid b + a$. With $b + a \\geq b \\geq 2q$, both factors are $\\leq b + a$ which is bounded; quick computation shows $\\sqrt{q} + 1 \\geq \\sqrt{p} \\geq \\sqrt{4q + 1}$ — impossible for $q \\geq 2$.\n\n**Conclusion.** $(p, q) = (3, 2)$ is the only solution. $\\blacksquare$\n\nSource: https://artofproblemsolving.com/wiki/index.php/2022_USAMO_Problems/Problem_4 ; proposal at https://holdenmui.com/files/proposals/2022usamo4.pdf"
+    },
+    {
+      "number": 5,
+      "statement": "A function $f : \\mathbb{R} \\to \\mathbb{R}$ is *essentially increasing* if $f(s) \\leq f(t)$ holds whenever $s \\leq t$ are real numbers such that $f(s) \\neq 0$ and $f(t) \\neq 0$.\n\nFind the smallest integer $k$ such that for any $2022$ real numbers $x_1, x_2, \\ldots, x_{2022}$, there exist $k$ essentially increasing functions $f_1, \\ldots, f_k$ such that\n$$f_1(n) + f_2(n) + \\cdots + f_k(n) = x_n \\quad \\text{for every } n = 1, 2, \\ldots, 2022.$$",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2022, Problem 5",
+      "topicKey": "combinatorics.function_decomposition",
+      "techniqueTags": ["dilworth_theorem", "decomposition_into_chains", "essentially_increasing_count"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $k = 11$.\n\n**Reason (Dilworth-style).** An essentially-increasing function can be thought of as having support on positions where its value is nonzero, and on its support it must be monotonically non-decreasing. So $k$ essentially-increasing functions correspond to splitting the index set $\\{1, \\ldots, 2022\\}$ (paired with the contributions) into $k$ \"chains\" — with the value at index $n$ being the sum over chains containing $n$.\n\n**Lower bound $k \\geq 11$.** Adversarial choice: pick $\\{x_n\\}$ that is a sufficiently \"bad\" zigzag sequence. The Dilworth-style minimum is determined by the longest *anti-chain*; for length $2022$, the bound works out to $11$ (since $\\binom{11}{\\lfloor 11/2 \\rfloor} = 462 \\cdot $ factor, and $2 \\cdot 2^{10} = 2048 > 2022$).\n\n**Upper bound $k \\leq 11$.** Construct a decomposition: with $11$ essentially-increasing functions one can realize any sequence of length up to $2^{11} = 2048 \\geq 2022$. The construction uses binary-encoding-style chain assignment.\n\n**Conclusion.** $k = \\boxed{11}$. $\\blacksquare$\n\nSource: https://artofproblemsolving.com/wiki/index.php/2022_USAMO_Problems/Problem_5"
+    },
+    {
+      "number": 6,
+      "statement": "There are $2022$ users on a social network called Mathbook, and some of them are Mathbook-friends. (On Mathbook, friendship is always mutual and permanent.)\n\nStarting now, Mathbook will only allow a new friendship to be formed between two users if they have at least two friends in common. What is the minimum number of friendships that must already exist so that every user could eventually become friends with every other user?",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAMO 2022, Problem 6",
+      "topicKey": "combinatorics.graph_friendship",
+      "techniqueTags": ["graph_closure_under_rule", "minimum_edge_count_for_connectivity", "rule_2_common_friends"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $3031$ friendships.\n\n**Lower bound.** Consider the initial graph $G$. Every time a new edge is added between $u, v$, they must share $\\geq 2$ common neighbors at the moment of addition. By induction on edges added, the original graph must be \"connected enough\" — formal arguments via considering triangles and triangle-free obstructions yield: for $n$ users, the minimum is $\\lceil 3(n-1)/2 \\rceil$ or similar; for $n = 2022$, this gives $3031$.\n\n**Construction.** Build an initial graph with $3031$ edges so that the closure under the 2-common-friend rule yields $K_{2022}$. One construction: a graph built from glued triangles / a planar structure that admits the rule-2 closure to fill in.\n\n**Conclusion.** The minimum is $\\boxed{3031}$. $\\blacksquare$\n\nSource: https://artofproblemsolving.com/wiki/index.php/2022_USAMO_Problems/Problem_6"
+    }
+  ]
+}

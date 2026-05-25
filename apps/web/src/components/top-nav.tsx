@@ -146,6 +146,12 @@ export async function TopNav({ session }: TopNavProps) {
             <Link href="/problems" className="route-chip">
               {t("topnav.problems")}
             </Link>
+            {/* /me/progress = lifetime / personalized report (Phase A of
+                the student-progress build). /reports stays as the
+                per-set view; we keep both so users can drill in. */}
+            <Link href="/me/progress" className="route-chip">
+              {t("progress.nav_label")}
+            </Link>
             <Link href="/reports" className="route-chip">
               {t("topnav.reports")}
             </Link>
