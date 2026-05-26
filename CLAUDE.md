@@ -133,6 +133,28 @@ single source of truth for the prod rollout sequence. If your change
 requires a new step (e.g. running `prisma generate` on the server),
 update `deploy.sh` in the same PR, don't expect the user to remember.
 
+### G. Pilot deployment endpoints (do NOT forget across context compactions)
+
+- **Production URL:** https://arcscience.forecaster-ai.com
+- **HK VPS public IP:** `47.76.201.152`
+- **SSH user:** `arcmath`
+- **VPS repo path:** `/home/arcmath/arcmath`
+- **GitHub remote:** `git@github.com:xiaoming1348/Arcmath.git`
+- **Active feature branch (this worktree):** `ui/tech-aesthetic-step2`
+- **Deploy command:**
+  ```bash
+  ssh arcmath@47.76.201.152 'bash ~/arcmath/deploy/hk-vps/deploy.sh'
+  ```
+- **Tail logs:**
+  ```bash
+  ssh arcmath@47.76.201.152 'pm2 logs arcmath-web --lines 50 --nostream'
+  ```
+
+The user has repeatedly lost time to my forgetting these after
+context compaction. This block stays at the bottom of CLAUDE.md
+so it's read on every session. If you need to update an endpoint,
+edit it here — don't keep it in chat memory only.
+
 ---
 
 **These guidelines are working if:** fewer unnecessary changes in diffs,

@@ -2,7 +2,7 @@
 # Arcmath HK VPS — 每次 push 后的 deploy 脚本
 #
 # 以 arcmath 用户跑：
-#   ssh arcmath@<vps-ip> 'bash ~/arcmath/deploy/hk-vps/deploy.sh'
+#   ssh arcmath@47.76.201.152 'bash ~/arcmath/deploy/hk-vps/deploy.sh'
 
 set -euo pipefail
 
