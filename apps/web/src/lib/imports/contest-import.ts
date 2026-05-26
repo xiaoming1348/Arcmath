@@ -216,6 +216,10 @@ async function buildPreviewFromParsed(prisma: PrismaClient, data: ImportProblemS
         // each year (some problems have closed-form answers, others
         // are show-that proofs).
         return null;
+      case "PRACTICE":
+        // Arcmath-authored topic packs intentionally mix INTEGER /
+        // EXPRESSION across difficulty bands. No single expected format.
+        return null;
     }
   })();
 

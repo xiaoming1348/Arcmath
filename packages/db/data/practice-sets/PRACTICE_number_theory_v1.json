@@ -6,8 +6,7 @@
     "title": "Topic Practice — Number Theory (Modular Arithmetic, Primes, Diophantine)",
     "category": "TOPIC_PRACTICE",
     "submissionMode": "PER_PROBLEM",
-    "tutorEnabled": true,
-    "sourceUrl": null
+    "tutorEnabled": true
   },
   "problems": [
     {

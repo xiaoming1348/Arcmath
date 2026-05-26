@@ -12,7 +12,12 @@ export const CONTESTS = [
   "EUCLID",
   "MAT",
   "STEP",
-  "PUTNAM"
+  "PUTNAM",
+  // Arcmath-authored topic-practice sets — same shape as a real exam
+  // but not a real competition. Used for the four topic packs (algebra,
+  // geometry, number theory, combinatorics). Mirrors the
+  // Contest.PRACTICE value already in the Prisma enum (see schema.prisma).
+  "PRACTICE"
 ] as const;
 // Subset used for per-problem `examTrack` tagging on diagnostic sets.
 // MC/integer-graded contests only — a proof-heavy contest doesn't make
@@ -116,6 +121,10 @@ function expectedProblemCount(contest: z.infer<typeof contestSchema>): number | 
       // Relaxed during initial ingestion — the per-contest importer
       // decides the shape. Flip to a fixed count once coverage
       // stabilizes.
+      return null;
+    case "PRACTICE":
+      // Topic-practice packs are variable size by design (we author
+      // 6–10 problems per pack). No hard count gate.
       return null;
   }
 }
@@ -312,7 +321,9 @@ export const importProblemSetSchema = z
       });
     }
 
-    // USAMO / EUCLID / MAT are one paper per year, no exam variants.
+    // USAMO / EUCLID / MAT / PUTNAM are one paper per year, no exam
+    // variants. PRACTICE uses `exam` as a free-form topic slug (e.g.
+    // "topic-algebra-v1") so we don't restrict it here.
     if ((contest === "USAMO" || contest === "EUCLID" || contest === "MAT" || contest === "PUTNAM") && exam !== null) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
