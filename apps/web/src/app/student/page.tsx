@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { prisma } from "@arcmath/db";
 import { authOptions } from "@/lib/auth";
+import { getActiveOrganizationMembership } from "@/lib/organizations";
 import { resolveLocale } from "@/i18n/server";
 import { translatorImpl as translator } from "@/i18n/dictionary";
-import { Eyebrow, Section } from "@/components/ui";
+import { Card, Eyebrow, Section } from "@/components/ui";
 import { MathGlyphs } from "@/components/marketing/math-glyphs";
 import { StudentHomePanel } from "./student-home-panel";
 
@@ -33,6 +35,18 @@ export default async function StudentHomePage() {
   const t = translator(locale);
   const displayName =
     session.user.name ?? session.user.email?.split("@")[0] ?? "";
+
+  // Pilot UX fix (2026-05-26): the StudentHomePanel rendered for everyone,
+  // so a solo-track student saw a confusing "0 classes / 0 assignments"
+  // placeholder. Branch the UI here:
+  //   - Org-member STUDENT → assignments + class roster (existing flow).
+  //   - No org membership   → "Solo practice" mode pointing at problems
+  //     library + /me/progress.
+  const membership = await getActiveOrganizationMembership(
+    prisma,
+    session.user.id
+  );
+  const isSoloStudent = !membership;
 
   return (
     <main className="motion-rise">
@@ -68,9 +82,31 @@ export default async function StudentHomePage() {
         </div>
       </Section>
 
-      <Section tight>
-        <StudentHomePanel />
-      </Section>
+      {isSoloStudent ? (
+        <Section tight>
+          <Card className="space-y-4">
+            <Eyebrow>{t("student.solo.eyebrow")}</Eyebrow>
+            <h2 className="text-xl font-semibold text-slate-900">
+              {t("student.solo.heading")}
+            </h2>
+            <p className="text-sm" style={{ color: "var(--muted)", lineHeight: 1.6 }}>
+              {t("student.solo.body")}
+            </p>
+            <div className="flex flex-wrap gap-3 pt-1">
+              <Link href="/problems" className="btn-primary">
+                {t("student.solo.cta_problems")}
+              </Link>
+              <Link href="/me/progress" className="btn-secondary">
+                {t("student.solo.cta_progress")}
+              </Link>
+            </div>
+          </Card>
+        </Section>
+      ) : (
+        <Section tight>
+          <StudentHomePanel />
+        </Section>
+      )}
     </main>
   );
 }
