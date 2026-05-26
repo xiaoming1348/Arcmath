@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { ReactNode } from "react";
 
 type MathFieldElement = HTMLElement & {
   value: string;
@@ -35,6 +36,14 @@ export type MathFieldEditorProps = {
   autoFocus?: boolean;
   busy?: boolean;
   minHeight?: string;
+  /**
+   * Optional auxiliary input affordance — typically the handwriting
+   * OCR uploader. Rendered between the math field and the action
+   * buttons so the visual hierarchy is: [edit math] [or pick file]
+   * [save / cancel]. Kept opt-in so callers that don't want OCR
+   * (e.g. the final-answer field) stay clean.
+   */
+  ocrSlot?: ReactNode;
 };
 
 export function MathFieldEditor({
@@ -46,7 +55,8 @@ export function MathFieldEditor({
   placeholder,
   autoFocus,
   busy,
-  minHeight = "3rem"
+  minHeight = "3rem",
+  ocrSlot
 }: MathFieldEditorProps) {
   const fieldRef = useRef<MathFieldElement | null>(null);
   const [ready, setReady] = useState(false);
@@ -137,6 +147,12 @@ export function MathFieldEditor({
         Tip: words typed together (e.g. <code>Suppose</code>, <code>therefore</code>) auto-switch to text mode.
         Single letters stay as math variables. Press <kbd>Esc</kbd> to force-toggle modes mid-step.
       </p>
+      {/* OCR slot — sits between the math field and the save buttons so
+          it's clear to the student that this is an ALTERNATIVE input
+          path (not part of the main edit/save flow). Hidden entirely
+          when the parent doesn't pass the slot, so existing call sites
+          that don't want OCR aren't affected. */}
+      {ocrSlot ? <div className="pt-1">{ocrSlot}</div> : null}
       <div className="flex flex-wrap items-center gap-2">
         <button type="button" className="btn-primary" disabled={!canSave} onClick={() => onSave(trimmed)}>
           {busy ? "Saving…" : saveLabel}

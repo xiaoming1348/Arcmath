@@ -270,6 +270,7 @@ model User {
   tutorTurns                     TutorTurn[]
   attemptSteps                   AttemptStep[]
   auditLogEvents                 AuditLogEvent[]  @relation("AuditLogActor")
+  ocrCallLogs                    OcrCallLog[]
 }
 
 // One-shot email verification token. A new row is created at
@@ -789,6 +790,49 @@ model ImportJob {
 /// organizationId is set when the event is tenant-scoped (most
 /// teacher-side actions). Platform-admin actions (e.g. global review
 /// queue edits) leave it null and rely on actorUserId for attribution.
+// Handwriting OCR call log (Sprint 2). One row per call to GPT-4o
+// vision, regardless of success. Powers two things at once:
+//
+//   1. Quota — count today's rows per userId, deny new calls past
+//      the daily ceiling so a runaway client can't drain $50 of
+//      vision tokens in a loop.
+//   2. Lightweight telemetry — when Sprint 3 builds the OCR
+//      effectiveness dashboard ("how often does HIGH-confidence
+//      OCR match the final saved step?"), the data is already here.
+//
+// We intentionally do NOT store the image bytes or the OCR'd LaTeX
+// here — image privacy + payload size both make persistence costly
+// and the audit value is low. If a future feature needs replay we
+// can promote `imageHash` to a `imageStorageKey` and start uploading
+// to S3, but Sprint 2 keeps it minimal.
+model OcrCallLog {
+  id              String   @id @default(cuid())
+  userId          String
+  createdAt       DateTime @default(now())
+  // "single_step" → Sprint 1 single-step OCR call.
+  // "multi_step"  → Sprint 2 batch call that returns N steps.
+  kind            String
+  // Number of steps the model emitted (1 for single_step, 0..N for
+  // multi_step). Null if the call failed before getting a response.
+  stepCount       Int?
+  // Max confidence among returned steps ("high"/"medium"/"low"/"none"),
+  // null on failure. Stringly-typed instead of an enum to avoid a
+  // migration for every new bucket we might add.
+  topConfidence   String?
+  // True if the call returned without error (regardless of confidence).
+  // False on auth/network/parse failures — useful for monitoring API
+  // health distinct from "model said it can't read."
+  succeeded       Boolean  @default(true)
+  // Optional foreign key to the attempt the student was on, so we can
+  // later correlate OCR usage with grading outcomes. Nullable because
+  // the user might OCR before/outside a specific attempt context.
+  problemAttemptId String?
+  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([createdAt])
+}
+
 model AuditLogEvent {
   id             String        @id @default(cuid())
   actorUserId    String?

@@ -1,0 +1,79 @@
+{
+  "problemSet": {
+    "contest": "USAJMO",
+    "year": 2019,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php/2019_USAJMO_Problems",
+    "verifiedPdfUrl": "https://ericshen.net/exams/JMO2019.pdf"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "There are $a + b$ bowls arranged in a row, numbered $1$ through $a + b$, where $a$ and $b$ are given positive integers. Initially, each of the first $a$ bowls contains an apple, and each of the last $b$ bowls contains a pear.\n\nA legal move consists of moving an apple from bowl $i$ to bowl $i+1$ and a pear from bowl $j$ to bowl $j - 1$, provided that the difference $i - j$ is even. We permit multiple fruits in the same bowl at the same time. The goal is to end up with the first $b$ bowls each containing a pear and the last $a$ bowls each containing an apple.\n\nShow that this is possible if and only if the product $ab$ is even.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAJMO 2019, Problem 1 (proposed by Jim Propp)",
+      "topicKey": "combinatorics.parity_invariant",
+      "techniqueTags": ["parity_argument", "explicit_construction", "double_counting_moves"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** Possible iff $ab$ is even.\n\n**Sufficiency.** By symmetry under reflection, WLOG $a$ is even. Induct on $b$.\n- $b = 0$: nothing to do.\n- $b \\to b - 1$: Take the leftmost pear (bowl $a+1$) and move it to bowl $1$. As it moves from bowl $n$ to bowl $n - 1$ (note $n$ and $n - 1$ have opposite parity; the difference $i - j$ here is $n - (a + 2 - n) = 2n - a - 2$, which is even since $a$ is even), move the apple in bowl $a + 2 - n$ from bowl $a+2-n$ to bowl $a + 3 - n$. Each apple moves exactly once. After this, bowl $1$ has a pear, bowls $2, \\ldots, a+1$ have apples, bowls $a+2, \\ldots, a+b$ have pears. Apply induction with $b - 1$.\n\n**Necessity.** Assume $ab$ is odd. Total number of moves is exactly $ab$ (each of the $a$ apples must move from its starting bowl to a final bowl on the right, traveling $b$ steps each — total apple moves $= ab$; each move moves one apple, so total moves $= ab$).\n\nClassify each move:\n- **Type O→E**: both fruit move from odd-numbered bowls to even-numbered bowls.\n- **Type E→O**: both fruit move from even-numbered bowls to odd-numbered bowls.\n\nThe condition $i - j$ even ensures both moved fruits have the same parity of bowl number — so every move is one of these two types.\n\nInitial and final configurations both have exactly one fruit per bowl (well, $a+b$ fruits distributed; in initial state bowls $1, \\ldots, a$ have apples and $a+1, \\ldots, a+b$ have pears — one fruit each). Bowl-parity count is invariant: initial $\\lceil (a+b)/2 \\rceil$ odd bowls have one fruit each, similarly even bowls — same in final state. So # of Type O→E moves $=$ # of Type E→O moves, hence total moves is **even**.\n\nBut $ab$ is odd, contradiction. $\\blacksquare$\n\nSource: https://ericshen.net/exams/JMO2019.pdf"
+    },
+    {
+      "number": 2,
+      "statement": "Let $\\mathbb{Z}$ be the set of all integers. Find all pairs of integers $(a, b)$ for which there exist functions $f \\colon \\mathbb{Z} \\to \\mathbb{Z}$ and $g \\colon \\mathbb{Z} \\to \\mathbb{Z}$ satisfying\n$$f(g(x)) = x + a \\quad \\text{and} \\quad g(f(x)) = x + b$$\nfor all integers $x$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAJMO 2019, Problem 2 (proposed by Ankan Bhattacharya)",
+      "topicKey": "algebra.functional_equation_integers",
+      "techniqueTags": ["triple_involution_trick", "surjectivity_mod_argument", "explicit_construction"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** $(a, b)$ works iff $|a| = |b|$.\n\n**Constructions.**\n- $(a, a)$: $f(x) = x + 2a$, $g(x) = x - a$. Verify: $f(g(x)) = (x - a) + 2a = x + a$ ✓; $g(f(x)) = (x + 2a) - a = x + a$ ✓.\n- $(a, -a)$: $f(x) = 2a - x$, $g(x) = a - x$. Verify: $f(g(x)) = 2a - (a - x) = x + a$ ✓; $g(f(x)) = a - (2a - x) = x - a$ ✓.\n\nNote $a = 0 \\iff b = 0$ (from the constructions, also forced by the argument below).\n\n**Necessity ($|a| = |b|$).** Assume nonzero $|a| \\neq |b|$; WLOG $|a| > |b|$. Derive contradiction.\n\n**Triple involution trick.** Apply $f$ to $g(f(x)) = x + b$:\n$$f(g(f(x))) = f(x + b).$$\nBut $f(g(y)) = y + a$ with $y = f(x)$, so $f(g(f(x))) = f(x) + a$. Hence\n$$f(x + b) = f(x) + a \\quad \\text{for all } x \\in \\mathbb{Z}.$$\n\n**Surjectivity mod $|a|$.** $f(g(x)) = x + a$ ranges over all integers as $x$ does, so $f$ is **surjective**. In particular $f$ is surjective mod $|a|$: as $x$ varies, $f(x) \\bmod |a|$ hits every residue.\n\nBut from $f(x + b) \\equiv f(x) + a \\equiv f(x) \\pmod{|a|}$, $f$ is **periodic mod $|a|$ with period $|b|$**. So $f(0), f(1), \\ldots, f(|b| - 1)$ already cover all residues of $f$ mod $|a|$. There are $|b| < |a|$ such values, hence at most $|b|$ residues mod $|a|$ are hit — contradicting surjectivity. $\\blacksquare$\n\nSource: https://ericshen.net/exams/JMO2019.pdf"
+    },
+    {
+      "number": 3,
+      "statement": "Let $ABCD$ be a cyclic quadrilateral satisfying $AD^2 + BC^2 = AB^2$. The diagonals of $ABCD$ intersect at $E$. Let $P$ be a point on side $\\overline{AB}$ satisfying $\\angle APD = \\angle BPC$. Show that line $PE$ bisects $\\overline{CD}$.\n\n*(Note: This problem also appeared as USAMO 2019 Problem 2.)*",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAJMO 2019, Problem 3 (proposed by Ankan Bhattacharya)",
+      "topicKey": "geometry.symmedian_bisection",
+      "techniqueTags": ["symmedian_via_squared_ratios", "orthogonal_circles", "ceva_for_concurrence"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Symmedian solution.** Construct $P$ on $\\overline{AB}$ with $AP = AD^2/AB$ and $BP = BC^2/AB$ (note $AP + BP = (AD^2 + BC^2)/AB = AB$ by hypothesis). Then\n$$\\frac{PA}{PB} = \\frac{AD^2}{BC^2} = \\left(\\frac{EA}{EB}\\right)^2,$$\nwhere the last equality follows from $\\triangle AED \\sim \\triangle BEC$ (cyclic $ABCD$ gives $\\angle DAE = \\angle BCE$, $\\angle ADE = \\angle EBC$).\n\nThe condition $\\frac{PA}{PB} = \\left(\\frac{EA}{EB}\\right)^2$ characterizes $EP$ as the **$E$-symmedian of $\\triangle EAB$**. Symmedians of $\\triangle EAB$ from vertex $E$ pass through the midpoint of the opposite \"reflected\" side — concretely, line $EP$ extended bisects $\\overline{CD}$ in the cyclic quadrilateral.\n\n**Verify $\\angle APD = \\angle BPC$.** From $AP \\cdot AB = AD^2$, we get $\\triangle APD \\sim \\triangle ADB$ (SAS similarity at $A$: $AP/AD = AD/AB$, common angle). Hence $\\angle APD = \\angle ADB$.\n\nBy cyclic $ABCD$: $\\angle ADB = \\angle ACB$. Symmetrically $\\triangle BPC \\sim \\triangle BCA$ gives $\\angle BPC = \\angle BCA$.\n\nSo $\\angle APD = \\angle ACB = \\angle BPC$. By monotonicity of the angle function as $P$ varies on $\\overline{AB}$, this $P$ is the unique one satisfying the original condition. $\\blacksquare$\n\nSource: https://ericshen.net/exams/JMO2019.pdf"
+    },
+    {
+      "number": 4,
+      "statement": "Let $ABC$ be a triangle with $\\angle ABC$ obtuse. The $A$-excircle is a circle in the exterior of $\\triangle ABC$ that is tangent to side $\\overline{BC}$ of the triangle and tangent to the extensions of the other two sides. Let $E$, $F$ be the feet of the altitudes from $B$ and $C$ to lines $AC$ and $AB$, respectively. Can line $EF$ be tangent to the $A$-excircle?",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAJMO 2019, Problem 4 (proposed by Ankan Bhattacharya, Zack Chroman, and Anant Mudgal)",
+      "topicKey": "geometry.excircle_tangency_impossible",
+      "techniqueTags": ["similarity_AEF_ABC", "excircle_tangent_length", "cos_A_equation"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** No — line $EF$ cannot be tangent to the $A$-excircle.\n\n**Similarity approach.** Recall that the **orthic triangle's** segment $EF$ satisfies $EF = BC \\cos A$, and $\\triangle AEF \\sim \\triangle ABC$ with ratio $\\cos A$ (inversely oriented).\n\nSince $\\angle ABC$ is obtuse, $A, E, C$ are collinear in that order (foot $E$ of altitude from $B$ to $AC$ is beyond $C$ on the obtuse side — actually with $\\angle B$ obtuse, foot $E$ lies on segment $\\overline{AC}$ side closer to $A$; either way the orthic structure holds).\n\n**Assume for contradiction $EF$ is tangent to the $A$-excircle.** The $A$-excircle is tangent to side $BC$ and to the extensions of $AB, AC$ — so it lies in the angular region of $\\angle A$. After the similarity $\\triangle AEF \\sim \\triangle ABC$, the $A$-excircle of $\\triangle ABC$ would correspond to the $A$-excircle of $\\triangle AEF$ — and since they share the same $A$-exradius (the excircle is tangent to all three of lines $AB, AC, EF$), they are **congruent**.\n\nThus $\\triangle ABC \\cong \\triangle AEF$. But $EF = BC \\cos A$, so we'd need $\\cos A = 1$, i.e., $A = 0^\\circ$. Impossible. $\\blacksquare$\n\n**Length-chase alternative.** Let the $A$-excircle touch $AC$ at $B'$, $AB$ at $S$, and (hypothetically) $EF$ at $C'$. Semiperimeter of $\\triangle ABC$: $\\rho$. Standard tangent-length identities:\n$$AB' = AS = \\rho, \\quad EB' = \\rho - AE, \\quad FS = \\rho - AF.$$\nThen $EF = EC' + C'F = EB' + FS = (\\rho - AE) + (\\rho - AF) = 2\\rho - AE - AF = 2\\rho - AB \\cos A - AC \\cos A = (AB + BC + CA) - (AB + AC) \\cos A$.\n\nBut also $EF = BC \\cos A$. Equating:\n$$BC \\cos A = AB + BC + AC - (AB + AC) \\cos A,$$\n$$BC \\cos A + (AB + AC) \\cos A = AB + BC + AC,$$\n$$\\cos A \\cdot (AB + BC + AC) = AB + BC + AC,$$\nso $\\cos A = 1$, again impossible. $\\blacksquare$\n\nSource: https://ericshen.net/exams/JMO2019.pdf"
+    },
+    {
+      "number": 5,
+      "statement": "Let $n$ be a nonnegative integer. Determine the number of ways that one can choose $(n+1)^2$ sets $S_{i,j} \\subseteq \\{1, 2, \\ldots, 2n\\}$, for integers $0 \\leq i \\leq n$ and $0 \\leq j \\leq n$, such that:\n\n- for all $0 \\leq i, j \\leq n$, the set $S_{i,j}$ has $i + j$ elements; and\n- $S_{i,j} \\subseteq S_{k,\\ell}$ whenever $0 \\leq i \\leq k \\leq n$ and $0 \\leq j \\leq \\ell \\leq n$.\n\n*(Note: This problem also appeared as USAMO 2019 Problem 4.)*",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAJMO 2019, Problem 5 (proposed by Ricky Liu)",
+      "topicKey": "combinatorics.chain_counting_grid",
+      "techniqueTags": ["chain_decomposition", "binary_choice_at_each_interior_vertex", "path_partition_bijection"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $(2n)! \\cdot 2^{n^2}$.\n\n**Direct counting.** Place the sets in an $(n+1) \\times (n+1)$ grid with $S_{i,j}$ at row $i$, column $j$. The inclusion conditions reduce to $S_{i,j} \\subset S_{i+1,j}$ and $S_{i,j} \\subset S_{i,j+1}$ (transitivity gives the full condition).\n\n**Step 1: Determine the \"L\" of blue sets.** Choose $S_{0,0} \\subset S_{0,1} \\subset \\cdots \\subset S_{0,n} \\subset S_{1,n} \\subset \\cdots \\subset S_{n,n}$. This is a maximal chain of subsets of $\\{1, \\ldots, 2n\\}$ adding one element at each step (with $S_{0,0} = \\emptyset, S_{n,n} = \\{1, \\ldots, 2n\\}$, total $2n$ steps). **Number of such chains** $= (2n)!$ (order elements are added).\n\n**Step 2: Fill remaining sets.** Determine the remaining $S_{i,j}$ in the order $S_{1, n-1}, S_{1, n-2}, \\ldots, S_{1, 0}, S_{2, n-1}, \\ldots, S_{n, 0}$. By the time we reach $S_{i,j}$, we have $S_{i-1, j}$ and $S_{i, j+1}$ already determined.\n\nConstraint: $S_{i-1, j} \\subset S_{i, j} \\subset S_{i, j+1}$, with $|S_{i,j}| = i + j$ and $|S_{i-1, j}| = i + j - 1$, $|S_{i, j+1}| = i + j + 1$. So $S_{i, j}$ adds exactly one element to $S_{i-1, j}$, and that element must be in $S_{i, j+1} \\setminus S_{i-1, j}$ — a $2$-element set. **2 choices.**\n\nThere are $n^2$ such interior cells, giving $2^{n^2}$ extensions.\n\n**Total:** $(2n)! \\cdot 2^{n^2}$. $\\blacksquare$\n\n**Bijection alternative (Daniel Zhu).** Orient the grid diagonally with $S_{0,0}$ at bottom and $S_{n,n}$ at top. Each \"edge crossing\" adds one labeled element to the set. The configurations biject with collections of $2n$ labeled lattice paths from left-end to right-end of the diamond; at each of the $n^2$ interior vertices, two paths meet and choose to cross or not cross — $2$ choices each. Multiplying by $(2n)!$ for the path-labeling gives $(2n)! \\cdot 2^{n^2}$.\n\nSource: https://ericshen.net/exams/JMO2019.pdf"
+    },
+    {
+      "number": 6,
+      "statement": "Two rational numbers $\\dfrac{m}{n}$ and $\\dfrac{n}{m}$ are written on a blackboard, where $m$ and $n$ are relatively prime positive integers. At any point, Evan may pick two of the numbers $x$ and $y$ written on the board and write either their arithmetic mean $\\dfrac{x+y}{2}$ or their harmonic mean $\\dfrac{2xy}{x+y}$ on the board as well. Find all pairs $(m, n)$ such that Evan can write $1$ on the board in finitely many steps.\n\n*(Note: This problem also appeared as USAMO 2019 Problem 5.)*",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAJMO 2019, Problem 6 (proposed by Yannick Yao)",
+      "topicKey": "number_theory.mod_p_invariant",
+      "techniqueTags": ["mod_p_invariant", "power_of_two_characterization", "dyadic_combination_construction"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** Possible iff $m + n$ is a power of $2$.\n\nLet $r = m/n$, so we start with $r$ and $1/r$ on the board.\n\n**Sufficiency.** Assume $m + n = 2^t$ for some $t$. We construct $1$ using only arithmetic means.\n\n**Claim.** If $x, y$ are on the board, then for any nonnegative integers $u, v, t$ with $u + v = 2^t$, we can construct $\\dfrac{u}{2^t} x + \\dfrac{v}{2^t} y$.\n\n*Proof by induction on $t$.* Base $t = 0$ is given. Inductive step: for $u + v = 2^{t+1}$ with $u, v > 0$,\n$$\\frac{u}{2^{t+1}} x + \\frac{v}{2^{t+1}} y = \\frac{1}{2}\\left[\\left(\\frac{1}{2^t} x + \\frac{1}{2^t} y \\right) + \\left(\\frac{u-1}{2^t} x + \\frac{v-1}{2^t} y\\right)\\right],$$\nwhich is an arithmetic mean of two previously constructible values. (Both inner expressions have nonneg coefficients summing to $2^t$, so by IH they're constructible.) $\\square$\n\nTake $u = n, v = m, t = $ s.t. $2^t = m + n$. Then\n$$\\frac{n}{m+n} \\cdot r + \\frac{m}{m+n} \\cdot \\frac{1}{r} = \\frac{n}{m+n} \\cdot \\frac{m}{n} + \\frac{m}{m+n} \\cdot \\frac{n}{m} = \\frac{m}{m+n} + \\frac{n}{m+n} = 1.$$ ✓\n\n**Necessity.** Suppose $p$ is an **odd prime** dividing $m + n$. Note $m \\equiv -n \\pmod p$, so $r = m/n \\equiv -1 \\pmod p$ (treating fractions as elements of $\\mathbb{F}_p$, using $\\gcd(n, p) = 1$ since $p \\mid m + n$ and $\\gcd(m, n) = 1$). Also $1/r \\equiv -1 \\pmod p$.\n\n**Key invariant.** If $x \\equiv y \\equiv -1 \\pmod p$, then both means $\\equiv -1 \\pmod p$:\n- Arithmetic: $\\dfrac{x+y}{2} \\equiv \\dfrac{-2}{2} = -1 \\pmod p$ (since $p$ odd, $2$ invertible).\n- Harmonic: $\\dfrac{2xy}{x+y} \\equiv \\dfrac{2 \\cdot 1}{-2} = -1 \\pmod p$ (here $x + y \\equiv -2 \\not\\equiv 0 \\pmod p$).\n\nBy induction, every number ever written is $\\equiv -1 \\pmod p$. If $1$ is ever written, $1 \\equiv -1 \\pmod p$, so $p \\mid 2$ — contradicting $p$ odd. $\\blacksquare$\n\nSource: https://ericshen.net/exams/JMO2019.pdf"
+    }
+  ]
+}

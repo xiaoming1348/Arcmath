@@ -9,6 +9,11 @@ export const CONTESTS = [
   "AMC12",
   "AIME",
   "USAMO",
+  // USAJMO (United States of America Junior Mathematical Olympiad):
+  // same 6-problem / 2-day / proof-based structure as USAMO, targeted
+  // at strong AMC10/AIME-level students. One paper per year, no exam
+  // variants. Admissions-track "stretch" tier above AIME.
+  "USAJMO",
   "EUCLID",
   "MAT",
   "STEP",
@@ -110,6 +115,9 @@ function expectedProblemCount(contest: z.infer<typeof contestSchema>): number | 
     case "AIME":
       return 15;
     case "USAMO":
+    case "USAJMO":
+      // Both USAMO and USAJMO are 6-problem, 2-day proof-based papers
+      // (3 problems per day, 4.5 hours each).
       return 6;
     case "EUCLID":
       return 10;
@@ -321,10 +329,17 @@ export const importProblemSetSchema = z
       });
     }
 
-    // USAMO / EUCLID / MAT / PUTNAM are one paper per year, no exam
-    // variants. PRACTICE uses `exam` as a free-form topic slug (e.g.
-    // "topic-algebra-v1") so we don't restrict it here.
-    if ((contest === "USAMO" || contest === "EUCLID" || contest === "MAT" || contest === "PUTNAM") && exam !== null) {
+    // USAMO / USAJMO / EUCLID / MAT / PUTNAM are one paper per year,
+    // no exam variants. PRACTICE uses `exam` as a free-form topic slug
+    // (e.g. "topic-algebra-v1") so we don't restrict it here.
+    if (
+      (contest === "USAMO" ||
+        contest === "USAJMO" ||
+        contest === "EUCLID" ||
+        contest === "MAT" ||
+        contest === "PUTNAM") &&
+      exam !== null
+    ) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         path: ["problemSet", "exam"],
