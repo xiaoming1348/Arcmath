@@ -200,6 +200,78 @@ export type Messages = {
   "progress.difficulty_medium": string;
   "progress.difficulty_hard": string;
 
+  // Solo student panel on /student
+  "student.solo.eyebrow": string;
+  "student.solo.heading": string;
+  "student.solo.body": string;
+  "student.solo.cta_problems": string;
+  "student.solo.cta_progress": string;
+
+  // /assignments page (org-admin assignment board)
+  "assignments.badge": string;
+  "assignments.subtitle": string;
+  "assignments.back_to_org": string;
+  "assignments.published_ok": string;
+  "assignments.error_title_required": string;
+  "assignments.error_instructions_required": string;
+  "assignments.error_forbidden": string;
+  "assignments.error_invalid_due_date": string;
+  "assignments.publish_heading": string;
+  "assignments.publish_body": string;
+  "assignments.form_title_label": string;
+  "assignments.form_title_placeholder": string;
+  "assignments.form_instructions_label": string;
+  "assignments.form_instructions_placeholder": string;
+  "assignments.form_due_label": string;
+  "assignments.form_submit": string;
+  "assignments.current_heading": string;
+  "assignments.current_help_admin": string;
+  "assignments.current_help_student": string;
+  "assignments.posted_by": string;
+  "assignments.due_label": string;
+  "assignments.no_due": string;
+  "assignments.empty_state": string;
+
+  // /legal/terms and /legal/privacy
+  "legal.eyebrow": string;
+  "legal.last_updated": string;
+  "legal.contact_heading": string;
+  "legal.contact_body": string;
+  "legal.terms_title": string;
+  "legal.terms_lede": string;
+  "legal.terms_h_who": string;
+  "legal.terms_body_who": string;
+  "legal.terms_h_accounts": string;
+  "legal.terms_body_accounts": string;
+  "legal.terms_h_acceptable": string;
+  "legal.terms_body_acceptable": string;
+  "legal.terms_h_content": string;
+  "legal.terms_body_content": string;
+  "legal.terms_h_ai": string;
+  "legal.terms_body_ai": string;
+  "legal.terms_h_termination": string;
+  "legal.terms_body_termination": string;
+  "legal.terms_h_disclaimer": string;
+  "legal.terms_body_disclaimer": string;
+  "legal.terms_h_changes": string;
+  "legal.terms_body_changes": string;
+  "legal.privacy_title": string;
+  "legal.privacy_lede": string;
+  "legal.privacy_h_collect": string;
+  "legal.privacy_body_collect": string;
+  "legal.privacy_h_use": string;
+  "legal.privacy_body_use": string;
+  "legal.privacy_h_storage": string;
+  "legal.privacy_body_storage": string;
+  "legal.privacy_h_third_party": string;
+  "legal.privacy_body_third_party": string;
+  "legal.privacy_h_retention": string;
+  "legal.privacy_body_retention": string;
+  "legal.privacy_h_rights": string;
+  "legal.privacy_body_rights": string;
+  "legal.privacy_h_minors": string;
+  "legal.privacy_body_minors": string;
+
   "login.kicker": string;
   "login.headline": string;
   "login.subhead": string;
@@ -957,6 +1029,75 @@ export const EN: Messages = {
   "progress.difficulty_easy": "Easy",
   "progress.difficulty_medium": "Medium",
   "progress.difficulty_hard": "Hard",
+
+  "student.solo.eyebrow": "Self-directed practice",
+  "student.solo.heading": "You're in solo mode.",
+  "student.solo.body": "Your account isn't tied to a school class right now — that's fine. Pick a problem from the library and your progress will track automatically. If your teacher invites you later, classes and assignments will show up here.",
+  "student.solo.cta_problems": "Browse problems",
+  "student.solo.cta_progress": "See my progress",
+
+  "assignments.badge": "Organization assignments",
+  "assignments.subtitle": "Internal assignment board. Students see what to work on; admins post and update.",
+  "assignments.back_to_org": "Back to organization",
+  "assignments.published_ok": "Assignment published.",
+  "assignments.error_title_required": "Title is required.",
+  "assignments.error_instructions_required": "Instructions are required.",
+  "assignments.error_forbidden": "You don't have permission to manage organization assignments.",
+  "assignments.error_invalid_due_date": "Due date is invalid.",
+  "assignments.publish_heading": "Publish assignment",
+  "assignments.publish_body": "Keep instructions simple and explicit.",
+  "assignments.form_title_label": "Title",
+  "assignments.form_title_placeholder": "Example: Week 1 Diagnostic Review",
+  "assignments.form_instructions_label": "Instructions",
+  "assignments.form_instructions_placeholder": "Describe the assignment, expected work, and any submission notes.",
+  "assignments.form_due_label": "Due date",
+  "assignments.form_submit": "Publish assignment",
+  "assignments.current_heading": "Current assignments",
+  "assignments.current_help_admin": "Visible to everyone in this organization.",
+  "assignments.current_help_student": "Posted by your organization's admins.",
+  "assignments.posted_by": "Posted by {author}",
+  "assignments.due_label": "Due",
+  "assignments.no_due": "No due date",
+  "assignments.empty_state": "No organization assignments yet.",
+
+  "legal.eyebrow": "Legal",
+  "legal.last_updated": "Last updated: 26 May 2026 (pilot v1). This document is plain-language and will be replaced with a counsel-reviewed version when Arcmath moves out of free pilot.",
+  "legal.contact_heading": "Contact",
+  "legal.contact_body": "Questions about this document? Reach Yiming Sun at yimingsun@forecaster-ai.com or WeChat 17806162865. We respond within two business days.",
+  "legal.terms_title": "Terms of Service",
+  "legal.terms_lede": "Plain-language rules of the road for using Arcmath. Read once, then get back to math.",
+  "legal.terms_h_who": "Who can use Arcmath",
+  "legal.terms_body_who": "Arcmath is a competition-math practice platform. Anyone aged 13 or older may register an individual account. Students under 13 must be onboarded through their school under our school-pilot agreement, and a parent or legal guardian must consent before the student begins practice.",
+  "legal.terms_h_accounts": "Your account",
+  "legal.terms_body_accounts": "You're responsible for keeping your password private and for any activity under your account. Tell us immediately if you suspect unauthorized access. We may suspend accounts that are shared, automated, or used to circumvent grading.",
+  "legal.terms_h_acceptable": "Acceptable use",
+  "legal.terms_body_acceptable": "Use Arcmath for genuine practice. Don't: (a) submit other people's work as your own, (b) attempt to break, scrape, or overload the grading engine, (c) upload illegal content, (d) harass other users or staff. Schools may set additional rules for their students inside the platform; please respect them.",
+  "legal.terms_h_content": "Your content",
+  "legal.terms_body_content": "Math work you submit (LaTeX steps, proofs, free-text answers) stays yours. By submitting, you grant Arcmath a license to store and process it so we can grade, generate reports, and run anonymized aggregate analysis to improve the platform. Schools you belong to may view their own students' submissions; we do not share submissions across schools.",
+  "legal.terms_h_ai": "AI feedback",
+  "legal.terms_body_ai": "Arcmath's step-by-step feedback is generated by a hybrid system: SymPy / Lean kernel checks plus a large language model judge for ambiguous steps. The system is good but not infallible — feedback should be treated as a study aid, not a final authority. When in doubt, consult the official solution or your teacher.",
+  "legal.terms_h_termination": "Termination",
+  "legal.terms_body_termination": "You can delete your account from /account at any time. We may suspend or terminate accounts that violate these terms, with notice when possible. After termination, your data is retained for 30 days (so you can restore) and then deleted, except where law requires longer.",
+  "legal.terms_h_disclaimer": "Disclaimer",
+  "legal.terms_body_disclaimer": "Arcmath is provided \"as is\" during the free pilot. We don't guarantee specific grade outcomes, contest scores, or admissions results. To the extent legally allowed, Arcmath is not liable for indirect or consequential damages arising from use of the platform.",
+  "legal.terms_h_changes": "Changes",
+  "legal.terms_body_changes": "If we materially change these terms (e.g. when pilot ends), we'll notify registered users by email at least 14 days before the change takes effect.",
+  "legal.privacy_title": "Privacy Policy",
+  "legal.privacy_lede": "What data we collect about you, where it lives, and how to get it deleted.",
+  "legal.privacy_h_collect": "What we collect",
+  "legal.privacy_body_collect": "Account info: your name, email, locale, and (for school students) your class and assigned teacher.\nPractice activity: every problem attempt (step text, timestamps, hints used, verdict), your overall reports, and your account-level mastery levels.\nTechnical: IP, browser user-agent, and request logs for the last 30 days (used only for debugging and abuse detection).",
+  "legal.privacy_h_use": "How we use it",
+  "legal.privacy_body_use": "We use your data to (1) grade your work and generate feedback, (2) build your personal progress report, (3) let your teachers see their own students' progress, (4) run aggregate, anonymized analysis to improve grading accuracy. We do not sell your data and we do not show ads.",
+  "legal.privacy_h_storage": "Where it's stored",
+  "legal.privacy_body_storage": "Account and practice data live in a managed Postgres database (Neon, US-East region). LLM grading calls go to OpenAI; we do not include your name or email in those calls — only the math content of the step being graded. Daily database backups are stored encrypted for 30 days.",
+  "legal.privacy_h_third_party": "Third parties",
+  "legal.privacy_body_third_party": "We use these service providers under signed data processing agreements: Neon (database hosting), Resend (transactional email), OpenAI (LLM judge), Fly.io (proof verifier service), Aliyun (web server hosting). They cannot use your data for their own purposes.",
+  "legal.privacy_h_retention": "Retention",
+  "legal.privacy_body_retention": "Active accounts retain practice data indefinitely so your progress chart works year-over-year. Accounts deleted by user request are erased within 30 days, except technical logs (kept ≤ 90 days for security/audit) and anonymized aggregate stats (no personal identifiers).",
+  "legal.privacy_h_rights": "Your rights",
+  "legal.privacy_body_rights": "You may at any time: (1) export your data (email us — we'll send a JSON dump within 14 days), (2) correct your name/email via /account, (3) delete your account from /account. School-org members: the school admin may have additional retention rules for compliance reasons; we'll surface those when relevant.",
+  "legal.privacy_h_minors": "Students under 13 / 14",
+  "legal.privacy_body_minors": "We follow the strictest of: COPPA (US, under 13), GDPR-K (EU, under 16 by member state), and PIPL (China, under 14). For minors in those age bands, school admins must obtain parental consent before adding the student. Parents may request access to or deletion of their child's data by contacting us.",
 
   "login.kicker": "Welcome Back",
   "login.headline": "Sign in to continue your workflow.",
@@ -1731,6 +1872,75 @@ export const ZH: Messages = {
   "progress.difficulty_easy": "简单",
   "progress.difficulty_medium": "中等",
   "progress.difficulty_hard": "困难",
+
+  "student.solo.eyebrow": "自学模式",
+  "student.solo.heading": "你目前是自学模式。",
+  "student.solo.body": "你的账号现在没加入任何学校班级——没关系。直接从题库挑题就行，进度会自动追踪。后面老师邀请你之后，班级和作业会出现在这里。",
+  "student.solo.cta_problems": "去刷题",
+  "student.solo.cta_progress": "查看我的进度",
+
+  "assignments.badge": "组织作业",
+  "assignments.subtitle": "组织内部的作业板。学生看到要做的，管理员发布或更新。",
+  "assignments.back_to_org": "返回组织主页",
+  "assignments.published_ok": "作业已发布。",
+  "assignments.error_title_required": "标题必填。",
+  "assignments.error_instructions_required": "作业说明必填。",
+  "assignments.error_forbidden": "你没有管理组织作业的权限。",
+  "assignments.error_invalid_due_date": "截止时间格式错误。",
+  "assignments.publish_heading": "发布作业",
+  "assignments.publish_body": "说明写简单明确即可。",
+  "assignments.form_title_label": "标题",
+  "assignments.form_title_placeholder": "例如：第 1 周诊断题复盘",
+  "assignments.form_instructions_label": "作业说明",
+  "assignments.form_instructions_placeholder": "描述作业内容、期望完成的工作、以及任何提交说明。",
+  "assignments.form_due_label": "截止时间",
+  "assignments.form_submit": "发布作业",
+  "assignments.current_heading": "当前作业",
+  "assignments.current_help_admin": "组织所有成员都能看到。",
+  "assignments.current_help_student": "由你的组织管理员发布。",
+  "assignments.posted_by": "由 {author} 发布",
+  "assignments.due_label": "截止",
+  "assignments.no_due": "无截止时间",
+  "assignments.empty_state": "暂无组织作业。",
+
+  "legal.eyebrow": "法律声明",
+  "legal.last_updated": "最近更新：2026 年 5 月 26 日（pilot v1）。本文档为简明白话版，Arcmath 退出免费内测期后会替换为律师审定版。",
+  "legal.contact_heading": "联系",
+  "legal.contact_body": "对本文档有疑问？联系孙翼鸣，邮箱 yimingsun@forecaster-ai.com 或微信 17806162865，我们 2 个工作日内回复。",
+  "legal.terms_title": "使用条款",
+  "legal.terms_lede": "白话版的使用规则。读一遍，剩下时间专心做数学。",
+  "legal.terms_h_who": "谁可以使用 Arcmath",
+  "legal.terms_body_who": "Arcmath 是竞赛数学练习平台。年满 13 周岁可自行注册个人账号。未满 13 周岁的学生须由学校在我们的内测协议下接入，并由家长/法定监护人在学生开始练习前给予同意。",
+  "legal.terms_h_accounts": "你的账号",
+  "legal.terms_body_accounts": "请妥善保管密码，账号下的所有活动由你负责。如怀疑账号被盗，请立即通知我们。共享账号、使用自动化脚本、绕过批改的行为可能被封号。",
+  "legal.terms_h_acceptable": "可接受使用范围",
+  "legal.terms_body_acceptable": "请用于真实练习。禁止：(a) 把他人作品当成自己的提交；(b) 试图破坏、抓取或过载批改引擎；(c) 上传违法内容；(d) 骚扰其他用户或工作人员。所在学校可在平台内为学生设额外规则，请尊重。",
+  "legal.terms_h_content": "你的内容",
+  "legal.terms_body_content": "你提交的数学内容（LaTeX 步骤、证明、自由作答）所有权归你。提交即授权 Arcmath 存储和处理，用于批改、生成报告、做匿名化的整体分析以改进平台。你所在的学校可查看自己学生的提交；我们不会在学校之间共享。",
+  "legal.terms_h_ai": "AI 反馈",
+  "legal.terms_body_ai": "Arcmath 的分步反馈由混合系统生成：SymPy / Lean 内核检查 + 大模型 judge 处理含糊步骤。系统较准但非完美——反馈应被视为学习辅助，不是最终权威。有疑问请参考官方答案或老师。",
+  "legal.terms_h_termination": "终止",
+  "legal.terms_body_termination": "你可随时在 /account 删除账号。我们也可能因违反条款暂停或终止账号，必要时给出提前通知。终止后数据保留 30 天（便于恢复），之后删除，除非法律要求更长。",
+  "legal.terms_h_disclaimer": "免责声明",
+  "legal.terms_body_disclaimer": "免费内测期间 Arcmath 按现状提供，不保证具体成绩、竞赛名次或申请结果。法律允许范围内 Arcmath 不对使用平台产生的间接或衍生损失负责。",
+  "legal.terms_h_changes": "条款变更",
+  "legal.terms_body_changes": "如发生实质性变更（如内测结束转付费），至少提前 14 天用邮箱通知已注册用户。",
+  "legal.privacy_title": "隐私政策",
+  "legal.privacy_lede": "我们收集你哪些数据、存在哪里、怎么删除。",
+  "legal.privacy_h_collect": "收集哪些数据",
+  "legal.privacy_body_collect": "账号信息：姓名、邮箱、语言偏好；学校学生还包含班级和带教老师。\n练习活动：每次做题（步骤文本、时间戳、提示用量、判定结果）、整体报告、知识点掌握等级。\n技术性：IP、浏览器 user-agent、近 30 天的请求日志（仅用于排错和反滥用）。",
+  "legal.privacy_h_use": "如何使用",
+  "legal.privacy_body_use": "(1) 批改你的作答并生成反馈；(2) 构建你的个人成长报告；(3) 让你的老师查看自己学生的进度；(4) 做匿名化整体分析改进批改准确率。我们不出售你的数据，也不投广告。",
+  "legal.privacy_h_storage": "存在哪里",
+  "legal.privacy_body_storage": "账号和练习数据存在托管 Postgres（Neon，US-East 区）。大模型批改调用走 OpenAI；我们不会在调用中带姓名/邮箱——只带要被批改的题目文本。每日数据库备份加密保存 30 天。",
+  "legal.privacy_h_third_party": "第三方",
+  "legal.privacy_body_third_party": "我们通过签署 DPA 与以下服务商合作：Neon（数据库）、Resend（事务邮件）、OpenAI（大模型 judge）、Fly.io（formal verifier 服务）、阿里云（Web 服务器）。他们不能将你的数据用于自身用途。",
+  "legal.privacy_h_retention": "数据保留",
+  "legal.privacy_body_retention": "活跃账号长期保留练习数据，让历年成长曲线可看。用户主动删号后 30 天内擦除，但技术日志（最多 90 天，用于安全审计）和匿名化整体统计（无个人标识）除外。",
+  "legal.privacy_h_rights": "你的权利",
+  "legal.privacy_body_rights": "你随时可：(1) 导出数据（发邮件给我们，14 天内提供 JSON）；(2) 在 /account 修改姓名/邮箱；(3) 在 /account 删除账号。学校学生：学校管理员可能因合规需要设额外保留规则，必要时我们会告知。",
+  "legal.privacy_h_minors": "未成年学生（13/14 岁以下）",
+  "legal.privacy_body_minors": "我们采取以下三者中最严的：COPPA（美，13 岁以下）、GDPR-K（欧，各成员国 16 岁以下）、PIPL（中，14 岁以下）。该年龄段的学生须由学校管理员在加入前获得家长同意。家长可通过联系我们查阅或删除孩子的数据。",
 
   "login.kicker": "欢迎回来",
   "login.headline": "登录后继续学习。",

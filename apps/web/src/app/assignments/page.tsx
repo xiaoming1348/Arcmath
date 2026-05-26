@@ -5,6 +5,8 @@ import { redirect } from "next/navigation";
 import { prisma } from "@arcmath/db";
 import { authOptions } from "@/lib/auth";
 import { canManageOrganization, getActiveOrganizationMembership } from "@/lib/organizations";
+import { resolveLocale } from "@/i18n/server";
+import { translatorImpl as translator } from "@/i18n/dictionary";
 
 type AssignmentsPageProps = {
   searchParams: Promise<{
@@ -13,27 +15,29 @@ type AssignmentsPageProps = {
   }>;
 };
 
-function summarizeError(code: string | undefined): string | null {
+function summarizeError(
+  code: string | undefined,
+  t: (key: never) => string
+): string | null {
   switch (code) {
     case "title-required":
-      return "Title is required.";
+      return t("assignments.error_title_required" as never);
     case "instructions-required":
-      return "Assignment instructions are required.";
+      return t("assignments.error_instructions_required" as never);
     case "forbidden":
-      return "You do not have permission to manage organization assignments.";
+      return t("assignments.error_forbidden" as never);
     case "invalid-due-date":
-      return "Due date is invalid.";
+      return t("assignments.error_invalid_due_date" as never);
     default:
       return null;
   }
 }
 
-function formatDate(value: Date | null): string {
+function formatDate(value: Date | null, locale: "en" | "zh", noDueLabel: string): string {
   if (!value) {
-    return "No due date";
+    return noDueLabel;
   }
-
-  return value.toLocaleString("en-US", {
+  return value.toLocaleString(locale === "zh" ? "zh-CN" : "en-US", {
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -142,55 +146,59 @@ export default async function AssignmentsPage({ searchParams }: AssignmentsPageP
   }
 
   const canManage = canManageOrganization(membership.role);
+  const locale = await resolveLocale();
+  const t = translator(locale);
+  const errMsg = summarizeError(error, t as never);
 
   return (
     <main className="motion-rise space-y-4">
       <section className="surface-card space-y-3">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="space-y-2">
-            <span className="badge">Organization Assignments</span>
+            <span className="badge">{t("assignments.badge")}</span>
             <h1 className="text-2xl font-semibold text-slate-900">{organization.name}</h1>
-            <p className="text-sm text-slate-600">
-              Internal assignment board for this organization. Students see what to work on; admins can post and update the work plan.
-            </p>
+            <p className="text-sm text-slate-600">{t("assignments.subtitle")}</p>
           </div>
           <Link href="/org" className="btn-secondary">
-            Back to Organization
+            {t("assignments.back_to_org")}
           </Link>
         </div>
 
-        {created ? <p className="text-sm text-emerald-700">Assignment published successfully.</p> : null}
-        {summarizeError(error) ? <p className="text-sm text-red-600">{summarizeError(error)}</p> : null}
+        {created ? <p className="text-sm text-emerald-700">{t("assignments.published_ok")}</p> : null}
+        {errMsg ? <p className="text-sm text-red-600">{errMsg}</p> : null}
       </section>
 
       {canManage ? (
         <section className="surface-card space-y-4">
           <div className="space-y-1">
-            <h2 className="text-lg font-semibold text-slate-900">Publish assignment</h2>
-            <p className="text-sm text-slate-600">
-              Keep instructions simple and explicit. This board is meant to replace the placeholder student-only assignment page with something organization-owned.
-            </p>
+            <h2 className="text-lg font-semibold text-slate-900">{t("assignments.publish_heading")}</h2>
+            <p className="text-sm text-slate-600">{t("assignments.publish_body")}</p>
           </div>
 
           <form action={createOrganizationAssignment} className="grid gap-3">
             <label className="space-y-2 text-sm text-slate-700">
-              <span>Title</span>
-              <input name="title" className="input-field" type="text" placeholder="Example: Week 1 Diagnostic Review" />
+              <span>{t("assignments.form_title_label")}</span>
+              <input
+                name="title"
+                className="input-field"
+                type="text"
+                placeholder={t("assignments.form_title_placeholder")}
+              />
             </label>
             <label className="space-y-2 text-sm text-slate-700">
-              <span>Instructions</span>
+              <span>{t("assignments.form_instructions_label")}</span>
               <textarea
                 name="instructions"
                 className="input-field min-h-48"
-                placeholder="Describe the assignment, expected work, and any submission notes."
+                placeholder={t("assignments.form_instructions_placeholder")}
               />
             </label>
             <label className="space-y-2 text-sm text-slate-700 md:max-w-sm">
-              <span>Due date</span>
+              <span>{t("assignments.form_due_label")}</span>
               <input name="dueAt" className="input-field" type="datetime-local" />
             </label>
             <button type="submit" className="btn-primary w-fit">
-              Publish Assignment
+              {t("assignments.form_submit")}
             </button>
           </form>
         </section>
@@ -198,11 +206,11 @@ export default async function AssignmentsPage({ searchParams }: AssignmentsPageP
 
       <section className="surface-card space-y-4">
         <div className="space-y-1">
-          <h2 className="text-lg font-semibold text-slate-900">Current assignments</h2>
+          <h2 className="text-lg font-semibold text-slate-900">{t("assignments.current_heading")}</h2>
           <p className="text-sm text-slate-600">
             {canManage
-              ? "Assignments listed here are visible to everyone in this organization."
-              : "These are the current assignments posted by your organization admins."}
+              ? t("assignments.current_help_admin")
+              : t("assignments.current_help_student")}
           </p>
         </div>
 
@@ -214,11 +222,14 @@ export default async function AssignmentsPage({ searchParams }: AssignmentsPageP
                   <div className="space-y-1">
                     <h3 className="text-lg font-semibold text-slate-900">{assignment.title}</h3>
                     <p className="text-xs text-slate-500">
-                      Posted by {assignment.createdByUser.name ?? assignment.createdByUser.email}
+                      {t("assignments.posted_by", {
+                        author: assignment.createdByUser.name ?? assignment.createdByUser.email
+                      })}
                     </p>
                   </div>
                   <div className="rounded-2xl border border-slate-200 bg-white px-3 py-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                    Due {formatDate(assignment.dueAt)}
+                    {t("assignments.due_label")}{" "}
+                    {formatDate(assignment.dueAt, locale, t("assignments.no_due"))}
                   </div>
                 </div>
                 <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm leading-7 text-slate-700 whitespace-pre-wrap">
@@ -228,7 +239,7 @@ export default async function AssignmentsPage({ searchParams }: AssignmentsPageP
             ))
           ) : (
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
-              No organization assignments yet.
+              {t("assignments.empty_state")}
             </div>
           )}
         </div>
