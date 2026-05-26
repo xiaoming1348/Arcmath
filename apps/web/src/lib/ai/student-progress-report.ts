@@ -64,6 +64,41 @@ export type WeeklySnapshotPoint = {
   accuracy: number; // cumulative-to-windowEnd, 0..1
 };
 
+/**
+ * Phase C: per-knowledge-point mastery level on an Anki-inspired 0–5 scale.
+ *
+ * The level captures both *volume* (how much you've practiced) and
+ * *competence* (how often you got it right). It is intentionally
+ * coarse — five buckets — so the UI can show a clean grid without
+ * overinterpreting noise from small samples.
+ *
+ * Mapping rules (see computeTopicMastery for the implementation):
+ *   0  — Not yet practiced (0 attempts).
+ *   1  — Just exploring (1–2 attempts).
+ *   2  — Learning (≥ 3 attempts, accuracy < 50%).
+ *   3  — Familiar (≥ 3 attempts, accuracy 50–69%, OR ≥ 6 attempts, accuracy 70–84%).
+ *   4  — Proficient (≥ 6 attempts, accuracy 85–94%).
+ *   5  — Mastered (≥ 10 attempts, accuracy ≥ 95%).
+ *
+ * `recommendation` tells the UI what to suggest doing next:
+ *   - "review"   — low accuracy: drill more of the same difficulty.
+ *   - "progress" — solid mid-range: push to harder.
+ *   - "advance"  — high mastery: move on to a new topic.
+ *   - "explore"  — too little data: just keep practicing.
+ */
+export type MasteryLevel = 0 | 1 | 2 | 3 | 4 | 5;
+export type MasteryRecommendation = "review" | "progress" | "advance" | "explore";
+
+export type TopicMastery = {
+  topicKey: string;
+  label: string;
+  attempts: number;
+  accuracy: number; // 0..1
+  hintsPerAttempt: number;
+  level: MasteryLevel;
+  recommendation: MasteryRecommendation;
+};
+
 /** "This week vs previous week" deltas. Null when not enough history. */
 export type WeekOverWeekDelta = {
   /** Attempts in the most recent 7-day window. */
@@ -109,6 +144,9 @@ export type StudentProgressReport = {
   weeklyTrend: WeeklySnapshotPoint[];
   /** Delta between the most recent two weeks. Null if < 2 snapshots. */
   weekOverWeek: WeekOverWeekDelta | null;
+  // ---- Phase C: knowledge-point mastery ----
+  /** One mastery card per topic seen, sorted by attemptCount desc. */
+  topicMastery: TopicMastery[];
   // ---- LLM-generated plan ----
   llmPlan: StudentProgressPlan | null;
 };
@@ -212,7 +250,7 @@ function attemptDurationSec(a: ProgressAttemptInput): number {
 // not here, because they require external snapshot history.
 export type ProgressAggregation = Omit<
   StudentProgressReport,
-  "llmPlan" | "weeklyTrend" | "weekOverWeek"
+  "llmPlan" | "weeklyTrend" | "weekOverWeek" | "topicMastery"
 >;
 
 export function aggregateProgress(
@@ -615,7 +653,11 @@ export async function buildStudentProgressReport(params: {
     };
   }
 
-  return { ...agg, weeklyTrend: trend, weekOverWeek, llmPlan };
+  // Phase C-1: knowledge-point mastery levels. Pure function over the
+  // already-computed byTopic slices — no DB call.
+  const topicMastery = computeTopicMastery(agg.byTopic);
+
+  return { ...agg, weeklyTrend: trend, weekOverWeek, topicMastery, llmPlan };
 }
 
 // =============================================================================
@@ -636,6 +678,152 @@ export function startOfIsoWeek(d: Date): Date {
 }
 
 /** True if the previous snapshot is missing OR older than 6 days. */
+/**
+ * Phase C — map a single TopicSlice to a 0–5 mastery level.
+ *
+ * Pure function for unit testability. The thresholds were chosen to be
+ * forgiving on low-attempt topics (don't penalize someone for getting
+ * 1/2 wrong on a topic they just opened) while still surfacing real
+ * mastery (≥10 attempts at ≥95% is genuinely solid).
+ *
+ * Tuning notes:
+ *   - We deliberately do NOT use hintsPerAttempt in the level
+ *     calculation. Hints already shift the topic into topWeaknesses;
+ *     conflating that into "level" muddles the signal.
+ *   - 95% is set high on purpose. Pilot students who hit level 5
+ *     should genuinely be ready to teach the topic.
+ */
+export function computeMasteryLevel(slice: {
+  attemptCount: number;
+  accuracy: number;
+}): MasteryLevel {
+  const { attemptCount, accuracy } = slice;
+  if (attemptCount === 0) return 0;
+  if (attemptCount < 3) return 1;
+  if (accuracy < 0.5) return 2;
+  if (attemptCount < 6) {
+    // 3–5 attempts: cap at level 3 even if accuracy is perfect — too
+    // small a sample to call "mastery".
+    return 3;
+  }
+  if (accuracy < 0.7) return 3;
+  if (accuracy < 0.85) {
+    // 70–85% accuracy — solid but not mastery.
+    return attemptCount >= 6 ? 3 : 2;
+  }
+  if (accuracy < 0.95) return 4;
+  if (attemptCount >= 10) return 5;
+  // 95%+ accuracy but < 10 attempts: still proficient, not yet
+  // mastered.
+  return 4;
+}
+
+/** What the UI should suggest the student do next given a mastery level
+ *  and per-topic stats. See MasteryRecommendation for the four cases. */
+export function recommendationFor(slice: {
+  attemptCount: number;
+  accuracy: number;
+  hintsPerAttempt: number;
+  level: MasteryLevel;
+}): MasteryRecommendation {
+  // Too little data — encourage broader exploration regardless of
+  // current accuracy.
+  if (slice.attemptCount < 3) return "explore";
+  // Low accuracy or heavy hint-leaning → drill more, don't push up.
+  if (slice.level <= 2 || slice.hintsPerAttempt > 1.5) return "review";
+  // Mid-range proficiency → student is ready to step up.
+  if (slice.level === 3 || slice.level === 4) return "progress";
+  // Level 5: ready to move to a new topic.
+  return "advance";
+}
+
+/**
+ * Build the `topicMastery[]` array from the byTopic slices. Sorted by
+ * attemptCount desc so the most-practiced topic surfaces first.
+ *
+ * Pure function — no DB, no LLM, no state. Easy to unit-test.
+ */
+export function computeTopicMastery(byTopic: TopicSlice[]): TopicMastery[] {
+  return byTopic
+    .map((t) => {
+      const level = computeMasteryLevel({
+        attemptCount: t.attemptCount,
+        accuracy: t.accuracy
+      });
+      const recommendation = recommendationFor({
+        attemptCount: t.attemptCount,
+        accuracy: t.accuracy,
+        hintsPerAttempt: t.hintsPerAttempt,
+        level
+      });
+      return {
+        topicKey: t.topicKey,
+        label: t.label,
+        attempts: t.attemptCount,
+        accuracy: t.accuracy,
+        hintsPerAttempt: t.hintsPerAttempt,
+        level,
+        recommendation
+      } as TopicMastery;
+    })
+    .sort((a, b) => b.attempts - a.attempts);
+}
+
+/**
+ * Phase C-3 — adaptive-difficulty pick for a weak topic.
+ *
+ * Given a student's stats on a single topic and the difficulty
+ * distribution they've practiced, choose which difficulty band to
+ * recommend next.
+ *
+ *   - If the topic has never been attempted at MEDIUM: start with EASY.
+ *   - If MEDIUM accuracy < 50%: stay on MEDIUM (or step down to EASY
+ *     if EASY is also weak).
+ *   - If MEDIUM accuracy 50–70%: do more MEDIUM (consolidate).
+ *   - If MEDIUM accuracy > 70%: push to HARD.
+ *
+ * This is a pure function — UI calls it once per weakness topic to
+ * stamp the right difficulty on each recommended-problem card.
+ */
+export type DifficultyTarget = "EASY" | "MEDIUM" | "HARD";
+
+export function selectDifficultyTargetForTopic(
+  topic: { accuracy: number; attemptCount: number },
+  byDifficulty: DifficultySlice[]
+): DifficultyTarget {
+  const med = byDifficulty.find((d) => d.difficultyBand === "MEDIUM");
+  // No medium attempts yet — bootstrap.
+  if (!med || med.attemptCount < 2) return "EASY";
+
+  // The topic itself is weak — let global difficulty pacing override.
+  if (topic.accuracy < 0.4) {
+    // EASY tier first if even MEDIUM is underwater.
+    return "EASY";
+  }
+
+  if (med.accuracy < 0.5) return "MEDIUM";
+  if (med.accuracy < 0.7) return "MEDIUM";
+  return "HARD";
+}
+
+/**
+ * Recommended-problem card data shape. The page component fills these
+ * in from a DB query — this type is shared with the UI component.
+ */
+export type RecommendedProblem = {
+  problemId: string;
+  problemSetId: string;
+  problemSetTitle: string;
+  contest: string;
+  year: number | null;
+  problemNumber: number;
+  statementSnippet: string;
+  topicLabel: string;
+  difficultyBand: DifficultyTarget | null;
+  /** Short human-readable reason ("Strengthen geometry — you're at 45% on MEDIUM"). */
+  reason: string;
+};
+
 export function isSnapshotDue(latestSnapshotAt: Date | null, now: Date): boolean {
   if (!latestSnapshotAt) return true;
   const sixDaysMs = 6 * 24 * 60 * 60 * 1000;

@@ -176,6 +176,29 @@ export type Messages = {
   "progress.topic_bars_eyebrow": string;
   "progress.topic_bars_title": string;
   "progress.topic_bars_target": string;
+  // Phase C
+  "progress.mastery_eyebrow": string;
+  "progress.mastery_title": string;
+  "progress.mastery_empty": string;
+  "progress.mastery_legend": string;
+  "progress.mastery_level_0": string;
+  "progress.mastery_level_1": string;
+  "progress.mastery_level_2": string;
+  "progress.mastery_level_3": string;
+  "progress.mastery_level_4": string;
+  "progress.mastery_level_5": string;
+  "progress.mastery_rec_explore": string;
+  "progress.mastery_rec_review": string;
+  "progress.mastery_rec_progress": string;
+  "progress.mastery_rec_advance": string;
+  "progress.recommend_eyebrow": string;
+  "progress.recommend_title": string;
+  "progress.recommend_empty": string;
+  "progress.recommend_help": string;
+  "progress.recommend_open_cta": string;
+  "progress.difficulty_easy": string;
+  "progress.difficulty_medium": string;
+  "progress.difficulty_hard": string;
 
   "login.kicker": string;
   "login.headline": string;
@@ -912,6 +935,28 @@ export const EN: Messages = {
   "progress.topic_bars_eyebrow": "Topic mastery",
   "progress.topic_bars_title": "Accuracy by topic",
   "progress.topic_bars_target": "Vertical line marks the 70% mastery target.",
+  "progress.mastery_eyebrow": "Topic mastery levels",
+  "progress.mastery_title": "How well you know each topic",
+  "progress.mastery_empty": "Mastery levels appear once you've worked on a few problems.",
+  "progress.mastery_legend": "Levels 0–5: 0 = not yet practiced, 5 = mastered (≥10 problems at ≥95% accuracy).",
+  "progress.mastery_level_0": "Not yet",
+  "progress.mastery_level_1": "Just exploring",
+  "progress.mastery_level_2": "Learning",
+  "progress.mastery_level_3": "Familiar",
+  "progress.mastery_level_4": "Proficient",
+  "progress.mastery_level_5": "Mastered",
+  "progress.mastery_rec_explore": "Explore",
+  "progress.mastery_rec_review": "Review",
+  "progress.mastery_rec_progress": "Progress",
+  "progress.mastery_rec_advance": "Advance",
+  "progress.recommend_eyebrow": "Next on your queue",
+  "progress.recommend_title": "Problems we picked for you",
+  "progress.recommend_empty": "We'll surface picks here once your topic data tells us what to focus on.",
+  "progress.recommend_help": "Based on the topics you're currently weakest on. Each card links to the problem set so you can drop straight in.",
+  "progress.recommend_open_cta": "Open set",
+  "progress.difficulty_easy": "Easy",
+  "progress.difficulty_medium": "Medium",
+  "progress.difficulty_hard": "Hard",
 
   "login.kicker": "Welcome Back",
   "login.headline": "Sign in to continue your workflow.",
@@ -1664,6 +1709,28 @@ export const ZH: Messages = {
   "progress.topic_bars_eyebrow": "知识点掌握度",
   "progress.topic_bars_title": "按知识点的正确率",
   "progress.topic_bars_target": "竖线标记 70% 的掌握目标线。",
+  "progress.mastery_eyebrow": "知识点掌握等级",
+  "progress.mastery_title": "你每个知识点的掌握程度",
+  "progress.mastery_empty": "再刷几道题，这里会显示各知识点的掌握等级。",
+  "progress.mastery_legend": "等级 0–5：0 = 还没练过，5 = 完全掌握（≥10 道题、正确率 ≥95%）。",
+  "progress.mastery_level_0": "未开始",
+  "progress.mastery_level_1": "刚接触",
+  "progress.mastery_level_2": "学习中",
+  "progress.mastery_level_3": "熟悉",
+  "progress.mastery_level_4": "熟练",
+  "progress.mastery_level_5": "已掌握",
+  "progress.mastery_rec_explore": "多刷",
+  "progress.mastery_rec_review": "复习",
+  "progress.mastery_rec_progress": "进阶",
+  "progress.mastery_rec_advance": "前进",
+  "progress.recommend_eyebrow": "为你挑选的下一题",
+  "progress.recommend_title": "我们替你挑的题",
+  "progress.recommend_empty": "数据足够之后，这里会出现针对性的推题。",
+  "progress.recommend_help": "基于你目前最弱的几个知识点挑选，每张卡片直接跳到对应题集，点开就能做。",
+  "progress.recommend_open_cta": "进入题集",
+  "progress.difficulty_easy": "简单",
+  "progress.difficulty_medium": "中等",
+  "progress.difficulty_hard": "困难",
 
   "login.kicker": "欢迎回来",
   "login.headline": "登录后继续学习。",
