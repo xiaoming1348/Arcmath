@@ -11,14 +11,19 @@ import { translatorImpl as translator } from "@/i18n/dictionary";
 import {
   buildStudentProgressReport,
   isSnapshotDue,
+  selectDifficultyTargetForTopic,
   startOfIsoWeek,
-  type ProgressAttemptInput
+  type DifficultyTarget,
+  type ProgressAttemptInput,
+  type RecommendedProblem
 } from "@/lib/ai/student-progress-report";
 import { Card, Eyebrow, Metric, Section, Tag } from "@/components/ui";
 import {
   AccuracyTrendChart,
   TopicAccuracyBars
 } from "@/components/progress-trend-chart";
+import { TopicMasteryGrid } from "@/components/topic-mastery-grid";
+import { RecommendedProblemsList } from "@/components/recommended-problems-list";
 
 /**
  * /me/progress — student-facing lifetime progress report.
@@ -56,6 +61,16 @@ function formatSeconds(sec: number): string {
   const m = Math.floor(sec / 60);
   const s = sec % 60;
   return s === 0 ? `${m}m` : `${m}m ${s}s`;
+}
+
+/** Compact a problem statement for the recommended-problems card.
+ *  Keeps LaTeX/Markdown intact but caps at ~110 chars so the cards
+ *  stay scannable. */
+function makeStatementSnippet(statement: string | null): string {
+  const text = (statement ?? "").replace(/\s+/g, " ").trim();
+  if (text.length === 0) return "(no statement)";
+  if (text.length <= 110) return text;
+  return `${text.slice(0, 107)}…`;
 }
 
 export default async function MyProgressPage() {
@@ -181,6 +196,91 @@ export default async function MyProgressPage() {
       .catch((err: unknown) => {
         console.warn("[progress] snapshot upsert failed", err);
       });
+  }
+
+  // ---------- Phase C-2 + C-3: recommend next problems ----------
+  // Strategy: for each weakness topic (up to 3), pick the right
+  // difficulty target via selectDifficultyTargetForTopic, then query
+  // for at most 2 problems per topic that the student hasn't attempted
+  // yet. Cap the final list at 6 to keep the section scannable.
+  let recommendedProblems: RecommendedProblem[] = [];
+  if (report.topWeaknesses.length > 0) {
+    const attemptedProblemIds = new Set(attemptsRaw.map((a) => a.id));
+    // attemptsRaw is per-attempt; we need the set of problemIds the
+    // user has actually touched, not attempt IDs.
+    const attemptedProblemIdsFromProblems = await prisma.problemAttempt.findMany({
+      where: { userId },
+      select: { problemId: true }
+    });
+    for (const row of attemptedProblemIdsFromProblems) {
+      attemptedProblemIds.add(row.problemId);
+    }
+
+    // Build a "topic → difficulty target" map up front so we don't
+    // re-compute inside the loop.
+    const topicTarget = new Map<string, DifficultyTarget>(
+      report.topWeaknesses.map((t) => [
+        t.topicKey,
+        selectDifficultyTargetForTopic(
+          { accuracy: t.accuracy, attemptCount: t.attemptCount },
+          report.byDifficulty
+        )
+      ])
+    );
+
+    for (const weakness of report.topWeaknesses) {
+      const target = topicTarget.get(weakness.topicKey) ?? "MEDIUM";
+      // Pull up to 4 candidates so we have headroom for filtering
+      // out attempted problems.
+      const candidates = await prisma.problem.findMany({
+        where: {
+          topicKey: weakness.topicKey,
+          difficultyBand: target,
+          id: { notIn: Array.from(attemptedProblemIds) },
+          problemSet: {
+            status: "PUBLISHED",
+            category: { in: ["REAL_EXAM", "TOPIC_PRACTICE"] }
+          }
+        },
+        orderBy: [{ number: "asc" }],
+        take: 4,
+        select: {
+          id: true,
+          number: true,
+          statement: true,
+          difficultyBand: true,
+          problemSet: {
+            select: {
+              id: true,
+              title: true,
+              contest: true,
+              year: true
+            }
+          }
+        }
+      });
+
+      for (const c of candidates.slice(0, 2)) {
+        if (recommendedProblems.length >= 6) break;
+        const accuracyPct = Math.round(weakness.accuracy * 100);
+        const reason = uiLocale === "zh"
+          ? `${weakness.label} 现在 ${accuracyPct}% — 推一道 ${target} 难度往上推`
+          : `You're at ${accuracyPct}% on ${weakness.label} — pushing one ${target} problem to consolidate`;
+        recommendedProblems.push({
+          problemId: c.id,
+          problemSetId: c.problemSet.id,
+          problemSetTitle: c.problemSet.title,
+          contest: c.problemSet.contest,
+          year: c.problemSet.year,
+          problemNumber: c.number,
+          statementSnippet: makeStatementSnippet(c.statement),
+          topicLabel: weakness.label,
+          difficultyBand: (c.difficultyBand as DifficultyTarget) ?? target,
+          reason
+        });
+      }
+      if (recommendedProblems.length >= 6) break;
+    }
   }
 
   // ---------- empty state ----------
@@ -312,6 +412,66 @@ export default async function MyProgressPage() {
               labels={{
                 targetLine: t("progress.topic_bars_target"),
                 empty: t("progress.strengths_empty")
+              }}
+            />
+          </Card>
+        </Section>
+      ) : null}
+
+      {/* === PHASE C-2: RECOMMENDED NEXT PROBLEMS === */}
+      {recommendedProblems.length > 0 ? (
+        <Section>
+          <Card className="space-y-3">
+            <Eyebrow>{t("progress.recommend_eyebrow")}</Eyebrow>
+            <h2 className="text-lg font-semibold text-slate-900">
+              {t("progress.recommend_title")}
+            </h2>
+            <RecommendedProblemsList
+              problems={recommendedProblems}
+              labels={{
+                eyebrow: t("progress.recommend_eyebrow"),
+                title: t("progress.recommend_title"),
+                empty: t("progress.recommend_empty"),
+                help: t("progress.recommend_help"),
+                difficulty: {
+                  EASY: t("progress.difficulty_easy"),
+                  MEDIUM: t("progress.difficulty_medium"),
+                  HARD: t("progress.difficulty_hard")
+                },
+                openCta: t("progress.recommend_open_cta")
+              }}
+            />
+          </Card>
+        </Section>
+      ) : null}
+
+      {/* === PHASE C-1: TOPIC MASTERY GRID === */}
+      {report.topicMastery.length > 0 ? (
+        <Section>
+          <Card className="space-y-3">
+            <Eyebrow>{t("progress.mastery_eyebrow")}</Eyebrow>
+            <h2 className="text-lg font-semibold text-slate-900">
+              {t("progress.mastery_title")}
+            </h2>
+            <TopicMasteryGrid
+              topics={report.topicMastery}
+              labels={{
+                levelNames: [
+                  t("progress.mastery_level_0"),
+                  t("progress.mastery_level_1"),
+                  t("progress.mastery_level_2"),
+                  t("progress.mastery_level_3"),
+                  t("progress.mastery_level_4"),
+                  t("progress.mastery_level_5")
+                ],
+                recommendation: {
+                  explore: t("progress.mastery_rec_explore"),
+                  review: t("progress.mastery_rec_review"),
+                  progress: t("progress.mastery_rec_progress"),
+                  advance: t("progress.mastery_rec_advance")
+                },
+                legend: t("progress.mastery_legend"),
+                empty: t("progress.mastery_empty")
               }}
             />
           </Card>

@@ -2,11 +2,16 @@ import { describe, expect, it } from "vitest";
 import {
   aggregateProgress,
   buildPlanPrompt,
+  computeMasteryLevel,
+  computeTopicMastery,
   getFallbackPlan,
   isSnapshotDue,
+  recommendationFor,
+  selectDifficultyTargetForTopic,
   startOfIsoWeek,
   STUDENT_PROGRESS_PROMPT_VERSION,
-  type ProgressAttemptInput
+  type ProgressAttemptInput,
+  type TopicSlice
 } from "./student-progress-report";
 
 // --- helpers ---------------------------------------------------------------
@@ -418,6 +423,196 @@ describe("startOfIsoWeek", () => {
     expect(monday.getUTCMinutes()).toBe(0);
     expect(monday.getUTCSeconds()).toBe(0);
     expect(monday.getUTCMilliseconds()).toBe(0);
+  });
+});
+
+// --- Phase C: mastery levels + recommendations ---------------------------
+
+describe("computeMasteryLevel", () => {
+  it("returns 0 for no attempts", () => {
+    expect(computeMasteryLevel({ attemptCount: 0, accuracy: 0 })).toBe(0);
+  });
+
+  it("returns 1 for 1-2 attempts regardless of accuracy", () => {
+    expect(computeMasteryLevel({ attemptCount: 1, accuracy: 1.0 })).toBe(1);
+    expect(computeMasteryLevel({ attemptCount: 2, accuracy: 0.5 })).toBe(1);
+  });
+
+  it("returns 2 when accuracy < 50% with enough attempts", () => {
+    expect(computeMasteryLevel({ attemptCount: 5, accuracy: 0.3 })).toBe(2);
+    expect(computeMasteryLevel({ attemptCount: 10, accuracy: 0.4 })).toBe(2);
+  });
+
+  it("caps small samples at level 3 even with perfect accuracy", () => {
+    expect(computeMasteryLevel({ attemptCount: 3, accuracy: 1.0 })).toBe(3);
+    expect(computeMasteryLevel({ attemptCount: 5, accuracy: 1.0 })).toBe(3);
+  });
+
+  it("returns 3 for 6+ attempts at 70-85% accuracy", () => {
+    expect(computeMasteryLevel({ attemptCount: 6, accuracy: 0.75 })).toBe(3);
+    expect(computeMasteryLevel({ attemptCount: 8, accuracy: 0.83 })).toBe(3);
+  });
+
+  it("returns 4 for 6+ attempts at 85-95% accuracy", () => {
+    expect(computeMasteryLevel({ attemptCount: 6, accuracy: 0.9 })).toBe(4);
+    expect(computeMasteryLevel({ attemptCount: 9, accuracy: 0.94 })).toBe(4);
+  });
+
+  it("returns 5 only for 10+ attempts at >= 95%", () => {
+    expect(computeMasteryLevel({ attemptCount: 10, accuracy: 0.95 })).toBe(5);
+    expect(computeMasteryLevel({ attemptCount: 20, accuracy: 1.0 })).toBe(5);
+  });
+
+  it("does NOT return 5 for high accuracy with too few attempts", () => {
+    // 8 attempts at 100% — proficient but not mastered (need 10+).
+    expect(computeMasteryLevel({ attemptCount: 8, accuracy: 1.0 })).toBe(4);
+  });
+
+  it("intermediate band: 6+ attempts 70-85% → level 3", () => {
+    expect(computeMasteryLevel({ attemptCount: 7, accuracy: 0.72 })).toBe(3);
+  });
+
+  it("level is monotone-ish in accuracy (sanity)", () => {
+    // For a fixed attempt count, higher accuracy should never give
+    // lower level.
+    const levels = [0.1, 0.4, 0.6, 0.75, 0.9, 0.97].map((acc) =>
+      computeMasteryLevel({ attemptCount: 12, accuracy: acc })
+    );
+    for (let i = 1; i < levels.length; i += 1) {
+      expect(levels[i]).toBeGreaterThanOrEqual(levels[i - 1]);
+    }
+  });
+});
+
+describe("recommendationFor", () => {
+  it("recommends 'explore' for too-few-attempts topics", () => {
+    expect(
+      recommendationFor({ attemptCount: 1, accuracy: 1.0, hintsPerAttempt: 0, level: 1 })
+    ).toBe("explore");
+    expect(
+      recommendationFor({ attemptCount: 2, accuracy: 0, hintsPerAttempt: 0, level: 1 })
+    ).toBe("explore");
+  });
+
+  it("recommends 'review' for low mastery level", () => {
+    expect(
+      recommendationFor({ attemptCount: 8, accuracy: 0.3, hintsPerAttempt: 0, level: 2 })
+    ).toBe("review");
+  });
+
+  it("recommends 'review' when hint reliance is high, even at good accuracy", () => {
+    expect(
+      recommendationFor({ attemptCount: 6, accuracy: 0.85, hintsPerAttempt: 2.5, level: 4 })
+    ).toBe("review");
+  });
+
+  it("recommends 'progress' for solid mid-range mastery", () => {
+    expect(
+      recommendationFor({ attemptCount: 8, accuracy: 0.8, hintsPerAttempt: 0.5, level: 3 })
+    ).toBe("progress");
+    expect(
+      recommendationFor({ attemptCount: 10, accuracy: 0.9, hintsPerAttempt: 0.5, level: 4 })
+    ).toBe("progress");
+  });
+
+  it("recommends 'advance' for level 5 mastery", () => {
+    expect(
+      recommendationFor({ attemptCount: 12, accuracy: 0.97, hintsPerAttempt: 0, level: 5 })
+    ).toBe("advance");
+  });
+});
+
+describe("computeTopicMastery", () => {
+  const slice = (over: Partial<TopicSlice> = {}): TopicSlice => ({
+    topicKey: "algebra.x",
+    label: "Algebra / X",
+    attemptCount: 5,
+    correctCount: 4,
+    accuracy: 0.8,
+    hintsPerAttempt: 0.4,
+    ...over
+  });
+
+  it("returns one entry per topic, sorted by attempts desc", () => {
+    const result = computeTopicMastery([
+      slice({ topicKey: "a", attemptCount: 3 }),
+      slice({ topicKey: "b", attemptCount: 10 }),
+      slice({ topicKey: "c", attemptCount: 5 })
+    ]);
+    expect(result.map((t) => t.topicKey)).toEqual(["b", "c", "a"]);
+  });
+
+  it("preserves topic label and stats", () => {
+    const result = computeTopicMastery([
+      slice({ topicKey: "geom.tri", label: "Geometry / Tri", attemptCount: 7, accuracy: 0.9 })
+    ]);
+    expect(result[0]).toMatchObject({
+      topicKey: "geom.tri",
+      label: "Geometry / Tri",
+      attempts: 7,
+      accuracy: 0.9
+    });
+  });
+
+  it("returns empty array for empty input", () => {
+    expect(computeTopicMastery([])).toEqual([]);
+  });
+
+  it("attaches both level and recommendation per topic", () => {
+    const result = computeTopicMastery([
+      slice({ topicKey: "weak", attemptCount: 10, accuracy: 0.3, correctCount: 3 }),
+      slice({ topicKey: "strong", attemptCount: 12, accuracy: 0.97, correctCount: 12 })
+    ]);
+    const weak = result.find((t) => t.topicKey === "weak")!;
+    const strong = result.find((t) => t.topicKey === "strong")!;
+    expect(weak.level).toBe(2);
+    expect(weak.recommendation).toBe("review");
+    expect(strong.level).toBe(5);
+    expect(strong.recommendation).toBe("advance");
+  });
+});
+
+describe("selectDifficultyTargetForTopic", () => {
+  it("bootstraps with EASY when MEDIUM has no data", () => {
+    expect(
+      selectDifficultyTargetForTopic({ accuracy: 0.6, attemptCount: 4 }, [])
+    ).toBe("EASY");
+  });
+
+  it("stays with EASY when topic itself is very weak", () => {
+    expect(
+      selectDifficultyTargetForTopic(
+        { accuracy: 0.2, attemptCount: 5 },
+        [{ difficultyBand: "MEDIUM", attemptCount: 5, correctCount: 4, accuracy: 0.8 }]
+      )
+    ).toBe("EASY");
+  });
+
+  it("recommends MEDIUM when student is in the 50-70% medium band", () => {
+    expect(
+      selectDifficultyTargetForTopic(
+        { accuracy: 0.6, attemptCount: 8 },
+        [{ difficultyBand: "MEDIUM", attemptCount: 10, correctCount: 6, accuracy: 0.6 }]
+      )
+    ).toBe("MEDIUM");
+  });
+
+  it("pushes to HARD when MEDIUM is mastered", () => {
+    expect(
+      selectDifficultyTargetForTopic(
+        { accuracy: 0.85, attemptCount: 8 },
+        [{ difficultyBand: "MEDIUM", attemptCount: 10, correctCount: 8, accuracy: 0.8 }]
+      )
+    ).toBe("HARD");
+  });
+
+  it("stays on MEDIUM when MEDIUM accuracy is below 50%", () => {
+    expect(
+      selectDifficultyTargetForTopic(
+        { accuracy: 0.5, attemptCount: 6 },
+        [{ difficultyBand: "MEDIUM", attemptCount: 8, correctCount: 3, accuracy: 0.375 }]
+      )
+    ).toBe("MEDIUM");
   });
 });
 
