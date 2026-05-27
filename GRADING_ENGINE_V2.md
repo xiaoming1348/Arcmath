@@ -205,6 +205,54 @@ and prints both per-backend and merged metrics. Runs in CI (without
 network) using cassettes for the LLM/Lean calls; runs nightly with live
 backends for the on-deploy report.
 
+Invocation (wired in `apps/web/package.json`):
+
+```bash
+pnpm grading:eval -- --sample 10            # 10 random fixtures, full backends
+pnpm grading:eval -- --no-verifier          # LLM-only (skip SymPy/Lean)
+pnpm grading:eval -- --no-llm               # deterministic-only
+pnpm grading:eval -- --key <fixture-key>    # single fixture
+```
+
+`OPENAI_API_KEY` and `PROOF_VERIFIER_URL` are loaded via Node `--env-file`
+from the repo-root `.env.local`. Without `PROOF_VERIFIER_URL` the
+SymPy/Lean backends ABSTAIN — useful for offline LLM-only smoke, useless
+for any meaningful "is this regressing" measurement.
+
+### 7.4 Committed baseline (2026-05-27)
+
+First committed baseline run, so future regressions have something to
+diff against. **`sample=10` fixtures, full backends (verifier + judges).**
+
+| Metric          | Measured   | Target   | Notes                                     |
+|-----------------|-----------:|---------:|-------------------------------------------|
+| step accuracy   |  39.3%     |    —     | 44 / 112 steps committed correctly         |
+| escalation      |  58.9%     | ≤ 25%    | 66 / 112 steps escalated to teacher review |
+| falseVerified   |   1.8%     | ≤ 0.5%   | 2 / 112 — wrong step committed VERIFIED    |
+| falseInvalid    |   9.8%     | ≤ 1%     | 11 / 112 — correct step committed INVALID  |
+| finalAccuracy   |  ~70% avg  |    —     | per-fixture; the external-facing number    |
+
+All three rate metrics exceed their healthy-launch targets, with
+`falseInvalid` ~10x over. Hot spots: 5 of 10 fixtures showed
+`committed=INVALID escalated=false` on `clean-correct` student steps —
+suggests the `AnswerRuleBackend` (instantiated per-fixture with
+`canonicalAnswer = rubric.goalStatement`) is rejecting valid intermediate
+steps because they don't match the final goal. This is fixture-setup
+rather than engine regression — `goalStatement` should not be the
+canonical-answer for intermediate steps.
+
+**Action items derived from this baseline (deferred — not blocking pilot):**
+
+1. Reconsider `AnswerRuleBackend` usage in the eval CLI — should only
+   fire on conclusion steps, not on every step.
+2. Bump LLM-judge confidence threshold so judges commit more often
+   instead of escalating (escalation 58.9% is too noisy for the teacher
+   review queue at any reasonable scale).
+3. Re-run `--sample 30` after each material change to `proof-tutor.ts`,
+   `step-pipeline.ts`, or the judge prompts. Bump the eval-mentioned
+   `*_PROMPT_VERSION` constant in the same commit so DB rows are
+   greppable.
+
 ## 8. Failure modes we will not allow
 
 1. **False-VERIFIED on a wrong step.** Mitigation: deterministic-only

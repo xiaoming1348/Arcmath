@@ -13,6 +13,7 @@
     "preprocess:problems": "node --import tsx src/scripts/preprocess-problems.ts",
     "demo:grade": "node --import tsx src/scripts/demo-grade.ts",
     "benchmark:grader": "node --import tsx src/scripts/benchmark-grader.ts",
+    "grading:eval": "node --env-file=../../.env.local --import tsx src/scripts/grading-eval/cli.ts",
     "smoke:student": "node --import tsx src/scripts/student-simulator.ts",
     "pdf:render-verify": "node --import tsx src/scripts/render-verify.ts",
     "pdf:validate-searchable": "node --import tsx src/scripts/validate-searchable-downloads.ts",
