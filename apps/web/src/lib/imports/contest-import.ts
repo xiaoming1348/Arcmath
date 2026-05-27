@@ -207,6 +207,7 @@ async function buildPreviewFromParsed(prisma: PrismaClient, data: ImportProblemS
       case "AIME":
         return "INTEGER";
       case "USAMO":
+      case "USAJMO":
       case "EUCLID":
       case "MAT":
       case "STEP":
