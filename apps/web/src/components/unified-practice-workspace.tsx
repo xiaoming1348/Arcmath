@@ -363,7 +363,7 @@ function OcrAwareMathEditor(props: {
   // Surfaces alongside the field to tell the student how much to
   // trust the OCR. Cleared when they next save / cancel.
   const [lastConfidence, setLastConfidence] = useState<
-    OcrUploadResult extends infer R ? (R extends { ok: true } ? R["confidence"] : null) : null
+    Extract<OcrUploadResult, { ok: true }>["confidence"] | null
   >(null);
   const [lastNotes, setLastNotes] = useState<string | null>(null);
   // Distinct error states the toast layer below renders.
