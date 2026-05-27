@@ -6,6 +6,15 @@ common 7 classes of glitch. Pure-JSON, no app dependencies, runnable as:
 
 Writes findings to scripts/audit-aops-content-report.md.
 
+SCOPE — IMPORTANT:
+  This scans `packages/db/data/aops-imports/` which is **staging** JSON
+  from past bulk-ingest runs, NOT production DB content. As of 2026-05-27
+  the staging dir has ~27% empty statements and ~99% MC missing choices,
+  but the production DB is clean (curated separately). The script's
+  intended use is QA-ing a FRESH bulk-ingest run before importing it —
+  not assessing what's currently live. To check live DB, query Neon
+  directly (see Phase C content-audit handoff doc).
+
 Checks:
   C1  Unbalanced $ delimiters (LaTeX inline math never closes)
   C2  Suspiciously short statement (< 30 chars — partial scrape)
