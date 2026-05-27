@@ -294,27 +294,6 @@ model EmailVerificationToken {
   @@index([expiresAt])
 }
 
-// One-shot email verification token. A new row is created at
-// registration (and on resend). When the user clicks the link in
-// the email we look up the token by `token` column (random 32-byte
-// hex), check `expiresAt > now`, mark the user verified, then
-// consume by setting `consumedAt`. Expired / consumed tokens stay
-// for audit but can't be re-used. We also keep `purpose` so the
-// same table can later carry password-reset tokens etc.
-model EmailVerificationToken {
-  id          String   @id @default(cuid())
-  token       String   @unique
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  purpose     String   @default("EMAIL_VERIFICATION") // EMAIL_VERIFICATION | PASSWORD_RESET (future)
-  expiresAt   DateTime
-  consumedAt  DateTime?
-  createdAt   DateTime @default(now())
-
-  @@index([userId, purpose])
-  @@index([expiresAt])
-}
-
 model Organization {
   id                      String                   @id @default(cuid())
   name                    String

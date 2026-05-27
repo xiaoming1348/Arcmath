@@ -26,7 +26,11 @@ echo "==> Prisma generate + migrate (在 packages/db 里跑，那里才装了 pr
   fi
   pnpm prisma generate
   pnpm prisma migrate deploy
-) || echo "WARN: prisma 步骤失败，继续 build；如果是 schema 变动请手动修复"
+)
+# NOTE: removed `|| echo WARN` fallthrough — if prisma generate fails
+# the Next build will then use a stale client and the deploy ships a
+# version with type errors masked, which is worse than failing here.
+# `set -e` at the top of the script terminates on the subshell error.
 
 echo "==> build"
 cd "${REPO_DIR}/apps/web"
