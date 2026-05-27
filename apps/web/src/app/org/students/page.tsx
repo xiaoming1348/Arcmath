@@ -7,6 +7,13 @@ import { canTeach, getActiveOrganizationMembership } from "@/lib/organizations";
 import { resolveLocale } from "@/i18n/server";
 import { translatorImpl as translator } from "@/i18n/dictionary";
 import { Card, Eyebrow, Section, Tag } from "@/components/ui";
+import { ClassFilter } from "@/components/class-filter";
+
+type OrgStudentsPageProps = {
+  searchParams: Promise<{
+    classId?: string;
+  }>;
+};
 
 /**
  * /org/students — Phase C-4 MVP teacher roster.
@@ -19,9 +26,14 @@ import { Card, Eyebrow, Section, Tag } from "@/components/ui";
  *   - Last activity timestamp (created or submitted, whichever is later)
  *   - Quick link into the per-student detail page
  *
+ * Filter by class: an optional `?classId=...` URL param narrows the
+ * roster to students enrolled in that class. Unknown classIds (cross-
+ * tenant or stale) are silently dropped — we only honour ids that
+ * belong to this teacher's org. When the org has 0 classes the
+ * dropdown is suppressed entirely.
+ *
  * Deliberately NOT included in this MVP:
  *   - Parent invite flow (separate roadmap item)
- *   - Filter by class (one extra query; postpone until orgs grow)
  *   - Bulk export (CSV) — teachers asked for screen, not file
  *
  * Access: TEACHER role and above. Pure students hit a redirect to /org.
@@ -35,7 +47,9 @@ import { Card, Eyebrow, Section, Tag } from "@/components/ui";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export default async function OrganizationStudentsPage() {
+export default async function OrganizationStudentsPage({
+  searchParams
+}: OrgStudentsPageProps) {
   const session = await getServerSession(authOptions);
   if (!session?.user?.id) {
     redirect("/login?callbackUrl=%2Forg%2Fstudents");
@@ -49,15 +63,32 @@ export default async function OrganizationStudentsPage() {
   const uiLocale = await resolveLocale();
   const t = translator(uiLocale);
 
+  const { classId: rawClassId } = await searchParams;
+  // We pull this org's classes regardless so we can validate the
+  // requested classId belongs to the org (don't let cross-tenant
+  // ids leak filter state) and render the dropdown options.
+  const orgClasses = await prisma.class.findMany({
+    where: { organizationId: membership.organizationId },
+    orderBy: { name: "asc" },
+    select: { id: true, name: true }
+  });
+  const selectedClassId = orgClasses.some((c) => c.id === rawClassId)
+    ? (rawClassId as string)
+    : null;
+
   // Pull every active STUDENT membership in this teacher's org. We
   // intentionally exclude pending/invited rows — the teacher wants to
   // see active learners, not the invite queue (that's the membership
-  // admin page's job).
+  // admin page's job). When a class filter is active we narrow to
+  // students enrolled in that class.
   const studentMemberships = await prisma.organizationMembership.findMany({
     where: {
       organizationId: membership.organizationId,
       role: "STUDENT",
-      status: "ACTIVE"
+      status: "ACTIVE",
+      ...(selectedClassId
+        ? { user: { enrollments: { some: { classId: selectedClassId } } } }
+        : {})
     },
     orderBy: [{ createdAt: "asc" }],
     select: {
@@ -184,10 +215,20 @@ export default async function OrganizationStudentsPage() {
           <p className="display-lede">
             {t("org.students.subtitle", { n: String(studentMemberships.length) })}
           </p>
-          <div className="pt-1">
+          <div className="pt-1 flex flex-wrap items-center gap-3">
             <Link href="/org" className="btn-secondary">
               {t("org.students.back_to_org")}
             </Link>
+            {orgClasses.length > 0 ? (
+              <ClassFilter
+                classes={orgClasses}
+                selectedClassId={selectedClassId}
+                labels={{
+                  label: t("org.students.filter_class_label"),
+                  all: t("org.students.filter_all_classes")
+                }}
+              />
+            ) : null}
           </div>
         </div>
       </Section>

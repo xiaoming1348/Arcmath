@@ -647,6 +647,8 @@ export type Messages = {
   "org.students.last_active_today": string;
   "org.students.last_active_yesterday": string;
   "org.students.last_active_days_ago": string;
+  "org.students.filter_class_label": string;
+  "org.students.filter_all_classes": string;
   "org.students.lifetime_eyebrow": string;
   "org.students.lifetime_attempts": string;
   "org.students.lifetime_accuracy": string;
@@ -1528,6 +1530,8 @@ export const EN: Messages = {
   "org.students.last_active_today": "Today",
   "org.students.last_active_yesterday": "Yesterday",
   "org.students.last_active_days_ago": "{n} days ago",
+  "org.students.filter_class_label": "Class",
+  "org.students.filter_all_classes": "All classes",
   "org.students.lifetime_eyebrow": "Lifetime progress",
   "org.students.lifetime_attempts": "Attempts",
   "org.students.lifetime_accuracy": "Accuracy",
@@ -2415,6 +2419,8 @@ export const ZH: Messages = {
   "org.students.last_active_today": "今天",
   "org.students.last_active_yesterday": "昨天",
   "org.students.last_active_days_ago": "{n} 天前",
+  "org.students.filter_class_label": "班级",
+  "org.students.filter_all_classes": "全部班级",
   "org.students.lifetime_eyebrow": "终身进度",
   "org.students.lifetime_attempts": "作答数",
   "org.students.lifetime_accuracy": "正确率",
