@@ -80,7 +80,10 @@ def check_dollars(s: str):
 
 
 def check_short(s: str):
-    if len(s.strip()) < 30:
+    # Threshold 25 (was 30): real brief problems like "What is $10! - 7! \cdot 6!$?"
+    # are 29 chars and shouldn't flag. False-positive review on prod's 3
+    # short rows showed only the year=2099 test stub was actually broken.
+    if len(s.strip()) < 25:
         return ("LOW", "C2", f"Statement only {len(s.strip())} chars")
     return None
 
