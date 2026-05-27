@@ -250,7 +250,7 @@ export default async function OrganizationStudentsPage() {
                               r.accuracy >= 70
                                 ? "verified"
                                 : r.accuracy >= 50
-                                  ? "plausible"
+                                  ? "uncertain"
                                   : "invalid"
                             }
                           >
