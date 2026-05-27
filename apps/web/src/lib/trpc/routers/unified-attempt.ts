@@ -19,6 +19,17 @@ import {
 import { isStructuredSolution, type StructuredSolution } from "@/lib/ai/solution-generator";
 import { classifyStep, verifyStep, type ProofVerifyResult } from "@/lib/proof-verifier-client";
 import { generateExplanation, generateHint, getSafeFallbackHint, hintLeaksFinalAnswer } from "@/lib/ai/hint-tutor";
+import {
+  ocrHandwritingToLatex,
+  ocrHandwritingMultiStep
+} from "@/lib/ai/ocr-handwriting";
+import {
+  OcrQuotaExceededError,
+  pickTopConfidenceMulti,
+  pickTopConfidenceSingle,
+  recordOcrCall,
+  requireOcrQuota
+} from "@/lib/ai/ocr-quota";
 import { gradeAnswer, type SupportedAnswerFormat } from "@/lib/answer-grading";
 import {
   isV2Enabled,
@@ -1213,7 +1224,177 @@ export const unifiedAttemptRouter = router({
     });
 
     return { ok: true as const };
-  })
+  }),
+
+  // Photo OCR for handwriting → LaTeX. Student is in the
+  // step-by-step input flow and chose to upload a photo of their work
+  // instead of typing. The result lands in MathLive as an editable
+  // initial value — the student MUST review before saving, we never
+  // auto-commit.
+  //
+  // Constraints:
+  //  - Payload capped at ~5MB base64 (≈ 3.7MB image). Frontend should
+  //    resize before sending; this server-side cap is a defensive
+  //    guard, not the primary throttle.
+  //  - One photo per call. Multi-step batch OCR is a Sprint 2 feature
+  //    (it complicates step-boundary detection).
+  //  - This mutation does NOT touch the attempt or its steps — the UI
+  //    receives the LaTeX, the student edits in MathLive, then the
+  //    normal `addStep` / `editStep` mutation commits if they accept.
+  //
+  // Returns `{ ok: true, ... }` on a successful OCR call (including
+  // confidence === "none" — the model said "I can't read this", which
+  // is still a valid signal). Returns `{ ok: false, reason }` when we
+  // can't even attempt OCR (API key missing, payload too big, etc.).
+  ocrHandwritingStep: protectedProcedure
+    .input(
+      z.object({
+        // data: URL containing the image. Frontend resizes + encodes.
+        imageDataUrl: z
+          .string()
+          .min(50)
+          // ~7M chars of base64 ≈ 5MB. Hard cap; frontend should
+          // resize well below this in normal use.
+          .max(7_000_000)
+          .refine(
+            (v) => /^data:image\/(png|jpe?g|webp|gif);base64,/i.test(v),
+            "imageDataUrl must be a base64 data: URL for png/jpeg/webp/gif"
+          ),
+        // UI locale — controls the language of the optional `notes`
+        // field returned by the model. LaTeX itself is locale-free.
+        uiLocale: z.enum(["en", "zh"]).optional(),
+        // Sprint 2: when present, the OCR call gets correlated to the
+        // attempt for later telemetry (e.g. "did OCR-seeded steps end
+        // up in correct submissions more often?"). Optional because
+        // the UI may OCR before an attempt is created.
+        attemptId: z.string().min(1).optional()
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const userId = ctx.session.user.id;
+      if (!userId) throw new TRPCError({ code: "UNAUTHORIZED" });
+
+      // Sprint 2: enforce daily quota BEFORE calling the vision API.
+      // We do this first to (a) save tokens when over-quota and (b)
+      // give the UI a structured "you're out of OCR for today"
+      // response instead of a generic failure.
+      try {
+        await requireOcrQuota({ prisma: ctx.prisma, userId });
+      } catch (err) {
+        if (err instanceof OcrQuotaExceededError) {
+          return {
+            ok: false as const,
+            reason: "quota_exceeded" as const,
+            quota: {
+              used: err.used,
+              limit: err.limit,
+              resetsAtIso: err.resetsAtIso
+            }
+          };
+        }
+        throw err;
+      }
+
+      const result = await ocrHandwritingToLatex({
+        imageDataUrl: input.imageDataUrl,
+        uiLocale: input.uiLocale ?? "en",
+        scope: `ocr-handwriting:user-${userId.slice(0, 8)}`
+      });
+
+      // Sprint 2: record the call (success or fail). Awaited
+      // deliberately — quota counting depends on this row existing
+      // before the next call. ~5ms write, well within budget.
+      await recordOcrCall({
+        prisma: ctx.prisma,
+        userId,
+        kind: "single_step",
+        succeeded: result !== null,
+        stepCount: result ? 1 : 0,
+        topConfidence: pickTopConfidenceSingle(result),
+        problemAttemptId: input.attemptId ?? null
+      });
+
+      if (!result) {
+        // Vision API unavailable (no key) or the call failed after
+        // retries. UI should fall back to typing — show a soft toast,
+        // not an error modal.
+        return { ok: false as const, reason: "vision_unavailable" as const };
+      }
+
+      return {
+        ok: true as const,
+        latex: result.latex,
+        confidence: result.confidence,
+        notes: result.notes
+      };
+    }),
+
+  // Sprint 2: batch handwriting OCR. Same vision API but the prompt
+  // asks for N labeled steps from one photo. The UI is expected to
+  // render a review modal where the student accepts/edits each step
+  // before they're committed via the normal `addStep` flow.
+  ocrHandwritingMultiStep: protectedProcedure
+    .input(
+      z.object({
+        imageDataUrl: z
+          .string()
+          .min(50)
+          .max(7_000_000)
+          .refine(
+            (v) => /^data:image\/(png|jpe?g|webp|gif);base64,/i.test(v),
+            "imageDataUrl must be a base64 data: URL for png/jpeg/webp/gif"
+          ),
+        uiLocale: z.enum(["en", "zh"]).optional(),
+        attemptId: z.string().min(1).optional()
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const userId = ctx.session.user.id;
+      if (!userId) throw new TRPCError({ code: "UNAUTHORIZED" });
+
+      try {
+        await requireOcrQuota({ prisma: ctx.prisma, userId });
+      } catch (err) {
+        if (err instanceof OcrQuotaExceededError) {
+          return {
+            ok: false as const,
+            reason: "quota_exceeded" as const,
+            quota: {
+              used: err.used,
+              limit: err.limit,
+              resetsAtIso: err.resetsAtIso
+            }
+          };
+        }
+        throw err;
+      }
+
+      const result = await ocrHandwritingMultiStep({
+        imageDataUrl: input.imageDataUrl,
+        uiLocale: input.uiLocale ?? "en",
+        scope: `ocr-handwriting-multi:user-${userId.slice(0, 8)}`
+      });
+
+      await recordOcrCall({
+        prisma: ctx.prisma,
+        userId,
+        kind: "multi_step",
+        succeeded: result !== null,
+        stepCount: result?.steps.length ?? 0,
+        topConfidence: pickTopConfidenceMulti(result),
+        problemAttemptId: input.attemptId ?? null
+      });
+
+      if (!result) {
+        return { ok: false as const, reason: "vision_unavailable" as const };
+      }
+
+      return {
+        ok: true as const,
+        steps: result.steps,
+        imageNotes: result.imageNotes
+      };
+    })
 });
 
 export type UnifiedAttemptRouter = typeof unifiedAttemptRouter;

@@ -430,6 +430,27 @@ export type Messages = {
   "attempt.add_step_label": string;
   "attempt.add_step_button": string;
   "attempt.add_step_grading_inline": string;
+  // Handwriting OCR (Sprint 1) — labels on the photo-upload affordance
+  // that sits next to MathLive. Confidence variants exist so the UI
+  // can shade the resulting toast based on how sure the model was.
+  "attempt.ocr_trigger": string;
+  "attempt.ocr_resizing": string;
+  "attempt.ocr_calling": string;
+  "attempt.ocr_hint": string;
+  "attempt.ocr_error_generic": string;
+  "attempt.ocr_error_too_big": string;
+  "attempt.ocr_error_wrong_type": string;
+  "attempt.ocr_retry": string;
+  "attempt.ocr_confidence_high": string;
+  "attempt.ocr_confidence_medium": string;
+  "attempt.ocr_confidence_low": string;
+  "attempt.ocr_confidence_none": string;
+  "attempt.ocr_unavailable": string;
+  "attempt.ocr_review_prompt": string;
+  // Sprint 2: batch multi-step OCR + per-user daily quota.
+  "attempt.ocr_multi_step_trigger": string;
+  "attempt.ocr_multi_step_hint": string;
+  "attempt.ocr_quota_exceeded": string;
   "attempt.next_step_hint_button": string;
   "attempt.next_step_hint_pending": string;
   "attempt.next_step_hint_label": string;
@@ -607,6 +628,36 @@ export type Messages = {
   "org.overview.action.student.attempt.submit": string;
   "org.overview.action.student.attempt.complete": string;
   "org.overview.action.student.run.complete": string;
+
+  // Phase C-4: teacher-facing student roster + per-student progress
+  // view. Lives under `org.students.*` (sibling of org.overview.*)
+  // because semantically it's part of the org admin surface, not the
+  // student's own self-view.
+  "org.students.eyebrow": string;
+  "org.students.title": string;
+  "org.students.subtitle": string;
+  "org.students.back_to_org": string;
+  "org.students.empty": string;
+  "org.students.col_name": string;
+  "org.students.col_attempts": string;
+  "org.students.col_accuracy": string;
+  "org.students.col_last_active": string;
+  "org.students.row_view": string;
+  "org.students.last_active_never": string;
+  "org.students.last_active_today": string;
+  "org.students.last_active_yesterday": string;
+  "org.students.last_active_days_ago": string;
+  "org.students.lifetime_eyebrow": string;
+  "org.students.lifetime_attempts": string;
+  "org.students.lifetime_accuracy": string;
+  "org.students.lifetime_active_days": string;
+  "org.students.lifetime_hint_reliance": string;
+  "org.students.strengths_heading": string;
+  "org.students.strengths_empty": string;
+  "org.students.weaknesses_heading": string;
+  "org.students.weaknesses_empty": string;
+  "org.students.mastery_eyebrow": string;
+  "org.students.mastery_title": string;
 
   "teacher.home.title": string;
   "teacher.home.subtitle": string;
@@ -1257,6 +1308,33 @@ export const EN: Messages = {
   "attempt.add_step_label": "Add step {n}",
   "attempt.add_step_button": "Add step",
   "attempt.add_step_grading_inline": "Checking this step with your tutor… (~3–5s)",
+  "attempt.ocr_trigger": "📷 Scan handwritten step",
+  "attempt.ocr_resizing": "Preparing image…",
+  "attempt.ocr_calling": "Reading your work…",
+  "attempt.ocr_hint":
+    "Snap or pick a clear photo of just one step — you'll review the result before saving.",
+  "attempt.ocr_error_generic":
+    "OCR didn't work. Try typing the step instead, or try a clearer photo.",
+  "attempt.ocr_error_too_big":
+    "That image is too large. Try a smaller photo (under 10 MB).",
+  "attempt.ocr_error_wrong_type":
+    "That doesn't look like an image. Upload a JPG, PNG or WebP.",
+  "attempt.ocr_retry": "Try again",
+  "attempt.ocr_confidence_high": "OCR confidence: high",
+  "attempt.ocr_confidence_medium": "OCR confidence: medium — double-check the symbols",
+  "attempt.ocr_confidence_low":
+    "OCR confidence: low — please verify carefully before saving",
+  "attempt.ocr_confidence_none":
+    "OCR couldn't read this clearly. Try a sharper photo or type the step.",
+  "attempt.ocr_unavailable":
+    "Photo OCR is not available right now. Please type the step instead.",
+  "attempt.ocr_review_prompt":
+    "Edit the recognized step below before you save it.",
+  "attempt.ocr_multi_step_trigger": "📷 Scan multiple steps",
+  "attempt.ocr_multi_step_hint":
+    "Photograph a page with several steps. We'll split them and let you review each one before saving.",
+  "attempt.ocr_quota_exceeded":
+    "Daily OCR limit reached ({used}/{limit}). Try again tomorrow, or type the remaining steps.",
   "attempt.next_step_hint_button": "Hint for next step",
   "attempt.next_step_hint_pending": "Asking your tutor…",
   "attempt.next_step_hint_label": "Tutor suggestion",
@@ -1433,6 +1511,35 @@ export const EN: Messages = {
   "org.overview.action.student.attempt.submit": "{actor} submitted an answer",
   "org.overview.action.student.attempt.complete": "{actor} completed a problem",
   "org.overview.action.student.run.complete": "{actor} finished an assignment",
+
+  "org.students.eyebrow": "Teacher view",
+  "org.students.title": "Students in your organization",
+  "org.students.subtitle":
+    "{n} active student{n, plural, one {} other {s}}. Click any row to see their lifetime progress.",
+  "org.students.back_to_org": "Back to organization",
+  "org.students.empty":
+    "No students have joined this organization yet. Invite them from the organization dashboard.",
+  "org.students.col_name": "Student",
+  "org.students.col_attempts": "Attempts",
+  "org.students.col_accuracy": "Accuracy",
+  "org.students.col_last_active": "Last active",
+  "org.students.row_view": "View",
+  "org.students.last_active_never": "—",
+  "org.students.last_active_today": "Today",
+  "org.students.last_active_yesterday": "Yesterday",
+  "org.students.last_active_days_ago": "{n} days ago",
+  "org.students.lifetime_eyebrow": "Lifetime progress",
+  "org.students.lifetime_attempts": "Attempts",
+  "org.students.lifetime_accuracy": "Accuracy",
+  "org.students.lifetime_active_days": "Active days (14d)",
+  "org.students.lifetime_hint_reliance": "Hint reliance",
+  "org.students.strengths_heading": "Top strengths",
+  "org.students.strengths_empty": "Not enough data yet to identify strengths.",
+  "org.students.weaknesses_heading": "Reinforcement targets",
+  "org.students.weaknesses_empty": "Not enough data yet to spot weak topics.",
+  "org.students.mastery_eyebrow": "Topic mastery (0–5)",
+  "org.students.mastery_title":
+    "Per-topic mastery — matches what the student sees on their own progress page",
 
   "teacher.home.title": "Teacher dashboard",
   "teacher.home.subtitle":
@@ -2100,6 +2207,23 @@ export const ZH: Messages = {
   "attempt.add_step_label": "添加第 {n} 步",
   "attempt.add_step_button": "添加步骤",
   "attempt.add_step_grading_inline": "正在为你批改这一步…（约 3–5 秒）",
+  "attempt.ocr_trigger": "📷 拍照识别这步",
+  "attempt.ocr_resizing": "处理图片中…",
+  "attempt.ocr_calling": "正在识别你的手写…",
+  "attempt.ocr_hint": "请对一步拍清楚照片。识别后你可以校对再保存。",
+  "attempt.ocr_error_generic": "识别失败。可以直接打字，或换一张更清楚的照片再试。",
+  "attempt.ocr_error_too_big": "图片太大，请换小于 10MB 的照片。",
+  "attempt.ocr_error_wrong_type": "这不是图片，请上传 JPG、PNG 或 WebP 格式。",
+  "attempt.ocr_retry": "再试一次",
+  "attempt.ocr_confidence_high": "识别可信度：高",
+  "attempt.ocr_confidence_medium": "识别可信度：中——请核对符号",
+  "attempt.ocr_confidence_low": "识别可信度：低——请仔细核对后再保存",
+  "attempt.ocr_confidence_none": "识别失败。请换更清楚的照片，或直接打字。",
+  "attempt.ocr_unavailable": "拍照识别暂时不可用，请直接打字。",
+  "attempt.ocr_review_prompt": "请校对下方识别结果，确认无误后保存。",
+  "attempt.ocr_multi_step_trigger": "📷 一次扫描多步",
+  "attempt.ocr_multi_step_hint": "拍一张含多个步骤的照片，我们会自动切分，每一步都由你校对后再保存。",
+  "attempt.ocr_quota_exceeded": "今日 OCR 次数已用完（{used}/{limit}）。请明天再来，或先打字提交剩余步骤。",
   "attempt.next_step_hint_button": "下一步提示",
   "attempt.next_step_hint_pending": "正在请教导师…",
   "attempt.next_step_hint_label": "导师提示",
@@ -2276,6 +2400,32 @@ export const ZH: Messages = {
   "org.overview.action.student.attempt.submit": "{actor} 提交了一次作答",
   "org.overview.action.student.attempt.complete": "{actor} 完成了一道题",
   "org.overview.action.student.run.complete": "{actor} 完成了一项作业",
+
+  "org.students.eyebrow": "教师视图",
+  "org.students.title": "组织内学生",
+  "org.students.subtitle": "共 {n} 位活跃学生。点击任意一行查看其全部进度。",
+  "org.students.back_to_org": "返回组织主页",
+  "org.students.empty": "尚无学生加入此组织。请到组织主页邀请学生。",
+  "org.students.col_name": "学生",
+  "org.students.col_attempts": "作答数",
+  "org.students.col_accuracy": "正确率",
+  "org.students.col_last_active": "最近活跃",
+  "org.students.row_view": "查看",
+  "org.students.last_active_never": "—",
+  "org.students.last_active_today": "今天",
+  "org.students.last_active_yesterday": "昨天",
+  "org.students.last_active_days_ago": "{n} 天前",
+  "org.students.lifetime_eyebrow": "终身进度",
+  "org.students.lifetime_attempts": "作答数",
+  "org.students.lifetime_accuracy": "正确率",
+  "org.students.lifetime_active_days": "活跃天数（近 14 天）",
+  "org.students.lifetime_hint_reliance": "提示依赖度",
+  "org.students.strengths_heading": "强项",
+  "org.students.strengths_empty": "数据还不够，暂时无法识别强项。",
+  "org.students.weaknesses_heading": "需重点强化",
+  "org.students.weaknesses_empty": "数据还不够，暂时无法识别薄弱知识点。",
+  "org.students.mastery_eyebrow": "知识点掌握度（0–5）",
+  "org.students.mastery_title": "各知识点掌握度——与学生自己看到的进度报告一致",
 
   "teacher.home.title": "教师控制台",
   "teacher.home.subtitle": "管理班级、布置作业、跟踪学生进度。",

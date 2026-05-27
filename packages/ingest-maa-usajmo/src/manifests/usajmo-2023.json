@@ -1,0 +1,79 @@
+{
+  "problemSet": {
+    "contest": "USAJMO",
+    "year": 2023,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php/2023_USAJMO_Problems",
+    "verifiedPdfUrl": "https://web.evanchen.cc/exams/JMO-2023-notes.pdf"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Find all triples of positive integers $(x, y, z)$ satisfying\n$$2(x + y + z + 2xyz)^2 = (2xy + 2yz + 2zx + 1)^2 + 2023.$$",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAJMO 2023, Problem 1 (proposed by Titu Andreescu)",
+      "topicKey": "number_theory.diophantine_factoring",
+      "techniqueTags": ["norm_in_quadratic_field", "factoring_identity", "divisor_search"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** $(3, 3, 2)$ and its permutations.\n\n**Key identity.**\n$$2(x + y + z + 2xyz)^2 - (2xy + 2yz + 2zx + 1)^2 = (2x^2 - 1)(2y^2 - 1)(2z^2 - 1).$$\n\nThis is the negative of $\\operatorname{Norm}\\big((1+\\sqrt{2}x)(1+\\sqrt{2}y)(1+\\sqrt{2}z)\\big)$ in $\\mathbb{Q}(\\sqrt{2})$, where $\\operatorname{Norm}(a+b\\sqrt{2}) = a^2 - 2b^2$; multiplicativity of the norm makes it factor.\n\n**Reduction.** The equation becomes\n$$(2x^2 - 1)(2y^2 - 1)(2z^2 - 1) = 2023 = 7 \\cdot 17^2.$$\n\nEach factor is a positive integer $> 1$. The divisors of $2023$ of the form $2t^2 - 1$ are $1, 7, 17$ (corresponding to $t = 1, 2, 3$). Since none of the factors can be $1$, the multiset must be $\\{7, 17, 17\\}$, giving $\\{x, y, z\\} = \\{2, 3, 3\\}$.\n\n**Answer:** $(3, 3, 2)$ and its permutations. $\\blacksquare$\n\nSource: https://web.evanchen.cc/exams/JMO-2023-notes.pdf"
+    },
+    {
+      "number": 2,
+      "statement": "In an acute triangle $ABC$, let $M$ be the midpoint of $BC$. Let $P$ be the foot of the perpendicular from $C$ to $AM$. Suppose that the circumcircle of triangle $ABP$ intersects line $BC$ at two distinct points $B$ and $Q$. Let $N$ be the midpoint of $AQ$. Prove that $NB = NC$.\n\n*(Note: This problem also appeared as USAMO 2023 Problem 1.)*",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAJMO 2023, Problem 2 (proposed by Holden Mui)",
+      "topicKey": "geometry.power_of_a_point",
+      "techniqueTags": ["power_of_a_point", "reflection_across_midpoint", "perpendicular_bisector"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "Let $D$ be the foot of the altitude from $A$ to $BC$.\n\n**Key claim.** $Q$ is the reflection of $D$ across $M$.\n\n**Proof.** Since $\\angle ADC = \\angle APC = 90^\\circ$, the points $A, D, P, C$ are concyclic. By power of a point at $M$ (directed lengths),\n$$MB \\cdot MQ = MA \\cdot MP = MC \\cdot MD.$$\nSince $MB = MC$, we get $MQ = MD$, so $Q$ is the reflection of $D$ across $M$. $\\square$\n\n**Conclusion.** $M$ is the midpoint of $QD$ and $N$ is the midpoint of $AQ$, so $MN \\parallel AD$. Since $AD \\perp BC$, also $MN \\perp BC$. Therefore $N$ lies on the perpendicular bisector of $BC$, giving $NB = NC$. $\\blacksquare$\n\n*(Synthetic alternative: prove $\\triangle BPC \\sim \\triangle ANM$ directly from $\\triangle BMP \\sim \\triangle AMQ$ via cyclic $ABPQ$; this yields $\\angle(BC, MN) = -\\angle(PC, AM) = 90^\\circ$.)*\n\nSource: https://web.evanchen.cc/exams/JMO-2023-notes.pdf"
+    },
+    {
+      "number": 3,
+      "statement": "Consider an $n$-by-$n$ board of unit squares for some odd positive integer $n$. We say that a collection $C$ of identical dominoes is a **maximal grid-aligned configuration** on the board if $C$ consists of $(n^2 - 1)/2$ dominoes where each domino covers exactly two neighboring squares and the dominoes don't overlap: $C$ then covers all but one square on the board.\n\nWe are allowed to slide (but not rotate) a domino on the board to cover the uncovered square, resulting in a new maximal grid-aligned configuration with another square uncovered. Let $k(C)$ be the number of distinct maximal grid-aligned configurations obtainable from $C$ by repeatedly sliding dominoes.\n\nFind the maximum possible value of $k(C)$ as a function of $n$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAJMO 2023, Problem 3 (proposed by Holden Mui)",
+      "topicKey": "combinatorics.domino_sliding_graph",
+      "techniqueTags": ["spanning_tree_argument", "directed_graph_invariant", "parity_coloring"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $k(C) \\leq \\left(\\dfrac{n+1}{2}\\right)^2$, with equality attainable.\n\n**Setup.** Index squares by $(x, y) \\in \\{1, \\ldots, n\\}^2$. Call a square **special** if it is the empty square, or if it shares the parity of both coordinates with the empty square. The number of special squares is $\\left(\\frac{n+1}{2}\\right)^2$ when the empty square is at an odd-odd position.\n\n**Graph construction.** Build a directed graph $G$ on the special squares: for each domino with one half on a special square $s$, draw a directed edge from $s$ to the special square the domino points to. Let $T$ be the weakly connected component containing the empty square.\n\n**Claim.** $T$ has no (undirected) cycles — i.e., $T$ is an (undirected) tree.\n\n*Proof.* Every vertex of $T$ has out-degree $\\leq 1$. So an undirected cycle in $T$ must be a directed cycle. But the empty square is in $T$ with out-degree $0$, contradiction. $\\square$\n\n**Claim.** $k(C)$ equals the number of vertices of $T$.\n\n*Proof.* Sliding a domino in $C$ corresponds to flipping one arrow in $T$. The reachable configurations are exactly choices of \"root\" in the tree $T$ with all other arrows oriented toward the root. $\\square$\n\n**Upper bound.** $|T| \\leq$ (number of special squares) $\\leq \\left(\\frac{n+1}{2}\\right)^2$.\n\n**Equality.** Achieve $T$ = spanning tree of the special-square grid (e.g., the snake/comb configuration) with the empty cell at a corner odd-odd square. $\\blacksquare$\n\nSource: https://web.evanchen.cc/exams/JMO-2023-notes.pdf"
+    },
+    {
+      "number": 4,
+      "statement": "Two players, Blake and Ruby, play the following game on an infinite grid of unit squares, all initially colored white. The players take turns starting with Blake. On Blake's turn, Blake selects one white unit square and colors it blue. On Ruby's turn, Ruby selects two white unit squares and colors them red. The players alternate until Blake decides to end the game. At this point, Blake gets a score, given by the number of unit squares in the largest (in terms of area) simple polygon containing only blue unit squares.\n\nWhat is the largest score Blake can guarantee?",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAJMO 2023, Problem 4 (proposed by David Torres)",
+      "topicKey": "combinatorics.game_strategy",
+      "techniqueTags": ["liberty_counting", "window_tiling_strategy", "pursuit_strategy"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $4$ squares.\n\n**Lower bound (Blake guarantees $\\geq 4$).** Blake places blue cells greedily, always adjacent to a previously placed blue cell. Any connected region of $n \\leq 3$ blue cells has more than $2n$ liberties (white neighbors). Since Ruby has placed only $2n$ red cells by then, Ruby cannot have blocked every liberty, so Blake can always extend. Hence Blake reaches at least $4$ blue cells.\n\n**Upper bound (Ruby prevents $> 4$).** Partition the grid into $2 \\times 2$ **windows**. Whenever Blake plays a cell $c$ in some window, Ruby marks both orthogonal neighbors of $c$ inside that same window red; leftover red moves go anywhere.\n\n*Claim:* No window ever contains two orthogonally adjacent blue cells.\n\n*Proof:* The earlier-played one would have caused the adjacent cell to be reddened. $\\square$\n\nConsequence: a blue cell $w$ in (say) the SE corner of its window can only \"extend\" through neighbors $\\{x, y, z\\}$ inside that same window. So the blue connected region lies within a single $2 \\times 2$ window, giving $\\leq 4$ squares. $\\blacksquare$\n\n*(Tetromino check: only the $O$-tetromino is realizable — $I, L, J, T, S, Z$ all contain three colinear adjacent cells or cross a window boundary illegally. And an $O$ uses one cell from each of four windows, so it is fully surrounded by red and cannot grow.)*\n\nSource: https://web.evanchen.cc/exams/JMO-2023-notes.pdf"
+    },
+    {
+      "number": 5,
+      "statement": "Positive integers $a$ and $N$ are fixed, and $N$ positive integers are written on a blackboard. Alice and Bob play the following game. On Alice's turn, she must replace some integer $n$ on the board with $n + a$, and on Bob's turn he must replace some even integer $n$ on the board with $n/2$. Alice goes first and they alternate turns. If on his turn Bob has no valid moves, the game ends.\n\nAfter analyzing the $N$ integers on the board, Bob realizes that, regardless of what moves Alice makes, he will be able to force the game to end eventually. Show that, in fact, for this value of $a$ and these $N$ integers on the board, the game is guaranteed to end regardless of Alice's or Bob's moves.\n\n*(Note: This problem also appeared as USAMO 2023 Problem 4.)*",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAJMO 2023, Problem 5 (proposed by Carl Schildkraut)",
+      "topicKey": "number_theory.p_adic_valuation_game",
+      "techniqueTags": ["2_adic_valuation", "monovariant", "strategy_stealing_dichotomy"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "Let $S$ denote the multiset of numbers on the board. Use $\\nu_2(x)$ = the $2$-adic valuation of $x$.\n\n$N = 1$ is trivial. Assume $N \\geq 2$. We prove the contrapositive dichotomy:\n\n**Claim A.** If every $x \\in S$ satisfies $\\nu_2(x) < \\nu_2(a)$, then the game must terminate regardless of play.\n\n*Proof.* Alice's move ($n \\mapsto n + a$): since $\\nu_2(n) < \\nu_2(a)$, we have $\\nu_2(n + a) = \\nu_2(n)$. So $\\nu_2$ values are invariant under Alice's moves and stay $< \\nu_2(a)$. Bob's move ($n \\mapsto n/2$): $\\nu_2$ decreases by exactly $1$. The game ends when every entry has $\\nu_2 = 0$. Total moves of Bob: exactly $\\sum_{x \\in S} \\nu_2(x)$ no matter what. $\\square$\n\n**Claim B.** If some $x \\in S$ has $\\nu_2(x) \\geq \\nu_2(a)$, then Alice can force the game forever.\n\n*Proof.* Let $x$ track this entry. Alice's strategy: on her turn, if currently $\\nu_2(x) = \\nu_2(a)$, operate on $x$ (this gives $\\nu_2(x + a) > \\nu_2(a)$). Otherwise, $\\nu_2(x) > \\nu_2(a)$; operate on any other entry. By induction:\n- Before each of Bob's turns, $\\nu_2(x) > \\nu_2(a) \\geq 1$, so $x$ is even and Bob has a legal move on $x$.\n- After Bob's turn, halving any entry leaves $\\nu_2(x) \\geq \\nu_2(a)$ (either Bob halved $x$, dropping by 1, or didn't touch $x$).\n\nThe game never ends. $\\square$\n\nBob's ability to force termination ($\\Leftrightarrow$ not Claim B) means Claim A holds, hence the game ends regardless. $\\blacksquare$\n\nSource: https://web.evanchen.cc/exams/JMO-2023-notes.pdf"
+    },
+    {
+      "number": 6,
+      "statement": "Isosceles triangle $ABC$, with $AB = AC$, is inscribed in circle $\\omega$. Let $D$ be an arbitrary point inside $BC$ such that $BD \\neq DC$. Ray $AD$ intersects $\\omega$ again at $E$ (other than $A$). Point $F$ (other than $E$) is chosen on $\\omega$ such that $\\angle DFE = 90^\\circ$. Line $FE$ intersects rays $AB$ and $AC$ at points $X$ and $Y$, respectively. Prove that $\\angle XDE = \\angle EDY$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAJMO 2023, Problem 6 (proposed by Anton Trygub)",
+      "topicKey": "geometry.symmetry_and_radical_axis",
+      "techniqueTags": ["radical_axis_symmetry", "congruent_circles_reflection", "directed_angles"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Angle-chase / radical-axis proof.**\n\nSince $AB = AC$ and $\\angle BDA + \\angle CDA = 180^\\circ$, the circles $(BDA)$ and $(CDA)$ are congruent and reflections of each other across line $DE$ (they have the same radius and share chord through $D$).\n\nThe circle $(DEF)$ is symmetric across line $DE$ (its diameter is along $DE$, since $\\angle DFE = 90^\\circ$).\n\nNow consider:\n- Radical axis of $(BDA)$ and $(DEF)$: this line passes through $D$ (both circles contain $D$) and through the second intersection $X'$. Since $X \\in AB$ and $X \\in FE$ and both lines are chords of these two circles in their respective parts, $XD$ is exactly this radical axis.\n- Radical axis of $(CDA)$ and $(DEF)$: similarly $YD$.\n\nBy the symmetry of $(BDA), (CDA), (DEF)$ all across line $DE$, the two radical axes are mirror images of each other. Hence line $DE$ bisects $\\angle XDY$, i.e. $\\angle XDE = \\angle EDY$. $\\blacksquare$\n\n*Alternative (harmonic).* Let $T$ on line $XEY$ satisfy $\\angle EDT = 90^\\circ$, and let $AT$ meet $\\omega$ again at $K$. Then $TD^2 = TF \\cdot TE = TK \\cdot TA$, so $\\angle DKT = 90^\\circ$ and $DK$ passes through antipode $M$ of $A$. Projecting $(AM; CB) = -1$ through $D$ then through $A$: $-1 = (TE; XY)$. Combined with $\\angle EDT = 90^\\circ$, this means $DE$ bisects $\\angle XDY$. $\\blacksquare$\n\nSource: https://web.evanchen.cc/exams/JMO-2023-notes.pdf"
+    }
+  ]
+}

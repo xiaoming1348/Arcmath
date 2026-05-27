@@ -24,7 +24,7 @@ curl -fsSL https://raw.githubusercontent.com/<your-org>/arcmath/main/deploy/hk-v
 # （如果 repo 还没 push，先 scp 这个目录上去）
 
 # 3. 切到 arcmath 用户
-ssh arcmath@<vps-ip>
+ssh arcmath@47.76.201.152
 git clone https://github.com/<your-org>/arcmath.git
 cd arcmath/apps/web
 
@@ -56,7 +56,7 @@ sudo bash ~/arcmath/deploy/hk-vps/setup-nginx.sh
 push 到 main 之后：
 
 ```bash
-ssh arcmath@<vps-ip> 'bash ~/arcmath/deploy/hk-vps/deploy.sh'
+ssh arcmath@47.76.201.152 'bash ~/arcmath/deploy/hk-vps/deploy.sh'
 ```
 
 或用同目录的 GitHub Actions workflow `.github/workflows/deploy-hk.yml`（在
@@ -67,7 +67,7 @@ HK_VPS_DEPLOY.md §6 里），push 后自动 SSH 部署。
 如果新 deploy 把站搞挂：
 
 ```bash
-ssh arcmath@<vps-ip>
+ssh arcmath@47.76.201.152
 cd ~/arcmath
 git log --oneline -5             # 找到上一个好的 commit
 git reset --hard <good-sha>

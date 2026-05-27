@@ -1949,6 +1949,51 @@ export const diagnosticProblemSets: DiagnosticSeedProblemSet[] = [
         answer: "56",
         solutionSketch:
           "Use coordinates or similarity to show that D and F must be the midpoints of AB and AC. Then the parallelogram sides have lengths 14 and 14."
+      }),
+      makeRealProblem({
+        exam: ExamTrack.AMC12,
+        prefix: "diag_amc12_mid",
+        number: 16,
+        sourceKey: "AMC12-2011-A-P16",
+        sourceLabel: "2011 AMC 12A · Problem 16",
+        difficultyBand: "HARD",
+        topicKey: "combinatorics.chromatic_polynomial",
+        techniqueTags: ["graph_coloring", "five_cycle_chromatic", "diagonal_constraint"],
+        statement:
+          "Each vertex of convex pentagon $ABCDE$ is to be assigned a color. There are $6$ colors to choose from, and the ends of each diagonal must have different colors. How many different colorings are possible?",
+        answer: "3120",
+        solutionSketch:
+          "The diagonals of pentagon ABCDE form a 5-cycle on the vertices (the pentagram). Adjacent vertices can share colors, but diagonal endpoints cannot. So count proper colorings of the 5-cycle C_5 with 6 colors. Standard formula: number of proper k-colorings of C_n equals (k-1)^n + (-1)^n (k-1). For n = 5, k = 6: 5^5 - 5 = 3125 - 5 = 3120."
+      }),
+      makeRealProblem({
+        exam: ExamTrack.AMC12,
+        prefix: "diag_amc12_mid",
+        number: 17,
+        sourceKey: "AMC12-2013-A-P19",
+        sourceLabel: "2013 AMC 12A · Problem 19",
+        difficultyBand: "HARD",
+        topicKey: "geometry.power_of_a_point",
+        techniqueTags: ["power_of_a_point", "integer_diophantine_factoring", "triangle_inequality_check"],
+        statement:
+          "In $\\triangle ABC$, $AB=86$ and $AC=97$. A circle with center $A$ and radius $AB$ intersects $\\overline{BC}$ at points $B$ and $X$. Moreover, $\\overline{BX}$ and $\\overline{CX}$ have integer lengths. What is $BC$?",
+        answer: "61",
+        solutionSketch:
+          "Power of point C with respect to circle centered at A radius 86: CX · CB = CA^2 - AB^2 = 97^2 - 86^2 = 9409 - 7396 = 2013 = 3 · 11 · 61. With BX, CX positive integers and CB = BX + CX, search for factor pair (CX, CB) of 2013 satisfying the triangle inequality. Try CX = 33, CB = 61: then BX = 28. Check triangle inequality with sides 86, 97, 61: all satisfied. So BC = 61."
+      }),
+      makeRealProblem({
+        exam: ExamTrack.AMC12,
+        prefix: "diag_amc12_mid",
+        number: 18,
+        sourceKey: "AMC12-2014-A-P16",
+        sourceLabel: "2014 AMC 12A · Problem 16",
+        difficultyBand: "HARD",
+        topicKey: "number_theory.digit_sum_pattern",
+        techniqueTags: ["multiplication_pattern", "digit_sum_arithmetic", "induction_on_digit_count"],
+        statement:
+          "The product $(8)(\\underbrace{88\\dots8}_{k\\text{ digits}})$, where the second factor has $k$ digits, is an integer whose digits have a sum of $1000$. What is $k$?",
+        answer: "991",
+        solutionSketch:
+          "Compute small cases: 8 · 8 = 64 (digit sum 10), 8 · 88 = 704 (sum 11), 8 · 888 = 7104 (sum 12), 8 · 8888 = 71104 (sum 13). Pattern: 8 · (k 8's) = 7 followed by (k-1) 1's then 04, so digit sum is 7 + (k-1) + 0 + 4 = k + 10. Wait — recheck: 8·8 = 64 (sum 10, k=1, so k+9 = 10 ✓), 8·88 = 704 (sum 11, k=2, k+9=11 ✓), 8·888 = 7104 (sum 12, k=3 ✓). So digit sum = k + 9. Setting k + 9 = 1000 gives k = 991."
       })
     ]
   },

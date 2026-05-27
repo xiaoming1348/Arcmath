@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "@arcmath/db";
 import { authOptions } from "@/lib/auth";
-import { canManageOrganization, getActiveOrganizationMembership } from "@/lib/organizations";
+import { canManageOrganization, canTeach, getActiveOrganizationMembership } from "@/lib/organizations";
 import { withPepper } from "@/lib/password";
 import { resolveLocale } from "@/i18n/server";
 import { OrgAdminOverviewPanel } from "./org-admin-overview-panel";
@@ -397,6 +397,20 @@ export default async function OrganizationPage({ searchParams }: OrganizationPag
             </p>
           </div>
         </div>
+
+        {/* Phase C-4: Roster CTA for teachers (and admins). Lets a
+            teacher jump straight to the per-student progress overview
+            without scrolling through the full membership list. We use
+            canTeach so plain TEACHER role also sees this — they were
+            previously stuck navigating individual student URLs by
+            knowing the userId, which obviously doesn't scale. */}
+        {canTeach(membership.role) ? (
+          <div className="pt-1">
+            <Link href="/org/students" className="btn-primary">
+              View student progress →
+            </Link>
+          </div>
+        ) : null}
       </section>
 
       {/* Roster-based admin overview is now the only path to create

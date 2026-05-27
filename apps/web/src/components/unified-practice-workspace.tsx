@@ -1,13 +1,19 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import { trpc } from "@/lib/trpc/client";
 import { MathFieldEditor } from "@/components/math-field-editor";
+import {
+  HandwritingOcrUploader,
+  type OcrUploadResult
+} from "@/components/handwriting-ocr-uploader";
+import { HandwritingMultiStepModal } from "@/components/handwriting-multi-step-modal";
+import { resizeImageDataUrl } from "@/lib/image-resize";
 import { useT } from "@/i18n/client";
-import type { Messages } from "@/i18n/dictionary";
+import type { Locale, Messages } from "@/i18n/dictionary";
 
 type UnifiedPracticeWorkspaceProps = {
   problemId: string;
@@ -125,6 +131,365 @@ const VERDICT_TAG_STATUS: Record<VerdictTone, string | undefined> = {
   pending: undefined
 };
 
+/**
+ * Multi-step OCR launcher (Sprint 2). One button + hidden file
+ * input. The student picks a photo containing several steps, the
+ * vision API segments them, and a review modal pops up. After
+ * accept-on-each-step, the parent commits via repeated addStep
+ * calls.
+ *
+ * Why a separate component (vs jamming into OcrAwareMathEditor):
+ *   - Single-step OCR is per-edit (filling one field). Multi-step
+ *     OCR is per-attempt (filling N new steps). The two have
+ *     different mental models and different commit paths.
+ *   - The composer area can host both UIs side-by-side so students
+ *     can pick the right tool for the page they just photographed.
+ */
+function MultiStepOcrLauncher(props: {
+  locale: Locale;
+  attemptId: string;
+  disabled?: boolean;
+  /**
+   * Called once per accepted step, in order. The parent fires
+   * `addStep` mutations and updates the visible step list. The
+   * launcher closes the modal once all callbacks have resolved.
+   */
+  onCommitOne: (latex: string) => Promise<void>;
+}) {
+  const { t } = useT();
+  const ocrMutation = trpc.unifiedAttempt.ocrHandwritingMultiStep.useMutation();
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [phase, setPhase] = useState<
+    "idle" | "resizing" | "calling" | "review" | "committing" | "error"
+  >("idle");
+  const [steps, setSteps] = useState<
+    Array<{
+      stepNumber: number;
+      latex: string;
+      confidence: "high" | "medium" | "low" | "none";
+      notes: string | null;
+    }>
+  >([]);
+  const [imageNotes, setImageNotes] = useState<string | null>(null);
+  const [errorMessageKey, setErrorMessageKey] = useState<keyof Messages | null>(
+    null
+  );
+  const [quotaInfo, setQuotaInfo] = useState<{
+    used: number;
+    limit: number;
+    resetsAtIso: string;
+  } | null>(null);
+
+  const reset = useCallback(() => {
+    setPhase("idle");
+    setSteps([]);
+    setImageNotes(null);
+    setErrorMessageKey(null);
+    setQuotaInfo(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  }, []);
+
+  const trigger = useCallback(() => {
+    if (props.disabled || phase === "resizing" || phase === "calling") return;
+    setErrorMessageKey(null);
+    setQuotaInfo(null);
+    fileInputRef.current?.click();
+  }, [props.disabled, phase]);
+
+  const handleFile = useCallback(
+    async (file: File | undefined) => {
+      if (!file) return;
+      if (!file.type.startsWith("image/")) {
+        setPhase("error");
+        setErrorMessageKey("attempt.ocr_error_wrong_type");
+        return;
+      }
+      if (file.size > 10 * 1024 * 1024) {
+        setPhase("error");
+        setErrorMessageKey("attempt.ocr_error_too_big");
+        return;
+      }
+      try {
+        setPhase("resizing");
+        const dataUrl = await resizeImageDataUrl(file);
+        setPhase("calling");
+        const result = await ocrMutation.mutateAsync({
+          imageDataUrl: dataUrl,
+          uiLocale: props.locale,
+          attemptId: props.attemptId
+        });
+        if (!result.ok) {
+          setPhase("error");
+          if (result.reason === "quota_exceeded") {
+            setQuotaInfo(result.quota);
+            setErrorMessageKey("attempt.ocr_quota_exceeded");
+          } else {
+            setErrorMessageKey("attempt.ocr_unavailable");
+          }
+          return;
+        }
+        setSteps(result.steps);
+        setImageNotes(result.imageNotes);
+        setPhase("review");
+      } catch (err) {
+        console.error("[multi-step-ocr-launcher] failed", err);
+        setPhase("error");
+        setErrorMessageKey("attempt.ocr_error_generic");
+      }
+    },
+    [ocrMutation, props.attemptId, props.locale]
+  );
+
+  const handleCommit = useCallback(
+    async (acceptedLatex: string[]) => {
+      setPhase("committing");
+      for (const latex of acceptedLatex) {
+        // Sequential — preserves the same per-step grading order
+        // that typed input gives. Each addStep triggers grading and
+        // re-fetches the attempt; concurrent calls would race on
+        // stepIndex.
+        await props.onCommitOne(latex);
+      }
+      reset();
+    },
+    [props, reset]
+  );
+
+  const triggerLabel =
+    phase === "resizing"
+      ? t("attempt.ocr_resizing")
+      : phase === "calling"
+        ? t("attempt.ocr_calling")
+        : t("attempt.ocr_multi_step_trigger");
+
+  const isBusy = phase === "resizing" || phase === "calling";
+
+  return (
+    <div className="space-y-2">
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/png, image/jpeg, image/webp"
+        capture="environment"
+        className="sr-only"
+        onChange={(e) => handleFile(e.target.files?.[0])}
+        disabled={props.disabled || isBusy}
+        aria-hidden
+      />
+      <div className="flex flex-wrap items-center gap-2">
+        <button
+          type="button"
+          className="btn-secondary"
+          onClick={trigger}
+          disabled={props.disabled || isBusy}
+        >
+          {triggerLabel}
+        </button>
+        {phase === "error" ? (
+          <button
+            type="button"
+            className="text-xs text-slate-500 hover:text-slate-700"
+            onClick={reset}
+          >
+            {t("attempt.ocr_retry")}
+          </button>
+        ) : null}
+      </div>
+      {phase === "idle" ? (
+        <p className="text-[11px]" style={{ color: "var(--subtle)" }}>
+          {t("attempt.ocr_multi_step_hint")}
+        </p>
+      ) : null}
+      {phase === "error" && errorMessageKey ? (
+        <p className="text-xs text-red-600" role="alert">
+          {errorMessageKey === "attempt.ocr_quota_exceeded" && quotaInfo
+            ? t("attempt.ocr_quota_exceeded", {
+                used: String(quotaInfo.used),
+                limit: String(quotaInfo.limit)
+              })
+            : t(errorMessageKey)}
+        </p>
+      ) : null}
+      <HandwritingMultiStepModal
+        open={phase === "review" || phase === "committing"}
+        steps={steps}
+        imageNotes={imageNotes}
+        locale={props.locale === "zh" ? "zh" : "en"}
+        busy={phase === "committing"}
+        onClose={() => {
+          if (phase !== "committing") reset();
+        }}
+        onCommit={handleCommit}
+      />
+    </div>
+  );
+}
+
+/**
+ * Wraps MathFieldEditor with the parallel photo-OCR input path
+ * (Sprint 1). Owns the OCR seed state so a successful scan refills
+ * the math field, and bumps a remount key when the seed changes so
+ * MathLive picks up the new initialValue cleanly.
+ *
+ * Design promise — typing is the primary path. The OCR button is
+ * an OR alternative, not a wizard. If OCR returns low confidence
+ * or fails entirely, the student just keeps typing — nothing about
+ * the editor itself changes.
+ */
+function OcrAwareMathEditor(props: {
+  baseInitialValue: string;
+  /** Remount key from the parent (e.g. composerKey for the add-step composer) */
+  outerKey?: string | number;
+  onSave: (latex: string) => void;
+  onCancel?: () => void;
+  onDelete?: () => void;
+  saveLabel?: string;
+  busy?: boolean;
+  autoFocus?: boolean;
+  locale: Locale;
+}) {
+  const { t } = useT();
+  const ocrMutation = trpc.unifiedAttempt.ocrHandwritingStep.useMutation();
+  // The "seed" value the math field starts with on this mount. Starts
+  // as `baseInitialValue` (the step's saved LaTeX, or "" for new
+  // steps) and is replaced by OCR output when a scan succeeds. The
+  // student can then edit before saving.
+  const [seedValue, setSeedValue] = useState(props.baseInitialValue);
+  // Bumped on every successful OCR to force MathLive remount so the
+  // new seed actually appears in the field. (MathLive doesn't
+  // reliably hot-swap value when the parent re-renders without a
+  // unique key.) Combined with `outerKey` for composer resets.
+  const [ocrRefillKey, setOcrRefillKey] = useState(0);
+  // Surfaces alongside the field to tell the student how much to
+  // trust the OCR. Cleared when they next save / cancel.
+  const [lastConfidence, setLastConfidence] = useState<
+    OcrUploadResult extends infer R ? (R extends { ok: true } ? R["confidence"] : null) : null
+  >(null);
+  const [lastNotes, setLastNotes] = useState<string | null>(null);
+  // Distinct error states the toast layer below renders.
+  const [errorBanner, setErrorBanner] = useState<
+    "unavailable" | "client_exception" | null
+  >(null);
+
+  const handleOcr = useCallback(
+    async (imageDataUrl: string): Promise<OcrUploadResult> => {
+      try {
+        const result = await ocrMutation.mutateAsync({
+          imageDataUrl,
+          uiLocale: props.locale
+        });
+        if (!result.ok) {
+          setErrorBanner("unavailable");
+          return { ok: false, reason: "vision_unavailable" };
+        }
+        setErrorBanner(null);
+        if (result.confidence === "none") {
+          // Model couldn't read it. Don't refill — just surface the
+          // hint and let the student retry with a better photo.
+          setLastConfidence("none");
+          setLastNotes(result.notes);
+          return result;
+        }
+        setSeedValue(result.latex);
+        setOcrRefillKey((n) => n + 1);
+        setLastConfidence(result.confidence);
+        setLastNotes(result.notes);
+        return result;
+      } catch (err) {
+        console.error("[ocr-aware-editor] mutation failed", err);
+        setErrorBanner("client_exception");
+        return { ok: false, reason: "mutation_exception" };
+      }
+    },
+    [ocrMutation, props.locale]
+  );
+
+  const confidenceMessage =
+    lastConfidence === "high"
+      ? t("attempt.ocr_confidence_high")
+      : lastConfidence === "medium"
+        ? t("attempt.ocr_confidence_medium")
+        : lastConfidence === "low"
+          ? t("attempt.ocr_confidence_low")
+          : lastConfidence === "none"
+            ? t("attempt.ocr_confidence_none")
+            : null;
+
+  const confidenceTone =
+    lastConfidence === "high"
+      ? "text-emerald-700"
+      : lastConfidence === "medium"
+        ? "text-amber-700"
+        : lastConfidence === "low"
+          ? "text-orange-700"
+          : "text-slate-500";
+
+  // Combine the outer key (composer reset) with the OCR refill key
+  // so either trigger remounts MathLive cleanly.
+  const editorKey = `${props.outerKey ?? "static"}::${ocrRefillKey}`;
+
+  return (
+    <>
+      <MathFieldEditor
+        key={editorKey}
+        initialValue={seedValue}
+        onSave={(latex) => {
+          // Clear OCR meta on save — next edit cycle starts fresh.
+          setLastConfidence(null);
+          setLastNotes(null);
+          setErrorBanner(null);
+          props.onSave(latex);
+        }}
+        onCancel={
+          props.onCancel
+            ? () => {
+                setLastConfidence(null);
+                setLastNotes(null);
+                setErrorBanner(null);
+                props.onCancel?.();
+              }
+            : undefined
+        }
+        onDelete={props.onDelete}
+        saveLabel={props.saveLabel}
+        busy={props.busy}
+        autoFocus={props.autoFocus}
+        ocrSlot={
+          <HandwritingOcrUploader
+            locale={props.locale === "zh" ? "zh" : "en"}
+            disabled={props.busy}
+            callOcr={handleOcr}
+            onOcrResult={(r) => {
+              // No-op for the success path — handled inside callOcr.
+              // For visibility / future analytics we could log here.
+              if (!r.ok) console.warn("[ocr-aware-editor]", r.reason);
+            }}
+          />
+        }
+      />
+      {confidenceMessage ? (
+        <p className={`mt-2 text-xs ${confidenceTone}`} aria-live="polite">
+          {confidenceMessage}
+          {lastNotes ? <span className="ml-2 text-slate-500">· {lastNotes}</span> : null}
+        </p>
+      ) : null}
+      {/* The high-confidence case still benefits from a one-line "review
+          before save" reminder — even at high confidence, OCR can flip
+          a sign and we want students to glance once. */}
+      {lastConfidence === "high" ? (
+        <p className="mt-1 text-[11px]" style={{ color: "var(--subtle)" }}>
+          {t("attempt.ocr_review_prompt")}
+        </p>
+      ) : null}
+      {errorBanner === "unavailable" ? (
+        <p className="mt-2 text-xs text-amber-700" role="alert">
+          {t("attempt.ocr_unavailable")}
+        </p>
+      ) : null}
+    </>
+  );
+}
+
 function VerdictBadge({ verdict, backend }: { verdict: string; backend: string }) {
   const { t } = useT();
   const meta = VERDICT_TONE[verdict] ?? VERDICT_TONE.PENDING;
@@ -208,7 +573,7 @@ function StepCard({
   onDelete: () => void;
   busy: boolean;
 }) {
-  const { t } = useT();
+  const { t, locale } = useT();
   const rendered = useMemo(() => renderLatexBlock(step.latexInput), [step.latexInput]);
   const showVerdict = step.verdict !== "PENDING";
   return (
@@ -246,14 +611,16 @@ function StepCard({
 
       {isEditing ? (
         <div className="mt-3">
-          <MathFieldEditor
-            initialValue={step.latexInput}
+          <OcrAwareMathEditor
+            baseInitialValue={step.latexInput}
+            outerKey={step.id}
             onSave={onSaveEdit}
             onCancel={onCancelEdit}
             onDelete={onDelete}
             saveLabel={t("attempt.step_save")}
             busy={busy}
             autoFocus
+            locale={locale}
           />
         </div>
       ) : (
@@ -479,7 +846,7 @@ export function UnifiedPracticeWorkspace({
   choiceOptions,
   hintTutorEnabled = true
 }: UnifiedPracticeWorkspaceProps) {
-  const { t } = useT();
+  const { t, locale } = useT();
   const utils = trpc.useUtils();
   const stateQuery = trpc.unifiedAttempt.getState.useQuery(
     { problemId, practiceRunId: practiceRunId ?? undefined },
@@ -901,12 +1268,28 @@ export function UnifiedPracticeWorkspace({
             >
               {t("attempt.add_step_label", { n: steps.length + 1 })}
             </p>
-            <MathFieldEditor
-              key={composerKey}
-              initialValue=""
+            {/* Sprint 2: batch multi-step OCR sits above the single
+                composer field. Students who photograph a full page can
+                use this to fill multiple steps at once via the review
+                modal; students typing or doing single-step OCR ignore
+                it. */}
+            {attempt ? (
+              <div className="mb-3">
+                <MultiStepOcrLauncher
+                  locale={locale}
+                  attemptId={attempt.id}
+                  disabled={addStep.isPending}
+                  onCommitOne={handleAddStep}
+                />
+              </div>
+            ) : null}
+            <OcrAwareMathEditor
+              baseInitialValue=""
+              outerKey={composerKey}
               onSave={handleAddStep}
               saveLabel={t("attempt.add_step_button")}
               busy={addStep.isPending}
+              locale={locale}
             />
             {addStep.isPending ? (
               <p

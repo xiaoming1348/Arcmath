@@ -3,7 +3,18 @@ import { getServerSession } from "next-auth";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@arcmath/db";
 import { authOptions } from "@/lib/auth";
-import { canManageOrganization, getActiveOrganizationMembership } from "@/lib/organizations";
+import { canTeach, getActiveOrganizationMembership } from "@/lib/organizations";
+import {
+  resolveFeedbackLocaleForUser,
+  resolveLocale
+} from "@/i18n/server";
+import { translatorImpl as translator } from "@/i18n/dictionary";
+import {
+  buildStudentProgressReport,
+  type ProgressAttemptInput
+} from "@/lib/ai/student-progress-report";
+import { Card, Eyebrow, Section, Tag } from "@/components/ui";
+import { TopicMasteryGrid } from "@/components/topic-mastery-grid";
 
 type OrganizationStudentPageProps = {
   params: Promise<{
@@ -55,7 +66,13 @@ export default async function OrganizationStudentPage({ params }: OrganizationSt
   }
 
   const membership = await getActiveOrganizationMembership(prisma, session.user.id);
-  if (!membership || !canManageOrganization(membership.role)) {
+  // Phase C-4: TEACHER role (not just OWNER/ADMIN) can view a student's
+  // progress detail. Teachers don't get the "edit org" surfaces; they
+  // get read-only visibility into the students they teach so they can
+  // triage who needs help. Stricter gates (e.g. only show students in
+  // the teacher's own classes) are a later iteration once we have
+  // larger orgs — for the pilot, "same org as the teacher" is enough.
+  if (!membership || !canTeach(membership.role)) {
     redirect("/org");
   }
 
@@ -82,7 +99,21 @@ export default async function OrganizationStudentPage({ params }: OrganizationSt
     notFound();
   }
 
-  const [practiceRuns, reportSnapshots] = await Promise.all([
+  // Phase C-4: also pull lifetime attempts to compute the same
+  // progress report the student sees on /me/progress. We rebuild
+  // here (vs caching in the DB) because:
+  //  - The Phase A/B report is ~50ms to compute even for heavy users
+  //  - Teachers might check several students in rapid succession;
+  //    cache invalidation on every student attempt would be more
+  //    complex than just recomputing
+  //  - We skip the LLM personalized plan branch (passing locale="en"
+  //    with no extra opts) — the teacher doesn't need the student's
+  //    motivational pep-talk, just the data
+  const uiLocale = await resolveLocale();
+  const feedbackLocale = await resolveFeedbackLocaleForUser(userId);
+  const t = translator(uiLocale);
+
+  const [practiceRuns, reportSnapshots, lifetimeAttempts] = await Promise.all([
     prisma.practiceRun.findMany({
       where: {
         organizationId: membership.organizationId,
@@ -137,6 +168,27 @@ export default async function OrganizationStudentPage({ params }: OrganizationSt
           }
         }
       }
+    }),
+    // Lifetime SUBMITTED attempts (across all problem sets, not just
+    // org-scoped) — gives the same accuracy/topic mastery the student
+    // sees themselves.
+    prisma.problemAttempt.findMany({
+      where: { userId, status: "SUBMITTED" },
+      orderBy: { createdAt: "asc" },
+      select: {
+        id: true,
+        isCorrect: true,
+        hintsUsedCount: true,
+        createdAt: true,
+        submittedAt: true,
+        problem: {
+          select: {
+            topicKey: true,
+            difficultyBand: true,
+            problemSet: { select: { contest: true } }
+          }
+        }
+      }
     })
   ]);
 
@@ -158,6 +210,32 @@ export default async function OrganizationStudentPage({ params }: OrganizationSt
   const topTopics = Array.from(reinforcementTopicCounts.entries())
     .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
     .slice(0, 5);
+
+  // Phase C-4: lifetime progress report, same engine /me/progress
+  // uses. We pass no snapshots (so we don't accidentally trigger a
+  // write from the teacher view — snapshots are owned by the student
+  // page) and the student's own feedbackLocale so any LLM note is
+  // rendered in the language the student would see.
+  const attemptsForReport: ProgressAttemptInput[] = lifetimeAttempts.map(
+    (a) => ({
+      id: a.id,
+      isCorrect: a.isCorrect,
+      hintsUsedCount: a.hintsUsedCount,
+      createdAt: a.createdAt,
+      submittedAt: a.submittedAt,
+      problem: {
+        topicKey: a.problem.topicKey,
+        difficultyBand: a.problem.difficultyBand,
+        problemSet: { contest: a.problem.problemSet.contest }
+      }
+    })
+  );
+  const progressReport = await buildStudentProgressReport({
+    userId,
+    attempts: attemptsForReport,
+    locale: feedbackLocale,
+    snapshots: []
+  });
 
   return (
     <main className="motion-rise space-y-4">
@@ -196,6 +274,142 @@ export default async function OrganizationStudentPage({ params }: OrganizationSt
           </div>
         </div>
       </section>
+
+      {/* Phase C-4: Lifetime mastery + strengths/weaknesses. Same engine
+          as /me/progress but stripped to the data a teacher acts on
+          (no LLM personalized plan, no recommendations carousel — the
+          teacher wants triage data, not a study schedule). */}
+      {progressReport.totalAttempts > 0 ? (
+        <Section>
+          <Card className="space-y-4">
+            <Eyebrow>{t("org.students.lifetime_eyebrow")}</Eyebrow>
+            <div className="grid gap-3 md:grid-cols-4">
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                  {t("org.students.lifetime_attempts")}
+                </p>
+                <p className="mt-2 text-2xl font-semibold text-slate-900">
+                  {progressReport.totalAttempts}
+                </p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                  {t("org.students.lifetime_accuracy")}
+                </p>
+                <p className="mt-2 text-2xl font-semibold text-slate-900">
+                  {Math.round(progressReport.lifetimeAccuracy * 100)}%
+                </p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                  {t("org.students.lifetime_active_days")}
+                </p>
+                <p className="mt-2 text-2xl font-semibold text-slate-900">
+                  {progressReport.activeDaysLast14} / 14
+                </p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                  {t("org.students.lifetime_hint_reliance")}
+                </p>
+                <p className="mt-2 text-2xl font-semibold text-slate-900">
+                  {Math.round(progressReport.hintReliance * 100)}%
+                </p>
+              </div>
+            </div>
+
+            <div className="grid gap-3 md:grid-cols-2">
+              <div>
+                <p
+                  className="text-[11px] font-semibold uppercase"
+                  style={{
+                    color: "var(--success)",
+                    letterSpacing: "0.12em",
+                    fontFamily: "var(--font-mono-custom)"
+                  }}
+                >
+                  {t("org.students.strengths_heading")}
+                </p>
+                {progressReport.topStrengths.length === 0 ? (
+                  <p className="mt-2 text-sm" style={{ color: "var(--muted)" }}>
+                    {t("org.students.strengths_empty")}
+                  </p>
+                ) : (
+                  <ul className="mt-2 space-y-1 text-sm">
+                    {progressReport.topStrengths.slice(0, 4).map((s) => (
+                      <li key={s.topicKey} className="flex justify-between gap-3">
+                        <span style={{ color: "var(--foreground)" }}>{s.label}</span>
+                        <Tag status="verified">{Math.round(s.accuracy * 100)}%</Tag>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+              <div>
+                <p
+                  className="text-[11px] font-semibold uppercase"
+                  style={{
+                    color: "var(--warning)",
+                    letterSpacing: "0.12em",
+                    fontFamily: "var(--font-mono-custom)"
+                  }}
+                >
+                  {t("org.students.weaknesses_heading")}
+                </p>
+                {progressReport.topWeaknesses.length === 0 ? (
+                  <p className="mt-2 text-sm" style={{ color: "var(--muted)" }}>
+                    {t("org.students.weaknesses_empty")}
+                  </p>
+                ) : (
+                  <ul className="mt-2 space-y-1 text-sm">
+                    {progressReport.topWeaknesses.slice(0, 4).map((w) => (
+                      <li key={w.topicKey} className="flex justify-between gap-3">
+                        <span style={{ color: "var(--foreground)" }}>{w.label}</span>
+                        <Tag status="invalid">{Math.round(w.accuracy * 100)}%</Tag>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+          </Card>
+        </Section>
+      ) : null}
+
+      {/* Phase C-4: mastery grid. Identical component to /me/progress
+          so a teacher and student see the exact same picture, no
+          "their report and mine disagree" confusion. */}
+      {progressReport.topicMastery.length > 0 ? (
+        <Section>
+          <Card className="space-y-3">
+            <Eyebrow>{t("org.students.mastery_eyebrow")}</Eyebrow>
+            <h2 className="text-lg font-semibold text-slate-900">
+              {t("org.students.mastery_title")}
+            </h2>
+            <TopicMasteryGrid
+              topics={progressReport.topicMastery}
+              labels={{
+                levelNames: [
+                  t("progress.mastery_level_0"),
+                  t("progress.mastery_level_1"),
+                  t("progress.mastery_level_2"),
+                  t("progress.mastery_level_3"),
+                  t("progress.mastery_level_4"),
+                  t("progress.mastery_level_5")
+                ],
+                recommendation: {
+                  explore: t("progress.mastery_rec_explore"),
+                  review: t("progress.mastery_rec_review"),
+                  progress: t("progress.mastery_rec_progress"),
+                  advance: t("progress.mastery_rec_advance")
+                },
+                legend: t("progress.mastery_legend"),
+                empty: t("progress.mastery_empty")
+              }}
+            />
+          </Card>
+        </Section>
+      ) : null}
 
       <section className="grid gap-4 xl:grid-cols-2">
         <div className="surface-card space-y-3">

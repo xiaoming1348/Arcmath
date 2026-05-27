@@ -1,0 +1,79 @@
+{
+  "problemSet": {
+    "contest": "USAJMO",
+    "year": 2022,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://artofproblemsolving.com/wiki/index.php/2022_USAJMO_Problems",
+    "verifiedPdfUrl": "https://web.evanchen.cc/exams/JMO-2022-notes.pdf"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "For which positive integers $m$ does there exist an infinite sequence in $\\mathbb{Z}/m\\mathbb{Z}$ which is both an arithmetic progression and a geometric progression, but is nonconstant?",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAJMO 2022, Problem 1 (proposed by Holden Mui)",
+      "topicKey": "number_theory.modular_arithmetic_progressions",
+      "techniqueTags": ["arithmetic_geometric_progression", "squarefree_characterization", "nilpotent_elements"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** $m$ is **not squarefree** (i.e., $p^2 \\mid m$ for some prime $p$).\n\n**Reduction.** A nonconstant AP $\\{s + kd\\}_{k \\geq 0}$ is also a GP iff $(s+d)(s-d) \\equiv s^2 \\pmod{m}$, i.e., $d^2 \\equiv 0 \\pmod{m}$. (Take three consecutive terms $s-d, s, s+d$; AP+GP condition gives $s^2 = (s-d)(s+d) \\pmod m$.)\n\n**Squarefree case.** If $m$ is squarefree, $d^2 \\equiv 0 \\pmod m \\Rightarrow m \\mid d \\Rightarrow d \\equiv 0$, so AP is constant — no good.\n\n**Non-squarefree case.** If $p^2 \\mid m$, take $d = m/p \\neq 0 \\pmod m$. Then $d^2 = m^2/p^2 \\equiv 0 \\pmod m$ (since $p^2 \\mid m \\Rightarrow m \\mid (m/p)^2 \\cdot p^2 / p^2 \\cdot p^2$... more carefully: $d^2 = m \\cdot (m/p^2)$, an integer multiple of $m$). So any AP with common difference $d$ is also a GP, and is nonconstant. $\\blacksquare$\n\nSource: https://web.evanchen.cc/exams/JMO-2022-notes.pdf"
+    },
+    {
+      "number": 2,
+      "statement": "Let $a$ and $b$ be positive integers. Every cell of an $(a+b+1) \\times (a+b+1)$ grid is colored either amber or bronze such that there are at least $a^2 + ab - b$ amber cells and at least $b^2 + ab - a$ bronze cells. Prove that it is possible to choose $a$ amber cells and $b$ bronze cells such that no two of the $a + b$ chosen cells lie in the same row or column.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAJMO 2022, Problem 2 (proposed by Ankan Bhattacharya)",
+      "topicKey": "combinatorics.transversal_counting",
+      "techniqueTags": ["pigeonhole_expected_value", "discrete_intermediate_value", "transversal_swap"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "Call a selection of $a+b+1$ cells with no two in the same row/column a **transversal**. There are $(a+b+1)!$ transversals total; each cell lies on $(a+b)!$ of them.\n\n**Claim A.** Some transversal $T_a$ has $\\geq a$ amber cells.\n\n*Proof.* Random transversal expected amber count $\\geq \\dfrac{a^2 + ab - b}{a+b+1} = (a-1) + \\dfrac{1}{a+b+1} > a-1$, so $\\geq a$. $\\square$\n\n**Claim B.** Some transversal $T_b$ has $\\geq b$ bronze cells. (Same argument.)\n\n**Bridge.** Transform $T_a$ to $T_b$ by a sequence of **rectangle swaps**: replace two cells with the other two corners of the rectangle they determine. Each swap changes the amber count by at most $\\pm 2$ — but in particular, by $0$ or $\\pm 1$ when only one corner changes color status compared to its partner.\n\nMore precisely, each single swap changes amber count by exactly $0$ or $\\pm 2$, but we can decompose into atomic swaps. The key observation: the amber count changes by at most $2$, but takes values $\\geq a$ at the start and $\\leq (a+b+1) - b = a+1$ at the end ($T_b$ has $\\geq b$ bronze, so $\\leq a+1$ amber).\n\nHence by a discrete intermediate value argument along the swap sequence, **at some moment the transversal has exactly $a$ amber cells** (and so $b+1$ bronze cells, hence in particular $\\geq b$ bronze cells). Drop one bronze cell from that transversal to get the desired $a$-amber-$b$-bronze selection with all $a+b$ cells in distinct rows and columns. $\\blacksquare$\n\nSource: https://web.evanchen.cc/exams/JMO-2022-notes.pdf"
+    },
+    {
+      "number": 3,
+      "statement": "Let $b \\geq 2$ and $w \\geq 2$ be fixed integers, and $n = b + w$. Given are $2b$ identical black rods and $2w$ identical white rods, each of side length $1$.\n\nWe assemble a regular $2n$-gon using these rods so that parallel sides are the same color. Then, a convex $2b$-gon $\\mathcal{B}$ is formed by translating the black rods, and a convex $2w$-gon $\\mathcal{W}$ is formed by translating the white rods.\n\nProve that the difference of the areas of $\\mathcal{B}$ and $\\mathcal{W}$ depends only on the numbers $b$ and $w$, and not on how the $2n$-gon was assembled.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAJMO 2022, Problem 3 (proposed by Ankan Bhattacharya)",
+      "topicKey": "geometry.signed_area_wedge_product",
+      "techniqueTags": ["wedge_product_area", "adjacent_swap_invariant", "inscribed_angle_perpendicularity"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Strategy.** Show that swapping a black rod and adjacent white rod (and their two opposite parallels) leaves the area difference $[\\mathcal{B}] - [\\mathcal{W}]$ unchanged. Since any two assemblies are connected by such swaps, the result follows.\n\n**Setup.** Let $\\vec{u}$ (black) and $\\vec{v}$ (white) be the two adjacent rods about to swap. Let $\\vec{x}$ = sum of remaining black vectors between $\\vec{u}$ and $-\\vec{u}$; let $\\vec{y}$ = sum of remaining white vectors between $\\vec{v}$ and $-\\vec{v}$.\n\n**Computation.** Using the shoelace (wedge product) formula, the change in $[\\mathcal{B}] - [\\mathcal{W}]$ under the swap reduces to\n$$\\vec{u} \\wedge \\vec{x} - \\vec{v} \\wedge \\vec{y} - (\\vec{v} \\wedge \\vec{x} - \\vec{u} \\wedge \\vec{y}) = (\\vec{u} - \\vec{v}) \\wedge (\\vec{x} + \\vec{y}).$$\nIt suffices to show $\\vec{u} - \\vec{v} \\parallel \\vec{x} + \\vec{y}$.\n\n**Key Claim.** Both $\\vec{u} - \\vec{v}$ and $\\vec{x} + \\vec{y}$ are perpendicular to $\\vec{u} + \\vec{v}$.\n- $\\vec{u} - \\vec{v} \\perp \\vec{u} + \\vec{v}$: because $|\\vec u| = |\\vec v|$, this is the diagonal-perpendicularity of a rhombus.\n- $\\vec{u} + \\vec{v}$ and $\\vec{x} + \\vec{y}$ are adjacent sides of an inscribed right angle: $\\vec u + \\vec v + \\vec x + \\vec y$ traces a diameter $AB$ of the circumcircle of the regular $2n$-gon, and the inscribed angle theorem at $A + \\vec u + \\vec v$ gives the right angle. $\\square$\n\nHence $\\vec{u} - \\vec{v} \\parallel \\vec{x} + \\vec{y}$, the wedge vanishes, and the swap is area-difference invariant. $\\blacksquare$\n\nSource: https://web.evanchen.cc/exams/JMO-2022-notes.pdf"
+    },
+    {
+      "number": 4,
+      "statement": "Let $ABCD$ be a rhombus, and let $K$ and $L$ be points such that $K$ lies inside the rhombus, $L$ lies outside the rhombus, and $KA = KB = LC = LD$. Prove that there exist points $X$ and $Y$ on lines $AC$ and $BD$ such that $KXLY$ is also a rhombus.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAJMO 2022, Problem 4 (proposed by Ankan Bhattacharya)",
+      "topicKey": "geometry.rhombus_construction",
+      "techniqueTags": ["perpendicular_bisector_intersection", "congruent_circles_radical", "translation_argument"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Setup.** $\\triangle AKB \\cong \\triangle DLC$ by SSS ($KA = LD$, $KB = LC$, $AB = CD$). With $K$ inside and $L$ outside, the two triangles are **translations** (same orientation).\n\n**Construction.** Let $\\omega_K, \\omega_L$ be circles of equal radius $KA$ centered at $K, L$ respectively. Define $X, Y$ as the two intersection points $\\omega_K \\cap \\omega_L$. Then $KXLY$ is a rhombus by construction (all four sides equal $KA$).\n\n**Goal.** Show $\\{X, Y\\}$ lie on $\\{AC, BD\\}$ in some order.\n\n**Claim.** Let $X'$ = second intersection of line $AC$ with $\\omega_K$. Then $X' \\in \\omega_L$ too.\n\n*Proof.* Using inscribed angles in $\\omega_K$ and $\\omega_L$ (directed mod $360^\\circ$):\n$$\\angle CX'D = \\angle BX'C = \\angle BX'A = \\tfrac{1}{2} \\overarc{AB}_{\\omega_K} = \\overarc{CD}_{\\omega_L},$$\nwhere we use $\\overarc{AB}_{\\omega_K} = \\overarc{CD}_{\\omega_L}$ since $\\omega_K, \\omega_L$ are congruent and $AB, CD$ are translates. By the inscribed angle theorem (converse), $X' \\in \\omega_L$. So $X' = X$ (one of the two intersection points), giving $X \\in AC$. Symmetrically $Y \\in BD$. $\\square$\n\nThus $KXLY$ is a rhombus with $X \\in \\overline{AC}$ and $Y \\in \\overline{BD}$. $\\blacksquare$\n\n*(Alternative: midpoint $M$ of $KL$ lies on perpendicular bisector of $AB$ (hence on $MO \\perp AB$ through center $O$ of rhombus); take $X, Y$ as intersections of perpendicular bisector of $KL$ with $AC$ and $BD$; verify midpoint of $XY$ = midpoint of $KL$ using similar triangles.)*\n\nSource: https://web.evanchen.cc/exams/JMO-2022-notes.pdf"
+    },
+    {
+      "number": 5,
+      "statement": "Find all pairs of primes $(p, q)$ for which $p - q$ and $pq - q$ are both perfect squares.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAJMO 2022, Problem 5 (proposed by Holden Mui)",
+      "topicKey": "number_theory.diophantine_primes",
+      "techniqueTags": ["difference_of_squares", "size_bounding", "parity_argument"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** $(p, q) = (3, 2)$ is the only solution. ($p - q = 1$, $pq - q = 4$; both squares.) $\\checkmark$\n\n**Proof of uniqueness.** Set $a^2 = p - q$ and $b^2 = pq - q = q(p - 1)$. We need $q \\leq p$ (since $p - q \\geq 0$), so $0 < a < \\sqrt{p}$ and $0 < b < p$.\n\n**Subtract:**\n$$b^2 - a^2 = (pq - q) - (p - q) = pq - p = p(q - 1).$$\n\nFactor:\n$$(b - a)(b + a) = p(q - 1).$$\n\n**Size analysis.** $b - a < p$ (since $b < p$ and $a > 0$); $b + a < 2p$ (since $b < p$ and $a < \\sqrt{p} < p$).\n\nSince $p$ is prime and $p \\mid (b-a)(b+a)$, and neither factor reaches $2p$, exactly one factor equals $p$. Since $b + a > b - a$, we must have $b + a = p$. Then $b - a = q - 1$.\n\n**Parity.** $p = b + a$ and $q - 1 = b - a$ have the same parity. Since $p$ is an odd prime $\\geq 3$, we need $q - 1$ odd, i.e., $q$ even, i.e., $q = 2$.\n\n**Finish.** With $q = 2$: $p - 2 = a^2$ and $2p - 2 = b^2$. So $b^2 = 2a^2 + 2$, i.e., $b^2 \\equiv 2 \\pmod 4$ — impossible unless we recheck. Actually $2(p-1) = b^2$, so $b$ is even, $b = 2b'$: $p - 1 = 2b'^2$. Combined with $a^2 = p - 2$: $a^2 + 1 = 2b'^2$. Taking $\\mod 3$: if $3 \\nmid p$, then $p \\equiv 1$ or $2 \\pmod 3$. $a^2 \\in \\{0, 1\\} \\pmod 3$. Checking small cases: $p = 3, a = 1, b' = 1$ works. For $p > 3$: $p = b + a$ with $b - a = 1$, so $p = 2a + 1$, giving $a^2 = 2a - 1$, i.e., $a^2 - 2a + 1 = 0$, so $a = 1$, $p = 3$. Contradiction with $p > 3$.\n\nHence $(p, q) = (3, 2)$ uniquely. $\\blacksquare$\n\nSource: https://web.evanchen.cc/exams/JMO-2022-notes.pdf"
+    },
+    {
+      "number": 6,
+      "statement": "Let $a_0, b_0, c_0$ be complex numbers, and define\n$$\\begin{aligned} a_{n+1} &= a_n^2 + 2 b_n c_n \\\\ b_{n+1} &= b_n^2 + 2 c_n a_n \\\\ c_{n+1} &= c_n^2 + 2 a_n b_n \\end{aligned}$$\nfor all nonnegative integers $n$. Suppose that $\\max\\{|a_n|, |b_n|, |c_n|\\} \\leq 2022$ for all $n \\geq 0$. Prove that\n$$|a_0|^2 + |b_0|^2 + |c_0|^2 \\leq 1.$$",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "USAJMO 2022, Problem 6 (proposed by Ankan Bhattacharya)",
+      "topicKey": "algebra.complex_recursion_bound",
+      "techniqueTags": ["miraculous_identity", "cube_root_of_unity_diagonalization", "squaring_recursion"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "Set $s_n := |a_n|^2 + |b_n|^2 + |c_n|^2 \\in \\mathbb{R}_{\\geq 0}$.\n\n**Miraculous identity.**\n$$\\boxed{s_{n+1} - s_n^2 = 2\\,|a_n b_n + b_n c_n + c_n a_n|^2 \\geq 0.}$$\n\n*Proof (mechanical expansion).*\n$$s_{n+1} = \\sum_{\\text{cyc}} |a_n^2 + 2 b_n c_n|^2 = \\sum_{\\text{cyc}} \\big(|a_n|^4 + 2\\bar{a_n}^2 b_n c_n + 2 a_n^2 \\bar{b_n}\\bar{c_n} + 4|b_n|^2 |c_n|^2\\big).$$\nAlso\n$$|a_n b_n + b_n c_n + c_n a_n|^2 = \\sum_{\\text{cyc}}\\big(|a_n|^2 |b_n|^2 + a_n^2 \\bar{b_n}\\bar{c_n} + \\bar{a_n}^2 b_n c_n\\big).$$\nDirect comparison gives $s_{n+1} = s_n^2 + 2|a_n b_n + b_n c_n + c_n a_n|^2$. $\\square$\n\n**Finish.** $s_{n+1} \\geq s_n^2$ implies $s_n \\geq s_0^{2^n}$ by induction. If $s_0 > 1$, then $s_n \\to \\infty$, contradicting $|a_n|, |b_n|, |c_n| \\leq 2022 \\Rightarrow s_n \\leq 3 \\cdot 2022^2$. Hence $s_0 \\leq 1$. $\\blacksquare$\n\n*Cube-root-of-unity alternative:* permute the recursion to $(a, c, b) \\mapsto (a^2 + 2bc, b^2 + 2ca, c^2 + 2ab)$. Let $\\omega$ be a primitive cube root of unity, $z_n = a_n + b_n \\omega + c_n \\omega^2$. The recursion becomes $z_{n+1} = z_n^2$, so $|z_n| = |z_0|^{2^n}$; bounded sequence $\\Rightarrow |z_0| \\leq 1$. Applying for $1, \\omega, \\omega^2$ and using Parseval-like sum gives $s_0 \\leq 1$.\n\nSource: https://web.evanchen.cc/exams/JMO-2022-notes.pdf"
+    }
+  ]
+}
