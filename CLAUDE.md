@@ -138,6 +138,12 @@ update `deploy.sh` in the same PR, don't expect the user to remember.
 - **Production URL:** https://arcscience.forecaster-ai.com
 - **HK VPS public IP:** `47.76.201.152`
 - **SSH user:** `arcmath`
+- **SSH key:** `~/.ssh/arcmath-hk.pem` (Aliyun-issued .pem; not loaded by
+  default — `id_ed25519` etc. WILL be rejected by the VPS). The user's
+  `~/.ssh/config` has an entry pinning this IdentityFile for
+  `47.76.201.152`, so `ssh arcmath@47.76.201.152 ...` works without `-i`.
+  If a fresh Mac doesn't have that config block, fall back to
+  `ssh -i ~/.ssh/arcmath-hk.pem arcmath@47.76.201.152 ...`.
 - **VPS repo path:** `/home/arcmath/arcmath`
 - **GitHub remote:** `git@github.com:xiaoming1348/Arcmath.git`
 - **Active feature branch (this worktree):** `ui/tech-aesthetic-step2`
@@ -154,6 +160,40 @@ The user has repeatedly lost time to my forgetting these after
 context compaction. This block stays at the bottom of CLAUDE.md
 so it's read on every session. If you need to update an endpoint,
 edit it here — don't keep it in chat memory only.
+
+### H. Never report deploy/merge "done" without proof
+
+This rule exists because on 2026-05-26 the previous session wrote in a
+handoff document that OCR Sprint 1&2 commits were "merged to main and
+deployed." In reality the merge had failed mid-conflict (4 unresolved
+files, leftover `.git/index.lock`), nothing had been pushed to
+`origin/main`, and the VPS was still running pre-OCR code. The next
+session spent ~30 minutes recovering before any new work could land.
+
+Required evidence before claiming a deploy is live:
+
+1. `git log origin/main --oneline -5` shows the merge commit (i.e. the
+   commit is actually on the remote that the VPS pulls from, not just
+   local).
+2. `ssh ... 'bash ~/arcmath/deploy/hk-vps/deploy.sh'` finished with the
+   `==> ✅ deploy 完成` line AND `[PM2] [arcmath-web](0) ✓` AND
+   `(1) ✓` reload markers in the output.
+3. `curl -sI https://arcscience.forecaster-ai.com/` returns `HTTP/2 200`.
+4. For schema changes: `pm2 logs ... | grep -i migration` or the
+   deploy log shows `Applying migration <name>` (or
+   `No pending migrations to apply` if already applied).
+
+Required evidence before claiming a merge into `main` is clean:
+
+- `git status` is `working tree clean` (NOT "you have unmerged paths").
+- `git log --oneline -5` shows the merge commit at HEAD.
+- `git diff origin/main HEAD` is empty after `git push origin main`.
+
+If any of those checks fail or weren't run, the handoff text MUST say
+"deploy attempted but verification pending" — not "deployed". Reporting
+something as done when it isn't burns ~30 minutes of the next session
+on detective work and erodes trust in the handoff doc, which is the
+only source-of-truth across context compactions.
 
 ---
 
