@@ -649,6 +649,10 @@ export type Messages = {
   "org.students.last_active_days_ago": string;
   "org.students.filter_class_label": string;
   "org.students.filter_all_classes": string;
+  "org.students.export_csv": string;
+  "org.students.csv_col_correct": string;
+  "org.students.csv_col_joined": string;
+  "org.students.csv_col_classes": string;
   "org.students.lifetime_eyebrow": string;
   "org.students.lifetime_attempts": string;
   "org.students.lifetime_accuracy": string;
@@ -1532,6 +1536,10 @@ export const EN: Messages = {
   "org.students.last_active_days_ago": "{n} days ago",
   "org.students.filter_class_label": "Class",
   "org.students.filter_all_classes": "All classes",
+  "org.students.export_csv": "Export CSV",
+  "org.students.csv_col_correct": "Correct",
+  "org.students.csv_col_joined": "Joined",
+  "org.students.csv_col_classes": "Classes",
   "org.students.lifetime_eyebrow": "Lifetime progress",
   "org.students.lifetime_attempts": "Attempts",
   "org.students.lifetime_accuracy": "Accuracy",
@@ -2421,6 +2429,10 @@ export const ZH: Messages = {
   "org.students.last_active_days_ago": "{n} 天前",
   "org.students.filter_class_label": "班级",
   "org.students.filter_all_classes": "全部班级",
+  "org.students.export_csv": "导出 CSV",
+  "org.students.csv_col_correct": "正确数",
+  "org.students.csv_col_joined": "加入时间",
+  "org.students.csv_col_classes": "所属班级",
   "org.students.lifetime_eyebrow": "终身进度",
   "org.students.lifetime_attempts": "作答数",
   "org.students.lifetime_accuracy": "正确率",

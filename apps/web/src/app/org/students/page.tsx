@@ -229,6 +229,20 @@ export default async function OrganizationStudentsPage({
                 }}
               />
             ) : null}
+            {/* Plain <a> (not next/link): we want a hard navigation so
+                the browser triggers the file download dialog instead of
+                Next router-pushing the API route as a page. */}
+            <a
+              href={
+                selectedClassId
+                  ? `/api/org/students/export?classId=${encodeURIComponent(selectedClassId)}`
+                  : "/api/org/students/export"
+              }
+              className="btn-secondary"
+              download
+            >
+              {t("org.students.export_csv")}
+            </a>
           </div>
         </div>
       </Section>
