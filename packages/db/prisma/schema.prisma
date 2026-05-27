@@ -271,6 +271,8 @@ model User {
   attemptSteps                   AttemptStep[]
   auditLogEvents                 AuditLogEvent[]  @relation("AuditLogActor")
   ocrCallLogs                    OcrCallLog[]
+  parentInvitesAsStudent         ParentInvite[]   @relation("ParentInviteStudent")
+  parentInvitesIssued            ParentInvite[]   @relation("ParentInviteTeacher")
 }
 
 // One-shot email verification token. A new row is created at
@@ -323,6 +325,7 @@ model Organization {
   resources               OrganizationResource[]
   assignments             OrganizationAssignment[]
   auditLogEvents          AuditLogEvent[]
+  parentInvites           ParentInvite[]
 }
 
 model OrganizationMembership {
@@ -831,6 +834,52 @@ model OcrCallLog {
 
   @@index([userId, createdAt])
   @@index([createdAt])
+}
+
+/// Parent-invite tokens (Phase C-4). A teacher generates one of these
+/// to grant a parent read-only access to their child's progress without
+/// the parent creating an account. The magic-link URL is /parent/<token>;
+/// the parent's "session" is the token itself in the URL, so the URL
+/// must be treated as a credential.
+///
+/// Lifecycle:
+///   - Teacher submits the invite form → row created, expiresAt = now + 30d.
+///   - Resend sends an email with the magic link.
+///   - Parent clicks → consumedAt is set on first view (just for telemetry —
+///     re-visiting the same URL within expiresAt still works).
+///   - Teacher (future) can call revokedAt to nullify.
+///
+/// We intentionally don't store the parent as a User row. Adding parent
+/// accounts is a separate roadmap item; the invite-token model keeps
+/// the MVP scope tight.
+model ParentInvite {
+  id              String   @id @default(cuid())
+  /// 32-byte random hex (64 chars). Treated as a credential — never log.
+  token           String   @unique
+  studentUserId   String
+  parentEmail     String
+  invitedByUserId String
+  organizationId  String
+  /// Free-text label the teacher entered ("Mom", "Dad", "Guardian") —
+  /// shown back to the parent on the view page so they can confirm
+  /// they're looking at the right child. Optional.
+  relationship    String?
+  createdAt       DateTime  @default(now())
+  expiresAt       DateTime
+  /// Set the first time the magic link is opened. Subsequent visits do
+  /// NOT update this — it represents "did this invite get used".
+  consumedAt      DateTime?
+  /// Teacher-initiated revocation. When set, the magic link stops
+  /// working (page renders an "invite revoked" state).
+  revokedAt       DateTime?
+
+  student        User         @relation("ParentInviteStudent", fields: [studentUserId], references: [id], onDelete: Cascade)
+  invitedBy      User         @relation("ParentInviteTeacher", fields: [invitedByUserId], references: [id], onDelete: Cascade)
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([studentUserId])
+  @@index([organizationId])
+  @@index([parentEmail])
 }
 
 model AuditLogEvent {

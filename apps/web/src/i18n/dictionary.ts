@@ -653,6 +653,17 @@ export type Messages = {
   "org.students.csv_col_correct": string;
   "org.students.csv_col_joined": string;
   "org.students.csv_col_classes": string;
+  "org.students.parent_invite_heading": string;
+  "org.students.parent_invite_helper": string;
+  "org.students.parent_invite_email_label": string;
+  "org.students.parent_invite_email_placeholder": string;
+  "org.students.parent_invite_relationship_label": string;
+  "org.students.parent_invite_relationship_placeholder": string;
+  "org.students.parent_invite_submit": string;
+  "org.students.parent_invite_submitting": string;
+  "org.students.parent_invite_success": string;
+  "org.students.parent_invite_err_invalid_email": string;
+  "org.students.parent_invite_err_generic": string;
   "org.students.lifetime_eyebrow": string;
   "org.students.lifetime_attempts": string;
   "org.students.lifetime_accuracy": string;
@@ -1540,6 +1551,17 @@ export const EN: Messages = {
   "org.students.csv_col_correct": "Correct",
   "org.students.csv_col_joined": "Joined",
   "org.students.csv_col_classes": "Classes",
+  "org.students.parent_invite_heading": "Invite parent or guardian",
+  "org.students.parent_invite_helper": "They'll get an email with a private link to view this student's lifetime progress. Valid for 30 days, no account needed.",
+  "org.students.parent_invite_email_label": "Parent email",
+  "org.students.parent_invite_email_placeholder": "parent@example.com",
+  "org.students.parent_invite_relationship_label": "Relationship (optional)",
+  "org.students.parent_invite_relationship_placeholder": "Mom / Dad / Guardian",
+  "org.students.parent_invite_submit": "Send invite",
+  "org.students.parent_invite_submitting": "Sending…",
+  "org.students.parent_invite_success": "Invite sent. Link expires",
+  "org.students.parent_invite_err_invalid_email": "Please enter a valid email address.",
+  "org.students.parent_invite_err_generic": "Something went wrong. Please try again.",
   "org.students.lifetime_eyebrow": "Lifetime progress",
   "org.students.lifetime_attempts": "Attempts",
   "org.students.lifetime_accuracy": "Accuracy",
@@ -2433,6 +2455,17 @@ export const ZH: Messages = {
   "org.students.csv_col_correct": "正确数",
   "org.students.csv_col_joined": "加入时间",
   "org.students.csv_col_classes": "所属班级",
+  "org.students.parent_invite_heading": "邀请家长查看进度",
+  "org.students.parent_invite_helper": "家长会收到一封带有专属链接的邮件，可查看该学生的终身学习进度。链接 30 天内有效，无需注册账号。",
+  "org.students.parent_invite_email_label": "家长邮箱",
+  "org.students.parent_invite_email_placeholder": "parent@example.com",
+  "org.students.parent_invite_relationship_label": "关系（可选）",
+  "org.students.parent_invite_relationship_placeholder": "妈妈 / 爸爸 / 监护人",
+  "org.students.parent_invite_submit": "发送邀请",
+  "org.students.parent_invite_submitting": "发送中…",
+  "org.students.parent_invite_success": "邀请已发送。链接有效期至",
+  "org.students.parent_invite_err_invalid_email": "请输入有效的邮箱地址。",
+  "org.students.parent_invite_err_generic": "出错了，请重试。",
   "org.students.lifetime_eyebrow": "终身进度",
   "org.students.lifetime_attempts": "作答数",
   "org.students.lifetime_accuracy": "正确率",

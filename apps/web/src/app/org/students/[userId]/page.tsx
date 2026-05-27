@@ -15,6 +15,7 @@ import {
 } from "@/lib/ai/student-progress-report";
 import { Card, Eyebrow, Section, Tag } from "@/components/ui";
 import { TopicMasteryGrid } from "@/components/topic-mastery-grid";
+import { ParentInviteForm } from "@/components/parent-invite-form";
 
 type OrganizationStudentPageProps = {
   params: Promise<{
@@ -490,6 +491,27 @@ export default async function OrganizationStudentPage({ params }: OrganizationSt
           <p className="text-sm text-slate-600">This student has not started any organization-linked practice runs yet.</p>
         )}
       </section>
+
+      <Section>
+        <Card>
+          <ParentInviteForm
+            studentUserId={studentMembership.user.id}
+            labels={{
+              heading: t("org.students.parent_invite_heading"),
+              helper: t("org.students.parent_invite_helper"),
+              emailLabel: t("org.students.parent_invite_email_label"),
+              emailPlaceholder: t("org.students.parent_invite_email_placeholder"),
+              relationshipLabel: t("org.students.parent_invite_relationship_label"),
+              relationshipPlaceholder: t("org.students.parent_invite_relationship_placeholder"),
+              submit: t("org.students.parent_invite_submit"),
+              submitting: t("org.students.parent_invite_submitting"),
+              successPrefix: t("org.students.parent_invite_success"),
+              invalidEmail: t("org.students.parent_invite_err_invalid_email"),
+              genericError: t("org.students.parent_invite_err_generic")
+            }}
+          />
+        </Card>
+      </Section>
     </main>
   );
 }
