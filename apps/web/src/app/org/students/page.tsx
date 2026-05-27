@@ -238,9 +238,18 @@ export default async function OrganizationStudentsPage({
                   ? `/api/org/students/export?classId=${encodeURIComponent(selectedClassId)}`
                   : "/api/org/students/export"
               }
-              className="btn-secondary"
+              className="btn-secondary inline-flex items-center gap-2"
               download
             >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
+                <path
+                  d="M7 1.5v8M3.5 6.5L7 10l3.5-3.5M2 12h10"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
               {t("org.students.export_csv")}
             </a>
           </div>

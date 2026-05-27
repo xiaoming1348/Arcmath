@@ -201,16 +201,19 @@ export default async function ParentViewPage({ params }: PageProps) {
   const expiresStr = invite.expiresAt.toISOString().slice(0, 10);
 
   return (
-    <main className="mx-auto max-w-4xl px-6 py-10 space-y-8">
-      <header className="space-y-2">
+    <main className="motion-rise mx-auto max-w-4xl px-6 py-10 space-y-8">
+      <header className="hero-panel space-y-3">
         <Eyebrow>{invite.organization.name}</Eyebrow>
         <h1
-          className="text-3xl md:text-4xl font-semibold tracking-tight"
-          style={{ color: "var(--foreground)" }}
+          className="display-headline"
+          style={{ fontSize: "clamp(1.8rem, 3.6vw, 2.6rem)" }}
         >
-          {displayName}&rsquo;s Arcmath progress
+          <span className="florid florid-gradient" style={{ fontSize: "1.05em" }}>
+            {displayName}
+          </span>
+          <span style={{ fontWeight: 600 }}>&rsquo;s progress</span>
         </h1>
-        <p className="text-sm" style={{ color: "var(--muted)" }}>
+        <p className="display-lede" style={{ fontSize: 14 }}>
           Lifetime view across all practice attempts.
           {invite.relationship
             ? ` Sent to you as ${invite.relationship}.`

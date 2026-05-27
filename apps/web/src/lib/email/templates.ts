@@ -181,8 +181,12 @@ export function renderParentInviteEmail(
   const studentEn = studentSafe ?? "your child";
   const studentZh = studentSafe ?? "您的孩子";
 
-  const subject = studentSafe
-    ? `${content.organizationName} invited you to see ${studentSafe}'s progress · ${content.organizationName} 邀请您查看${studentSafe}的学习进度`
+  // Email subject is plain text in the recipient's client — use the raw
+  // (un-escaped) name. studentSafe is HTML-escaped and only suitable for
+  // <body>; if we used it here, a name containing & would render as
+  // "&amp;" in the inbox subject line.
+  const subject = content.studentName
+    ? `${content.organizationName} invited you to see ${content.studentName}'s progress · ${content.organizationName} 邀请您查看${content.studentName}的学习进度`
     : `${content.organizationName} invited you to see your child's Arcmath progress · ${content.organizationName} 邀请您查看孩子的学习进度`;
 
   const bodyHtml = `

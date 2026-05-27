@@ -84,13 +84,23 @@ export function ParentInviteForm({
   return (
     <form onSubmit={onSubmit} className="space-y-3">
       <div>
+        <div
+          className="text-[11px] font-semibold uppercase mb-2"
+          style={{
+            color: "var(--accent-strong, #2b6fff)",
+            letterSpacing: "0.16em",
+            fontFamily: "var(--font-mono-custom)"
+          }}
+        >
+          ✉ Parent access
+        </div>
         <h3
-          className="text-base font-semibold"
+          className="text-lg font-semibold leading-tight"
           style={{ color: "var(--foreground)" }}
         >
           {labels.heading}
         </h3>
-        <p className="text-xs mt-1" style={{ color: "var(--muted)" }}>
+        <p className="text-xs mt-1.5" style={{ color: "var(--muted)", maxWidth: 520, lineHeight: 1.6 }}>
           {labels.helper}
         </p>
       </div>

@@ -18,6 +18,7 @@ import {
   SectionHeader
 } from "@/components/ui";
 import { MathGlyphs } from "@/components/marketing/math-glyphs";
+import { OcrDemo } from "@/components/marketing/ocr-demo";
 import { GradingDemo } from "@/components/marketing/grading-demo";
 import { HintDemo } from "@/components/marketing/hint-demo";
 import { ReportDemo } from "@/components/marketing/report-demo";
@@ -261,6 +262,10 @@ export default async function Home() {
        * ========================================================= */}
       <Section className="surface-section-cool">
         <div className="grid gap-12 lg:gap-16">
+          <OcrDemo
+            eyebrow={t("home.demo.ocr_eyebrow")}
+            title={t("home.demo.ocr_title")}
+          />
           <GradingDemo
             eyebrow={t("home.demo.grading_eyebrow")}
             title={t("home.demo.grading_title")}

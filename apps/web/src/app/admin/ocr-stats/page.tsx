@@ -156,19 +156,22 @@ export default async function OcrStatsPage() {
   const barW = Math.max(2, (innerW - barGap * (DAYS_WINDOW - 1)) / DAYS_WINDOW);
 
   return (
-    <main className="mx-auto max-w-6xl px-6 py-12 space-y-10">
-      <header className="space-y-2">
+    <main className="motion-rise mx-auto max-w-6xl px-6 py-12 space-y-10">
+      <header className="hero-panel space-y-3">
         <Eyebrow>Admin · OCR telemetry</Eyebrow>
         <h1
-          className="text-3xl md:text-4xl font-semibold tracking-tight"
-          style={{ color: "var(--foreground)" }}
+          className="display-headline"
+          style={{ fontSize: "clamp(1.8rem, 3.2vw, 2.4rem)" }}
         >
-          OCR stats
+          <span className="florid florid-gradient" style={{ fontSize: "1.05em" }}>
+            OCR
+          </span>{" "}
+          effectiveness dashboard
         </h1>
-        <p className="text-sm" style={{ color: "var(--muted)" }}>
-          Aggregated from <code>OcrCallLog</code>. One row per OCR call
-          (Sprint 1 single-step + Sprint 2 multi-step). Image bytes and
-          OCR&apos;d LaTeX are <em>not</em> stored.
+        <p className="display-lede" style={{ fontSize: 14 }}>
+          Aggregated from <code style={{ fontFamily: "var(--font-mono-custom)" }}>OcrCallLog</code>.
+          One row per call (Sprint 1 single-step + Sprint 2 multi-step). Image bytes
+          and OCR&apos;d LaTeX are <em>not</em> stored.
         </p>
       </header>
 
