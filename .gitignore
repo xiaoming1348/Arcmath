@@ -39,3 +39,4 @@ test-results/
 # Should never be committed: it's machine-local and may include local
 # user prefs that aren't meaningful in version control.
 .claude/
+scripts/audit-aops-content-report.md
