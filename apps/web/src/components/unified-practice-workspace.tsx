@@ -6,10 +6,7 @@ import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import { trpc } from "@/lib/trpc/client";
 import { MathFieldEditor } from "@/components/math-field-editor";
-import {
-  HandwritingOcrUploader,
-  type OcrUploadResult
-} from "@/components/handwriting-ocr-uploader";
+import type { OcrUploadResult } from "@/components/handwriting-ocr-uploader";
 import { HandwritingMultiStepModal } from "@/components/handwriting-multi-step-modal";
 import { resizeImageDataUrl } from "@/lib/image-resize";
 import { useT } from "@/i18n/client";
@@ -35,6 +32,21 @@ type UnifiedPracticeWorkspaceProps = {
 };
 
 type EntryMode = "ANSWER_ONLY" | "STUCK_WITH_WORK" | "HINT_GUIDED" | "PROOF_STEPS";
+
+/**
+ * Treat WORKED_SOLUTION exactly like PROOF for student-facing UX.
+ *
+ * The original code only special-cased PROOF, leaving WORKED_SOLUTION
+ * (USAMO/USAJMO/Putnam/STEP long-form) to fall through to the
+ * ANSWER_ONLY default — students of a 9-hour proof contest were being
+ * offered a "Direct answer" entry mode, which is a hard UX bug. Both
+ * formats expect the student to write out their reasoning; the only
+ * difference is whether the back-end runs Lean over the steps
+ * (PROOF) or leaves them for self-comparison (WORKED_SOLUTION).
+ */
+function isProofLike(answerFormat: string): boolean {
+  return answerFormat === "PROOF" || answerFormat === "WORKED_SOLUTION";
+}
 type AttemptStatus = "DRAFT" | "SUBMITTED" | "ABANDONED";
 
 type StepRecord = {
@@ -454,18 +466,12 @@ function OcrAwareMathEditor(props: {
         saveLabel={props.saveLabel}
         busy={props.busy}
         autoFocus={props.autoFocus}
-        ocrSlot={
-          <HandwritingOcrUploader
-            locale={props.locale === "zh" ? "zh" : "en"}
-            disabled={props.busy}
-            callOcr={handleOcr}
-            onOcrResult={(r) => {
-              // No-op for the success path — handled inside callOcr.
-              // For visibility / future analytics we could log here.
-              if (!r.ok) console.warn("[ocr-aware-editor]", r.reason);
-            }}
-          />
-        }
+        // OCR entry is now consolidated into the single MultiStepOcrLauncher
+        // above the composer — having two upload paths (one inline, one above)
+        // was confusing students. The multi-step uploader handles single-step
+        // photos fine (just emits 1 step). Sprint-1's inline HandwritingOcrUploader
+        // is dead code in this workspace; keeping the file around in case
+        // another surface (e.g. /scratchpad future) wants single-step UX.
       />
       {confidenceMessage ? (
         <p className={`mt-2 text-xs ${confidenceTone}`} aria-live="polite">
@@ -1030,7 +1036,7 @@ export function UnifiedPracticeWorkspace({
   };
 
   // Pre-attempt entry chooser (skipped for proof problems).
-  if (!attempt && answerFormat !== "PROOF") {
+  if (!attempt && !isProofLike(answerFormat)) {
     return (
       <section className="surface-card space-y-4">
         <div className="flex flex-wrap items-center gap-2">
@@ -1047,7 +1053,7 @@ export function UnifiedPracticeWorkspace({
   }
 
   // Proof problems auto-initialize as PROOF_STEPS.
-  if (!attempt && answerFormat === "PROOF") {
+  if (!attempt && isProofLike(answerFormat)) {
     const autoInit = async () => {
       await handleChoose({ entryMode: "PROOF_STEPS", selfReport: "ATTEMPTED_STUCK" });
     };
@@ -1072,7 +1078,7 @@ export function UnifiedPracticeWorkspace({
   // immediately after a fresh submit (so the modal doesn't pop on top
   // of their just-graded result).
   const showResumeModal = locked && !resumeDecided;
-  const mode: EntryMode = attempt.entryMode ?? (answerFormat === "PROOF" ? "PROOF_STEPS" : "ANSWER_ONLY");
+  const mode: EntryMode = attempt.entryMode ?? (isProofLike(answerFormat) ? "PROOF_STEPS" : "ANSWER_ONLY");
   const steps = attempt.steps;
   const hintHistory = attempt.hintHistory;
   const hintsExhausted = hintHistory.length >= 3;
@@ -1082,7 +1088,7 @@ export function UnifiedPracticeWorkspace({
     mode === "PROOF_STEPS" ||
     (mode === "HINT_GUIDED" && steps.length > 0);
   const showAnswerField =
-    answerFormat !== "PROOF" &&
+    !isProofLike(answerFormat) &&
     (mode === "ANSWER_ONLY" || mode === "STUCK_WITH_WORK" || mode === "HINT_GUIDED");
 
   return (
@@ -1106,7 +1112,7 @@ export function UnifiedPracticeWorkspace({
       <div className="space-y-1">
         <div className="flex flex-wrap items-center gap-2">
           <h2 className="text-lg font-semibold text-slate-900">
-            {answerFormat === "PROOF" ? t("attempt.workspace_title_proof") : t("attempt.workspace_title_default")}
+            {isProofLike(answerFormat) ? t("attempt.workspace_title_proof") : t("attempt.workspace_title_default")}
           </h2>
           <ModeBadge mode={mode} locked={locked} />
         </div>
@@ -1373,7 +1379,7 @@ export function UnifiedPracticeWorkspace({
           The hint-tutor gate hides every hint button. Mode-switch buttons
           (write steps / got an answer) stay visible because they're not
           AI-assisted — students should still be able to change strategy. */}
-      {!locked && answerFormat !== "PROOF" && mode !== "ANSWER_ONLY" ? (
+      {!locked && !isProofLike(answerFormat) && mode !== "ANSWER_ONLY" ? (
         <div className="flex flex-wrap items-center gap-2">
           {mode === "HINT_GUIDED" ? (
             <>
@@ -1804,7 +1810,7 @@ function SubmittedReview({
           view below. */}
       <div data-submitted-review-body className="space-y-3">
 
-      {answerFormat !== "PROOF" && attempt.submittedAnswer !== null ? (
+      {!isProofLike(answerFormat) && attempt.submittedAnswer !== null ? (
         autoGraded ? (
           <div
             style={{

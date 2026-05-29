@@ -466,16 +466,23 @@ export const unifiedAttemptRouter = router({
     });
     if (!problem) throw new TRPCError({ code: "NOT_FOUND", message: "Problem not found." });
 
-    if (problem.answerFormat === "PROOF" && input.entryMode !== "PROOF_STEPS") {
+    // Both PROOF (Lean-checked) and WORKED_SOLUTION (self-comparison)
+    // are proof-like for the entry mode rules: they MUST use PROOF_STEPS,
+    // and nothing else is allowed to. USAMO/USAJMO/Putnam are
+    // WORKED_SOLUTION and offering ANSWER_ONLY on a 9-hour proof contest
+    // is a UX bug — `isProofLike` collapses the two into one rule.
+    const isProofLikeFormat =
+      problem.answerFormat === "PROOF" || problem.answerFormat === "WORKED_SOLUTION";
+    if (isProofLikeFormat && input.entryMode !== "PROOF_STEPS") {
       throw new TRPCError({
         code: "BAD_REQUEST",
-        message: "Proof problems must use PROOF_STEPS entry mode."
+        message: "Proof-style problems must use PROOF_STEPS entry mode."
       });
     }
-    if (problem.answerFormat !== "PROOF" && input.entryMode === "PROOF_STEPS") {
+    if (!isProofLikeFormat && input.entryMode === "PROOF_STEPS") {
       throw new TRPCError({
         code: "BAD_REQUEST",
-        message: "PROOF_STEPS entry mode is only for proof problems."
+        message: "PROOF_STEPS entry mode is only for proof-style problems."
       });
     }
 
@@ -531,8 +538,11 @@ export const unifiedAttemptRouter = router({
     if (attempt.status !== "DRAFT") {
       throw new TRPCError({ code: "BAD_REQUEST", message: "Attempt is not a draft." });
     }
-    if (attempt.problem.answerFormat === "PROOF" && input.entryMode !== "PROOF_STEPS") {
-      throw new TRPCError({ code: "BAD_REQUEST", message: "Proof problems cannot leave PROOF_STEPS mode." });
+    const isProofLikeFormatUpgrade =
+      attempt.problem.answerFormat === "PROOF" ||
+      attempt.problem.answerFormat === "WORKED_SOLUTION";
+    if (isProofLikeFormatUpgrade && input.entryMode !== "PROOF_STEPS") {
+      throw new TRPCError({ code: "BAD_REQUEST", message: "Proof-style problems cannot leave PROOF_STEPS mode." });
     }
 
     await ctx.prisma.problemAttempt.update({
