@@ -145,6 +145,11 @@ update `deploy.sh` in the same PR, don't expect the user to remember.
   If a fresh Mac doesn't have that config block, fall back to
   `ssh -i ~/.ssh/arcmath-hk.pem arcmath@47.76.201.152 ...`.
 - **VPS repo path:** `/home/arcmath/arcmath`
+- **Sudo on VPS:** `arcmath` was created with `--disabled-password`. **There is no password to enter** — any `sudo` that prompts will hang forever. NOPASSWD whitelist (as of 2026-05-28):
+  `/usr/bin/systemctl, /usr/sbin/nginx, /usr/bin/certbot, /usr/lib/node_modules/pm2/bin/pm2, /usr/bin/env, /usr/bin/cp, /usr/bin/mv, /usr/bin/tee`
+  Anything outside this list (e.g. `sudo cat /etc/sudoers.d/...`, `sudo vim`) will fail. To audit the live list at any time: `sudo -n -l`.
+- **Root SSH still works with the same key:** `ssh -i ~/.ssh/arcmath-hk.pem root@47.76.201.152 'whoami'` returns `root`. bootstrap.sh copies `/root/.ssh/authorized_keys` to `/home/arcmath/.ssh/authorized_keys` but doesn't remove from root. Use root for one-off changes that can't go through the NOPASSWD list (sudoers edits, system service installs). **Don't deploy via root** — deploy runs as `arcmath` and the repo is owned by `arcmath`.
+- **Editing /etc files** as arcmath: `sudo env cp /tmp/new-file /etc/path/to/file`. The `env` indirection routes through the whitelisted `/usr/bin/env`. `tee`, `cp`, `mv` are now directly whitelisted as of 2026-05-28, so `sudo cp …` also works.
 - **GitHub remote:** `git@github.com:xiaoming1348/Arcmath.git`
 - **Active feature branch (this worktree):** `ui/tech-aesthetic-step2`
 - **Deploy command:**
@@ -155,6 +160,12 @@ update `deploy.sh` in the same PR, don't expect the user to remember.
   ```bash
   ssh arcmath@47.76.201.152 'pm2 logs arcmath-web --lines 50 --nostream'
   ```
+- **Geographic latency (so future perf work doesn't chase ghosts):**
+  - VPS is in HK. Neon DB is in `us-east-1` — HK → us-east-1 RTT ≈ 200ms.
+  - The owner tests from California (UC Berkeley) — Cal → HK RTT ≈ 300ms.
+  - Mainland-China end users → HK RTT ≈ 30-80ms.
+  - When the owner reports "slow", they're seeing 300ms × 2 (TCP+TLS) + server time, which is roughly 2× what a real user in CN sees. Don't optimize TLS further to chase that — physics caps it at 1 RTT.
+  - DB keep-alive (4-min `SELECT 1` from `lib/db-keepalive.ts`) prevents the 800-1000ms reconnect cost; do not delete unless replacing with a Neon serverless adapter.
 
 The user has repeatedly lost time to my forgetting these after
 context compaction. This block stays at the bottom of CLAUDE.md

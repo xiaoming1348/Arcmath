@@ -29,6 +29,9 @@ importers:
       '@arcmath/ingest-maa-putnam':
         specifier: workspace:*
         version: link:../../packages/ingest-maa-putnam
+      '@arcmath/ingest-maa-usajmo':
+        specifier: workspace:*
+        version: link:../../packages/ingest-maa-usajmo
       '@arcmath/ingest-maa-usamo':
         specifier: workspace:*
         version: link:../../packages/ingest-maa-usamo
