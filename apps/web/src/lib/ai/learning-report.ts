@@ -7,10 +7,19 @@ type LearningReportAttemptInput = {
   submittedAnswer: string | null;
   normalizedAnswer: string | null;
   isCorrect: boolean;
+  /**
+   * SUBMITTED: student finished and we have a graded outcome.
+   * DRAFT: student opened the problem but never submitted — counts as
+   * UNFINISHED in the report, NOT as incorrect.
+   * ABANDONED: dropped intentionally; treated like DRAFT for the report.
+   */
+  status: "DRAFT" | "SUBMITTED" | "ABANDONED";
   createdAt: string;
   problem: {
     number: number;
     statement: string | null;
+    /** "MARKDOWN_LATEX" | "HTML" | "PLAIN" — lets the UI render KaTeX. */
+    statementFormat: "MARKDOWN_LATEX" | "HTML" | "PLAIN";
     correctAnswer: string | null;
     topicKey: string | null;
     difficultyBand: string | null;
@@ -44,8 +53,11 @@ export type LearningReportInput = {
 };
 
 export type LearningReport = {
+  /** Submitted attempts — denominator for the accuracy percentage. */
   totalProblemsAttempted: number;
   totalCorrect: number;
+  /** Opened but never submitted — shown separately from incorrect. */
+  totalUnfinished: number;
   answerOutcomeBreakdown: {
     withoutHintCorrect: number;
     withoutHintIncorrect: number;
@@ -65,19 +77,41 @@ export type LearningReport = {
   summary: string;
   learningPattern: string;
   nextPracticeSuggestions: string[];
+  /**
+   * Per-problem review list — trimmed to the most useful entries for
+   * the student to look at. Unfinished problems come first (so the
+   * student knows what to come back to), then incorrect (the actual
+   * mistakes), capped at QUESTION_REVIEW_LIMIT total. Correct
+   * problems are excluded — there's nothing to review.
+   *
+   * Each entry carries the FULL statement plus its statementFormat
+   * so the UI can render KaTeX via ReactMarkdown instead of dumping
+   * raw "$x^2$" strings on the page.
+   */
   questionResults: Array<{
     problemId: string;
     problemNumber: number;
-    statementSnippet: string;
+    statement: string | null;
+    statementFormat: "MARKDOWN_LATEX" | "HTML" | "PLAIN";
     submittedAnswer: string | null;
     correctAnswer: string | null;
-    isCorrect: boolean;
+    outcomeKind: "incorrect" | "unfinished";
     usedHint: boolean;
     topicKey: string | null;
     difficultyBand: string | null;
     solutionSketch: string | null;
+    // Backward-compat shims for older snapshot consumers (teacher
+    // /org/reports/[snapshotId] reads these names off the saved JSON).
+    // Keeping both shapes in the payload means no migration required.
+    statementSnippet: string;
+    isCorrect: boolean;
   }>;
 };
+
+// Trim the per-problem review section. 25 attempts × all-list = noise.
+// 8 surfaces enough variety (a couple of topic clusters) without
+// scrolling.
+const QUESTION_REVIEW_LIMIT = 8;
 
 export const LEARNING_REPORT_PROMPT_VERSION = "learning-report-v1";
 
@@ -478,8 +512,16 @@ function buildDeterministicNextPracticeSuggestions(input: LearningReportInput, t
 }
 
 function buildDeterministicLearningReport(input: LearningReportInput): LearningReport {
-  const totalProblemsAttempted = input.attempts.length;
-  const totalCorrect = input.attempts.filter((attempt) => attempt.isCorrect).length;
+  // Accuracy = correct / submitted. DRAFT/ABANDONED rows are surfaced
+  // as "Unfinished" elsewhere and intentionally not in the denominator —
+  // including them would punish a student for opening a problem they
+  // didn't get to.
+  const totalProblemsAttempted = input.attempts.filter(
+    (a) => a.status === "SUBMITTED"
+  ).length;
+  const totalCorrect = input.attempts.filter(
+    (a) => a.status === "SUBMITTED" && a.isCorrect
+  ).length;
 
   const topicScores = new Map<string, number>();
   const topicWeakMediumOrHardCounts = new Map<string, number>();
@@ -545,22 +587,74 @@ function buildDeterministicLearningReport(input: LearningReportInput): LearningR
       difficultyBand: attempt.problem.difficultyBand
     }));
 
-  const questionResults = [...input.attempts]
+  // Per-problem review list. Three rules:
+  //   1. Skip CORRECT problems — nothing to review there.
+  //   2. UNFINISHED (DRAFT/ABANDONED) come first so the student sees
+  //      what they need to come back to, not just what they got wrong.
+  //   3. Cap at QUESTION_REVIEW_LIMIT so a 25-problem set with 15
+  //      wrong answers doesn't dump a 15-item list — students don't
+  //      review 15 cards either way; surfacing the worst 8 is enough
+  //      and respects user attention.
+  const unfinishedEntries = input.attempts
+    .filter((a) => a.status !== "SUBMITTED")
     .sort((left, right) => left.problem.number - right.problem.number)
     .map((attempt) => ({
       problemId: attempt.problemId,
       problemNumber: attempt.problem.number,
-      statementSnippet: makeStatementSnippet(attempt.problem.statement),
+      statement: attempt.problem.statement,
+      statementFormat: attempt.problem.statementFormat,
       submittedAnswer: attempt.submittedAnswer,
       correctAnswer: attempt.problem.correctAnswer,
-      isCorrect: attempt.isCorrect,
+      outcomeKind: "unfinished" as const,
       usedHint: attempt.hintUsageCount > 0,
       topicKey: attempt.problem.topicKey,
       difficultyBand: attempt.problem.difficultyBand,
-      solutionSketch: attempt.problem.solutionSketch
+      solutionSketch: attempt.problem.solutionSketch,
+      statementSnippet: makeStatementSnippet(attempt.problem.statement),
+      isCorrect: false
     }));
+  const incorrectEntries = input.attempts
+    .filter((a) => a.status === "SUBMITTED" && !a.isCorrect)
+    // Sort harder problems first — they're the most informative to
+    // review. Within the same band, fall back to numeric order.
+    .sort((left, right) => {
+      const dDelta =
+        difficultyWeight(right.problem.difficultyBand) -
+        difficultyWeight(left.problem.difficultyBand);
+      if (dDelta !== 0) return dDelta;
+      return left.problem.number - right.problem.number;
+    })
+    .map((attempt) => ({
+      problemId: attempt.problemId,
+      problemNumber: attempt.problem.number,
+      statement: attempt.problem.statement,
+      statementFormat: attempt.problem.statementFormat,
+      submittedAnswer: attempt.submittedAnswer,
+      correctAnswer: attempt.problem.correctAnswer,
+      outcomeKind: "incorrect" as const,
+      usedHint: attempt.hintUsageCount > 0,
+      topicKey: attempt.problem.topicKey,
+      difficultyBand: attempt.problem.difficultyBand,
+      solutionSketch: attempt.problem.solutionSketch,
+      statementSnippet: makeStatementSnippet(attempt.problem.statement),
+      isCorrect: false
+    }));
+  const questionResults = [...unfinishedEntries, ...incorrectEntries].slice(
+    0,
+    QUESTION_REVIEW_LIMIT
+  );
 
-  const answerOutcomeBreakdown = input.attempts.reduce(
+  // The outcome breakdown only counts SUBMITTED attempts. DRAFT rows
+  // don't have a meaningful correct/incorrect answer yet, so attributing
+  // them to the "incorrect" tile would be wrong. We surface them as a
+  // separate "Unfinished" count in the hero.
+  const totalUnfinished = input.attempts.filter(
+    (a) => a.status !== "SUBMITTED"
+  ).length;
+  const submittedAttempts = input.attempts.filter(
+    (a) => a.status === "SUBMITTED"
+  );
+  const answerOutcomeBreakdown = submittedAttempts.reduce(
     (totals, attempt) => {
       const usedHint = attempt.hintUsageCount > 0;
 
@@ -587,6 +681,7 @@ function buildDeterministicLearningReport(input: LearningReportInput): LearningR
   return {
     totalProblemsAttempted,
     totalCorrect,
+    totalUnfinished,
     answerOutcomeBreakdown,
     primaryReinforcementTopic,
     topicsNeedingReinforcement,

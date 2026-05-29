@@ -177,11 +177,18 @@ export const learningReportRouter = router({
           submittedAnswer: true,
           normalizedAnswer: true,
           isCorrect: true,
+          // status is what makes "unfinished" first-class: DRAFT means the
+          // student opened the problem but never submitted, so it should
+          // never count as incorrect.
+          status: true,
           createdAt: true,
           problem: {
             select: {
               number: true,
               statement: true,
+              // statementFormat lets the UI render KaTeX instead of
+              // dumping raw "$x^2 + 1$" strings on the page.
+              statementFormat: true,
               answer: true,
               topicKey: true,
               difficultyBand: true,
@@ -250,10 +257,12 @@ export const learningReportRouter = router({
           submittedAnswer: attempt.submittedAnswer,
           normalizedAnswer: attempt.normalizedAnswer,
           isCorrect: attempt.isCorrect,
+          status: attempt.status,
           createdAt: toIsoString(attempt.createdAt),
           problem: {
             number: attempt.problem.number,
             statement: attempt.problem.statement,
+            statementFormat: attempt.problem.statementFormat,
             correctAnswer: attempt.problem.answer,
             topicKey: attempt.problem.topicKey,
             difficultyBand: attempt.problem.difficultyBand,

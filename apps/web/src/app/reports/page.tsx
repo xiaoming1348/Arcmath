@@ -14,6 +14,7 @@ import {
   SectionHeader,
   Tag
 } from "@/components/ui";
+import { ProblemStatement } from "@/components/problem-statement";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -198,8 +199,18 @@ export default async function ReportsPage({ searchParams }: ReportsPageProps) {
                 </span>
               </div>
               <p className="text-sm" style={{ color: "var(--muted)" }}>
-                {report.totalCorrect} of {report.totalProblemsAttempted} problems
-                correct.
+                {report.totalCorrect} of {report.totalProblemsAttempted} submitted
+                correct
+                {report.totalUnfinished > 0 ? (
+                  <>
+                    {" · "}
+                    <span style={{ color: "var(--accent-strong, #2b6fff)" }}>
+                      {report.totalUnfinished} unfinished
+                    </span>
+                  </>
+                ) : (
+                  "."
+                )}
               </p>
             </div>
           </div>
@@ -492,10 +503,17 @@ export default async function ReportsPage({ searchParams }: ReportsPageProps) {
       <Section tight>
         <SectionHeader
           eyebrow="Question review"
-          title="Per-problem breakdown"
-          lede="Compare your submitted answers with the correct answers. Incorrect problems include a short solution sketch."
+          title="What to revisit"
+          lede="Up to 8 problems — unfinished ones first so you know where to come back, then the hardest incorrect submissions. Correct problems are not listed; nothing to review there."
         />
         <div className="mt-8 flex flex-col gap-3">
+          {report.questionResults.length === 0 ? (
+            <Card>
+              <p className="text-sm" style={{ color: "var(--muted)" }}>
+                Nothing to revisit — you got everything you submitted correct.
+              </p>
+            </Card>
+          ) : null}
           {report.questionResults.map((result, idx) => (
             <Card key={result.problemId} className="stagger-parent">
               <div
@@ -504,19 +522,30 @@ export default async function ReportsPage({ searchParams }: ReportsPageProps) {
                 }}
               >
                 <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div className="space-y-1">
+                  <div className="space-y-2" style={{ minWidth: 0, flex: 1 }}>
                     <h3
                       className="text-base font-semibold"
                       style={{ color: "var(--foreground-strong)" }}
                     >
                       Problem {result.problemNumber}
                     </h3>
-                    <p className="text-sm" style={{ color: "var(--muted)" }}>
-                      {result.statementSnippet}
-                    </p>
+                    {/* Render the full statement via KaTeX rather than
+                        dumping raw "$x^2 + 1$" text on the page. */}
+                    <ProblemStatement
+                      statement={result.statement}
+                      statementFormat={result.statementFormat}
+                      compact
+                      className="text-sm leading-6"
+                    />
                   </div>
-                  <Tag status={result.isCorrect ? "verified" : "invalid"}>
-                    {result.isCorrect ? "✓ Correct" : "✗ Incorrect"}
+                  <Tag
+                    status={
+                      result.outcomeKind === "unfinished" ? "uncertain" : "invalid"
+                    }
+                  >
+                    {result.outcomeKind === "unfinished"
+                      ? "⊘ Unfinished"
+                      : "✗ Incorrect"}
                   </Tag>
                 </div>
 
@@ -584,7 +613,7 @@ export default async function ReportsPage({ searchParams }: ReportsPageProps) {
                   </div>
                 </div>
 
-                {!result.isCorrect && result.solutionSketch ? (
+                {result.outcomeKind === "incorrect" && result.solutionSketch ? (
                   <div
                     className="mt-4"
                     style={{
