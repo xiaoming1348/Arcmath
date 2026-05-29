@@ -8,6 +8,7 @@ import { trpc } from "@/lib/trpc/client";
 import { MathFieldEditor } from "@/components/math-field-editor";
 import type { OcrUploadResult } from "@/components/handwriting-ocr-uploader";
 import { HandwritingMultiStepModal } from "@/components/handwriting-multi-step-modal";
+import { LoadingSpinner } from "@/components/loading-spinner";
 import { resizeImageDataUrl } from "@/lib/image-resize";
 import { useT } from "@/i18n/client";
 import type { Locale, Messages } from "@/i18n/dictionary";
@@ -1386,10 +1387,11 @@ export function UnifiedPracticeWorkspace({
               {hintTutorEnabled ? (
                 <button
                   type="button"
-                  className="btn-secondary"
+                  className="btn-secondary inline-flex items-center gap-2"
                   onClick={handleRequestHint}
                   disabled={requestHint.isPending || hintsExhausted}
                 >
+                  {requestHint.isPending && <LoadingSpinner />}
                   {requestHint.isPending
                     ? t("attempt.loading_hint")
                     : hintsExhausted
@@ -1419,10 +1421,11 @@ export function UnifiedPracticeWorkspace({
               {hintTutorEnabled && !hintsExhausted ? (
                 <button
                   type="button"
-                  className="btn-secondary"
+                  className="btn-secondary inline-flex items-center gap-2"
                   onClick={handleRequestHint}
                   disabled={requestHint.isPending}
                 >
+                  {requestHint.isPending && <LoadingSpinner />}
                   {requestHint.isPending
                     ? t("attempt.loading_hint")
                     : t("attempt.stuck_show_hint_n", { n: hintHistory.length + 1 })}

@@ -58,14 +58,17 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
   const { problemId } = await params;
   const { runId } = await searchParams;
   const session = await getServerSession(authOptions);
-  const locale = await resolveLocale();
-  const t = translator(locale);
 
   if (!session?.user) {
     redirect(`/login?callbackUrl=${encodeURIComponent(`/problems/${problemId}${runId ? `?runId=${runId}` : ""}`)}`);
   }
 
-  const problem = await prisma.problem.findUnique({
+  // Parallel: locale resolution (may touch DB for user.locale) and the
+  // problem lookup. Both only need values we already have — saves ~200ms
+  // RTT vs running them in series.
+  const [locale, problem] = await Promise.all([
+    resolveLocale(),
+    prisma.problem.findUnique({
     where: { id: problemId },
     select: {
       id: true,
@@ -107,7 +110,9 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
         }
       }
     }
-  });
+  })
+  ]);
+  const t = translator(locale);
 
   if (!problem) {
     notFound();

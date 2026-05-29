@@ -71,16 +71,21 @@ function normalizeChoiceOptions(choices: unknown): Array<{ label: string; text: 
 export default async function PracticeSetPage({ params }: PracticeSetPageProps) {
   const { problemSetId } = await params;
   const session = await getServerSession(authOptions);
-  const locale = await resolveLocale();
-  const t = translator(locale);
 
   if (!session?.user) {
     redirect(`/login?callbackUrl=${encodeURIComponent(`/problems/set/${problemSetId}`)}`);
   }
 
-  const organizationMembership = await getActiveOrganizationMembership(prisma, session.user.id);
-
-  const practiceSet = await prisma.problemSet.findUnique({
+  // Parallelize the 3 independent reads. Each round trip is ~200ms
+  // HK→us-east-1; doing these serially adds ~600ms vs in parallel.
+  // - resolveLocale does up to 1 DB call internally (user.locale lookup)
+  // - getActiveOrganizationMembership: 1 DB call
+  // - practiceSet.findUnique: 1 DB call
+  // All three only need values we already have (session + problemSetId).
+  const [locale, organizationMembership, practiceSet] = await Promise.all([
+    resolveLocale(),
+    getActiveOrganizationMembership(prisma, session.user.id),
+    prisma.problemSet.findUnique({
     where: {
       id: problemSetId
     },
@@ -117,7 +122,9 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
         }
       }
     }
-  });
+  })
+  ]);
+  const t = translator(locale);
 
   if (!practiceSet) {
     notFound();
@@ -153,18 +160,34 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
   // ABANDONED rows are intentionally treated as "not_started" so the
   // student sees a clean slate after they hit Restart.
   const allProblemIds = practiceSetData.problems.map((p) => p.id);
-  const userAttempts =
-    allProblemIds.length > 0
-      ? await prisma.problemAttempt.findMany({
-          where: {
-            userId: session.user.id,
-            problemId: { in: allProblemIds },
-            status: { in: ["DRAFT", "SUBMITTED"] }
-          },
-          orderBy: [{ updatedAt: "desc" }],
-          select: { problemId: true, status: true, updatedAt: true }
-        })
-      : [];
+  // Parallelize: userAttempts (for badges) and existing practiceRun lookup
+  // are independent — both only need session + practiceSet ids we already
+  // have. Saves another ~200ms RTT vs running them in series.
+  const [userAttempts, existingRun] =
+    totalProblems > 0
+      ? await Promise.all([
+          prisma.problemAttempt.findMany({
+            where: {
+              userId: session.user.id,
+              problemId: { in: allProblemIds },
+              status: { in: ["DRAFT", "SUBMITTED"] }
+            },
+            orderBy: [{ updatedAt: "desc" }],
+            select: { problemId: true, status: true, updatedAt: true }
+          }),
+          prisma.practiceRun.findFirst({
+            where: {
+              userId: session.user.id,
+              problemSetId: practiceSetData.id,
+              organizationId: organizationMembership?.organizationId ?? null,
+              completedAt: null
+            },
+            orderBy: { startedAt: "desc" },
+            select: { id: true }
+          })
+        ])
+      : [[] as Array<{ problemId: string; status: string; updatedAt: Date }>, null as { id: string } | null];
+
   // First occurrence wins because we sorted by updatedAt desc.
   const attemptStatusByProblemId = new Map<string, "in_progress" | "submitted">();
   for (const a of userAttempts) {
@@ -177,32 +200,20 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
   }
   const attemptedCount = attemptStatusByProblemId.size;
 
+  // Create-if-missing for the practiceRun. We only fall here when
+  // findFirst returned null (no live run for this user+set+org), so
+  // this is the warm fast path only on cold-start.
   const practiceRun =
     totalProblems > 0
-      ? ((await prisma.practiceRun.findFirst({
-          where: {
-            userId: session.user.id,
-            problemSetId: practiceSetData.id,
-            organizationId: organizationMembership?.organizationId ?? null,
-            completedAt: null
-          },
-          orderBy: {
-            startedAt: "desc"
-          },
-          select: {
-            id: true
-          }
-        })) ??
+      ? existingRun ??
         (await prisma.practiceRun.create({
           data: {
             userId: session.user.id,
             problemSetId: practiceSetData.id,
             organizationId: organizationMembership?.organizationId ?? null
           },
-          select: {
-            id: true
-          }
-        })))
+          select: { id: true }
+        }))
       : null;
 
   async function submitDiagnosticRun(formData: FormData) {
