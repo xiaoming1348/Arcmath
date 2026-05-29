@@ -130,14 +130,34 @@ export const REAL_TUTOR_SET_ROLLOUT: RealTutorSetRolloutEntry[] = [
   { contest: "MAT", year: 2021, exam: null, status: "live" },
   { contest: "MAT", year: 2020, exam: null, status: "live" },
   { contest: "MAT", year: 2019, exam: null, status: "live" },
-  // STEP II: 3 manifests, all live
+  // STEP II: 6 manifests, all live (2019/2021/2024 added 2026-05-28
+  // after import — they were imported to DB but missed in this allowlist
+  // and stayed hidden from /problems for a few days; user reported it.)
+  { contest: "STEP", year: 2024, exam: "II", status: "live" },
   { contest: "STEP", year: 2023, exam: "II", status: "live" },
   { contest: "STEP", year: 2022, exam: "II", status: "live" },
+  { contest: "STEP", year: 2021, exam: "II", status: "live" },
   { contest: "STEP", year: 2020, exam: "II", status: "live" },
-  // USAMO: 3 manifests, all live
+  { contest: "STEP", year: 2019, exam: "II", status: "live" },
+  // USAMO: 6 manifests in repo (2017/2019/2020/2021/2022/2023). All
+  // listed live; if a year isn't actually in prod DB the OR filter just
+  // won't match it — harmless. Run import-admissions-manifests if a
+  // year is missing.
+  { contest: "USAMO", year: 2023, exam: null, status: "live" },
+  { contest: "USAMO", year: 2022, exam: null, status: "live" },
+  { contest: "USAMO", year: 2021, exam: null, status: "live" },
   { contest: "USAMO", year: 2020, exam: null, status: "live" },
   { contest: "USAMO", year: 2019, exam: null, status: "live" },
   { contest: "USAMO", year: 2017, exam: null, status: "live" },
+  // USAJMO: 6 manifests in repo (2019-2024). Live entries listed but
+  // earlier audit showed only 1 problem in prod DB — likely never
+  // imported. Re-run `pnpm admissions:import --contest usajmo` to fill.
+  { contest: "USAJMO", year: 2024, exam: null, status: "live" },
+  { contest: "USAJMO", year: 2023, exam: null, status: "live" },
+  { contest: "USAJMO", year: 2022, exam: null, status: "live" },
+  { contest: "USAJMO", year: 2021, exam: null, status: "live" },
+  { contest: "USAJMO", year: 2020, exam: null, status: "live" },
+  { contest: "USAJMO", year: 2019, exam: null, status: "live" },
   // Putnam: 5 most recent (2020 cancelled due to COVID — skipped)
   { contest: "PUTNAM", year: 2024, exam: null, status: "live" },
   { contest: "PUTNAM", year: 2023, exam: null, status: "live" },
