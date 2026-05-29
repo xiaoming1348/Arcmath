@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@arcmath/db";
 import { ProblemStatement } from "@/components/problem-statement";
+import { RestartAttemptButton } from "@/components/restart-attempt-button";
 import { gradeAnswer } from "@/lib/answer-grading";
 import { authOptions } from "@/lib/auth";
 import { getActiveOrganizationMembership } from "@/lib/organizations";
@@ -408,12 +409,33 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
                     </div>
 
                     {practiceRun ? (
-                      <Link
-                        className="btn-primary"
-                        href={`/problems/${encodeURIComponent(problem.id)}?runId=${encodeURIComponent(practiceRun.id)}`}
-                      >
-                        {t(ctaLabelKey as Parameters<typeof t>[0])}
-                      </Link>
+                      <div className="flex flex-wrap items-center gap-2">
+                        {/* For touched problems (submitted OR in_progress),
+                            show "Start over" alongside the primary Continue/
+                            Review. "Start over" wipes prior attempts after
+                            an explicit confirm. */}
+                        {(status === "submitted" || status === "in_progress") && (
+                          <RestartAttemptButton
+                            problemId={problem.id}
+                            href={`/problems/${encodeURIComponent(problem.id)}?runId=${encodeURIComponent(practiceRun.id)}`}
+                            labels={{
+                              button: t("problemset.cta_restart"),
+                              confirmTitle: t("problemset.restart_confirm_title"),
+                              confirmBody: t("problemset.restart_confirm_body"),
+                              confirmYes: t("problemset.restart_confirm_yes"),
+                              confirmCancel: t("problemset.restart_confirm_cancel"),
+                              inProgress: t("problemset.restart_in_progress"),
+                              error: t("problemset.restart_error")
+                            }}
+                          />
+                        )}
+                        <Link
+                          className="btn-primary"
+                          href={`/problems/${encodeURIComponent(problem.id)}?runId=${encodeURIComponent(practiceRun.id)}`}
+                        >
+                          {t(ctaLabelKey as Parameters<typeof t>[0])}
+                        </Link>
+                      </div>
                     ) : null}
                   </div>
                 </article>

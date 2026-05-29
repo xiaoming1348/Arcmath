@@ -412,6 +412,13 @@ export type Messages = {
   "problemset.status_in_progress": string;
   "problemset.cta_review": string;
   "problemset.cta_continue": string;
+  "problemset.cta_restart": string;
+  "problemset.restart_confirm_title": string;
+  "problemset.restart_confirm_body": string;
+  "problemset.restart_confirm_yes": string;
+  "problemset.restart_confirm_cancel": string;
+  "problemset.restart_in_progress": string;
+  "problemset.restart_error": string;
 
   "attempt.badge_real_set": string;
   "attempt.problem_n_of": string;
@@ -1301,14 +1308,21 @@ export const EN: Messages = {
   "problemset.back_to_catalog": "Back to Catalog",
   "problemset.start_practice": "Start Practice",
   "problemset.problem_list_help": "Open any problem below to use the hint tutor (when the teacher has enabled it), submit your answer, and move through the set.",
-  "problemset.open_tutor": "Open Tutor",
-  "problemset.open_problem": "Open Problem",
+  "problemset.open_tutor": "Start",
+  "problemset.open_problem": "Start",
   "problemset.total_problems": "{count} problems",
   "problemset.progress_summary": "{attempted}/{total} attempted",
   "problemset.status_submitted": "Submitted",
   "problemset.status_in_progress": "In progress",
   "problemset.cta_review": "Review",
   "problemset.cta_continue": "Continue",
+  "problemset.cta_restart": "Start over",
+  "problemset.restart_confirm_title": "Start this problem over?",
+  "problemset.restart_confirm_body": "All your previous answers, steps, and feedback for this problem will be permanently deleted. This cannot be undone.",
+  "problemset.restart_confirm_yes": "Yes, delete and start fresh",
+  "problemset.restart_confirm_cancel": "Cancel",
+  "problemset.restart_in_progress": "Resetting…",
+  "problemset.restart_error": "Could not reset the problem. Please try again.",
 
   "attempt.badge_real_set": "Premium Real Set",
   "attempt.problem_n_of": "Problem {current} of {total}",
@@ -2219,14 +2233,21 @@ export const ZH: Messages = {
   "problemset.back_to_catalog": "返回题库",
   "problemset.start_practice": "开始练习",
   "problemset.problem_list_help": "点击下面任何一道题作答；老师开了 hint 时会有提示导师，提交后自动批改。",
-  "problemset.open_tutor": "开始练习（带提示）",
-  "problemset.open_problem": "开始练习",
+  "problemset.open_tutor": "开始",
+  "problemset.open_problem": "开始",
   "problemset.total_problems": "共 {count} 题",
   "problemset.progress_summary": "已做 {attempted}/{total}",
   "problemset.status_submitted": "已提交",
   "problemset.status_in_progress": "进行中",
   "problemset.cta_review": "查看",
   "problemset.cta_continue": "继续",
+  "problemset.cta_restart": "重新开始",
+  "problemset.restart_confirm_title": "确定重新开始这道题吗？",
+  "problemset.restart_confirm_body": "此操作会**永久删除**你在本题的所有作答、步骤和反馈记录，不可恢复。",
+  "problemset.restart_confirm_yes": "确认删除并重新开始",
+  "problemset.restart_confirm_cancel": "取消",
+  "problemset.restart_in_progress": "正在重置…",
+  "problemset.restart_error": "重置失败，请重试。",
 
   "attempt.badge_real_set": "真题",
   "attempt.problem_n_of": "第 {current} 题 / 共 {total} 题",
