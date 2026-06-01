@@ -4,6 +4,7 @@ import { prisma } from "@arcmath/db";
 import { ProblemStatement } from "@/components/problem-statement";
 import { RestartAttemptButton } from "@/components/restart-attempt-button";
 import { RouteProgressLink } from "@/components/route-progress-link";
+import { RealExamModeChooser } from "@/components/real-exam-mode-chooser";
 import { gradeAnswer } from "@/lib/answer-grading";
 import { authOptions } from "@/lib/auth";
 import { getActiveOrganizationMembership } from "@/lib/organizations";
@@ -162,11 +163,17 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
   }
   const attemptedCount = attemptStatusByProblemId.size;
 
-  // Create-if-missing for the practiceRun. We only fall here when
-  // findFirst returned null (no live run for this user+set+org), so
-  // this is the warm fast path only on cold-start.
+  // Real-exam sets (AMC/AIME/USAMO/etc.) require an explicit Mock vs
+  // Practice mode choice from the student before we create the run.
+  // The chooser is rendered inline below; we DO NOT auto-create a run
+  // here when it's missing. Topic-mix and diagnostic sets keep the
+  // auto-create behaviour because the mock/practice distinction
+  // doesn't apply to them.
+  const needsRealExamModeChoice =
+    isRealExamSet(practiceSetData) && totalProblems > 0 && !existingRun;
+
   const practiceRun =
-    totalProblems > 0
+    totalProblems > 0 && !needsRealExamModeChoice
       ? existingRun ??
         (await prisma.practiceRun.create({
           data: {
@@ -313,6 +320,23 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
           </div>
         </section>
 
+        {needsRealExamModeChoice ? (
+          <RealExamModeChooser
+            problemSetId={practiceSetData.id}
+            labels={{
+              eyebrow: t("problemset.mode_chooser_eyebrow"),
+              title: t("problemset.mode_chooser_title"),
+              helper: t("problemset.mode_chooser_helper"),
+              mockTitle: t("problemset.mode_mock_title"),
+              mockBody: t("problemset.mode_mock_body"),
+              practiceTitle: t("problemset.mode_practice_title"),
+              practiceBody: t("problemset.mode_practice_body"),
+              mockCta: t("problemset.mode_mock_cta"),
+              practiceCta: t("problemset.mode_practice_cta"),
+              error: t("problemset.mode_chooser_error")
+            }}
+          />
+        ) : (
         <section className="surface-card space-y-4">
           <div className="space-y-2">
             <h2 className="text-lg font-semibold text-slate-900">{t("problemset.problems_heading")}</h2>
@@ -416,6 +440,7 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
             })}
           </div>
         </section>
+        )}
       </main>
     );
   }

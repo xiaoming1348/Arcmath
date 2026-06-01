@@ -162,6 +162,13 @@ enum PracticeRunReviewMode {
   REVIEW_WITH_RETRY
 }
 
+/// MOCK / PRACTICE distinction for real-exam runs. See PracticeRun.mode
+/// for the full rationale.
+enum PracticeRunMode {
+  MOCK
+  PRACTICE
+}
+
 enum ProofStepType {
   ALGEBRAIC_EQUIVALENCE
   EQUATION
@@ -637,6 +644,22 @@ model PracticeRun {
   classAssignmentId      String?
   problemSetId           String
   reviewMode             PracticeRunReviewMode   @default(GRADE_ONLY)
+  /// Mock vs Practice mode for real-exam runs (AMC/AIME/USAMO/etc.).
+  /// MOCK     = simulated exam — no hint tutor, no real-time step
+  ///            verification feedback, just save answers and submit.
+  /// PRACTICE = normal Arcmath training experience — hints, real-time
+  ///            step feedback, mentor on. (Current behaviour.)
+  ///
+  /// Nullable for two reasons:
+  ///   1. Backfill of legacy rows (anything before this migration)
+  ///      treats null as PRACTICE downstream.
+  ///   2. Topic-mix / diagnostic runs never need this distinction —
+  ///      they only carry null and the UI just doesn't ask.
+  ///
+  /// Once set on a run, it cannot be changed without Start over
+  /// (deletes all attempts and creates a new run). Product decision:
+  /// keeps mock-exam integrity clean.
+  mode                   PracticeRunMode?
   startedAt              DateTime                @default(now())
   completedAt            DateTime?
   user                   User                    @relation(fields: [userId], references: [id], onDelete: Cascade)

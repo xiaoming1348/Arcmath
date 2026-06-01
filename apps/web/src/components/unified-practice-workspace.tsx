@@ -909,6 +909,11 @@ export function UnifiedPracticeWorkspace({
   >(null);
 
   const attempt = (stateQuery.data?.attempt ?? null) as AttemptState | null;
+  // MOCK runs disable the hint tutor — the chooser modal made this
+  // explicit at run-start and the server enforces it on requestHint.
+  // Here we just hide the UI affordances so the student isn't tempted.
+  const runMode = stateQuery.data?.runMode ?? "PRACTICE";
+  const hintsAvailable = hintTutorEnabled && runMode !== "MOCK";
 
   const refresh = useCallback(async () => {
     await utils.unifiedAttempt.getState.invalidate({
@@ -1158,7 +1163,7 @@ export function UnifiedPracticeWorkspace({
           Each hint is rendered as a color-coded tile (level 1/2/3 = amber/
           teal/lavender) so successive hints feel distinct.
           Suppressed when the parent assignment turned hints off. */}
-      {hintTutorEnabled && hintHistory.length > 0 ? (
+      {hintsAvailable && hintHistory.length > 0 ? (
         <div className="space-y-3">
           {hintHistory.map((h, idx) => {
             const tone =
@@ -1408,7 +1413,7 @@ export function UnifiedPracticeWorkspace({
         <div className="flex flex-wrap items-center gap-2">
           {mode === "HINT_GUIDED" ? (
             <>
-              {hintTutorEnabled ? (
+              {hintsAvailable ? (
                 <button
                   type="button"
                   className="btn-secondary inline-flex items-center gap-2"
@@ -1442,7 +1447,7 @@ export function UnifiedPracticeWorkspace({
             </>
           ) : mode === "STUCK_WITH_WORK" ? (
             <>
-              {hintTutorEnabled && !hintsExhausted ? (
+              {hintsAvailable && !hintsExhausted ? (
                 <button
                   type="button"
                   className="btn-secondary inline-flex items-center gap-2"

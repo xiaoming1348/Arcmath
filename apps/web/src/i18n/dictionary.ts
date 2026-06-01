@@ -413,6 +413,18 @@ export type Messages = {
   "problemset.cta_review": string;
   "problemset.cta_continue": string;
   "problemset.cta_restart": string;
+  "problemset.mode_chooser_eyebrow": string;
+  "problemset.mode_chooser_title": string;
+  "problemset.mode_chooser_helper": string;
+  "problemset.mode_mock_title": string;
+  "problemset.mode_mock_body": string;
+  "problemset.mode_mock_cta": string;
+  "problemset.mode_practice_title": string;
+  "problemset.mode_practice_body": string;
+  "problemset.mode_practice_cta": string;
+  "problemset.mode_chooser_error": string;
+  "problemset.mode_badge_mock": string;
+  "problemset.mode_badge_practice": string;
   "problemset.restart_confirm_title": string;
   "problemset.restart_confirm_body": string;
   "problemset.restart_confirm_yes": string;
@@ -1317,6 +1329,18 @@ export const EN: Messages = {
   "problemset.cta_review": "Review",
   "problemset.cta_continue": "Continue",
   "problemset.cta_restart": "Start over",
+  "problemset.mode_chooser_eyebrow": "Choose your mode",
+  "problemset.mode_chooser_title": "How do you want to take this paper?",
+  "problemset.mode_chooser_helper": "Pick once. Switching later requires starting the run over from scratch.",
+  "problemset.mode_mock_title": "Mock exam",
+  "problemset.mode_mock_body": "Simulate the real test. No hint tutor, no step-by-step feedback. Save your answers as you go; we grade everything at the end.",
+  "problemset.mode_mock_cta": "Start mock →",
+  "problemset.mode_practice_title": "Practice mode",
+  "problemset.mode_practice_body": "Full Arcmath workflow. Hint tutor on, step feedback live, and you can ask for nudges per problem.",
+  "problemset.mode_practice_cta": "Start practice →",
+  "problemset.mode_chooser_error": "Could not start the run. Please try again.",
+  "problemset.mode_badge_mock": "Mock",
+  "problemset.mode_badge_practice": "Practice",
   "problemset.restart_confirm_title": "Start this problem over?",
   "problemset.restart_confirm_body": "All your previous answers, steps, and feedback for this problem will be permanently deleted. This cannot be undone.",
   "problemset.restart_confirm_yes": "Yes, delete and start fresh",
@@ -2242,6 +2266,18 @@ export const ZH: Messages = {
   "problemset.cta_review": "查看",
   "problemset.cta_continue": "继续",
   "problemset.cta_restart": "重新开始",
+  "problemset.mode_chooser_eyebrow": "选择模式",
+  "problemset.mode_chooser_title": "怎么作答这套真题？",
+  "problemset.mode_chooser_helper": "一次性选定。中途想换模式需要重新开始整套。",
+  "problemset.mode_mock_title": "模考模式",
+  "problemset.mode_mock_body": "完全模拟考场。无提示导师，无步骤反馈。每题保存草稿，全部做完一起批改。",
+  "problemset.mode_mock_cta": "开始模考 →",
+  "problemset.mode_practice_title": "练习模式",
+  "problemset.mode_practice_body": "Arcmath 完整训练流程。提示导师、步骤实时反馈、可逐题求助。",
+  "problemset.mode_practice_cta": "开始练习 →",
+  "problemset.mode_chooser_error": "启动失败，请重试。",
+  "problemset.mode_badge_mock": "模考",
+  "problemset.mode_badge_practice": "练习",
   "problemset.restart_confirm_title": "确定重新开始这道题吗？",
   "problemset.restart_confirm_body": "此操作会**永久删除**你在本题的所有作答、步骤和反馈记录，不可恢复。",
   "problemset.restart_confirm_yes": "确认删除并重新开始",

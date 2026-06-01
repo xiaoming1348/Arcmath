@@ -401,7 +401,7 @@ export const unifiedAttemptRouter = router({
     const problem = await getProblemAttemptIdentity(input.problemId);
     if (!problem) throw new TRPCError({ code: "NOT_FOUND", message: "Problem not found." });
 
-    const [, attempt] = await Promise.all([
+    const [, attempt, runMode] = await Promise.all([
       resolvePracticeRunId({
         ctx,
         practiceRunId: input.practiceRunId,
@@ -417,7 +417,18 @@ export const unifiedAttemptRouter = router({
         },
         orderBy: [{ status: "asc" }, { updatedAt: "desc" }],
         select: ATTEMPT_SELECT
-      })
+      }),
+      // Fetch the run's mode so the workspace can disable hints + step
+      // feedback in MOCK. We only look it up if a runId was passed —
+      // self-directed practice without a run (and legacy rows pre-
+      // mode-field migration) gets the null-treated-as-PRACTICE
+      // fallback downstream.
+      input.practiceRunId
+        ? ctx.prisma.practiceRun.findFirst({
+            where: { id: input.practiceRunId, userId },
+            select: { mode: true }
+          })
+        : Promise.resolve(null)
     ]);
 
     const [steps, hintHistory] = attempt
@@ -435,6 +446,11 @@ export const unifiedAttemptRouter = router({
         ])
       : [[], []];
 
+    // Legacy rows pre-migration carry mode=null. We treat that as
+    // PRACTICE downstream so historical runs keep their hint/feedback
+    // affordances. MOCK is opt-in via the new chooser only.
+    const resolvedMode: "MOCK" | "PRACTICE" = runMode?.mode === "MOCK" ? "MOCK" : "PRACTICE";
+
     return {
       attempt: attempt
         ? {
@@ -444,7 +460,8 @@ export const unifiedAttemptRouter = router({
             hintHistory
           }
         : null,
-      answerFormat: problem.answerFormat
+      answerFormat: problem.answerFormat,
+      runMode: resolvedMode
     };
   }),
 
@@ -818,6 +835,7 @@ export const unifiedAttemptRouter = router({
         // this gate.
         practiceRun: {
           select: {
+            mode: true,
             classAssignment: {
               select: { hintTutorEnabled: true }
             }
@@ -852,6 +870,15 @@ export const unifiedAttemptRouter = router({
       throw new TRPCError({
         code: "FORBIDDEN",
         message: "Hints are disabled for this assignment."
+      });
+    }
+    // Mock-exam mode: refuse hints server-side even if the client
+    // somehow tries. The UI also hides the button (see workspace), but
+    // we don't rely on that for integrity.
+    if (attempt.practiceRun?.mode === "MOCK") {
+      throw new TRPCError({
+        code: "FORBIDDEN",
+        message: "Hints are disabled in Mock mode."
       });
     }
     if (attempt.problem.answerFormat === "PROOF") {
