@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
 import { LoadingSpinner } from "@/components/loading-spinner";
 
 /**
@@ -34,7 +33,6 @@ export function RealExamModeChooser({
     error: string;
   };
 }) {
-  const router = useRouter();
   const [pending, startTransition] = useTransition();
   const [pendingMode, setPendingMode] = useState<"MOCK" | "PRACTICE" | null>(
     null
@@ -61,11 +59,13 @@ export function RealExamModeChooser({
           setPendingMode(null);
           return;
         }
-        // Refresh the route — the set page will re-fetch, find the new
-        // run, and render the normal problem list (with mode wired
-        // through). router.refresh re-runs the server component without
-        // a full reload.
-        router.refresh();
+        // Full reload of the current URL. We previously used
+        // router.refresh() which is the lighter touch, but in practice
+        // it sometimes leaves the chooser in pending state — the route
+        // re-fetches but React doesn't unmount/replace the chooser
+        // because the page tree didn't change shape on the client.
+        // A hard reload guarantees the new run-aware render takes over.
+        window.location.reload();
       } catch {
         setError(labels.error);
         setPendingMode(null);

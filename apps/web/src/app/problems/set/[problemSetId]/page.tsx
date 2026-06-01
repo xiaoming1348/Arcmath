@@ -112,7 +112,7 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
     : Promise.resolve(true);
   const attemptsAndRunPromise: Promise<[
     Array<{ problemId: string; status: string; updatedAt: Date }>,
-    { id: string } | null
+    { id: string; mode: "MOCK" | "PRACTICE" | null } | null
   ]> =
     totalProblems > 0
       ? Promise.all([
@@ -133,7 +133,7 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
               completedAt: null
             },
             orderBy: { startedAt: "desc" },
-            select: { id: true }
+            select: { id: true, mode: true }
           })
         ])
       : Promise.resolve([[], null]);
@@ -181,9 +181,14 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
             problemSetId: practiceSetData.id,
             organizationId: organizationMembership?.organizationId ?? null
           },
-          select: { id: true }
+          select: { id: true, mode: true }
         }))
       : null;
+  // Effective mode for messaging. Legacy auto-created runs (no mode
+  // column populated) and topic-mix runs fall back to PRACTICE so the
+  // existing student experience is preserved.
+  const runMode: "MOCK" | "PRACTICE" =
+    practiceRun?.mode === "MOCK" ? "MOCK" : "PRACTICE";
 
   async function submitDiagnosticRun(formData: FormData) {
     "use server";
@@ -511,9 +516,9 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
                 <h2 className="text-lg font-semibold text-slate-900">{practiceSetData.title}</h2>
               </div>
               <p className="text-sm text-slate-600">
-                {practiceSetData.tutorEnabled
-                  ? "Tutor is enabled for this set."
-                  : "Hints are disabled during whole-set mode. Answers are revealed only after submission."}
+                {runMode === "MOCK"
+                  ? "Mock exam mode. No hint tutor. Submit all answers at the end to score."
+                  : "Practice mode. The Canvas-style per-problem workspace with live hints is in progress; for now the whole paper is submitted as a single batch."}
               </p>
             </div>
             <p className="text-sm text-slate-600">
