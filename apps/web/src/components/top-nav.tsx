@@ -1,19 +1,18 @@
 import Link from "next/link";
 import type { Session } from "next-auth";
 import { canAccessAdmin } from "@arcmath/shared";
-import { prisma } from "@arcmath/db";
 import { LogoutButton } from "@/components/logout-button";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import {
   canManageOrganization,
-  canTeach,
-  getActiveOrganizationMembership
+  canTeach
 } from "@/lib/organizations";
-import { resolveLocale } from "@/i18n/server";
-import { translatorImpl as translator } from "@/i18n/dictionary";
+import { getActiveOrganizationMembershipForNav } from "@/lib/nav-membership";
+import { translatorImpl as translator, type Locale } from "@/i18n/dictionary";
 
 type TopNavProps = {
   session: Session | null;
+  locale: Locale;
 };
 
 /**
@@ -31,12 +30,11 @@ type TopNavProps = {
  * stacking — the entire nav fits on one line on desktop and
  * wraps naturally on mobile.
  */
-export async function TopNav({ session }: TopNavProps) {
-  const locale = await resolveLocale();
+export async function TopNav({ session, locale }: TopNavProps) {
   const t = translator(locale);
   const isLoggedIn = Boolean(session?.user);
   const organizationMembership = session?.user
-    ? await getActiveOrganizationMembership(prisma, session.user.id)
+    ? await getActiveOrganizationMembershipForNav(session.user.id)
     : null;
   const isOrganizationManager = organizationMembership
     ? canManageOrganization(organizationMembership.role)

@@ -1,12 +1,13 @@
-import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@arcmath/db";
 import { ProblemStatement } from "@/components/problem-statement";
 import { RestartAttemptButton } from "@/components/restart-attempt-button";
+import { RouteProgressLink } from "@/components/route-progress-link";
 import { gradeAnswer } from "@/lib/answer-grading";
 import { authOptions } from "@/lib/auth";
 import { getActiveOrganizationMembership } from "@/lib/organizations";
+import { getPracticeSetPageData } from "@/lib/problem-page-data";
 import {
   getDiagnosticStageLabel,
   getProblemSetModeLabel,
@@ -76,53 +77,10 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
     redirect(`/login?callbackUrl=${encodeURIComponent(`/problems/set/${problemSetId}`)}`);
   }
 
-  // Parallelize the 3 independent reads. Each round trip is ~200ms
-  // HK→us-east-1; doing these serially adds ~600ms vs in parallel.
-  // - resolveLocale does up to 1 DB call internally (user.locale lookup)
-  // - getActiveOrganizationMembership: 1 DB call
-  // - practiceSet.findUnique: 1 DB call
-  // All three only need values we already have (session + problemSetId).
   const [locale, organizationMembership, practiceSet] = await Promise.all([
     resolveLocale(),
     getActiveOrganizationMembership(prisma, session.user.id),
-    prisma.problemSet.findUnique({
-    where: {
-      id: problemSetId
-    },
-    select: {
-      id: true,
-      title: true,
-      contest: true,
-      year: true,
-      exam: true,
-      category: true,
-      diagnosticStage: true,
-      submissionMode: true,
-      tutorEnabled: true,
-      sourceUrl: true,
-      problems: {
-        orderBy: {
-          number: "asc"
-        },
-        select: {
-          id: true,
-          number: true,
-          statement: true,
-          statementFormat: true,
-          answer: true,
-          answerFormat: true,
-          choices: true,
-          diagramImageUrl: true,
-          diagramImageAlt: true,
-          choicesImageUrl: true,
-          choicesImageAlt: true,
-          sourceLabel: true,
-          topicKey: true,
-          difficultyBand: true
-        }
-      }
-    }
-  })
+    getPracticeSetPageData(problemSetId)
   ]);
   const t = translator(locale);
 
@@ -136,22 +94,6 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
   }
 
   const practiceSetData = practiceSet;
-
-  if (
-    isRealExamSet(practiceSetData) &&
-    !(await userCanAccessRealTutorProblemSet({
-      prisma,
-      user: session.user,
-      problemSetId: practiceSetData.id
-    }))
-  ) {
-    // School-pilot has no per-user premium tier; previously this
-    // redirected to a /membership demo-unlock flow that's been
-    // removed. Send to /unauthorized so the school admin (not the
-    // student) is the one who notices.
-    redirect("/unauthorized");
-  }
-
   const totalProblems = practiceSetData.problems.length;
 
   // Per-problem attempt status for the badge UI on the list. We pull
@@ -160,12 +102,19 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
   // ABANDONED rows are intentionally treated as "not_started" so the
   // student sees a clean slate after they hit Restart.
   const allProblemIds = practiceSetData.problems.map((p) => p.id);
-  // Parallelize: userAttempts (for badges) and existing practiceRun lookup
-  // are independent — both only need session + practiceSet ids we already
-  // have. Saves another ~200ms RTT vs running them in series.
-  const [userAttempts, existingRun] =
+  const accessPromise = isRealExamSet(practiceSetData)
+    ? userCanAccessRealTutorProblemSet({
+        prisma,
+        user: session.user,
+        problemSetId: practiceSetData.id
+      })
+    : Promise.resolve(true);
+  const attemptsAndRunPromise: Promise<[
+    Array<{ problemId: string; status: string; updatedAt: Date }>,
+    { id: string } | null
+  ]> =
     totalProblems > 0
-      ? await Promise.all([
+      ? Promise.all([
           prisma.problemAttempt.findMany({
             where: {
               userId: session.user.id,
@@ -186,7 +135,20 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
             select: { id: true }
           })
         ])
-      : [[] as Array<{ problemId: string; status: string; updatedAt: Date }>, null as { id: string } | null];
+      : Promise.resolve([[], null]);
+  const [hasPracticeSetAccess, attemptsAndRun] = await Promise.all([
+    accessPromise,
+    attemptsAndRunPromise
+  ]);
+  const [userAttempts, existingRun] = attemptsAndRun;
+
+  if (!hasPracticeSetAccess) {
+    // School-pilot has no per-user premium tier; previously this
+    // redirected to a /membership demo-unlock flow that's been
+    // removed. Send to /unauthorized so the school admin (not the
+    // student) is the one who notices.
+    redirect("/unauthorized");
+  }
 
   // First occurrence wins because we sorted by updatedAt desc.
   const attemptStatusByProblemId = new Map<string, "in_progress" | "submitted">();
@@ -336,16 +298,16 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
-              <Link className="btn-secondary" href="/problems">
+              <RouteProgressLink className="btn-secondary" href="/problems">
                 {t("problemset.back_to_catalog")}
-              </Link>
+              </RouteProgressLink>
               {practiceRun && practiceSetData.problems[0] ? (
-                <Link
+                <RouteProgressLink
                   className="btn-primary"
                   href={`/problems/${encodeURIComponent(practiceSetData.problems[0].id)}?runId=${encodeURIComponent(practiceRun.id)}`}
                 >
                   {t("problemset.start_practice")}
-                </Link>
+                </RouteProgressLink>
               ) : null}
             </div>
           </div>
@@ -440,12 +402,12 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
                             }}
                           />
                         )}
-                        <Link
+                        <RouteProgressLink
                           className="btn-primary"
                           href={`/problems/${encodeURIComponent(problem.id)}?runId=${encodeURIComponent(practiceRun.id)}`}
                         >
                           {t(ctaLabelKey as Parameters<typeof t>[0])}
-                        </Link>
+                        </RouteProgressLink>
                       </div>
                     ) : null}
                   </div>
@@ -478,9 +440,9 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
           </div>
 
           <div className="flex flex-wrap gap-2">
-            <Link className="btn-secondary" href="/problems">
+            <RouteProgressLink className="btn-secondary" href="/problems">
               Back to Catalog
-            </Link>
+            </RouteProgressLink>
           </div>
         </div>
       </section>

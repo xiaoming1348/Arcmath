@@ -816,7 +816,14 @@ function AnswerOnlyInput({
           disabled={trimmed.length === 0 || busy}
           onClick={() => onSubmit(trimmed)}
         >
-          {busy ? t("attempt.submitting") : t("attempt.submit_answer")}
+          {busy ? (
+            <>
+              <LoadingSpinner />
+              {t("attempt.submitting")}
+            </>
+          ) : (
+            t("attempt.submit_answer")
+          )}
         </button>
       </div>
     );
@@ -835,12 +842,19 @@ function AnswerOnlyInput({
         />
       </label>
       <button
-        type="button"
-        className="btn-primary w-full"
-        disabled={trimmed.length === 0 || busy}
-        onClick={() => onSubmit(trimmed)}
-      >
-        {busy ? t("attempt.submitting") : t("attempt.submit_answer")}
+      type="button"
+      className="btn-primary w-full"
+      disabled={trimmed.length === 0 || busy}
+      onClick={() => onSubmit(trimmed)}
+    >
+        {busy ? (
+          <>
+            <LoadingSpinner />
+            {t("attempt.submitting")}
+          </>
+        ) : (
+          t("attempt.submit_answer")
+        )}
       </button>
     </div>
   );
@@ -1044,7 +1058,10 @@ export function UnifiedPracticeWorkspace({
           <h2 className="text-lg font-semibold text-slate-900">{t("attempt.workspace_title_default")}</h2>
         </div>
         {stateQuery.isLoading ? (
-          <p className="text-sm text-slate-500">{t("attempt.loading_state")}</p>
+          <div className="flex items-center gap-2 text-sm text-slate-500">
+            <LoadingSpinner />
+            <span>{t("attempt.loading_state")}</span>
+          </div>
         ) : (
           <EntryChooser onChoose={handleChoose} busy={chooseEntry.isPending} />
         )}
@@ -1063,7 +1080,14 @@ export function UnifiedPracticeWorkspace({
         <h2 className="text-lg font-semibold text-slate-900">{t("attempt.workspace_title_proof")}</h2>
         <p className="text-sm text-slate-600">{t("attempt.proof_workspace_help")}</p>
         <button type="button" className="btn-primary" onClick={autoInit} disabled={chooseEntry.isPending}>
-          {chooseEntry.isPending ? t("attempt.starting") : t("attempt.start_proof_attempt")}
+          {chooseEntry.isPending ? (
+            <>
+              <LoadingSpinner />
+              {t("attempt.starting")}
+            </>
+          ) : (
+            t("attempt.start_proof_attempt")
+          )}
         </button>
         {error ? <p className="text-sm text-red-600">{error}</p> : null}
       </section>

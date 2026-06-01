@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useT } from "@/i18n/client";
 import type { Messages } from "@/i18n/dictionary";
+import { RouteProgressLink } from "@/components/route-progress-link";
 
 export type ContestBrowserSet = {
   id: string;
@@ -207,9 +207,9 @@ export function ContestBrowser({ sets }: ContestBrowserProps) {
                   no longer render the locked-state CTA. If a member
                   somehow lands here without access, the per-page
                   redirect to /unauthorized handles them. */}
-              <Link className="btn-primary" href={`/problems/set/${encodeURIComponent(set.id)}`}>
+              <RouteProgressLink className="btn-primary" href={`/problems/set/${encodeURIComponent(set.id)}`}>
                 {t("problems.browser.open")}
-              </Link>
+              </RouteProgressLink>
             </li>
           ))}
         </ul>

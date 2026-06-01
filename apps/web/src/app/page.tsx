@@ -22,6 +22,7 @@ import { OcrDemo } from "@/components/marketing/ocr-demo";
 import { GradingDemo } from "@/components/marketing/grading-demo";
 import { HintDemo } from "@/components/marketing/hint-demo";
 import { ReportDemo } from "@/components/marketing/report-demo";
+import { RouteProgressLink } from "@/components/route-progress-link";
 
 /**
  * Marketing landing — refreshed (2026-05-13) toward Apple/Stripe
@@ -137,12 +138,12 @@ export default async function Home() {
             {isLoggedIn ? (
               <>
                 <div className="flex flex-wrap gap-3 pt-2">
-                  <Link className="btn-primary" href="/dashboard">
+                  <RouteProgressLink className="btn-primary" href="/dashboard">
                     {t("home.hero.cta_dashboard")}
-                  </Link>
-                  <Link className="btn-secondary" href="/problems">
+                  </RouteProgressLink>
+                  <RouteProgressLink className="btn-secondary" href="/problems">
                     {t("home.hero.cta_browse_problems")}
-                  </Link>
+                  </RouteProgressLink>
                 </div>
                 <div className="flex flex-wrap gap-2 pt-2">
                   <span className="info-pill">{t("home.hero.pill_practice")}</span>
@@ -162,12 +163,12 @@ export default async function Home() {
                * ================================================== */
               <div className="flex flex-col gap-4 pt-2">
                 <div className="flex flex-wrap gap-3">
-                  <Link className="btn-primary" href="/register">
+                  <RouteProgressLink className="btn-primary" href="/register">
                     {t("home.hero.cta_student")}
-                  </Link>
-                  <Link className="btn-secondary" href="/register/school">
+                  </RouteProgressLink>
+                  <RouteProgressLink className="btn-secondary" href="/register/school">
                     {t("home.hero.cta_school")}
-                  </Link>
+                  </RouteProgressLink>
                 </div>
                 <div
                   className="grid gap-3 sm:grid-cols-2"
@@ -368,13 +369,13 @@ export default async function Home() {
 
           <div className="mt-6 flex flex-wrap gap-3">
             {quickLinks.map((link, index) => (
-              <Link
+              <RouteProgressLink
                 key={link.href}
                 className={index === 0 ? "btn-primary" : "btn-secondary"}
                 href={link.href}
               >
                 {link.label}
-              </Link>
+              </RouteProgressLink>
             ))}
           </div>
         </Card>

@@ -1,4 +1,5 @@
 import type { PrismaClient } from "@arcmath/db";
+import { cache } from "react";
 
 /** Mirrors Prisma's OrganizationMembershipRole enum. Kept as a hand-written
  *  union so consumers can narrow without importing the Prisma generated
@@ -12,7 +13,7 @@ export type OrganizationMembershipContext = {
   role: OrgMembershipRole;
 };
 
-export async function getActiveOrganizationMembership(
+export const getActiveOrganizationMembership = cache(async function getActiveOrganizationMembership(
   prisma: PrismaClient,
   userId: string
 ): Promise<OrganizationMembershipContext | null> {
@@ -47,7 +48,7 @@ export async function getActiveOrganizationMembership(
     organizationSlug: membership.organization.slug,
     role: membership.role
   };
-}
+});
 
 export function canManageOrganization(role: OrgMembershipRole): boolean {
   return role === "OWNER" || role === "ADMIN";

@@ -1,15 +1,10 @@
-import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@arcmath/db";
 import { authOptions } from "@/lib/auth";
 import { ContestBrowser, type ContestBrowserSet } from "@/components/contest-browser";
-import { listGrantedRealTutorProblemSetIds } from "@/lib/tutor-premium-access";
-import {
-  buildDiagnosticProblemSetWhere,
-  buildRealExamProblemSetWhere,
-  buildTopicPracticeProblemSetWhere
-} from "@/lib/tutor-usable-sets";
+import { RouteProgressLink } from "@/components/route-progress-link";
+import { getProblemCatalog } from "@/lib/problem-page-data";
 import {
   getDiagnosticStageRoman,
   getDiagnosticStageTier,
@@ -61,53 +56,7 @@ export default async function ProblemsPage() {
     }
   }
 
-  const [rawDiagnosticSets, realSets, topicPracticeSets, grantedRealSetIds] = await Promise.all([
-    prisma.problemSet.findMany({
-      where: buildDiagnosticProblemSetWhere(),
-      orderBy: [{ year: "desc" }, { title: "asc" }],
-      select: {
-        id: true,
-        title: true,
-        contest: true,
-        category: true,
-        diagnosticStage: true,
-        submissionMode: true,
-        _count: { select: { problems: true } }
-      }
-    }),
-    prisma.problemSet.findMany({
-      where: buildRealExamProblemSetWhere(),
-      orderBy: [{ contest: "asc" }, { year: "desc" }, { exam: "asc" }],
-      select: {
-        id: true,
-        title: true,
-        contest: true,
-        year: true,
-        exam: true,
-        category: true,
-        submissionMode: true,
-        _count: { select: { problems: true } }
-      }
-    }),
-    prisma.problemSet.findMany({
-      where: buildTopicPracticeProblemSetWhere(),
-      orderBy: [{ contest: "asc" }, { year: "desc" }, { title: "asc" }],
-      select: {
-        id: true,
-        title: true,
-        contest: true,
-        year: true,
-        exam: true,
-        category: true,
-        submissionMode: true,
-        _count: { select: { problems: true } }
-      }
-    }),
-    session?.user ? listGrantedRealTutorProblemSetIds(prisma, session.user.id) : Promise.resolve([])
-  ]);
-
-  const grantedIdSet = new Set(grantedRealSetIds);
-  const premiumUnlocked = session?.user?.role === "ADMIN" || grantedIdSet.size > 0 || true; // DISABLE_ACCESS_GATING respected downstream
+  const { rawDiagnosticSets, realSets, topicPracticeSets } = await getProblemCatalog();
 
   // De-dupe by (contest, title, stage). Seed has a unique key but we
   // keep this defensive in case a re-seed double-inserts.
@@ -146,7 +95,7 @@ export default async function ProblemsPage() {
       category: s.category as string,
       submissionMode: s.submissionMode as string,
       problemCount: s._count.problems,
-      unlocked: premiumUnlocked || grantedIdSet.has(s.id)
+      unlocked: true
     })),
     ...topicPracticeSets.map((s) => ({
       id: s.id,
@@ -254,7 +203,7 @@ export default async function ProblemsPage() {
                     const tier = getDiagnosticStageTier(set.diagnosticStage);
                     const desc = getDiagnosticStageDescription(set.diagnosticStage);
                     return (
-                      <Link
+                      <RouteProgressLink
                         key={set.id}
                         href={`/problems/set/${encodeURIComponent(set.id)}`}
                         className="group flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-3 transition hover:border-slate-400"
@@ -281,7 +230,7 @@ export default async function ProblemsPage() {
                             {desc?.split(".")[0] /* short summary, drop the recommendation sentence */}
                           </span>
                         </div>
-                      </Link>
+                      </RouteProgressLink>
                     );
                   })}
                 </div>

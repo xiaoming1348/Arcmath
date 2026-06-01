@@ -35,6 +35,7 @@ import {
   isV2Enabled,
   runStepVerificationV2
 } from "@/lib/grading/adapters/unified-attempt-v2";
+import { getProblemAttemptIdentity } from "@/lib/problem-page-data";
 import { protectedProcedure, router } from "@/lib/trpc/server";
 
 const MAX_STEP_LENGTH = 4000;
@@ -397,49 +398,42 @@ export const unifiedAttemptRouter = router({
     const userId = ctx.session.user.id;
     if (!userId) throw new TRPCError({ code: "UNAUTHORIZED" });
 
-    const problem = await ctx.prisma.problem.findUnique({
-      where: { id: input.problemId },
-      select: { id: true, problemSetId: true, answerFormat: true }
-    });
+    const problem = await getProblemAttemptIdentity(input.problemId);
     if (!problem) throw new TRPCError({ code: "NOT_FOUND", message: "Problem not found." });
 
-    const practiceRunId = await resolvePracticeRunId({
-      ctx,
-      practiceRunId: input.practiceRunId,
-      userId,
-      problemSetId: problem.problemSetId
-    });
-
-    // Prefer active draft; otherwise surface latest submitted for review.
-    let attempt = await ctx.prisma.problemAttempt.findFirst({
-      where: { userId, problemId: input.problemId, practiceRunId, status: "DRAFT" },
-      orderBy: { updatedAt: "desc" },
-      select: ATTEMPT_SELECT
-    });
-
-    if (!attempt) {
-      attempt = await ctx.prisma.problemAttempt.findFirst({
-        where: { userId, problemId: input.problemId, practiceRunId, status: "SUBMITTED" },
-        orderBy: { updatedAt: "desc" },
+    const [, attempt] = await Promise.all([
+      resolvePracticeRunId({
+        ctx,
+        practiceRunId: input.practiceRunId,
+        userId,
+        problemSetId: problem.problemSetId
+      }),
+      ctx.prisma.problemAttempt.findFirst({
+        where: {
+          userId,
+          problemId: input.problemId,
+          practiceRunId: input.practiceRunId ?? null,
+          status: { in: ["DRAFT", "SUBMITTED"] }
+        },
+        orderBy: [{ status: "asc" }, { updatedAt: "desc" }],
         select: ATTEMPT_SELECT
-      });
-    }
+      })
+    ]);
 
-    const steps = attempt
-      ? await ctx.prisma.attemptStep.findMany({
-          where: { attemptId: attempt.id },
-          orderBy: { stepIndex: "asc" },
-          select: STEP_SELECT
-        })
-      : [];
-
-    const hintHistory = attempt
-      ? await ctx.prisma.problemHintUsage.findMany({
-          where: { attemptId: attempt.id },
-          orderBy: { createdAt: "asc" },
-          select: { id: true, hintLevel: true, hintText: true, createdAt: true }
-        })
-      : [];
+    const [steps, hintHistory] = attempt
+      ? await Promise.all([
+          ctx.prisma.attemptStep.findMany({
+            where: { attemptId: attempt.id },
+            orderBy: { stepIndex: "asc" },
+            select: STEP_SELECT
+          }),
+          ctx.prisma.problemHintUsage.findMany({
+            where: { attemptId: attempt.id },
+            orderBy: { createdAt: "asc" },
+            select: { id: true, hintLevel: true, hintText: true, createdAt: true }
+          })
+        ])
+      : [[], []];
 
     return {
       attempt: attempt

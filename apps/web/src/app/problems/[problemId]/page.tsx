@@ -1,11 +1,12 @@
-import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@arcmath/db";
 import { ProblemStatement } from "@/components/problem-statement";
+import { RouteProgressLink } from "@/components/route-progress-link";
 import { UnifiedPracticeWorkspace } from "@/components/unified-practice-workspace";
 import { authOptions } from "@/lib/auth";
 import { isPerProblemMode } from "@/lib/problem-set-modes";
+import { getProblemTutorPageData } from "@/lib/problem-page-data";
 import { userCanAccessRealTutorProblemSet } from "@/lib/tutor-premium-access";
 import { getTutorUsableSetKind } from "@/lib/tutor-usable-sets";
 import { resolveLocale } from "@/i18n/server";
@@ -63,54 +64,9 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
     redirect(`/login?callbackUrl=${encodeURIComponent(`/problems/${problemId}${runId ? `?runId=${runId}` : ""}`)}`);
   }
 
-  // Parallel: locale resolution (may touch DB for user.locale) and the
-  // problem lookup. Both only need values we already have — saves ~200ms
-  // RTT vs running them in series.
   const [locale, problem] = await Promise.all([
     resolveLocale(),
-    prisma.problem.findUnique({
-    where: { id: problemId },
-    select: {
-      id: true,
-      number: true,
-      statement: true,
-      statementFormat: true,
-      choices: true,
-      answerFormat: true,
-      diagramImageUrl: true,
-      diagramImageAlt: true,
-      choicesImageUrl: true,
-      choicesImageAlt: true,
-      // solutionSketch is the authoritative official solution rendered
-      // for WORKED_SOLUTION problems (STEP/MAT/Euclid long questions).
-      // For other formats it's used as hint context, not shown directly.
-      solutionSketch: true,
-      topicKey: true,
-      difficultyBand: true,
-      problemSet: {
-        select: {
-          id: true,
-          title: true,
-          contest: true,
-          year: true,
-          exam: true,
-          category: true,
-          submissionMode: true,
-          tutorEnabled: true,
-          sourceUrl: true,
-          problems: {
-            orderBy: {
-              number: "asc"
-            },
-            select: {
-              id: true,
-              number: true
-            }
-          }
-        }
-      }
-    }
-  })
+    getProblemTutorPageData(problemId)
   ]);
   const t = translator(locale);
 
@@ -129,14 +85,34 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
     );
   }
 
-  if (
-    setKind === "real_exam" &&
-    !(await userCanAccessRealTutorProblemSet({
-      prisma,
-      user: session.user,
-      problemSetId: problem.problemSet.id
-    }))
-  ) {
+  const [hasRealExamAccess, practiceRun] = await Promise.all([
+    setKind === "real_exam"
+      ? userCanAccessRealTutorProblemSet({
+          prisma,
+          user: session.user,
+          problemSetId: problem.problemSet.id
+        })
+      : Promise.resolve(true),
+    runId
+      ? prisma.practiceRun.findFirst({
+          where: {
+            id: runId,
+            userId: session.user.id,
+            problemSetId: problem.problemSet.id
+          },
+          select: {
+            id: true,
+            classAssignment: {
+              select: {
+                hintTutorEnabled: true
+              }
+            }
+          }
+        })
+      : Promise.resolve(null)
+  ]);
+
+  if (!hasRealExamAccess) {
     // Pre-pivot the answer was "redirect to /membership demo unlock";
     // school-pilot has no per-user premium tier, so anyone landing here
     // is either platform admin without an org membership OR has been
@@ -151,22 +127,6 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
   // below from the assignment's hintTutorEnabled flag.
   let hintTutorEnabledForRun = true;
   if (runId) {
-    const practiceRun = await prisma.practiceRun.findFirst({
-      where: {
-        id: runId,
-        userId: session.user.id,
-        problemSetId: problem.problemSet.id
-      },
-      select: {
-        id: true,
-        classAssignment: {
-          select: {
-            hintTutorEnabled: true
-          }
-        }
-      }
-    });
-
     if (!practiceRun) {
       notFound();
     }
@@ -207,20 +167,20 @@ export default async function ProblemTutorPage({ params, searchParams }: Problem
           </div>
 
           <div className="flex flex-wrap gap-2">
-            <Link className="btn-secondary" href={`/problems/set/${encodeURIComponent(problem.problemSet.id)}`}>
+            <RouteProgressLink className="btn-secondary" href={`/problems/set/${encodeURIComponent(problem.problemSet.id)}`}>
               {t("attempt.back_to_set")}
-            </Link>
+            </RouteProgressLink>
             {nextProblem ? (
-              <Link
+              <RouteProgressLink
                 className="btn-primary"
                 href={`/problems/${encodeURIComponent(nextProblem.id)}${practiceRunId ? `?runId=${encodeURIComponent(practiceRunId)}` : ""}`}
               >
                 {t("attempt.next_problem")}
-              </Link>
+              </RouteProgressLink>
             ) : practiceRunId ? (
-              <Link className="btn-primary" href={`/reports?runId=${encodeURIComponent(practiceRunId)}`}>
+              <RouteProgressLink className="btn-primary" href={`/reports?runId=${encodeURIComponent(practiceRunId)}`}>
                 {t("attempt.view_report")}
-              </Link>
+              </RouteProgressLink>
             ) : null}
           </div>
         </div>

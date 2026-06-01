@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { getServerSession } from "next-auth";
+import { cache } from "react";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@arcmath/db";
 import {
@@ -27,7 +28,7 @@ export const LOCALE_COOKIE = "arcmath.locale";
  * Called once per request from the root layout. Child server components
  * should receive the resolved locale as a prop instead of re-resolving.
  */
-export async function resolveLocale(): Promise<Locale> {
+export const resolveLocale = cache(async function resolveLocale(): Promise<Locale> {
   const cookieStore = await cookies();
   const cookieVal = cookieStore.get(LOCALE_COOKIE)?.value;
   if (isLocale(cookieVal)) {
@@ -53,7 +54,7 @@ export async function resolveLocale(): Promise<Locale> {
   }
 
   return DEFAULT_LOCALE;
-}
+});
 
 /**
  * Resolve the user's preferred *feedback* locale (the language used for
