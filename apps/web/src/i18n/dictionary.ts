@@ -425,6 +425,32 @@ export type Messages = {
   "problemset.mode_chooser_error": string;
   "problemset.mode_badge_mock": string;
   "problemset.mode_badge_practice": string;
+  "exam.sidebar_heading": string;
+  "exam.sidebar_helper": string;
+  "exam.status_answered": string;
+  "exam.status_blank": string;
+  "exam.status_saving": string;
+  "exam.answer_heading": string;
+  "exam.integer_placeholder": string;
+  "exam.save": string;
+  "exam.saved": string;
+  "exam.save_error": string;
+  "exam.prev": string;
+  "exam.next": string;
+  "exam.submit_title": string;
+  "exam.submit_helper_mock": string;
+  "exam.submit_helper_practice": string;
+  "exam.submit_cta": string;
+  "exam.submit_confirm": string;
+  "exam.submitting": string;
+  "exam.choice_diagram_heading": string;
+  "exam.hint_title": string;
+  "exam.hint_get": string;
+  "exam.hint_after": string;
+  "exam.hint_empty": string;
+  "exam.hint_error": string;
+  "exam.hint_mock_note": string;
+  "exam.hint_exhausted": string;
   "problemset.restart_confirm_title": string;
   "problemset.restart_confirm_body": string;
   "problemset.restart_confirm_yes": string;
@@ -1341,6 +1367,32 @@ export const EN: Messages = {
   "problemset.mode_chooser_error": "Could not start the run. Please try again.",
   "problemset.mode_badge_mock": "Mock",
   "problemset.mode_badge_practice": "Practice",
+  "exam.sidebar_heading": "Problems",
+  "exam.sidebar_helper": "answered",
+  "exam.status_answered": "answered",
+  "exam.status_blank": "blank",
+  "exam.status_saving": "saving",
+  "exam.answer_heading": "Your answer",
+  "exam.integer_placeholder": "Type an integer",
+  "exam.save": "Save",
+  "exam.saved": "Saved",
+  "exam.save_error": "Couldn’t save. Try again.",
+  "exam.prev": "Previous",
+  "exam.next": "Next",
+  "exam.submit_title": "Submit the whole exam",
+  "exam.submit_helper_mock": "Once submitted you can’t change any answer. Blanks count as unanswered.",
+  "exam.submit_helper_practice": "Submit when you’re ready. Hints used will be reflected on the report.",
+  "exam.submit_cta": "Submit exam",
+  "exam.submit_confirm": "Submit the whole exam now? You won’t be able to change answers afterwards.",
+  "exam.submitting": "Grading…",
+  "exam.choice_diagram_heading": "Choice diagram",
+  "exam.hint_title": "Hints",
+  "exam.hint_get": "Get a hint",
+  "exam.hint_after": "Get the next hint",
+  "exam.hint_empty": "No hint available for this problem yet.",
+  "exam.hint_error": "Could not load a hint. Try again.",
+  "exam.hint_mock_note": "Hints are off in Mock mode.",
+  "exam.hint_exhausted": "All hints revealed",
   "problemset.restart_confirm_title": "Start this problem over?",
   "problemset.restart_confirm_body": "All your previous answers, steps, and feedback for this problem will be permanently deleted. This cannot be undone.",
   "problemset.restart_confirm_yes": "Yes, delete and start fresh",
@@ -2278,6 +2330,32 @@ export const ZH: Messages = {
   "problemset.mode_chooser_error": "启动失败，请重试。",
   "problemset.mode_badge_mock": "模考",
   "problemset.mode_badge_practice": "练习",
+  "exam.sidebar_heading": "题目",
+  "exam.sidebar_helper": "已作答",
+  "exam.status_answered": "已作答",
+  "exam.status_blank": "未作答",
+  "exam.status_saving": "保存中",
+  "exam.answer_heading": "你的答案",
+  "exam.integer_placeholder": "请输入整数",
+  "exam.save": "保存",
+  "exam.saved": "已保存",
+  "exam.save_error": "保存失败，请重试。",
+  "exam.prev": "上一题",
+  "exam.next": "下一题",
+  "exam.submit_title": "整套提交",
+  "exam.submit_helper_mock": "提交后不能修改任何答案。空白将记为未作答。",
+  "exam.submit_helper_practice": "准备好之后提交，使用过的提示会反映在报告里。",
+  "exam.submit_cta": "提交全部",
+  "exam.submit_confirm": "确认现在整套提交？之后将不能修改答案。",
+  "exam.submitting": "批改中…",
+  "exam.choice_diagram_heading": "选项图",
+  "exam.hint_title": "提示",
+  "exam.hint_get": "获取提示",
+  "exam.hint_after": "下一条提示",
+  "exam.hint_empty": "这道题暂未提供提示。",
+  "exam.hint_error": "提示加载失败，请重试。",
+  "exam.hint_mock_note": "模考模式下不提供提示。",
+  "exam.hint_exhausted": "提示已全部展示",
   "problemset.restart_confirm_title": "确定重新开始这道题吗？",
   "problemset.restart_confirm_body": "此操作会**永久删除**你在本题的所有作答、步骤和反馈记录，不可恢复。",
   "problemset.restart_confirm_yes": "确认删除并重新开始",

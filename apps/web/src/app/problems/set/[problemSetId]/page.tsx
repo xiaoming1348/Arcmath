@@ -190,6 +190,20 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
   const runMode: "MOCK" | "PRACTICE" =
     practiceRun?.mode === "MOCK" ? "MOCK" : "PRACTICE";
 
+  // Canvas redirect: AMC/AIME (real-exam + whole-set-submit) opens in
+  // the dedicated /exam route which renders one problem at a time. This
+  // is a much faster paint than the legacy inline form (which renders
+  // 25 KaTeX statements at once) and is where the Mock/Practice
+  // gating lives. Diagnostic placement sets stay on the inline form
+  // because they're shorter and don't benefit from per-problem nav.
+  if (
+    practiceRun &&
+    isRealExamSet(practiceSetData) &&
+    isWholeSetSubmitMode(practiceSetData)
+  ) {
+    redirect(`/problems/set/${encodeURIComponent(problemSetId)}/exam`);
+  }
+
   async function submitDiagnosticRun(formData: FormData) {
     "use server";
 
