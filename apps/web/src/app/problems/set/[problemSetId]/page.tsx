@@ -274,6 +274,54 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
     redirect(`/reports?runId=${encodeURIComponent(validatedRun.id)}`);
   }
 
+  // Real-exam mode chooser: rendered as a chooser-only page BEFORE we
+  // commit to either the PER_PROBLEM or WHOLE_SET_SUBMIT layout, so
+  // both AMC/AIME (whole-set-submit) and proof-style real exams
+  // (per-problem) show the same Mock/Practice cards on first open.
+  // After the student picks, the API creates the run and the page
+  // re-fetches into the normal layout.
+  if (needsRealExamModeChoice) {
+    return (
+      <main className="motion-rise space-y-4">
+        <section className="surface-card space-y-3">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div className="space-y-2">
+              <div className="flex flex-wrap gap-2">
+                <span className="badge">{getProblemSetModeLabel(practiceSetData)}</span>
+              </div>
+              <h1 className="text-2xl font-semibold text-slate-900">{practiceSetData.title}</h1>
+              <p className="text-sm text-slate-600">
+                {practiceSetData.contest} {practiceSetData.year}
+                {practiceSetData.exam ? ` ${practiceSetData.exam}` : ""} ·{" "}
+                {t("problemset.total_problems", { count: totalProblems })}
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <RouteProgressLink className="btn-secondary" href="/problems">
+                {t("problemset.back_to_catalog")}
+              </RouteProgressLink>
+            </div>
+          </div>
+        </section>
+        <RealExamModeChooser
+          problemSetId={practiceSetData.id}
+          labels={{
+            eyebrow: t("problemset.mode_chooser_eyebrow"),
+            title: t("problemset.mode_chooser_title"),
+            helper: t("problemset.mode_chooser_helper"),
+            mockTitle: t("problemset.mode_mock_title"),
+            mockBody: t("problemset.mode_mock_body"),
+            practiceTitle: t("problemset.mode_practice_title"),
+            practiceBody: t("problemset.mode_practice_body"),
+            mockCta: t("problemset.mode_mock_cta"),
+            practiceCta: t("problemset.mode_practice_cta"),
+            error: t("problemset.mode_chooser_error")
+          }}
+        />
+      </main>
+    );
+  }
+
   if (isPerProblemMode(practiceSetData)) {
     return (
       <main className="motion-rise space-y-4">
@@ -320,23 +368,6 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
           </div>
         </section>
 
-        {needsRealExamModeChoice ? (
-          <RealExamModeChooser
-            problemSetId={practiceSetData.id}
-            labels={{
-              eyebrow: t("problemset.mode_chooser_eyebrow"),
-              title: t("problemset.mode_chooser_title"),
-              helper: t("problemset.mode_chooser_helper"),
-              mockTitle: t("problemset.mode_mock_title"),
-              mockBody: t("problemset.mode_mock_body"),
-              practiceTitle: t("problemset.mode_practice_title"),
-              practiceBody: t("problemset.mode_practice_body"),
-              mockCta: t("problemset.mode_mock_cta"),
-              practiceCta: t("problemset.mode_practice_cta"),
-              error: t("problemset.mode_chooser_error")
-            }}
-          />
-        ) : (
         <section className="surface-card space-y-4">
           <div className="space-y-2">
             <h2 className="text-lg font-semibold text-slate-900">{t("problemset.problems_heading")}</h2>
@@ -440,7 +471,6 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
             })}
           </div>
         </section>
-        )}
       </main>
     );
   }
