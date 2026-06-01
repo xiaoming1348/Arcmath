@@ -1,7 +1,12 @@
 import ReactMarkdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
-import { sanitizeProblemStatement } from "@/lib/generated-problem-set-pdf";
+// IMPORTANT: import the pure sanitizer from the standalone module, not
+// from `generated-problem-set-pdf`. The PDF helper imports `playwright`
+// at module top-level, which webpack then tries to bundle into any
+// client component that transitively imports it (e.g. ExamWorkspace).
+// The standalone module has no Node-only imports and is browser-safe.
+import { sanitizeProblemStatement } from "@/lib/sanitize-problem-statement";
 
 type ProblemStatementProps = {
   statement: string | null;

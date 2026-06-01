@@ -1,4 +1,10 @@
 import { chromium } from "playwright";
+import {
+  normalizeWhitespace,
+  sanitizeProblemStatement
+} from "@/lib/sanitize-problem-statement";
+
+export { sanitizeProblemStatement };
 
 export type GeneratedPdfVariant = "problems" | "answers";
 
@@ -30,10 +36,11 @@ type ChoiceExtractionResult = {
   choices: string[];
 };
 
-const POLLUTED_LINE_PATTERN =
-  /\b(?:minor edits?|latex edits?|video solution|pi academy|education, the study of everything|thesmartgreekmathdude)\b/i;
-const SOLUTION_SECTION_PATTERN = /(?:^|\n)\s*(?:Solution|Answer Key|Official Solution|Video Solution)\b/i;
-const ASY_BLOCK_PATTERN = /\[asy\][\s\S]*?\[\/asy\]/gi;
+// Pure sanitizer pieces (POLLUTED_LINE_PATTERN, SOLUTION_SECTION_PATTERN,
+// ASY_BLOCK_PATTERN, normalizeWhitespace, sanitizeProblemStatement) live
+// in `sanitize-problem-statement.ts` so client components can use
+// `<ProblemStatement>` without pulling Playwright into the browser
+// bundle. They are imported and re-exported at the top of this file.
 
 const TEX_COMMAND_REPLACEMENTS: Array<[RegExp, string]> = [
   [/\\cdot\b/g, "·"],
@@ -49,10 +56,6 @@ const TEX_COMMAND_REPLACEMENTS: Array<[RegExp, string]> = [
   [/\\lambda\b/g, "lambda"],
   [/\\infty\b/g, "infinity"]
 ];
-
-function normalizeWhitespace(value: string): string {
-  return value.replace(/[ \t]+\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
-}
 
 function escapeHtml(value: string): string {
   return value
@@ -170,42 +173,6 @@ function extractInlineMultipleChoice(statement: string): ChoiceExtractionResult 
     statement: normalizeWhitespace(statement.slice(0, markerIndexes[0])),
     choices
   };
-}
-
-export function sanitizeProblemStatement(raw: string | null): string {
-  if (!raw) {
-    return "Statement not available.";
-  }
-
-  let statement = raw
-    .replace(/\r\n/g, "\n")
-    .replace(/\r/g, "\n")
-    .replace(/\u00a0/g, " ")
-    .replace(/[\u200B-\u200D\uFEFF]/g, "")
-    .replace(ASY_BLOCK_PATTERN, "");
-
-  const sectionMatch = statement.match(SOLUTION_SECTION_PATTERN);
-  if (sectionMatch?.index !== undefined) {
-    statement = statement.slice(0, sectionMatch.index);
-  }
-
-  const cleanedLines = statement
-    .split("\n")
-    .map((line) => line.trimEnd())
-    .filter((line) => !/^\s*~/.test(line))
-    .filter((line) => !POLLUTED_LINE_PATTERN.test(line));
-
-  statement = normalizeWhitespace(cleanedLines.join("\n"));
-  if (!statement) {
-    return "Statement not available.";
-  }
-
-  const paragraphs = statement.split(/\n\s*\n/).map((part) => part.trim()).filter((part) => part.length > 0);
-  if (paragraphs.length > 2 && statement.length > 1200) {
-    statement = `${paragraphs[0]}\n\n${paragraphs[1]}`;
-  }
-
-  return normalizeWhitespace(statement);
 }
 
 export function sanitizeProblemForRender(problem: RenderProblemInput): SanitizedProblemForRender {
