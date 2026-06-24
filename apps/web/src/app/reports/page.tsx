@@ -15,6 +15,8 @@ import {
   Tag
 } from "@/components/ui";
 import { ProblemStatement } from "@/components/problem-statement";
+import { SetTrendChart } from "@/components/set-trend-chart";
+import { RouteProgressLink } from "@/components/route-progress-link";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -76,9 +78,12 @@ export default async function ReportsPage({ searchParams }: ReportsPageProps) {
   const reportHeading = isRunScoped
     ? "Set Report"
     : "Your latest report";
+  const recentRunsCount = reportInput.recentRuns.length;
   const reportDescription = isRunScoped
     ? `Based on your completed run for ${reportInput.reportScope.problemSetTitle ?? "this practice set"}${reportInput.reportScope.problemSetLabel ? ` · ${reportInput.reportScope.problemSetLabel}` : ""}.`
-    : "Based on your most recent Hint Tutor attempts and hint usage.";
+    : recentRunsCount > 0
+      ? `Averaged across your ${recentRunsCount} most recent distinct practice sets.`
+      : "Based on your most recent Hint Tutor attempts and hint usage.";
 
   if (reportInput.attempts.length === 0) {
     return (
@@ -218,13 +223,37 @@ export default async function ReportsPage({ searchParams }: ReportsPageProps) {
       </Section>
 
       {/* ===========================================================
+       *  ACCURACY TREND — last 5 distinct sets
+       *  Only rendered in latest mode (run-scoped reports only have
+       *  one data point and a single-dot "trend" is misleading).
+       * ========================================================= */}
+      {!isRunScoped && reportInput.recentRuns.length >= 2 ? (
+        <Section tight>
+          <Card>
+            <SectionHeader
+              eyebrow="Accuracy trend"
+              title="Per-set accuracy across your recent work"
+              lede="Each dot is one practice set. Hover for the set name and the exact score."
+            />
+            <div className="mt-6">
+              <SetTrendChart runs={reportInput.recentRuns} />
+            </div>
+          </Card>
+        </Section>
+      ) : null}
+
+      {/* ===========================================================
        *  OUTCOME BREAKDOWN — four Brilliant-style colored tiles
        * ========================================================= */}
       <Section tight className="surface-section-cool">
         <SectionHeader
           eyebrow="Outcome breakdown"
           title="Independence vs. accuracy"
-          lede="This separates direct solving from hinted solving — so the report reflects independence as well as accuracy."
+          lede={
+            isRunScoped
+              ? "This separates direct solving from hinted solving — so the report reflects independence as well as accuracy."
+              : `Counts across your ${reportInput.recentRuns.length || "recent"} most recent practice sets — direct vs. hinted solving.`
+          }
         />
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           <div className="tile tile-teal">
@@ -357,11 +386,29 @@ export default async function ReportsPage({ searchParams }: ReportsPageProps) {
        * ========================================================= */}
       {report.primaryReinforcementTopic ? (
         <Section tight>
-          <Card>
+          <Card
+            style={{
+              // Distinct accent-tinted card so the weakest topic — the
+              // single most actionable item on the report — visually
+              // dominates the rest of the page. Per docx feedback,
+              // students were missing this signal when it lived in a
+              // plain card alongside everything else.
+              background: "var(--accent-soft, rgba(43, 111, 255, 0.06))",
+              border:
+                "1px solid color-mix(in srgb, var(--accent-strong, #2b6fff) 30%, transparent)"
+            }}
+          >
             <Eyebrow>Primary reinforcement focus</Eyebrow>
             <h2
-              className="mt-2 mb-3"
-              style={{ fontSize: "clamp(1.5rem, 2.4vw, 1.875rem)" }}
+              className="mt-3 mb-3"
+              style={{
+                fontSize: "clamp(2rem, 4vw, 2.75rem)",
+                fontFamily: "var(--font-display-custom)",
+                fontWeight: 800,
+                letterSpacing: "-0.02em",
+                color: "var(--accent-strong, #2b6fff)",
+                lineHeight: 1.1
+              }}
             >
               {formatTopicLabel(report.primaryReinforcementTopic)}
             </h2>
@@ -378,80 +425,42 @@ export default async function ReportsPage({ searchParams }: ReportsPageProps) {
       ) : null}
 
       {/* ===========================================================
-       *  TOPICS NEEDING REINFORCEMENT + HIGH-HINT PROBLEMS
+       *  TOPICS NEEDING REINFORCEMENT
+       *  The companion "Problems with high hint usage" card was
+       *  removed per docx feedback — its signal is already captured
+       *  by the outcome breakdown tiles (used-hint correct / used-hint
+       *  incorrect) above, so showing it again here was duplicate
+       *  noise.
        * ========================================================= */}
       <Section tight>
-        <div className="grid gap-6 lg:grid-cols-2">
-          <Card>
-            <h2 className="mb-3">Topics needing reinforcement</h2>
-            {report.topicsNeedingReinforcement.length > 0 ? (
-              <ul className="flex flex-col gap-2 text-sm">
-                {report.topicsNeedingReinforcement.map((topicKey, idx) => (
-                  <li
-                    key={topicKey}
-                    style={{
-                      padding: "12px 16px",
-                      background: "var(--surface-2)",
-                      border: "1px solid var(--border)",
-                      borderRadius: "var(--radius-md)",
-                      color: "var(--foreground)",
-                      animation: `rise-in 320ms cubic-bezier(0.2, 0.7, 0.2, 1) ${idx * 60}ms both`
-                    }}
-                  >
-                    {formatTopicLabel(topicKey)}
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-sm" style={{ color: "var(--muted)" }}>
-                No clear weak topic has emerged yet from your recent attempts.
-              </p>
-            )}
-          </Card>
-
-          <Card>
-            <h2 className="mb-3">Problems with high hint usage</h2>
-            {report.highHintProblems.length > 0 ? (
-              <ul className="flex flex-col gap-2 text-sm">
-                {report.highHintProblems.map((problem, idx) => (
-                  <li
-                    key={problem.problemId}
-                    style={{
-                      padding: "12px 16px",
-                      background: "var(--surface-2)",
-                      border: "1px solid var(--border)",
-                      borderRadius: "var(--radius-md)",
-                      color: "var(--foreground)",
-                      animation: `rise-in 320ms cubic-bezier(0.2, 0.7, 0.2, 1) ${idx * 60}ms both`
-                    }}
-                  >
-                    <p
-                      className="font-medium"
-                      style={{ color: "var(--foreground-strong)" }}
-                    >
-                      {problem.statementSnippet}
-                    </p>
-                    <p
-                      className="mt-1 text-[11px] font-semibold uppercase"
-                      style={{
-                        color: "var(--subtle)",
-                        letterSpacing: "0.1em",
-                        fontFamily: "var(--font-mono-custom)"
-                      }}
-                    >
-                      Hint requests: {problem.hintUsageCount} · Highest level:{" "}
-                      {problem.highestHintLevel}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-sm" style={{ color: "var(--muted)" }}>
-                No recent problems required heavy hint support.
-              </p>
-            )}
-          </Card>
-        </div>
+        <Card>
+          <h2 className="mb-3">Topics needing reinforcement</h2>
+          {report.topicsNeedingReinforcement.length > 0 ? (
+            <ul className="flex flex-col gap-2 text-sm">
+              {report.topicsNeedingReinforcement.map((topicKey, idx) => (
+                <li
+                  key={topicKey}
+                  style={{
+                    padding: "12px 16px",
+                    background: "var(--surface-2)",
+                    border: "1px solid var(--border)",
+                    borderRadius: "var(--radius-md)",
+                    color: "var(--foreground)",
+                    fontSize: "1rem",
+                    fontWeight: 500,
+                    animation: `rise-in 320ms cubic-bezier(0.2, 0.7, 0.2, 1) ${idx * 60}ms both`
+                  }}
+                >
+                  {formatTopicLabel(topicKey)}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-sm" style={{ color: "var(--muted)" }}>
+              No clear weak topic has emerged yet from your recent attempts.
+            </p>
+          )}
+        </Card>
       </Section>
 
       {/* ===========================================================
@@ -495,6 +504,43 @@ export default async function ReportsPage({ searchParams }: ReportsPageProps) {
             </li>
           ))}
         </ul>
+      </Section>
+
+      {/* ===========================================================
+       *  WRONG-ANSWERS REVISIT — dedicated page CTA
+       *  The Question review block below shows wrong/unfinished
+       *  problems for the current report scope. The revisit page
+       *  shows them grouped by set, across the user's last 5 sets,
+       *  and gives a one-click "try again" per problem.
+       * ========================================================= */}
+      <Section tight>
+        <Card
+          style={{
+            background:
+              "color-mix(in srgb, var(--accent-strong, #2b6fff) 8%, var(--surface-card))",
+            border:
+              "1px solid color-mix(in srgb, var(--accent-strong, #2b6fff) 30%, transparent)"
+          }}
+        >
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="space-y-1" style={{ minWidth: 0, flex: 1 }}>
+              <Eyebrow>Wrong-answers archive</Eyebrow>
+              <h2
+                className="mt-1"
+                style={{ fontSize: "clamp(1.25rem, 2vw, 1.5rem)" }}
+              >
+                Revisit problems you got wrong
+              </h2>
+              <p className="text-sm" style={{ color: "var(--muted)" }}>
+                Grouped by set, across your last 5 practice sets. Open one to
+                retry or read the official solution.
+              </p>
+            </div>
+            <RouteProgressLink className="btn-primary" href="/reports/revisit">
+              Open archive →
+            </RouteProgressLink>
+          </div>
+        </Card>
       </Section>
 
       {/* ===========================================================

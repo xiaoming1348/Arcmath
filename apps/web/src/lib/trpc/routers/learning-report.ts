@@ -9,7 +9,18 @@ import {
   getTutorUsableSetKind
 } from "@/lib/tutor-usable-sets";
 
-const RECENT_ATTEMPT_LIMIT = 25;
+/**
+ * The "latest report" mode (no runId in URL) aggregates across the
+ * user's most recent N distinct ProblemSets — one PracticeRun per set
+ * (their most recent completed run for that set). This is a bigger
+ * window than the old single-25-attempt cutoff so the headline
+ * accuracy + hint stats reflect a real trend, not just one bad day.
+ *
+ * Picking distinct sets (not runs) prevents a student who replays
+ * AMC 10 2020 three times from drowning out the other sets they've
+ * worked on.
+ */
+const RECENT_DISTINCT_SET_LIMIT = 5;
 const RECOMMENDED_PROBLEM_LIMIT = 3;
 
 function toIsoString(value: Date): string {
@@ -162,18 +173,89 @@ export const learningReportRouter = router({
         });
       }
 
+      // In latest mode, look up the user's most recent N distinct
+      // ProblemSets (one most-recent completed PracticeRun per set).
+      // Skipped in run-scoped mode where we already have the run.
+      type RecentRunRow = {
+        id: string;
+        problemSetId: string;
+        completedAt: Date;
+        problemSet: {
+          title: string;
+          contest: Contest;
+          year: number;
+          exam: string | null;
+          category: "DIAGNOSTIC" | "REAL_EXAM" | "TOPIC_PRACTICE";
+        };
+      };
+
+      let recentRunsForLatest: RecentRunRow[] = [];
+      if (!practiceRun) {
+        // Pull a generous window of completed runs and dedupe in code.
+        // 50 is enough for a typical student (who rarely has more than
+        // a few distinct sets in a month); we stop once we've collected
+        // RECENT_DISTINCT_SET_LIMIT distinct problemSetIds.
+        const candidateRuns = await ctx.prisma.practiceRun.findMany({
+          where: {
+            userId,
+            completedAt: { not: null }
+          },
+          orderBy: { completedAt: "desc" },
+          take: 50,
+          select: {
+            id: true,
+            problemSetId: true,
+            completedAt: true,
+            problemSet: {
+              select: {
+                title: true,
+                contest: true,
+                year: true,
+                exam: true,
+                category: true
+              }
+            }
+          }
+        });
+
+        const seenSetIds = new Set<string>();
+        for (const run of candidateRuns) {
+          if (!run.completedAt) continue;
+          if (seenSetIds.has(run.problemSetId)) continue;
+          seenSetIds.add(run.problemSetId);
+          recentRunsForLatest.push({
+            id: run.id,
+            problemSetId: run.problemSetId,
+            completedAt: run.completedAt,
+            problemSet: run.problemSet
+          });
+          if (recentRunsForLatest.length >= RECENT_DISTINCT_SET_LIMIT) break;
+        }
+      }
+
+      const recentRunIds = recentRunsForLatest.map((run) => run.id);
+
       const attempts = await ctx.prisma.problemAttempt.findMany({
         where: {
           userId,
-          ...(practiceRun ? { practiceRunId: practiceRun.id } : {})
+          // Run-scoped: only attempts in this run.
+          // Latest: only attempts in the N most-recent distinct-set runs.
+          //   If recentRunIds is empty (new student, no completed runs),
+          //   fall through to "no attempts" branch.
+          ...(practiceRun
+            ? { practiceRunId: practiceRun.id }
+            : { practiceRunId: { in: recentRunIds } })
         },
         orderBy: {
           createdAt: "desc"
         },
-        ...(practiceRun ? {} : { take: RECENT_ATTEMPT_LIMIT }),
         select: {
           id: true,
           problemId: true,
+          // practiceRunId is needed downstream so the report page can
+          // group attempts by run for the per-set trend chart and the
+          // "revisit wrong answers" view.
+          practiceRunId: true,
           submittedAnswer: true,
           normalizedAnswer: true,
           isCorrect: true,
@@ -204,30 +286,34 @@ export const learningReportRouter = router({
           generatedAt: new Date().toISOString(),
           attempts: [],
           recommendedProblems: [],
-          reportScope: buildReportScope(practiceRun)
+          reportScope: buildReportScope(practiceRun),
+          recentRuns: []
         };
       }
 
       const problemIds = Array.from(new Set(attempts.map((attempt) => attempt.problemId)));
-      const oldestAttemptAt = attempts.at(-1)?.createdAt ?? attempts[attempts.length - 1].createdAt;
 
+      // Scope hint usages to the same runs we pulled attempts from. In
+      // run-scoped mode that's one run; in latest mode that's the 5
+      // distinct-set runs.
+      //
+      // The old query used a createdAt window keyed off the oldest
+      // attempt; that worked but pulled in stray hint requests for
+      // problems shared across sets. Filtering by practiceRunId is
+      // exact and cheaper.
       const hintUsages = await ctx.prisma.problemHintUsage.findMany({
         where: {
           userId,
-          ...(practiceRun ? { practiceRunId: practiceRun.id } : {}),
+          ...(practiceRun
+            ? { practiceRunId: practiceRun.id }
+            : { practiceRunId: { in: recentRunIds } }),
           problemId: {
             in: problemIds
-          },
-          ...(practiceRun
-            ? {}
-            : {
-                createdAt: {
-                  gte: oldestAttemptAt
-                }
-              })
+          }
         },
         select: {
           problemId: true,
+          practiceRunId: true,
           hintLevel: true
         }
       });
@@ -254,6 +340,7 @@ export const learningReportRouter = router({
         return {
           attemptId: attempt.id,
           problemId: attempt.problemId,
+          practiceRunId: attempt.practiceRunId,
           submittedAnswer: attempt.submittedAnswer,
           normalizedAnswer: attempt.normalizedAnswer,
           isCorrect: attempt.isCorrect,
@@ -475,12 +562,87 @@ export const learningReportRouter = router({
         return left.number - right.number;
       });
 
+      // Build the per-run aggregate the chart + sidebar consume.
+      // Run-scoped reports emit a single-entry array (the run itself);
+      // latest reports emit up to RECENT_DISTINCT_SET_LIMIT entries
+      // ordered most-recent-first.
+      //
+      // accuracy is computed over SUBMITTED attempts only — drafts /
+      // abandoned attempts shouldn't drag the percentage down.
+      const recentRuns: Array<{
+        runId: string;
+        problemSetId: string;
+        problemSetTitle: string;
+        problemSetLabel: string | null;
+        completedAt: string;
+        totalProblems: number;
+        totalSubmitted: number;
+        totalCorrect: number;
+        accuracy: number;
+        hintUsedCount: number;
+      }> = [];
+
+      if (practiceRun) {
+        const runAttempts = normalizedAttempts.filter(
+          (a) => a.practiceRunId === practiceRun.id
+        );
+        const submitted = runAttempts.filter((a) => a.status === "SUBMITTED");
+        const correct = submitted.filter((a) => a.isCorrect).length;
+        const hintUsed = hintUsages.filter(
+          (h) => h.practiceRunId === practiceRun.id
+        ).length;
+        recentRuns.push({
+          runId: practiceRun.id,
+          problemSetId: practiceRun.problemSetId,
+          problemSetTitle: practiceRun.problemSet.title,
+          problemSetLabel:
+            practiceRun.problemSet.category === "DIAGNOSTIC"
+              ? null
+              : `${practiceRun.problemSet.contest} ${practiceRun.problemSet.year}${practiceRun.problemSet.exam ? ` ${practiceRun.problemSet.exam}` : ""}`,
+          completedAt: practiceRun.completedAt
+            ? toIsoString(practiceRun.completedAt)
+            : new Date().toISOString(),
+          totalProblems: runAttempts.length,
+          totalSubmitted: submitted.length,
+          totalCorrect: correct,
+          accuracy: submitted.length > 0 ? correct / submitted.length : 0,
+          hintUsedCount: hintUsed
+        });
+      } else {
+        for (const run of recentRunsForLatest) {
+          const runAttempts = normalizedAttempts.filter(
+            (a) => a.practiceRunId === run.id
+          );
+          const submitted = runAttempts.filter((a) => a.status === "SUBMITTED");
+          const correct = submitted.filter((a) => a.isCorrect).length;
+          const hintUsed = hintUsages.filter(
+            (h) => h.practiceRunId === run.id
+          ).length;
+          recentRuns.push({
+            runId: run.id,
+            problemSetId: run.problemSetId,
+            problemSetTitle: run.problemSet.title,
+            problemSetLabel:
+              run.problemSet.category === "DIAGNOSTIC"
+                ? null
+                : `${run.problemSet.contest} ${run.problemSet.year}${run.problemSet.exam ? ` ${run.problemSet.exam}` : ""}`,
+            completedAt: toIsoString(run.completedAt),
+            totalProblems: runAttempts.length,
+            totalSubmitted: submitted.length,
+            totalCorrect: correct,
+            accuracy: submitted.length > 0 ? correct / submitted.length : 0,
+            hintUsedCount: hintUsed
+          });
+        }
+      }
+
       return {
         userId,
         generatedAt: new Date().toISOString(),
         attempts: normalizedAttempts,
         recommendedProblems,
-        reportScope: buildReportScope(practiceRun)
+        reportScope: buildReportScope(practiceRun),
+        recentRuns
       };
     })
 });
