@@ -26,6 +26,7 @@
     "@arcmath/ingest-maa-putnam": "workspace:*",
     "@arcmath/ingest-maa-usamo": "workspace:*",
     "@arcmath/ingest-maa-usajmo": "workspace:*",
+    "@arcmath/ingest-imo": "workspace:*",
     "@arcmath/ingest-oxford-mat": "workspace:*",
     "@arcmath/shared": "workspace:*",
     "@aws-sdk/client-s3": "^3.997.0",

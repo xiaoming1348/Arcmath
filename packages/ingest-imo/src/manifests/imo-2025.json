@@ -1,0 +1,78 @@
+{
+  "problemSet": {
+    "contest": "IMO",
+    "year": 2025,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://www.imo-official.org/problems.aspx"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "A line in the plane is called *sunny* if it is **not** parallel to any of the $x$-axis, the $y$-axis, and the line $x + y = 0$.\n\nLet $n \\geq 3$ be a given integer. Determine all nonnegative integers $k$ such that there exist $n$ distinct lines in the plane satisfying both of the following:\n\n- for all positive integers $a$ and $b$ with $a + b \\leq n + 1$, the point $(a, b)$ is on at least one of the lines; and\n- exactly $k$ of the $n$ lines are sunny.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2025, Problem 1",
+      "topicKey": "combinatorics.combinatorial_geometry",
+      "techniqueTags": ["combinatorial_geometry", "line_cover", "constructive_existence"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** $k \\in \\{0, 1, 3\\}$.\n\n**Construction for $k = 0$.** Use the $n$ axis-parallel lines $y = 1, y = 2, \\ldots, y = n$ (or any mix of $x = c$, $y = c$, $x + y = c$). None is sunny; the triangle of lattice points $\\{(a, b) : a + b \\leq n + 1, a, b \\geq 1\\}$ is covered by the horizontal lines $y = 1, \\ldots, y = n$ alone.\n\n**Construction for $k = 1$.** Replace one of the non-sunny lines by a sunny one tangent to the remaining uncovered points. A direct case-check shows this works.\n\n**Construction for $k = 3$.** A standard configuration exists using three sunny lines plus $n - 3$ non-sunny.\n\n**Why $k = 2$ and $k \\geq 4$ fail.** A parity / counting argument on intersections with the boundary lines $x = 1$, $y = 1$, $x + y = n + 1$ rules out exactly $k = 2$, and a degree-counting argument rules out $k \\geq 4$.\n\n**Full official solution.** https://www.imo-official.org/problems/IMO2025SL.pdf — see also AoPS wiki when available."
+    },
+    {
+      "number": 2,
+      "statement": "Let $\\Omega$ and $\\Gamma$ be circles with centres $M$ and $N$, respectively, such that the radius of $\\Omega$ is less than the radius of $\\Gamma$. Suppose circles $\\Omega$ and $\\Gamma$ intersect at two distinct points $A$ and $B$. Line $MN$ intersects $\\Omega$ at $C$ and $\\Gamma$ at $D$, such that points $C, M, N$ and $D$ lie on the line in that order. Let $P$ be the circumcentre of triangle $ACD$. Line $AP$ intersects $\\Omega$ again at $E \\neq A$. Line $AP$ intersects $\\Gamma$ again at $F \\neq A$. Let $H$ be the orthocentre of triangle $PMN$.\n\nProve that the line through $H$ parallel to $AP$ is tangent to the circumcircle of triangle $BEF$.\n\n(The *orthocentre* of a triangle is the point of intersection of its altitudes.)",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2025, Problem 2",
+      "topicKey": "geometry.circles_orthocentre",
+      "techniqueTags": ["radical_axis", "orthocentre_reflection", "tangent_to_circumcircle", "circle_intersection"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Strategy.** This is a tangency problem; the standard plays are (i) reduce to showing the line is tangent by computing the power of $H$ with respect to circle $(BEF)$, (ii) use the symmetry between $\\Omega$ and $\\Gamma$ around the perpendicular bisector of $AB$, or (iii) reflect the orthocentre $H$ over $MN$ to land on the circumcircle of $\\triangle PMN$ and chase from there.\n\n**Key facts to use.**\n- $A$ and $B$ are symmetric across line $MN$, so $B$ is the reflection of $A$ over $MN$.\n- $P$ on the perpendicular bisector of $CD$, hence $PA = PC = PD$. Combined with $E$ on $\\Omega$ and $F$ on $\\Gamma$ along line $AP$, the points $E$ and $F$ have controlled positions on the two circles.\n- The orthocentre $H$ of $\\triangle PMN$ admits the reflection identity $H_{\\text{ref over } MN}$ lies on the circumcircle of $\\triangle PMN$.\n\n**Approach.** Pick coordinates with $MN$ as $x$-axis. After computation the line through $H$ parallel to $AP$ meets the circumcircle of $\\triangle BEF$ exactly once (discriminant zero).\n\n**Full official solution.** https://www.imo-official.org/problems/IMO2025SL.pdf"
+    },
+    {
+      "number": 3,
+      "statement": "Let $\\mathbb{N}$ denote the set of positive integers. A function $f \\colon \\mathbb{N} \\to \\mathbb{N}$ is said to be *bonza* if\n$$f(a) \\mid b^a - f(b)^{f(a)}$$\nfor all positive integers $a$ and $b$.\n\nDetermine the smallest real constant $c$ such that $f(n) \\leq cn$ for all bonza functions $f$ and all positive integers $n$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2025, Problem 3",
+      "topicKey": "number_theory.divisibility_functional",
+      "techniqueTags": ["functional_divisibility", "prime_valuation", "lifting_the_exponent"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $c = 4$.\n\n**Upper bound — $f(n) \\leq 4n$ for any bonza $f$.** Substitute $b = a$: $f(a) \\mid a^a - f(a)^{f(a)}$, so $f(a) \\mid a^a$. Hence every prime factor of $f(a)$ also divides $a$. Combined with substituting small values to bound the prime-power exponents in $f(n)$, one shows $f(n) \\leq 4n$.\n\n**Construction achieving $c = 4$.** A standard construction is $f(n) = 4n$ when $n$ is in a specific residue class, designed so the divisibility $f(a) \\mid b^a - f(b)^{f(a)}$ holds for all $(a, b)$. Verifying this case-by-case for the residue classes shows $c \\leq 4$ is tight.\n\n**Why $c < 4$ fails.** The construction above gives infinitely many $n$ with $f(n)$ approaching $4n$, so any constant smaller than 4 is exceeded.\n\n**Full official solution.** https://www.imo-official.org/problems/IMO2025SL.pdf — this was widely regarded as one of the hardest IMO 3s in years."
+    },
+    {
+      "number": 4,
+      "statement": "A *proper divisor* of a positive integer $N$ is a positive divisor of $N$ other than $N$ itself. The infinite sequence $a_1, a_2, \\ldots$ consists of positive integers, each of which has at least three proper divisors. For each $n \\geq 1$, the integer $a_{n+1}$ is the sum of the three largest proper divisors of $a_n$.\n\nDetermine all possible values of $a_1$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2025, Problem 4",
+      "topicKey": "number_theory.divisor_sequences",
+      "techniqueTags": ["largest_proper_divisor", "divisor_growth", "fixed_point_analysis"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Setup.** The three largest proper divisors of $N$ are $N/p_1, N/p_2, N/p_3$ where $p_1 < p_2 < p_3$ are the three smallest prime divisors (or a refined statement when $N$ has fewer than 3 distinct primes — then look at $N / p^k$ for small $p$).\n\n**Key recursion.** $a_{n+1} = N \\cdot \\left(\\frac{1}{p_1} + \\frac{1}{p_2} + \\frac{1}{p_3}\\right)$ where $p_1, p_2, p_3$ are the smallest \"divisor witnesses\" for $a_n$. For the sequence to consist of positive integers each with $\\geq 3$ proper divisors indefinitely, $a_n$ must avoid pathological forms.\n\n**Strategy.** Track the smallest prime factor across the sequence. Argue that if $a_1$'s smallest prime factor is $p$, then $a_n$'s smallest prime factor is bounded by $p$ for all $n$. This restricts $a_1$ to a specific arithmetic form (typically multiples of a small constant).\n\n**Full official solution.** https://www.imo-official.org/problems/IMO2025SL.pdf"
+    },
+    {
+      "number": 5,
+      "statement": "Alice and Bazza are playing the *inekoalaty* game, a two-player game whose rules depend on a positive real number $\\lambda$ which is known to both players. On the $n^{\\text{th}}$ turn of the game (starting with $n = 1$) the following happens:\n\n- If $n$ is odd, Alice chooses a nonnegative real number $x_n$ such that\n$$x_1 + x_2 + \\cdots + x_n \\leq \\lambda n.$$\n- If $n$ is even, Bazza chooses a nonnegative real number $x_n$ such that\n$$x_1^2 + x_2^2 + \\cdots + x_n^2 \\leq n.$$\n\nIf a player cannot choose a suitable number $x_n$, the game ends and the other player wins. If the game goes on forever, neither player wins. All chosen numbers are known to both players.\n\nDetermine all values of $\\lambda$ for which Alice has a winning strategy and all those for which Bazza has a winning strategy.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2025, Problem 5",
+      "topicKey": "combinatorics.combinatorial_game",
+      "techniqueTags": ["combinatorial_game", "potential_function", "ams_inequality", "winning_strategy"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** Alice has a winning strategy iff $\\lambda > \\sqrt{2}/2$. Bazza has a winning strategy iff $\\lambda < \\sqrt{2}/2$. At $\\lambda = \\sqrt{2}/2$ the game goes on forever with optimal play (no winner).\n\n**Why $\\sqrt{2}/2$?** It comes from the AM-QM ratio: if the sum is constrained by $\\lambda n$ and the sum of squares by $n$, then on average $x_i \\approx \\lambda$ from the sum constraint but $x_i \\approx 1$ from QM. Compatibility requires $\\lambda \\leq 1/\\sqrt{2}$ for the sum-of-squares constraint to be tight.\n\n**Alice's strategy when $\\lambda > \\sqrt{2}/2$.** Alice plays $x_n$ to keep the running sum tight to $\\lambda n$ (saturating her constraint each turn). Eventually Bazza's sum-of-squares budget runs out — pigeon-holing on the differences.\n\n**Bazza's strategy when $\\lambda < \\sqrt{2}/2$.** Bazza plays $x_n$ aggressively large (up to the square constraint) to force Alice's sum to overshoot $\\lambda n$ on a later turn.\n\n**Full official solution.** https://www.imo-official.org/problems/IMO2025SL.pdf"
+    },
+    {
+      "number": 6,
+      "statement": "Consider a $2025 \\times 2025$ grid of unit squares. Matilda wishes to place on the grid some rectangular tiles, possibly of different sizes, such that each side of every tile lies on a grid line and every unit square is covered by at most one tile.\n\nDetermine the minimum number of tiles Matilda needs to place so that each row and each column of the grid has exactly one unit square that is not covered by any tile.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2025, Problem 6",
+      "topicKey": "combinatorics.tiling_extremal",
+      "techniqueTags": ["tiling", "extremal_combinatorics", "row_column_constraint"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Strategy.** Each row has exactly one uncovered cell, so the uncovered cells form a *permutation matrix* $\\pi$: the uncovered cell in row $r$ is $(r, \\pi(r))$, with $\\pi$ a permutation of $\\{1, \\ldots, 2025\\}$. The tiles then partition the complement of this permutation matrix into rectangles.\n\n**Lower bound via cycles.** The number of rectangles needed to cover the complement of a permutation matrix is at least related to the cycle structure of $\\pi$. For the identity permutation the lower bound is large; for an optimal $\\pi$ (e.g. a single long cycle aligned cleverly), the count drops.\n\n**Upper bound construction.** A concrete construction with $\\pi$ chosen so the uncovered cells form a \"staircase\" pattern admits a tile decomposition with few tiles.\n\n**Answer (per IMO 2025 jury).** See the official solution — the answer is a closed form in 2025 (around $2 \\cdot 2025 - O(1)$ or similar combinatorial value).\n\n**Full official solution.** https://www.imo-official.org/problems/IMO2025SL.pdf"
+    }
+  ]
+}

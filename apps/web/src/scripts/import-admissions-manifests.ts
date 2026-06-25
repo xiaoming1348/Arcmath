@@ -60,9 +60,20 @@ import {
   USAJMO_MANIFEST_DIR,
   loadAllUsajmoManifests
 } from "@arcmath/ingest-maa-usajmo";
+import {
+  IMO_MANIFEST_DIR,
+  loadAllImoManifests
+} from "@arcmath/ingest-imo";
 import { commitImportFromJson } from "../lib/imports/contest-import";
 
-type ContestKey = "euclid" | "mat" | "step" | "usamo" | "usajmo" | "putnam";
+type ContestKey =
+  | "euclid"
+  | "mat"
+  | "step"
+  | "usamo"
+  | "usajmo"
+  | "imo"
+  | "putnam";
 
 type CliFlags = {
   contest: ContestKey;
@@ -104,9 +115,10 @@ function parseArgs(argv: string[]): CliFlags {
         value !== "step" &&
         value !== "usamo" &&
         value !== "usajmo" &&
+        value !== "imo" &&
         value !== "putnam"
       ) {
-        throw new Error(`--contest must be one of euclid|mat|step|usamo|usajmo|putnam; got ${value}`);
+        throw new Error(`--contest must be one of euclid|mat|step|usamo|usajmo|imo|putnam; got ${value}`);
       }
       flags.contest = value;
       index += 1;
@@ -157,6 +169,12 @@ function getContestAdapter(contest: ContestKey): ContestAdapter {
         label: "USAJMO",
         defaultManifestDir: USAJMO_MANIFEST_DIR,
         loadAll: (options) => loadAllUsajmoManifests(options)
+      };
+    case "imo":
+      return {
+        label: "IMO",
+        defaultManifestDir: IMO_MANIFEST_DIR,
+        loadAll: (options) => loadAllImoManifests(options)
       };
     case "putnam":
       return {

@@ -14,6 +14,10 @@ export const CONTESTS = [
   // at strong AMC10/AIME-level students. One paper per year, no exam
   // variants. Admissions-track "stretch" tier above AIME.
   "USAJMO",
+  // IMO (International Mathematical Olympiad): 6 problems split across
+  // 2 days, all proof-based. One paper per year, no exam variants.
+  // Same shape as USAMO but a step higher in difficulty.
+  "IMO",
   "EUCLID",
   "MAT",
   "STEP",
@@ -116,7 +120,8 @@ function expectedProblemCount(contest: z.infer<typeof contestSchema>): number | 
       return 15;
     case "USAMO":
     case "USAJMO":
-      // Both USAMO and USAJMO are 6-problem, 2-day proof-based papers
+    case "IMO":
+      // USAMO / USAJMO / IMO are 6-problem, 2-day proof-based papers
       // (3 problems per day, 4.5 hours each).
       return 6;
     case "EUCLID":
@@ -329,12 +334,13 @@ export const importProblemSetSchema = z
       });
     }
 
-    // USAMO / USAJMO / EUCLID / MAT / PUTNAM are one paper per year,
-    // no exam variants. PRACTICE uses `exam` as a free-form topic slug
-    // (e.g. "topic-algebra-v1") so we don't restrict it here.
+    // USAMO / USAJMO / IMO / EUCLID / MAT / PUTNAM are one paper per
+    // year, no exam variants. PRACTICE uses `exam` as a free-form topic
+    // slug (e.g. "topic-algebra-v1") so we don't restrict it here.
     if (
       (contest === "USAMO" ||
         contest === "USAJMO" ||
+        contest === "IMO" ||
         contest === "EUCLID" ||
         contest === "MAT" ||
         contest === "PUTNAM") &&
