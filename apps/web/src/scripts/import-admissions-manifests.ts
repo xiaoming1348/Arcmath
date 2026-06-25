@@ -108,6 +108,11 @@ function parseArgs(argv: string[]): CliFlags {
   for (let index = 0; index < argv.length; index += 1) {
     const flag = argv[index];
     const value = argv[index + 1];
+    // pnpm @ v10 forwards a literal '--' to the script when called as
+    // `pnpm --filter web admissions:import -- --contest imo`. Skip
+    // bare '--' so callers can use either invocation form without
+    // hitting the "Unknown flag" branch.
+    if (flag === "--") continue;
     if (flag === "--contest" && value) {
       if (
         value !== "euclid" &&
