@@ -9,6 +9,7 @@ import { MathFieldEditor } from "@/components/math-field-editor";
 import type { OcrUploadResult } from "@/components/handwriting-ocr-uploader";
 import { HandwritingMultiStepModal } from "@/components/handwriting-multi-step-modal";
 import { LoadingSpinner } from "@/components/loading-spinner";
+import { ProblemStatement } from "@/components/problem-statement";
 import { resizeImageDataUrl } from "@/lib/image-resize";
 import { useT } from "@/i18n/client";
 import type { Locale, Messages } from "@/i18n/dictionary";
@@ -805,7 +806,16 @@ function AnswerOnlyInput({
               />
               <span className="flex-1 text-slate-700">
                 <span className="block font-semibold text-slate-500">{c.label}.</span>
-                <Markdown text={c.text} />
+                {/* `choice` switches the input through normalizeChoiceForDisplay
+                    so AMC-style raw LaTeX (\\frac{3}{5}, 64\\pi) gets wrapped
+                    in $...$ and KaTeX actually fires. Without this we were
+                    showing the raw command text on the page. */}
+                <ProblemStatement
+                  statement={c.text}
+                  statementFormat="MARKDOWN_LATEX"
+                  compact
+                  choice
+                />
               </span>
             </label>
           ))}

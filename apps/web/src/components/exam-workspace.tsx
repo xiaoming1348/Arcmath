@@ -627,6 +627,7 @@ export function ExamWorkspace({
                               statement={choice.text}
                               statementFormat="MARKDOWN_LATEX"
                               compact
+                              choice
                             />
                           ) : null}
                         </span>

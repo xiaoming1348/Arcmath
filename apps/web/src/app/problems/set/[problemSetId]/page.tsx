@@ -609,7 +609,7 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
                           <span className="flex-1 space-y-1 text-slate-700">
                             <span className="block font-semibold text-slate-500">{choice.label}.</span>
                             {!problem.choicesImageUrl ? (
-                              <ProblemStatement statement={choice.text} statementFormat="MARKDOWN_LATEX" compact />
+                              <ProblemStatement statement={choice.text} statementFormat="MARKDOWN_LATEX" compact choice />
                             ) : null}
                           </span>
                         </label>

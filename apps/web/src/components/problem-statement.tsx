@@ -13,6 +13,14 @@ type ProblemStatementProps = {
   statementFormat: "MARKDOWN_LATEX" | "HTML" | "PLAIN";
   compact?: boolean;
   className?: string;
+  /**
+   * When true, treat the input as an MC choice — runs through
+   * `normalizeChoiceForDisplay` instead of `normalizeStatementForDisplay`.
+   * That helper auto-wraps short pure-math strings (e.g. `\frac{3}{5}`,
+   * `64\pi`) in `$...$` so KaTeX actually fires; without this many AMC
+   * choices showed the raw LaTeX command as text.
+   */
+  choice?: boolean;
 };
 
 export function normalizeStatementForDisplay(raw: string | null): string {
@@ -57,9 +65,12 @@ export function ProblemStatement({
   statement,
   statementFormat,
   compact = false,
-  className = "text-sm leading-7 text-slate-800"
+  className = "text-sm leading-7 text-slate-800",
+  choice = false
 }: ProblemStatementProps) {
-  const normalizedStatement = normalizeStatementForDisplay(statement);
+  const normalizedStatement = choice
+    ? normalizeChoiceForDisplay(statement)
+    : normalizeStatementForDisplay(statement);
 
   if (statementFormat !== "MARKDOWN_LATEX") {
     return <p className={`whitespace-pre-wrap ${className}`}>{normalizedStatement}</p>;
