@@ -26,6 +26,9 @@ importers:
       '@arcmath/ingest-cemc':
         specifier: workspace:*
         version: link:../../packages/ingest-cemc
+      '@arcmath/ingest-imo':
+        specifier: workspace:*
+        version: link:../../packages/ingest-imo
       '@arcmath/ingest-maa-putnam':
         specifier: workspace:*
         version: link:../../packages/ingest-maa-putnam
@@ -179,6 +182,19 @@ importers:
         version: 5.9.3
 
   packages/ingest-cemc:
+    dependencies:
+      '@arcmath/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      tsx:
+        specifier: ^4.20.6
+        version: 4.21.0
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
+  packages/ingest-imo:
     dependencies:
       '@arcmath/shared':
         specifier: workspace:*
