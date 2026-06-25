@@ -435,6 +435,8 @@ export type Messages = {
   "exam.save": string;
   "exam.saved": string;
   "exam.save_error": string;
+  "exam.saving": string;
+  "exam.saved_at": string;
   "exam.prev": string;
   "exam.next": string;
   "exam.submit_title": string;
@@ -1377,6 +1379,8 @@ export const EN: Messages = {
   "exam.save": "Save",
   "exam.saved": "Saved",
   "exam.save_error": "Couldn’t save. Try again.",
+  "exam.saving": "Saving…",
+  "exam.saved_at": "Saved at {time}",
   "exam.prev": "Previous",
   "exam.next": "Next",
   "exam.submit_title": "Submit the whole exam",
@@ -2340,6 +2344,8 @@ export const ZH: Messages = {
   "exam.save": "保存",
   "exam.saved": "已保存",
   "exam.save_error": "保存失败，请重试。",
+  "exam.saving": "保存中…",
+  "exam.saved_at": "已自动保存 {time}",
   "exam.prev": "上一题",
   "exam.next": "下一题",
   "exam.submit_title": "整套提交",

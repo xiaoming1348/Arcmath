@@ -305,6 +305,8 @@ export default async function ExamPage({ params }: PageProps) {
         save: t("exam.save"),
         saved: t("exam.saved"),
         saveError: t("exam.save_error"),
+        saving: t("exam.saving"),
+        savedAt: t("exam.saved_at"),
         prev: t("exam.prev"),
         next: t("exam.next"),
         submitTitle: t("exam.submit_title"),

@@ -67,6 +67,9 @@ type ExamLabels = {
   save: string;
   saved: string;
   saveError: string;
+  saving: string;
+  /** Template with {time} placeholder, e.g. "Saved at {time}". */
+  savedAt: string;
   prev: string;
   next: string;
   submitTitle: string;
@@ -148,8 +151,19 @@ export function ExamWorkspace({
     }
     return initial;
   });
-  // Per-problem save state for the UX feedback.
-  const [saveStates, setSaveStates] = useState<Record<string, SaveState>>({});
+  // Global save state for the bottom-of-page status indicator. The old
+  // model surfaced per-problem 'Saved ✓' badges + an explicit Save
+  // button per problem; both have been removed. New model:
+  //   - typing into ANY answer schedules a debounced background save
+  //     for that one problem (1s after last keystroke)
+  //   - the status string at the bottom of the page shows 'Saving…' or
+  //     'Saved at HH:MM' or an error, so the student gets exactly one
+  //     signal instead of N
+  //   - explicit Save buttons are gone — physically removing the
+  //     control removes the perceived "I need to click this before
+  //     leaving" friction
+  const [globalSaveState, setGlobalSaveState] = useState<SaveState>("idle");
+  const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
   const [saveError, setSaveError] = useState<string | null>(null);
   // Per-problem hint state. hints is the ordered list of revealed hint
   // text + level so we can render "Hint 1" / "Hint 2" / etc.
@@ -163,6 +177,11 @@ export function ExamWorkspace({
 
   const currentProblem = problems[currentIndex];
   const formRef = useRef<HTMLFormElement | null>(null);
+  // Per-problem debounce timers. Typing in problem X resets X's timer
+  // but not Y's, so two problems can have independent pending saves.
+  const saveTimersRef = useRef<Map<string, ReturnType<typeof setTimeout>>>(
+    new Map()
+  );
   // Track submit state so the button shows a spinner during the
   // grade-all transaction. The server action triggers a navigation
   // after it completes; we keep `submitting=true` until the redirect
@@ -203,57 +222,102 @@ export function ExamWorkspace({
     [runId]
   );
 
-  // Explicit Save button click. Distinct from autoSave below in that it
-  // surfaces success + failure visibly.
-  const handleSaveClick = useCallback(
-    async (problemId: string) => {
+  // The save lifecycle, in one place:
+  //   - scheduleDebouncedSave: called from setAnswer + onBlur; resets
+  //     a per-problem 1-second timer. While it's running, status =
+  //     'saving'. When it fires, we POST to /save-draft and flip
+  //     status to 'saved' (with a timestamp) on success, 'error'
+  //     otherwise. If the user types again before the timer fires
+  //     we restart the timer — same as Google Docs / Notion.
+  //   - flushPendingSaves: cancels every pending timer and writes
+  //     each dirty problem synchronously. Called on Prev/Next so the
+  //     student can't lose a draft by navigating before the debounce
+  //     fires.
+  const runSave = useCallback(
+    async (problemId: string, value: string) => {
       setSaveError(null);
-      setSaveStates((prev) => ({ ...prev, [problemId]: "saving" }));
-      const id = await persistDraft(problemId, answers[problemId] ?? "");
+      setGlobalSaveState("saving");
+      const id = await persistDraft(problemId, value);
       if (id) {
-        setSaveStates((prev) => ({ ...prev, [problemId]: "saved" }));
+        setGlobalSaveState("saved");
+        // toLocaleTimeString without seconds is the minimum-noise
+        // form. The student sees "Saved at 14:23" — enough to trust
+        // their work is persisted.
+        setLastSavedAt(
+          new Date().toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit"
+          })
+        );
       } else {
-        setSaveStates((prev) => ({ ...prev, [problemId]: "error" }));
+        setGlobalSaveState("error");
         setSaveError(labels.saveError);
       }
     },
-    [answers, labels.saveError, persistDraft]
+    [labels.saveError, persistDraft]
   );
 
-  // Fire-and-forget auto-save used on navigation + blur. Doesn't touch
-  // saveStates so the visible Save button stays at "idle" / "saved" as
-  // controlled by the explicit Save click.
-  const autoSave = useCallback(
+  const scheduleDebouncedSave = useCallback(
     (problemId: string, value: string) => {
-      void persistDraft(problemId, value);
+      const existing = saveTimersRef.current.get(problemId);
+      if (existing) clearTimeout(existing);
+      // Visible "Saving…" indicator goes on the moment the user types,
+      // not when the debounce fires. That way the student doesn't
+      // wonder during the 1s window whether their work is captured.
+      setGlobalSaveState("saving");
+      const timer = setTimeout(() => {
+        saveTimersRef.current.delete(problemId);
+        void runSave(problemId, value);
+      }, 1000);
+      saveTimersRef.current.set(problemId, timer);
     },
-    [persistDraft]
+    [runSave]
   );
 
-  const setAnswer = useCallback((problemId: string, value: string) => {
-    setAnswers((prev) => ({ ...prev, [problemId]: value }));
-    // Once the user types, the prior "saved" badge is stale. Reset to
-    // idle so they know the next click on Save will be meaningful.
-    setSaveStates((prev) =>
-      prev[problemId] === "saved" ? { ...prev, [problemId]: "idle" } : prev
-    );
-  }, []);
+  const flushPendingSaves = useCallback(() => {
+    const pending = Array.from(saveTimersRef.current.entries());
+    if (pending.length === 0) return;
+    for (const [, timer] of pending) clearTimeout(timer);
+    saveTimersRef.current.clear();
+    // Save synchronously (well, kick off the fetches). We don't await
+    // here — navigation is allowed to proceed; the server write
+    // completes in the background.
+    for (const [problemId] of pending) {
+      void runSave(problemId, answersRef.current[problemId] ?? "");
+    }
+  }, [runSave]);
+
+  // Stable ref of the latest answers so flushPendingSaves doesn't
+  // close over a stale snapshot. Updated below in setAnswer.
+  const answersRef = useRef<Record<string, string>>(answers);
+
+  const setAnswer = useCallback(
+    (problemId: string, value: string) => {
+      setAnswers((prev) => {
+        const next = { ...prev, [problemId]: value };
+        answersRef.current = next;
+        return next;
+      });
+      scheduleDebouncedSave(problemId, value);
+    },
+    [scheduleDebouncedSave]
+  );
 
   const navigateTo = useCallback(
     (nextIndex: number) => {
       if (nextIndex < 0 || nextIndex >= totalProblems) return;
-      // Auto-save the current problem before leaving.
-      const cur = problems[currentIndex];
-      if (cur) {
-        autoSave(cur.id, answers[cur.id] ?? "");
-      }
+      // Flush any pending debounced saves so navigation can't leave
+      // a draft un-persisted. flushPendingSaves kicks off the writes
+      // synchronously but doesn't await — the writes complete in the
+      // background while the next problem renders.
+      flushPendingSaves();
       setCurrentIndex(nextIndex);
       // Scroll the new problem into view for long statements.
       if (typeof window !== "undefined") {
         window.scrollTo({ top: 0, behavior: "instant" });
       }
     },
-    [answers, autoSave, currentIndex, problems, totalProblems]
+    [currentIndex, flushPendingSaves, problems, totalProblems]
   );
 
   const handleRequestHint = useCallback(
@@ -327,17 +391,16 @@ export function ExamWorkspace({
     ]
   );
 
-  // Status the sidebar uses to colour each problem number. "saving" is
-  // a transient state; "answered" reflects whether the React state has
-  // a non-empty value (matches what the server will see on submit);
-  // "blank" is the default.
+  // Status the sidebar uses to colour each problem number. With the
+  // shift to debounced autosave the "saving" transient state no longer
+  // belongs at a single problem (the indicator is global at the bottom
+  // of the page), so the sidebar only distinguishes blank vs answered.
   const statusFor = useCallback(
-    (problemId: string): "answered" | "blank" | "saving" => {
-      if (saveStates[problemId] === "saving") return "saving";
+    (problemId: string): "answered" | "blank" => {
       const value = (answers[problemId] ?? "").trim();
       return value.length > 0 ? "answered" : "blank";
     },
-    [answers, saveStates]
+    [answers]
   );
 
   // Tally for the helper text under the sidebar heading.
@@ -397,7 +460,6 @@ export function ExamWorkspace({
       ? normalizeChoiceOptions(currentProblem.choices)
       : [];
   const currentAnswer = answers[currentProblem.id] ?? "";
-  const currentSaveState = saveStates[currentProblem.id] ?? "idle";
   const currentHints = hints[currentProblem.id] ?? [];
   const currentHintPending = hintPending[currentProblem.id] ?? false;
   const currentHintError = hintErrors[currentProblem.id] ?? null;
@@ -501,11 +563,6 @@ export function ExamWorkspace({
                 styles.color = "var(--success)";
                 styles.borderColor =
                   "color-mix(in srgb, var(--success) 28%, transparent)";
-              } else if (status === "saving") {
-                styles.background = "rgba(43,111,255,0.08)";
-                styles.color = "var(--accent-strong, #2b6fff)";
-                styles.borderColor =
-                  "color-mix(in srgb, var(--accent-strong, #2b6fff) 28%, transparent)";
               } else {
                 styles.background = "white";
                 styles.color = "#475569";
@@ -514,9 +571,7 @@ export function ExamWorkspace({
               const ariaLabel =
                 status === "answered"
                   ? `${p.number} · ${labels.statusAnswered}`
-                  : status === "saving"
-                    ? `${p.number} · ${labels.statusSaving}`
-                    : `${p.number} · ${labels.statusBlank}`;
+                  : `${p.number} · ${labels.statusBlank}`;
               return (
                 <button
                   key={p.id}
@@ -614,9 +669,6 @@ export function ExamWorkspace({
                           onChange={() =>
                             setAnswer(currentProblem.id, choice.label)
                           }
-                          onBlur={() =>
-                            autoSave(currentProblem.id, choice.label)
-                          }
                         />
                         <span className="flex-1 space-y-1 text-slate-700">
                           <span className="block font-semibold text-slate-500">
@@ -646,9 +698,6 @@ export function ExamWorkspace({
                   onChange={(e) =>
                     setAnswer(currentProblem.id, e.target.value)
                   }
-                  onBlur={(e) =>
-                    autoSave(currentProblem.id, e.target.value)
-                  }
                 />
               )}
             </fieldset>
@@ -672,35 +721,30 @@ export function ExamWorkspace({
                   {labels.next} →
                 </button>
               </div>
-              <div className="flex flex-wrap items-center gap-2">
-                {currentSaveState === "saved" ? (
+              {/* Global save status — replaces the per-problem Save
+                  button. Goes 'Saving…' the moment the student types,
+                  'Saved at HH:MM' a second after they stop, or red
+                  error on failure. Subtle on purpose: the indicator
+                  exists so the student trusts the system, not so they
+                  feel pressured to click anything. */}
+              <div className="flex items-center gap-2 text-xs">
+                {globalSaveState === "saving" ? (
                   <span
-                    className="text-xs"
-                    style={{ color: "var(--success)" }}
+                    className="inline-flex items-center gap-2"
+                    style={{ color: "var(--muted)" }}
                   >
-                    ✓ {labels.saved}
+                    <LoadingSpinner />
+                    {labels.saving}
                   </span>
-                ) : null}
-                {currentSaveState === "error" ? (
-                  <span className="text-xs" style={{ color: "#dc2626" }}>
+                ) : globalSaveState === "saved" && lastSavedAt ? (
+                  <span style={{ color: "var(--success)" }}>
+                    ✓ {labels.savedAt.replace("{time}", lastSavedAt)}
+                  </span>
+                ) : globalSaveState === "error" ? (
+                  <span style={{ color: "#dc2626" }}>
                     {labels.saveError}
                   </span>
                 ) : null}
-                <button
-                  type="button"
-                  className="btn-primary"
-                  onClick={() => handleSaveClick(currentProblem.id)}
-                  disabled={currentSaveState === "saving"}
-                >
-                  {currentSaveState === "saving" ? (
-                    <span className="inline-flex items-center gap-2">
-                      <LoadingSpinner />
-                      {labels.save}
-                    </span>
-                  ) : (
-                    labels.save
-                  )}
-                </button>
               </div>
             </div>
           </section>
