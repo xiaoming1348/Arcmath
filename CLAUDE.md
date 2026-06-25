@@ -206,6 +206,52 @@ something as done when it isn't burns ~30 minutes of the next session
 on detective work and erodes trust in the handoff doc, which is the
 only source-of-truth across context compactions.
 
+### I. Terminal commands must be copy-paste-friendly
+
+When giving the owner commands to run on their Mac or the VPS, **put
+each command in its own fenced code block, with no inline comments,
+no `# explain this` lines, and no chains the user has to mentally
+split apart**. The owner copies the block into Terminal one by one;
+they should not have to read and edit each line.
+
+Wrong:
+
+```bash
+cd /Users/yimingsun/Desktop/Arcmath && \
+git push origin main && \
+ssh arcmath@47.76.201.152 'bash ~/arcmath/deploy/hk-vps/deploy.sh' && \
+# ^ This deploys
+curl -sI https://arcscience.forecaster-ai.com/ | head -1  # verify
+```
+
+Right:
+
+```
+cd /Users/yimingsun/Desktop/Arcmath
+```
+
+```
+git push origin main
+```
+
+```
+ssh arcmath@47.76.201.152 'bash ~/arcmath/deploy/hk-vps/deploy.sh'
+```
+
+```
+curl -sI https://arcscience.forecaster-ai.com/ | head -1
+```
+
+Put any explanation **above or below** the blocks in prose, not inside
+the blocks. The owner already lost time stripping `# comments` /
+splitting `&&`-chains; this is the rule that prevents it.
+
+If a command genuinely needs flags inline that aren't obvious, prefer
+either a short prose sentence right above the block ("Note: pnpm 10
+requires `--no-frozen-lockfile` here because…") or invoke the command
+once and explain the flag separately rather than inlining a comment
+into the command itself.
+
 ---
 
 **These guidelines are working if:** fewer unnecessary changes in diffs,
