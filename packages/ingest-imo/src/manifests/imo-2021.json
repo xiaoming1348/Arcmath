@@ -1,0 +1,78 @@
+{
+  "problemSet": {
+    "contest": "IMO",
+    "year": 2021,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://www.imo-official.org/problems.aspx"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Let $n \\geq 100$ be an integer. Ivan writes the numbers $n, n+1, \\ldots, 2n$ each on different cards. He then shuffles these $n + 1$ cards, and divides them into two piles. Prove that at least one of the piles contains two cards such that the sum of their numbers is a perfect square.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2021, Problem 1",
+      "topicKey": "number_theory.perfect_squares",
+      "techniqueTags": ["pigeonhole", "perfect_square_intervals", "two_coloring"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Strategy.** Find three cards $a < b < c$ in $\\{n, n+1, \\ldots, 2n\\}$ such that all three pairwise sums $a+b$, $a+c$, $b+c$ are perfect squares. Then in any 2-coloring of $\\{a, b, c\\}$, two of them share a color and their sum is a perfect square.\n\n**Construction.** Pick a perfect square $k^2$ close to $3n$. Find consecutive squares $k^2, (k+1)^2, (k+2)^2$ in $[2n+1, 4n-1]$ — there's room when $n \\geq 100$ because the gap between consecutive squares is $\\leq 2k+1 \\leq 2\\sqrt{4n} + 1$, small compared to $2n$. Then $a, b, c$ defined by $a+b = k^2$, $a+c = (k+1)^2$, $b+c = (k+2)^2$ are uniquely determined and lie in $[n, 2n]$.\n\n**Conclusion.** Whichever pile contains two of $\\{a, b, c\\}$, that pile has two cards summing to a perfect square. $\\blacksquare$\n\n**Full solution.** https://www.imo-official.org/problems/IMO2021SL.pdf (problem N1)."
+    },
+    {
+      "number": 2,
+      "statement": "Show that the inequality\n$$\\sum_{i=1}^{n} \\sum_{j=1}^{n} \\sqrt{|x_i - x_j|} \\leq \\sum_{i=1}^{n} \\sum_{j=1}^{n} \\sqrt{|x_i + x_j|}$$\nholds for all real numbers $x_1, \\ldots, x_n$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2021, Problem 2",
+      "topicKey": "algebra.inequalities",
+      "techniqueTags": ["integral_representation", "fourier", "majorization", "convexity"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Key identity.** $\\sqrt{|t|} = c \\int_0^\\infty \\frac{1 - \\cos(t u)}{u^{3/2}} \\, du$ for some positive constant $c$. This lets us reduce the problem to showing\n$$\\sum_{i,j} (1 - \\cos((x_i - x_j) u)) \\leq \\sum_{i,j} (1 - \\cos((x_i + x_j) u))$$\nfor every $u > 0$.\n\n**Cosine expansion.** Using $\\cos(A \\pm B) = \\cos A \\cos B \\mp \\sin A \\sin B$ and summing, this reduces to\n$$\\left(\\sum_i \\sin(x_i u)\\right)^2 \\geq 0,$$\nwhich is obvious.\n\n**Why this works.** The integral representation turns $\\sqrt{|t|}$ into a convex combination of $1 - \\cos(tu)$ terms, and the latter has clean expansion in $x_i \\pm x_j$.\n\n**Full solution.** https://www.imo-official.org/problems/IMO2021SL.pdf (problem A8)."
+    },
+    {
+      "number": 3,
+      "statement": "Let $D$ be an interior point of the acute triangle $ABC$ with $AB > AC$ so that $\\angle DAB = \\angle CAD$. The point $E$ on the segment $AC$ satisfies $\\angle ADE = \\angle BCD$, the point $F$ on the segment $AB$ satisfies $\\angle FDA = \\angle DBC$, and the point $X$ on the line $AC$ satisfies $CX = BX$. Let $O_1$ and $O_2$ be the circumcentres of the triangles $ADC$ and $EXD$, respectively. Prove that the lines $BC$, $EF$, and $O_1 O_2$ are concurrent.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2021, Problem 3",
+      "topicKey": "geometry.circumcentres_concurrence",
+      "techniqueTags": ["isogonal_conjugates", "angle_bisector", "radical_axis", "concurrence"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Setup.** $\\angle DAB = \\angle CAD$ means $AD$ is the angle bisector of $\\angle BAC$. The conditions $\\angle ADE = \\angle BCD$ and $\\angle FDA = \\angle DBC$ define $E, F$ as specific points on $AC, AB$.\n\n**Key observation.** Show that $E, F$ lie on a circle related to $D$ and $X$, and the radical axis of this circle with the circumcircle of $\\triangle EXD$ contains the meeting point of $BC$ and $EF$. The line $O_1 O_2$ is perpendicular to a chord shared by the two circles whose centres are $O_1, O_2$, and this perpendicular meets $BC$ exactly where the radical axes coincide.\n\n**Technique.** This problem sits squarely in the geometry style of IMO P3 — heavy angle chase, careful use of the isogonal-conjugate property hidden in $\\angle ADE = \\angle BCD$ and $\\angle FDA = \\angle DBC$, then a radical-axis or projective argument for the concurrence.\n\n**Full solution.** https://www.imo-official.org/problems/IMO2021SL.pdf (problem G8) — IMO 2021 P3 was widely considered one of the hardest geometry problems in years."
+    },
+    {
+      "number": 4,
+      "statement": "Let $\\Gamma$ be a circle with centre $I$, and $ABCD$ a convex quadrilateral such that each of the segments $AB$, $BC$, $CD$ and $DA$ is tangent to $\\Gamma$. Let $\\Omega$ be the circumcircle of the triangle $AIC$. The extension of $BA$ beyond $A$ meets $\\Omega$ at $X$, and the extension of $BC$ beyond $C$ meets $\\Omega$ at $Z$. The extensions of $AD$ and $CD$ beyond $D$ meet $\\Omega$ at $Y$ and $T$, respectively. Prove that\n$$AD + DT + TX + XA = CD + DY + YZ + ZC.$$",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2021, Problem 4",
+      "topicKey": "geometry.tangent_circle_lengths",
+      "techniqueTags": ["tangent_segments_equal", "circle_inscribed_quadrilateral", "length_chasing"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Key tool.** Equal-tangent-segment lemma: from any external point, the two tangent segments to a circle have equal length. Combined with the fact that $\\Omega$ is the circumcircle of $AIC$ and the configuration's symmetries.\n\n**Strategy.** Show pairwise: $AD - CD = ZC - XA$, $DT - DY = YZ - TX$, etc., by chasing equal-tangent and equal-chord identities through $\\Omega$. Summing gives the required equality.\n\n**Cleaner reformulation.** Both sides equal the perimeter of a path along $\\Omega$ from $A$ through $X, T, D$ back to $A$ vs. from $C$ through $Z, Y, D$ back to $C$. The configuration's reflective symmetry across $BI$ (the angle bisector at $B$) plus $DI$ (the angle bisector at $D$) gives the equality directly.\n\n**Full solution.** https://www.imo-official.org/problems/IMO2021SL.pdf (problem G4)."
+    },
+    {
+      "number": 5,
+      "statement": "Two squirrels, Bushy and Jumpy, have collected $2021$ walnuts for the winter. Jumpy numbers the walnuts from $1$ through $2021$, and digs $2021$ little holes in a circular pattern in the ground around their favourite tree. The next morning Jumpy notices that Bushy had placed one walnut into each hole, but had paid no attention to the numbering. Unhappy, Jumpy decides to reorder the walnuts by performing a sequence of $2021$ moves. In the $k$-th move, Jumpy swaps the positions of the two walnuts adjacent to walnut $k$.\n\nProve that there exists a value of $k$ such that, on the $k$-th move, Jumpy swaps some walnuts $a$ and $b$ such that $a < k < b$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2021, Problem 5",
+      "topicKey": "combinatorics.circular_permutations",
+      "techniqueTags": ["invariant", "circular_arrangement", "extremal_argument"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Strategy — proof by contradiction.** Assume the conclusion fails: on every move $k$, the two swapped walnuts $a, b$ satisfy either both $< k$ or both $> k$. Track an invariant that must change yet provably cannot.\n\n**Key invariant.** Consider the cyclic order of walnuts at any moment, and define a monovariant by counting 'inversions' — pairs of walnuts $(i, j)$ with $i < j$ that appear in a specific cyclic order. Under the assumption, every swap of two walnuts both above or both below $k$ changes the parity / count of inversions in a constrained way.\n\n**Contradiction.** The starting (random) and ending (after 2021 moves) configurations cannot both satisfy the invariant's required value, forcing the existence of the claimed $k$.\n\n**Full solution.** https://www.imo-official.org/problems/IMO2021SL.pdf (problem C8) — the key idea is the right monovariant, which is the hardest part."
+    },
+    {
+      "number": 6,
+      "statement": "Let $m \\geq 2$ be an integer, $A$ be a finite set of (not necessarily positive) integers, and $B_1, B_2, B_3, \\ldots, B_m$ be subsets of $A$. Assume that for each $k = 1, 2, \\ldots, m$ the sum of the elements of $B_k$ is $m^k$. Prove that $A$ contains at least $m/2$ elements.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2021, Problem 6",
+      "topicKey": "combinatorics.subset_sums",
+      "techniqueTags": ["polynomial_method", "linear_algebra", "vandermonde", "subset_sums"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Polynomial reformulation.** For each $a \\in A$, let $x_a \\in \\{0, 1\\}^m$ be the vector whose $k$-th coordinate is $1$ if $a \\in B_k$ and $0$ otherwise. Then $\\sum_{a \\in A} a \\cdot x_{a,k} = m^k$ for each $k$.\n\n**Key estimate.** Consider the polynomial $P(t) = \\sum_{a \\in A} a \\cdot \\prod_{k : a \\in B_k} (t - 1/\\text{something})$ — the precise construction varies by writeup, but the idea is to bound the rank or degree of a matrix encoding the $B_k$ memberships.\n\n**Bound via geometric mean.** The condition that the partial sums are $m, m^2, m^3, \\ldots, m^m$ forces sufficient 'spread' across $A$ that $|A| \\geq m/2$ by a Vandermonde or pigeonhole argument.\n\n**Full solution.** https://www.imo-official.org/problems/IMO2021SL.pdf (problem C6) — IMO 2021 P6 was algebraic combinatorics; the bound $m/2$ is achieved with equality for specific constructions."
+    }
+  ]
+}

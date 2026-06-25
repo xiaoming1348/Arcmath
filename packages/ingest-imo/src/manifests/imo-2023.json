@@ -1,0 +1,78 @@
+{
+  "problemSet": {
+    "contest": "IMO",
+    "year": 2023,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://www.imo-official.org/problems.aspx"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Determine all composite integers $n > 1$ that satisfy the following property: if $d_1, d_2, \\ldots, d_k$ are all the positive divisors of $n$ with $1 = d_1 < d_2 < \\cdots < d_k = n$, then $d_i$ divides $d_{i+1} + d_{i+2}$ for every $1 \\leq i \\leq k - 2$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2023, Problem 1",
+      "topicKey": "number_theory.divisor_structure",
+      "techniqueTags": ["divisor_chain", "prime_power_n", "case_analysis"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** $n$ must be a prime power, i.e. $n = p^a$ for some prime $p$ and integer $a \\geq 2$.\n\n**Verification for $n = p^a$.** Divisors are $1, p, p^2, \\ldots, p^a$. For $i \\leq k - 2$: $d_i = p^{i-1}$, $d_{i+1} + d_{i+2} = p^i + p^{i+1} = p^i(1 + p)$. We need $p^{i-1} \\mid p^i(1+p)$, which is obvious. ✓\n\n**Why no other $n$ work.** Suppose $n$ has two distinct prime factors $p < q$. Then small divisors include $1, p, q, \\ldots$. The condition $d_1 = 1 \\mid d_2 + d_3$ is trivial, but $d_2 = p$ must divide $d_3 + d_4$. With $d_3 = q$ (the next smallest after $p$, since $p^2$ might or might not be smaller than $q$), the relation fails for generic $p, q$.\n\nA case analysis on the order of small divisors $\\{1, p, q, p^2, pq, \\ldots\\}$ shows the only $n$ surviving the constraint are prime powers.\n\n**Full solution.** https://www.imo-official.org/problems/IMO2023SL.pdf (problem N1)."
+    },
+    {
+      "number": 2,
+      "statement": "Let $ABC$ be an acute-angled triangle with $AB < AC$. Let $\\Omega$ be the circumcircle of $ABC$. Let $S$ be the midpoint of the arc $CB$ of $\\Omega$ containing $A$. The perpendicular from $A$ to $BC$ meets $BS$ at $D$ and meets $\\Omega$ again at $E \\neq A$. The line through $D$ parallel to $BC$ meets line $BE$ at $L$. Denote the circumcircle of triangle $BDL$ by $\\omega$. Let $\\omega$ meet $\\Omega$ again at $P \\neq B$.\n\nProve that the line tangent to $\\omega$ at $P$ meets line $BS$ on the internal angle bisector of $\\angle BAC$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2023, Problem 2",
+      "topicKey": "geometry.circumcircle_tangent_bisector",
+      "techniqueTags": ["arc_midpoint", "tangent_to_circle", "angle_bisector", "radical_axis"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Setup.** $S$ is the arc midpoint of arc $CB$ containing $A$, so $AS$ is the external bisector of $\\angle BAC$, and the line $BS$ has a known relationship with the angle bisector at $A$.\n\n**Strategy.** Let $T$ be the intersection of the tangent to $\\omega$ at $P$ with line $BS$. We need $T$ to lie on the internal bisector of $\\angle BAC$, i.e. on line $AI$ where $I$ is the incentre.\n\n**Angle chase.** $\\angle TPB = \\angle PLB$ (tangent–chord angle in $\\omega$) and $\\angle PLB = \\angle PEB$ (since $D, L, E$ are collinear modulo the parallel-line construction). Combine with $P$ on $\\Omega$ to get $\\angle TPB = \\angle PAB$, then conclude $T \\in AI$ by an isogonal-conjugate argument.\n\n**Full solution.** https://www.imo-official.org/problems/IMO2023SL.pdf (problem G7)."
+    },
+    {
+      "number": 3,
+      "statement": "For each integer $k \\geq 2$, determine all infinite sequences of positive integers $a_1, a_2, \\ldots$ for which there exists a polynomial $P$ of the form $P(x) = x^k + c_{k-1} x^{k-1} + \\cdots + c_1 x + c_0$, where $c_0, c_1, \\ldots, c_{k-1}$ are non-negative integers, such that\n$$P(a_n) = a_{n+1} a_{n+2} \\cdots a_{n+k}$$\nfor every integer $n \\geq 1$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2023, Problem 3",
+      "topicKey": "algebra.polynomial_sequence",
+      "techniqueTags": ["growth_rate_analysis", "polynomial_identity", "characterization_of_arithmetic_progression"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** The sequences $(a_n)$ are exactly those of the form $a_n = a + (n-1) d$ for non-negative integers $a, d$ with $a \\geq 1$ (i.e. arithmetic progressions of positive integers).\n\n**Verification.** If $a_n = a + (n-1)d$, then $a_{n+1} \\cdots a_{n+k} = \\prod_{j=1}^{k} (a + (n-1+j)d)$. Expanding as a polynomial in $a_n = a + (n-1)d$ gives $P(a_n) = \\prod_{j=1}^k (a_n + jd)$, which is a monic polynomial of degree $k$ in $a_n$ with non-negative integer coefficients $c_i$ (since $d \\geq 0$). ✓\n\n**Necessity.** Compare growth rates: $P(a_n) \\sim a_n^k$ and $a_{n+1} \\cdots a_{n+k} \\sim a_n^k \\cdot (\\text{geometric mean of ratios})$. This forces the ratio $a_{n+j}/a_n$ to stabilise, giving the arithmetic-progression structure.\n\n**Full solution.** https://www.imo-official.org/problems/IMO2023SL.pdf (problem A6)."
+    },
+    {
+      "number": 4,
+      "statement": "Let $x_1, x_2, \\ldots, x_{2023}$ be pairwise different positive real numbers such that\n$$a_n = \\sqrt{(x_1 + x_2 + \\cdots + x_n)\\left(\\frac{1}{x_1} + \\frac{1}{x_2} + \\cdots + \\frac{1}{x_n}\\right)}$$\nis an integer for every $n = 1, 2, \\ldots, 2023$. Prove that $a_{2023} \\geq 3034$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2023, Problem 4",
+      "topicKey": "algebra.cauchy_schwarz_iteration",
+      "techniqueTags": ["cauchy_schwarz", "integer_constraint", "recurrence_lower_bound"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Key inequality.** By Cauchy–Schwarz: $a_n \\geq n$ (with equality iff all $x_i$ equal, which is forbidden here). So $a_n \\geq n + 1$ at minimum for $n \\geq 2$ (since $a_n$ is an integer and $a_n > n$).\n\n**Key recurrence.** $a_{n+1}^2 - a_n^2 = \\text{(something involving } x_{n+1}\\text{)}$ — specifically, $a_{n+1}^2 = (S_n + x_{n+1})(H_n + 1/x_{n+1})$ where $S_n = \\sum x_i, H_n = \\sum 1/x_i$, so $a_n^2 = S_n H_n$.\n\nExpanding: $a_{n+1}^2 = a_n^2 + S_n/x_{n+1} + H_n x_{n+1} + 1 \\geq a_n^2 + 2 a_n + 1 = (a_n + 1)^2$ by AM-GM on $S_n / x_{n+1}$ and $H_n x_{n+1}$.\n\nSo $a_{n+1} \\geq a_n + 1$. Combined with $a_1 = 1$, this gives $a_n \\geq n$. But we need $\\geq n + 1011$.\n\n**Improvement.** Show that $a_{n+1} \\geq a_n + 1$ has equality only at very specific $x_{n+1}$ — generically the inequality is strict. Quantify how often strictness happens to lift $a_{2023}$ from $2023$ to $3034 = 2023 + 1011$.\n\n**Full solution.** https://www.imo-official.org/problems/IMO2023SL.pdf (problem A5)."
+    },
+    {
+      "number": 5,
+      "statement": "Let $n$ be a positive integer. A *Japanese triangle* consists of $1 + 2 + \\cdots + n$ circles arranged in an equilateral triangular shape such that for each $i = 1, 2, \\ldots, n$, the $i^{\\text{th}}$ row contains exactly $i$ circles, exactly one of which is coloured red. A *ninja path* in a Japanese triangle is a sequence of $n$ circles obtained by starting in the top row, then repeatedly going from a circle to one of the two circles immediately below it and finishing in the bottom row.\n\nIn terms of $n$, find the greatest $k$ such that in each Japanese triangle there is a ninja path containing at least $k$ red circles.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2023, Problem 5",
+      "topicKey": "combinatorics.ninja_path",
+      "techniqueTags": ["pigeonhole_in_triangle", "binary_search_paths", "extremal_arrangement"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $k = \\lfloor \\log_2 n \\rfloor + 1$.\n\n**Upper bound construction.** Place red circles to limit the number of red circles any path can hit. By choosing reds at 'binary' positions (powers of 2), any ninja path can cover at most $\\lfloor \\log_2 n \\rfloor + 1$ reds.\n\n**Lower bound via pigeonhole.** Track for each row $i$ how many ninja paths from the top pass through each red circle. The structure of paths in the triangle (each circle has 2 children) gives a binary-tree-like fan-out, and a counting argument forces at least one path to cover $\\lfloor \\log_2 n \\rfloor + 1$ reds.\n\n**Full solution.** https://www.imo-official.org/problems/IMO2023SL.pdf (problem C7)."
+    },
+    {
+      "number": 6,
+      "statement": "Let $ABC$ be an equilateral triangle. Let $A_1, B_1, C_1$ be interior points of $ABC$ such that $BA_1 = A_1 C$, $CB_1 = B_1 A$, $AC_1 = C_1 B$, and\n$$\\angle BA_1 C + \\angle CB_1 A + \\angle AC_1 B = 480°.$$\nLet $BC_1$ and $CB_1$ meet at $A_2$, let $CA_1$ and $AC_1$ meet at $B_2$, and let $AB_1$ and $BA_1$ meet at $C_2$. Prove that if triangle $A_1 B_1 C_1$ is scalene, then the three circumcircles of triangles $AA_1 A_2$, $BB_1 B_2$ and $CC_1 C_2$ all pass through two common points.\n\n(Note: a scalene triangle is one where no two sides have equal length.)",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2023, Problem 6",
+      "topicKey": "geometry.equilateral_inner_triangle",
+      "techniqueTags": ["coaxial_circles", "isogonal_conjugates", "angle_sum_constraint"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Setup.** $A_1$ on perpendicular bisector of $BC$, $B_1$ on perpendicular bisector of $CA$, $C_1$ on perpendicular bisector of $AB$. The angle-sum constraint $\\angle BA_1 C + \\angle CB_1 A + \\angle AC_1 B = 480°$ (vs. the 'free' sum $\\leq 3 \\cdot 180° = 540°$) imposes a one-parameter family of configurations.\n\n**Strategy — show the three circumcircles are coaxial.** Coaxial means they share a common radical axis. The two common points are then the two intersection points of the radical axis with any one of the three circles.\n\n**Angle-chase via trigonometric Ceva / isogonal conjugates.** Show that $A_2$ is the isogonal conjugate of a specific point with respect to $\\triangle AA_1 \\cdot$ (some configuration), and apply the lemma 'three circles are coaxial iff their pairwise radical axes are concurrent'.\n\n**Scalene hypothesis.** When $A_1 B_1 C_1$ is equilateral or isosceles, degeneracies appear and the circles may not be coaxial — the scalene assumption rules these out.\n\n**Full solution.** https://www.imo-official.org/problems/IMO2023SL.pdf (problem G8) — IMO 2023 P6 is widely cited as one of the most beautiful recent IMO geometry problems."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "problemSet": {
+    "contest": "IMO",
+    "year": 2024,
+    "category": "REAL_EXAM",
+    "submissionMode": "PER_PROBLEM",
+    "tutorEnabled": true,
+    "sourceUrl": "https://www.imo-official.org/problems.aspx"
+  },
+  "problems": [
+    {
+      "number": 1,
+      "statement": "Determine all real numbers $\\alpha$ such that, for every positive integer $n$, the integer\n$$\\lfloor \\alpha \\rfloor + \\lfloor 2 \\alpha \\rfloor + \\cdots + \\lfloor n \\alpha \\rfloor$$\nis a multiple of $n$. (Note that $\\lfloor z \\rfloor$ denotes the greatest integer less than or equal to $z$. For example, $\\lfloor -\\pi \\rfloor = -4$ and $\\lfloor 2 \\rfloor = \\lfloor 2.9 \\rfloor = 2$.)",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2024, Problem 1",
+      "topicKey": "number_theory.floor_function_sums",
+      "techniqueTags": ["floor_function", "fractional_part", "even_integer_characterization"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Answer.** $\\alpha$ is an even integer, i.e. $\\alpha \\in 2\\mathbb{Z}$.\n\n**Verification for $\\alpha = 2m$.** $\\sum_{k=1}^{n} \\lfloor 2mk \\rfloor = 2m \\cdot \\sum_{k=1}^{n} k = 2m \\cdot n(n+1)/2 = mn(n+1)$, which is a multiple of $n$. ✓\n\n**Necessity.** Write $\\alpha = a + \\{\\alpha\\}$ with $a = \\lfloor \\alpha \\rfloor$. Then\n$$\\sum_{k=1}^{n} \\lfloor k\\alpha \\rfloor = a \\cdot \\frac{n(n+1)}{2} + \\sum_{k=1}^{n} \\lfloor k\\{\\alpha\\} \\rfloor.$$\nFor this to be divisible by $n$ for *every* $n$, the second sum's average behaviour must align with $a \\cdot (n+1)/2 \\pmod n$. Detailed casework on $\\{\\alpha\\}$ rational vs. irrational shows: $\\{\\alpha\\} = 0$ AND $a$ is even.\n\n**Why $a$ even.** Take $n = 2$: the sum is $\\lfloor a \\rfloor + \\lfloor 2a \\rfloor = a + 2a = 3a$, must be divisible by $2$. So $a$ is even.\n\n**Full solution.** https://www.imo-official.org/problems/IMO2024SL.pdf (problem N1)."
+    },
+    {
+      "number": 2,
+      "statement": "Determine all pairs $(a, b)$ of positive integers for which there exist positive integers $g$ and $N$ such that\n$$\\gcd(a^n + b, b^n + a) = g$$\nholds for all integers $n \\geq N$. (Note that $\\gcd(x, y)$ denotes the greatest common divisor of integers $x$ and $y$.)",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2024, Problem 2",
+      "topicKey": "number_theory.gcd_polynomial_sequence",
+      "techniqueTags": ["gcd_stabilization", "fermat_little_theorem", "lifting_the_exponent"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $(a, b) = (1, 1)$ is the only pair.\n\n**Verification.** $\\gcd(1 + 1, 1 + 1) = 2$ for all $n$. So $g = 2$, $N = 1$. ✓\n\n**Necessity.** Suppose $(a, b) \\neq (1, 1)$. WLOG $a > 1$. Take a prime $p > \\max(a, b)$. By Fermat, $a^{p-1} \\equiv 1 \\pmod p$. So $a^n + b$ mod $p$ cycles with period dividing $p - 1$.\n\nFor large $n$ in a specific residue class mod $p - 1$, $a^n + b \\equiv 0 \\pmod p$, so $p \\mid \\gcd(a^n + b, b^n + a)$. But the *primes* dividing the gcd for infinitely many $n$ must form a finite set (since $g$ is constant). For different $n$ we get different primes dividing the gcd, contradiction.\n\nA careful execution of this argument forces $a = b = 1$.\n\n**Full solution.** https://www.imo-official.org/problems/IMO2024SL.pdf (problem N3)."
+    },
+    {
+      "number": 3,
+      "statement": "Let $a_1, a_2, a_3, \\ldots$ be an infinite sequence of positive integers, and let $N$ be a positive integer. Suppose that, for each $n > N$, $a_n$ is equal to the number of times $a_{n-1}$ appears in the list $a_1, a_2, \\ldots, a_{n-1}$.\n\nProve that at least one of the sequences $a_1, a_3, a_5, \\ldots$ and $a_2, a_4, a_6, \\ldots$ is eventually periodic.\n\n(An infinite sequence $b_1, b_2, b_3, \\ldots$ is *eventually periodic* if there exist positive integers $p$ and $M$ such that $b_{m+p} = b_m$ for all $m \\geq M$.)",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2024, Problem 3",
+      "topicKey": "combinatorics.self_referential_sequence",
+      "techniqueTags": ["self_referential_sequence", "eventually_periodic", "monovariant_count"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Strategy.** The rule $a_n = \\#\\{i < n : a_i = a_{n-1}\\}$ is self-referential — $a_n$ counts the prior occurrences of $a_{n-1}$. Key insight: the values $a_n$ are bounded above by $n$, and the value distribution stabilises.\n\n**Bounded values.** Show that the sequence $(a_n)$ is bounded: there's some $M$ such that $a_n \\leq M$ for all $n > N$. (Pigeonhole — if values grew without bound, each large value would only appear once, contradicting the counting rule.)\n\n**Bounded → eventually periodic for ONE sub-sequence.** With finitely many values, the pair $(a_n, a_{n+1})$ takes finitely many states. By pigeonhole, some pair repeats, but the rule from the pair determines the next element — so the entire trajectory from that pair onward repeats. This gives periodicity of the whole sequence, hence of both odd-indexed and even-indexed sub-sequences. The IMO statement only claims one of them is periodic, which is the weaker version.\n\n**Subtlety.** The bound on $a_n$ is non-trivial — the proof requires a careful counting argument tracking 'frequency tables'.\n\n**Full solution.** https://www.imo-official.org/problems/IMO2024SL.pdf (problem C7) — IMO 2024 P3 was widely considered the hardest problem of the contest."
+    },
+    {
+      "number": 4,
+      "statement": "Let $ABC$ be a triangle with $AB < AC < BC$. Let the incentre and incircle of triangle $ABC$ be $I$ and $\\omega$, respectively. Let $X$ be the point on line $BC$ different from $C$ such that the line through $X$ parallel to $AC$ is tangent to $\\omega$. Similarly, let $Y$ be the point on line $BC$ different from $B$ such that the line through $Y$ parallel to $AB$ is tangent to $\\omega$. Let $AI$ intersect the circumcircle of triangle $ABC$ again at $P \\neq A$. Let $K$ and $L$ be the midpoints of $AC$ and $AB$, respectively.\n\nProve that $\\angle KIL + \\angle YPX = 180°$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2024, Problem 4",
+      "topicKey": "geometry.incircle_midpoint_angles",
+      "techniqueTags": ["incenter_excenter_lemma", "tangent_parallel_lines", "midpoint_triangle"],
+      "difficultyBand": "MEDIUM",
+      "solutionSketch": "**Key tool — Fact 5 / incenter-excenter lemma.** $P$ is the arc-midpoint of arc $BC$ not containing $A$, equidistant from $B$, $I$, $C$. So $PI = PB = PC$.\n\n**Strategy.** Show $\\angle KIL$ and $\\angle YPX$ are supplementary by computing both in terms of the angles of $\\triangle ABC$.\n\n**Angle $\\angle KIL$.** $K, L$ are midpoints of $AC, AB$, so $KL$ is parallel to $BC$ and half its length. $\\angle KIL$ can be expressed via $\\angle KIA + \\angle AIL$ or by considering the medial triangle.\n\n**Angle $\\angle YPX$.** $X$ on $BC$ with line through $X$ parallel to $AC$ tangent to incircle, and similarly $Y$. The tangent-from-external-point lemma gives $BX$ and $CY$ in terms of $s$ (semiperimeter), $a, b, c$. Then $\\angle YPX$ chases through the configuration involving $P$ on the circumcircle.\n\nAfter computation, $\\angle KIL = 180° - \\angle YPX$. $\\blacksquare$\n\n**Full solution.** https://www.imo-official.org/problems/IMO2024SL.pdf (problem G3)."
+    },
+    {
+      "number": 5,
+      "statement": "Turbo the snail plays a game on a board with $2024$ rows and $2023$ columns. There are hidden monsters in $2022$ of the cells. Initially, Turbo does not know where any of the monsters are, but he knows that there is exactly one monster in each row except the first row and the last row, and that each column contains at most one monster.\n\nTurbo makes a series of attempts to go from the first row to the last row. On each attempt, he chooses to start on any cell in the first row, then repeatedly moves to an adjacent cell sharing a common side. (He is allowed to return to a previously visited cell.) If he reaches a cell with a monster, his attempt ends and he is transported back to the first row to start a new attempt. The monsters do not move, and Turbo remembers whether or not each cell he has visited contains a monster. If he reaches any cell in the last row, his attempt ends and the game is over.\n\nDetermine the minimum value of $n$ for which Turbo has a strategy that guarantees reaching the last row on the $n^{\\text{th}}$ attempt or earlier, regardless of the locations of the monsters.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2024, Problem 5",
+      "topicKey": "combinatorics.snail_strategy",
+      "techniqueTags": ["adversarial_search", "lower_bound_construction", "binary_search_grid"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $n = 3$.\n\n**Upper bound — Turbo's strategy in $\\leq 3$ attempts.**\n- **Attempt 1.** Walk down the leftmost column. Either reach the last row (game over) or hit a monster — which reveals the column of the monster in some row.\n- **Attempt 2.** Use the revealed monster column to navigate around it; combined with the 'one monster per row' and 'one per column' constraints, this attempt reveals more.\n- **Attempt 3.** With enough information about the monster layout, Turbo has a guaranteed path.\n\n**Lower bound — adversary can force $\\geq 3$ attempts.** The adversary places monsters to maximise Turbo's uncertainty. Show that for any 2-attempt strategy, the adversary can place monsters consistent with Turbo's observations so far that block any path Turbo would try.\n\n**Why exactly 3.** $n = 1$ fails because the adversary can place a monster in the entry column. $n = 2$ fails because two attempts give only $\\log_2$-style information, insufficient for $2023$ columns. $n = 3$ works because the monsters-per-column = 1 constraint gives Turbo enough leverage on attempt 3.\n\n**Full solution.** https://www.imo-official.org/problems/IMO2024SL.pdf (problem C5)."
+    },
+    {
+      "number": 6,
+      "statement": "Let $\\mathbb{Q}$ be the set of rational numbers. A function $f \\colon \\mathbb{Q} \\to \\mathbb{Q}$ is called *aquaesulian* if the following property holds: for every $x, y \\in \\mathbb{Q}$,\n$$f(x + f(y)) = f(x) + y \\quad \\text{or} \\quad f(f(x) + y) = x + f(y).$$\n\nShow that there exists an integer $c$ such that for any aquaesulian function $f$ there are at most $c$ different rational numbers of the form $f(r) + f(-r)$ for some rational number $r$, and find the smallest possible value of $c$.",
+      "answerFormat": "WORKED_SOLUTION",
+      "statementFormat": "MARKDOWN_LATEX",
+      "sourceLabel": "IMO 2024, Problem 6",
+      "topicKey": "algebra.functional_equation_or_constraint",
+      "techniqueTags": ["disjunctive_functional_equation", "involution_pair", "bounded_image"],
+      "difficultyBand": "HARD",
+      "solutionSketch": "**Answer.** $c = 2$.\n\n**Construction achieving $c = 2$.** The identity $f(x) = x$ satisfies both branches (each gives $f(x+y) = x+y$). For this $f$, $f(r) + f(-r) = r + (-r) = 0$ — only one distinct value, $c = 1$. To get exactly $2$ values, take $f(x) = -x$ (also aquaesulian since $f(x + f(y)) = -(x - y) = -x + y = f(x) + y$): then $f(r) + f(-r) = -r + r = 0$ again, still one value.\n\nA non-trivial $f$ with $2$ distinct values of $f(r) + f(-r)$ comes from piecewise definitions like $f(x) = x$ for $x \\in S$ and $f(x) = -x$ otherwise, for a carefully chosen set $S$. Verify aquaesulian holds via the disjunction.\n\n**Upper bound $c \\leq 2$.** Suppose $f$ is aquaesulian. Show $f$ is either an involution-like map or admits at most $2$ values for $f(r) + f(-r)$. The key step is iterating the functional equation: applying both branches yields constraints that force $f(r) + f(-r)$ into a 2-element set.\n\n**Full solution.** https://www.imo-official.org/problems/IMO2024SL.pdf (problem A8)."
+    }
+  ]
+}
