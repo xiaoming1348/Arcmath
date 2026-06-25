@@ -208,6 +208,7 @@ async function buildPreviewFromParsed(prisma: PrismaClient, data: ImportProblemS
         return "INTEGER";
       case "USAMO":
       case "USAJMO":
+      case "IMO":
       case "EUCLID":
       case "MAT":
       case "STEP":
@@ -215,7 +216,9 @@ async function buildPreviewFromParsed(prisma: PrismaClient, data: ImportProblemS
         // Mixed-format by design — no single expected format.
         // Putnam: INTEGER / EXPRESSION / WORKED_SOLUTION mixed within
         // each year (some problems have closed-form answers, others
-        // are show-that proofs).
+        // are show-that proofs). USAMO / USAJMO / IMO: all proofs
+        // (WORKED_SOLUTION), but the warning helper still returns
+        // null because no single answer-format is required.
         return null;
       case "PRACTICE":
         // Arcmath-authored topic packs intentionally mix INTEGER /
