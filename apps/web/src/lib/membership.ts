@@ -1,4 +1,5 @@
 import type { Session } from "next-auth";
+import { isPlatformOperator } from "@/lib/platform-operator";
 
 export const FREE_RESOURCE_SET_LIMIT = 3;
 
@@ -16,7 +17,14 @@ export function hasActiveMembership(session: Session | null | undefined): boolea
     return true;
   }
 
-  if (session.user.role === "ADMIN") {
+  // Platform-operator emails (configured via PLATFORM_OPERATOR_EMAILS
+  // env var) bypass paid-membership checks for ops convenience.
+  // Previously this was gated on User.role === "ADMIN", which
+  // conflated platform-operator with the org-internal "ADMIN" role
+  // a teacher might give a school OWNER. Migrated to the env-var
+  // allowlist so org-level admin roles can no longer leak
+  // platform-operator power.
+  if (isPlatformOperator(session.user.email)) {
     return true;
   }
 

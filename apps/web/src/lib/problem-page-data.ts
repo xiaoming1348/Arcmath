@@ -60,9 +60,34 @@ export const getProblemCatalog = unstable_cache(
       })
     ]);
 
-    return { rawDiagnosticSets, realSets, topicPracticeSets };
+    // Hide sets that contain fewer than CATALOG_MIN_PROBLEMS problems.
+    // Why: the proof-eval fixture catalog imports 6 individual IMO
+    // problems as 6 distinct one-problem "sets" (IMO 1964, IMO 1979,
+    // etc.) for grading-eval purposes. Without a min-size floor those
+    // pollute the public IMO catalog with "5 sets × 1 problem each"
+    // entries that aren't real practice papers. Same defence applies
+    // to any other accidentally-thin import going forward.
+    //
+    // Real IMO/USAMO/AMC papers always have >= 6 problems, AMC papers
+    // have 25, AIME has 15 — a >= 2 floor is generous.
+    const CATALOG_MIN_PROBLEMS = 2;
+    return {
+      rawDiagnosticSets: rawDiagnosticSets.filter(
+        (s) => s._count.problems >= CATALOG_MIN_PROBLEMS
+      ),
+      realSets: realSets.filter(
+        (s) => s._count.problems >= CATALOG_MIN_PROBLEMS
+      ),
+      topicPracticeSets: topicPracticeSets.filter(
+        (s) => s._count.problems >= CATALOG_MIN_PROBLEMS
+      )
+    };
   },
-  ["problem-catalog-v1"],
+  // Cache key bumped to v2 to invalidate after the >= 2 problems
+  // filter was introduced — without it the legacy cached payload
+  // would still include the 6 single-problem IMO fixtures for up to
+  // PROBLEM_ROUTE_CACHE_SECONDS.
+  ["problem-catalog-v2"],
   { revalidate: PROBLEM_ROUTE_CACHE_SECONDS }
 );
 

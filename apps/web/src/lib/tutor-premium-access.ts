@@ -1,13 +1,20 @@
 import type { PrismaClient, Role } from "@arcmath/db";
 import { buildRealExamProblemSetWhere } from "@/lib/tutor-usable-sets";
+import { isPlatformOperator } from "@/lib/platform-operator";
 
 type MinimalSessionUser = {
   id: string;
   role?: Role | string;
+  email?: string | null;
 } | null | undefined;
 
-function isAdmin(user: MinimalSessionUser): boolean {
-  return user?.role === "ADMIN";
+// Platform-operator bypass via PLATFORM_OPERATOR_EMAILS env var. Was
+// previously gated on User.role === "ADMIN", which conflated platform
+// operator with the org-internal "ADMIN" role and would let an org
+// admin see any premium real-exam set across the platform. The
+// allowlist keeps platform power explicitly deployment-scoped.
+function isOperator(user: MinimalSessionUser): boolean {
+  return isPlatformOperator(user?.email);
 }
 
 // When this env flag is truthy, premium/resource-access gating is short-circuited
@@ -45,7 +52,7 @@ export async function userCanAccessRealTutorProblemSet(params: {
     return true;
   }
 
-  if (isAdmin(params.user)) {
+  if (isOperator(params.user)) {
     return true;
   }
 

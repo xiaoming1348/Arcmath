@@ -3,6 +3,7 @@ import { unstable_noStore as noStore } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "@arcmath/db";
 import { authOptions } from "@/lib/auth";
+import { isPlatformOperator } from "@/lib/platform-operator";
 import { Card, Eyebrow, Metric, Section, Tag } from "@/components/ui";
 
 /**
@@ -47,7 +48,9 @@ export default async function OcrStatsPage() {
   if (!session?.user?.id) {
     redirect("/login?callbackUrl=%2Fadmin%2Focr-stats");
   }
-  if (session.user.role !== "ADMIN") {
+  // Platform-operator gate (NOT User.role). User.role is org-internal;
+  // platform-admin pages read the PLATFORM_OPERATOR_EMAILS env var.
+  if (!isPlatformOperator(session.user.email)) {
     redirect("/unauthorized");
   }
 

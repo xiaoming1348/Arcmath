@@ -47,8 +47,10 @@ export default async function ProblemsPage() {
 
   // Strict role gate: school-admin / owner shouldn't be in the
   // problem-doing UI at all. Punt them back to the school overview.
-  // Pure platform admins (User.role === "ADMIN" with no org membership)
-  // are allowed through — they're the QA / arcmath staff.
+  // The check below is on Organization-membership role (OWNER /
+  // ADMIN of a specific school), NOT on User.role. Platform
+  // operators (env-var allowlist; see lib/platform-operator.ts) are
+  // free to use the problem-doing UI like any student would.
   if (session?.user?.id) {
     const orgMembership = await getActiveOrganizationMembership(prisma, session.user.id);
     if (orgMembership && canManageOrganization(orgMembership.role)) {
