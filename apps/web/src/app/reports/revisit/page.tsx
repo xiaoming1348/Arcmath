@@ -13,9 +13,19 @@ import {
 } from "@/components/ui";
 import { ProblemStatement } from "@/components/problem-statement";
 import { RouteProgressLink } from "@/components/route-progress-link";
+import { RevisitInsightPanel } from "@/components/revisit-insight-panel";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
+function formatTopicLabel(topicKey: string): string {
+  if (topicKey === "uncategorized") return "Uncategorized";
+  return topicKey
+    .split(".")
+    .map((part) => part.replaceAll("_", " "))
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" / ");
+}
 
 /**
  * Wrong-answers archive — students open this page to look back at
@@ -96,7 +106,24 @@ export default async function RevisitPage() {
             </p>
           </Card>
         </Section>
-      ) : null}
+      ) : (
+        <Section tight>
+          <RevisitInsightPanel
+            labels={{
+              eyebrow: "AI insight",
+              title: "What your recent wrong answers suggest",
+              helper:
+                "Click to generate a one-paragraph weak-point analysis based on the topics, difficulties, and hint usage in your last 5 sets. Generated on demand — costs tokens, so we don't auto-run it.",
+              cta: "Generate AI insight",
+              pending: "Thinking…",
+              regenerate: "Regenerate",
+              errorFallback:
+                "AI insight is temporarily unavailable. Please try again in a moment.",
+              generatedAt: "Generated {time}"
+            }}
+          />
+        </Section>
+      )}
 
       {reportInput.recentRuns.map((run, runIdx) => {
         const runAttempts = attemptsByRunId.get(run.runId) ?? [];
@@ -158,6 +185,41 @@ export default async function RevisitPage() {
                 </span>
               ) : null}
             </div>
+
+            {/* α: topic distribution of wrong + unfinished attempts
+                for this set. Counts come from the server (computed
+                from the same attempt list used to render the cards
+                below). Rendered as inline-text chips so it scans
+                quickly without dominating the section. */}
+            {run.wrongTopicSummary.length > 0 ? (
+              <div className="mt-4 space-y-2">
+                <p
+                  className="text-[11px] font-semibold uppercase"
+                  style={{
+                    color: "var(--subtle)",
+                    letterSpacing: "0.12em",
+                    fontFamily: "var(--font-mono-custom)"
+                  }}
+                >
+                  Topic distribution of {toRevisit.length} wrong/unfinished
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {run.wrongTopicSummary.map((entry) => (
+                    <span
+                      key={entry.topicKey}
+                      className="rounded-full border px-3 py-1 text-xs"
+                      style={{
+                        background: "var(--surface-2)",
+                        borderColor: "var(--border)",
+                        color: "var(--foreground)"
+                      }}
+                    >
+                      {formatTopicLabel(entry.topicKey)} · {entry.count}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ) : null}
 
             {toRevisit.length === 0 ? (
               <Card className="mt-6">

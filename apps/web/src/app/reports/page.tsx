@@ -16,6 +16,7 @@ import {
 } from "@/components/ui";
 import { ProblemStatement } from "@/components/problem-statement";
 import { SetTrendChart } from "@/components/set-trend-chart";
+import { TopicSparklines } from "@/components/topic-sparklines";
 import { RouteProgressLink } from "@/components/route-progress-link";
 
 export const dynamic = "force-dynamic";
@@ -237,6 +238,31 @@ export default async function ReportsPage({ searchParams }: ReportsPageProps) {
             />
             <div className="mt-6">
               <SetTrendChart runs={reportInput.recentRuns} />
+            </div>
+          </Card>
+        </Section>
+      ) : null}
+
+      {/* ===========================================================
+       *  TOPIC TRENDS — per-topic sparklines (γ)
+       *  Only rendered in latest mode and when there are at least 3
+       *  topics with enough data points. The server applies a
+       *  minimum-attempts floor so the chart doesn't flap on a thin
+       *  history.
+       * ========================================================= */}
+      {!isRunScoped && reportInput.topicTrends.length >= 3 ? (
+        <Section tight>
+          <Card>
+            <SectionHeader
+              eyebrow="Topic trends"
+              title="Where each topic is heading"
+              lede="Rolling 5-attempt accuracy per topic. Green chips mean you're improving; red means slipping."
+            />
+            <div className="mt-6">
+              <TopicSparklines
+                trends={reportInput.topicTrends}
+                formatTopicLabel={formatTopicLabel}
+              />
             </div>
           </Card>
         </Section>
