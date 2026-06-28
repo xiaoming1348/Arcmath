@@ -244,6 +244,134 @@ export default async function ReportsPage({ searchParams }: ReportsPageProps) {
       ) : null}
 
       {/* ===========================================================
+       *  PERSONAL STATS — at-a-glance snapshot of where the student
+       *  stands. Total submitted / correct / accuracy / hint usage
+       *  across the report window, plus a per-topic accuracy table
+       *  ordered strongest → weakest. Lets a student parent or
+       *  teacher answer "how are they doing right now?" in one
+       *  glance, without having to skim the AI summary.
+       * ========================================================= */}
+      {!isRunScoped && reportInput.recentRuns.length > 0 ? (
+        <Section tight>
+          <Card>
+            <SectionHeader
+              eyebrow="Personal stats"
+              title="Where you stand right now"
+              lede={`Aggregated across your ${reportInput.recentRuns.length} most recent practice sets.`}
+            />
+            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {(() => {
+                const totals = reportInput.recentRuns.reduce(
+                  (acc, r) => {
+                    acc.totalSubmitted += r.totalSubmitted;
+                    acc.totalCorrect += r.totalCorrect;
+                    acc.hintUsed += r.hintUsedCount;
+                    return acc;
+                  },
+                  { totalSubmitted: 0, totalCorrect: 0, hintUsed: 0 }
+                );
+                const acc =
+                  totals.totalSubmitted > 0
+                    ? Math.round(
+                        (totals.totalCorrect / totals.totalSubmitted) * 100
+                      )
+                    : 0;
+                const tile = (label: string, value: string | number) => (
+                  <div
+                    key={label}
+                    style={{
+                      padding: 16,
+                      background: "var(--surface-2)",
+                      border: "1px solid var(--border)",
+                      borderRadius: "var(--radius-md)"
+                    }}
+                  >
+                    <p
+                      className="text-[11px] font-semibold uppercase"
+                      style={{
+                        color: "var(--subtle)",
+                        letterSpacing: "0.12em",
+                        fontFamily: "var(--font-mono-custom)"
+                      }}
+                    >
+                      {label}
+                    </p>
+                    <p
+                      className="mt-2"
+                      style={{
+                        fontFamily: "var(--font-display-custom)",
+                        fontWeight: 700,
+                        fontSize: "1.75rem",
+                        color: "var(--foreground-strong)",
+                        lineHeight: 1
+                      }}
+                    >
+                      {value}
+                    </p>
+                  </div>
+                );
+                return [
+                  tile("Total submitted", totals.totalSubmitted),
+                  tile("Total correct", totals.totalCorrect),
+                  tile("Accuracy", `${acc}%`),
+                  tile("Hints used", totals.hintUsed)
+                ];
+              })()}
+            </div>
+
+            {/* Per-topic rating — sorted strongest → weakest so the
+                student sees their best topic first and can spot the
+                weakest at the bottom. Only renders topics with
+                meaningful data (>= 3 attempts). */}
+            {reportInput.topicTrends.length > 0 ? (
+              <div className="mt-6 space-y-2">
+                <p
+                  className="text-[11px] font-semibold uppercase"
+                  style={{
+                    color: "var(--subtle)",
+                    letterSpacing: "0.12em",
+                    fontFamily: "var(--font-mono-custom)"
+                  }}
+                >
+                  Topic ratings (sorted strongest → weakest)
+                </p>
+                <ul className="flex flex-col gap-2 text-sm">
+                  {[...reportInput.topicTrends]
+                    .sort((l, r) => r.accuracy - l.accuracy)
+                    .map((trend) => (
+                      <li
+                        key={trend.topicKey}
+                        className="flex items-center justify-between gap-3"
+                        style={{
+                          padding: "10px 14px",
+                          background: "var(--surface-2)",
+                          border: "1px solid var(--border)",
+                          borderRadius: "var(--radius-md)"
+                        }}
+                      >
+                        <span style={{ color: "var(--foreground)" }}>
+                          {formatTopicLabel(trend.topicKey)}
+                        </span>
+                        <span
+                          style={{
+                            color: "var(--muted)",
+                            fontFamily: "var(--font-mono-custom)",
+                            fontSize: 12
+                          }}
+                        >
+                          {trend.totalCorrect}/{trend.totalAttempts} ·{" "}
+                          {Math.round(trend.accuracy * 100)}%
+                        </span>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            ) : null}
+          </Card>
+        </Section>
+      ) : null}
+
+      {/* ===========================================================
        *  TOPIC TRENDS — per-topic sparklines (γ)
        *  Only rendered in latest mode and when there are at least 3
        *  topics with enough data points. The server applies a
@@ -569,156 +697,14 @@ export default async function ReportsPage({ searchParams }: ReportsPageProps) {
         </Card>
       </Section>
 
-      {/* ===========================================================
-       *  QUESTION REVIEW — per-problem cards
-       * ========================================================= */}
-      <Section tight>
-        <SectionHeader
-          eyebrow="Question review"
-          title="What to revisit"
-          lede="Up to 8 problems — unfinished ones first so you know where to come back, then the hardest incorrect submissions. Correct problems are not listed; nothing to review there."
-        />
-        <div className="mt-8 flex flex-col gap-3">
-          {report.questionResults.length === 0 ? (
-            <Card>
-              <p className="text-sm" style={{ color: "var(--muted)" }}>
-                Nothing to revisit — you got everything you submitted correct.
-              </p>
-            </Card>
-          ) : null}
-          {report.questionResults.map((result, idx) => (
-            <Card key={result.problemId} className="stagger-parent">
-              <div
-                style={{
-                  animation: `rise-in 320ms cubic-bezier(0.2, 0.7, 0.2, 1) ${idx * 60}ms both`
-                }}
-              >
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div className="space-y-2" style={{ minWidth: 0, flex: 1 }}>
-                    <h3
-                      className="text-base font-semibold"
-                      style={{ color: "var(--foreground-strong)" }}
-                    >
-                      Problem {result.problemNumber}
-                    </h3>
-                    {/* Render the full statement via KaTeX rather than
-                        dumping raw "$x^2 + 1$" text on the page. */}
-                    <ProblemStatement
-                      statement={result.statement}
-                      statementFormat={result.statementFormat}
-                      compact
-                      className="text-sm leading-6"
-                    />
-                  </div>
-                  <Tag
-                    status={
-                      result.outcomeKind === "unfinished" ? "uncertain" : "invalid"
-                    }
-                  >
-                    {result.outcomeKind === "unfinished"
-                      ? "⊘ Unfinished"
-                      : "✗ Incorrect"}
-                  </Tag>
-                </div>
-
-                <p
-                  className="mt-3 text-[11px] font-semibold uppercase"
-                  style={{
-                    color: "var(--subtle)",
-                    letterSpacing: "0.12em",
-                    fontFamily: "var(--font-mono-custom)"
-                  }}
-                >
-                  {result.usedHint ? "Used hint before answering" : "Answered without hint"}
-                </p>
-
-                <div className="mt-4 grid gap-3 md:grid-cols-2">
-                  <div
-                    style={{
-                      padding: 14,
-                      background: "var(--surface-2)",
-                      border: "1px solid var(--border)",
-                      borderRadius: "var(--radius-md)"
-                    }}
-                  >
-                    <p
-                      className="text-[11px] font-semibold uppercase"
-                      style={{
-                        color: "var(--subtle)",
-                        letterSpacing: "0.12em",
-                        fontFamily: "var(--font-mono-custom)"
-                      }}
-                    >
-                      Your answer
-                    </p>
-                    <p
-                      className="mt-2 text-sm"
-                      style={{ color: "var(--foreground)" }}
-                    >
-                      {formatAnswerDisplay(result.submittedAnswer)}
-                    </p>
-                  </div>
-                  <div
-                    style={{
-                      padding: 14,
-                      background: "var(--surface-2)",
-                      border: "1px solid var(--border)",
-                      borderRadius: "var(--radius-md)"
-                    }}
-                  >
-                    <p
-                      className="text-[11px] font-semibold uppercase"
-                      style={{
-                        color: "var(--subtle)",
-                        letterSpacing: "0.12em",
-                        fontFamily: "var(--font-mono-custom)"
-                      }}
-                    >
-                      Correct answer
-                    </p>
-                    <p
-                      className="mt-2 text-sm"
-                      style={{ color: "var(--foreground)" }}
-                    >
-                      {formatAnswerDisplay(result.correctAnswer)}
-                    </p>
-                  </div>
-                </div>
-
-                {result.outcomeKind === "incorrect" && result.solutionSketch ? (
-                  <div
-                    className="mt-4"
-                    style={{
-                      padding: 16,
-                      background: "var(--warning-soft)",
-                      border:
-                        "1px solid color-mix(in srgb, var(--warning) 30%, transparent)",
-                      borderRadius: "var(--radius-md)"
-                    }}
-                  >
-                    <p
-                      className="text-[11px] font-semibold uppercase"
-                      style={{
-                        color: "var(--warning)",
-                        letterSpacing: "0.12em",
-                        fontFamily: "var(--font-mono-custom)"
-                      }}
-                    >
-                      Solution sketch
-                    </p>
-                    <p
-                      className="mt-2 text-sm leading-7"
-                      style={{ color: "var(--foreground)" }}
-                    >
-                      {result.solutionSketch}
-                    </p>
-                  </div>
-                ) : null}
-              </div>
-            </Card>
-          ))}
-        </div>
-      </Section>
+      {/* Question review section removed in 2026-06-28 — the
+          /reports/revisit archive supersedes it (grouped by set,
+          per-problem retry buttons, AI insight, topic distribution
+          chips). Keeping both was duplicate noise per owner
+          feedback. The reportInput.questionResults field is still
+          produced server-side because it's part of the
+          generateLearningReport contract; it's just no longer
+          rendered here. */}
     </main>
   );
 }

@@ -158,6 +158,12 @@ export const REAL_TUTOR_SET_ROLLOUT: RealTutorSetRolloutEntry[] = [
   { contest: "USAJMO", year: 2021, exam: null, status: "live" },
   { contest: "USAJMO", year: 2020, exam: null, status: "live" },
   { contest: "USAJMO", year: 2019, exam: null, status: "live" },
+  // IMO: 5 most recent (2020 held remotely under COVID — skipped)
+  { contest: "IMO", year: 2025, exam: null, status: "live" },
+  { contest: "IMO", year: 2024, exam: null, status: "live" },
+  { contest: "IMO", year: 2023, exam: null, status: "live" },
+  { contest: "IMO", year: 2022, exam: null, status: "live" },
+  { contest: "IMO", year: 2021, exam: null, status: "live" },
   // Putnam: 5 most recent (2020 cancelled due to COVID — skipped)
   { contest: "PUTNAM", year: 2024, exam: null, status: "live" },
   { contest: "PUTNAM", year: 2023, exam: null, status: "live" },
