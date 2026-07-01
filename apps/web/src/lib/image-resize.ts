@@ -56,6 +56,12 @@ export async function resizeImageDataUrl(
   canvas.height = targetH;
   const ctx = canvas.getContext("2d");
   if (!ctx) throw new Error("Canvas 2D context unavailable");
+
+  // JPEG has no alpha channel. Without an explicit background, transparent
+  // PNG/WebP uploads can be composited as black by some browsers, making
+  // dark handwriting unreadable after conversion.
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, targetW, targetH);
   ctx.drawImage(bitmap as CanvasImageSource, 0, 0, targetW, targetH);
 
   // Free GPU memory on mobile.
@@ -63,7 +69,11 @@ export async function resizeImageDataUrl(
     (bitmap as ImageBitmap).close();
   }
 
-  return canvas.toDataURL("image/jpeg", 0.85);
+  const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+  if (!dataUrl.startsWith("data:image/jpeg;base64,")) {
+    throw new Error("Browser could not encode OCR image as JPEG");
+  }
+  return dataUrl;
 }
 
 function loadViaImg(file: File): Promise<HTMLImageElement> {

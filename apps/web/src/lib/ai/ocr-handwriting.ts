@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 /**
- * Handwriting → LaTeX OCR via GPT-4o vision.
+ * Handwriting → LaTeX OCR via a vision-capable OpenAI model.
  *
  * Why a separate file (vs reusing `openai-json.ts`):
  *  - openai-json.ts is for text-only prompts using the Responses API
@@ -15,11 +15,10 @@ import { z } from "zod";
  *    than text. Quota tracking and request logging belongs here, not
  *    smeared across the general LLM call helper.
  *
- * Why GPT-4o (not gpt-4.1-mini): mini doesn't have vision; full 4o
- * does. We already have the API key and retry/backoff infra, so cost
- * is the only real lever. Sprint 1 keeps it simple — flat call,
- * no caching, single retry on network error. Sprint 2 can add
- * de-duplication if the same student re-uploads the same photo.
+ * We already have the API key and retry/backoff infra, so cost is the
+ * main lever. Sprint 1 kept it simple — flat call, no caching, single
+ * retry on network error. Sprint 2 can add de-duplication if the same
+ * student re-uploads the same photo.
  *
  * UX promise: this is a BEST-EFFORT shortcut. The result always lands
  * in MathLive where the student can edit before submitting. We never
@@ -27,16 +26,308 @@ import { z } from "zod";
  * typed input box as the primary flow.
  */
 
-const OPENAI_VISION_URL =
+const OPENAI_RESPONSES_URL =
+  process.env.OPENAI_VISION_RESPONSES_URL ?? "https://api.openai.com/v1/responses";
+// Backward-compatible fallback: older deployments/mocks may still expect
+// the Chat Completions vision request shape and can point OPENAI_VISION_URL
+// at a compatible endpoint.
+const OPENAI_CHAT_COMPLETIONS_URL =
   process.env.OPENAI_VISION_URL ?? "https://api.openai.com/v1/chat/completions";
-// 4o is the cheapest model with reliable handwriting OCR. 4o-mini
-// vision is cheaper but its math handwriting accuracy is noticeably
-// worse in our spot tests. Override via env if needed.
+const PREFER_CHAT_COMPLETIONS =
+  Boolean(process.env.OPENAI_VISION_URL) && !process.env.OPENAI_VISION_RESPONSES_URL;
+// Override via env if needed.
 const OPENAI_VISION_MODEL = process.env.OPENAI_VISION_MODEL ?? "gpt-4o";
 // Tight budget — the JSON we want back is tiny. Bumping this won't
 // help quality; it just lets the model ramble in `notes`.
 const MAX_OUTPUT_TOKENS = 400;
+const NETWORK_BACKOFFS_MS = [350, 1200];
+const OCR_IMAGE_DATA_URL_RE =
+  /^data:(image\/(?:png|jpe?g|webp|gif))(?:;[^,]*)?;base64,([a-z0-9+/=\s]+)$/i;
 const missingApiKeyWarnings = new Set<string>();
+
+type JsonSchema = Record<string, unknown>;
+type VisionEndpoint = "responses" | "chat_completions";
+
+type VisionTextResult =
+  | { ok: true; text: string }
+  | { ok: false; canFallback: boolean };
+
+export function normalizeOcrImageDataUrl(imageDataUrl: string): string | null {
+  const match = OCR_IMAGE_DATA_URL_RE.exec(imageDataUrl.trim());
+  if (!match) return null;
+
+  const mime = match[1].toLowerCase() === "image/jpg" ? "image/jpeg" : match[1].toLowerCase();
+  const base64 = match[2].replace(/\s+/g, "");
+  if (!/^[A-Za-z0-9+/]+={0,2}$/.test(base64)) return null;
+
+  return `data:${mime};base64,${base64}`;
+}
+
+function buildResponsesVisionRequestBody(params: {
+  prompt: string;
+  imageDataUrl: string;
+  schemaName: string;
+  schema: JsonSchema;
+  maxTokens: number;
+}) {
+  return {
+    model: OPENAI_VISION_MODEL,
+    max_output_tokens: params.maxTokens,
+    text: {
+      format: {
+        type: "json_schema",
+        name: params.schemaName,
+        strict: true,
+        schema: params.schema
+      }
+    },
+    input: [
+      {
+        role: "user",
+        content: [
+          { type: "input_text", text: params.prompt },
+          {
+            type: "input_image",
+            image_url: params.imageDataUrl,
+            detail: "high"
+          }
+        ]
+      }
+    ]
+  };
+}
+
+function buildChatCompletionsVisionRequestBody(params: {
+  prompt: string;
+  imageDataUrl: string;
+  schemaName: string;
+  schema: JsonSchema;
+  maxTokens: number;
+}) {
+  return {
+    model: OPENAI_VISION_MODEL,
+    max_tokens: params.maxTokens,
+    response_format: {
+      type: "json_schema",
+      json_schema: {
+        name: params.schemaName,
+        strict: true,
+        schema: params.schema
+      }
+    },
+    messages: [
+      {
+        role: "user",
+        content: [
+          { type: "text", text: params.prompt },
+          {
+            type: "image_url",
+            image_url: { url: params.imageDataUrl, detail: "high" }
+          }
+        ]
+      }
+    ]
+  };
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null;
+}
+
+function extractTextFromContentParts(content: unknown): string | null {
+  if (typeof content === "string" && content.trim().length > 0) return content;
+  if (!Array.isArray(content)) return null;
+
+  for (const part of content) {
+    if (!isRecord(part)) continue;
+    if (typeof part.text === "string" && part.text.trim().length > 0) {
+      return part.text;
+    }
+  }
+
+  return null;
+}
+
+function extractVisionText(payload: unknown): string | null {
+  if (!isRecord(payload)) return null;
+
+  if (typeof payload.output_text === "string" && payload.output_text.trim().length > 0) {
+    return payload.output_text;
+  }
+
+  if (Array.isArray(payload.output)) {
+    for (const item of payload.output) {
+      if (!isRecord(item)) continue;
+      const text = extractTextFromContentParts(item.content);
+      if (text) return text;
+    }
+  }
+
+  if (Array.isArray(payload.choices)) {
+    for (const choice of payload.choices) {
+      if (!isRecord(choice) || !isRecord(choice.message)) continue;
+      const text = extractTextFromContentParts(choice.message.content);
+      if (text) return text;
+    }
+  }
+
+  return null;
+}
+
+async function postVisionEndpoint(params: {
+  endpoint: VisionEndpoint;
+  url: string;
+  apiKey: string;
+  body: unknown;
+  scope: string;
+  canFallback: boolean;
+}): Promise<VisionTextResult> {
+  const label =
+    params.endpoint === "responses" ? "Responses" : "Chat Completions";
+
+  for (let attempt = 0; attempt < NETWORK_BACKOFFS_MS.length + 1; attempt += 1) {
+    if (attempt > 0) {
+      const base = NETWORK_BACKOFFS_MS[attempt - 1];
+      const jitter = base * (0.7 + Math.random() * 0.6);
+      await new Promise((r) => setTimeout(r, jitter));
+    }
+
+    try {
+      const response = await fetch(params.url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${params.apiKey}`
+        },
+        body: JSON.stringify(params.body)
+      });
+
+      if (!response.ok) {
+        const retryable = response.status === 429 || response.status >= 500;
+        if (!retryable) {
+          console.error(`[${params.scope}] ${label} vision request failed with hard error`, {
+            status: response.status,
+            statusText: response.statusText
+          });
+          return {
+            ok: false,
+            canFallback:
+              params.canFallback && response.status !== 401 && response.status !== 403
+          };
+        }
+        if (attempt >= NETWORK_BACKOFFS_MS.length) {
+          console.error(`[${params.scope}] ${label} vision request gave up after retries`, {
+            status: response.status,
+            statusText: response.statusText
+          });
+          return { ok: false, canFallback: params.canFallback };
+        }
+        console.warn(`[${params.scope}] ${label} vision request transient failure; retrying`, {
+          status: response.status,
+          attempt
+        });
+        continue;
+      }
+
+      const payload = await response.json();
+      const text = extractVisionText(payload);
+      if (typeof text !== "string" || text.trim().length === 0) {
+        console.error(`[${params.scope}] ${label} vision returned empty content`, {
+          attempt
+        });
+        return { ok: false, canFallback: params.canFallback };
+      }
+
+      return { ok: true, text };
+    } catch (error) {
+      const msg = error instanceof Error ? error.message : "Unknown";
+      if (attempt >= NETWORK_BACKOFFS_MS.length) {
+        console.error(`[${params.scope}] ${label} vision request gave up after retries`, {
+          error: msg
+        });
+        return { ok: false, canFallback: params.canFallback };
+      }
+      console.warn(`[${params.scope}] ${label} vision request network error; retrying`, {
+        attempt,
+        error: msg
+      });
+    }
+  }
+
+  return { ok: false, canFallback: params.canFallback };
+}
+
+async function requestVisionJson(params: {
+  apiKey: string;
+  scope: string;
+  prompt: string;
+  imageDataUrl: string;
+  schemaName: string;
+  schema: JsonSchema;
+  maxTokens: number;
+}): Promise<unknown | null> {
+  if (PREFER_CHAT_COMPLETIONS) {
+    const chatBody = buildChatCompletionsVisionRequestBody(params);
+    const chatResult = await postVisionEndpoint({
+      endpoint: "chat_completions",
+      url: OPENAI_CHAT_COMPLETIONS_URL,
+      apiKey: params.apiKey,
+      body: chatBody,
+      scope: params.scope,
+      canFallback: false
+    });
+    if (!chatResult.ok) return null;
+
+    try {
+      return JSON.parse(chatResult.text);
+    } catch (parseError) {
+      console.error(`[${params.scope}] vision response not valid JSON`, {
+        textTail: chatResult.text.slice(-200),
+        error: parseError instanceof Error ? parseError.message : String(parseError)
+      });
+      return null;
+    }
+  }
+
+  const responsesBody = buildResponsesVisionRequestBody(params);
+  const responsesResult = await postVisionEndpoint({
+    endpoint: "responses",
+    url: OPENAI_RESPONSES_URL,
+    apiKey: params.apiKey,
+    body: responsesBody,
+    scope: params.scope,
+    canFallback: true
+  });
+
+  let text: string | null = null;
+  if (responsesResult.ok) {
+    text = responsesResult.text;
+  } else if (responsesResult.canFallback) {
+    const chatBody = buildChatCompletionsVisionRequestBody(params);
+    const chatResult = await postVisionEndpoint({
+      endpoint: "chat_completions",
+      url: OPENAI_CHAT_COMPLETIONS_URL,
+      apiKey: params.apiKey,
+      body: chatBody,
+      scope: params.scope,
+      canFallback: false
+    });
+    if (!chatResult.ok) return null;
+    text = chatResult.text;
+  } else {
+    return null;
+  }
+
+  try {
+    return JSON.parse(text);
+  } catch (parseError) {
+    console.error(`[${params.scope}] vision response not valid JSON`, {
+      textTail: text.slice(-200),
+      error: parseError instanceof Error ? parseError.message : String(parseError)
+    });
+    return null;
+  }
+}
 
 // Confidence taxonomy returned to UI. We deliberately keep this
 // coarse — three buckets the student can act on:
@@ -169,7 +460,8 @@ export async function ocrHandwritingMultiStep(params: {
     return null;
   }
 
-  if (!/^data:image\/(png|jpe?g|webp|gif);base64,/i.test(params.imageDataUrl)) {
+  const imageDataUrl = normalizeOcrImageDataUrl(params.imageDataUrl);
+  if (!imageDataUrl) {
     console.warn(`[${scope}] image not a recognized data URL; refusing to send.`);
     return null;
   }
@@ -179,134 +471,48 @@ export async function ocrHandwritingMultiStep(params: {
   // 1500 covers comfortably without enabling rambling notes.
   const MULTI_STEP_MAX_TOKENS = 1500;
 
-  const requestBody = {
-    model: OPENAI_VISION_MODEL,
-    max_tokens: MULTI_STEP_MAX_TOKENS,
-    response_format: {
-      type: "json_schema",
-      json_schema: {
-        name: "handwriting_ocr_multi_step",
-        strict: true,
-        schema: MULTI_STEP_JSON_SCHEMA
-      }
-    },
-    messages: [
-      {
-        role: "user",
-        content: [
-          { type: "text", text: buildMultiStepPrompt(params.uiLocale) },
-          {
-            type: "image_url",
-            image_url: { url: params.imageDataUrl, detail: "high" }
-          }
-        ]
-      }
-    ]
-  };
+  const parsedJson = await requestVisionJson({
+    apiKey,
+    scope,
+    prompt: buildMultiStepPrompt(params.uiLocale),
+    imageDataUrl,
+    schemaName: "handwriting_ocr_multi_step",
+    schema: MULTI_STEP_JSON_SCHEMA,
+    maxTokens: MULTI_STEP_MAX_TOKENS
+  });
+  if (!parsedJson) return null;
 
-  const NETWORK_BACKOFFS_MS = [350, 1200];
-  for (let attempt = 0; attempt < NETWORK_BACKOFFS_MS.length + 1; attempt += 1) {
-    if (attempt > 0) {
-      const base = NETWORK_BACKOFFS_MS[attempt - 1];
-      const jitter = base * (0.7 + Math.random() * 0.6);
-      await new Promise((r) => setTimeout(r, jitter));
-    }
-
-    try {
-      const response = await fetch(OPENAI_VISION_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey}`
-        },
-        body: JSON.stringify(requestBody)
-      });
-
-      if (!response.ok) {
-        if (response.status !== 429 && response.status < 500) {
-          console.error(`[${scope}] vision request failed with hard error`, {
-            status: response.status,
-            statusText: response.statusText
-          });
-          return null;
-        }
-        console.warn(`[${scope}] vision request transient failure; retrying`, {
-          status: response.status,
-          attempt
-        });
-        continue;
-      }
-
-      const payload = (await response.json()) as {
-        choices?: Array<{ message?: { content?: string } }>;
-      };
-      const text = payload.choices?.[0]?.message?.content;
-      if (typeof text !== "string" || text.trim().length === 0) {
-        console.error(`[${scope}] vision returned empty content`, { attempt });
-        return null;
-      }
-
-      let parsedJson: unknown;
-      try {
-        parsedJson = JSON.parse(text);
-      } catch (parseError) {
-        console.error(`[${scope}] vision response not valid JSON`, {
-          attempt,
-          textTail: text.slice(-200),
-          error:
-            parseError instanceof Error ? parseError.message : String(parseError)
-        });
-        return null;
-      }
-
-      const validated = multiStepResultSchema.safeParse(parsedJson);
-      if (!validated.success) {
-        console.error(`[${scope}] vision response failed schema`, {
-          attempt,
-          issues: validated.error.issues.map((i) => ({
-            path: i.path.join("."),
-            code: i.code
-          }))
-        });
-        return null;
-      }
-
-      // Defensive sanitisation — trim and length-cap each step's
-      // latex + notes, plus cap total step count. The schema doesn't
-      // bound these, so a runaway model could in theory emit dozens
-      // of empty steps.
-      const MAX_STEPS = 20;
-      const MAX_LATEX_LENGTH = 4000;
-      const cleanedSteps = validated.data.steps
-        .slice(0, MAX_STEPS)
-        .map((s, i) => ({
-          stepNumber: s.stepNumber > 0 ? s.stepNumber : i + 1,
-          latex: s.latex.trim().slice(0, MAX_LATEX_LENGTH),
-          confidence: s.confidence,
-          notes: s.notes?.trim().slice(0, 240) || null
-        }))
-        .filter((s) => s.latex.length > 0 || s.confidence === "none");
-
-      return {
-        steps: cleanedSteps,
-        imageNotes: validated.data.imageNotes?.trim().slice(0, 320) || null
-      };
-    } catch (error) {
-      const msg = error instanceof Error ? error.message : "Unknown";
-      if (attempt >= NETWORK_BACKOFFS_MS.length) {
-        console.error(`[${scope}] vision request gave up after retries`, {
-          error: msg
-        });
-        return null;
-      }
-      console.warn(`[${scope}] vision request network error; retrying`, {
-        attempt,
-        error: msg
-      });
-    }
+  const validated = multiStepResultSchema.safeParse(parsedJson);
+  if (!validated.success) {
+    console.error(`[${scope}] vision response failed schema`, {
+      issues: validated.error.issues.map((i) => ({
+        path: i.path.join("."),
+        code: i.code
+      }))
+    });
+    return null;
   }
 
-  return null;
+  // Defensive sanitisation — trim and length-cap each step's
+  // latex + notes, plus cap total step count. The schema doesn't
+  // bound these, so a runaway model could in theory emit dozens
+  // of empty steps.
+  const MAX_STEPS = 20;
+  const MAX_LATEX_LENGTH = 4000;
+  const cleanedSteps = validated.data.steps
+    .slice(0, MAX_STEPS)
+    .map((s, i) => ({
+      stepNumber: s.stepNumber > 0 ? s.stepNumber : i + 1,
+      latex: s.latex.trim().slice(0, MAX_LATEX_LENGTH),
+      confidence: s.confidence,
+      notes: s.notes?.trim().slice(0, 240) || null
+    }))
+    .filter((s) => s.latex.length > 0 || s.confidence === "none");
+
+  return {
+    steps: cleanedSteps,
+    imageNotes: validated.data.imageNotes?.trim().slice(0, 320) || null
+  };
 }
 
 const OCR_JSON_SCHEMA = {
@@ -374,141 +580,47 @@ export async function ocrHandwritingToLatex(params: {
 
   // Cheap shape validation — saves an API call if the frontend
   // forgot to encode properly. We allow png / jpeg / webp / gif.
-  if (!/^data:image\/(png|jpe?g|webp|gif);base64,/i.test(params.imageDataUrl)) {
+  const imageDataUrl = normalizeOcrImageDataUrl(params.imageDataUrl);
+  if (!imageDataUrl) {
     console.warn(`[${scope}] image not a recognized data URL; refusing to send.`);
     return null;
   }
 
   const prompt = buildOcrPrompt(params.uiLocale);
 
-  // Chat Completions API for vision (Responses API also supports
-  // images but the format is more brittle as of writing). We use the
-  // documented multimodal `content` array.
-  const requestBody = {
-    model: OPENAI_VISION_MODEL,
-    max_tokens: MAX_OUTPUT_TOKENS,
-    response_format: {
-      type: "json_schema",
-      json_schema: {
-        name: "handwriting_ocr_result",
-        strict: true,
-        schema: OCR_JSON_SCHEMA
-      }
-    },
-    messages: [
-      {
-        role: "user",
-        content: [
-          { type: "text", text: prompt },
-          {
-            type: "image_url",
-            image_url: { url: params.imageDataUrl, detail: "high" }
-          }
-        ]
-      }
-    ]
-  };
+  const parsedJson = await requestVisionJson({
+    apiKey,
+    scope,
+    prompt,
+    imageDataUrl,
+    schemaName: "handwriting_ocr_result",
+    schema: OCR_JSON_SCHEMA,
+    maxTokens: MAX_OUTPUT_TOKENS
+  });
+  if (!parsedJson) return null;
 
-  // Single retry on network error. We don't bump tokens here — if 400
-  // chars isn't enough for one OCR'd step, something is wrong with the
-  // image, not the budget.
-  const NETWORK_BACKOFFS_MS = [350, 1200]; // ~1.5s total worst case
-  for (let attempt = 0; attempt < NETWORK_BACKOFFS_MS.length + 1; attempt += 1) {
-    if (attempt > 0) {
-      const base = NETWORK_BACKOFFS_MS[attempt - 1];
-      const jitter = base * (0.7 + Math.random() * 0.6);
-      await new Promise((r) => setTimeout(r, jitter));
-    }
-
-    try {
-      const response = await fetch(OPENAI_VISION_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey}`
-        },
-        body: JSON.stringify(requestBody)
-      });
-
-      if (!response.ok) {
-        // Common transient failures: 429 (rate limit), 5xx. Retry.
-        // Hard failures (4xx other than 429): give up immediately, no
-        // amount of retrying will fix a bad request.
-        if (response.status !== 429 && response.status < 500) {
-          console.error(`[${scope}] vision request failed with hard error`, {
-            status: response.status,
-            statusText: response.statusText
-          });
-          return null;
-        }
-        console.warn(`[${scope}] vision request transient failure; retrying`, {
-          status: response.status,
-          attempt
-        });
-        continue;
-      }
-
-      const payload = (await response.json()) as {
-        choices?: Array<{ message?: { content?: string } }>;
-      };
-      const text = payload.choices?.[0]?.message?.content;
-      if (typeof text !== "string" || text.trim().length === 0) {
-        console.error(`[${scope}] vision returned empty content`, { attempt });
-        return null;
-      }
-
-      let parsedJson: unknown;
-      try {
-        parsedJson = JSON.parse(text);
-      } catch (parseError) {
-        console.error(`[${scope}] vision response not valid JSON`, {
-          attempt,
-          textTail: text.slice(-200),
-          error:
-            parseError instanceof Error ? parseError.message : String(parseError)
-        });
-        return null;
-      }
-
-      const validated = ocrResultSchema.safeParse(parsedJson);
-      if (!validated.success) {
-        console.error(`[${scope}] vision response failed schema`, {
-          attempt,
-          issues: validated.error.issues.map((i) => ({
-            path: i.path.join("."),
-            code: i.code
-          }))
-        });
-        return null;
-      }
-
-      // Trim whitespace + cap length defensively — the schema doesn't
-      // bound size and a runaway model could in theory return many KB.
-      // 4000 matches MAX_STEP_LENGTH in unified-attempt router so we
-      // never produce output the downstream rejects.
-      const MAX_LATEX_LENGTH = 4000;
-      const latex = validated.data.latex.trim().slice(0, MAX_LATEX_LENGTH);
-      const notes = validated.data.notes?.trim().slice(0, 240) ?? null;
-
-      return {
-        latex,
-        confidence: validated.data.confidence,
-        notes: notes && notes.length > 0 ? notes : null
-      };
-    } catch (error) {
-      const msg = error instanceof Error ? error.message : "Unknown";
-      if (attempt >= NETWORK_BACKOFFS_MS.length) {
-        console.error(`[${scope}] vision request gave up after retries`, {
-          error: msg
-        });
-        return null;
-      }
-      console.warn(`[${scope}] vision request network error; retrying`, {
-        attempt,
-        error: msg
-      });
-    }
+  const validated = ocrResultSchema.safeParse(parsedJson);
+  if (!validated.success) {
+    console.error(`[${scope}] vision response failed schema`, {
+      issues: validated.error.issues.map((i) => ({
+        path: i.path.join("."),
+        code: i.code
+      }))
+    });
+    return null;
   }
 
-  return null;
+  // Trim whitespace + cap length defensively — the schema doesn't
+  // bound size and a runaway model could in theory return many KB.
+  // 4000 matches MAX_STEP_LENGTH in unified-attempt router so we
+  // never produce output the downstream rejects.
+  const MAX_LATEX_LENGTH = 4000;
+  const latex = validated.data.latex.trim().slice(0, MAX_LATEX_LENGTH);
+  const notes = validated.data.notes?.trim().slice(0, 240) ?? null;
+
+  return {
+    latex,
+    confidence: validated.data.confidence,
+    notes: notes && notes.length > 0 ? notes : null
+  };
 }

@@ -20,6 +20,7 @@ import { isStructuredSolution, type StructuredSolution } from "@/lib/ai/solution
 import { classifyStep, verifyStep, type ProofVerifyResult } from "@/lib/proof-verifier-client";
 import { generateExplanation, generateHint, getSafeFallbackHint, hintLeaksFinalAnswer } from "@/lib/ai/hint-tutor";
 import {
+  normalizeOcrImageDataUrl,
   ocrHandwritingToLatex,
   ocrHandwritingMultiStep
 } from "@/lib/ai/ocr-handwriting";
@@ -40,6 +41,24 @@ import { protectedProcedure, router } from "@/lib/trpc/server";
 
 const MAX_STEP_LENGTH = 4000;
 const MAX_STEPS_PER_ATTEMPT = 50;
+const OCR_IMAGE_DATA_URL_MAX_LENGTH = 7_000_000;
+const ocrImageDataUrlInput = z
+  .string()
+  .min(50)
+  // ~7M chars of base64 ≈ 5MB. Hard cap; frontend should resize well
+  // below this in normal use.
+  .max(OCR_IMAGE_DATA_URL_MAX_LENGTH)
+  .transform((value, ctx) => {
+    const normalized = normalizeOcrImageDataUrl(value);
+    if (!normalized) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "imageDataUrl must be a base64 data: URL for png/jpeg/webp/gif"
+      });
+      return z.NEVER;
+    }
+    return normalized;
+  });
 const HINT_CURATED_VERSION = "curated-hint-v1";
 const HINT_PRECOMPUTED_VERSION = "precomputed-hint-v1";
 const HINT_GENERATED_VERSION = "hint-tutor-v1";
@@ -1281,16 +1300,7 @@ export const unifiedAttemptRouter = router({
     .input(
       z.object({
         // data: URL containing the image. Frontend resizes + encodes.
-        imageDataUrl: z
-          .string()
-          .min(50)
-          // ~7M chars of base64 ≈ 5MB. Hard cap; frontend should
-          // resize well below this in normal use.
-          .max(7_000_000)
-          .refine(
-            (v) => /^data:image\/(png|jpe?g|webp|gif);base64,/i.test(v),
-            "imageDataUrl must be a base64 data: URL for png/jpeg/webp/gif"
-          ),
+        imageDataUrl: ocrImageDataUrlInput,
         // UI locale — controls the language of the optional `notes`
         // field returned by the model. LaTeX itself is locale-free.
         uiLocale: z.enum(["en", "zh"]).optional(),
@@ -1367,14 +1377,7 @@ export const unifiedAttemptRouter = router({
   ocrHandwritingMultiStep: protectedProcedure
     .input(
       z.object({
-        imageDataUrl: z
-          .string()
-          .min(50)
-          .max(7_000_000)
-          .refine(
-            (v) => /^data:image\/(png|jpe?g|webp|gif);base64,/i.test(v),
-            "imageDataUrl must be a base64 data: URL for png/jpeg/webp/gif"
-          ),
+        imageDataUrl: ocrImageDataUrlInput,
         uiLocale: z.enum(["en", "zh"]).optional(),
         attemptId: z.string().min(1).optional()
       })
