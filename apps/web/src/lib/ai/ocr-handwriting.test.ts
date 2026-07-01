@@ -3,6 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 // Stub the OPENAI_API_KEY so the module path that early-returns when
 // the key is missing doesn't fire. The actual fetch is mocked.
 const ORIGINAL_KEY = process.env.OPENAI_API_KEY;
+const ORIGINAL_BASE_URL = process.env.OPENAI_BASE_URL;
 const ORIGINAL_VISION_URL = process.env.OPENAI_VISION_URL;
 const ORIGINAL_RESPONSES_URL = process.env.OPENAI_VISION_RESPONSES_URL;
 const SAMPLE_IMAGE =
@@ -11,6 +12,8 @@ const SAMPLE_IMAGE =
 function restoreOpenAiEnv() {
   if (ORIGINAL_KEY === undefined) delete process.env.OPENAI_API_KEY;
   else process.env.OPENAI_API_KEY = ORIGINAL_KEY;
+  if (ORIGINAL_BASE_URL === undefined) delete process.env.OPENAI_BASE_URL;
+  else process.env.OPENAI_BASE_URL = ORIGINAL_BASE_URL;
   if (ORIGINAL_VISION_URL === undefined) delete process.env.OPENAI_VISION_URL;
   else process.env.OPENAI_VISION_URL = ORIGINAL_VISION_URL;
   if (ORIGINAL_RESPONSES_URL === undefined) delete process.env.OPENAI_VISION_RESPONSES_URL;
@@ -40,6 +43,7 @@ describe("ocrHandwritingToLatex", () => {
   beforeEach(() => {
     vi.resetModules();
     process.env.OPENAI_API_KEY = "test-key";
+    delete process.env.OPENAI_BASE_URL;
     delete process.env.OPENAI_VISION_URL;
     delete process.env.OPENAI_VISION_RESPONSES_URL;
   });
@@ -226,6 +230,51 @@ describe("ocrHandwritingToLatex", () => {
               type: "image_url",
               image_url: { url: SAMPLE_IMAGE, detail: "high" }
             }
+          ]
+        }
+      ]
+    });
+  });
+
+  it("uses OPENAI_BASE_URL for Responses OCR when configured", async () => {
+    process.env.OPENAI_BASE_URL = "https://openai-relay.example.test/v1/responses";
+    vi.resetModules();
+    const calls: Array<{ url: string; body: unknown }> = [];
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (url: string | URL | Request, init?: RequestInit) => {
+        calls.push({
+          url: String(url),
+          body: JSON.parse(String(init?.body))
+        });
+        return new Response(
+          JSON.stringify({
+            output_text: JSON.stringify({
+              latex: "z=5",
+              confidence: "high",
+              notes: null
+            })
+          }),
+          { status: 200, headers: { "Content-Type": "application/json" } }
+        );
+      })
+    );
+
+    const { ocrHandwritingToLatex } = await import("./ocr-handwriting");
+    const result = await ocrHandwritingToLatex({
+      imageDataUrl: SAMPLE_IMAGE,
+      uiLocale: "en"
+    });
+
+    expect(result).toEqual({ latex: "z=5", confidence: "high", notes: null });
+    expect(calls).toHaveLength(1);
+    expect(calls[0].url).toBe("https://openai-relay.example.test/v1/responses");
+    expect(calls[0].body).toMatchObject({
+      input: [
+        {
+          content: [
+            { type: "input_text" },
+            { type: "input_image" }
           ]
         }
       ]

@@ -27,14 +27,18 @@ import { z } from "zod";
  */
 
 const OPENAI_RESPONSES_URL =
-  process.env.OPENAI_VISION_RESPONSES_URL ?? "https://api.openai.com/v1/responses";
+  process.env.OPENAI_VISION_RESPONSES_URL ??
+  process.env.OPENAI_BASE_URL ??
+  "https://api.openai.com/v1/responses";
 // Backward-compatible fallback: older deployments/mocks may still expect
 // the Chat Completions vision request shape and can point OPENAI_VISION_URL
 // at a compatible endpoint.
 const OPENAI_CHAT_COMPLETIONS_URL =
   process.env.OPENAI_VISION_URL ?? "https://api.openai.com/v1/chat/completions";
 const PREFER_CHAT_COMPLETIONS =
-  Boolean(process.env.OPENAI_VISION_URL) && !process.env.OPENAI_VISION_RESPONSES_URL;
+  Boolean(process.env.OPENAI_VISION_URL) &&
+  !process.env.OPENAI_VISION_RESPONSES_URL &&
+  !process.env.OPENAI_BASE_URL;
 // Override via env if needed.
 const OPENAI_VISION_MODEL = process.env.OPENAI_VISION_MODEL ?? "gpt-4o";
 // Tight budget — the JSON we want back is tiny. Bumping this won't
