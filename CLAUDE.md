@@ -161,7 +161,7 @@ update `deploy.sh` in the same PR, don't expect the user to remember.
   ssh arcmath@47.76.201.152 'pm2 logs arcmath-web --lines 50 --nostream'
   ```
 - **Geographic latency (so future perf work doesn't chase ghosts):**
-  - VPS is in HK. Neon DB is in `us-east-1` — HK → us-east-1 RTT ≈ 200ms.
+  - VPS is in HK. Neon DB is in `ap-southeast-1` (Singapore) — HK → SG RTT ≈ 30-50ms. (Migrated 2026-07-01 from us-east-1 to reduce page-render latency; runbook at `docs/NEON_SG_MIGRATION.md`. Old us-east-1 project may still exist as a "just in case" backup for a few weeks — delete once the SG DB has been stable in prod for that long.)
   - The owner tests from California (UC Berkeley) — Cal → HK RTT ≈ 300ms.
   - Mainland-China end users → HK RTT ≈ 30-80ms.
   - When the owner reports "slow", they're seeing 300ms × 2 (TCP+TLS) + server time, which is roughly 2× what a real user in CN sees. Don't optimize TLS further to chase that — physics caps it at 1 RTT.
