@@ -147,8 +147,8 @@ const VERDICT_TAG_STATUS: Record<VerdictTone, string | undefined> = {
 
 /**
  * Multi-step OCR launcher (Sprint 2). One button + hidden file
- * input. The student picks a photo containing several steps, the
- * vision API segments them, and a review modal pops up. After
+ * input. The student picks one or more photos containing several steps,
+ * the vision API segments them, and a review modal pops up. After
  * accept-on-each-step, the parent commits via repeated addStep
  * calls.
  *
@@ -182,9 +182,11 @@ function MultiStepOcrLauncher(props: {
       latex: string;
       confidence: "high" | "medium" | "low" | "none";
       notes: string | null;
+      sourceLabel?: string;
     }>
   >([]);
   const [imageNotes, setImageNotes] = useState<string | null>(null);
+  const [batchProgress, setBatchProgress] = useState<string | null>(null);
   const [errorMessageKey, setErrorMessageKey] = useState<keyof Messages | null>(
     null
   );
@@ -198,6 +200,7 @@ function MultiStepOcrLauncher(props: {
     setPhase("idle");
     setSteps([]);
     setImageNotes(null);
+    setBatchProgress(null);
     setErrorMessageKey(null);
     setQuotaInfo(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
@@ -210,40 +213,87 @@ function MultiStepOcrLauncher(props: {
     fileInputRef.current?.click();
   }, [props.disabled, phase]);
 
-  const handleFile = useCallback(
-    async (file: File | undefined) => {
-      if (!file) return;
-      if (!file.type.startsWith("image/")) {
+  const handleFiles = useCallback(
+    async (files: FileList | File[] | null | undefined) => {
+      const selectedFiles = Array.from(files ?? []);
+      if (selectedFiles.length === 0) return;
+
+      const invalidType = selectedFiles.some((file) => !file.type.startsWith("image/"));
+      if (invalidType) {
         setPhase("error");
         setErrorMessageKey("attempt.ocr_error_wrong_type");
         return;
       }
-      if (file.size > 10 * 1024 * 1024) {
+      const tooBig = selectedFiles.some((file) => file.size > 10 * 1024 * 1024);
+      if (tooBig) {
         setPhase("error");
         setErrorMessageKey("attempt.ocr_error_too_big");
         return;
       }
+
       try {
-        setPhase("resizing");
-        const dataUrl = await resizeImageDataUrl(file);
-        setPhase("calling");
-        const result = await ocrMutation.mutateAsync({
-          imageDataUrl: dataUrl,
-          uiLocale: props.locale,
-          attemptId: props.attemptId
-        });
-        if (!result.ok) {
-          setPhase("error");
-          if (result.reason === "quota_exceeded") {
-            setQuotaInfo(result.quota);
-            setErrorMessageKey("attempt.ocr_quota_exceeded");
-          } else {
-            setErrorMessageKey("attempt.ocr_unavailable");
+        const mergedSteps: Array<{
+          stepNumber: number;
+          latex: string;
+          confidence: "high" | "medium" | "low" | "none";
+          notes: string | null;
+          sourceLabel?: string;
+        }> = [];
+        const imageNoteParts: string[] = [];
+        const total = selectedFiles.length;
+
+        for (let idx = 0; idx < selectedFiles.length; idx += 1) {
+          const file = selectedFiles[idx];
+          const sourceLabel =
+            total > 1
+              ? props.locale === "zh"
+                ? `照片 ${idx + 1}`
+                : `Photo ${idx + 1}`
+              : undefined;
+          const progress =
+            total > 1
+              ? props.locale === "zh"
+                ? `${idx + 1}/${total}`
+                : `${idx + 1}/${total}`
+              : null;
+
+          setBatchProgress(progress);
+          setPhase("resizing");
+          const dataUrl = await resizeImageDataUrl(file);
+          setPhase("calling");
+          const result = await ocrMutation.mutateAsync({
+            imageDataUrl: dataUrl,
+            uiLocale: props.locale,
+            attemptId: props.attemptId
+          });
+          if (!result.ok) {
+            setPhase("error");
+            if (result.reason === "quota_exceeded") {
+              setQuotaInfo(result.quota);
+              setErrorMessageKey("attempt.ocr_quota_exceeded");
+            } else {
+              setErrorMessageKey("attempt.ocr_unavailable");
+            }
+            return;
           }
-          return;
+
+          for (const step of result.steps) {
+            mergedSteps.push({
+              ...step,
+              stepNumber: mergedSteps.length + 1,
+              sourceLabel
+            });
+          }
+          if (result.imageNotes) {
+            imageNoteParts.push(
+              sourceLabel ? `${sourceLabel}: ${result.imageNotes}` : result.imageNotes
+            );
+          }
         }
-        setSteps(result.steps);
-        setImageNotes(result.imageNotes);
+
+        setSteps(mergedSteps);
+        setImageNotes(imageNoteParts.length > 0 ? imageNoteParts.join(" ") : null);
+        setBatchProgress(null);
         setPhase("review");
       } catch (err) {
         console.error("[multi-step-ocr-launcher] failed", err);
@@ -271,9 +321,13 @@ function MultiStepOcrLauncher(props: {
 
   const triggerLabel =
     phase === "resizing"
-      ? t("attempt.ocr_resizing")
+      ? batchProgress
+        ? `${t("attempt.ocr_resizing")} ${batchProgress}`
+        : t("attempt.ocr_resizing")
       : phase === "calling"
-        ? t("attempt.ocr_calling")
+        ? batchProgress
+          ? `${t("attempt.ocr_calling")} ${batchProgress}`
+          : t("attempt.ocr_calling")
         : t("attempt.ocr_multi_step_trigger");
 
   const isBusy = phase === "resizing" || phase === "calling";
@@ -284,9 +338,9 @@ function MultiStepOcrLauncher(props: {
         ref={fileInputRef}
         type="file"
         accept="image/png, image/jpeg, image/webp"
-        capture="environment"
+        multiple
         className="sr-only"
-        onChange={(e) => handleFile(e.target.files?.[0])}
+        onChange={(e) => handleFiles(e.target.files)}
         disabled={props.disabled || isBusy}
         aria-hidden
       />

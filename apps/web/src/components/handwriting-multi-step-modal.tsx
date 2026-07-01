@@ -1,13 +1,16 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
 
 /**
  * Multi-step review modal (Sprint 2).
  *
  * Lifecycle:
  *   1. Parent opens the modal with the OCR'd steps array.
- *   2. Each step row shows: index · confidence chip · LaTeX preview
+ *   2. Each step row shows: index · confidence chip · rendered preview
  *      · per-step note · per-step action buttons (Accept / Edit / Skip).
  *   3. The student walks the list. Edited steps update local state;
  *      skipped steps are excluded from the final commit.
@@ -16,12 +19,9 @@ import { useCallback, useMemo, useState } from "react";
  *      one by one (preserving the same per-step grading flow as
  *      typed input).
  *
- * Why local edits (vs hot-routing to MathLive immediately): the
- * model frequently mis-handles subscripts or single-vs-double-quote
- * curly braces. A plain textarea makes inline correction much
- * faster than spawning MathLive for each step. Students who want
- * the rich editor can Skip → commit the rest → type the bad step
- * manually.
+ * Why local edits (vs hot-routing to MathLive immediately): students
+ * need a readable rendered preview first, while rare symbol fixes are
+ * still fastest in one compact textarea.
  */
 
 export type OcrMultiStepInputItem = {
@@ -29,6 +29,7 @@ export type OcrMultiStepInputItem = {
   latex: string;
   confidence: "high" | "medium" | "low" | "none";
   notes: string | null;
+  sourceLabel?: string;
 };
 
 export type HandwritingMultiStepModalProps = {
@@ -72,6 +73,7 @@ const LABELS: Record<"en" | "zh", {
   saveSelected: string;
   cancel: string;
   busy: string;
+  latexLabel: string;
 }> = {
   en: {
     title: "Review and save steps",
@@ -92,7 +94,8 @@ const LABELS: Record<"en" | "zh", {
     saveAll: "Save all",
     saveSelected: "Save {n} step(s)",
     cancel: "Cancel",
-    busy: "Saving…"
+    busy: "Saving…",
+    latexLabel: "LaTeX"
   },
   zh: {
     title: "校对并保存步骤",
@@ -111,9 +114,18 @@ const LABELS: Record<"en" | "zh", {
     saveAll: "全部保存",
     saveSelected: "保存 {n} 步",
     cancel: "取消",
-    busy: "保存中…"
+    busy: "保存中…",
+    latexLabel: "LaTeX"
   }
 };
+
+function renderLatexPreview(latex: string): string {
+  const trimmed = latex.trim();
+  if (!trimmed) return "";
+  if (trimmed.startsWith("$") || trimmed.startsWith("\\[")) return trimmed;
+  if (trimmed.includes("$")) return trimmed;
+  return `$$${trimmed}$$`;
+}
 
 export function HandwritingMultiStepModal(props: HandwritingMultiStepModalProps) {
   const labels = LABELS[props.locale];
@@ -132,10 +144,13 @@ export function HandwritingMultiStepModal(props: HandwritingMultiStepModalProps)
   // ref equality so re-rendering with the same steps doesn't reset
   // accidentally.
   const stepsKey = useMemo(
-    () => props.steps.map((s) => `${s.latex}::${s.confidence}`).join("|"),
+    () =>
+      props.steps
+        .map((s) => `${s.sourceLabel ?? ""}::${s.latex}::${s.confidence}`)
+        .join("|"),
     [props.steps]
   );
-  useMemo(() => {
+  useEffect(() => {
     setRows(
       Object.fromEntries(
         props.steps.map((s, idx) => [idx, { text: s.latex, skipped: false }])
@@ -190,7 +205,7 @@ export function HandwritingMultiStepModal(props: HandwritingMultiStepModalProps)
       <div
         className="surface-card"
         style={{
-          width: "min(720px, 100%)",
+          width: "min(860px, 100%)",
           maxHeight: "calc(100vh - 32px)",
           overflowY: "auto",
           padding: 22
@@ -245,6 +260,9 @@ export function HandwritingMultiStepModal(props: HandwritingMultiStepModalProps)
             {props.steps.map((s, idx) => {
               const row = rows[idx] ?? { text: s.latex, skipped: false };
               const isEditing = editingIdx === idx;
+              const showSourceHeader =
+                Boolean(s.sourceLabel) &&
+                (idx === 0 || props.steps[idx - 1]?.sourceLabel !== s.sourceLabel);
               const confLabel =
                 s.confidence === "high"
                   ? labels.confHigh
@@ -262,52 +280,92 @@ export function HandwritingMultiStepModal(props: HandwritingMultiStepModalProps)
                       ? "text-orange-700"
                       : "text-slate-500";
               return (
+                <Fragment key={idx}>
+                  {showSourceHeader ? (
+                    <li className="list-none pt-2 first:pt-0">
+                      <div
+                        className="text-[11px] font-semibold uppercase"
+                        style={{
+                          color: "var(--subtle)",
+                          letterSpacing: "0.08em",
+                          fontFamily: "var(--font-mono-custom)"
+                        }}
+                      >
+                        {s.sourceLabel}
+                      </div>
+                    </li>
+                  ) : null}
                 <li
-                  key={idx}
-                  className="rounded-2xl border p-3"
+                  className="border p-3"
                   style={{
                     background: row.skipped
                       ? "var(--surface-2)"
                       : "var(--surface-card)",
                     borderColor: "var(--border)",
+                    borderRadius: "var(--radius-md)",
                     opacity: row.skipped ? 0.55 : 1
                   }}
                 >
-                  <div className="flex items-baseline justify-between gap-3">
-                    <span
-                      className="text-xs font-semibold uppercase"
-                      style={{
-                        color: "var(--subtle)",
-                        letterSpacing: "0.12em",
-                        fontFamily: "var(--font-mono-custom)"
-                      }}
-                    >
-                      {labels.step} {s.stepNumber}
-                    </span>
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span
+                        className="text-xs font-semibold uppercase"
+                        style={{
+                          color: "var(--subtle)",
+                          letterSpacing: "0.08em",
+                          fontFamily: "var(--font-mono-custom)"
+                        }}
+                      >
+                        {labels.step} {s.stepNumber}
+                      </span>
+                    </div>
                     <span className={`text-xs ${confTone}`}>{confLabel}</span>
                   </div>
 
+                  <div
+                    className="problem-statement mt-2 overflow-x-auto p-3 text-sm leading-7"
+                    style={{
+                      background: "var(--surface-2)",
+                      border: "1px solid var(--border)",
+                      borderRadius: "var(--radius-md)",
+                      color: "var(--foreground)"
+                    }}
+                  >
+                    {row.text.trim().length > 0 ? (
+                      <ReactMarkdown
+                        remarkPlugins={[remarkMath]}
+                        rehypePlugins={[rehypeKatex]}
+                      >
+                        {renderLatexPreview(row.text)}
+                      </ReactMarkdown>
+                    ) : (
+                      <span style={{ color: "var(--subtle)" }}>(empty)</span>
+                    )}
+                  </div>
+
                   {isEditing ? (
-                    <textarea
-                      className="mt-2 w-full rounded-md border p-2 text-sm font-mono"
-                      style={{ borderColor: "var(--border)", minHeight: "4.5rem" }}
-                      value={row.text}
-                      onChange={(e) => updateText(idx, e.target.value)}
-                      autoFocus
-                    />
-                  ) : (
-                    <p
-                      className="mt-2 break-words text-sm"
+                    <label
+                      className="mt-2 block text-[11px] font-semibold uppercase"
                       style={{
-                        fontFamily: "var(--font-mono-custom)",
-                        color: "var(--foreground)"
+                        color: "var(--subtle)",
+                        letterSpacing: "0.08em",
+                        fontFamily: "var(--font-mono-custom)"
                       }}
                     >
-                      {row.text || (
-                        <span style={{ color: "var(--subtle)" }}>(empty)</span>
-                      )}
-                    </p>
-                  )}
+                      {labels.latexLabel}
+                      <textarea
+                        className="mt-1 w-full rounded-md border p-2 text-sm font-mono normal-case"
+                        style={{
+                          borderColor: "var(--border)",
+                          minHeight: "4.5rem",
+                          letterSpacing: 0
+                        }}
+                        value={row.text}
+                        onChange={(e) => updateText(idx, e.target.value)}
+                        autoFocus
+                      />
+                    </label>
+                  ) : null}
 
                   {s.notes ? (
                     <p
@@ -347,6 +405,7 @@ export function HandwritingMultiStepModal(props: HandwritingMultiStepModalProps)
                     </button>
                   </div>
                 </li>
+                </Fragment>
               );
             })}
           </ol>

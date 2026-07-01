@@ -1443,9 +1443,9 @@ export const EN: Messages = {
     "Photo OCR is not available right now. Please type the step instead.",
   "attempt.ocr_review_prompt":
     "Edit the recognized step below before you save it.",
-  "attempt.ocr_multi_step_trigger": "📷 Scan multiple steps",
+  "attempt.ocr_multi_step_trigger": "📷 Scan step photos",
   "attempt.ocr_multi_step_hint":
-    "Photograph a page with several steps. We'll split them and let you review each one before saving.",
+    "Select one or several clear photos. We'll split them into steps and let you review each one before saving.",
   "attempt.ocr_quota_exceeded":
     "Daily OCR limit reached ({used}/{limit}). Try again tomorrow, or type the remaining steps.",
   "attempt.next_step_hint_button": "Hint for next step",
@@ -2400,8 +2400,8 @@ export const ZH: Messages = {
   "attempt.ocr_confidence_none": "识别失败。请换更清楚的照片，或直接打字。",
   "attempt.ocr_unavailable": "拍照识别暂时不可用，请直接打字。",
   "attempt.ocr_review_prompt": "请校对下方识别结果，确认无误后保存。",
-  "attempt.ocr_multi_step_trigger": "📷 一次扫描多步",
-  "attempt.ocr_multi_step_hint": "拍一张含多个步骤的照片，我们会自动切分，每一步都由你校对后再保存。",
+  "attempt.ocr_multi_step_trigger": "📷 扫描步骤照片",
+  "attempt.ocr_multi_step_hint": "可选择一张或多张清晰照片。我们会自动切分步骤，每一步都由你校对后再保存。",
   "attempt.ocr_quota_exceeded": "今日 OCR 次数已用完（{used}/{limit}）。请明天再来，或先打字提交剩余步骤。",
   "attempt.next_step_hint_button": "下一步提示",
   "attempt.next_step_hint_pending": "正在请教导师…",
