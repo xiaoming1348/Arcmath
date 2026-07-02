@@ -37,6 +37,7 @@ export type HandwritingMultiStepModalProps = {
   steps: OcrMultiStepInputItem[];
   imageNotes: string | null;
   locale: "en" | "zh";
+  reviewMode?: "steps" | "sections";
   /** True while the parent is mid-commit (firing addStep mutations). */
   busy?: boolean;
   onClose: () => void;
@@ -57,10 +58,14 @@ type RowState = {
 
 const LABELS: Record<"en" | "zh", {
   title: string;
+  sectionTitle: string;
   subtitle: string;
+  sectionSubtitle: string;
   imageNotesPrefix: string;
   empty: string;
+  emptySections: string;
   step: string;
+  section: string;
   confHigh: string;
   confMedium: string;
   confLow: string;
@@ -71,18 +76,25 @@ const LABELS: Record<"en" | "zh", {
   collapse: string;
   saveAll: string;
   saveSelected: string;
+  saveSelectedSections: string;
   cancel: string;
   busy: string;
   latexLabel: string;
 }> = {
   en: {
     title: "Review and save steps",
+    sectionTitle: "Review and save solution sections",
     subtitle:
       "Edit any step that looks off. Skip steps you'd rather type yourself.",
+    sectionSubtitle:
+      "Check each section at a high level. Edit only if something important is wrong.",
     imageNotesPrefix: "Image note:",
     empty:
       "OCR didn't find any steps in this photo. Close this dialog and try a clearer photo or type the steps directly.",
+    emptySections:
+      "OCR didn't find readable solution text. Close this dialog and try clearer photos or type the solution directly.",
     step: "Step",
+    section: "Section",
     confHigh: "High confidence",
     confMedium: "Medium · check the symbols",
     confLow: "Low · please verify",
@@ -93,16 +105,21 @@ const LABELS: Record<"en" | "zh", {
     collapse: "Done",
     saveAll: "Save all",
     saveSelected: "Save {n} step(s)",
+    saveSelectedSections: "Save {n} section(s)",
     cancel: "Cancel",
     busy: "Saving…",
     latexLabel: "LaTeX"
   },
   zh: {
     title: "校对并保存步骤",
+    sectionTitle: "校对并保存解答段落",
     subtitle: "校对任何识别有问题的步骤。想自己重新打字的步骤选「跳过」即可。",
+    sectionSubtitle: "按段落快速检查。只有重要内容识别错了再编辑。",
     imageNotesPrefix: "图片注记：",
     empty: "OCR 在这张照片里没找到任何步骤。请关闭对话框，换张清楚一点的照片，或直接打字。",
+    emptySections: "OCR 没有识别出可读的解答内容。请关闭对话框，换更清楚的照片，或直接打字。",
     step: "第",
+    section: "段落",
     confHigh: "可信度：高",
     confMedium: "可信度：中——请核对符号",
     confLow: "可信度：低——请仔细校对",
@@ -113,6 +130,7 @@ const LABELS: Record<"en" | "zh", {
     collapse: "完成",
     saveAll: "全部保存",
     saveSelected: "保存 {n} 步",
+    saveSelectedSections: "保存 {n} 段",
     cancel: "取消",
     busy: "保存中…",
     latexLabel: "LaTeX"
@@ -122,13 +140,23 @@ const LABELS: Record<"en" | "zh", {
 function renderLatexPreview(latex: string): string {
   const trimmed = latex.trim();
   if (!trimmed) return "";
-  if (trimmed.startsWith("$") || trimmed.startsWith("\\[")) return trimmed;
-  if (trimmed.includes("$")) return trimmed;
-  return `$$${trimmed}$$`;
+  return trimmed
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      if (line.startsWith("$") || line.startsWith("\\[") || line.includes("$")) {
+        return line;
+      }
+      return `$$${line}$$`;
+    })
+    .join("\n\n");
 }
 
 export function HandwritingMultiStepModal(props: HandwritingMultiStepModalProps) {
   const labels = LABELS[props.locale];
+  const reviewMode = props.reviewMode ?? "steps";
+  const isSectionReview = reviewMode === "sections";
   // Track per-row state. Re-initialise when the modal re-opens with a
   // new set of steps (the parent passes a new array reference).
   const [rows, setRows] = useState<Record<number, RowState>>(() =>
@@ -218,10 +246,10 @@ export function HandwritingMultiStepModal(props: HandwritingMultiStepModalProps)
               className="text-lg font-semibold"
               style={{ color: "var(--foreground)" }}
             >
-              {labels.title}
+              {isSectionReview ? labels.sectionTitle : labels.title}
             </h2>
             <p className="mt-1 text-sm" style={{ color: "var(--muted)" }}>
-              {labels.subtitle}
+              {isSectionReview ? labels.sectionSubtitle : labels.subtitle}
             </p>
           </div>
           <button
@@ -253,7 +281,7 @@ export function HandwritingMultiStepModal(props: HandwritingMultiStepModalProps)
 
         {props.steps.length === 0 ? (
           <p className="mt-4 text-sm" style={{ color: "var(--muted)" }}>
-            {labels.empty}
+            {isSectionReview ? labels.emptySections : labels.empty}
           </p>
         ) : (
           <ol className="mt-4 space-y-2">
@@ -263,6 +291,7 @@ export function HandwritingMultiStepModal(props: HandwritingMultiStepModalProps)
               const showSourceHeader =
                 Boolean(s.sourceLabel) &&
                 (idx === 0 || props.steps[idx - 1]?.sourceLabel !== s.sourceLabel);
+              const itemLabel = isSectionReview ? labels.section : labels.step;
               const confLabel =
                 s.confidence === "high"
                   ? labels.confHigh
@@ -316,7 +345,7 @@ export function HandwritingMultiStepModal(props: HandwritingMultiStepModalProps)
                           fontFamily: "var(--font-mono-custom)"
                         }}
                       >
-                        {labels.step} {s.stepNumber}
+                        {itemLabel} {s.stepNumber}
                       </span>
                     </div>
                     <span className={`text-xs ${confTone}`}>{confLabel}</span>
@@ -433,7 +462,10 @@ export function HandwritingMultiStepModal(props: HandwritingMultiStepModalProps)
               ? labels.busy
               : acceptedRows.length === props.steps.length
                 ? labels.saveAll
-                : labels.saveSelected.replace(
+                : (isSectionReview
+                    ? labels.saveSelectedSections
+                    : labels.saveSelected
+                  ).replace(
                     "{n}",
                     String(acceptedRows.length)
                   )}

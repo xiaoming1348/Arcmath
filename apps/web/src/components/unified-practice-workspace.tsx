@@ -36,15 +36,9 @@ type UnifiedPracticeWorkspaceProps = {
 type EntryMode = "ANSWER_ONLY" | "STUCK_WITH_WORK" | "HINT_GUIDED" | "PROOF_STEPS";
 
 /**
- * Treat WORKED_SOLUTION exactly like PROOF for student-facing UX.
- *
- * The original code only special-cased PROOF, leaving WORKED_SOLUTION
- * (USAMO/USAJMO/Putnam/STEP long-form) to fall through to the
- * ANSWER_ONLY default — students of a 9-hour proof contest were being
- * offered a "Direct answer" entry mode, which is a hard UX bug. Both
- * formats expect the student to write out their reasoning; the only
- * difference is whether the back-end runs Lean over the steps
- * (PROOF) or leaves them for self-comparison (WORKED_SOLUTION).
+ * Proof-like formats skip the direct-answer entry chooser and open the
+ * reasoning workspace immediately. PROOF is step-verified; WORKED_SOLUTION
+ * is recorded as long-form solution sections for self-comparison.
  */
 function isProofLike(answerFormat: string): boolean {
   return answerFormat === "PROOF" || answerFormat === "WORKED_SOLUTION";
@@ -145,6 +139,69 @@ const VERDICT_TAG_STATUS: Record<VerdictTone, string | undefined> = {
   pending: undefined
 };
 
+const OCR_CONFIDENCE_RANK: Record<"high" | "medium" | "low" | "none", number> = {
+  high: 0,
+  medium: 1,
+  low: 2,
+  none: 3
+};
+const OCR_LONG_SECTION_TARGET_CHARS = 18_000;
+
+function lowestOcrConfidence(
+  steps: Array<{ confidence: "high" | "medium" | "low" | "none" }>
+): "high" | "medium" | "low" | "none" {
+  return steps.reduce<"high" | "medium" | "low" | "none">(
+    (lowest, step) =>
+      OCR_CONFIDENCE_RANK[step.confidence] > OCR_CONFIDENCE_RANK[lowest]
+        ? step.confidence
+        : lowest,
+    "high"
+  );
+}
+
+function combineOcrNotes(
+  steps: Array<{ notes: string | null }>,
+  imageNotes: string | null
+): string | null {
+  const notes = [
+    ...steps.map((step) => step.notes?.trim()).filter((note): note is string => Boolean(note)),
+    imageNotes?.trim() || null
+  ].filter((note): note is string => Boolean(note));
+  return notes.length > 0 ? Array.from(new Set(notes)).slice(0, 3).join(" ") : null;
+}
+
+function splitLongOcrSection(latex: string): string[] {
+  const paragraphs = latex
+    .split(/\n{2,}/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+  const chunks: string[] = [];
+  let current = "";
+
+  for (const paragraph of paragraphs) {
+    if (paragraph.length > OCR_LONG_SECTION_TARGET_CHARS) {
+      if (current) {
+        chunks.push(current);
+        current = "";
+      }
+      for (let i = 0; i < paragraph.length; i += OCR_LONG_SECTION_TARGET_CHARS) {
+        chunks.push(paragraph.slice(i, i + OCR_LONG_SECTION_TARGET_CHARS));
+      }
+      continue;
+    }
+    const next = current ? `${current}\n\n${paragraph}` : paragraph;
+    if (next.length <= OCR_LONG_SECTION_TARGET_CHARS) {
+      current = next;
+      continue;
+    }
+    if (current) chunks.push(current);
+    current = paragraph;
+  }
+
+  if (current) chunks.push(current);
+  return chunks.length > 0 ? chunks : [];
+}
+
 /**
  * Multi-step OCR launcher (Sprint 2). One button + hidden file
  * input. The student picks one or more photos containing several steps,
@@ -163,6 +220,7 @@ function MultiStepOcrLauncher(props: {
   locale: Locale;
   attemptId: string;
   disabled?: boolean;
+  reviewMode?: "steps" | "sections";
   /**
    * Called once per accepted step, in order. The parent fires
    * `addStep` mutations and updates the visible step list. The
@@ -195,6 +253,8 @@ function MultiStepOcrLauncher(props: {
     limit: number;
     resetsAtIso: string;
   } | null>(null);
+  const reviewMode = props.reviewMode ?? "steps";
+  const isSectionReview = reviewMode === "sections";
 
   const reset = useCallback(() => {
     setPhase("idle");
@@ -277,17 +337,42 @@ function MultiStepOcrLauncher(props: {
             return;
           }
 
-          for (const step of result.steps) {
-            mergedSteps.push({
-              ...step,
-              stepNumber: mergedSteps.length + 1,
-              sourceLabel
-            });
-          }
-          if (result.imageNotes) {
-            imageNoteParts.push(
-              sourceLabel ? `${sourceLabel}: ${result.imageNotes}` : result.imageNotes
-            );
+          if (isSectionReview) {
+            const sectionLatex = result.steps
+              .map((step) => step.latex.trim())
+              .filter(Boolean)
+              .join("\n\n");
+            if (sectionLatex.length > 0) {
+              const chunks = splitLongOcrSection(sectionLatex);
+              const confidence = lowestOcrConfidence(result.steps);
+              const notes = combineOcrNotes(result.steps, result.imageNotes);
+              for (const chunk of chunks) {
+                mergedSteps.push({
+                  stepNumber: mergedSteps.length + 1,
+                  latex: chunk,
+                  confidence,
+                  notes,
+                  sourceLabel
+                });
+              }
+            } else if (result.imageNotes) {
+              imageNoteParts.push(
+                sourceLabel ? `${sourceLabel}: ${result.imageNotes}` : result.imageNotes
+              );
+            }
+          } else {
+            for (const step of result.steps) {
+              mergedSteps.push({
+                ...step,
+                stepNumber: mergedSteps.length + 1,
+                sourceLabel
+              });
+            }
+            if (result.imageNotes) {
+              imageNoteParts.push(
+                sourceLabel ? `${sourceLabel}: ${result.imageNotes}` : result.imageNotes
+              );
+            }
           }
         }
 
@@ -301,17 +386,17 @@ function MultiStepOcrLauncher(props: {
         setErrorMessageKey("attempt.ocr_error_generic");
       }
     },
-    [ocrMutation, props.attemptId, props.locale]
+    [isSectionReview, ocrMutation, props.attemptId, props.locale]
   );
 
   const handleCommit = useCallback(
     async (acceptedLatex: string[]) => {
       setPhase("committing");
       for (const latex of acceptedLatex) {
-        // Sequential — preserves the same per-step grading order
-        // that typed input gives. Each addStep triggers grading and
-        // re-fetches the attempt; concurrent calls would race on
-        // stepIndex.
+        // Sequential — preserves the same ordering that typed input gives.
+        // Concurrent calls would race on stepIndex. For WORKED_SOLUTION,
+        // these are ungraded solution sections; for proof problems, addStep
+        // still performs the normal per-step verification.
         await props.onCommitOne(latex);
       }
       reset();
@@ -383,6 +468,7 @@ function MultiStepOcrLauncher(props: {
         steps={steps}
         imageNotes={imageNotes}
         locale={props.locale === "zh" ? "zh" : "en"}
+        reviewMode={reviewMode}
         busy={phase === "committing"}
         onClose={() => {
           if (phase !== "committing") reset();
@@ -612,14 +698,25 @@ function Markdown({ text }: { text: string | null }) {
 function renderLatexBlock(latex: string): string {
   const trimmed = latex.trim();
   if (!trimmed) return "";
-  if (trimmed.startsWith("$") || trimmed.startsWith("\\[")) return trimmed;
-  return `$$${trimmed}$$`;
+  return trimmed
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      if (line.startsWith("$") || line.startsWith("\\[") || line.includes("$")) {
+        return line;
+      }
+      return `$$${line}$$`;
+    })
+    .join("\n\n");
 }
 
 function StepCard({
   step,
   locked,
   isEditing,
+  showVerification,
+  label,
   onStartEdit,
   onCancelEdit,
   onSaveEdit,
@@ -629,6 +726,8 @@ function StepCard({
   step: StepRecord;
   locked: boolean;
   isEditing: boolean;
+  showVerification: boolean;
+  label: string;
   onStartEdit: () => void;
   onCancelEdit: () => void;
   onSaveEdit: (latex: string) => void;
@@ -637,7 +736,7 @@ function StepCard({
 }) {
   const { t, locale } = useT();
   const rendered = useMemo(() => renderLatexBlock(step.latexInput), [step.latexInput]);
-  const showVerdict = step.verdict !== "PENDING";
+  const showVerdict = showVerification && step.verdict !== "PENDING";
   return (
     <li
       className="surface-card"
@@ -659,16 +758,18 @@ function StepCard({
             letterSpacing: "0.04em"
           }}
         >
-          {t("attempt.step_n_label", { n: step.stepIndex + 1 })}
+          {label}
         </span>
         {showVerdict ? (
           <span style={{ opacity: 0.7 }}>
             {step.classifiedStepType.replaceAll("_", " ").toLowerCase()}
           </span>
         ) : null}
-        <span className="ml-auto">
-          <VerdictBadge verdict={step.verdict} backend={step.verificationBackend} />
-        </span>
+        {showVerification ? (
+          <span className="ml-auto">
+            <VerdictBadge verdict={step.verdict} backend={step.verificationBackend} />
+          </span>
+        ) : null}
       </div>
 
       {isEditing ? (
@@ -705,7 +806,7 @@ function StepCard({
         </div>
       )}
 
-      {showVerdict && step.feedbackText ? (
+      {showVerification && showVerdict && step.feedbackText ? (
         <div
           className="mt-3 p-4"
           style={{
@@ -1147,7 +1248,11 @@ export function UnifiedPracticeWorkspace({
     return (
       <section className="surface-card space-y-4">
         <h2 className="text-lg font-semibold text-slate-900">{t("attempt.workspace_title_proof")}</h2>
-        <p className="text-sm text-slate-600">{t("attempt.proof_workspace_help")}</p>
+        <p className="text-sm text-slate-600">
+          {answerFormat === "WORKED_SOLUTION"
+            ? t("attempt.workspace_subtitle_worked_solution")
+            : t("attempt.proof_workspace_help")}
+        </p>
         <button type="button" className="btn-primary" onClick={autoInit} disabled={chooseEntry.isPending}>
           {chooseEntry.isPending ? (
             <>
@@ -1218,7 +1323,9 @@ export function UnifiedPracticeWorkspace({
                 ? t("attempt.workspace_subtitle_stuck")
                 : mode === "HINT_GUIDED"
                   ? t("attempt.workspace_subtitle_hint_guided")
-                  : t("attempt.workspace_subtitle_proof")}
+                  : answerFormat === "WORKED_SOLUTION"
+                    ? t("attempt.workspace_subtitle_worked_solution")
+                    : t("attempt.workspace_subtitle_proof")}
           </p>
         ) : null}
       </div>
@@ -1274,6 +1381,12 @@ export function UnifiedPracticeWorkspace({
               step={step}
               locked={locked}
               isEditing={editingStepId === step.id}
+              showVerification={answerFormat !== "WORKED_SOLUTION"}
+              label={
+                answerFormat === "WORKED_SOLUTION"
+                  ? t("attempt.solution_section_n_label", { n: step.stepIndex + 1 })
+                  : t("attempt.step_n_label", { n: step.stepIndex + 1 })
+              }
               onStartEdit={() => setEditingStepId(step.id)}
               onCancelEdit={() => setEditingStepId(null)}
               onSaveEdit={handleEditStep}
@@ -1379,6 +1492,7 @@ export function UnifiedPracticeWorkspace({
                   locale={locale}
                   attemptId={attempt.id}
                   disabled={addStep.isPending}
+                  reviewMode={answerFormat === "WORKED_SOLUTION" ? "sections" : "steps"}
                   onCommitOne={handleAddStep}
                 />
               </div>
@@ -1543,7 +1657,9 @@ export function UnifiedPracticeWorkspace({
         >
           <p className="text-sm" style={{ color: "var(--muted)" }}>
             {mode === "PROOF_STEPS"
-              ? t("attempt.submit_row_proof")
+              ? answerFormat === "WORKED_SOLUTION"
+                ? t("attempt.submit_row_worked_solution")
+                : t("attempt.submit_row_proof")
               : t("attempt.submit_row_default")}
           </p>
           <button

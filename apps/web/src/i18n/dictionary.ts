@@ -474,6 +474,7 @@ export type Messages = {
   "attempt.workspace_subtitle_stuck": string;
   "attempt.workspace_subtitle_hint_guided": string;
   "attempt.workspace_subtitle_proof": string;
+  "attempt.workspace_subtitle_worked_solution": string;
   "attempt.add_step_label": string;
   "attempt.add_step_button": string;
   "attempt.add_step_grading_inline": string;
@@ -537,6 +538,7 @@ export type Messages = {
   "attempt.hint_label": string;
   "attempt.hint_used_count": string;
   "attempt.step_n_label": string;
+  "attempt.solution_section_n_label": string;
   "attempt.step_edit": string;
   "attempt.step_save": string;
   "attempt.step_cancel": string;
@@ -556,6 +558,7 @@ export type Messages = {
   "attempt.submit_for_review": string;
   "attempt.grading": string;
   "attempt.submit_row_proof": string;
+  "attempt.submit_row_worked_solution": string;
   "attempt.submit_row_default": string;
   "attempt.mode_badge_answer_only": string;
   "attempt.mode_badge_stuck": string;
@@ -1418,6 +1421,7 @@ export const EN: Messages = {
   "attempt.workspace_subtitle_stuck": "Write the steps you tried. Submit when you're ready — we'll check each one.",
   "attempt.workspace_subtitle_hint_guided": "Take hints one at a time. Switch to writing steps or typing an answer whenever you're ready.",
   "attempt.workspace_subtitle_proof": "Build your proof step by step. Everything gets verified on submit.",
+  "attempt.workspace_subtitle_worked_solution": "Record your long solution in a few sections. We won't judge every line; compare against the official solution when you submit.",
   "attempt.add_step_label": "Add step {n}",
   "attempt.add_step_button": "Add step",
   "attempt.add_step_grading_inline": "Checking this step with your tutor… (~3–5s)",
@@ -1487,6 +1491,7 @@ export const EN: Messages = {
   "attempt.hint_label": "Hint {level}",
   "attempt.hint_used_count": "Hints used: {count}",
   "attempt.step_n_label": "Step {n}",
+  "attempt.solution_section_n_label": "Solution section {n}",
   "attempt.step_edit": "Edit",
   "attempt.step_save": "Save",
   "attempt.step_cancel": "Cancel",
@@ -1506,6 +1511,7 @@ export const EN: Messages = {
   "attempt.submit_for_review": "Submit for review",
   "attempt.grading": "Grading…",
   "attempt.submit_row_proof": "Done writing? We'll verify each step and give you an overall review.",
+  "attempt.submit_row_worked_solution": "Done writing? We'll record your solution sections so you can compare with the official solution.",
   "attempt.submit_row_default": "Submit when you're ready. We'll review every step and grade your answer if you wrote one.",
   "attempt.mode_badge_answer_only": "Direct answer",
   "attempt.mode_badge_stuck": "With work",
@@ -2383,6 +2389,7 @@ export const ZH: Messages = {
   "attempt.workspace_subtitle_stuck": "写下你尝试过的步骤，提交时我们会逐步检查。",
   "attempt.workspace_subtitle_hint_guided": "一次拿一个提示，准备好时切换到写步骤或填答案。",
   "attempt.workspace_subtitle_proof": "一步步写出证明，提交时统一验证。",
+  "attempt.workspace_subtitle_worked_solution": "把长解答按少数几个段落记录下来。系统不会逐行判分；提交后请对照官方解答检查。",
   "attempt.add_step_label": "添加第 {n} 步",
   "attempt.add_step_button": "添加步骤",
   "attempt.add_step_grading_inline": "正在为你批改这一步…（约 3–5 秒）",
@@ -2442,6 +2449,7 @@ export const ZH: Messages = {
   "attempt.hint_label": "提示 {level}",
   "attempt.hint_used_count": "已用提示 {count} 次",
   "attempt.step_n_label": "第 {n} 步",
+  "attempt.solution_section_n_label": "解答段落 {n}",
   "attempt.step_edit": "编辑",
   "attempt.step_save": "保存",
   "attempt.step_cancel": "取消",
@@ -2461,6 +2469,7 @@ export const ZH: Messages = {
   "attempt.submit_for_review": "提交批改",
   "attempt.grading": "批改中…",
   "attempt.submit_row_proof": "写完了？我们会逐步验证并给出整体评语。",
+  "attempt.submit_row_worked_solution": "写完了？我们会记录你的解答段落，方便你对照官方解答检查。",
   "attempt.submit_row_default": "准备好就提交吧。我们会逐步检查，并对你的最终答案进行批改（如果有写）。",
   "attempt.mode_badge_answer_only": "直接作答",
   "attempt.mode_badge_stuck": "带过程",

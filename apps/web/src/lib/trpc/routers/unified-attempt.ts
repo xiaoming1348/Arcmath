@@ -40,6 +40,7 @@ import { getProblemAttemptIdentity } from "@/lib/problem-page-data";
 import { protectedProcedure, router } from "@/lib/trpc/server";
 
 const MAX_STEP_LENGTH = 4000;
+const MAX_LONG_SOLUTION_SECTION_LENGTH = 20_000;
 const MAX_STEPS_PER_ATTEMPT = 50;
 const OCR_IMAGE_DATA_URL_MAX_LENGTH = 7_000_000;
 const ocrImageDataUrlInput = z
@@ -93,12 +94,12 @@ const upgradeModeInput = z.object({
 
 const addStepInput = z.object({
   attemptId: z.string().min(1),
-  latexInput: z.string().trim().min(1).max(MAX_STEP_LENGTH)
+  latexInput: z.string().trim().min(1).max(MAX_LONG_SOLUTION_SECTION_LENGTH)
 });
 
 const editStepInput = z.object({
   stepId: z.string().min(1),
-  latexInput: z.string().trim().min(1).max(MAX_STEP_LENGTH)
+  latexInput: z.string().trim().min(1).max(MAX_LONG_SOLUTION_SECTION_LENGTH)
 });
 
 const deleteStepInput = z.object({ stepId: z.string().min(1) });
@@ -597,7 +598,7 @@ export const unifiedAttemptRouter = router({
       select: {
         id: true,
         status: true,
-        problem: { select: { statement: true } }
+        problem: { select: { statement: true, answerFormat: true } }
       }
     });
     if (!attempt) throw new TRPCError({ code: "NOT_FOUND", message: "Attempt not found." });
@@ -605,9 +606,45 @@ export const unifiedAttemptRouter = router({
       throw new TRPCError({ code: "BAD_REQUEST", message: "Attempt is not active." });
     }
 
+    const isWorkedSolution = attempt.problem.answerFormat === "WORKED_SOLUTION";
+    if (!isWorkedSolution && input.latexInput.length > MAX_STEP_LENGTH) {
+      throw new TRPCError({
+        code: "BAD_REQUEST",
+        message: `Step is too long. Keep each step under ${MAX_STEP_LENGTH} characters.`
+      });
+    }
+
     const count = await ctx.prisma.attemptStep.count({ where: { attemptId: attempt.id } });
     if (count >= MAX_STEPS_PER_ATTEMPT) {
       throw new TRPCError({ code: "BAD_REQUEST", message: "Step limit reached for this attempt." });
+    }
+
+    if (isWorkedSolution) {
+      const step = await ctx.prisma.attemptStep.create({
+        data: {
+          attemptId: attempt.id,
+          userId,
+          stepIndex: count,
+          latexInput: input.latexInput,
+          classifiedStepType: "UNKNOWN",
+          verificationBackend: "NONE",
+          verdict: "PENDING",
+          confidence: null,
+          feedbackText: null,
+          verificationDetails: {
+            stage: "worked_solution_ungraded",
+            note: "Long-form solution sections are recorded for self-review and official-solution comparison, not per-line auto-judging."
+          }
+        },
+        select: STEP_SELECT
+      });
+
+      await ctx.prisma.problemAttempt.update({
+        where: { id: attempt.id },
+        data: { updatedAt: new Date() }
+      });
+
+      return { step };
     }
 
     // Pull all prior steps so the classifier / judge has context. We
@@ -680,7 +717,7 @@ export const unifiedAttemptRouter = router({
         attempt: {
           select: {
             status: true,
-            problem: { select: { statement: true } }
+            problem: { select: { statement: true, answerFormat: true } }
           }
         }
       }
@@ -688,6 +725,42 @@ export const unifiedAttemptRouter = router({
     if (!step) throw new TRPCError({ code: "NOT_FOUND", message: "Step not found." });
     if (step.attempt.status !== "DRAFT") {
       throw new TRPCError({ code: "BAD_REQUEST", message: "Attempt is not active." });
+    }
+
+    const isWorkedSolution = step.attempt.problem.answerFormat === "WORKED_SOLUTION";
+    if (!isWorkedSolution && input.latexInput.length > MAX_STEP_LENGTH) {
+      throw new TRPCError({
+        code: "BAD_REQUEST",
+        message: `Step is too long. Keep each step under ${MAX_STEP_LENGTH} characters.`
+      });
+    }
+
+    if (isWorkedSolution) {
+      const updated = await ctx.prisma.attemptStep.update({
+        where: { id: step.id },
+        data: {
+          latexInput: input.latexInput,
+          classifiedStepType: "UNKNOWN",
+          verificationBackend: "NONE",
+          verdict: "PENDING",
+          confidence: null,
+          feedbackText: null,
+          verificationDetails: {
+            stage: "worked_solution_ungraded",
+            note: "Long-form solution sections are recorded for self-review and official-solution comparison, not per-line auto-judging."
+          },
+          classifierVersion: null,
+          feedbackPromptVersion: null
+        },
+        select: STEP_SELECT
+      });
+
+      await ctx.prisma.problemAttempt.update({
+        where: { id: step.attemptId },
+        data: { updatedAt: new Date() }
+      });
+
+      return { step: updated };
     }
 
     // Re-run verification on the edited step (mirrors addStep). Steps
@@ -1010,6 +1083,7 @@ export const unifiedAttemptRouter = router({
     });
 
     const isProof = attempt.problem.answerFormat === "PROOF";
+    const isWorkedSolution = attempt.problem.answerFormat === "WORKED_SOLUTION";
     const trimmedFinalAnswer = input.finalAnswer?.trim() ?? "";
 
     if (isProof) {
@@ -1057,41 +1131,43 @@ export const unifiedAttemptRouter = router({
       verificationReason?: string;
     }> = [];
 
-    for (const step of steps) {
-      const previousSteps = verifiedRows.map((v) => v.latex);
-      const pipeline = await runStepVerification({
-        problemStatement,
-        latexInput: step.latexInput,
-        previousSteps,
-        locale: userLocale
-      });
-      await ctx.prisma.attemptStep.update({
-        where: { id: step.id },
-        data: {
-          classifiedStepType: pipeline.stepType,
-          verificationBackend: pipeline.backend,
+    if (!isWorkedSolution) {
+      for (const step of steps) {
+        const previousSteps = verifiedRows.map((v) => v.latex);
+        const pipeline = await runStepVerification({
+          problemStatement,
+          latexInput: step.latexInput,
+          previousSteps,
+          locale: userLocale
+        });
+        await ctx.prisma.attemptStep.update({
+          where: { id: step.id },
+          data: {
+            classifiedStepType: pipeline.stepType,
+            verificationBackend: pipeline.backend,
+            verdict: pipeline.verdict,
+            confidence: pipeline.confidence,
+            feedbackText: pipeline.feedbackText,
+            verificationDetails: pipeline.details as Parameters<typeof ctx.prisma.attemptStep.update>[0]["data"]["verificationDetails"],
+            classifierVersion: pipeline.classifierVersion,
+            feedbackPromptVersion: pipeline.promptVersion
+          }
+        });
+        verifiedRows.push({
+          id: step.id,
+          stepIndex: step.stepIndex,
+          latex: step.latexInput,
+          stepType: pipeline.stepType,
           verdict: pipeline.verdict,
-          confidence: pipeline.confidence,
-          feedbackText: pipeline.feedbackText,
-          verificationDetails: pipeline.details as Parameters<typeof ctx.prisma.attemptStep.update>[0]["data"]["verificationDetails"],
-          classifierVersion: pipeline.classifierVersion,
-          feedbackPromptVersion: pipeline.promptVersion
-        }
-      });
-      verifiedRows.push({
-        id: step.id,
-        stepIndex: step.stepIndex,
-        latex: step.latexInput,
-        stepType: pipeline.stepType,
-        verdict: pipeline.verdict,
-        backend: pipeline.backend,
-        verificationReason:
-          typeof pipeline.details["note"] === "string"
-            ? (pipeline.details["note"] as string)
-            : typeof pipeline.details["stage"] === "string"
-              ? (pipeline.details["stage"] as string)
-              : undefined
-      });
+          backend: pipeline.backend,
+          verificationReason:
+            typeof pipeline.details["note"] === "string"
+              ? (pipeline.details["note"] as string)
+              : typeof pipeline.details["stage"] === "string"
+                ? (pipeline.details["stage"] as string)
+                : undefined
+        });
+      }
     }
 
     // Grade the final answer (non-proof problems with a supplied answer).
