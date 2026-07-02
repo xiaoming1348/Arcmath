@@ -1086,9 +1086,14 @@ export const unifiedAttemptRouter = router({
     const isWorkedSolution = attempt.problem.answerFormat === "WORKED_SOLUTION";
     const trimmedFinalAnswer = input.finalAnswer?.trim() ?? "";
 
-    if (isProof) {
+    if (isProof || isWorkedSolution) {
       if (steps.length === 0) {
-        throw new TRPCError({ code: "BAD_REQUEST", message: "Add at least one step before submitting your proof." });
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: isWorkedSolution
+            ? "Add at least one solution section before submitting."
+            : "Add at least one step before submitting your proof."
+        });
       }
     } else if (attempt.entryMode === "ANSWER_ONLY") {
       if (trimmedFinalAnswer.length === 0) {
@@ -1131,7 +1136,19 @@ export const unifiedAttemptRouter = router({
       verificationReason?: string;
     }> = [];
 
-    if (!isWorkedSolution) {
+    if (isWorkedSolution) {
+      for (const step of steps) {
+        verifiedRows.push({
+          id: step.id,
+          stepIndex: step.stepIndex,
+          latex: step.latexInput,
+          stepType: "UNKNOWN",
+          verdict: "PENDING",
+          backend: "NONE",
+          verificationReason: "solution section saved for overall review"
+        });
+      }
+    } else {
       for (const step of steps) {
         const previousSteps = verifiedRows.map((v) => v.latex);
         const pipeline = await runStepVerification({
@@ -1197,8 +1214,9 @@ export const unifiedAttemptRouter = router({
       answerExplanation = expl.explanation;
     }
 
-    // Overall review — applies to any attempt with steps; proof problems
-    // always get one; answer-only submissions skip it.
+    // Overall review — applies to proof steps and to WORKED_SOLUTION
+    // sections. WORKED_SOLUTION deliberately skips per-line judging above,
+    // then runs exactly one concise whole-solution review here.
     let overallFeedback: string | null = null;
     let overallPromptVersion: string | null = null;
     // Structured per-milestone coverage returned to the client for
@@ -1248,7 +1266,9 @@ export const unifiedAttemptRouter = router({
               referenceProof
             }
           : undefined,
-        solutionRecipe: isProof ? solutionRecipe : null,
+        solutionRecipe: isProof || isWorkedSolution ? solutionRecipe : null,
+        referenceSolutionSketch: isWorkedSolution ? attempt.problem.solutionSketch : null,
+        reviewMode: isWorkedSolution ? "worked_solution" : "proof_steps",
         locale: userLocale
       });
       overallFeedback = review.overallFeedback;

@@ -31,7 +31,12 @@ export const PROOF_LLM_JUDGE_VERSION = "proof-llm-judge-v1";
 //     unrelated to the recipe's milestones — the grader must flag at
 //     least one milestone as INVALID citing that specific claim, rather
 //     than marking everything MISSING.
-export const PROOF_OVERALL_REVIEW_VERSION = "proof-overall-review-v4";
+//
+// v5 (2026-07-02): supports WORKED_SOLUTION submissions. These are long
+// OCR-backed solution sections, not line-by-line proof steps, so their
+// entries arrive as PENDING/NONE and must be graded in one overall pass
+// against the problem plus any official/reference solution sketch.
+export const PROOF_OVERALL_REVIEW_VERSION = "proof-overall-review-v5";
 
 export const PROOF_STEP_TYPES = [
   "ALGEBRAIC_EQUIVALENCE",
@@ -302,12 +307,25 @@ export type ProofReviewInput = {
   // When present, the reviewer will map student steps onto this recipe's
   // milestones and emit per-milestone coverage.
   solutionRecipe?: StructuredSolution | null;
+  // Optional free-form official/reference solution text. This is
+  // especially important for WORKED_SOLUTION problems where the reference
+  // is often a curated sketch rather than a formal milestone recipe.
+  referenceSolutionSketch?: string | null;
+  // `proof_steps` receives per-step verifier outcomes. `worked_solution`
+  // receives longer OCR-ed sections that were intentionally not judged
+  // line-by-line, so the reviewer must evaluate the whole argument.
+  reviewMode?: "proof_steps" | "worked_solution";
   /**
    * User-facing locale for the overall feedback text. Milestone coverage
    * `evidence` field also flips to this language. Defaults to "en".
    */
   locale?: "en" | "zh";
 };
+
+function truncateForReview(text: string, maxChars: number): string {
+  if (text.length <= maxChars) return text;
+  return `${text.slice(0, Math.max(0, maxChars - 90)).trimEnd()}\n...[section truncated for review prompt length]`;
+}
 
 // Per-reference-milestone coverage output. `index` matches the recipe
 // step index (1-based). Status taxonomy:
@@ -370,12 +388,26 @@ const proofReviewJsonSchema = {
 export async function generateProofReview(
   params: ProofReviewInput
 ): Promise<{ overallFeedback: string; milestoneCoverage: MilestoneCoverage[] }> {
+  const reviewMode = params.reviewMode ?? "proof_steps";
+  const isWorkedSolution = reviewMode === "worked_solution";
+  let remainingStudentChars = isWorkedSolution ? 45_000 : Number.POSITIVE_INFINITY;
   const stepsBlock = params.steps
     .map((s) => {
+      if (remainingStudentChars <= 0) return null;
       const reason = s.verificationReason ? ` — ${s.verificationReason}` : "";
-      return `${s.index + 1}. [${s.stepType}] [${s.verdict}@${s.verificationBackend}${reason}]\n   ${s.latex}`;
+      const label = isWorkedSolution ? "Solution section" : "Step";
+      const maxEntryChars = isWorkedSolution ? Math.min(12_000, remainingStudentChars) : s.latex.length;
+      const latex = truncateForReview(s.latex, maxEntryChars);
+      remainingStudentChars -= latex.length;
+      return `${label} ${s.index + 1}. [${s.stepType}] [${s.verdict}@${s.verificationBackend}${reason}]\n   ${latex}`;
     })
+    .filter((entry): entry is string => entry !== null)
     .join("\n");
+
+  const omittedStudentWorkLine =
+    isWorkedSolution && remainingStudentChars <= 0
+      ? "\n\nNote: Additional student work was omitted because the OCR submission was too long for a single review prompt. Grade from the included sections and say if more context is needed."
+      : "";
 
   // When pre-processing produced a machine-checked Lean proof for this
   // problem, fold it into the prompt so the reviewer can diff the
@@ -426,6 +458,16 @@ export async function generateProofReview(
   // instead of AM-GM to establish milestone 3, which is fine").
   const recipeLines: string[] = [];
   const recipe = params.solutionRecipe;
+  const referenceSketch = params.referenceSolutionSketch?.trim();
+  const referenceLines: string[] = [];
+  if (referenceSketch && referenceSketch.length > 0) {
+    referenceLines.push(
+      "",
+      "Official/reference solution sketch:",
+      "Use this as authoritative grading context. Do not paste it back to the student; compare the student's work to its key claims and final conclusion.",
+      truncateForReview(referenceSketch, 12_000)
+    );
+  }
   if (recipe && recipe.steps.length > 0) {
     const milestoneLines = recipe.steps.map((s) => {
       const techniques = s.technique.length > 0 ? ` [techniques: ${s.technique.join(", ")}]` : "";
@@ -469,11 +511,19 @@ export async function generateProofReview(
       "- PARTIAL on the final milestone is reserved for cases where the student's conclusion is consistent with the goal but not fully justified. If the conclusion itself is false, always INVALID."
     );
   } else {
-    recipeLines.push(
-      "",
-      "No reference recipe available for this problem; emit an empty `milestoneCoverage` array.",
-      "Grade from the student's reasoning directly, using the per-step verdicts as anchors."
-    );
+    if (referenceSketch && referenceSketch.length > 0) {
+      recipeLines.push(
+        "",
+        "No structured milestone recipe is available; emit an empty `milestoneCoverage` array.",
+        "Grade by comparing the student's reasoning and final conclusion against the official/reference solution sketch above."
+      );
+    } else {
+      recipeLines.push(
+        "",
+        "No reference recipe available for this problem; emit an empty `milestoneCoverage` array.",
+        "Grade from the student's reasoning directly, using the per-step verdicts as anchors."
+      );
+    }
   }
 
   const locale = params.locale ?? "en";
@@ -483,20 +533,27 @@ export async function generateProofReview(
       : "Write `overallFeedback` and `evidence` in English.";
 
   const prompt = [
-    "You are a math coach reviewing a student's complete competition-math proof.",
-    "Treat VERIFIED steps as solid and INVALID steps as confirmed wrong. UNKNOWN/PLAUSIBLE/ERROR steps just mean we could not auto-confirm — they may well be correct.",
+    isWorkedSolution
+      ? "You are a strict competition-math grader reviewing a student's complete long-form worked solution."
+      : "You are a math coach reviewing a student's complete competition-math proof.",
+    isWorkedSolution
+      ? "The student's entries are OCR-ed solution sections, not atomic proof steps. PENDING/NONE means the section was intentionally not judged line-by-line; grade the whole mathematical argument directly."
+      : "Treat VERIFIED steps as solid and INVALID steps as confirmed wrong. UNKNOWN/PLAUSIBLE/ERROR steps just mean we could not auto-confirm — they may well be correct.",
     "Rules:",
     "- Return valid JSON only.",
     "- `overallFeedback`: 4–8 short sentences. Lead with what the student got right (specifics, not 'good effort'); then the main gap or error; then what to try next. Comment on logical flow when relevant.",
     "- Do NOT mention 'parse error', 'verifier', 'SymPy', 'Lean', 'system', 'automated check', or any internal tooling. The student does not need our infrastructure exposed.",
     "- Do NOT reveal the full solution — but you may point at which pitfall was triggered or which reference milestone is missing.",
-    "- Do NOT tell the student their proof is CORRECT unless every reference milestone is ESTABLISHED or REPLACED AND no INVALID claims appear.",
+    isWorkedSolution
+      ? "- Do NOT tell the student their solution is correct unless it reaches the same final conclusion as the reference and you see no major missing justification or false claim."
+      : "- Do NOT tell the student their proof is CORRECT unless every reference milestone is ESTABLISHED or REPLACED AND no INVALID claims appear.",
     `- ${localeRule}`,
     `- Output schema: {"overallFeedback":"...", "milestoneCoverage":[{"index":N, "status":"...", "evidence":"..."}]}`,
     `Problem:\n${params.problemStatement}`,
     ...formalLines,
+    ...referenceLines,
     ...recipeLines,
-    `Student's steps (with verdicts):\n${stepsBlock}`
+    `${isWorkedSolution ? "Student's solution sections" : "Student's steps"} (with verdicts):\n${stepsBlock}${omittedStudentWorkLine}`
   ].join("\n");
 
   const generated = await callOpenAIJson({
@@ -530,6 +587,16 @@ export async function generateProofReview(
   }
 
   // Fallback: deterministic summary of per-step verdicts.
+  if (isWorkedSolution) {
+    return {
+      overallFeedback:
+        params.locale === "zh"
+          ? `已保存 ${params.steps.length} 个解答段落，但自动总评现在没有生成。请先对照下方官方解答检查关键结论、每个代数变形和最终答案；如果需要系统总评，请稍后重新提交或重新运行。`
+          : `Saved ${params.steps.length} solution section${params.steps.length === 1 ? "" : "s"}, but the overall grader could not generate a review right now. Compare your work with the official solution below, especially the key conclusion, each algebraic transformation, and the final answer.`,
+      milestoneCoverage: []
+    };
+  }
+
   const counts = params.steps.reduce<Record<string, number>>((acc, s) => {
     acc[s.verdict] = (acc[s.verdict] ?? 0) + 1;
     return acc;

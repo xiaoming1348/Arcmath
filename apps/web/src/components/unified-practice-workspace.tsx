@@ -1989,6 +1989,7 @@ function SubmittedReview({
   startBusy: boolean;
 }) {
   const { t } = useT();
+  const showStepVerdictCounts = answerFormat !== "WORKED_SOLUTION";
   const verifiedCount = attempt.steps.filter((s) => s.verdict === "VERIFIED").length;
   // Note: ERROR means "we couldn't run the verifier on this step" (e.g.
   // SymPy parse failure) — NOT that the step is mathematically wrong.
@@ -2095,7 +2096,7 @@ function SubmittedReview({
         )
       ) : null}
 
-      {attempt.steps.length > 0 ? (
+      {attempt.steps.length > 0 && showStepVerdictCounts ? (
         <div
           className="flex flex-wrap items-center gap-2 text-xs"
           style={{ color: "var(--muted)" }}
