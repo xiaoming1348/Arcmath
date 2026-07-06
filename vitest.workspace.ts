@@ -3,12 +3,14 @@ import { defineWorkspace } from "vitest/config";
 
 const sharedEntry = fileURLToPath(new URL("./packages/shared/src/index.ts", import.meta.url));
 const dbEntry = fileURLToPath(new URL("./packages/db/src/index.ts", import.meta.url));
+const webSrc = fileURLToPath(new URL("./apps/web/src", import.meta.url));
 
 export default defineWorkspace([
   "apps/web/vitest.config.ts",
   {
     resolve: {
       alias: {
+        "@": webSrc,
         "@arcmath/db": dbEntry
       }
     },

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Session } from "next-auth";
 import { canAccessAdmin } from "@arcmath/shared";
+import { BrandMark } from "@/components/brand-mark";
 import { LogoutButton } from "@/components/logout-button";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import {
@@ -47,27 +48,17 @@ export async function TopNav({ session, locale }: TopNavProps) {
 
   return (
     <header
-      className="motion-rise flex flex-wrap items-center justify-between gap-4 py-4"
+      className="app-top-nav motion-rise flex flex-wrap items-center justify-between gap-4 py-4"
       style={{
         borderBottom: "1px solid var(--border)"
       }}
     >
-      {/* Logo — small accent mark + wordmark. No card chrome. */}
+      {/* Logo — abstract proof arc + wordmark. */}
       <Link
         href="/"
         className="inline-flex items-center gap-3 transition"
       >
-        <span
-          className="flex h-9 w-9 items-center justify-center text-base font-bold"
-          style={{
-            background: "var(--action)",
-            color: "var(--action-foreground)",
-            borderRadius: "var(--radius-md)",
-            letterSpacing: "-0.02em"
-          }}
-        >
-          A
-        </span>
+        <BrandMark size={40} />
         <span className="flex flex-col leading-tight">
           <span
             className="text-base font-semibold"
@@ -96,6 +87,9 @@ export async function TopNav({ session, locale }: TopNavProps) {
       <nav className="flex flex-wrap items-center gap-1">
         {!isLoggedIn ? (
           <>
+            <Link href="/for-schools" className="route-chip">
+              {t("topnav.for_schools")}
+            </Link>
             <Link href="/login" className="route-chip">
               {t("topnav.login")}
             </Link>
@@ -107,6 +101,9 @@ export async function TopNav({ session, locale }: TopNavProps) {
           <>
             <Link href="/org" className="route-chip">
               {t("topnav.organization")}
+            </Link>
+            <Link href="/teacher/prep" className="route-chip">
+              {locale === "zh" ? "备课" : "Prep"}
             </Link>
             <Link href="/assignments" className="route-chip">
               {t("topnav.assignments")}
@@ -122,6 +119,9 @@ export async function TopNav({ session, locale }: TopNavProps) {
           <>
             <Link href="/teacher" className="route-chip">
               {t("topnav.teacher")}
+            </Link>
+            <Link href="/teacher/prep" className="route-chip">
+              {locale === "zh" ? "备课" : "Prep"}
             </Link>
             <Link href="/problems" className="route-chip">
               {t("topnav.problems")}

@@ -48,7 +48,8 @@ describe("hint tutor prompt builders", () => {
     expect(promptWithBlankSketch).not.toContain("undefined");
     expect(promptWithBlankSketch).not.toContain("null");
     expect(getSafeFallbackHint(2)).toEqual({
-      hintText: "Try setting up the equation.",
+      hintText:
+        "Hint generation is temporarily unavailable. Try rewriting the key relationship or quantity from the problem in your own notation.",
       checkQuestion: "What is the next step you can try on your own?"
     });
   });

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@arcmath/db";
@@ -68,6 +67,33 @@ export default async function Home() {
     }
   ];
 
+  const platformCards = [
+    {
+      title: t("home.platform.admin_title"),
+      meta: t("home.platform.admin_meta"),
+      body: t("home.platform.admin_body"),
+      tile: "tile tile-indigo"
+    },
+    {
+      title: t("home.platform.material_title"),
+      meta: t("home.platform.material_meta"),
+      body: t("home.platform.material_body"),
+      tile: "tile tile-amber"
+    },
+    {
+      title: t("home.platform.student_title"),
+      meta: t("home.platform.student_meta"),
+      body: t("home.platform.student_body"),
+      tile: "tile tile-teal"
+    },
+    {
+      title: t("home.platform.gradebook_title"),
+      meta: t("home.platform.gradebook_meta"),
+      body: t("home.platform.gradebook_body"),
+      tile: "tile tile-coral"
+    }
+  ];
+
   // Color-coded engine tiles — each verification engine gets its
   // own Brilliant-style saturated tile background so the trio reads
   // as a single visual statement instead of three white cards.
@@ -104,7 +130,9 @@ export default async function Home() {
         { href: "/resources", label: t("home.quickstart.link_resources") }
       ]
     : [
-        { href: "/register", label: t("home.quickstart.link_create") },
+        { href: "/register/school", label: t("home.quickstart.link_create") },
+        { href: "/for-schools", label: t("topnav.for_schools") },
+        { href: "/register", label: t("home.hero.cta_student") },
         { href: "/login", label: t("home.quickstart.link_signin") }
       ];
 
@@ -123,7 +151,10 @@ export default async function Home() {
         <div className="relative grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16 lg:items-center">
           <div className="flex flex-col gap-6">
             <Eyebrow>{t("home.hero.kicker")}</Eyebrow>
-            <h1 className="display-headline">
+            <h1
+              className="display-headline"
+              style={{ fontSize: "clamp(2rem, 4.5vw, 3.95rem)" }}
+            >
               {/* Florid serif accent word (italic Fraunces) introduces
                   the headline with a magazine-cover wow. The brand
                   gradient fills it; the rest of the headline stays in
@@ -153,94 +184,33 @@ export default async function Home() {
               </>
             ) : (
               /* ====================================================
-               *  TWO-CTA HERO — splits the audience into the two
-               *  business lines:
-               *    B1: individual learner self-signup → /register
-               *    B2: school admin signup → /register/school
-               *  Each CTA is paired with a one-sentence tagline so
-               *  the visitor can self-select without reading the
-               *  rest of the page.
+               *  Audience split: school admin setup stays primary,
+               *  with individual practice still available.
                * ================================================== */
               <div className="flex flex-col gap-4 pt-2">
                 <div className="flex flex-wrap gap-3">
-                  <RouteProgressLink className="btn-primary" href="/register">
-                    {t("home.hero.cta_student")}
-                  </RouteProgressLink>
-                  <RouteProgressLink className="btn-secondary" href="/register/school">
+                  <RouteProgressLink className="btn-primary" href="/register/school">
                     {t("home.hero.cta_school")}
                   </RouteProgressLink>
+                  <RouteProgressLink className="btn-secondary" href="/for-schools">
+                    {t("topnav.for_schools")}
+                  </RouteProgressLink>
+                  <RouteProgressLink className="btn-secondary" href="/register">
+                    {t("home.hero.cta_student")}
+                  </RouteProgressLink>
                 </div>
-                <div
-                  className="grid gap-3 sm:grid-cols-2"
-                  style={{ maxWidth: 640 }}
-                >
-                  <div
-                    style={{
-                      borderLeft: "2px solid var(--accent-strong)",
-                      paddingLeft: 12
-                    }}
-                  >
-                    <p
-                      className="text-[11px] font-semibold uppercase"
-                      style={{
-                        color: "var(--subtle)",
-                        letterSpacing: "0.14em",
-                        fontFamily: "var(--font-mono-custom)"
-                      }}
-                    >
-                      {t("home.hero.student_label")}
-                    </p>
-                    <p
-                      className="mt-1 text-sm"
-                      style={{ color: "var(--foreground)", lineHeight: 1.5 }}
-                    >
-                      {t("home.hero.student_tagline")}
-                    </p>
-                  </div>
-                  <div
-                    style={{
-                      borderLeft: "2px solid var(--accent-strong)",
-                      paddingLeft: 12
-                    }}
-                  >
-                    <p
-                      className="text-[11px] font-semibold uppercase"
-                      style={{
-                        color: "var(--subtle)",
-                        letterSpacing: "0.14em",
-                        fontFamily: "var(--font-mono-custom)"
-                      }}
-                    >
-                      {t("home.hero.school_label")}
-                    </p>
-                    <p
-                      className="mt-1 text-sm"
-                      style={{ color: "var(--foreground)", lineHeight: 1.5 }}
-                    >
-                      {t("home.hero.school_tagline")}
-                    </p>
-                  </div>
+                <div className="hidden flex-wrap gap-2 pt-1 sm:flex">
+                  <span className="info-pill">{t("home.hero.pill_practice")}</span>
+                  <span className="info-pill">{t("home.hero.pill_progress")}</span>
+                  <span className="info-pill">{t("home.hero.pill_aesthetic")}</span>
                 </div>
-                <p
-                  className="text-xs pt-1"
-                  style={{ color: "var(--muted)" }}
-                >
-                  {t("home.hero.signin_prompt")}{" "}
-                  <Link
-                    href="/login"
-                    style={{ color: "var(--accent-strong)" }}
-                    className="font-semibold"
-                  >
-                    {t("home.hero.signin_link")}
-                  </Link>
-                </p>
               </div>
             )}
           </div>
 
-          {/* Right-hand metric column — keeps page balanced on
-           *  desktop, stacks below on mobile. */}
-          <div className="grid gap-3">
+          {/* Right-hand metric column balances the desktop hero; mobile
+           * keeps the first screen focused on the primary school CTA. */}
+          <div className="hidden gap-3 lg:grid">
             {heroStats.map((item) => (
               <Metric
                 key={item.label}
@@ -252,6 +222,37 @@ export default async function Home() {
           </div>
         </div>
        </div>
+      </Section>
+
+      {/* ===========================================================
+       *  SCHOOL WORKFLOW — role-based ToB product promise
+       * ========================================================= */}
+      <Section className="surface-section-warm">
+        <SectionHeader
+          eyebrow={t("home.platform.eyebrow")}
+          title={t("home.platform.title")}
+          lede={t("home.platform.lede")}
+        />
+        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {platformCards.map((card, index) => (
+            <article key={card.title} className={card.tile}>
+              <div className="mb-5 flex flex-wrap items-center justify-between gap-2">
+                <span className="badge">{String(index + 1).padStart(2, "0")}</span>
+                <span className="info-pill">{card.meta}</span>
+              </div>
+              <h3 className="mb-3">{card.title}</h3>
+              <p className="text-sm" style={{ lineHeight: 1.65 }}>
+                {card.body}
+              </p>
+            </article>
+          ))}
+        </div>
+        <p
+          className="mt-6 max-w-[78ch] text-sm"
+          style={{ color: "var(--muted)", lineHeight: 1.7 }}
+        >
+          {t("home.platform.footer")}
+        </p>
       </Section>
 
       {/* ===========================================================

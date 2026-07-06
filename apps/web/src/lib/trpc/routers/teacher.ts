@@ -11,6 +11,27 @@ import {
   buildTeacherImportPreview,
   commitTeacherImportFromJson
 } from "@/lib/imports/teacher-import";
+import {
+  generateTeacherPrepBrief,
+  teacherPrepInputSchema
+} from "@/lib/ai/teacher-prep";
+import {
+  generateMaterialAssignmentDraft,
+  materialAssignmentDraftInputSchema
+} from "@/lib/ai/material-assignment-draft";
+import {
+  generateMaterialProblemSetDraft,
+  materialProblemSetDraftInputSchema
+} from "@/lib/ai/material-problem-set-draft";
+import {
+  extractPdfPageText,
+  PdfTextExtractionError
+} from "@/lib/pdf-text-extraction";
+import {
+  extractPdfPageTextByOcr,
+  PdfOcrExtractionError
+} from "@/lib/pdf-ocr-extraction";
+import { getOrganizationResourceStorage } from "@/lib/organization-resource-storage";
 import { schedulePreprocessInBackground } from "@/lib/preprocessing";
 import { logAudit } from "@/lib/audit";
 
@@ -118,6 +139,148 @@ const createAssignmentInput = z.object({
 
 const deleteAssignmentInput = z.object({ assignmentId: z.string().min(1) });
 
+const createResourceAssignmentInput = z.object({
+  classId: z.string().min(1),
+  resourceId: z.string().min(1),
+  title: z.string().min(1).max(200).optional(),
+  instructions: z.string().max(4000).optional(),
+  sourcePageStart: z.number().int().positive().optional(),
+  sourcePageEnd: z.number().int().positive().optional(),
+  sourceProblemStart: z.string().trim().max(40).optional(),
+  sourceProblemEnd: z.string().trim().max(40).optional(),
+  sourceExcerpt: z.string().trim().max(12000).optional(),
+  studentPrompt: z.string().trim().max(5000).optional(),
+  gradingGuidance: z.string().trim().max(5000).optional(),
+  dueAt: z.date().optional(),
+  allowLateSubmissions: z.boolean().optional()
+}).refine((value) => {
+  if (value.sourcePageStart == null || value.sourcePageEnd == null) return true;
+  return value.sourcePageEnd >= value.sourcePageStart;
+}, {
+  message: "End page must be greater than or equal to start page",
+  path: ["sourcePageEnd"]
+});
+
+const draftResourceAssignmentInput = materialAssignmentDraftInputSchema
+  .omit({ resourceTitle: true })
+  .extend({
+    resourceId: z.string().min(1)
+  })
+  .refine((value) => {
+    if (value.sourcePageStart == null || value.sourcePageEnd == null) return true;
+    return value.sourcePageEnd >= value.sourcePageStart;
+  }, {
+    message: "End page must be greater than or equal to start page",
+    path: ["sourcePageEnd"]
+  });
+
+const draftResourceProblemSetInput = materialProblemSetDraftInputSchema
+  .omit({ resourceTitle: true })
+  .extend({
+    resourceId: z.string().min(1)
+  })
+  .refine((value) => {
+    if (value.sourcePageStart == null || value.sourcePageEnd == null) return true;
+    return value.sourcePageEnd >= value.sourcePageStart;
+  }, {
+    message: "End page must be greater than or equal to start page",
+    path: ["sourcePageEnd"]
+  });
+
+const extractResourceSelectionInput = z
+  .object({
+    resourceId: z.string().min(1),
+    sourcePageStart: z.number().int().positive(),
+    sourcePageEnd: z.number().int().positive(),
+    language: z.enum(["en", "zh"]).optional()
+  })
+  .refine((value) => value.sourcePageEnd >= value.sourcePageStart, {
+    message: "End page must be greater than or equal to start page",
+    path: ["sourcePageEnd"]
+  });
+
+const resourceAssignmentIdInput = z.object({
+  assignmentId: z.string().min(1)
+});
+
+const gradeResourceSubmissionInput = z
+  .object({
+    assignmentId: z.string().min(1),
+    studentUserId: z.string().min(1),
+    gradeScore: z.number().min(0).max(10000),
+    gradeMax: z.number().positive().max(10000).default(100),
+    feedback: z.string().max(4000).optional()
+  })
+  .refine((value) => value.gradeScore <= value.gradeMax, {
+    message: "Score cannot exceed max score",
+    path: ["gradeScore"]
+  });
+
+function isPdfResource(resource: {
+  attachmentFilename: string | null;
+  attachmentMimeType: string | null;
+}): boolean {
+  const mime = resource.attachmentMimeType?.toLowerCase() ?? "";
+  const filename = resource.attachmentFilename?.toLowerCase() ?? "";
+  return mime === "application/pdf" || filename.endsWith(".pdf");
+}
+
+function formatResourceScope(scope: {
+  sourcePageStart: number | null;
+  sourcePageEnd: number | null;
+  sourceProblemStart: string | null;
+  sourceProblemEnd: string | null;
+}): string | null {
+  const pageLabel =
+    scope.sourcePageStart != null && scope.sourcePageEnd != null
+      ? scope.sourcePageStart === scope.sourcePageEnd
+        ? `page ${scope.sourcePageStart}`
+        : `pages ${scope.sourcePageStart}-${scope.sourcePageEnd}`
+      : scope.sourcePageStart != null
+        ? `page ${scope.sourcePageStart}`
+        : null;
+  const problemLabel =
+    scope.sourceProblemStart && scope.sourceProblemEnd
+      ? scope.sourceProblemStart === scope.sourceProblemEnd
+        ? `problem ${scope.sourceProblemStart}`
+        : `problems ${scope.sourceProblemStart}-${scope.sourceProblemEnd}`
+      : scope.sourceProblemStart
+        ? `problem ${scope.sourceProblemStart}`
+        : null;
+  const parts = [pageLabel, problemLabel].filter(Boolean);
+  return parts.length > 0 ? parts.join(", ") : null;
+}
+
+const gradebookStatusFilterSchema = z.enum([
+  "ALL",
+  "NEEDS_GRADING",
+  "DUE_SOON",
+  "OVERDUE",
+  "SUBMITTED",
+  "GRADED",
+  "COMPLETED",
+  "IN_PROGRESS",
+  "NOT_STARTED",
+  "NOT_SUBMITTED"
+]);
+
+const gradebookSummaryInput = z.object({
+  classId: z.string().min(1),
+  assignmentType: z.enum(["ALL", "PROBLEM_SET", "PDF"]).default("ALL"),
+  status: gradebookStatusFilterSchema.default("ALL"),
+  search: z.string().trim().max(120).optional()
+});
+
+function buildPublicResourceDownloadUrl(resourceId: string): string | undefined {
+  const base = process.env.NEXTAUTH_URL?.trim().replace(/\/+$/g, "");
+  if (!base) return undefined;
+  try {
+    return new URL(`/api/org-resources/${resourceId}/download`, base).toString();
+  } catch {
+    return undefined;
+  }
+}
+
 // ===========================================================================
 
 export const teacherRouter = router({
@@ -130,9 +293,18 @@ export const teacherRouter = router({
 
     const classFilter = isSchoolAdmin
       ? { organizationId: orgId }
-      : { organizationId: orgId, createdByUserId: myUserId };
+      : { organizationId: orgId, assignedTeacherId: myUserId };
 
-    const [classCount, studentSeats, teacherSeats, upcomingDue] = await Promise.all([
+    const [
+      classCount,
+      studentSeats,
+      teacherSeats,
+      upcomingDue,
+      resourceUpcomingDue,
+      overdueDue,
+      resourceOverdueDue,
+      needsGradingCount
+    ] = await Promise.all([
       ctx.prisma.class.count({ where: classFilter }),
       ctx.prisma.organizationMembership.count({
         where: { organizationId: orgId, role: "STUDENT", status: "ACTIVE" }
@@ -144,6 +316,32 @@ export const teacherRouter = router({
         where: {
           class: classFilter,
           dueAt: { gte: new Date() }
+        }
+      }),
+      ctx.prisma.resourceAssignment.count({
+        where: {
+          class: classFilter,
+          dueAt: { gte: new Date() }
+        }
+      }),
+      ctx.prisma.classAssignment.count({
+        where: {
+          class: classFilter,
+          dueAt: { lt: new Date() }
+        }
+      }),
+      ctx.prisma.resourceAssignment.count({
+        where: {
+          class: classFilter,
+          dueAt: { lt: new Date() }
+        }
+      }),
+      ctx.prisma.resourceAssignmentSubmission.count({
+        where: {
+          gradedAt: null,
+          assignment: {
+            class: classFilter
+          }
         }
       })
     ]);
@@ -158,7 +356,9 @@ export const teacherRouter = router({
       classCount,
       studentSeats: { used: studentSeats, max: org?.maxStudentSeats ?? 50 },
       teacherSeats: { used: teacherSeats, max: org?.maxTeacherSeats ?? 3 },
-      upcomingDueCount: upcomingDue
+      upcomingDueCount: upcomingDue + resourceUpcomingDue,
+      overdueAssignmentCount: overdueDue + resourceOverdueDue,
+      needsGradingCount
     };
   }),
 
@@ -186,7 +386,13 @@ export const teacherRouter = router({
           createdByUserId: true,
           assignedTeacherId: true,
           assignedTeacher: { select: { name: true, email: true } },
-          _count: { select: { enrollments: true, assignments: true } }
+          _count: {
+            select: {
+              enrollments: true,
+              assignments: true,
+              resourceAssignments: true
+            }
+          }
         },
         orderBy: { createdAt: "desc" }
       });
@@ -199,7 +405,7 @@ export const teacherRouter = router({
         teacherName: row.assignedTeacher?.name ?? row.assignedTeacher?.email ?? null,
         isMine: row.assignedTeacherId === myUserId,
         studentCount: row._count.enrollments,
-        assignmentCount: row._count.assignments
+        assignmentCount: row._count.assignments + row._count.resourceAssignments
       }));
     }),
 
@@ -242,6 +448,33 @@ export const teacherRouter = router({
               }
             },
             orderBy: { assignedAt: "desc" }
+          },
+          resourceAssignments: {
+            select: {
+              id: true,
+              title: true,
+              instructions: true,
+              sourcePageStart: true,
+              sourcePageEnd: true,
+              sourceProblemStart: true,
+              sourceProblemEnd: true,
+              sourceExcerpt: true,
+              studentPrompt: true,
+              gradingGuidance: true,
+              dueAt: true,
+              allowLateSubmissions: true,
+              createdAt: true,
+              resource: {
+                select: {
+                  id: true,
+                  title: true,
+                  attachmentFilename: true,
+                  attachmentMimeType: true
+                }
+              },
+              _count: { select: { submissions: true } }
+            },
+            orderBy: [{ dueAt: "asc" }, { createdAt: "desc" }]
           }
         }
       });
@@ -274,6 +507,26 @@ export const teacherRouter = router({
           problemSetId: a.problemSet.id,
           problemSetTitle: a.problemSet.title,
           problemCount: a.problemSet._count.problems
+        })),
+        resourceAssignments: klass.resourceAssignments.map((a) => ({
+          id: a.id,
+          title: a.title,
+          instructions: a.instructions,
+          sourcePageStart: a.sourcePageStart,
+          sourcePageEnd: a.sourcePageEnd,
+          sourceProblemStart: a.sourceProblemStart,
+          sourceProblemEnd: a.sourceProblemEnd,
+          sourceExcerpt: a.sourceExcerpt,
+          studentPrompt: a.studentPrompt,
+          gradingGuidance: a.gradingGuidance,
+          dueAt: a.dueAt,
+          allowLateSubmissions: a.allowLateSubmissions,
+          createdAt: a.createdAt,
+          resourceId: a.resource.id,
+          resourceTitle: a.resource.title,
+          resourceFilename: a.resource.attachmentFilename,
+          resourceMimeType: a.resource.attachmentMimeType,
+          submissionCount: a._count.submissions
         }))
       };
     }),
@@ -799,6 +1052,929 @@ export const teacherRouter = router({
       })
   }),
 
+  // ------------------------------------------------ resource assignments
+  resourceAssignments: router({
+    create: teacherProcedure
+      .input(createResourceAssignmentInput)
+      .mutation(async ({ ctx, input }) => {
+        const orgId = ctx.membership!.organizationId;
+        await assertCanManageClass(ctx.prisma, {
+          classId: input.classId,
+          organizationId: orgId,
+          actingUserId: ctx.session.user.id,
+          actingRole: ctx.membership!.role
+        });
+
+        const resource = await ctx.prisma.organizationResource.findFirst({
+          where: {
+            id: input.resourceId,
+            organizationId: orgId
+          },
+          select: {
+            id: true,
+            title: true,
+            attachmentFilename: true,
+            attachmentMimeType: true
+          }
+        });
+        if (!resource) {
+          throw new TRPCError({ code: "NOT_FOUND", message: "Resource not found" });
+        }
+        if (!isPdfResource(resource)) {
+          throw new TRPCError({
+            code: "BAD_REQUEST",
+            message: "Only PDF resources can be assigned as manual homework"
+          });
+        }
+
+        const created = await ctx.prisma.resourceAssignment.create({
+          data: {
+            organizationId: orgId,
+            classId: input.classId,
+            resourceId: resource.id,
+            createdByUserId: ctx.session.user.id,
+            title: input.title ?? resource.title,
+            instructions: input.instructions,
+            sourcePageStart: input.sourcePageStart,
+            sourcePageEnd: input.sourcePageEnd,
+            sourceProblemStart: input.sourceProblemStart,
+            sourceProblemEnd: input.sourceProblemEnd,
+            sourceExcerpt: input.sourceExcerpt,
+            studentPrompt: input.studentPrompt,
+            gradingGuidance: input.gradingGuidance,
+            dueAt: input.dueAt,
+            allowLateSubmissions: input.allowLateSubmissions ?? false
+          },
+          select: {
+            id: true,
+            title: true,
+            dueAt: true,
+            allowLateSubmissions: true
+          }
+        });
+
+        await logAudit(
+          ctx.prisma,
+          {
+            userId: ctx.session.user.id,
+            organizationId: orgId
+          },
+          {
+            action: "resource.assignment.create",
+            targetType: "ResourceAssignment",
+            targetId: created.id,
+            payload: {
+              classId: input.classId,
+              resourceId: resource.id,
+              title: created.title,
+              dueAt: created.dueAt ? created.dueAt.toISOString() : null,
+              allowLateSubmissions: created.allowLateSubmissions,
+              sourcePageStart: input.sourcePageStart ?? null,
+              sourcePageEnd: input.sourcePageEnd ?? null,
+              sourceProblemStart: input.sourceProblemStart ?? null,
+              sourceProblemEnd: input.sourceProblemEnd ?? null,
+              hasSourceExcerpt: Boolean(input.sourceExcerpt),
+              hasStudentPrompt: Boolean(input.studentPrompt),
+              hasGradingGuidance: Boolean(input.gradingGuidance)
+            }
+          }
+        );
+
+        return created;
+      }),
+
+    draft: teacherProcedure
+      .input(draftResourceAssignmentInput)
+      .mutation(async ({ ctx, input }) => {
+        const orgId = ctx.membership!.organizationId;
+        const resource = await ctx.prisma.organizationResource.findFirst({
+          where: {
+            id: input.resourceId,
+            organizationId: orgId
+          },
+          select: {
+            id: true,
+            title: true,
+            attachmentFilename: true,
+            attachmentMimeType: true
+          }
+        });
+        if (!resource) {
+          throw new TRPCError({ code: "NOT_FOUND", message: "Resource not found" });
+        }
+        if (!isPdfResource(resource)) {
+          throw new TRPCError({
+            code: "BAD_REQUEST",
+            message: "Only PDF resources can be formatted as PDF assignments"
+          });
+        }
+
+        const draft = await generateMaterialAssignmentDraft({
+          language: input.language,
+          resourceTitle: resource.title,
+          teacherInstructions: input.teacherInstructions,
+          sourcePageStart: input.sourcePageStart,
+          sourcePageEnd: input.sourcePageEnd,
+          sourceProblemStart: input.sourceProblemStart,
+          sourceProblemEnd: input.sourceProblemEnd,
+          sourceExcerpt: input.sourceExcerpt
+        });
+
+        await logAudit(
+          ctx.prisma,
+          { userId: ctx.session.user.id, organizationId: orgId },
+          {
+            action: "resource.assignment.draft",
+            targetType: "OrganizationResource",
+            targetId: resource.id,
+            payload: {
+              source: draft.source,
+              language: input.language,
+              sourceTextLength: input.sourceExcerpt.length,
+              sourcePageStart: input.sourcePageStart ?? null,
+              sourcePageEnd: input.sourcePageEnd ?? null,
+              sourceProblemStart: input.sourceProblemStart ?? null,
+              sourceProblemEnd: input.sourceProblemEnd ?? null
+            }
+          }
+        );
+
+        return draft;
+      }),
+
+    problemSetDraft: teacherProcedure
+      .input(draftResourceProblemSetInput)
+      .mutation(async ({ ctx, input }) => {
+        const orgId = ctx.membership!.organizationId;
+        const resource = await ctx.prisma.organizationResource.findFirst({
+          where: {
+            id: input.resourceId,
+            organizationId: orgId
+          },
+          select: {
+            id: true,
+            title: true,
+            attachmentFilename: true,
+            attachmentMimeType: true
+          }
+        });
+        if (!resource) {
+          throw new TRPCError({ code: "NOT_FOUND", message: "Resource not found" });
+        }
+        if (!isPdfResource(resource)) {
+          throw new TRPCError({
+            code: "BAD_REQUEST",
+            message: "Only PDF resources can be converted into problem-set drafts"
+          });
+        }
+
+        const draft = await generateMaterialProblemSetDraft({
+          language: input.language,
+          resourceTitle: resource.title,
+          sourceUrl: buildPublicResourceDownloadUrl(resource.id),
+          teacherInstructions: input.teacherInstructions,
+          sourcePageStart: input.sourcePageStart,
+          sourcePageEnd: input.sourcePageEnd,
+          sourceProblemStart: input.sourceProblemStart,
+          sourceProblemEnd: input.sourceProblemEnd,
+          sourceExcerpt: input.sourceExcerpt
+        });
+
+        await logAudit(
+          ctx.prisma,
+          { userId: ctx.session.user.id, organizationId: orgId },
+          {
+            action: "resource.assignment.problem_set_draft",
+            targetType: "OrganizationResource",
+            targetId: resource.id,
+            payload: {
+              source: draft.source,
+              language: input.language,
+              problemCount: draft.problemCount,
+              sourceTextLength: input.sourceExcerpt.length,
+              sourcePageStart: input.sourcePageStart ?? null,
+              sourcePageEnd: input.sourcePageEnd ?? null,
+              sourceProblemStart: input.sourceProblemStart ?? null,
+              sourceProblemEnd: input.sourceProblemEnd ?? null
+            }
+          }
+        );
+
+        return draft;
+      }),
+
+    extractSelection: teacherProcedure
+      .input(extractResourceSelectionInput)
+      .mutation(async ({ ctx, input }) => {
+        const orgId = ctx.membership!.organizationId;
+        const resource = await ctx.prisma.organizationResource.findFirst({
+          where: {
+            id: input.resourceId,
+            organizationId: orgId
+          },
+          select: {
+            id: true,
+            title: true,
+            attachmentLocator: true,
+            attachmentFilename: true,
+            attachmentMimeType: true
+          }
+        });
+        if (!resource || !resource.attachmentLocator || !resource.attachmentFilename) {
+          throw new TRPCError({ code: "NOT_FOUND", message: "PDF resource not found" });
+        }
+        if (!isPdfResource(resource)) {
+          throw new TRPCError({
+            code: "BAD_REQUEST",
+            message: "Only PDF resources can be extracted"
+          });
+        }
+
+        const storage = getOrganizationResourceStorage();
+        const pdfBytes = await storage.readFile(resource.attachmentLocator);
+        if (!pdfBytes) {
+          throw new TRPCError({
+            code: "NOT_FOUND",
+            message: "PDF file not found in storage"
+          });
+        }
+
+        try {
+          const text = await extractPdfPageText({
+            pdfBytes,
+            pageStart: input.sourcePageStart,
+            pageEnd: input.sourcePageEnd
+          });
+
+          await logAudit(
+            ctx.prisma,
+            { userId: ctx.session.user.id, organizationId: orgId },
+            {
+              action: "resource.assignment.extract",
+              targetType: "OrganizationResource",
+              targetId: resource.id,
+              payload: {
+                sourcePageStart: input.sourcePageStart,
+                sourcePageEnd: input.sourcePageEnd,
+                extractedLength: text.length
+              }
+            }
+          );
+
+          return {
+            resourceId: resource.id,
+            resourceTitle: resource.title,
+            sourcePageStart: input.sourcePageStart,
+            sourcePageEnd: input.sourcePageEnd,
+            text,
+            extractionMethod: "text" as const,
+            confidence: "high" as const,
+            notes: [] as string[]
+          };
+        } catch (error) {
+          if (error instanceof PdfTextExtractionError) {
+            try {
+              const ocr = await extractPdfPageTextByOcr({
+                pdfBytes,
+                pageStart: input.sourcePageStart,
+                pageEnd: input.sourcePageEnd,
+                uiLocale: input.language ?? "en"
+              });
+
+              await logAudit(
+                ctx.prisma,
+                { userId: ctx.session.user.id, organizationId: orgId },
+                {
+                  action: "resource.assignment.extract.ocr",
+                  targetType: "OrganizationResource",
+                  targetId: resource.id,
+                  payload: {
+                    sourcePageStart: input.sourcePageStart,
+                    sourcePageEnd: input.sourcePageEnd,
+                    extractedLength: ocr.text.length,
+                    pageCount: ocr.pageCount,
+                    confidence: ocr.confidence,
+                    textExtractionError: error.message
+                  }
+                }
+              );
+
+              return {
+                resourceId: resource.id,
+                resourceTitle: resource.title,
+                sourcePageStart: input.sourcePageStart,
+                sourcePageEnd: input.sourcePageEnd,
+                text: ocr.text,
+                extractionMethod: "ocr" as const,
+                confidence: ocr.confidence,
+                notes: ocr.notes
+              };
+            } catch (ocrError) {
+              if (ocrError instanceof PdfOcrExtractionError) {
+                throw new TRPCError({
+                  code: "BAD_REQUEST",
+                  message: `${error.message} OCR fallback also failed: ${ocrError.message}`
+                });
+              }
+              throw ocrError;
+            }
+          }
+          throw error;
+        }
+      }),
+
+    progress: teacherProcedure
+      .input(resourceAssignmentIdInput)
+      .query(async ({ ctx, input }) => {
+        const orgId = ctx.membership!.organizationId;
+        const assignment = await ctx.prisma.resourceAssignment.findUnique({
+          where: { id: input.assignmentId },
+          select: {
+            id: true,
+            title: true,
+            instructions: true,
+            sourcePageStart: true,
+            sourcePageEnd: true,
+            sourceProblemStart: true,
+            sourceProblemEnd: true,
+            sourceExcerpt: true,
+            studentPrompt: true,
+            gradingGuidance: true,
+            dueAt: true,
+            allowLateSubmissions: true,
+            organizationId: true,
+            classId: true,
+            class: {
+              select: {
+                organizationId: true,
+                enrollments: {
+                  where: { role: "STUDENT" },
+                  select: {
+                    userId: true,
+                    user: { select: { id: true, name: true, email: true } }
+                  },
+                  orderBy: { createdAt: "asc" }
+                }
+              }
+            },
+            resource: {
+              select: {
+                id: true,
+                title: true,
+                attachmentFilename: true
+              }
+            },
+            submissions: {
+              select: {
+                id: true,
+                studentUserId: true,
+                answerText: true,
+                attachmentFilename: true,
+                attachmentMimeType: true,
+                attachmentSize: true,
+                submittedAt: true,
+                gradeScore: true,
+                gradeMax: true,
+                feedback: true,
+                gradedAt: true,
+                gradedByUser: {
+                  select: { name: true, email: true }
+                }
+              },
+              orderBy: { submittedAt: "desc" }
+            }
+          }
+        });
+
+        if (!assignment || assignment.organizationId !== orgId || assignment.class.organizationId !== orgId) {
+          throw new TRPCError({ code: "NOT_FOUND" });
+        }
+
+        await assertCanManageClass(ctx.prisma, {
+          classId: assignment.classId,
+          organizationId: orgId,
+          actingUserId: ctx.session.user.id,
+          actingRole: ctx.membership!.role
+        });
+
+        const now = new Date();
+        const submissionsByUser = new Map(
+          assignment.submissions.map((submission) => [
+            submission.studentUserId,
+            submission
+          ])
+        );
+
+        return {
+          assignmentId: assignment.id,
+          title: assignment.title,
+          instructions: assignment.instructions,
+          sourcePageStart: assignment.sourcePageStart,
+          sourcePageEnd: assignment.sourcePageEnd,
+          sourceProblemStart: assignment.sourceProblemStart,
+          sourceProblemEnd: assignment.sourceProblemEnd,
+          sourceExcerpt: assignment.sourceExcerpt,
+          studentPrompt: assignment.studentPrompt,
+          gradingGuidance: assignment.gradingGuidance,
+          dueAt: assignment.dueAt,
+          allowLateSubmissions: assignment.allowLateSubmissions,
+          resource: {
+            id: assignment.resource.id,
+            title: assignment.resource.title,
+            filename: assignment.resource.attachmentFilename,
+            downloadUrl: `/api/org-resources/${assignment.resource.id}/download`
+          },
+          students: assignment.class.enrollments.map((enrollment) => {
+            const submission = submissionsByUser.get(enrollment.userId);
+            return {
+              userId: enrollment.userId,
+              name: enrollment.user.name,
+              email: enrollment.user.email,
+              status: submission?.gradedAt
+                ? ("GRADED" as const)
+                : submission
+                  ? ("SUBMITTED" as const)
+                  : assignment.dueAt && assignment.dueAt < now
+                    ? ("OVERDUE" as const)
+                    : ("NOT_SUBMITTED" as const),
+              submission: submission
+                ? {
+                    id: submission.id,
+                    answerText: submission.answerText,
+                    attachmentFilename: submission.attachmentFilename,
+                    attachmentMimeType: submission.attachmentMimeType,
+                    attachmentSize: submission.attachmentSize,
+                    submittedAt: submission.submittedAt,
+                    gradeScore: submission.gradeScore,
+                    gradeMax: submission.gradeMax,
+                    feedback: submission.feedback,
+                    gradedAt: submission.gradedAt,
+                    gradedBy:
+                      submission.gradedByUser?.name ??
+                      submission.gradedByUser?.email ??
+                      null
+                  }
+                : null
+            };
+          })
+        };
+      }),
+
+    grade: teacherProcedure
+      .input(gradeResourceSubmissionInput)
+      .mutation(async ({ ctx, input }) => {
+        const orgId = ctx.membership!.organizationId;
+        const assignment = await ctx.prisma.resourceAssignment.findUnique({
+          where: { id: input.assignmentId },
+          select: {
+            id: true,
+            organizationId: true,
+            classId: true,
+            class: { select: { organizationId: true } }
+          }
+        });
+        if (!assignment || assignment.organizationId !== orgId || assignment.class.organizationId !== orgId) {
+          throw new TRPCError({ code: "NOT_FOUND" });
+        }
+        await assertCanManageClass(ctx.prisma, {
+          classId: assignment.classId,
+          organizationId: orgId,
+          actingUserId: ctx.session.user.id,
+          actingRole: ctx.membership!.role
+        });
+
+        const submission = await ctx.prisma.resourceAssignmentSubmission.findUnique({
+          where: {
+            assignmentId_studentUserId: {
+              assignmentId: input.assignmentId,
+              studentUserId: input.studentUserId
+            }
+          },
+          select: { id: true }
+        });
+        if (!submission) {
+          throw new TRPCError({
+            code: "NOT_FOUND",
+            message: "Student has not submitted this assignment"
+          });
+        }
+
+        const updated = await ctx.prisma.resourceAssignmentSubmission.update({
+          where: { id: submission.id },
+          data: {
+            gradeScore: input.gradeScore,
+            gradeMax: input.gradeMax,
+            feedback: input.feedback?.trim() || null,
+            gradedAt: new Date(),
+            gradedByUserId: ctx.session.user.id
+          },
+          select: {
+            id: true,
+            gradeScore: true,
+            gradeMax: true,
+            feedback: true,
+            gradedAt: true
+          }
+        });
+
+        await logAudit(
+          ctx.prisma,
+          { userId: ctx.session.user.id, organizationId: orgId },
+          {
+            action: "resource.assignment.grade",
+            targetType: "ResourceAssignmentSubmission",
+            targetId: updated.id,
+            payload: {
+              assignmentId: input.assignmentId,
+              studentUserId: input.studentUserId,
+              gradeScore: updated.gradeScore,
+              gradeMax: updated.gradeMax
+            }
+          }
+        );
+
+        return updated;
+      }),
+
+    delete: teacherProcedure
+      .input(resourceAssignmentIdInput)
+      .mutation(async ({ ctx, input }) => {
+        const orgId = ctx.membership!.organizationId;
+        const assignment = await ctx.prisma.resourceAssignment.findUnique({
+          where: { id: input.assignmentId },
+          select: {
+            id: true,
+            classId: true,
+            createdByUserId: true,
+            organizationId: true,
+            class: { select: { organizationId: true } }
+          }
+        });
+        if (
+          !assignment ||
+          assignment.organizationId !== orgId ||
+          assignment.class.organizationId !== orgId
+        ) {
+          throw new TRPCError({ code: "NOT_FOUND" });
+        }
+
+        const isSchoolAdmin = canManageOrganization(ctx.membership!.role);
+        const isMine = assignment.createdByUserId === ctx.session.user.id;
+        if (!isSchoolAdmin && !isMine) {
+          throw new TRPCError({
+            code: "FORBIDDEN",
+            message: "Only the assignment creator or a school admin can remove it"
+          });
+        }
+
+        await ctx.prisma.resourceAssignment.delete({
+          where: { id: input.assignmentId }
+        });
+
+        await logAudit(
+          ctx.prisma,
+          { userId: ctx.session.user.id, organizationId: orgId },
+          {
+            action: "resource.assignment.delete",
+            targetType: "ResourceAssignment",
+            targetId: input.assignmentId,
+            payload: { classId: assignment.classId }
+          }
+        );
+
+        return { ok: true as const };
+      })
+  }),
+
+  // ---------------------------------------------------------- gradebook
+  gradebook: router({
+    summary: teacherProcedure
+      .input(gradebookSummaryInput)
+      .query(async ({ ctx, input }) => {
+        const orgId = ctx.membership!.organizationId;
+        const klass = await ctx.prisma.class.findUnique({
+          where: { id: input.classId },
+          select: {
+            id: true,
+            name: true,
+            organizationId: true,
+            createdByUserId: true,
+            assignedTeacherId: true,
+            enrollments: {
+              where: { role: "STUDENT" },
+              select: {
+                userId: true,
+                user: { select: { name: true, email: true } }
+              },
+              orderBy: { createdAt: "asc" }
+            },
+            assignments: {
+              select: {
+                id: true,
+                title: true,
+                dueAt: true,
+                problemSet: {
+                  select: {
+                    title: true,
+                    _count: { select: { problems: true } }
+                  }
+                },
+                practiceRuns: {
+                  select: {
+                    userId: true,
+                    startedAt: true,
+                    completedAt: true,
+                    attempts: {
+                      where: { status: "SUBMITTED" },
+                      select: { problemId: true, isCorrect: true }
+                    }
+                  },
+                  orderBy: { startedAt: "desc" }
+                }
+              },
+              orderBy: { assignedAt: "asc" }
+            },
+            resourceAssignments: {
+              select: {
+                id: true,
+                title: true,
+                dueAt: true,
+                sourcePageStart: true,
+                sourcePageEnd: true,
+                sourceProblemStart: true,
+                sourceProblemEnd: true,
+                resource: { select: { title: true } },
+                submissions: {
+                  select: {
+                    studentUserId: true,
+                    submittedAt: true,
+                    attachmentFilename: true,
+                    gradeScore: true,
+                    gradeMax: true,
+                    feedback: true,
+                    gradedAt: true
+                  }
+                }
+              },
+              orderBy: { createdAt: "asc" }
+            }
+          }
+        });
+
+        if (!klass || klass.organizationId !== orgId) {
+          throw new TRPCError({ code: "NOT_FOUND" });
+        }
+
+        const isSchoolAdmin = canManageOrganization(ctx.membership!.role);
+        const isAssignedTeacher = klass.assignedTeacherId === ctx.session.user.id;
+        const isCreator = klass.createdByUserId === ctx.session.user.id;
+        if (!isSchoolAdmin && !isAssignedTeacher && !isCreator) {
+          throw new TRPCError({ code: "FORBIDDEN" });
+        }
+
+        const now = new Date();
+        const dueSoonCutoff = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+        const rows: Array<{
+          rowId: string;
+          studentUserId: string;
+          studentName: string | null;
+          studentEmail: string;
+          assignmentType: "PROBLEM_SET" | "PDF";
+          assignmentId: string;
+          assignmentTitle: string;
+          sourceTitle: string;
+          scope: string | null;
+          dueAt: Date | null;
+          status:
+            | "COMPLETED"
+            | "IN_PROGRESS"
+            | "NOT_STARTED"
+            | "OVERDUE"
+            | "GRADED"
+            | "SUBMITTED"
+            | "NOT_SUBMITTED";
+          score: number | null;
+          maxScore: number | null;
+          percent: number | null;
+          attachmentFilename: string | null;
+          submittedAt: Date | null;
+          gradedAt: Date | null;
+          feedback: string | null;
+        }> = [];
+
+        for (const assignment of klass.assignments) {
+          const latestRunByUser = new Map<
+            string,
+            (typeof assignment.practiceRuns)[number]
+          >();
+          for (const run of assignment.practiceRuns) {
+            if (!latestRunByUser.has(run.userId)) {
+              latestRunByUser.set(run.userId, run);
+            }
+          }
+          const totalProblems = assignment.problemSet._count.problems;
+          for (const enrollment of klass.enrollments) {
+            const run = latestRunByUser.get(enrollment.userId);
+            const uniqueAttempted = run
+              ? new Set(run.attempts.map((attempt) => attempt.problemId)).size
+              : 0;
+            const correct =
+              run?.attempts.filter((attempt) => attempt.isCorrect).length ?? 0;
+            const completed = Boolean(run?.completedAt);
+            const status = completed
+              ? ("COMPLETED" as const)
+              : run
+                ? ("IN_PROGRESS" as const)
+                : assignment.dueAt && assignment.dueAt < now
+                  ? ("OVERDUE" as const)
+                  : ("NOT_STARTED" as const);
+            rows.push({
+              rowId: `problem:${assignment.id}:${enrollment.userId}`,
+              studentUserId: enrollment.userId,
+              studentName: enrollment.user.name,
+              studentEmail: enrollment.user.email,
+              assignmentType: "PROBLEM_SET",
+              assignmentId: assignment.id,
+              assignmentTitle: assignment.title,
+              sourceTitle: assignment.problemSet.title,
+              scope: null,
+              dueAt: assignment.dueAt,
+              status,
+              score: correct,
+              maxScore: totalProblems,
+              percent:
+                totalProblems > 0
+                  ? Math.round((correct / totalProblems) * 100)
+                  : null,
+              attachmentFilename: null,
+              submittedAt: run?.completedAt ?? (uniqueAttempted > 0 ? run?.startedAt ?? null : null),
+              gradedAt: null,
+              feedback: null
+            });
+          }
+        }
+
+        for (const assignment of klass.resourceAssignments) {
+          const submissionsByUser = new Map(
+            assignment.submissions.map((submission) => [
+              submission.studentUserId,
+              submission
+            ])
+          );
+          const scope = formatResourceScope(assignment);
+          for (const enrollment of klass.enrollments) {
+            const submission = submissionsByUser.get(enrollment.userId);
+            const status = submission?.gradedAt
+              ? ("GRADED" as const)
+              : submission
+                ? ("SUBMITTED" as const)
+                : assignment.dueAt && assignment.dueAt < now
+                  ? ("OVERDUE" as const)
+                  : ("NOT_SUBMITTED" as const);
+            const score = submission?.gradeScore ?? null;
+            const maxScore = submission?.gradeMax ?? null;
+            rows.push({
+              rowId: `pdf:${assignment.id}:${enrollment.userId}`,
+              studentUserId: enrollment.userId,
+              studentName: enrollment.user.name,
+              studentEmail: enrollment.user.email,
+              assignmentType: "PDF",
+              assignmentId: assignment.id,
+              assignmentTitle: assignment.title,
+              sourceTitle: assignment.resource.title,
+              scope,
+              dueAt: assignment.dueAt,
+              status,
+              score,
+              maxScore,
+              percent:
+                score != null && maxScore != null && maxScore > 0
+                  ? Math.round((score / maxScore) * 100)
+                  : null,
+              attachmentFilename: submission?.attachmentFilename ?? null,
+              submittedAt: submission?.submittedAt ?? null,
+              gradedAt: submission?.gradedAt ?? null,
+              feedback: submission?.feedback ?? null
+            });
+          }
+        }
+
+        const allRows = rows.sort((a, b) => {
+          const dueA = a.dueAt?.getTime() ?? Number.MAX_SAFE_INTEGER;
+          const dueB = b.dueAt?.getTime() ?? Number.MAX_SAFE_INTEGER;
+          if (dueA !== dueB) return dueA - dueB;
+          return a.studentEmail.localeCompare(b.studentEmail);
+        });
+
+        const search = input.search?.toLowerCase() ?? "";
+        const filteredRows = allRows.filter((row) => {
+          if (
+            input.assignmentType !== "ALL" &&
+            row.assignmentType !== input.assignmentType
+          ) {
+            return false;
+          }
+          if (search) {
+            const haystack = [
+              row.studentName,
+              row.studentEmail,
+              row.assignmentTitle,
+              row.sourceTitle,
+              row.scope
+            ]
+              .filter(Boolean)
+              .join(" ")
+              .toLowerCase();
+            if (!haystack.includes(search)) return false;
+          }
+          if (input.status === "ALL") return true;
+          if (input.status === "NEEDS_GRADING") {
+            return row.assignmentType === "PDF" && row.status === "SUBMITTED";
+          }
+          if (input.status === "DUE_SOON") {
+            return (
+              row.dueAt != null &&
+              row.dueAt >= now &&
+              row.dueAt <= dueSoonCutoff &&
+              !["COMPLETED", "GRADED", "SUBMITTED"].includes(row.status)
+            );
+          }
+          return row.status === input.status;
+        });
+
+        const gradedPercents = filteredRows
+          .map((row) => row.percent)
+          .filter((percent): percent is number => percent != null);
+
+        return {
+          classId: klass.id,
+          className: klass.name,
+          filters: input,
+          summary: {
+            totalRows: filteredRows.length,
+            completedRows: filteredRows.filter((row) =>
+              row.status === "COMPLETED" || row.status === "GRADED"
+            ).length,
+            needsGradingRows: filteredRows.filter(
+              (row) => row.assignmentType === "PDF" && row.status === "SUBMITTED"
+            ).length,
+            overdueRows: filteredRows.filter((row) => row.status === "OVERDUE").length,
+            dueSoonRows: filteredRows.filter(
+              (row) =>
+                row.dueAt != null &&
+                row.dueAt >= now &&
+                row.dueAt <= dueSoonCutoff &&
+                !["COMPLETED", "GRADED", "SUBMITTED"].includes(row.status)
+            ).length,
+            missingRows: filteredRows.filter((row) =>
+              row.status === "NOT_STARTED" ||
+              row.status === "NOT_SUBMITTED" ||
+              row.status === "OVERDUE"
+            ).length,
+            averagePercent:
+              gradedPercents.length > 0
+                ? Math.round(
+                    gradedPercents.reduce((sum, value) => sum + value, 0) /
+                      gradedPercents.length
+                  )
+                : null
+          },
+          rows: filteredRows.slice(0, 300)
+        };
+      })
+  }),
+
+  // ------------------------------------------------------- prep assistant
+  prep: router({
+    generate: teacherProcedure
+      .input(teacherPrepInputSchema)
+      .mutation(async ({ ctx, input }) => {
+        const orgId = ctx.membership!.organizationId;
+        const brief = await generateTeacherPrepBrief(input);
+
+        await logAudit(
+          ctx.prisma,
+          { userId: ctx.session.user.id, organizationId: orgId },
+          {
+            action: "teacher.prep.generate",
+            targetType: "Organization",
+            targetId: orgId,
+            payload: {
+              mode: input.mode,
+              language: input.language,
+              source: brief.source,
+              sourceTextLength: input.sourceText.length,
+              hasCourseLevel: Boolean(input.courseLevel),
+              hasContestTrack: Boolean(input.contestTrack),
+              hasTeacherNotes: Boolean(input.teacherNotes)
+            }
+          }
+        );
+
+        return brief;
+      })
+  }),
+
   // ------------------------------------------------------ school admin
   /**
    * School-admin scope: invite a new teacher to the school, enforcing
@@ -1072,6 +2248,41 @@ export const teacherRouter = router({
       exam: row.exam,
       isOwnedByMyOrg: row.ownerOrganizationId === orgId,
       problemCount: row._count.problems
+    }));
+  }),
+
+  /** PDF resources uploaded by teachers/admins in this organization. */
+  assignableResources: teacherProcedure.query(async ({ ctx }) => {
+    const orgId = ctx.membership!.organizationId;
+    const rows = await ctx.prisma.organizationResource.findMany({
+      where: {
+        organizationId: orgId,
+        attachmentFilename: { not: null }
+      },
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        attachmentFilename: true,
+        attachmentMimeType: true,
+        attachmentSize: true,
+        updatedAt: true,
+        createdByUser: {
+          select: { name: true, email: true }
+        }
+      },
+      orderBy: [{ updatedAt: "desc" }, { createdAt: "desc" }]
+    });
+
+    return rows.filter(isPdfResource).map((row) => ({
+      id: row.id,
+      title: row.title,
+      description: row.description,
+      filename: row.attachmentFilename,
+      mimeType: row.attachmentMimeType,
+      size: row.attachmentSize,
+      updatedAt: row.updatedAt,
+      createdBy: row.createdByUser.name ?? row.createdByUser.email
     }));
   })
 });

@@ -63,6 +63,9 @@ export default async function TeacherHomePage() {
               <Link href="/teacher/upload" className="btn-primary">
                 {t("teacher.upload.cta_from_home")}
               </Link>
+              <Link href="/teacher/prep" className="btn-secondary">
+                {locale === "zh" ? "备课助手" : "Prep assistant"}
+              </Link>
               <Link href="/problems" className="btn-secondary">
                 {t("topnav.problems")}
               </Link>

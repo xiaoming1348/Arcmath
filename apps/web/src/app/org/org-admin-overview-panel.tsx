@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { trpc } from "@/lib/trpc/client";
 import { translator } from "@/i18n/client";
@@ -243,9 +244,12 @@ export function OrgAdminOverviewPanel({ locale }: { locale: Locale }) {
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <p className="text-sm font-semibold text-slate-900">
+                      <Link
+                        href={`/org/accounts/${encodeURIComponent(teacher.userId)}`}
+                        className="text-sm font-semibold text-slate-900 hover:text-[var(--accent)]"
+                      >
                         {teacher.name ?? teacher.email}
-                      </p>
+                      </Link>
                       <p className="text-xs text-slate-600">{teacher.email}</p>
                       <p className="mt-1 text-xs text-slate-500">
                         {t("org.overview.teacher_class_count", { count: teacher.classCount })} ·{" "}
@@ -276,9 +280,12 @@ export function OrgAdminOverviewPanel({ locale }: { locale: Locale }) {
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <p className="text-sm font-semibold text-slate-900">
+                      <Link
+                        href={`/org/accounts/${encodeURIComponent(student.userId)}`}
+                        className="text-sm font-semibold text-slate-900 hover:text-[var(--accent)]"
+                      >
                         {student.name ?? student.email}
-                      </p>
+                      </Link>
                       <p className="text-xs text-slate-600">{student.email}</p>
                     </div>
                     <ResetPasswordButton userId={student.userId} t={t} />
@@ -717,7 +724,11 @@ function ClassRosterCard({
       userId: string;
       user: { id: string; name: string | null; email: string };
     }>;
-    _count: { enrollments: number; assignments: number };
+    _count: {
+      enrollments: number;
+      assignments: number;
+      resourceAssignments: number;
+    };
   };
   allStudents: Array<{ userId: string; name: string | null; email: string }>;
   t: ReturnType<typeof translator>;
@@ -769,7 +780,9 @@ function ClassRosterCard({
           </p>
           <p className="mt-1 text-xs text-slate-500">
             {t("org.overview.class_enrollments", { count: klass._count.enrollments })} ·{" "}
-            {t("org.overview.class_assignments", { count: klass._count.assignments })}
+            {t("org.overview.class_assignments", {
+              count: klass._count.assignments + klass._count.resourceAssignments
+            })}
           </p>
         </div>
       </button>
@@ -791,10 +804,13 @@ function ClassRosterCard({
                     key={e.userId}
                     className="flex items-center justify-between gap-2 rounded border border-slate-200 bg-white px-2 py-1"
                   >
-                    <span className="text-xs text-slate-800">
+                    <Link
+                      href={`/org/accounts/${encodeURIComponent(e.userId)}`}
+                      className="text-xs text-slate-800 hover:text-[var(--accent)]"
+                    >
                       {e.user.name ?? e.user.email}
                       <span className="text-slate-400"> · {e.user.email}</span>
-                    </span>
+                    </Link>
                     <div className="flex items-center gap-2">
                       <ResetPasswordButton userId={e.userId} t={t} />
                       <button

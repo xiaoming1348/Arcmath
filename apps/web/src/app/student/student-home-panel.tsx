@@ -25,6 +25,8 @@ import type { AppRouter } from "@/lib/trpc/router";
 
 type StudentRouterOutputs = inferRouterOutputs<AppRouter>["student"];
 type AssignmentRow = StudentRouterOutputs["assignments"]["items"][number];
+type ResourceAssignmentRow =
+  StudentRouterOutputs["assignments"]["resourceItems"][number];
 type ClassRow = StudentRouterOutputs["overview"]["classes"][number];
 
 export function StudentHomePanel() {
@@ -50,10 +52,21 @@ export function StudentHomePanel() {
       completed: items.filter((it) => it.status === "COMPLETED")
     };
   }, [assignmentsQuery.data?.items]);
+  const resourceBuckets = useMemo(() => {
+    const items = assignmentsQuery.data?.resourceItems ?? [];
+    return {
+      overdue: items.filter((it) => it.status === "OVERDUE"),
+      active: items.filter(
+        (it) => it.status === "NOT_SUBMITTED" || it.status === "SUBMITTED"
+      ),
+      completed: items.filter((it) => it.status === "GRADED")
+    };
+  }, [assignmentsQuery.data?.resourceItems]);
 
   const isEmpty =
     !assignmentsQuery.isLoading &&
     (assignmentsQuery.data?.items.length ?? 0) === 0 &&
+    (assignmentsQuery.data?.resourceItems.length ?? 0) === 0 &&
     (overviewQuery.data?.classes.length ?? 0) === 0;
 
   return (
@@ -147,6 +160,27 @@ export function StudentHomePanel() {
                 items={buckets.completed}
                 onStart={(id) => startMutation.mutate({ assignmentId: id })}
                 isLaunching={startMutation.isPending}
+              />
+            ) : null}
+            {resourceBuckets.overdue.length > 0 ? (
+              <ResourceAssignmentGroup
+                heading="PDF assignments overdue"
+                tone="red"
+                items={resourceBuckets.overdue}
+              />
+            ) : null}
+            {resourceBuckets.active.length > 0 ? (
+              <ResourceAssignmentGroup
+                heading="PDF assignments"
+                tone="blue"
+                items={resourceBuckets.active}
+              />
+            ) : null}
+            {resourceBuckets.completed.length > 0 ? (
+              <ResourceAssignmentGroup
+                heading="Graded PDF assignments"
+                tone="green"
+                items={resourceBuckets.completed}
               />
             ) : null}
           </div>
@@ -288,6 +322,242 @@ function AssignmentRowCard({
   );
 }
 
+function ResourceAssignmentGroup({
+  heading,
+  tone,
+  items
+}: {
+  heading: string;
+  tone: "red" | "blue" | "green";
+  items: ResourceAssignmentRow[];
+}) {
+  const toneBar =
+    tone === "red"
+      ? "bg-red-500"
+      : tone === "green"
+        ? "bg-emerald-500"
+        : "bg-[var(--accent)]";
+
+  return (
+    <div className="space-y-2">
+      <div className="flex items-center gap-2">
+        <span className={`h-2 w-2 rounded-full ${toneBar}`} aria-hidden />
+        <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+          {heading}
+        </h3>
+      </div>
+      <ul className="space-y-2">
+        {items.map((item) => (
+          <ResourceAssignmentRowCard key={item.assignmentId} item={item} />
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function ResourceAssignmentRowCard({
+  item
+}: {
+  item: ResourceAssignmentRow;
+}) {
+  const { t } = useT();
+  const utils = trpc.useContext();
+  const [answerText, setAnswerText] = useState(
+    item.submission?.answerText ?? ""
+  );
+  const [attachmentFile, setAttachmentFile] = useState<File | null>(null);
+  const [localError, setLocalError] = useState<string | null>(null);
+  const dueLabel = useMemo(() => formatDueLabel(item.dueAt, t), [item.dueAt, t]);
+  const due =
+    typeof item.dueAt === "string"
+      ? new Date(item.dueAt)
+      : item.dueAt;
+  const isPastDue =
+    due != null && due.getTime() < Date.now() && !item.allowLateSubmissions;
+  const canSubmit =
+    !isPastDue && item.status !== "OVERDUE" && item.status !== "GRADED";
+
+  const submitMutation = trpc.student.resourceAssignments.submit.useMutation({
+    onSuccess: () => {
+      setLocalError(null);
+      utils.student.assignments.invalidate();
+      utils.student.overview.invalidate();
+    },
+    onError: (err) => setLocalError(err.message)
+  });
+
+  return (
+    <li className="rounded-2xl border border-slate-200 bg-white px-4 py-3">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="space-y-1">
+          <p className="text-sm font-semibold text-slate-900">{item.title}</p>
+          <p className="text-xs text-slate-500">
+            {t("student.home.assignment_from", { className: item.className })} ·{" "}
+            PDF
+          </p>
+          <p className="text-xs text-slate-500">
+            {translateResourceStudentStatus(item.status)} · {dueLabel}
+            {item.allowLateSubmissions ? " · late allowed" : ""}
+          </p>
+          {formatResourceScope(item) ? (
+            <p className="text-xs font-medium text-slate-600">
+              Selected: {formatResourceScope(item)}
+            </p>
+          ) : null}
+          {item.instructions ? (
+            <p className="whitespace-pre-wrap pt-1 text-sm text-slate-700">
+              {item.instructions}
+            </p>
+          ) : null}
+          {item.studentPrompt ? (
+            <div className="mt-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
+              <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                Assignment prompt
+              </p>
+              <p className="whitespace-pre-wrap text-sm leading-6 text-slate-800">
+                {item.studentPrompt}
+              </p>
+            </div>
+          ) : null}
+        </div>
+        <a
+          href={item.resourceDownloadUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="btn-secondary"
+        >
+          Open PDF
+        </a>
+      </div>
+
+      {item.submission ? (
+        <div className="mt-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
+          <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
+            Submitted {formatDate(item.submission.submittedAt)}
+          </p>
+          <p className="whitespace-pre-wrap text-sm leading-6 text-slate-800">
+            {item.submission.answerText || "File submission"}
+          </p>
+          {item.submission.attachmentFilename ? (
+            <a
+              className="mt-2 inline-flex text-xs font-semibold text-[var(--accent)] underline"
+              href={`/api/resource-submissions/${item.submission.id}/attachment`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {item.submission.attachmentFilename}
+              {item.submission.attachmentSize
+                ? ` · ${Math.ceil(item.submission.attachmentSize / 1024)} KB`
+                : ""}
+            </a>
+          ) : null}
+          {item.submission.gradedAt ? (
+            <div className="mt-3 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-900">
+              <p className="font-semibold">
+                Grade: {item.submission.gradeScore} / {item.submission.gradeMax}
+              </p>
+              {item.submission.feedback ? (
+                <p className="mt-1 whitespace-pre-wrap">
+                  {item.submission.feedback}
+                </p>
+              ) : null}
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+
+      {canSubmit ? (
+        <form
+          className="mt-3 space-y-2"
+          onSubmit={async (event) => {
+            event.preventDefault();
+            if (!answerText.trim() && !attachmentFile) {
+              setLocalError("Enter your answer or attach a file before submitting.");
+              return;
+            }
+            let attachment:
+              | { filename: string; mimeType: string; base64: string }
+              | undefined;
+            if (attachmentFile) {
+              if (attachmentFile.size > 8 * 1024 * 1024) {
+                setLocalError("Attachment must be 8 MB or smaller.");
+                return;
+              }
+              if (
+                ![
+                  "application/pdf",
+                  "image/jpeg",
+                  "image/png",
+                  "image/webp"
+                ].includes(attachmentFile.type)
+              ) {
+                setLocalError("Attach a PDF, JPG, PNG, or WebP file.");
+                return;
+              }
+              attachment = {
+                filename: attachmentFile.name,
+                mimeType: attachmentFile.type,
+                base64: await readFileAsBase64(attachmentFile)
+              };
+            }
+            submitMutation.mutate({
+              assignmentId: item.assignmentId,
+              answerText,
+              attachment
+            });
+          }}
+        >
+          <label className="space-y-2 text-sm text-slate-700">
+            <span>Your answer</span>
+            <textarea
+              className="input-field min-h-28"
+              value={answerText}
+              onChange={(event) => setAnswerText(event.target.value)}
+              placeholder="Paste your written solution or final answers here."
+            />
+          </label>
+          <label className="space-y-2 text-sm text-slate-700">
+            <span>Attach work (optional)</span>
+            <input
+              className="input-field"
+              type="file"
+              accept="application/pdf,image/jpeg,image/png,image/webp,.pdf,.jpg,.jpeg,.png,.webp"
+              onChange={(event) => {
+                setAttachmentFile(event.target.files?.[0] ?? null);
+                setLocalError(null);
+              }}
+            />
+          </label>
+          {attachmentFile ? (
+            <p className="text-xs text-slate-500">
+              Selected: {attachmentFile.name} ·{" "}
+              {Math.ceil(attachmentFile.size / 1024)} KB
+            </p>
+          ) : null}
+          <button
+            type="submit"
+            className="btn-primary"
+            disabled={submitMutation.isPending}
+          >
+            {submitMutation.isPending
+              ? t("common.loading")
+              : item.submission
+                ? "Update submission"
+                : "Submit answers"}
+          </button>
+          {localError ? (
+            <p className="text-sm text-red-600">{localError}</p>
+          ) : null}
+        </form>
+      ) : item.status === "OVERDUE" || isPastDue ? (
+        <p className="mt-3 text-sm text-red-600">
+          This assignment is past due and late submissions are closed.
+        </p>
+      ) : null}
+    </li>
+  );
+}
+
 function JoinClassForm({ onJoined }: { onJoined: () => void }) {
   const { t } = useT();
   const [code, setCode] = useState("");
@@ -402,6 +672,19 @@ function CountCard({
 
 // --- helpers ---------------------------------------------------------------
 
+function readFileAsBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = typeof reader.result === "string" ? reader.result : "";
+      const commaIndex = result.indexOf(",");
+      resolve(commaIndex >= 0 ? result.slice(commaIndex + 1) : result);
+    };
+    reader.onerror = () => reject(reader.error ?? new Error("Failed to read file"));
+    reader.readAsDataURL(file);
+  });
+}
+
 function formatDueLabel(
   dueAt: string | Date | null,
   t: ReturnType<typeof useT>["t"]
@@ -416,4 +699,56 @@ function formatDueLabel(
   if (diffMs < 2 * oneDayMs) return t("student.home.due_tomorrow");
   const days = Math.ceil(diffMs / oneDayMs);
   return t("student.home.due_in", { days });
+}
+
+function translateResourceStudentStatus(
+  status: "GRADED" | "SUBMITTED" | "OVERDUE" | "NOT_SUBMITTED"
+): string {
+  switch (status) {
+    case "GRADED":
+      return "Graded";
+    case "SUBMITTED":
+      return "Submitted";
+    case "OVERDUE":
+      return "Overdue";
+    case "NOT_SUBMITTED":
+      return "Not submitted";
+  }
+}
+
+function formatResourceScope(scope: {
+  sourcePageStart: number | null;
+  sourcePageEnd: number | null;
+  sourceProblemStart: string | null;
+  sourceProblemEnd: string | null;
+}): string | null {
+  const pageLabel =
+    scope.sourcePageStart != null && scope.sourcePageEnd != null
+      ? scope.sourcePageStart === scope.sourcePageEnd
+        ? `page ${scope.sourcePageStart}`
+        : `pages ${scope.sourcePageStart}-${scope.sourcePageEnd}`
+      : scope.sourcePageStart != null
+        ? `page ${scope.sourcePageStart}`
+        : null;
+  const problemLabel =
+    scope.sourceProblemStart && scope.sourceProblemEnd
+      ? scope.sourceProblemStart === scope.sourceProblemEnd
+        ? `problem ${scope.sourceProblemStart}`
+        : `problems ${scope.sourceProblemStart}-${scope.sourceProblemEnd}`
+      : scope.sourceProblemStart
+        ? `problem ${scope.sourceProblemStart}`
+        : null;
+  const parts = [pageLabel, problemLabel].filter(Boolean);
+  return parts.length > 0 ? parts.join(", ") : null;
+}
+
+function formatDate(value: string | Date): string {
+  const d = value instanceof Date ? value : new Date(value);
+  return d.toLocaleString(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit"
+  });
 }

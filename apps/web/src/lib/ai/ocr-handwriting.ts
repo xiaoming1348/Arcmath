@@ -628,3 +628,107 @@ export async function ocrHandwritingToLatex(params: {
     notes: notes && notes.length > 0 ? notes : null
   };
 }
+
+const printedMathPageOcrSchema = z.object({
+  text: z.string(),
+  confidence: confidenceSchema,
+  notes: z.string().nullable()
+});
+
+export type PrintedMathPageOcrResult = z.infer<typeof printedMathPageOcrSchema>;
+
+const PRINTED_MATH_PAGE_JSON_SCHEMA = {
+  type: "object",
+  additionalProperties: false,
+  properties: {
+    text: { type: "string" },
+    confidence: { type: "string", enum: ["high", "medium", "low", "none"] },
+    notes: { type: ["string", "null"] }
+  },
+  required: ["text", "confidence", "notes"]
+};
+
+function buildPrintedMathPagePrompt(params: {
+  uiLocale: "en" | "zh";
+  pageNumber?: number;
+}): string {
+  const noteLanguage = params.uiLocale === "zh" ? "Chinese (Simplified)" : "English";
+  const pageLine =
+    params.pageNumber != null
+      ? `This image is page ${params.pageNumber} from a PDF.`
+      : "This image is one page from a PDF.";
+
+  return [
+    "You are a careful OCR engine for printed or scanned math materials.",
+    pageLine,
+    "",
+    "Task:",
+    "- Transcribe only the visible page content into plain text with Markdown/LaTeX math where helpful.",
+    "- Preserve problem numbers, subparts, labels, and line breaks when they help a teacher identify selected problems.",
+    "- Preserve mathematical symbols and constraints accurately.",
+    "- If a diagram or table is essential but not machine-readable, insert a short bracketed note such as [diagram shown in source PDF].",
+    "",
+    "Hard rules:",
+    "- Do not solve any problem.",
+    "- Do not add answers, hints, explanations, or commentary that is not visible on the page.",
+    "- Do not invent missing text. If part of the page is unreadable, transcribe the readable parts and lower confidence.",
+    "- Drop page headers/footers only when they are clearly unrelated to the problems.",
+    `- Put notes in ${noteLanguage}.`,
+    "- Output JSON with { text, confidence, notes }."
+  ].join("\n");
+}
+
+export async function ocrPrintedMathPageToText(params: {
+  imageDataUrl: string;
+  uiLocale: "en" | "zh";
+  pageNumber?: number;
+  scope?: string;
+}): Promise<PrintedMathPageOcrResult | null> {
+  const scope = params.scope ?? "printed-math-page-ocr";
+  const apiKey = process.env.OPENAI_API_KEY;
+
+  if (!apiKey) {
+    if (!missingApiKeyWarnings.has(scope)) {
+      missingApiKeyWarnings.add(scope);
+      console.warn(`[${scope}] OPENAI_API_KEY is not set; PDF OCR disabled.`);
+    }
+    return null;
+  }
+
+  const imageDataUrl = normalizeOcrImageDataUrl(params.imageDataUrl);
+  if (!imageDataUrl) {
+    console.warn(`[${scope}] image not a recognized data URL; refusing to send.`);
+    return null;
+  }
+
+  const parsedJson = await requestVisionJson({
+    apiKey,
+    scope,
+    prompt: buildPrintedMathPagePrompt({
+      uiLocale: params.uiLocale,
+      pageNumber: params.pageNumber
+    }),
+    imageDataUrl,
+    schemaName: "printed_math_page_ocr",
+    schema: PRINTED_MATH_PAGE_JSON_SCHEMA,
+    maxTokens: 2600
+  });
+  if (!parsedJson) return null;
+
+  const validated = printedMathPageOcrSchema.safeParse(parsedJson);
+  if (!validated.success) {
+    console.error(`[${scope}] vision response failed schema`, {
+      issues: validated.error.issues.map((i) => ({
+        path: i.path.join("."),
+        code: i.code
+      }))
+    });
+    return null;
+  }
+
+  return {
+    text: validated.data.text.trim().slice(0, 12000),
+    confidence: validated.data.confidence,
+    notes: validated.data.notes?.trim().slice(0, 320) || null
+  };
+}

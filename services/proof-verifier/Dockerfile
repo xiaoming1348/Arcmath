@@ -6,17 +6,13 @@
 #   - Rule-based answer-equiv handles final answers
 #   - Escalation gate routes anything UNCERTAIN into the teacher queue
 #
-# Bundling Lean + Mathlib inside this image is possible (see Dockerfile
-# in git history — multi-stage with `lake build`) but costs:
+# Bundling Lean + Mathlib is supported by Dockerfile.lean, but costs:
 #   - 12+ hour first build (from-source Mathlib compile if cache misses)
 #   - 5-6 GB image push
 #   - 4 GB Fly VM minimum
 #
-# Until we have a CI pipeline that produces a reusable Mathlib base
-# image, we ship the slim version and let the escalation gate handle
-# CLAIM steps. The Lean-as-a-service investment will pay off once we
-# have hundreds of CLAIM-heavy proof submissions / day; below that
-# threshold, teacher review is the right answer.
+# Use this slim version when pilot cost matters more than Lean coverage.
+# Use Dockerfile.lean for the production formal-verification service.
 
 FROM python:3.11-slim
 

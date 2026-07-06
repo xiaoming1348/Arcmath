@@ -137,7 +137,7 @@ export function OcrDemo({
             <div
               className="relative overflow-hidden"
               style={{
-                background: "#fbf8f1",
+                background: "var(--demo-paper, #fbf8f1)",
                 border: "1px solid var(--border)",
                 borderRadius: "var(--radius-md)",
                 padding: "28px 24px",
@@ -153,7 +153,7 @@ export function OcrDemo({
                   position: "absolute",
                   inset: 0,
                   backgroundImage:
-                    "repeating-linear-gradient(to bottom, transparent 0, transparent 23px, rgba(0,0,0,0.06) 24px)",
+                    "repeating-linear-gradient(to bottom, transparent 0, transparent 23px, var(--demo-paper-line, rgba(0,0,0,0.06)) 24px)",
                   pointerEvents: "none"
                 }}
               />
@@ -165,7 +165,7 @@ export function OcrDemo({
                   fontStyle: "italic",
                   fontWeight: 500,
                   fontSize: "clamp(1.5rem, 2.4vw, 2rem)",
-                  color: "#1a1a1a",
+                  color: "var(--demo-paper-ink, #1a1a1a)",
                   transform: "rotate(-1.2deg) translateY(2px)",
                   opacity: stageIdx >= 1 ? 1 : 0,
                   animation:
@@ -227,7 +227,15 @@ export function OcrDemo({
                   transition: "background 200ms ease, color 200ms ease"
                 }}
               >
-                📷
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                  <path
+                    d="M5.4 4.2L6.3 2.8H9.7L10.6 4.2H12.3C13.1 4.2 13.8 4.9 13.8 5.7V11.4C13.8 12.2 13.1 12.9 12.3 12.9H3.7C2.9 12.9 2.2 12.2 2.2 11.4V5.7C2.2 4.9 2.9 4.2 3.7 4.2H5.4Z"
+                    stroke="currentColor"
+                    strokeWidth="1.35"
+                    strokeLinejoin="round"
+                  />
+                  <circle cx="8" cy="8.5" r="2.1" stroke="currentColor" strokeWidth="1.35" />
+                </svg>
               </span>
               <span>
                 {stageIdx < 2

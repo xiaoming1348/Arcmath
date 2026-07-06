@@ -42,6 +42,7 @@ interface OrganizationResourceStorage {
   putFile(resourceId: string, filename: string, mimeType: string, bytes: Buffer): Promise<OrganizationResourceStoredObject>;
   exists(locator: string): Promise<boolean>;
   readMetadata(locator: string): Promise<StoredMetadata | null>;
+  readFile(locator: string): Promise<Buffer | null>;
   getDownloadResponse(locator: string, filename: string, mimeType: string | null): Promise<OrganizationResourceDownloadResult | null>;
 }
 
@@ -169,6 +170,13 @@ function createLocalStorage(): OrganizationResourceStorage {
         sha256: createSha256(Buffer.from(bytes))
       };
     },
+    async readFile(locator) {
+      const exists = await ensureFileExists(locator);
+      if (!exists) {
+        return null;
+      }
+      return readFile(locator);
+    },
     async getDownloadResponse(locator, filename, mimeType) {
       const exists = await ensureFileExists(locator);
       if (!exists) {
@@ -270,6 +278,41 @@ function createS3Storage(): OrganizationResourceStorage {
           size: typeof head.ContentLength === "number" ? head.ContentLength : null,
           sha256: head.Metadata?.sha256 ?? null
         };
+      } catch (error) {
+        if (isMissingObjectError(error)) {
+          return null;
+        }
+        throw error;
+      }
+    },
+    async readFile(locator) {
+      try {
+        const parsed = parseS3Locator(locator);
+        if (!parsed) {
+          return null;
+        }
+        const result = await client.send(
+          new GetObjectCommand({ Bucket: parsed.bucket, Key: parsed.key })
+        );
+        if (!result.Body) {
+          return null;
+        }
+        const body = result.Body as {
+          transformToByteArray?: () => Promise<Uint8Array>;
+          transformToString?: () => Promise<string>;
+        };
+        if (typeof body.transformToByteArray === "function") {
+          return Buffer.from(await body.transformToByteArray());
+        }
+        if (typeof body.transformToString === "function") {
+          return Buffer.from(await body.transformToString());
+        }
+        const stream = result.Body as NodeJS.ReadableStream;
+        const chunks: Buffer[] = [];
+        for await (const chunk of stream) {
+          chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+        }
+        return Buffer.concat(chunks);
       } catch (error) {
         if (isMissingObjectError(error)) {
           return null;

@@ -5,7 +5,7 @@ defaultTargets = ["ArcmathVerifier"]
 [[require]]
 name = "mathlib"
 scope = "leanprover-community"
-rev = "master"
+rev = "4fceb4697e54f6bbea184bf4ecfc0296a1110f3e"
 
 [[lean_lib]]
 name = "ArcmathVerifier"

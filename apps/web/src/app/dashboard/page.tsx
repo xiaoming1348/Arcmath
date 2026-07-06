@@ -118,7 +118,7 @@ export default async function DashboardPage() {
               </h1>
               <p className="display-lede">
                 Monitor student practice, open saved reports, and keep the
-                trial moving without dropping into the student solving flow.
+                organization workspace moving without dropping into the student solving flow.
               </p>
               <div className="flex flex-wrap gap-3 pt-1">
                 <Link className="btn-primary" href="/org">

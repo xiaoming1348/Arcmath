@@ -24,6 +24,8 @@ function summarizeError(code: string | undefined): string | null {
       return "Add either resource content or an attachment.";
     case "attachment-too-large":
       return "Attachment is too large. Keep uploads under 15 MB for this MVP.";
+    case "attachment-not-pdf":
+      return "Only PDF attachments can be assigned as teacher materials.";
     case "forbidden":
       return "You do not have permission to manage organization resources.";
     default:
@@ -93,6 +95,13 @@ export default async function ResourcesPage({ searchParams }: ResourcesPageProps
 
     if (uploadedFile && uploadedFile.size > 15 * 1024 * 1024) {
       redirect("/resources?error=attachment-too-large");
+    }
+    if (
+      uploadedFile &&
+      uploadedFile.type !== "application/pdf" &&
+      !uploadedFile.name.toLowerCase().endsWith(".pdf")
+    ) {
+      redirect("/resources?error=attachment-not-pdf");
     }
 
     const resource = await prisma.organizationResource.create({
@@ -219,7 +228,7 @@ export default async function ResourcesPage({ searchParams }: ResourcesPageProps
             </label>
             <label className="space-y-2 text-sm text-slate-700 md:max-w-md">
               <span>{t("resources.attachment_label")}</span>
-              <input name="attachment" className="input-field" type="file" />
+              <input name="attachment" className="input-field" type="file" accept="application/pdf,.pdf" />
             </label>
             <button type="submit" className="btn-primary w-fit">
               {t("resources.publish_submit")}

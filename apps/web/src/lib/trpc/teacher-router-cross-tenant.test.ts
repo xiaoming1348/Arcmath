@@ -52,6 +52,34 @@ const CLASS_B = {
 const ASSIGN_A = { id: "assign_a", classId: CLASS_A.id };
 const ASSIGN_B = { id: "assign_b", classId: CLASS_B.id };
 
+const RESOURCE_A = {
+  id: "resource_a",
+  title: "Alpha PDF",
+  attachmentLocator: "/tmp/alpha.pdf",
+  attachmentFilename: "alpha.pdf",
+  attachmentMimeType: "application/pdf"
+};
+const RESOURCE_B = {
+  id: "resource_b",
+  title: "Bravo PDF",
+  attachmentLocator: "/tmp/bravo.pdf",
+  attachmentFilename: "bravo.pdf",
+  attachmentMimeType: "application/pdf"
+};
+
+const RESOURCE_ASSIGN_A = {
+  id: "resource_assign_a",
+  classId: CLASS_A.id,
+  organizationId: ORG_A.id,
+  createdByUserId: TEACHER_A_ID
+};
+const RESOURCE_ASSIGN_B = {
+  id: "resource_assign_b",
+  classId: CLASS_B.id,
+  organizationId: ORG_B.id,
+  createdByUserId: TEACHER_B_ID
+};
+
 const PS_A = {
   id: "ps_a",
   title: "Alpha's ORG_ONLY set",
@@ -207,6 +235,80 @@ function createIsolationFakePrisma() {
     },
     practiceRun: {
       findMany: refuseWrite("practiceRun.findMany")
+    },
+    organizationResource: {
+      findFirst: vi.fn(async (args: { where: { id: string; organizationId: string } }) => {
+        if (args.where.id === RESOURCE_A.id && args.where.organizationId === ORG_A.id) {
+          return { ...RESOURCE_A };
+        }
+        if (args.where.id === RESOURCE_B.id && args.where.organizationId === ORG_B.id) {
+          return { ...RESOURCE_B };
+        }
+        return null;
+      })
+    },
+    resourceAssignment: {
+      findUnique: vi.fn(async (args: { where: { id: string } }) => {
+        if (args.where.id === RESOURCE_ASSIGN_A.id) {
+          return {
+            ...RESOURCE_ASSIGN_A,
+            title: "Alpha PDF assignment",
+            instructions: null,
+            sourcePageStart: null,
+            sourcePageEnd: null,
+            sourceProblemStart: null,
+            sourceProblemEnd: null,
+            sourceExcerpt: null,
+            studentPrompt: null,
+            gradingGuidance: null,
+            dueAt: null,
+            allowLateSubmissions: false,
+            class: {
+              organizationId: ORG_A.id,
+              enrollments: []
+            },
+            resource: {
+              id: RESOURCE_A.id,
+              title: RESOURCE_A.title,
+              attachmentFilename: RESOURCE_A.attachmentFilename
+            },
+            submissions: []
+          };
+        }
+        if (args.where.id === RESOURCE_ASSIGN_B.id) {
+          return {
+            ...RESOURCE_ASSIGN_B,
+            title: "Bravo PDF assignment",
+            instructions: null,
+            sourcePageStart: null,
+            sourcePageEnd: null,
+            sourceProblemStart: null,
+            sourceProblemEnd: null,
+            sourceExcerpt: null,
+            studentPrompt: null,
+            gradingGuidance: null,
+            dueAt: null,
+            allowLateSubmissions: false,
+            class: {
+              organizationId: ORG_B.id,
+              enrollments: []
+            },
+            resource: {
+              id: RESOURCE_B.id,
+              title: RESOURCE_B.title,
+              attachmentFilename: RESOURCE_B.attachmentFilename
+            },
+            submissions: []
+          };
+        }
+        return null;
+      }),
+      create: refuseWrite("resourceAssignment.create"),
+      delete: refuseWrite("resourceAssignment.delete")
+    },
+    resourceAssignmentSubmission: {
+      findUnique: refuseWrite("resourceAssignmentSubmission.findUnique"),
+      update: refuseWrite("resourceAssignmentSubmission.update")
     },
     auditLogEvent: {
       // logAudit wraps create in try/catch and swallows errors — so if a
@@ -391,6 +493,137 @@ describe("cross-tenant isolation for teacher.assignments.*", () => {
   });
 });
 
+describe("cross-tenant isolation for teacher.resourceAssignments.*", () => {
+  it("teacher.resourceAssignments.create refuses another org's classId before resource lookup", async () => {
+    const prisma = createIsolationFakePrisma();
+    const caller = callerForOrgA(prisma);
+    await expectTrpcCode(
+      caller.teacher.resourceAssignments.create({
+        classId: CLASS_B.id,
+        resourceId: RESOURCE_A.id
+      }),
+      "FORBIDDEN"
+    );
+    expect(prisma.organizationResource.findFirst).not.toHaveBeenCalled();
+    expect(prisma.resourceAssignment.create).not.toHaveBeenCalled();
+    expect(prisma.auditLogEvent.create).not.toHaveBeenCalled();
+  });
+
+  it("teacher.resourceAssignments.create refuses another org's PDF resource with NOT_FOUND", async () => {
+    const prisma = createIsolationFakePrisma();
+    const caller = callerForOrgA(prisma);
+    await expectTrpcCode(
+      caller.teacher.resourceAssignments.create({
+        classId: CLASS_A.id,
+        resourceId: RESOURCE_B.id,
+        sourcePageStart: 35,
+        sourcePageEnd: 36,
+        sourceProblemStart: "3",
+        sourceProblemEnd: "9"
+      }),
+      "NOT_FOUND"
+    );
+    expect(prisma.resourceAssignment.create).not.toHaveBeenCalled();
+    expect(prisma.auditLogEvent.create).not.toHaveBeenCalled();
+  });
+
+  it("teacher.resourceAssignments.draft refuses another org's PDF resource with NOT_FOUND", async () => {
+    const prisma = createIsolationFakePrisma();
+    const caller = callerForOrgA(prisma);
+    await expectTrpcCode(
+      caller.teacher.resourceAssignments.draft({
+        resourceId: RESOURCE_B.id,
+        language: "en",
+        sourceExcerpt: "This is enough copied source text from another tenant's PDF."
+      }),
+      "NOT_FOUND"
+    );
+    expect(prisma.auditLogEvent.create).not.toHaveBeenCalled();
+  });
+
+  it("teacher.resourceAssignments.problemSetDraft refuses another org's PDF resource with NOT_FOUND", async () => {
+    const prisma = createIsolationFakePrisma();
+    const caller = callerForOrgA(prisma);
+    await expectTrpcCode(
+      caller.teacher.resourceAssignments.problemSetDraft({
+        resourceId: RESOURCE_B.id,
+        language: "en",
+        sourceExcerpt: "This is enough copied source text from another tenant's PDF."
+      }),
+      "NOT_FOUND"
+    );
+    expect(prisma.auditLogEvent.create).not.toHaveBeenCalled();
+  });
+
+  it("teacher.resourceAssignments.extractSelection refuses another org's PDF resource with NOT_FOUND", async () => {
+    const prisma = createIsolationFakePrisma();
+    const caller = callerForOrgA(prisma);
+    await expectTrpcCode(
+      caller.teacher.resourceAssignments.extractSelection({
+        resourceId: RESOURCE_B.id,
+        sourcePageStart: 35,
+        sourcePageEnd: 36
+      }),
+      "NOT_FOUND"
+    );
+    expect(prisma.auditLogEvent.create).not.toHaveBeenCalled();
+  });
+
+  it("teacher.resourceAssignments.progress refuses another org's assignmentId with NOT_FOUND", async () => {
+    const prisma = createIsolationFakePrisma();
+    const caller = callerForOrgA(prisma);
+    await expectTrpcCode(
+      caller.teacher.resourceAssignments.progress({
+        assignmentId: RESOURCE_ASSIGN_B.id
+      }),
+      "NOT_FOUND"
+    );
+  });
+
+  it("teacher.resourceAssignments.grade refuses another org's assignmentId before submission lookup", async () => {
+    const prisma = createIsolationFakePrisma();
+    const caller = callerForOrgA(prisma);
+    await expectTrpcCode(
+      caller.teacher.resourceAssignments.grade({
+        assignmentId: RESOURCE_ASSIGN_B.id,
+        studentUserId: "student_b",
+        gradeScore: 8,
+        gradeMax: 10
+      }),
+      "NOT_FOUND"
+    );
+    expect(prisma.resourceAssignmentSubmission.findUnique).not.toHaveBeenCalled();
+    expect(prisma.resourceAssignmentSubmission.update).not.toHaveBeenCalled();
+    expect(prisma.auditLogEvent.create).not.toHaveBeenCalled();
+  });
+
+  it("teacher.resourceAssignments.delete refuses another org's assignmentId with NOT_FOUND", async () => {
+    const prisma = createIsolationFakePrisma();
+    const caller = callerForOrgA(prisma);
+    await expectTrpcCode(
+      caller.teacher.resourceAssignments.delete({
+        assignmentId: RESOURCE_ASSIGN_B.id
+      }),
+      "NOT_FOUND"
+    );
+    expect(prisma.resourceAssignment.delete).not.toHaveBeenCalled();
+    expect(prisma.auditLogEvent.create).not.toHaveBeenCalled();
+  });
+});
+
+describe("cross-tenant isolation for teacher.gradebook.*", () => {
+  it("teacher.gradebook.summary refuses another org's classId with NOT_FOUND", async () => {
+    const prisma = createIsolationFakePrisma();
+    const caller = callerForOrgA(prisma);
+    await expectTrpcCode(
+      caller.teacher.gradebook.summary({ classId: CLASS_B.id }),
+      "NOT_FOUND"
+    );
+    expect(prisma.practiceRun.findMany).not.toHaveBeenCalled();
+    expect(prisma.auditLogEvent.create).not.toHaveBeenCalled();
+  });
+});
+
 describe("cross-tenant isolation for teacher.* — payload-shape guard", () => {
   it("never returns org B's data to a caller in org A (all queries reject)", async () => {
     // Belt-and-suspenders: even if one of the specific-code tests above
@@ -417,7 +650,39 @@ describe("cross-tenant isolation for teacher.* — payload-shape guard", () => {
         classId: CLASS_B.id,
         problemSetId: PS_A.id
       }),
-      caller.teacher.assignments.delete({ assignmentId: ASSIGN_B.id })
+      caller.teacher.assignments.delete({ assignmentId: ASSIGN_B.id }),
+      caller.teacher.resourceAssignments.create({
+        classId: CLASS_B.id,
+        resourceId: RESOURCE_A.id
+      }),
+      caller.teacher.resourceAssignments.draft({
+        resourceId: RESOURCE_B.id,
+        language: "en",
+        sourceExcerpt: "This is enough copied source text from another tenant's PDF."
+      }),
+      caller.teacher.resourceAssignments.problemSetDraft({
+        resourceId: RESOURCE_B.id,
+        language: "en",
+        sourceExcerpt: "This is enough copied source text from another tenant's PDF."
+      }),
+      caller.teacher.resourceAssignments.extractSelection({
+        resourceId: RESOURCE_B.id,
+        sourcePageStart: 35,
+        sourcePageEnd: 36
+      }),
+      caller.teacher.resourceAssignments.progress({
+        assignmentId: RESOURCE_ASSIGN_B.id
+      }),
+      caller.teacher.resourceAssignments.grade({
+        assignmentId: RESOURCE_ASSIGN_B.id,
+        studentUserId: "student_b",
+        gradeScore: 1,
+        gradeMax: 2
+      }),
+      caller.teacher.resourceAssignments.delete({
+        assignmentId: RESOURCE_ASSIGN_B.id
+      }),
+      caller.teacher.gradebook.summary({ classId: CLASS_B.id })
     ];
 
     const settled = await Promise.allSettled(calls);
@@ -433,6 +698,9 @@ describe("cross-tenant isolation for teacher.* — payload-shape guard", () => {
     expect(prisma.class.delete).not.toHaveBeenCalled();
     expect(prisma.classAssignment.create).not.toHaveBeenCalled();
     expect(prisma.classAssignment.delete).not.toHaveBeenCalled();
+    expect(prisma.resourceAssignment.create).not.toHaveBeenCalled();
+    expect(prisma.resourceAssignment.delete).not.toHaveBeenCalled();
+    expect(prisma.resourceAssignmentSubmission.update).not.toHaveBeenCalled();
     expect(prisma.enrollment.create).not.toHaveBeenCalled();
     expect(prisma.enrollment.delete).not.toHaveBeenCalled();
     expect(prisma.organizationMembership.upsert).not.toHaveBeenCalled();

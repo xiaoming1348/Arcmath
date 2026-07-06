@@ -562,7 +562,16 @@ export default async function PracticeSetPage({ params }: PracticeSetPageProps) 
                 <div className="space-y-2">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <h3 className="text-base font-semibold text-slate-900">Problem {problem.number}</h3>
-                    {problem.sourceLabel ? (
+                    {problem.sourceLabel && practiceSetData.sourceUrl ? (
+                      <a
+                        href={practiceSetData.sourceUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-500 hover:border-[var(--accent)]"
+                      >
+                        Source · {problem.sourceLabel}
+                      </a>
+                    ) : problem.sourceLabel ? (
                       <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-500">
                         Source · {problem.sourceLabel}
                       </span>

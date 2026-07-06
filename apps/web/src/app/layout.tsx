@@ -51,9 +51,9 @@ const florid = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "ArcMath — Formally verified competition math",
+  title: "ArcMath — Math teaching platform for schools",
   description:
-    "Math competition practice where every step a student writes is checked by SymPy or Lean — not by an LLM guessing. AMC, AIME, Putnam, Euclid, MAT, STEP, USAMO."
+    "A Canvas-style math teaching platform for schools and tutoring organizations: classes, rosters, PDF assignments, submissions, gradebooks, reports, and verified grading."
 };
 
 export default async function RootLayout({

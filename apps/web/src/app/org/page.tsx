@@ -45,7 +45,7 @@ function summarizeError(code: string | undefined): string | null {
       // bookmarked URLs still render a sensible message.
       return "This school already has its admin account; only one admin per school is allowed.";
     case "student-seat-limit":
-      return "This trial organization has already used all 30 student seats.";
+      return "This organization workspace has already used all 30 student seats.";
     case "forbidden":
       return "You do not have permission to manage this organization.";
     default:
@@ -245,8 +245,8 @@ export default async function OrganizationPage({ searchParams }: OrganizationPag
     return (
       <main className="motion-rise space-y-4">
         <section className="surface-card space-y-3">
-          <span className="badge">Organization Trial</span>
-          <h1 className="text-2xl font-semibold text-slate-900">Create a trial organization</h1>
+          <span className="badge">Organization setup</span>
+          <h1 className="text-2xl font-semibold text-slate-900">Create an organization workspace</h1>
           <p className="text-sm text-slate-600">
             Start the institution version with one owner account, up to 5 admin seats, and up to 30 student seats.
           </p>
@@ -257,7 +257,7 @@ export default async function OrganizationPage({ searchParams }: OrganizationPag
               <input name="organizationName" className="input-field" type="text" placeholder="Example: North Star Academy" />
             </label>
             <button type="submit" className="btn-primary w-fit">
-              Start Free Trial
+              Create organization
             </button>
           </form>
         </section>
@@ -367,10 +367,10 @@ export default async function OrganizationPage({ searchParams }: OrganizationPag
       <section className="surface-card space-y-3">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="space-y-2">
-            <span className="badge">Organization Trial</span>
+            <span className="badge">Organization workspace</span>
             <h1 className="text-2xl font-semibold text-slate-900">{organization.name}</h1>
             <p className="text-sm text-slate-600">
-              Trial plan · slug `{organization.slug}` · trial ends {formatDate(organization.trialEndsAt)}
+              Workspace slug `{organization.slug}` · current seat limits shown below
             </p>
           </div>
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
@@ -379,7 +379,7 @@ export default async function OrganizationPage({ searchParams }: OrganizationPag
           </div>
         </div>
 
-        {created ? <p className="text-sm text-emerald-700">Trial organization created successfully.</p> : null}
+        {created ? <p className="text-sm text-emerald-700">Organization workspace created successfully.</p> : null}
         {added ? <p className="text-sm text-emerald-700">Member account created successfully.</p> : null}
         {summarizeError(error) ? <p className="text-sm text-red-600">{summarizeError(error)}</p> : null}
 

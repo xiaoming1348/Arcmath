@@ -51,7 +51,7 @@ export function TeacherHomePanel({
 
   return (
     <div className="space-y-4">
-      <section className="grid gap-3 md:grid-cols-4">
+      <section className="grid gap-3 md:grid-cols-3 xl:grid-cols-6">
         <OverviewCard
           label={t("teacher.home.classes_card")}
           value={overview ? String(overview.classCount) : "—"}
@@ -75,6 +75,14 @@ export function TeacherHomePanel({
         <OverviewCard
           label={t("teacher.home.upcoming_due_card")}
           value={overview ? String(overview.upcomingDueCount) : "—"}
+        />
+        <OverviewCard
+          label={locale === "zh" ? "待评分" : "Needs grading"}
+          value={overview ? String(overview.needsGradingCount) : "—"}
+        />
+        <OverviewCard
+          label={locale === "zh" ? "已逾期" : "Overdue"}
+          value={overview ? String(overview.overdueAssignmentCount) : "—"}
         />
       </section>
 

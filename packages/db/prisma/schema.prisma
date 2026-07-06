@@ -229,8 +229,8 @@ enum RubricSource {
 }
 
 model User {
-  id                             String                   @id @default(cuid())
-  email                          String                   @unique
+  id                             String                         @id @default(cuid())
+  email                          String                         @unique
   name                           String?
   // Nullable so admin-spawned accounts (created via
   // orgAdmin.createClassWithRoster) start without a password — the
@@ -244,7 +244,7 @@ model User {
   // by distributing the credentials directly).
   emailVerifiedAt                DateTime?
   emailVerificationTokens        EmailVerificationToken[]
-  role                           Role                     @default(STUDENT)
+  role                           Role                           @default(STUDENT)
   // Preferred UI language ("en" | "zh"). Null → fall back to browser
   // Accept-Language or org-default. Stored here so a student who logs
   // in from a shared device still sees their preferred language.
@@ -257,8 +257,8 @@ model User {
   // "en". Opt-in to Chinese via /account.
   feedbackLocale                 String?
   studentProgressSnapshots       StudentProgressSnapshot[]
-  createdAt                      DateTime                 @default(now())
-  updatedAt                      DateTime                 @updatedAt
+  createdAt                      DateTime                       @default(now())
+  updatedAt                      DateTime                       @updatedAt
   enrollments                    Enrollment[]
   importJobs                     ImportJob[]
   resourceAccesses               UserResourceAccess[]
@@ -269,17 +269,20 @@ model User {
   learningReportSnapshots        LearningReportSnapshot[]
   organizationResourcesCreated   OrganizationResource[]
   organizationAssignmentsCreated OrganizationAssignment[]
-  classesCreated                 Class[]                  @relation("ClassCreatedBy")
-  classesAssigned                Class[]                  @relation("ClassAssignedTeacher")
+  resourceAssignmentsCreated     ResourceAssignment[]
+  classesCreated                 Class[]                        @relation("ClassCreatedBy")
+  classesAssigned                Class[]                        @relation("ClassAssignedTeacher")
   classAssignmentsCreated        ClassAssignment[]
-  problemSetsOwned               ProblemSet[]             @relation("ProblemSetOwner")
+  resourceAssignmentSubmissions  ResourceAssignmentSubmission[] @relation("ResourceAssignmentStudent")
+  resourceAssignmentGrades       ResourceAssignmentSubmission[] @relation("ResourceAssignmentGrader")
+  problemSetsOwned               ProblemSet[]                   @relation("ProblemSetOwner")
   tutorSessions                  TutorSession[]
   tutorTurns                     TutorTurn[]
   attemptSteps                   AttemptStep[]
-  auditLogEvents                 AuditLogEvent[]  @relation("AuditLogActor")
+  auditLogEvents                 AuditLogEvent[]                @relation("AuditLogActor")
   ocrCallLogs                    OcrCallLog[]
-  parentInvitesAsStudent         ParentInvite[]   @relation("ParentInviteStudent")
-  parentInvitesIssued            ParentInvite[]   @relation("ParentInviteTeacher")
+  parentInvitesAsStudent         ParentInvite[]                 @relation("ParentInviteStudent")
+  parentInvitesIssued            ParentInvite[]                 @relation("ParentInviteTeacher")
 }
 
 // One-shot email verification token. A new row is created at
@@ -290,14 +293,14 @@ model User {
 // for audit but can't be re-used. We also keep `purpose` so the
 // same table can later carry password-reset tokens etc.
 model EmailVerificationToken {
-  id          String   @id @default(cuid())
-  token       String   @unique
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  purpose     String   @default("EMAIL_VERIFICATION") // EMAIL_VERIFICATION | PASSWORD_RESET (future)
-  expiresAt   DateTime
-  consumedAt  DateTime?
-  createdAt   DateTime @default(now())
+  id         String    @id @default(cuid())
+  token      String    @unique
+  userId     String
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  purpose    String    @default("EMAIL_VERIFICATION") // EMAIL_VERIFICATION | PASSWORD_RESET (future)
+  expiresAt  DateTime
+  consumedAt DateTime?
+  createdAt  DateTime  @default(now())
 
   @@index([userId, purpose])
   @@index([expiresAt])
@@ -331,6 +334,7 @@ model Organization {
   learningReportSnapshots LearningReportSnapshot[]
   resources               OrganizationResource[]
   assignments             OrganizationAssignment[]
+  resourceAssignments     ResourceAssignment[]
   auditLogEvents          AuditLogEvent[]
   parentInvites           ParentInvite[]
 }
@@ -352,29 +356,30 @@ model OrganizationMembership {
 }
 
 model Class {
-  id              String            @id @default(cuid())
-  name            String
+  id                  String               @id @default(cuid())
+  name                String
   // Tenant scope. Null during pilot bootstrap / legacy rows; for new
   // rows created through the teacher-workflow router this is NOT null.
   // We keep nullable so historical dev-mode Classes don't break.
-  organizationId  String?
-  createdByUserId String?
+  organizationId      String?
+  createdByUserId     String?
   // The teacher who runs this class day-to-day. When the school admin
   // creates a class and hands it to a teacher, this points at the
   // teacher (and createdByUserId is the admin). When a teacher
   // self-creates one these converge to the same user. Nullable so
   // legacy pre-feature classes stay valid.
-  assignedTeacherId String?
+  assignedTeacherId   String?
   // 6-char alphanumeric code a teacher shares verbally. Students
   // self-enroll by entering it (validated within the same tenant).
-  joinCode        String?           @unique
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-  organization    Organization?     @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  createdByUser   User?             @relation("ClassCreatedBy", fields: [createdByUserId], references: [id], onDelete: SetNull)
-  assignedTeacher User?             @relation("ClassAssignedTeacher", fields: [assignedTeacherId], references: [id], onDelete: SetNull)
-  enrollments     Enrollment[]
-  assignments     ClassAssignment[]
+  joinCode            String?              @unique
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  organization        Organization?        @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdByUser       User?                @relation("ClassCreatedBy", fields: [createdByUserId], references: [id], onDelete: SetNull)
+  assignedTeacher     User?                @relation("ClassAssignedTeacher", fields: [assignedTeacherId], references: [id], onDelete: SetNull)
+  enrollments         Enrollment[]
+  assignments         ClassAssignment[]
+  resourceAssignments ResourceAssignment[]
 
   @@index([organizationId, createdAt])
   @@index([createdByUserId, createdAt])
@@ -386,32 +391,32 @@ model Class {
 /// made under an assignment link back here so per-class progress can be
 /// computed without scanning every run in the org.
 model ClassAssignment {
-  id              String        @id @default(cuid())
-  classId         String
-  problemSetId    String
-  createdByUserId String
+  id               String        @id @default(cuid())
+  classId          String
+  problemSetId     String
+  createdByUserId  String
   // Teacher-facing title. Often mirrors ProblemSet.title ("AMC 10 2020
   // #11-20") but teachers can override ("Week 3 Homework") without
   // changing the underlying set.
-  title           String
-  instructions    String?
-  assignedAt      DateTime      @default(now())
+  title            String
+  instructions     String?
+  assignedAt       DateTime      @default(now())
   // Optional gate: students can't start before openAt.
-  openAt          DateTime?
-  dueAt           DateTime?
+  openAt           DateTime?
+  dueAt            DateTime?
   // Per-assignment switch the teacher flips when posting homework.
   // When false, the AI hint tutor panel is hidden for this assignment;
   // when true, hints are available and ProblemHintUsage logs each
   // request so the teacher report shows hint counts. Default false so
   // historical assignments stay strictly graded until a teacher opts
   // in.
-  hintTutorEnabled Boolean      @default(false)
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
-  class           Class         @relation(fields: [classId], references: [id], onDelete: Cascade)
-  problemSet      ProblemSet    @relation(fields: [problemSetId], references: [id], onDelete: Cascade)
-  createdByUser   User          @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
-  practiceRuns    PracticeRun[]
+  hintTutorEnabled Boolean       @default(false)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  class            Class         @relation(fields: [classId], references: [id], onDelete: Cascade)
+  problemSet       ProblemSet    @relation(fields: [problemSetId], references: [id], onDelete: Cascade)
+  createdByUser    User          @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
+  practiceRuns     PracticeRun[]
 
   @@unique([classId, problemSetId])
   @@index([classId, dueAt])
@@ -755,7 +760,7 @@ model TutorTurn {
 }
 
 model OrganizationResource {
-  id                 String       @id @default(cuid())
+  id                 String               @id @default(cuid())
   organizationId     String
   createdByUserId    String
   title              String
@@ -766,13 +771,76 @@ model OrganizationResource {
   attachmentMimeType String?
   attachmentSize     Int?
   attachmentSha256   String?
-  createdAt          DateTime     @default(now())
-  updatedAt          DateTime     @updatedAt
-  organization       Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  createdByUser      User         @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  organization       Organization         @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdByUser      User                 @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
+  assignments        ResourceAssignment[]
 
   @@index([organizationId, createdAt])
   @@index([createdByUserId, createdAt])
+}
+
+/// A teacher-assigned PDF / free-form resource task. This intentionally
+/// sits beside ClassAssignment (structured ProblemSet homework) instead
+/// of pretending raw PDFs can be auto-graded through ProblemAttempt.
+/// Students submit written answers; teachers grade score + feedback.
+model ResourceAssignment {
+  id                   String                         @id @default(cuid())
+  organizationId       String
+  classId              String
+  resourceId           String
+  createdByUserId      String
+  title                String
+  instructions         String?
+  sourcePageStart      Int?
+  sourcePageEnd        Int?
+  sourceProblemStart   String?
+  sourceProblemEnd     String?
+  sourceExcerpt        String?
+  studentPrompt        String?
+  gradingGuidance      String?
+  dueAt                DateTime?
+  allowLateSubmissions Boolean                        @default(false)
+  createdAt            DateTime                       @default(now())
+  updatedAt            DateTime                       @updatedAt
+  organization         Organization                   @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  class                Class                          @relation(fields: [classId], references: [id], onDelete: Cascade)
+  resource             OrganizationResource           @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  createdByUser        User                           @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
+  submissions          ResourceAssignmentSubmission[]
+
+  @@index([organizationId, dueAt])
+  @@index([classId, dueAt])
+  @@index([resourceId, createdAt])
+  @@index([createdByUserId, createdAt])
+}
+
+model ResourceAssignmentSubmission {
+  id             String             @id @default(cuid())
+  assignmentId   String
+  studentUserId  String
+  answerText     String
+  attachmentLocator  String?
+  attachmentFilename String?
+  attachmentMimeType String?
+  attachmentSize     Int?
+  attachmentSha256   String?
+  submittedAt    DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+  gradeScore     Float?
+  gradeMax       Float              @default(100)
+  feedback       String?
+  gradedAt       DateTime?
+  gradedByUserId String?
+  assignment     ResourceAssignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  student        User               @relation("ResourceAssignmentStudent", fields: [studentUserId], references: [id], onDelete: Cascade)
+  gradedByUser   User?              @relation("ResourceAssignmentGrader", fields: [gradedByUserId], references: [id], onDelete: SetNull)
+
+  @@unique([assignmentId, studentUserId])
+  @@index([studentUserId, submittedAt])
+  @@index([assignmentId, submittedAt])
+  @@index([gradedByUserId, gradedAt])
 }
 
 model OrganizationAssignment {
@@ -832,28 +900,28 @@ model ImportJob {
 // can promote `imageHash` to a `imageStorageKey` and start uploading
 // to S3, but Sprint 2 keeps it minimal.
 model OcrCallLog {
-  id              String   @id @default(cuid())
-  userId          String
-  createdAt       DateTime @default(now())
+  id               String   @id @default(cuid())
+  userId           String
+  createdAt        DateTime @default(now())
   // "single_step" → Sprint 1 single-step OCR call.
   // "multi_step"  → Sprint 2 batch call that returns N steps.
-  kind            String
+  kind             String
   // Number of steps the model emitted (1 for single_step, 0..N for
   // multi_step). Null if the call failed before getting a response.
-  stepCount       Int?
+  stepCount        Int?
   // Max confidence among returned steps ("high"/"medium"/"low"/"none"),
   // null on failure. Stringly-typed instead of an enum to avoid a
   // migration for every new bucket we might add.
-  topConfidence   String?
+  topConfidence    String?
   // True if the call returned without error (regardless of confidence).
   // False on auth/network/parse failures — useful for monitoring API
   // health distinct from "model said it can't read."
-  succeeded       Boolean  @default(true)
+  succeeded        Boolean  @default(true)
   // Optional foreign key to the attempt the student was on, so we can
   // later correlate OCR usage with grading outcomes. Nullable because
   // the user might OCR before/outside a specific attempt context.
   problemAttemptId String?
-  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, createdAt])
   @@index([createdAt])
@@ -876,9 +944,9 @@ model OcrCallLog {
 /// accounts is a separate roadmap item; the invite-token model keeps
 /// the MVP scope tight.
 model ParentInvite {
-  id              String   @id @default(cuid())
+  id              String    @id @default(cuid())
   /// 32-byte random hex (64 chars). Treated as a credential — never log.
-  token           String   @unique
+  token           String    @unique
   studentUserId   String
   parentEmail     String
   invitedByUserId String
@@ -896,9 +964,9 @@ model ParentInvite {
   /// working (page renders an "invite revoked" state).
   revokedAt       DateTime?
 
-  student        User         @relation("ParentInviteStudent", fields: [studentUserId], references: [id], onDelete: Cascade)
-  invitedBy      User         @relation("ParentInviteTeacher", fields: [invitedByUserId], references: [id], onDelete: Cascade)
-  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  student      User         @relation("ParentInviteStudent", fields: [studentUserId], references: [id], onDelete: Cascade)
+  invitedBy    User         @relation("ParentInviteTeacher", fields: [invitedByUserId], references: [id], onDelete: Cascade)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
   @@index([studentUserId])
   @@index([organizationId])

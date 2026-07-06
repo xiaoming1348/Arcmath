@@ -87,6 +87,13 @@ const ACTIVITY_FEED_ACTIONS = [
   "class.assignment.create",
   "class.assignment.update",
   "class.assignment.delete",
+  "resource.assignment.create",
+  "resource.assignment.draft",
+  "resource.assignment.extract",
+  "resource.assignment.delete",
+  "resource.assignment.grade",
+  "resource.assignment.submit",
+  "teacher.prep.generate",
   "class.invite_students",
   "teacher.invite",
   "student.attempt.submit",
@@ -168,7 +175,11 @@ export const orgAdminRouter = router({
             orderBy: { createdAt: "asc" }
           },
           _count: {
-            select: { enrollments: true, assignments: true }
+            select: {
+              enrollments: true,
+              assignments: true,
+              resourceAssignments: true
+            }
           }
         },
         orderBy: { createdAt: "desc" }
@@ -215,7 +226,10 @@ export const orgAdminRouter = router({
       const prev = classCountByTeacher.get(teacherId) ?? { classes: 0, assignments: 0 };
       classCountByTeacher.set(teacherId, {
         classes: prev.classes + 1,
-        assignments: prev.assignments + klass._count.assignments
+        assignments:
+          prev.assignments +
+          klass._count.assignments +
+          klass._count.resourceAssignments
       });
     }
 

@@ -3,13 +3,11 @@ import { translatorImpl as translator } from "@/i18n/dictionary";
 import { Eyebrow, Section } from "@/components/ui";
 
 /**
- * Terms of Service — pilot v1.
+ * Terms of Service.
  *
- * Pilot-critical: any international school doing due diligence will ask
- * for this page before signing students up. We keep the language plain
- * and avoid templating in clauses that don't apply to a free pilot
- * (no payment terms, no liability caps tied to fees). When pilot turns
- * paid, the user (or their counsel) should re-review the limits.
+ * Schools doing due diligence will ask for this page before signing
+ * students up. Keep the language plain and avoid clauses that do not
+ * match the current product state.
  */
 export const dynamic = "force-static";
 

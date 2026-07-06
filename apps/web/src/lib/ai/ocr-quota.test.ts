@@ -89,7 +89,7 @@ describe("getOcrQuotaStatus", () => {
   });
 
   it("computes a UTC-day-bounded count window", async () => {
-    const countSpy = vi.fn(async () => 0);
+    const countSpy = vi.fn(async (_args: unknown) => 0);
     const prisma = {
       ocrCallLog: { count: countSpy }
     } as unknown as Parameters<typeof getOcrQuotaStatus>[0]["prisma"];

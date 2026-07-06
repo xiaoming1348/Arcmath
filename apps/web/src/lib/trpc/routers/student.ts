@@ -3,6 +3,7 @@ import { z } from "zod";
 import { Prisma } from "@arcmath/db";
 import { protectedProcedure, router } from "@/lib/trpc/server";
 import { logAudit } from "@/lib/audit";
+import { getOrganizationResourceStorage } from "@/lib/organization-resource-storage";
 
 /**
  * Student-facing surface: list classes the student is in, upcoming and
@@ -30,6 +31,52 @@ const joinClassInput = z.object({
 });
 
 const assignmentIdInput = z.object({ assignmentId: z.string().min(1) });
+
+const submitResourceAssignmentInput = z.object({
+  assignmentId: z.string().min(1),
+  answerText: z.string().trim().max(20000),
+  attachment: z
+    .object({
+      filename: z.string().min(1).max(255),
+      mimeType: z.string().min(1).max(120),
+      base64: z.string().min(1).max(12_000_000)
+    })
+    .optional()
+}).refine((value) => value.answerText.length > 0 || value.attachment != null, {
+  message: "Enter an answer or attach a file.",
+  path: ["answerText"]
+});
+
+const MAX_SUBMISSION_ATTACHMENT_BYTES = 8 * 1024 * 1024;
+const ALLOWED_SUBMISSION_ATTACHMENT_MIME_TYPES = new Set([
+  "application/pdf",
+  "image/jpeg",
+  "image/png",
+  "image/webp"
+]);
+
+function decodeSubmissionAttachment(input: {
+  filename: string;
+  mimeType: string;
+  base64: string;
+}): { filename: string; mimeType: string; bytes: Buffer } {
+  const mimeType = input.mimeType.toLowerCase();
+  const filename = input.filename.trim();
+  if (!ALLOWED_SUBMISSION_ATTACHMENT_MIME_TYPES.has(mimeType)) {
+    throw new TRPCError({
+      code: "BAD_REQUEST",
+      message: "Attach a PDF, JPG, PNG, or WebP file."
+    });
+  }
+  const bytes = Buffer.from(input.base64, "base64");
+  if (bytes.length <= 0 || bytes.length > MAX_SUBMISSION_ATTACHMENT_BYTES) {
+    throw new TRPCError({
+      code: "BAD_REQUEST",
+      message: "Attachment must be between 1 byte and 8 MB."
+    });
+  }
+  return { filename, mimeType, bytes };
+}
 
 export const studentRouter = router({
   /**
@@ -63,9 +110,16 @@ export const studentRouter = router({
     const classIds = enrollments.map((e) => e.classId);
     const now = new Date();
 
-    const [totalAssignments, overdue, upcoming, runsCompleted] =
+    const [
+      totalAssignments,
+      overdue,
+      upcoming,
+      runsCompleted,
+      resourceAssignments,
+      resourceSubmissions
+    ] =
       classIds.length === 0
-        ? [0, 0, 0, 0]
+        ? [0, 0, 0, 0, [], []]
         : await Promise.all([
             ctx.prisma.classAssignment.count({
               where: { classId: { in: classIds } }
@@ -94,8 +148,38 @@ export const studentRouter = router({
                 classAssignmentId: { not: null },
                 completedAt: { not: null }
               }
+            }),
+            ctx.prisma.resourceAssignment.findMany({
+              where: { classId: { in: classIds } },
+              select: { id: true, dueAt: true }
+            }),
+            ctx.prisma.resourceAssignmentSubmission.findMany({
+              where: {
+                studentUserId: userId,
+                assignment: { classId: { in: classIds } }
+              },
+              select: { assignmentId: true, gradedAt: true }
             })
           ]);
+
+    const submittedResourceAssignmentIds = new Set(
+      resourceSubmissions.map((submission) => submission.assignmentId)
+    );
+    const gradedResourceCount = resourceSubmissions.filter(
+      (submission) => submission.gradedAt
+    ).length;
+    const resourceOverdueCount = resourceAssignments.filter(
+      (assignment) =>
+        !submittedResourceAssignmentIds.has(assignment.id) &&
+        assignment.dueAt != null &&
+        assignment.dueAt < now
+    ).length;
+    const resourceUpcomingCount = resourceAssignments.filter(
+      (assignment) =>
+        !submittedResourceAssignmentIds.has(assignment.id) &&
+        assignment.dueAt != null &&
+        assignment.dueAt >= now
+    ).length;
 
     return {
       classes: enrollments.map((e) => ({
@@ -104,10 +188,11 @@ export const studentRouter = router({
         organizationName: e.class.organization?.name ?? null,
         joinedAt: e.createdAt
       })),
-      totalAssignments,
-      overdueCount: overdue,
-      upcomingCount: upcoming,
-      completedCount: runsCompleted
+      totalAssignments: totalAssignments + resourceAssignments.length,
+      overdueCount: overdue + resourceOverdueCount,
+      upcomingCount: upcoming + resourceUpcomingCount,
+      completedCount: runsCompleted + resourceSubmissions.length,
+      gradedResourceCount
     };
   }),
 
@@ -128,54 +213,97 @@ export const studentRouter = router({
     });
     const classIds = enrollments.map((e) => e.classId);
     if (classIds.length === 0) {
-      return { items: [] };
+      return { items: [], resourceItems: [] };
     }
 
-    const assignments = await ctx.prisma.classAssignment.findMany({
-      where: {
-        classId: { in: classIds },
-        // Respect teacher's openAt gate: don't show future-opening
-        // assignments until they're open. openAt null ⇒ always open.
-        OR: [{ openAt: null }, { openAt: { lte: new Date() } }]
-      },
-      orderBy: [{ dueAt: "asc" }, { assignedAt: "desc" }],
-      select: {
-        id: true,
-        title: true,
-        instructions: true,
-        assignedAt: true,
-        openAt: true,
-        dueAt: true,
-        class: { select: { id: true, name: true } },
-        problemSet: {
-          select: {
-            id: true,
-            title: true,
-            contest: true,
-            year: true,
-            exam: true,
-            _count: { select: { problems: true } }
-          }
+    const [assignments, resourceAssignments] = await Promise.all([
+      ctx.prisma.classAssignment.findMany({
+        where: {
+          classId: { in: classIds },
+          // Respect teacher's openAt gate: don't show future-opening
+          // assignments until they're open. openAt null ⇒ always open.
+          OR: [{ openAt: null }, { openAt: { lte: new Date() } }]
         },
-        // Pull the caller's own run (at most one per assignment — we
-        // reuse incomplete runs in /problems/set/[id]).
-        practiceRuns: {
-          where: { userId },
-          select: {
-            id: true,
-            startedAt: true,
-            completedAt: true,
-            attempts: {
-              where: { status: "SUBMITTED" },
-              select: { isCorrect: true, problemId: true }
-            },
-            learningReportSnapshot: { select: { id: true } }
+        orderBy: [{ dueAt: "asc" }, { assignedAt: "desc" }],
+        select: {
+          id: true,
+          title: true,
+          instructions: true,
+          assignedAt: true,
+          openAt: true,
+          dueAt: true,
+          class: { select: { id: true, name: true } },
+          problemSet: {
+            select: {
+              id: true,
+              title: true,
+              contest: true,
+              year: true,
+              exam: true,
+              _count: { select: { problems: true } }
+            }
           },
-          orderBy: { startedAt: "desc" },
-          take: 1
+          // Pull the caller's own run (at most one per assignment — we
+          // reuse incomplete runs in /problems/set/[id]).
+          practiceRuns: {
+            where: { userId },
+            select: {
+              id: true,
+              startedAt: true,
+              completedAt: true,
+              attempts: {
+                where: { status: "SUBMITTED" },
+                select: { isCorrect: true, problemId: true }
+              },
+              learningReportSnapshot: { select: { id: true } }
+            },
+            orderBy: { startedAt: "desc" },
+            take: 1
+          }
         }
-      }
-    });
+      }),
+      ctx.prisma.resourceAssignment.findMany({
+        where: { classId: { in: classIds } },
+        orderBy: [{ dueAt: "asc" }, { createdAt: "desc" }],
+        select: {
+          id: true,
+          title: true,
+          instructions: true,
+          sourcePageStart: true,
+          sourcePageEnd: true,
+          sourceProblemStart: true,
+          sourceProblemEnd: true,
+          studentPrompt: true,
+          dueAt: true,
+          allowLateSubmissions: true,
+          createdAt: true,
+          class: { select: { id: true, name: true } },
+          resource: {
+            select: {
+              id: true,
+              title: true,
+              attachmentFilename: true
+            }
+          },
+          submissions: {
+            where: { studentUserId: userId },
+            select: {
+              id: true,
+              answerText: true,
+              attachmentFilename: true,
+              attachmentMimeType: true,
+              attachmentSize: true,
+              submittedAt: true,
+              gradeScore: true,
+              gradeMax: true,
+              feedback: true,
+              gradedAt: true
+            },
+            take: 1
+          }
+        }
+      })
+    ]);
 
     const now = new Date();
     const items = assignments.map((a) => {
@@ -217,7 +345,44 @@ export const studentRouter = router({
       };
     });
 
-    return { items };
+    const resourceItems = resourceAssignments.map((assignment) => {
+      const submission = assignment.submissions[0] ?? null;
+      const overdue =
+        !submission &&
+        assignment.dueAt != null &&
+        assignment.dueAt < now &&
+        !assignment.allowLateSubmissions;
+      const status = submission?.gradedAt
+        ? ("GRADED" as const)
+        : submission
+          ? ("SUBMITTED" as const)
+          : overdue
+            ? ("OVERDUE" as const)
+            : ("NOT_SUBMITTED" as const);
+
+      return {
+        assignmentId: assignment.id,
+        title: assignment.title,
+        instructions: assignment.instructions,
+        sourcePageStart: assignment.sourcePageStart,
+        sourcePageEnd: assignment.sourcePageEnd,
+        sourceProblemStart: assignment.sourceProblemStart,
+        sourceProblemEnd: assignment.sourceProblemEnd,
+        studentPrompt: assignment.studentPrompt,
+        dueAt: assignment.dueAt,
+        allowLateSubmissions: assignment.allowLateSubmissions,
+        classId: assignment.class.id,
+        className: assignment.class.name,
+        resourceId: assignment.resource.id,
+        resourceTitle: assignment.resource.title,
+        resourceFilename: assignment.resource.attachmentFilename,
+        resourceDownloadUrl: `/api/org-resources/${assignment.resource.id}/download`,
+        status,
+        submission
+      };
+    });
+
+    return { items, resourceItems };
   }),
 
   /**
@@ -346,6 +511,132 @@ export const studentRouter = router({
         alreadyEnrolled: false as const
       };
     }),
+
+  resourceAssignments: router({
+    submit: protectedProcedure
+      .input(submitResourceAssignmentInput)
+      .mutation(async ({ ctx, input }) => {
+        const userId = ctx.session!.user.id;
+        const assignment = await ctx.prisma.resourceAssignment.findUnique({
+          where: { id: input.assignmentId },
+          select: {
+            id: true,
+            organizationId: true,
+            classId: true,
+            dueAt: true,
+            allowLateSubmissions: true,
+            class: {
+              select: {
+                organizationId: true,
+                enrollments: {
+                  where: { userId },
+                  select: { id: true }
+                }
+              }
+            }
+          }
+        });
+        if (!assignment) {
+          throw new TRPCError({ code: "NOT_FOUND" });
+        }
+        if (assignment.class.enrollments.length === 0) {
+          throw new TRPCError({
+            code: "FORBIDDEN",
+            message: "You're not enrolled in this class"
+          });
+        }
+        if (
+          assignment.dueAt &&
+          assignment.dueAt < new Date() &&
+          !assignment.allowLateSubmissions
+        ) {
+          throw new TRPCError({
+            code: "PRECONDITION_FAILED",
+            message: "This assignment is past due"
+          });
+        }
+
+        const decodedAttachment = input.attachment
+          ? decodeSubmissionAttachment(input.attachment)
+          : null;
+
+        const submission = await ctx.prisma.resourceAssignmentSubmission.upsert({
+          where: {
+            assignmentId_studentUserId: {
+              assignmentId: assignment.id,
+              studentUserId: userId
+            }
+          },
+          create: {
+            assignmentId: assignment.id,
+            studentUserId: userId,
+            answerText: input.answerText,
+            submittedAt: new Date()
+          },
+          update: {
+            answerText: input.answerText,
+            submittedAt: new Date(),
+            gradeScore: null,
+            feedback: null,
+            gradedAt: null,
+            gradedByUserId: null
+          },
+          select: {
+            id: true,
+            answerText: true,
+            attachmentFilename: true,
+            attachmentMimeType: true,
+            attachmentSize: true,
+            submittedAt: true
+          }
+        });
+
+        let returnedSubmission = submission;
+        if (decodedAttachment) {
+          const storage = getOrganizationResourceStorage();
+          const stored = await storage.putFile(
+            `resource-submission-${submission.id}`,
+            decodedAttachment.filename,
+            decodedAttachment.mimeType,
+            decodedAttachment.bytes
+          );
+          returnedSubmission = await ctx.prisma.resourceAssignmentSubmission.update({
+            where: { id: submission.id },
+            data: {
+              attachmentLocator: stored.locator,
+              attachmentFilename: decodedAttachment.filename,
+              attachmentMimeType: decodedAttachment.mimeType,
+              attachmentSize: stored.size,
+              attachmentSha256: stored.sha256
+            },
+            select: {
+              id: true,
+              answerText: true,
+              attachmentFilename: true,
+              attachmentMimeType: true,
+              attachmentSize: true,
+              submittedAt: true
+            }
+          });
+        }
+
+        await logAudit(
+          ctx.prisma,
+          { userId, organizationId: assignment.organizationId },
+          {
+            action: "resource.assignment.submit",
+            targetType: "ResourceAssignmentSubmission",
+            targetId: submission.id,
+            payload: {
+              assignmentId: assignment.id,
+              hasAttachment: Boolean(decodedAttachment)
+            }
+          }
+        );
+
+        return returnedSubmission;
+      })
+  }),
 
   /**
    * Produce the deep link target for a given assignment: either the
