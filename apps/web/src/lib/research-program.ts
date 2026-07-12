@@ -246,7 +246,7 @@ export function buildResearchProgram(
   input: Partial<ResearchProgramProfile> = {}
 ): ResearchProgramPlan {
   const profile = normalizeProfile(input);
-  const selectedProblems = RESEARCH_PROBLEM_CATALOG
+  const rankedProblems = RESEARCH_PROBLEM_CATALOG
     .filter((problem) => problem.audience.includes(profile.studentLevel))
     .filter((problem) => profile.weeks >= problem.minWeeks)
     .map((problem) => {
@@ -258,8 +258,12 @@ export function buildResearchProgram(
         phases: buildProblemPhases(problem, profile)
       };
     })
-    .sort((a, b) => b.fitScore - a.fitScore)
-    .slice(0, profile.maxProblems);
+    .sort((a, b) => b.fitScore - a.fitScore);
+  const selectedProblems = includePreferredOpenTarget(
+    rankedProblems.slice(0, profile.maxProblems),
+    rankedProblems,
+    profile
+  );
 
   return {
     contractVersion: "research_program.v1",
@@ -272,6 +276,33 @@ export function buildResearchProgram(
       "Constructed targets are preferred for first-cycle high school cohorts; open-stress targets are better for advanced undergrad teams."
     ]
   };
+}
+
+function includePreferredOpenTarget(
+  selectedProblems: SelectedResearchProblem[],
+  rankedProblems: SelectedResearchProblem[],
+  profile: ResearchProgramProfile
+): SelectedResearchProblem[] {
+  if (
+    !profile.preferOpen ||
+    selectedProblems.some((problem) => problem.problemType === "open_stress")
+  ) {
+    return selectedProblems;
+  }
+
+  const preferredOpenTarget = rankedProblems.find(
+    (problem) => problem.problemType === "open_stress"
+  );
+  if (!preferredOpenTarget) return selectedProblems;
+
+  if (selectedProblems.length < profile.maxProblems) {
+    return [...selectedProblems, preferredOpenTarget];
+  }
+
+  return [
+    ...selectedProblems.slice(0, Math.max(0, profile.maxProblems - 1)),
+    preferredOpenTarget
+  ];
 }
 
 function normalizeProfile(

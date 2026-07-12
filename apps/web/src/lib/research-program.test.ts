@@ -49,4 +49,26 @@ describe("research program planner", () => {
     ).toBe(true);
     expect(plan.programSequence.at(-1)?.verificationGate).toContain("proved");
   });
+
+  it("keeps an open-stress target visible when undergrads request open projects", () => {
+    const plan = buildResearchProgram({
+      studentLevel: "UNDERGRAD",
+      weeks: 12,
+      preferOpen: true,
+      interests: ["number_theory", "counting", "formalization"],
+      skills: {
+        number_theory: 3,
+        counting: 3,
+        proof: 2,
+        programming: 2,
+        formalization: 1
+      },
+      maxProblems: 3
+    });
+
+    expect(plan.selectedProblems).toHaveLength(3);
+    expect(plan.selectedProblems.at(-1)?.problemId).toBe(
+      "numerical_semigroup_fel_stress"
+    );
+  });
 });
