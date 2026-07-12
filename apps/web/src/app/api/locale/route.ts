@@ -38,12 +38,13 @@ export async function POST(request: Request) {
  */
 export async function GET(request: Request) {
   const url = new URL(request.url);
+  const publicOrigin = resolvePublicOrigin(request, url);
   const locale = url.searchParams.get("locale");
   if (!isLocale(locale)) {
-    return NextResponse.redirect(new URL("/", url.origin));
+    return NextResponse.redirect(new URL("/", publicOrigin));
   }
 
-  const response = NextResponse.redirect(resolveSafeReturnUrl(request, url));
+  const response = NextResponse.redirect(resolveSafeReturnUrl(request, publicOrigin));
   setLocaleCookie(response, locale);
   await persistUserLocale(locale);
   return response;
@@ -73,14 +74,25 @@ async function persistUserLocale(locale: Locale) {
     });
 }
 
-function resolveSafeReturnUrl(request: Request, currentUrl: URL) {
-  const fallback = new URL("/", currentUrl.origin);
+function resolvePublicOrigin(request: Request, currentUrl: URL) {
+  const host =
+    request.headers.get("x-forwarded-host") ??
+    request.headers.get("host") ??
+    currentUrl.host;
+  const protocol =
+    request.headers.get("x-forwarded-proto") ??
+    currentUrl.protocol.replace(":", "");
+  return `${protocol}://${host}`;
+}
+
+function resolveSafeReturnUrl(request: Request, publicOrigin: string) {
+  const fallback = new URL("/", publicOrigin);
   const referer = request.headers.get("referer");
   if (!referer) return fallback;
 
   try {
     const returnUrl = new URL(referer);
-    if (returnUrl.origin !== currentUrl.origin) return fallback;
+    if (returnUrl.origin !== publicOrigin) return fallback;
     return returnUrl;
   } catch {
     return fallback;
