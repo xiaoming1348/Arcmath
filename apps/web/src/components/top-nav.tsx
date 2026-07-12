@@ -90,6 +90,9 @@ export async function TopNav({ session, locale }: TopNavProps) {
             <Link href="/for-schools" className="route-chip">
               {t("topnav.for_schools")}
             </Link>
+            <Link href="/research-program" className="route-chip route-chip-research">
+              {t("topnav.research")}
+            </Link>
             <Link href="/login" className="route-chip">
               {t("topnav.login")}
             </Link>

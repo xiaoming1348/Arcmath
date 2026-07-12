@@ -46,7 +46,7 @@ export default async function ForSchoolsPage() {
     : ["PDF material", "Assignment", "Submission", "Verified grade"];
 
   return (
-    <main className="school-platform-page motion-rise">
+    <main className="public-tech-page school-platform-page motion-rise">
       {/* === HERO === */}
       <Section className="school-hero-section pt-6">
         <div className="school-hero">

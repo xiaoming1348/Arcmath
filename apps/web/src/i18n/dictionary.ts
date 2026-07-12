@@ -38,6 +38,7 @@ export type Messages = {
   "topnav.teacher": string;
   "topnav.admin": string;
   "topnav.for_schools": string;
+  "topnav.research": string;
   "topnav.problems": string;
   "topnav.login": string;
   "topnav.logout": string;
@@ -941,6 +942,7 @@ export type Messages = {
   "home.research.badge_planner": string;
   "home.research.badge_verification": string;
   "home.research.badge_teacher": string;
+  "home.research.hero_cta": string;
   "home.research.card_1_title": string;
   "home.research.card_1_body": string;
   "home.research.card_2_title": string;
@@ -1008,6 +1010,7 @@ export const EN: Messages = {
   "topnav.teacher": "Teach",
   "topnav.admin": "Admin",
   "topnav.for_schools": "For schools",
+  "topnav.research": "Research Mode",
   "topnav.problems": "Problems",
   "topnav.login": "Log in",
   "topnav.logout": "Log out",
@@ -1922,6 +1925,7 @@ export const EN: Messages = {
   "home.research.badge_planner": "Cohort planner",
   "home.research.badge_verification": "Lean-aware gates",
   "home.research.badge_teacher": "Teacher controlled",
+  "home.research.hero_cta": "MathScout / Research Mode",
   "home.research.card_1_title": "Research targets matched to students",
   "home.research.card_1_body": "The planner ranks accessible theorem and exploration targets by level, topic interest, team size, and verification path.",
   "home.research.card_2_title": "Weekly exploration spine",
@@ -1989,6 +1993,7 @@ export const ZH: Messages = {
   "topnav.teacher": "教学",
   "topnav.admin": "管理",
   "topnav.for_schools": "学校方案",
+  "topnav.research": "Research Mode",
   "topnav.problems": "题库",
   "topnav.login": "登录",
   "topnav.logout": "退出",
@@ -2874,6 +2879,7 @@ export const ZH: Messages = {
   "home.research.badge_planner": "项目规划",
   "home.research.badge_verification": "Lean 验证关卡",
   "home.research.badge_teacher": "教师掌控",
+  "home.research.hero_cta": "MathScout / Research Mode",
   "home.research.card_1_title": "按学生水平匹配研究题目",
   "home.research.card_1_body": "系统根据学生水平、兴趣方向、团队规模和验证路径，推荐合适的定理型或探索型研究目标。",
   "home.research.card_2_title": "每周探索主线",

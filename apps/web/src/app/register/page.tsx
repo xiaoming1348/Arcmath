@@ -56,7 +56,7 @@ export default function RegisterPage() {
 
   if (submittedEmail) {
     return (
-      <main className="motion-rise mx-auto w-full max-w-2xl">
+      <main className="motion-rise public-tech-page auth-page mx-auto w-full max-w-2xl">
         <Section tight className="pt-4 md:pt-6">
           <div className="hero-panel">
             <div className="flex flex-col gap-6">
@@ -116,7 +116,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <main className="motion-rise mx-auto w-full max-w-2xl">
+    <main className="motion-rise public-tech-page auth-page mx-auto w-full max-w-2xl">
       <Section tight className="pt-4 md:pt-6">
         <div className="hero-panel">
           <div className="flex flex-col gap-6">

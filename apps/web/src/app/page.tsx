@@ -152,7 +152,7 @@ export default async function Home() {
       ];
 
   return (
-    <main className="motion-rise">
+    <main className="motion-rise public-tech-page public-home-page">
       {/* ===========================================================
        *  HERO
        *  Wrapped in .hero-panel so a soft radial-gradient glow sits
@@ -206,6 +206,9 @@ export default async function Home() {
                 <div className="flex flex-wrap gap-3">
                   <RouteProgressLink className="btn-primary" href="/register/school">
                     {t("home.hero.cta_school")}
+                  </RouteProgressLink>
+                  <RouteProgressLink className="btn-primary public-research-cta" href="/research-program">
+                    {t("home.research.hero_cta")}
                   </RouteProgressLink>
                   <RouteProgressLink className="btn-secondary" href="/for-schools">
                     {t("topnav.for_schools")}

@@ -82,7 +82,7 @@ export default async function ResearchProgramPage() {
   const plan = buildResearchProgram(DEFAULT_RESEARCH_PROFILE);
 
   return (
-    <main className="motion-rise">
+    <main className="motion-rise public-tech-page research-mode-page">
       <Section tight className="pt-5 md:pt-7">
         <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
           <div className="flex flex-col gap-4">

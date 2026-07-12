@@ -86,7 +86,7 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="motion-rise mx-auto w-full max-w-6xl">
+    <main className="motion-rise public-tech-page auth-page mx-auto w-full max-w-6xl">
       <Section tight className="pt-4 md:pt-6">
         <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12 lg:items-center">
           {/* Editorial side */}
