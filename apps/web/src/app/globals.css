@@ -1230,6 +1230,12 @@ body:has(.public-tech-page) {
     isolation: isolate;
   }
 
+  .public-tech-page.motion-rise {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
   .public-tech-page::before {
     content: "";
     position: absolute;
