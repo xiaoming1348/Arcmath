@@ -72,11 +72,10 @@ export function useSetLocale() {
       throw new Error("Failed to update locale");
     }
     // Force a full reload so server-rendered text swaps immediately.
-    // This is a tradeoff vs. an in-memory context swap: we get correct
-    // SSR text (incl. DB-fetched server components) at the cost of a
-    // page flash. For a pilot this is fine.
+    // `location.assign(currentPath)` can be ignored as a same-URL
+    // navigation in some browser shells; `reload()` is the direct intent.
     if (typeof window !== "undefined") {
-      window.location.assign(window.location.pathname + window.location.search);
+      window.location.reload();
     }
   }, []);
 }
