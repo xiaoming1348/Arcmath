@@ -221,7 +221,7 @@ export default async function ResearchProgramPage() {
             {plan.platformNotes.map((note) => (
               <div
                 key={note}
-                className="rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700"
+                className="research-note border"
               >
                 {note}
               </div>

@@ -1189,6 +1189,26 @@ body:has(.public-tech-page) {
     color: var(--foreground-strong);
   }
 
+  body:has(.public-tech-page) .app-top-nav [aria-label="Language"] {
+    border-color: rgba(159, 193, 189, 0.18) !important;
+    background: rgba(11, 17, 19, 0.72) !important;
+    box-shadow: inset 0 0 0 1px rgba(85, 214, 199, 0.04);
+  }
+
+  body:has(.public-tech-page) .app-top-nav [aria-label="Language"] button {
+    color: #aebfbb !important;
+  }
+
+  body:has(.public-tech-page) .app-top-nav [aria-label="Language"] button[aria-pressed="true"] {
+    background: #d7ba72 !important;
+    color: #111610 !important;
+  }
+
+  body:has(.public-tech-page) .app-top-nav [aria-label="Language"] button[aria-pressed="false"]:hover {
+    background: rgba(85, 214, 199, 0.12) !important;
+    color: #d9e4df !important;
+  }
+
   body:has(.public-tech-page) .route-chip-research {
     border-color: rgba(215, 186, 114, 0.3);
     background: rgba(215, 186, 114, 0.1);
@@ -1370,10 +1390,18 @@ body:has(.public-tech-page) {
   }
 
   .public-tech-page .info-pill,
-  .public-tech-page .tag {
+  .public-tech-page .tag,
+  .public-tech-page .research-note {
     background: rgba(11, 17, 19, 0.62);
     border-color: rgba(159, 193, 189, 0.16);
     color: #aebfbb;
+  }
+
+  .public-tech-page .research-note {
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1.65;
   }
 
   .public-tech-page code {
