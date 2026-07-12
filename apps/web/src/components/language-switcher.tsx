@@ -1,5 +1,6 @@
 "use client";
 
+import type { MouseEvent } from "react";
 import { useSetLocale, useT } from "@/i18n/client";
 
 /**
@@ -13,7 +14,11 @@ import { useSetLocale, useT } from "@/i18n/client";
 export function LanguageSwitcher() {
   const { locale, t } = useT();
   const setLocale = useSetLocale();
-  const handleLocaleChange = (next: "en" | "zh") => {
+  const handleLocaleChange = (
+    event: MouseEvent<HTMLAnchorElement>,
+    next: "en" | "zh"
+  ) => {
+    event.preventDefault();
     if (locale !== next) void setLocale(next);
   };
 
@@ -22,9 +27,10 @@ export function LanguageSwitcher() {
       className="inline-flex items-center gap-1 rounded-md border border-slate-200 bg-white px-1 py-0.5 text-xs"
       aria-label={t("topnav.language")}
     >
-      <button
-        type="button"
-        onClick={() => handleLocaleChange("en")}
+      <a
+        href="/api/locale?locale=en"
+        onClick={(event) => handleLocaleChange(event, "en")}
+        role="button"
         aria-pressed={locale === "en"}
         aria-label={t("topnav.language.english")}
         className={`rounded px-1.5 py-0.5 transition-colors ${
@@ -34,10 +40,11 @@ export function LanguageSwitcher() {
         }`}
       >
         EN
-      </button>
-      <button
-        type="button"
-        onClick={() => handleLocaleChange("zh")}
+      </a>
+      <a
+        href="/api/locale?locale=zh"
+        onClick={(event) => handleLocaleChange(event, "zh")}
+        role="button"
         aria-pressed={locale === "zh"}
         aria-label={t("topnav.language.chinese")}
         className={`rounded px-1.5 py-0.5 transition-colors ${
@@ -47,7 +54,7 @@ export function LanguageSwitcher() {
         }`}
       >
         中文
-      </button>
+      </a>
     </div>
   );
 }
