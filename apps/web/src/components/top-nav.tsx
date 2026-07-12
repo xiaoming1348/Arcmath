@@ -108,6 +108,9 @@ export async function TopNav({ session, locale }: TopNavProps) {
             <Link href="/teacher/prep" className="route-chip">
               {locale === "zh" ? "备课" : "Prep"}
             </Link>
+            <Link href="/research-program/workspace" className="route-chip route-chip-research">
+              {locale === "zh" ? "研究" : "Research Lab"}
+            </Link>
             <Link href="/assignments" className="route-chip">
               {t("topnav.assignments")}
             </Link>
@@ -125,6 +128,9 @@ export async function TopNav({ session, locale }: TopNavProps) {
             </Link>
             <Link href="/teacher/prep" className="route-chip">
               {locale === "zh" ? "备课" : "Prep"}
+            </Link>
+            <Link href="/research-program/workspace" className="route-chip route-chip-research">
+              {locale === "zh" ? "研究" : "Research Lab"}
             </Link>
             <Link href="/problems" className="route-chip">
               {t("topnav.problems")}

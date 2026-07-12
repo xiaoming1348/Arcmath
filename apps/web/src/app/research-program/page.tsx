@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   DEFAULT_RESEARCH_PROFILE,
   buildResearchProgram
@@ -34,6 +35,12 @@ const COPY = {
     handoffTitle: "MathScout artifacts for Arcmath",
     handoffLede:
       "The API returns the same contract shape for dashboards, assignments, and teacher-prep workflows.",
+    labEyebrow: "Internal workspace",
+    labTitle: "Open the Research Lab",
+    labLede:
+      "Use the internal lab to configure a cohort, select targets, generate assignment briefs, and track Lean/Python validation gates.",
+    labCta: "Open Research Lab",
+    guideCta: "Keep reading guide",
     apiContract: "API contract",
     apiBody:
       "POST accepts student level, weeks, interests, skill levels, formalization preference, and problem count.",
@@ -68,6 +75,12 @@ const COPY = {
     handoffTitle: "面向 Arcmath 的 MathScout 产出",
     handoffLede:
       "API 为仪表盘、作业和教师备课流程返回同一套结构化合约。",
+    labEyebrow: "内部工作台",
+    labTitle: "打开 Research Lab",
+    labLede:
+      "在内部工作台配置班级项目、选择研究题目、生成作业说明，并追踪 Lean/Python 验证关卡。",
+    labCta: "打开 Research Lab",
+    guideCta: "继续阅读指南",
     apiContract: "API 合约",
     apiBody:
       "POST 支持学生水平、周数、兴趣方向、技能水平、形式化偏好和题目数量。",
@@ -125,6 +138,29 @@ export default async function ResearchProgramPage() {
       </Section>
 
       <Section tight>
+        <div className="research-lab-callout">
+          <div className="flex flex-col gap-3">
+            <span className="display-eyebrow">{copy.labEyebrow}</span>
+            <h2
+              className="display-headline"
+              style={{ fontSize: "clamp(1.65rem, 3vw, 2.35rem)" }}
+            >
+              {copy.labTitle}
+            </h2>
+            <p className="display-lede">{copy.labLede}</p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/research-program/workspace" className="btn-primary public-research-cta">
+              {copy.labCta}
+            </Link>
+            <a href="#research-guide" className="btn-secondary">
+              {copy.guideCta}
+            </a>
+          </div>
+        </div>
+      </Section>
+
+      <Section tight>
         <SectionHeader
           eyebrow={copy.problemEyebrow}
           title={copy.problemTitle}
@@ -170,7 +206,7 @@ export default async function ResearchProgramPage() {
         </div>
       </Section>
 
-      <Section tight>
+      <Section tight id="research-guide">
         <SectionHeader
           eyebrow={copy.sequenceEyebrow}
           title={copy.sequenceTitle}
