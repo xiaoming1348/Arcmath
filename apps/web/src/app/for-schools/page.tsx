@@ -26,10 +26,10 @@ export default async function ForSchoolsPage() {
     : ["Org control", "PDF slicing", "Formal grading", "Class reports"];
   const consoleRows = isZh
     ? [
-        ["MATERIAL", "PDF p.35-36 · 题 3-9"],
-        ["TRANSFORM", "作业题面 · 不生成答案"],
-        ["VERIFY", "SymPy + Lean + 教师复核"],
-        ["REPORT", "班级掌握度 · 错因聚类"]
+        ["材料", "PDF 第 35-36 页 · 第 3-9 题"],
+        ["转化", "作业题面 · 不生成答案"],
+        ["验证", "SymPy + Lean + 教师复核"],
+        ["报告", "班级掌握度 · 错因聚类"]
       ]
     : [
         ["MATERIAL", "PDF p.35-36 · Problems 3-9"],
@@ -37,6 +37,10 @@ export default async function ForSchoolsPage() {
         ["VERIFY", "SymPy + Lean + teacher review"],
         ["REPORT", "Class mastery · error clusters"]
       ];
+  const brandCaption = isZh ? "ArcMath 教学 OS" : "ArcMath Teaching OS";
+  const commandKicker = isZh ? "ARC 工作流" : "ARC STACK";
+  const liveLabel = isZh ? "运行中" : "live";
+  const contactEmail = "yimingsun@berkeley.edu";
   const proofLanes = isZh
     ? ["PDF 教材", "作业发布", "学生提交", "可信批改"]
     : ["PDF material", "Assignment", "Submission", "Verified grade"];
@@ -51,7 +55,7 @@ export default async function ForSchoolsPage() {
               <BrandMark size={54} title="ArcMath" />
               <div>
                 <Eyebrow>{t("for_schools.eyebrow")}</Eyebrow>
-                <p className="school-brand-caption">ArcMath Teaching OS</p>
+                <p className="school-brand-caption">{brandCaption}</p>
               </div>
             </div>
             <h1 className="school-hero-title">
@@ -67,7 +71,7 @@ export default async function ForSchoolsPage() {
             </div>
             <div className="flex flex-wrap gap-3">
               <a
-                href="mailto:yimingsun@forecaster-ai.com?subject=Arcmath%20school%20platform%20enquiry"
+                href={`mailto:${contactEmail}?subject=Arcmath%20school%20platform%20enquiry`}
                 className="btn-primary"
               >
                 {t("for_schools.cta_email")}
@@ -82,11 +86,11 @@ export default async function ForSchoolsPage() {
               <div className="flex items-center gap-3">
                 <BrandMark size={40} />
                 <div>
-                  <p className="school-console-kicker">ARC STACK</p>
+                  <p className="school-console-kicker">{commandKicker}</p>
                   <h2>{isZh ? "课堂运行中枢" : "Math class control plane"}</h2>
                 </div>
               </div>
-              <span className="school-live-dot">live</span>
+              <span className="school-live-dot">{liveLabel}</span>
             </div>
 
             <div className="school-system-map" aria-hidden>
@@ -246,23 +250,11 @@ export default async function ForSchoolsPage() {
                 </dt>
                 <dd>
                   <a
-                    href="mailto:yimingsun@forecaster-ai.com"
+                    href={`mailto:${contactEmail}`}
                   >
-                    yimingsun@forecaster-ai.com
-                  </a>
-                  {" · "}
-                  <a
-                    href="mailto:yimingsun@berkeley.edu"
-                  >
-                    yimingsun@berkeley.edu
+                    {contactEmail}
                   </a>
                 </dd>
-              </div>
-              <div className="flex gap-2">
-                <dt className="w-20 shrink-0 font-semibold">
-                  {t("for_schools.contact_founder")}
-                </dt>
-                <dd>{t("for_schools.contact_founder_name")}</dd>
               </div>
             </dl>
             <Link href="/register/school" className="btn-secondary self-start md:self-center">

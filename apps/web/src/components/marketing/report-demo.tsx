@@ -10,20 +10,44 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Eyebrow } from "@/components/ui";
+import { useT } from "@/i18n/client";
 
-const TOPIC_BARS = [
-  { topic: "Algebra", pct: 92, tone: "amber" as const },
-  { topic: "Number theory", pct: 78, tone: "teal" as const },
-  { topic: "Combinatorics", pct: 64, tone: "lavender" as const },
-  { topic: "Inequality", pct: 48, tone: "coral" as const }
-];
-
-const MILESTONES = [
-  "Spotted (a-b)² ≥ 0 in step 1",
-  "Expanded correctly in step 2",
-  "Reached the SOS conclusion",
-  "Skipped justifying step 3 — review"
-];
+const COPY = {
+  en: {
+    overall: "Overall accuracy",
+    summary: "18 problems graded · 2 escalated to teacher review.",
+    coverage: "Milestone coverage",
+    topics: [
+      { topic: "Algebra", pct: 92, tone: "amber" as const },
+      { topic: "Number theory", pct: 78, tone: "teal" as const },
+      { topic: "Combinatorics", pct: 64, tone: "lavender" as const },
+      { topic: "Inequality", pct: 48, tone: "coral" as const }
+    ],
+    milestones: [
+      "Spotted (a-b)^2 >= 0 in step 1",
+      "Expanded correctly in step 2",
+      "Reached the SOS conclusion",
+      "Skipped justifying step 3 - review"
+    ]
+  },
+  zh: {
+    overall: "整体正确率",
+    summary: "18 道题已批改 · 2 道升级给老师复核。",
+    coverage: "关键步骤覆盖",
+    topics: [
+      { topic: "代数", pct: 92, tone: "amber" as const },
+      { topic: "数论", pct: 78, tone: "teal" as const },
+      { topic: "组合", pct: 64, tone: "lavender" as const },
+      { topic: "不等式", pct: 48, tone: "coral" as const }
+    ],
+    milestones: [
+      "第 1 步识别出 (a-b)^2 >= 0",
+      "第 2 步展开正确",
+      "得出平方和结论",
+      "第 3 步理由不足 - 需要复核"
+    ]
+  }
+} as const;
 
 export function ReportDemo({
   title,
@@ -32,6 +56,8 @@ export function ReportDemo({
   title: string;
   eyebrow: string;
 }) {
+  const { locale } = useT();
+  const copy = COPY[locale];
   const [visible, setVisible] = useState(false);
   const [count, setCount] = useState(0);
   const [checked, setChecked] = useState(0);
@@ -76,10 +102,10 @@ export function ReportDemo({
     const id = setInterval(() => {
       i += 1;
       setChecked(i);
-      if (i >= MILESTONES.length) clearInterval(id);
+      if (i >= copy.milestones.length) clearInterval(id);
     }, 400);
     return () => clearInterval(id);
-  }, [visible]);
+  }, [copy.milestones.length, visible]);
 
   return (
     <div className="flex flex-col gap-6" ref={containerRef}>
@@ -103,7 +129,7 @@ export function ReportDemo({
                 fontFamily: "var(--font-mono-custom)"
               }}
             >
-              Overall accuracy
+              {copy.overall}
             </span>
             <div
               className="flex items-baseline gap-2"
@@ -120,11 +146,11 @@ export function ReportDemo({
               <span style={{ fontSize: "2rem", color: "var(--muted)" }}>%</span>
             </div>
             <p className="text-sm" style={{ color: "var(--muted)" }}>
-              18 problems graded · 2 escalated to teacher review.
+              {copy.summary}
             </p>
 
             <div className="mt-6 flex flex-col gap-3">
-              {TOPIC_BARS.map((b, i) => (
+              {copy.topics.map((b, i) => (
                 <Bar key={b.topic} {...b} visible={visible} delay={i * 80} />
               ))}
             </div>
@@ -140,11 +166,11 @@ export function ReportDemo({
                 fontFamily: "var(--font-mono-custom)"
               }}
             >
-              Milestone coverage
+              {copy.coverage}
             </span>
-            {MILESTONES.map((m, i) => {
+            {copy.milestones.map((m, i) => {
               const done = checked > i;
-              const isReview = i === MILESTONES.length - 1;
+              const isReview = i === copy.milestones.length - 1;
               return (
                 <div
                   key={m}

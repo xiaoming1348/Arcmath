@@ -12,27 +12,59 @@
 
 import { useEffect, useState } from "react";
 import { Eyebrow } from "@/components/ui";
+import { useT } from "@/i18n/client";
 
-const HINTS = [
-  {
-    level: 1,
-    label: "Direction",
-    text:
-      "What single algebraic identity transforms (a-b)² into a sum of three terms?"
+const COPY = {
+  en: {
+    introBefore: "Click",
+    stuck: "I'm stuck",
+    introAfter: "and reveal one hint at a time - direction first, computation last.",
+    hintPrefix: "Hint",
+    hints: [
+      {
+        level: 1,
+        label: "Direction",
+        text:
+          "What single algebraic identity transforms (a-b)^2 into a sum of three terms?"
+      },
+      {
+        level: 2,
+        label: "Setup",
+        text:
+          "Expand (a-b)^2 = a^2 - 2ab + b^2. The inequality is the same as showing this expansion is >= 0."
+      },
+      {
+        level: 3,
+        label: "Almost there",
+        text:
+          "Any real number squared is >= 0. Apply that to (a-b)^2 and rearrange to land at a^2 + b^2 >= 2ab."
+      }
+    ]
   },
-  {
-    level: 2,
-    label: "Setup",
-    text:
-      "Expand (a-b)² = a² − 2ab + b². The inequality is the same as showing this expansion is ≥ 0."
-  },
-  {
-    level: 3,
-    label: "Almost there",
-    text:
-      "Any real number squared is ≥ 0. Apply that to (a-b)² and rearrange to land at a² + b² ≥ 2ab."
+  zh: {
+    introBefore: "点击",
+    stuck: "我卡住了",
+    introAfter: "后逐层展示提示：先给方向，最后才给计算细节。",
+    hintPrefix: "提示",
+    hints: [
+      {
+        level: 1,
+        label: "方向",
+        text: "哪一个代数恒等式可以把 (a-b)^2 展开成三项？"
+      },
+      {
+        level: 2,
+        label: "设定",
+        text: "展开 (a-b)^2 = a^2 - 2ab + b^2。原不等式等价于证明这个展开式 >= 0。"
+      },
+      {
+        level: 3,
+        label: "接近完成",
+        text: "任意实数的平方都 >= 0。把这一点用于 (a-b)^2，再整理即可得到 a^2 + b^2 >= 2ab。"
+      }
+    ]
   }
-];
+} as const;
 
 const TICK_MS = 1800;
 
@@ -43,6 +75,8 @@ export function HintDemo({
   title: string;
   eyebrow: string;
 }) {
+  const { locale } = useT();
+  const copy = COPY[locale];
   const [revealed, setRevealed] = useState(0);
 
   useEffect(() => {
@@ -51,14 +85,14 @@ export function HintDemo({
     const advance = () => {
       if (cancelled) return;
       setRevealed(n);
-      n = n >= HINTS.length ? 0 : n + 1;
+      n = n >= copy.hints.length ? 0 : n + 1;
       setTimeout(advance, n === 0 ? TICK_MS * 1.6 : TICK_MS);
     };
     setTimeout(advance, 600);
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [copy.hints.length]);
 
   return (
     <div className="flex flex-col gap-6">
@@ -72,11 +106,11 @@ export function HintDemo({
 
       <div className="surface-card p-8 md:p-10 overflow-hidden" style={{ minHeight: 360 }}>
         <p className="text-sm mb-6" style={{ color: "var(--muted)" }}>
-          Click <span className="font-semibold" style={{ color: "var(--foreground)" }}>I'm stuck</span> and reveal one hint at a time — direction first, computation last.
+          {copy.introBefore} <span className="font-semibold" style={{ color: "var(--foreground)" }}>{copy.stuck}</span> {copy.introAfter}
         </p>
 
         <div className="flex flex-col gap-3">
-          {HINTS.map((h, i) => (
+          {copy.hints.map((h, i) => (
             <div
               key={h.level}
               className="flex items-start gap-4 px-5 py-4"
@@ -122,7 +156,7 @@ export function HintDemo({
                     fontFamily: "var(--font-mono-custom)"
                   }}
                 >
-                  Hint · {h.label}
+                  {copy.hintPrefix} · {h.label}
                 </span>
                 <p
                   className="text-sm"

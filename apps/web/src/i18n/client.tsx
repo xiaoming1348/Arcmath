@@ -61,15 +61,22 @@ export function translator(locale: Locale) {
  *  re-render with the new dictionary. */
 export function useSetLocale() {
   return useCallback(async (next: Locale) => {
-    await fetch("/api/locale", {
+    const res = await fetch("/api/locale", {
       method: "POST",
+      credentials: "same-origin",
+      cache: "no-store",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ locale: next })
     });
+    if (!res.ok) {
+      throw new Error("Failed to update locale");
+    }
     // Force a full reload so server-rendered text swaps immediately.
     // This is a tradeoff vs. an in-memory context swap: we get correct
     // SSR text (incl. DB-fetched server components) at the cost of a
     // page flash. For a pilot this is fine.
-    if (typeof window !== "undefined") window.location.reload();
+    if (typeof window !== "undefined") {
+      window.location.assign(window.location.pathname + window.location.search);
+    }
   }, []);
 }

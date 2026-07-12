@@ -122,6 +122,21 @@ export default async function Home() {
     { title: t("home.helps.reports_title"), body: t("home.helps.reports_body") }
   ];
 
+  const researchCards = [
+    {
+      title: t("home.research.card_1_title"),
+      body: t("home.research.card_1_body")
+    },
+    {
+      title: t("home.research.card_2_title"),
+      body: t("home.research.card_2_body")
+    },
+    {
+      title: t("home.research.card_3_title"),
+      body: t("home.research.card_3_body")
+    }
+  ];
+
   const quickLinks = isLoggedIn
     ? [
         { href: "/dashboard", label: t("home.quickstart.link_dashboard") },
@@ -253,6 +268,56 @@ export default async function Home() {
         >
           {t("home.platform.footer")}
         </p>
+      </Section>
+
+      {/* ===========================================================
+       *  MATHSCOUT / RESEARCH MODE
+       * ========================================================= */}
+      <Section>
+        <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+          <div className="flex flex-col gap-5">
+            <Eyebrow>{t("home.research.eyebrow")}</Eyebrow>
+            <h2
+              className="display-headline"
+              style={{ fontSize: "clamp(1.9rem, 3.8vw, 3rem)" }}
+            >
+              {t("home.research.title")}
+            </h2>
+            <p className="display-lede">{t("home.research.lede")}</p>
+            <div className="flex flex-wrap gap-2">
+              <span className="info-pill">{t("home.research.badge_planner")}</span>
+              <span className="info-pill">{t("home.research.badge_verification")}</span>
+              <span className="info-pill">{t("home.research.badge_teacher")}</span>
+            </div>
+            <div className="pt-2">
+              <RouteProgressLink className="btn-primary" href="/research-program">
+                {t("home.research.cta")}
+              </RouteProgressLink>
+            </div>
+          </div>
+          <div className="grid gap-4">
+            {researchCards.map((card, index) => (
+              <Card key={card.title} tight>
+                <div className="flex gap-4">
+                  <span
+                    className="badge shrink-0"
+                    style={{ fontFamily: "var(--font-mono-custom)" }}
+                  >
+                    MS-{index + 1}
+                  </span>
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-lg font-semibold tracking-normal">
+                      {card.title}
+                    </h3>
+                    <p className="text-sm leading-6" style={{ color: "var(--muted)" }}>
+                      {card.body}
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
       </Section>
 
       {/* ===========================================================

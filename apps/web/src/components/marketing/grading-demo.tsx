@@ -16,10 +16,38 @@
 
 import { useEffect, useState } from "react";
 import { Eyebrow } from "@/components/ui";
+import { useT } from "@/i18n/client";
 
 const STEP_DURATION_MS = 1200;
 const STAGES = ["idle", "step", "sympy", "lean", "judges", "verified"] as const;
 type Stage = (typeof STAGES)[number];
+
+const COPY = {
+  en: {
+    stepLabel: "STEP 1",
+    sympyLabel: "SymPy",
+    sympyNote: "symbolic: (a-b)^2 >= 0",
+    leanLabel: "Lean kernel",
+    leanNote: "proof checked via sq_nonneg",
+    judgesLabel: "LLM judges (2/2)",
+    judgesNote: "independent: confidence 0.96 / 0.96",
+    voting: "Backends voting...",
+    committed: "Verdict committed. Confidence 0.99.",
+    verified: "Verified"
+  },
+  zh: {
+    stepLabel: "步骤 1",
+    sympyLabel: "SymPy",
+    sympyNote: "符号检查：(a-b)^2 >= 0",
+    leanLabel: "Lean kernel",
+    leanNote: "通过 sq_nonneg 完成证明检查",
+    judgesLabel: "LLM 复核 (2/2)",
+    judgesNote: "独立判断：置信度 0.96 / 0.96",
+    voting: "后端正在投票...",
+    committed: "结论已提交。置信度 0.99。",
+    verified: "已验证"
+  }
+} as const;
 
 export function GradingDemo({
   title,
@@ -28,6 +56,8 @@ export function GradingDemo({
   title: string;
   eyebrow: string;
 }) {
+  const { locale } = useT();
+  const copy = COPY[locale];
   const [stage, setStage] = useState<Stage>("idle");
 
   useEffect(() => {
@@ -76,7 +106,7 @@ export function GradingDemo({
             className="info-pill"
             style={{ fontFamily: "var(--font-mono-custom)", fontSize: 11 }}
           >
-            STEP&nbsp;1
+            {copy.stepLabel}
           </span>
           <code
             style={{
@@ -95,24 +125,24 @@ export function GradingDemo({
         <div className="flex flex-col gap-3">
           <EngineLine
             engine="sympy"
-            label="SymPy"
-            note="symbolic: (a-b)² ≥ 0"
+            label={copy.sympyLabel}
+            note={copy.sympyNote}
             visible={stageIdx >= 2}
             done={stageIdx >= 3}
             tone="amber"
           />
           <EngineLine
             engine="lean"
-            label="Lean kernel"
-            note="proof checked via sq_nonneg"
+            label={copy.leanLabel}
+            note={copy.leanNote}
             visible={stageIdx >= 3}
             done={stageIdx >= 4}
             tone="teal"
           />
           <EngineLine
             engine="judges"
-            label="LLM judges (2/2)"
-            note="independent: confidence 0.96 / 0.96"
+            label={copy.judgesLabel}
+            note={copy.judgesNote}
             visible={stageIdx >= 4}
             done={stageIdx >= 5}
             tone="lavender"
@@ -123,12 +153,12 @@ export function GradingDemo({
         <div className="mt-7 flex items-center justify-between gap-4">
           <p className="text-sm" style={{ color: "var(--muted)" }}>
             {stageIdx >= 5
-              ? "Verdict committed. Confidence 0.99."
-              : "Backends voting..."}
+              ? copy.committed
+              : copy.voting}
           </p>
           {stageIdx >= 5 && (
             <span className="verified-stamp" key={stage}>
-              ✓ Verified
+              ✓ {copy.verified}
             </span>
           )}
         </div>

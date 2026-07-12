@@ -110,8 +110,6 @@ export type Messages = {
   "for_schools.cta_panel_body": string;
   "for_schools.contact_wechat": string;
   "for_schools.contact_email": string;
-  "for_schools.contact_founder": string;
-  "for_schools.contact_founder_name": string;
 
   // /me/progress — lifetime student progress report (Phase A).
   "progress.nav_label": string;
@@ -937,6 +935,19 @@ export type Messages = {
   "home.platform.gradebook_meta": string;
   "home.platform.gradebook_body": string;
   "home.platform.footer": string;
+  "home.research.eyebrow": string;
+  "home.research.title": string;
+  "home.research.lede": string;
+  "home.research.badge_planner": string;
+  "home.research.badge_verification": string;
+  "home.research.badge_teacher": string;
+  "home.research.card_1_title": string;
+  "home.research.card_1_body": string;
+  "home.research.card_2_title": string;
+  "home.research.card_2_body": string;
+  "home.research.card_3_title": string;
+  "home.research.card_3_body": string;
+  "home.research.cta": string;
   "home.cards.eyebrow": string;
   "home.cards.headline": string;
   "home.cards.lede": string;
@@ -1065,8 +1076,6 @@ export const EN: Messages = {
   "for_schools.cta_panel_body": "Use the contact details below if your school or tutoring organization wants to evaluate the platform workflow, data model, or deployment path.",
   "for_schools.contact_wechat": "WeChat",
   "for_schools.contact_email": "Email",
-  "for_schools.contact_founder": "Founder",
-  "for_schools.contact_founder_name": "Yiming Sun",
 
   "progress.nav_label": "My progress",
   "progress.eyebrow": "Your progress",
@@ -1168,7 +1177,7 @@ export const EN: Messages = {
   "legal.eyebrow": "Legal",
   "legal.last_updated": "Last updated: 26 May 2026. This document is plain-language and will be replaced with a counsel-reviewed version before production launch.",
   "legal.contact_heading": "Contact",
-  "legal.contact_body": "Questions about this document? Reach Yiming Sun at yimingsun@forecaster-ai.com or WeChat 17806162865. We respond within two business days.",
+  "legal.contact_body": "Questions about this document? Reach us at yimingsun@berkeley.edu or WeChat 17806162865. We respond within two business days.",
   "legal.terms_title": "Terms of Service",
   "legal.terms_lede": "Plain-language rules of the road for using Arcmath. Read once, then get back to math.",
   "legal.terms_h_who": "Who can use Arcmath",
@@ -1907,6 +1916,19 @@ export const EN: Messages = {
   "home.platform.gradebook_meta": "Manual scores · verified verdicts · CSV",
   "home.platform.gradebook_body": "Teachers review submissions, open attachments, add scores and feedback, and use gradebook views to spot missing, overdue, and needs-grading work.",
   "home.platform.footer": "The next layer is teacher prep: concise chapter previews and difficult-problem analysis that supports instruction without handing students direct answers.",
+  "home.research.eyebrow": "MathScout / Research Mode",
+  "home.research.title": "A research planner for advanced math programs.",
+  "home.research.lede": "MathScout helps teachers turn open-ended exploration into a structured program: select suitable targets, pace weekly milestones, and keep formal verification separate from conjecture and experimentation.",
+  "home.research.badge_planner": "Cohort planner",
+  "home.research.badge_verification": "Lean-aware gates",
+  "home.research.badge_teacher": "Teacher controlled",
+  "home.research.card_1_title": "Research targets matched to students",
+  "home.research.card_1_body": "The planner ranks accessible theorem and exploration targets by level, topic interest, team size, and verification path.",
+  "home.research.card_2_title": "Weekly exploration spine",
+  "home.research.card_2_body": "Teachers get phases, deliverables, and checkpoints so students investigate ideas without the platform simply producing final answers.",
+  "home.research.card_3_title": "Formal status stays honest",
+  "home.research.card_3_body": "Experimental evidence, conjectures, proof sketches, and Lean-verified artifacts are labeled separately so research mode remains rigorous.",
+  "home.research.cta": "Open Research Mode",
   "home.cards.eyebrow": "Verified math engine",
   "home.cards.headline": "Formal verification is the grading advantage.",
   "home.cards.lede": "When work is structured, ArcMath checks student reasoning with deterministic math first. It escalates to LLM review only when symbolic or formal backends cannot decide.",
@@ -2035,8 +2057,6 @@ export const ZH: Messages = {
   "for_schools.cta_panel_body": "如果你的学校或教培机构想评估平台流程、数据模型或部署方式，可以通过下方方式联系。",
   "for_schools.contact_wechat": "微信",
   "for_schools.contact_email": "邮箱",
-  "for_schools.contact_founder": "创始人",
-  "for_schools.contact_founder_name": "孙翼鸣",
 
   "progress.nav_label": "我的成长报告",
   "progress.eyebrow": "你的成长",
@@ -2138,7 +2158,7 @@ export const ZH: Messages = {
   "legal.eyebrow": "法律声明",
   "legal.last_updated": "最近更新：2026 年 5 月 26 日。本文档为简明白话版，正式上线前会替换为律师审定版。",
   "legal.contact_heading": "联系",
-  "legal.contact_body": "对本文档有疑问？联系孙翼鸣，邮箱 yimingsun@forecaster-ai.com 或微信 17806162865，我们 2 个工作日内回复。",
+  "legal.contact_body": "对本文档有疑问？可通过邮箱 yimingsun@berkeley.edu 或微信 17806162865 联系，我们 2 个工作日内回复。",
   "legal.terms_title": "使用条款",
   "legal.terms_lede": "白话版的使用规则。读一遍，剩下时间专心做数学。",
   "legal.terms_h_who": "谁可以使用 Arcmath",
@@ -2848,6 +2868,19 @@ export const ZH: Messages = {
   "home.platform.gradebook_meta": "手动分数 · 验证记录 · CSV",
   "home.platform.gradebook_body": "老师打开提交与附件，填写分数和反馈，并用 gradebook 视图查看未交、逾期、待批改和整体完成情况。",
   "home.platform.footer": "下一层是教师备课：用简洁语言总结新章节重点与难题思路，辅助老师授课，而不是直接给学生生成答案。",
+  "home.research.eyebrow": "MathScout / Research Mode",
+  "home.research.title": "面向高阶数学项目的研究规划器。",
+  "home.research.lede": "MathScout 帮助老师把开放式探索组织成可执行项目：选择合适研究目标，安排每周里程碑，并把形式化验证、猜想和实验过程清楚区分。",
+  "home.research.badge_planner": "项目规划",
+  "home.research.badge_verification": "Lean 验证关卡",
+  "home.research.badge_teacher": "教师掌控",
+  "home.research.card_1_title": "按学生水平匹配研究题目",
+  "home.research.card_1_body": "系统根据学生水平、兴趣方向、团队规模和验证路径，推荐合适的定理型或探索型研究目标。",
+  "home.research.card_2_title": "每周探索主线",
+  "home.research.card_2_body": "老师可以获得阶段安排、产出要求和检查点，让学生真正探索，而不是由平台直接生成最终答案。",
+  "home.research.card_3_title": "形式化状态保持诚实",
+  "home.research.card_3_body": "实验现象、猜想、证明草稿和 Lean 已验证结果会分开标注，保证 Research Mode 的严谨性。",
+  "home.research.cta": "打开 Research Mode",
   "home.cards.eyebrow": "可信数学引擎",
   "home.cards.headline": "形式化验证是批改的核心优势。",
   "home.cards.lede": "当学生作答是结构化的，ArcMath 会优先使用确定性数学后端检查推理；只有符号化或形式化后端无法判断时，才升级给 LLM 复核。",

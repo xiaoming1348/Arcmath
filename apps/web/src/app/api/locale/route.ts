@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
 import { LOCALE_COOKIE } from "@/i18n/server";
 import { isLocale } from "@/i18n/dictionary";
 import { getServerSession } from "next-auth";
@@ -24,8 +23,8 @@ export async function POST(request: Request) {
     );
   }
 
-  const cookieStore = await cookies();
-  cookieStore.set(LOCALE_COOKIE, locale, {
+  const response = NextResponse.json({ ok: true, locale });
+  response.cookies.set(LOCALE_COOKIE, locale, {
     path: "/",
     // 180 days — long enough that a student doesn't re-pick every
     // semester, short enough that stale prefs on a shared device
@@ -45,5 +44,5 @@ export async function POST(request: Request) {
       });
   }
 
-  return NextResponse.json({ ok: true, locale });
+  return response;
 }

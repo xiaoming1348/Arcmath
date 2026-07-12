@@ -13,6 +13,10 @@ import { useSetLocale, useT } from "@/i18n/client";
 export function LanguageSwitcher() {
   const { locale, t } = useT();
   const setLocale = useSetLocale();
+  const handleLocaleChange = (next: "en" | "zh") => {
+    if (locale !== next) void setLocale(next);
+  };
+
   return (
     <div
       className="inline-flex items-center gap-1 rounded-md border border-slate-200 bg-white px-1 py-0.5 text-xs"
@@ -20,10 +24,9 @@ export function LanguageSwitcher() {
     >
       <button
         type="button"
-        onClick={() => {
-          if (locale !== "en") void setLocale("en");
-        }}
+        onClick={() => handleLocaleChange("en")}
         aria-pressed={locale === "en"}
+        aria-label={t("topnav.language.english")}
         className={`rounded px-1.5 py-0.5 transition-colors ${
           locale === "en"
             ? "bg-slate-900 text-white"
@@ -34,10 +37,9 @@ export function LanguageSwitcher() {
       </button>
       <button
         type="button"
-        onClick={() => {
-          if (locale !== "zh") void setLocale("zh");
-        }}
+        onClick={() => handleLocaleChange("zh")}
         aria-pressed={locale === "zh"}
+        aria-label={t("topnav.language.chinese")}
         className={`rounded px-1.5 py-0.5 transition-colors ${
           locale === "zh"
             ? "bg-slate-900 text-white"

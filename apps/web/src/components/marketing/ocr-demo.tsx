@@ -21,6 +21,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { Eyebrow } from "@/components/ui";
+import { useT } from "@/i18n/client";
 
 const STEP_DURATION_MS = 1200;
 const STAGES = [
@@ -38,6 +39,29 @@ type Stage = (typeof STAGES)[number];
 // AMGM handwritten step.
 const LATEX_OUTPUT = "a^2 + b^2 \\geq 2ab";
 
+const COPY = {
+  en: {
+    stepPhoto: "Step photo",
+    tapCamera: "Tap the camera in MathLive",
+    reading: "GPT-4o vision reads the photo...",
+    done: "Done. Confidence: high",
+    mathField: "MathLive field",
+    empty: "(empty - waiting for OCR)",
+    highConfidence: "high confidence",
+    submit: "Student edits or submits."
+  },
+  zh: {
+    stepPhoto: "作答照片",
+    tapCamera: "在 MathLive 中点击相机",
+    reading: "GPT-4o 视觉模型正在读取照片...",
+    done: "完成。置信度：高",
+    mathField: "MathLive 输入框",
+    empty: "（空白 - 等待 OCR）",
+    highConfidence: "高置信度",
+    submit: "学生可继续编辑或提交。"
+  }
+} as const;
+
 export function OcrDemo({
   title,
   eyebrow
@@ -45,6 +69,8 @@ export function OcrDemo({
   title: string;
   eyebrow: string;
 }) {
+  const { locale } = useT();
+  const copy = COPY[locale];
   const [stage, setStage] = useState<Stage>("idle");
 
   useEffect(() => {
@@ -132,7 +158,7 @@ export function OcrDemo({
                 fontFamily: "var(--font-mono-custom)"
               }}
             >
-              Step photo
+              {copy.stepPhoto}
             </div>
             <div
               className="relative overflow-hidden"
@@ -239,10 +265,10 @@ export function OcrDemo({
               </span>
               <span>
                 {stageIdx < 2
-                  ? "Tap the camera in MathLive"
+                  ? copy.tapCamera
                   : stageIdx < 4
-                    ? "GPT-4o vision reads the photo…"
-                    : "Done. Confidence: high"}
+                    ? copy.reading
+                    : copy.done}
               </span>
             </div>
           </div>
@@ -283,7 +309,7 @@ export function OcrDemo({
                 fontFamily: "var(--font-mono-custom)"
               }}
             >
-              MathLive field
+              {copy.mathField}
             </div>
             <div
               style={{
@@ -320,7 +346,7 @@ export function OcrDemo({
                 </>
               ) : (
                 <span style={{ color: "var(--subtle)", fontStyle: "italic" }}>
-                  (empty — waiting for OCR)
+                  {copy.empty}
                 </span>
               )}
             </div>
@@ -336,12 +362,12 @@ export function OcrDemo({
                     animation: "ocr-fade-up 360ms ease-out both"
                   }}
                 >
-                  ✓ high confidence
+                  ✓ {copy.highConfidence}
                 </span>
               )}
               {stageIdx >= 5 && (
                 <span className="text-xs" style={{ color: "var(--muted)" }}>
-                  Student edits or submits.
+                  {copy.submit}
                 </span>
               )}
             </div>
