@@ -136,6 +136,24 @@ function verifierBaseUrl(): string | null {
   return url.replace(/\/+$/, "");
 }
 
+function normalizeOpenAIChatEndpoint(raw: string): string {
+  const endpoint = raw.trim().replace(/\/+$/, "");
+  if (endpoint.endsWith("/chat/completions")) return endpoint;
+  if (endpoint.endsWith("/responses")) {
+    return `${endpoint.slice(0, -"/responses".length)}/chat/completions`;
+  }
+  return `${endpoint}/chat/completions`;
+}
+
+function researchOpenAIChatEndpoint(): string | undefined {
+  const raw =
+    process.env.RESEARCH_OPENAI_CHAT_COMPLETIONS_URL ??
+    process.env.OPENAI_CHAT_COMPLETIONS_URL ??
+    process.env.OPENAI_BASE_URL;
+  if (!raw?.trim()) return undefined;
+  return normalizeOpenAIChatEndpoint(raw);
+}
+
 async function fetchWithTimeout(
   url: string,
   init: RequestInit,
@@ -244,6 +262,7 @@ export async function naturalLanguageToLeanDraft(params: {
       domain: params.domain,
       natural_language_statement: params.naturalLanguageStatement,
       planner_assumptions: params.plannerAssumptions,
+      openai_endpoint: researchOpenAIChatEndpoint(),
       openai_model: params.openaiModel ?? process.env.RESEARCH_PROVER_MODEL ?? "gpt-4.1"
     },
     autoformalizeResponseSchema
@@ -258,6 +277,7 @@ export async function leanDraftToFinal(params: {
     "/complete-lean",
     {
       lean_draft: params.leanDraft,
+      openai_endpoint: researchOpenAIChatEndpoint(),
       openai_model: params.openaiModel ?? process.env.RESEARCH_PROVER_MODEL ?? "gpt-4.1"
     },
     leanCompleteResponseSchema
@@ -286,6 +306,7 @@ export async function proveNaturalStatement(params: {
       domain: params.domain,
       natural_language_statement: params.naturalLanguageStatement,
       planner_assumptions: params.plannerAssumptions,
+      openai_endpoint: researchOpenAIChatEndpoint(),
       max_completion_retries: params.maxCompletionRetries,
       openai_model: params.openaiModel ?? process.env.RESEARCH_PROVER_MODEL ?? "gpt-4.1"
     },

@@ -16,6 +16,15 @@ PROCESS_NAME="${PROCESS_NAME:-arcmath-proof-verifier}"
 HOST="${PROOF_VERIFIER_HOST:-127.0.0.1}"
 PORT="${PROOF_VERIFIER_HOST_PORT:-8000}"
 LEAN_TIMEOUT="${ARCMATH_LEAN_TIMEOUT_SEC:-180}"
+WEB_ENV_FILE="${REPO_DIR}/apps/web/.env.local"
+
+read_web_env_value() {
+  local name="$1"
+  if [ ! -f "${WEB_ENV_FILE}" ]; then
+    return 0
+  fi
+  grep "^${name}=" "${WEB_ENV_FILE}" | cut -d= -f2- | sed 's/^"//; s/"$//' | head -n1 || true
+}
 
 run_with_heartbeat() {
   local description="$1"
@@ -48,13 +57,31 @@ git fetch origin
 git reset --hard origin/main
 
 OPENAI_KEY="${OPENAI_API_KEY:-}"
-if [ -z "${OPENAI_KEY}" ] && [ -f "${REPO_DIR}/apps/web/.env.local" ]; then
-  OPENAI_KEY="$(grep '^OPENAI_API_KEY=' "${REPO_DIR}/apps/web/.env.local" | cut -d= -f2- | sed 's/^"//; s/"$//' | head -n1 || true)"
+if [ -z "${OPENAI_KEY}" ]; then
+  OPENAI_KEY="$(read_web_env_value OPENAI_API_KEY)"
 fi
 
 if [ -z "${OPENAI_KEY}" ]; then
   echo "ERROR: OPENAI_API_KEY is not set in shell or apps/web/.env.local." >&2
   exit 1
+fi
+
+OPENAI_BASE_URL_VALUE="${OPENAI_BASE_URL:-}"
+OPENAI_CHAT_COMPLETIONS_URL_VALUE="${OPENAI_CHAT_COMPLETIONS_URL:-}"
+RESEARCH_OPENAI_CHAT_COMPLETIONS_URL_VALUE="${RESEARCH_OPENAI_CHAT_COMPLETIONS_URL:-}"
+RESEARCH_PROVER_MODEL_VALUE="${RESEARCH_PROVER_MODEL:-}"
+
+if [ -z "${OPENAI_BASE_URL_VALUE}" ]; then
+  OPENAI_BASE_URL_VALUE="$(read_web_env_value OPENAI_BASE_URL)"
+fi
+if [ -z "${OPENAI_CHAT_COMPLETIONS_URL_VALUE}" ]; then
+  OPENAI_CHAT_COMPLETIONS_URL_VALUE="$(read_web_env_value OPENAI_CHAT_COMPLETIONS_URL)"
+fi
+if [ -z "${RESEARCH_OPENAI_CHAT_COMPLETIONS_URL_VALUE}" ]; then
+  RESEARCH_OPENAI_CHAT_COMPLETIONS_URL_VALUE="$(read_web_env_value RESEARCH_OPENAI_CHAT_COMPLETIONS_URL)"
+fi
+if [ -z "${RESEARCH_PROVER_MODEL_VALUE}" ]; then
+  RESEARCH_PROVER_MODEL_VALUE="$(read_web_env_value RESEARCH_PROVER_MODEL)"
 fi
 
 echo "==> proof-verifier baremetal: ensure elan/lake"
@@ -88,6 +115,10 @@ cd "${SERVICE_DIR}"
 pm2 delete "${PROCESS_NAME}" >/dev/null 2>&1 || true
 env \
   "OPENAI_API_KEY=${OPENAI_KEY}" \
+  "OPENAI_BASE_URL=${OPENAI_BASE_URL_VALUE}" \
+  "OPENAI_CHAT_COMPLETIONS_URL=${OPENAI_CHAT_COMPLETIONS_URL_VALUE}" \
+  "RESEARCH_OPENAI_CHAT_COMPLETIONS_URL=${RESEARCH_OPENAI_CHAT_COMPLETIONS_URL_VALUE}" \
+  "RESEARCH_PROVER_MODEL=${RESEARCH_PROVER_MODEL_VALUE}" \
   "ARCMATH_LEAN_TIMEOUT_SEC=${LEAN_TIMEOUT}" \
   "PORT=${PORT}" \
   "PATH=${HOME}/.elan/bin:${VENV_DIR}/bin:${PATH}" \

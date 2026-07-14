@@ -1,3 +1,4 @@
+import os
 from enum import Enum
 from typing import Any, Literal
 
@@ -62,11 +63,31 @@ class LeanVerifyRequest(BaseModel):
     lean_code: str = Field(min_length=1, max_length=20000)
 
 
+def normalize_openai_chat_endpoint(raw: str) -> str:
+    endpoint = raw.strip().rstrip("/")
+    if not endpoint:
+        return "https://api.openai.com/v1/chat/completions"
+    if endpoint.endswith("/chat/completions"):
+        return endpoint
+    if endpoint.endswith("/responses"):
+        return endpoint[: -len("/responses")] + "/chat/completions"
+    return endpoint + "/chat/completions"
+
+
+def default_openai_chat_endpoint() -> str:
+    return normalize_openai_chat_endpoint(
+        os.environ.get("RESEARCH_OPENAI_CHAT_COMPLETIONS_URL", "")
+        or os.environ.get("OPENAI_CHAT_COMPLETIONS_URL", "")
+        or os.environ.get("OPENAI_BASE_URL", "")
+        or "https://api.openai.com/v1/chat/completions"
+    )
+
+
 class AutoformalizeRequest(BaseModel):
     domain: str = Field(default="math", max_length=64)
     natural_language_statement: str = Field(min_length=1, max_length=4000)
     planner_assumptions: list[str] = Field(default_factory=list, max_length=32)
-    openai_endpoint: str = Field(default="https://api.openai.com/v1/chat/completions")
+    openai_endpoint: str = Field(default_factory=default_openai_chat_endpoint)
     openai_model: str = Field(default="gpt-4.1")
 
 
@@ -79,7 +100,7 @@ class AutoformalizeResponse(BaseModel):
 
 class LeanCompleteRequest(BaseModel):
     lean_draft: str = Field(min_length=1, max_length=20000)
-    openai_endpoint: str = Field(default="https://api.openai.com/v1/chat/completions")
+    openai_endpoint: str = Field(default_factory=default_openai_chat_endpoint)
     openai_model: str = Field(default="gpt-4.1")
 
 
@@ -95,7 +116,7 @@ class ProveRequest(BaseModel):
     domain: str = Field(default="math", max_length=64)
     natural_language_statement: str = Field(min_length=1, max_length=4000)
     planner_assumptions: list[str] = Field(default_factory=list, max_length=32)
-    openai_endpoint: str = Field(default="https://api.openai.com/v1/chat/completions")
+    openai_endpoint: str = Field(default_factory=default_openai_chat_endpoint)
     openai_model: str = Field(default="gpt-4.1")
     max_completion_retries: int = Field(default=1, ge=0, le=3)
 

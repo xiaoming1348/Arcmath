@@ -84,6 +84,22 @@ PROOF_VERIFIER_URL=http://127.0.0.1:8000
 `services/proof-verifier/.venv-linux` 创建 Python 环境，在用户目录安装 elan，并用 PM2 管理
 `arcmath-proof-verifier`。
 
+注意：HK VPS 直接访问 OpenAI API 可能返回 `unsupported_country_region_territory`。Lean
+kernel verification 不依赖 OpenAI，已经可以本机运行；但 Natural Language → Lean Draft、
+Lean Draft → Lean Final、Lean Explanation 这类 AI 功能需要把请求路由到可访问 OpenAI 的
+approved-region relay。可在 `apps/web/.env.local` 增加：
+
+```bash
+# Web app 的 Responses API 调用；这里需要是 /v1/responses 形式
+OPENAI_BASE_URL=https://<approved-region-relay>/v1/responses
+
+# Verifier 的 Chat Completions 调用；这里需要是 /v1/chat/completions 形式
+RESEARCH_OPENAI_CHAT_COMPLETIONS_URL=https://<approved-region-relay>/v1/chat/completions
+RESEARCH_PROVER_MODEL=gpt-4.1
+```
+
+更新后重新执行 `deploy.sh` 和 verifier deploy 脚本，让 PM2 进程读到新环境变量。
+
 或用同目录的 GitHub Actions workflow `.github/workflows/deploy-hk.yml`（在
 HK_VPS_DEPLOY.md §6 里），push 后自动 SSH 部署。
 
