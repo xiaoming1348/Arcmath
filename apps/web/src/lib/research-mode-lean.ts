@@ -139,19 +139,18 @@ function verifierBaseUrl(): string | null {
 function normalizeOpenAIChatEndpoint(raw: string): string {
   const endpoint = raw.trim().replace(/\/+$/, "");
   if (endpoint.endsWith("/chat/completions")) return endpoint;
-  if (endpoint.endsWith("/responses")) {
-    return `${endpoint.slice(0, -"/responses".length)}/chat/completions`;
-  }
   return `${endpoint}/chat/completions`;
 }
 
-function researchOpenAIChatEndpoint(): string | undefined {
-  const raw =
+function researchOpenAIEndpoint(): string | undefined {
+  const chatEndpoint =
     process.env.RESEARCH_OPENAI_CHAT_COMPLETIONS_URL ??
-    process.env.OPENAI_CHAT_COMPLETIONS_URL ??
-    process.env.OPENAI_BASE_URL;
-  if (!raw?.trim()) return undefined;
-  return normalizeOpenAIChatEndpoint(raw);
+    process.env.OPENAI_CHAT_COMPLETIONS_URL;
+  if (chatEndpoint?.trim()) return normalizeOpenAIChatEndpoint(chatEndpoint);
+
+  const baseEndpoint = process.env.OPENAI_BASE_URL?.trim();
+  if (!baseEndpoint) return undefined;
+  return baseEndpoint.replace(/\/+$/, "");
 }
 
 async function fetchWithTimeout(
@@ -262,7 +261,7 @@ export async function naturalLanguageToLeanDraft(params: {
       domain: params.domain,
       natural_language_statement: params.naturalLanguageStatement,
       planner_assumptions: params.plannerAssumptions,
-      openai_endpoint: researchOpenAIChatEndpoint(),
+      openai_endpoint: researchOpenAIEndpoint(),
       openai_model: params.openaiModel ?? process.env.RESEARCH_PROVER_MODEL ?? "gpt-4.1"
     },
     autoformalizeResponseSchema
@@ -277,7 +276,7 @@ export async function leanDraftToFinal(params: {
     "/complete-lean",
     {
       lean_draft: params.leanDraft,
-      openai_endpoint: researchOpenAIChatEndpoint(),
+      openai_endpoint: researchOpenAIEndpoint(),
       openai_model: params.openaiModel ?? process.env.RESEARCH_PROVER_MODEL ?? "gpt-4.1"
     },
     leanCompleteResponseSchema
@@ -306,7 +305,7 @@ export async function proveNaturalStatement(params: {
       domain: params.domain,
       natural_language_statement: params.naturalLanguageStatement,
       planner_assumptions: params.plannerAssumptions,
-      openai_endpoint: researchOpenAIChatEndpoint(),
+      openai_endpoint: researchOpenAIEndpoint(),
       max_completion_retries: params.maxCompletionRetries,
       openai_model: params.openaiModel ?? process.env.RESEARCH_PROVER_MODEL ?? "gpt-4.1"
     },

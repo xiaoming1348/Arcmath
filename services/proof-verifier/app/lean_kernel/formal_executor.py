@@ -42,6 +42,36 @@ class LLMResult:
     model: str
 
 
+def extract_responses_output_text(payload: dict[str, Any]) -> str:
+    output_text = payload.get("output_text")
+    if isinstance(output_text, str) and output_text.strip():
+        return output_text.strip()
+
+    parts: list[str] = []
+    output = payload.get("output")
+    if isinstance(output, list):
+        for item in output:
+            if not isinstance(item, dict):
+                continue
+            content_items = item.get("content")
+            if not isinstance(content_items, list):
+                continue
+            for content in content_items:
+                if not isinstance(content, dict):
+                    continue
+                if content.get("type") not in {"output_text", "text"}:
+                    continue
+                text = content.get("text")
+                if isinstance(text, str) and text.strip():
+                    parts.append(text.strip())
+                elif isinstance(text, dict):
+                    value = text.get("value")
+                    if isinstance(value, str) and value.strip():
+                        parts.append(value.strip())
+
+    return "\n".join(parts).strip()
+
+
 def run_cmd(cmd: list[str], cwd: Optional[Path] = None, timeout_sec: int = 25) -> subprocess.CompletedProcess:
     return subprocess.run(
         cmd,
@@ -73,15 +103,25 @@ def call_openai_chat(
     raw_endpoint = (endpoint or "").strip().rstrip("/")
     if not raw_endpoint:
         return LLMResult(status="FAIL", reason="openai endpoint missing", content="", model=model)
-    url = raw_endpoint if raw_endpoint.endswith("/chat/completions") else raw_endpoint + "/chat/completions"
-    payload = {
-        "model": model,
-        "messages": [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt},
-        ],
-        "temperature": 0.1,
-    }
+    use_responses_api = raw_endpoint.endswith("/responses")
+    if use_responses_api:
+        url = raw_endpoint
+        payload = {
+            "model": model,
+            "input": f"System instructions:\n{system_prompt}\n\nUser task:\n{user_prompt}",
+            "temperature": 0.1,
+            "max_output_tokens": 2048,
+        }
+    else:
+        url = raw_endpoint if raw_endpoint.endswith("/chat/completions") else raw_endpoint + "/chat/completions"
+        payload = {
+            "model": model,
+            "messages": [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt},
+            ],
+            "temperature": 0.1,
+        }
 
     req = urllib.request.Request(
         url,
@@ -97,7 +137,12 @@ def call_openai_chat(
         with urllib.request.urlopen(req, timeout=timeout_sec) as resp:
             body = resp.read().decode("utf-8")
         parsed = json.loads(body)
-        content = parsed["choices"][0]["message"]["content"].strip()
+        if use_responses_api:
+            content = extract_responses_output_text(parsed)
+        else:
+            content = parsed["choices"][0]["message"]["content"].strip()
+        if not content:
+            return LLMResult(status="FAIL", reason="openai response missing output text", content="", model=model)
         return LLMResult(status="PASS", reason="openai call succeeded", content=content, model=model)
     except urllib.error.HTTPError as exc:
         detail = exc.read().decode("utf-8", errors="ignore")
