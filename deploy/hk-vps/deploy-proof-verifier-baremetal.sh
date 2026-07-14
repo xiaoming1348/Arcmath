@@ -42,7 +42,15 @@ export PATH="${HOME}/.elan/bin:${PATH}"
 
 echo "==> proof-verifier baremetal: python environment"
 cd "${SERVICE_DIR}"
-python3 -m venv "${VENV_DIR}"
+if [ ! -x "${VENV_DIR}/bin/python" ] || [ ! -x "${VENV_DIR}/bin/pip" ]; then
+  rm -rf "${VENV_DIR}"
+  if ! python3 -m venv "${VENV_DIR}"; then
+    echo "python3 venv is unavailable; falling back to user-space virtualenv"
+    python3 -m pip install --user --upgrade virtualenv
+    export PATH="${HOME}/.local/bin:${PATH}"
+    python3 -m virtualenv "${VENV_DIR}"
+  fi
+fi
 "${VENV_DIR}/bin/pip" install --upgrade pip
 "${VENV_DIR}/bin/pip" install -r requirements.txt
 
