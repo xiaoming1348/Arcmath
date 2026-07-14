@@ -91,11 +91,12 @@ env \
   "ARCMATH_LEAN_TIMEOUT_SEC=${LEAN_TIMEOUT}" \
   "PORT=${PORT}" \
   "PATH=${HOME}/.elan/bin:${VENV_DIR}/bin:${PATH}" \
-  pm2 start "${VENV_DIR}/bin/uvicorn" \
+  pm2 start "${VENV_DIR}/bin/python" \
+    --interpreter none \
     --name "${PROCESS_NAME}" \
     --cwd "${SERVICE_DIR}" \
     --time \
-    -- app.main:app --host "${HOST}" --port "${PORT}"
+    -- -m uvicorn app.main:app --host "${HOST}" --port "${PORT}"
 
 pm2 save
 
