@@ -11,6 +11,7 @@ Cloudflare 的 GFW 抖动。完整背景见 [`../../HK_VPS_DEPLOY.md`](../../HK_
 | `ecosystem.config.cjs` | PM2 配置：cluster 模式 2 worker，max_memory_restart 1G | PM2 读 |
 | `setup-nginx.sh` | nginx 反代 + Let's Encrypt 自动签证书 + HTTPS + rate-limit + 90s 超时 | sudo，**一次性** |
 | `deploy.sh` | 日常 deploy：git pull → install → build → migrate → PM2 reload | arcmath，**每次 push 后** |
+| `deploy-proof-verifier.sh` | 构建并启动 Lean/mathlib proof verifier Docker 服务 | arcmath，Research Mode 需要 |
 
 ## 上线顺序
 
@@ -58,6 +59,21 @@ push 到 main 之后：
 ```bash
 ssh arcmath@47.76.201.152 'bash ~/arcmath/deploy/hk-vps/deploy.sh'
 ```
+
+如果 Research Mode / Lean verifier 也有变化，或首次部署形式化验证服务：
+
+```bash
+ssh arcmath@47.76.201.152 'bash ~/arcmath/deploy/hk-vps/deploy-proof-verifier.sh'
+```
+
+Web 服务需要能访问 verifier。推荐在 `apps/web/.env.local` 加：
+
+```bash
+PROOF_VERIFIER_URL=http://127.0.0.1:8000
+```
+
+`deploy-proof-verifier.sh` 会从 `apps/web/.env.local` 读取 `OPENAI_API_KEY`，并将 verifier 绑定到 VPS 本机
+`127.0.0.1:8000`，不对公网开放。
 
 或用同目录的 GitHub Actions workflow `.github/workflows/deploy-hk.yml`（在
 HK_VPS_DEPLOY.md §6 里），push 后自动 SSH 部署。

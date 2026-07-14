@@ -21,7 +21,7 @@ export const teacherPrepInputSchema = z.object({
 const nonEmptyList = z
   .array(z.string().min(1).max(360))
   .min(2)
-  .max(8);
+  .max(12);
 
 export const teacherPrepOutputSchema = z.object({
   briefTitle: z.string().min(1).max(140),
@@ -145,6 +145,8 @@ function buildPrompt(input: TeacherPrepInput): string {
     "- For a chapter preview, map the concepts and teaching order instead of generating homework answers.",
     "- Keep the writing compact, concrete, and ready for classroom use.",
     "- Base the brief only on the provided material and context.",
+    "- Each list field should contain 2 to 6 concise items. Never exceed 12 items in any list.",
+    "- Each list item should be one sentence, under 35 words.",
     "",
     contextLines.length > 0 ? "Context:" : null,
     ...contextLines,

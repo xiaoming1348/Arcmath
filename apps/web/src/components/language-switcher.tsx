@@ -1,7 +1,6 @@
 "use client";
 
-import type { MouseEvent } from "react";
-import { useSetLocale, useT } from "@/i18n/client";
+import { useT } from "@/i18n/client";
 
 /**
  * Minimal language toggle used in the top nav. Two buttons — EN / 中文.
@@ -13,14 +12,6 @@ import { useSetLocale, useT } from "@/i18n/client";
  */
 export function LanguageSwitcher() {
   const { locale, t } = useT();
-  const setLocale = useSetLocale();
-  const handleLocaleChange = (
-    event: MouseEvent<HTMLAnchorElement>,
-    next: "en" | "zh"
-  ) => {
-    event.preventDefault();
-    if (locale !== next) void setLocale(next);
-  };
 
   return (
     <div
@@ -29,7 +20,6 @@ export function LanguageSwitcher() {
     >
       <a
         href="/api/locale?locale=en"
-        onClick={(event) => handleLocaleChange(event, "en")}
         role="button"
         aria-pressed={locale === "en"}
         aria-label={t("topnav.language.english")}
@@ -43,7 +33,6 @@ export function LanguageSwitcher() {
       </a>
       <a
         href="/api/locale?locale=zh"
-        onClick={(event) => handleLocaleChange(event, "zh")}
         role="button"
         aria-pressed={locale === "zh"}
         aria-label={t("topnav.language.chinese")}

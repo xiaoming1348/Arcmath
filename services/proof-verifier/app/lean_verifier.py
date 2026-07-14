@@ -89,6 +89,28 @@ def contains_sorry(lean_code: str) -> bool:
     return bool(re.search(r"(^|[^\w])sorry([^\w]|$)", strip_comments(lean_code)))
 
 
+_RUNTIME_FAILURE_PATTERNS = (
+    "could not resolve host",
+    "failed to clone",
+    "cloning into",
+    "external command 'git'",
+    "error: external command",
+    "toolchain",
+    "no such file or directory",
+    "lakefile",
+    "manifest",
+    "download",
+    "network is unreachable",
+    "connection timed out",
+)
+
+
+def looks_like_runtime_failure(stdout: str, stderr: str, reason: str) -> bool:
+    """Separate verifier infrastructure failures from real Lean rejections."""
+    text = f"{reason}\n{stdout}\n{stderr}".lower()
+    return any(pattern in text for pattern in _RUNTIME_FAILURE_PATTERNS)
+
+
 def _ensure_workspace() -> Optional[Path]:
     if not _LEAN_WORKSPACE_DIR.exists():
         return None
@@ -179,6 +201,21 @@ def verify_lean_code(lean_code: str) -> VerifyResponse:
         # Truncate to keep payload small.
         stdout_tail = (result.stdout or "")[-1500:]
         stderr_tail = (result.stderr or "")[-1500:]
+        if looks_like_runtime_failure(result.stdout or "", result.stderr or "", result.reason or ""):
+            return VerifyResponse(
+                verdict=Verdict.UNKNOWN,
+                backend=Backend.LEAN,
+                confidence=0.0,
+                details={
+                    "stage": "lean_runtime_failure",
+                    "reason": result.reason,
+                    "returncode": result.returncode,
+                    "stdout_tail": stdout_tail,
+                    "stderr_tail": stderr_tail,
+                    "runtime_note": result.runtime_note,
+                    "note": "Lean could not run in a ready workspace; this is not a mathematical counterexample.",
+                },
+            )
         return VerifyResponse(
             verdict=Verdict.INVALID,
             backend=Backend.LEAN,
