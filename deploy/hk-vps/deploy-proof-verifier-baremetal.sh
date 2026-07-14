@@ -17,6 +17,30 @@ HOST="${PROOF_VERIFIER_HOST:-127.0.0.1}"
 PORT="${PROOF_VERIFIER_HOST_PORT:-8000}"
 LEAN_TIMEOUT="${ARCMATH_LEAN_TIMEOUT_SEC:-180}"
 
+run_with_heartbeat() {
+  local description="$1"
+  shift
+
+  local log_file
+  log_file="$(mktemp)"
+  "$@" >"${log_file}" 2>&1 &
+  local pid=$!
+
+  while kill -0 "${pid}" >/dev/null 2>&1; do
+    echo "${description} still running..."
+    sleep 20
+  done
+
+  if ! wait "${pid}"; then
+    cat "${log_file}" >&2
+    rm -f "${log_file}"
+    return 1
+  fi
+
+  cat "${log_file}"
+  rm -f "${log_file}"
+}
+
 cd "${REPO_DIR}"
 
 echo "==> proof-verifier baremetal: git sync"
@@ -57,7 +81,7 @@ fi
 echo "==> proof-verifier baremetal: warm Lean/mathlib"
 cd "${SERVICE_DIR}/lean-workspace"
 lake exe cache get
-lake build ArcmathVerifier
+run_with_heartbeat "lake build ArcmathVerifier" lake build ArcmathVerifier
 
 echo "==> proof-verifier baremetal: PM2 start"
 cd "${SERVICE_DIR}"
