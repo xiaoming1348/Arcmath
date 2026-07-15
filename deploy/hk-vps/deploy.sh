@@ -7,6 +7,25 @@
 set -euo pipefail
 
 REPO_DIR="${REPO_DIR:-/home/arcmath/arcmath}"
+WEB_ENV_FILE="${REPO_DIR}/apps/web/.env.local"
+
+read_web_env_value() {
+  local name="$1"
+  if [ ! -f "${WEB_ENV_FILE}" ]; then
+    return 0
+  fi
+  grep "^${name}=" "${WEB_ENV_FILE}" | cut -d= -f2- | sed 's/^"//; s/"$//' | head -n1 || true
+}
+
+export_web_env_if_present() {
+  local name="$1"
+  local value
+  value="$(read_web_env_value "${name}")"
+  if [ -n "${value}" ]; then
+    export "${name}=${value}"
+  fi
+}
+
 cd "${REPO_DIR}"
 
 echo "==> git pull"
@@ -37,6 +56,29 @@ cd "${REPO_DIR}/apps/web"
 NODE_OPTIONS="--max-old-space-size=6144" pnpm build
 
 echo "==> PM2 reload (zero-downtime)"
+export_web_env_if_present DATABASE_URL
+export_web_env_if_present PASSWORD_PEPPER
+export_web_env_if_present NEXTAUTH_SECRET
+export_web_env_if_present NEXTAUTH_URL
+export_web_env_if_present OFFICIAL_PDF_STORAGE_DRIVER
+export_web_env_if_present OFFICIAL_PDF_CACHE_DIR
+export_web_env_if_present OPENAI_API_KEY
+export_web_env_if_present OPENAI_MODEL
+export_web_env_if_present OPENAI_BASE_URL
+export_web_env_if_present OPENAI_CHAT_COMPLETIONS_URL
+export_web_env_if_present OPENAI_VISION_URL
+export_web_env_if_present OPENAI_VISION_RESPONSES_URL
+export_web_env_if_present PROOF_VERIFIER_URL
+export_web_env_if_present RESEARCH_OPENAI_CHAT_COMPLETIONS_URL
+export_web_env_if_present RESEARCH_PROVER_MODEL
+export_web_env_if_present S3_BUCKET
+export_web_env_if_present S3_REGION
+export_web_env_if_present S3_ACCESS_KEY_ID
+export_web_env_if_present S3_SECRET_ACCESS_KEY
+export_web_env_if_present S3_ENDPOINT
+export_web_env_if_present S3_KEY_PREFIX
+export_web_env_if_present S3_FORCE_PATH_STYLE
+export_web_env_if_present DISABLE_ACCESS_GATING
 pm2 reload arcmath-web --update-env
 pm2 save
 
