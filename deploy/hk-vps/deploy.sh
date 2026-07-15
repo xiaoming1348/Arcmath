@@ -55,7 +55,7 @@ echo "==> build"
 cd "${REPO_DIR}/apps/web"
 NODE_OPTIONS="--max-old-space-size=6144" pnpm build
 
-echo "==> PM2 reload (zero-downtime)"
+echo "==> PM2 restart with updated env"
 export_web_env_if_present DATABASE_URL
 export_web_env_if_present PASSWORD_PEPPER
 export_web_env_if_present NEXTAUTH_SECRET
@@ -79,7 +79,7 @@ export_web_env_if_present S3_ENDPOINT
 export_web_env_if_present S3_KEY_PREFIX
 export_web_env_if_present S3_FORCE_PATH_STYLE
 export_web_env_if_present DISABLE_ACCESS_GATING
-pm2 reload arcmath-web --update-env
+pm2 restart arcmath-web --update-env
 pm2 save
 
 echo "==> ✅ deploy 完成 @ $(date -Iseconds)"
