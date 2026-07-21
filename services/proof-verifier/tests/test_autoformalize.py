@@ -1,7 +1,7 @@
 import unittest
 
-from app.autoformalize import autoformalize
-from app.schemas import AutoformalizeRequest
+from app.autoformalize import autoformalize, complete_lean
+from app.schemas import AutoformalizeRequest, LeanCompleteRequest
 
 
 class DeterministicAutoformalizationTests(unittest.TestCase):
@@ -31,6 +31,16 @@ class DeterministicAutoformalizationTests(unittest.TestCase):
         self.assertEqual(result.status, "OK")
         self.assertEqual(result.model, "deterministic")
         self.assertIn("norm_num", result.lean_code)
+
+    def test_complete_proof_skips_llm_when_draft_has_no_placeholder(self) -> None:
+        lean_code = """theorem arcmath_nat_add_zero (n : Nat) : n + 0 = n := by
+  simp"""
+        result = complete_lean(LeanCompleteRequest(lean_draft=lean_code))
+
+        self.assertEqual(result.status, "OK")
+        self.assertEqual(result.lean_code, lean_code)
+        self.assertFalse(result.still_has_sorry)
+        self.assertEqual(result.model, "not-required")
 
 
 if __name__ == "__main__":

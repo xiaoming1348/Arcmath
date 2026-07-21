@@ -103,6 +103,16 @@ def autoformalize(req: AutoformalizeRequest) -> AutoformalizeResponse:
 
 def complete_lean(req: LeanCompleteRequest) -> LeanCompleteResponse:
     """Replace `sorry` with a full proof via LEAN_COMPLETE prompts."""
+    code = req.lean_draft.strip()
+    if "sorry" not in code and "admit" not in code:
+        return LeanCompleteResponse(
+            status="OK",
+            lean_code=code,
+            still_has_sorry=False,
+            model="not-required",
+            raw_reason="The Lean draft has no proof placeholders; no LLM completion was required.",
+        )
+
     api_key = os.environ.get("OPENAI_API_KEY", "").strip()
     if not api_key:
         return LeanCompleteResponse(

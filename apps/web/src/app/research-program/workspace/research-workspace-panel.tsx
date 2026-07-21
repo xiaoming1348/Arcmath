@@ -483,6 +483,11 @@ export function ResearchWorkspacePanel({
   }
 
   async function completeDraft() {
+    // A completion response is not a kernel verdict. Clear any previous
+    // verification so an LLM failure cannot appear beside a stale VERIFIED
+    // badge from an earlier run.
+    setVerifierResult(null);
+    setExplanation(null);
     const result = await runLeanAction<{
       status: string;
       lean_code: string;
@@ -495,8 +500,6 @@ export function ResearchWorkspacePanel({
     if (!result) return;
     if (result.lean_code) {
       setLeanFinal(result.lean_code);
-      setVerifierResult(null);
-      setExplanation(null);
     }
   }
 
