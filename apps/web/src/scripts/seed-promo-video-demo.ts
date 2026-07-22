@@ -59,6 +59,56 @@ function fallbackExcerpt(): string {
   ].join("\n");
 }
 
+function escapePdfText(value: string): string {
+  return value.replace(/[\\()]/g, (match) => `\\${match}`);
+}
+
+function createSimplePdf(lines: string[]): Buffer {
+  const contentLines = lines
+    .map((line) => `(${escapePdfText(line)}) Tj T*`)
+    .join("\n");
+  const content = [
+    "BT",
+    "/F1 12 Tf",
+    "50 760 Td",
+    "15 TL",
+    contentLines,
+    "ET"
+  ].join("\n");
+
+  const objects = [
+    "<< /Type /Catalog /Pages 2 0 R >>",
+    "<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+    "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R >>",
+    `<< /Length ${Buffer.byteLength(content, "utf8")} >>\nstream\n${content}\nendstream`,
+    "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>"
+  ];
+
+  let pdf = "%PDF-1.4\n";
+  const offsets = [0];
+  for (let index = 0; index < objects.length; index += 1) {
+    offsets.push(Buffer.byteLength(pdf, "utf8"));
+    pdf += `${index + 1} 0 obj\n${objects[index]}\nendobj\n`;
+  }
+
+  const xrefOffset = Buffer.byteLength(pdf, "utf8");
+  pdf += `xref\n0 ${objects.length + 1}\n`;
+  pdf += "0000000000 65535 f \n";
+  for (const offset of offsets.slice(1)) {
+    pdf += `${String(offset).padStart(10, "0")} 00000 n \n`;
+  }
+  pdf += [
+    "trailer",
+    `<< /Size ${objects.length + 1} /Root 1 0 R >>`,
+    "startxref",
+    String(xrefOffset),
+    "%%EOF",
+    ""
+  ].join("\n");
+
+  return Buffer.from(pdf, "utf8");
+}
+
 async function fetchPdf(): Promise<Buffer> {
   const response = await fetch(PDF_SOURCE_URL, {
     headers: {
@@ -321,10 +371,17 @@ async function main() {
     select: { id: true }
   });
 
-  const studentWorkPdf = Buffer.from(
-    "%PDF-1.4\n1 0 obj\n<< /Type /Catalog >>\nendobj\n% Promo demo student written work\n%%EOF\n",
-    "utf8"
-  );
+  const studentWorkPdf = createSimplePdf([
+    "Alice Chen - Chapter 1 Exercises 3-9",
+    "Grade 10 Advanced Algebra",
+    "",
+    "Exercise 3: I computed the requested row, column, and entry by matching",
+    "matrix dimensions before multiplying.",
+    "Exercise 6: I used the determinant test to decide invertibility.",
+    "Exercise 8: I applied Cramer's Rule by replacing the x2 column and",
+    "dividing the resulting determinant by det(C).",
+    "Exercise 9: My final inverse entry needs one sign check, as noted."
+  ]);
   const storedSubmission = await getOrganizationResourceStorage().putFile(
     `resource-submission-${aliceSubmission.id}`,
     "alice-chen-chapter-1-exercises-3-9.pdf",
