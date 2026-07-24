@@ -14,6 +14,8 @@ const SHARED_PASSWORD = "ArcDemo-2026!";
 const PDF_SOURCE_URL = "https://arxiv.org/pdf/1807.09352";
 const PDF_FILENAME = "first-course-linear-algebra-kaabar.pdf";
 const PDF_TITLE = "A First Course in Linear Algebra - Chapter 1 Exercises";
+const PROMO_PRACTICE_EXAM = "promo-auto-grading-2026";
+const PROMO_PRACTICE_TITLE = "Auto-Graded Practice: Determinants and Invertibility";
 
 const SOURCE_PAGE_START = 67;
 const SOURCE_PAGE_END = 68;
@@ -131,6 +133,14 @@ async function removeLocalFileIfAny(locator: string | null | undefined) {
 }
 
 async function cleanupExistingDemo() {
+  await prisma.problemSet.deleteMany({
+    where: {
+      contest: "PRACTICE",
+      year: 2026,
+      exam: PROMO_PRACTICE_EXAM
+    }
+  });
+
   const existingOrg = await prisma.organization.findUnique({
     where: { slug: ORG_SLUG },
     select: {
@@ -351,20 +361,257 @@ async function main() {
     }
   );
 
+  const practiceSet = await prisma.problemSet.create({
+    data: {
+      contest: "PRACTICE",
+      year: 2026,
+      exam: PROMO_PRACTICE_EXAM,
+      title: PROMO_PRACTICE_TITLE,
+      category: "TOPIC_PRACTICE",
+      submissionMode: "PER_PROBLEM",
+      tutorEnabled: true,
+      visibility: "ORG_ONLY",
+      ownerOrganizationId: org.id,
+      ownerUserId: teacher.id,
+      sourceUrl: "promo://auto-grading-and-ocr",
+      status: "PUBLISHED",
+      problems: {
+        create: [
+          {
+            number: 1,
+            statement:
+              "Let $A = \\begin{pmatrix}2 & 1 \\\\ 5 & 3\\end{pmatrix}$. Find $\\det(A)$.",
+            statementFormat: "MARKDOWN_LATEX",
+            answerFormat: "INTEGER",
+            answer: "1",
+            topicKey: "linear_algebra.determinants",
+            difficultyBand: "EASY",
+            sourceLabel: "Promo auto-grading demo · Q1",
+            solutionSketch:
+              "For a 2 by 2 matrix, det(A)=ad-bc=2*3-1*5=1.",
+            curatedHintLevel1: "Use $ad-bc$ for a 2 by 2 determinant.",
+            curatedHintLevel2: "Here $a=2$, $b=1$, $c=5$, and $d=3$.",
+            curatedHintLevel3: "Compute $2\\cdot3-1\\cdot5$ carefully."
+          },
+          {
+            number: 2,
+            statement:
+              "Which statement is correct for $B = \\begin{pmatrix}1 & 2 \\\\ 3 & 6\\end{pmatrix}$?",
+            statementFormat: "MARKDOWN_LATEX",
+            choices: [
+              "A. $B$ is invertible because $\\det(B)=6$.",
+              "B. $B$ is not invertible because $\\det(B)=0$.",
+              "C. $B$ is invertible because its rows are different.",
+              "D. $B$ is not invertible because its entries are positive."
+            ],
+            answerFormat: "MULTIPLE_CHOICE",
+            answer: "B",
+            topicKey: "linear_algebra.invertibility",
+            difficultyBand: "EASY",
+            sourceLabel: "Promo auto-grading demo · Q2",
+            solutionSketch:
+              "det(B)=1*6-2*3=0, so B is not invertible.",
+            curatedHintLevel1: "Check the determinant before deciding invertibility.",
+            curatedHintLevel2: "Compute $1\\cdot6-2\\cdot3$.",
+            curatedHintLevel3: "A square matrix is invertible exactly when its determinant is nonzero."
+          }
+        ]
+      }
+    },
+    select: {
+      id: true,
+      problems: {
+        select: { id: true, number: true },
+        orderBy: { number: "asc" }
+      }
+    }
+  });
+
+  const practiceAssignment = await prisma.classAssignment.create({
+    data: {
+      classId: klass.id,
+      problemSetId: practiceSet.id,
+      createdByUserId: teacher.id,
+      title: PROMO_PRACTICE_TITLE,
+      instructions:
+        "Complete the determinant and invertibility checks. Hint tutor is enabled for practice, and answer-only submissions are graded automatically.",
+      dueAt,
+      hintTutorEnabled: true
+    },
+    select: { id: true, title: true }
+  });
+
+  const determinantProblem = practiceSet.problems.find((problem) => problem.number === 1);
+  const invertibilityProblem = practiceSet.problems.find((problem) => problem.number === 2);
+  if (!determinantProblem || !invertibilityProblem) {
+    throw new Error("Promo practice problems were not created.");
+  }
+
+  const aliceRun = await prisma.practiceRun.create({
+    data: {
+      userId: alice.id,
+      organizationId: org.id,
+      classAssignmentId: practiceAssignment.id,
+      problemSetId: practiceSet.id,
+      mode: "PRACTICE",
+      completedAt: new Date()
+    },
+    select: { id: true }
+  });
+  const aliceAttempt = await prisma.problemAttempt.create({
+    data: {
+      userId: alice.id,
+      problemId: determinantProblem.id,
+      practiceRunId: aliceRun.id,
+      submittedAnswer: "-1",
+      normalizedAnswer: "-1",
+      isCorrect: false,
+      explanationText:
+        "The determinant should be 2*3 - 1*5 = 1. The submitted work contains a sign/arithmetic error in the final subtraction.",
+      status: "SUBMITTED",
+      entryMode: "STUCK_WITH_WORK",
+      selfReport: "ATTEMPTED_STUCK",
+      overallFeedback:
+        "OCR captured the handwritten determinant setup, but the final arithmetic has an error: 6 - 5 is 1, not -1.",
+      submittedAt: new Date()
+    },
+    select: { id: true }
+  });
+  await prisma.attemptStep.createMany({
+    data: [
+      {
+        attemptId: aliceAttempt.id,
+        userId: alice.id,
+        stepIndex: 1,
+        latexInput: "\\det(A)=2\\cdot 3-1\\cdot 5",
+        classifiedStepType: "EQUATION",
+        verificationBackend: "SYMPY",
+        verdict: "VERIFIED",
+        confidence: 0.99,
+        feedbackText: "Correct determinant formula and substitution."
+      },
+      {
+        attemptId: aliceAttempt.id,
+        userId: alice.id,
+        stepIndex: 2,
+        latexInput: "=6-5",
+        classifiedStepType: "ALGEBRAIC_EQUIVALENCE",
+        verificationBackend: "SYMPY",
+        verdict: "VERIFIED",
+        confidence: 0.99,
+        feedbackText: "Correct simplification before the final arithmetic."
+      },
+      {
+        attemptId: aliceAttempt.id,
+        userId: alice.id,
+        stepIndex: 3,
+        latexInput: "=-1",
+        classifiedStepType: "CONCLUSION",
+        verificationBackend: "SYMPY",
+        verdict: "INVALID",
+        confidence: 0.96,
+        feedbackText: "Arithmetic error: 6 - 5 equals 1, not -1."
+      }
+    ]
+  });
+  await prisma.ocrCallLog.create({
+    data: {
+      userId: alice.id,
+      kind: "multi_step",
+      stepCount: 3,
+      topConfidence: "high",
+      succeeded: true,
+      problemAttemptId: aliceAttempt.id
+    }
+  });
+
+  const marcoRun = await prisma.practiceRun.create({
+    data: {
+      userId: marco.id,
+      organizationId: org.id,
+      classAssignmentId: practiceAssignment.id,
+      problemSetId: practiceSet.id,
+      mode: "PRACTICE",
+      completedAt: new Date()
+    },
+    select: { id: true }
+  });
+  const marcoMcAttempt = await prisma.problemAttempt.create({
+    data: {
+      userId: marco.id,
+      problemId: invertibilityProblem.id,
+      practiceRunId: marcoRun.id,
+      submittedAnswer: "B",
+      normalizedAnswer: "B",
+      isCorrect: true,
+      explanationText:
+        "Correct. The determinant is 1*6 - 2*3 = 0, so the matrix is not invertible.",
+      status: "SUBMITTED",
+      entryMode: "ANSWER_ONLY",
+      hintsUsedCount: 1,
+      submittedAt: new Date()
+    },
+    select: { id: true }
+  });
+  await prisma.problemAttempt.create({
+    data: {
+      userId: marco.id,
+      problemId: determinantProblem.id,
+      practiceRunId: marcoRun.id,
+      submittedAnswer: "1",
+      normalizedAnswer: "1",
+      isCorrect: true,
+      explanationText:
+        "Correct. For a 2 by 2 determinant, 2*3 - 1*5 = 1.",
+      status: "SUBMITTED",
+      entryMode: "ANSWER_ONLY",
+      submittedAt: new Date()
+    },
+    select: { id: true }
+  });
+  await prisma.problemHintUsage.create({
+    data: {
+      userId: marco.id,
+      problemId: invertibilityProblem.id,
+      attemptId: marcoMcAttempt.id,
+      practiceRunId: marcoRun.id,
+      hintLevel: 1,
+      hintText:
+        "Start by checking the determinant. A 2 by 2 matrix is invertible exactly when its determinant is nonzero.",
+      promptVersion: "promo-seeded-hint-v1"
+    }
+  });
+  await logAudit(
+    prisma,
+    { userId: teacher.id, organizationId: org.id },
+    {
+      action: "class.assignment.create",
+      targetType: "ClassAssignment",
+      targetId: practiceAssignment.id,
+      payload: {
+        classId: klass.id,
+        problemSetId: practiceSet.id,
+        title: practiceAssignment.title,
+        hintTutorEnabled: true,
+        createdBy: "promo_video_seed"
+      }
+    }
+  );
+
   const aliceSubmission = await prisma.resourceAssignmentSubmission.create({
     data: {
       assignmentId: assignment.id,
       studentUserId: alice.id,
       answerText: [
-        "I completed Exercises 3-9.",
-        "For the inverse and determinant questions, I first checked whether the determinant was nonzero.",
-        "For Cramer's Rule, I replaced the target column with the constants column and divided by det(C).",
+        "I completed Exercises 3-9 as handwritten work.",
+        "I used the determinant test for invertibility and Cramer's Rule for the linear system.",
+        "I also tried the handwriting/photo recognition workflow on the determinant warm-up; the OCR correctly captured my setup and exposed one arithmetic error.",
         "I attached my written work for the matrix calculations."
       ].join("\n"),
-      gradeScore: 92,
+      gradeScore: 88,
       gradeMax: 100,
       feedback:
-        "Strong setup and clear matrix transformations. Recheck the sign convention in Exercise 9, but the overall method is correct.",
+        "Strong setup and clear matrix transformations. The photo/OCR check surfaced one arithmetic error in the determinant warm-up, and Exercise 9 needs a sign check. The overall method is sound.",
       gradedAt: new Date(),
       gradedByUserId: teacher.id
     },
@@ -372,19 +619,21 @@ async function main() {
   });
 
   const studentWorkPdf = createSimplePdf([
-    "Alice Chen - Chapter 1 Exercises 3-9",
+    "Alice Chen - Handwritten Chapter 1 Exercises 3-9",
     "Grade 10 Advanced Algebra",
     "",
-    "Exercise 3: I computed the requested row, column, and entry by matching",
-    "matrix dimensions before multiplying.",
+    "Photo/OCR warm-up:",
+    "A = [[2, 1], [5, 3]]",
+    "det(A) = 2*3 - 1*5 = 6 - 5 = -1",
+    "Intentional correction target: 6 - 5 should equal 1.",
+    "",
     "Exercise 6: I used the determinant test to decide invertibility.",
-    "Exercise 8: I applied Cramer's Rule by replacing the x2 column and",
-    "dividing the resulting determinant by det(C).",
+    "Exercise 8: I applied Cramer's Rule by replacing the x2 column.",
     "Exercise 9: My final inverse entry needs one sign check, as noted."
   ]);
   const storedSubmission = await getOrganizationResourceStorage().putFile(
     `resource-submission-${aliceSubmission.id}`,
-    "alice-chen-chapter-1-exercises-3-9.pdf",
+    "alice-chen-handwritten-ocr-homework.pdf",
     "application/pdf",
     studentWorkPdf
   );
@@ -392,7 +641,7 @@ async function main() {
     where: { id: aliceSubmission.id },
     data: {
       attachmentLocator: storedSubmission.locator,
-      attachmentFilename: "alice-chen-chapter-1-exercises-3-9.pdf",
+      attachmentFilename: "alice-chen-handwritten-ocr-homework.pdf",
       attachmentMimeType: "application/pdf",
       attachmentSize: storedSubmission.size,
       attachmentSha256: storedSubmission.sha256
@@ -419,7 +668,7 @@ async function main() {
       payload: {
         assignmentId: assignment.id,
         studentUserId: alice.id,
-        gradeScore: 92,
+        gradeScore: 88,
         gradeMax: 100
       }
     }
@@ -431,13 +680,14 @@ async function main() {
   console.log(`Class: ${klass.name}`);
   console.log(`Resource: ${PDF_TITLE}`);
   console.log(`Assignment: ${assignment.title}`);
+  console.log(`Practice assignment: ${practiceAssignment.title}`);
   console.log(`Shared password: ${SHARED_PASSWORD}`);
   console.log("");
   console.table([
     { role: "Admin", name: admin.name, email: admin.email },
     { role: "Teacher", name: teacher.name, email: teacher.email },
-    { role: "Student", name: alice.name, email: alice.email, state: "Submitted and graded" },
-    { role: "Student", name: marco.name, email: marco.email, state: "Not submitted" }
+    { role: "Student", name: alice.name, email: alice.email, state: "Handwritten/OCR work submitted and graded" },
+    { role: "Student", name: marco.name, email: marco.email, state: "Answer-only auto-graded practice submitted" }
   ]);
   console.log("");
   console.log("Recording routes:");
